@@ -13,6 +13,7 @@
     "isolatedModules": true,
     "paths": {
       "~/*":["./src/*"]
-    }
+    },
+    "resolveJsonModule": true,
   }
 }
