@@ -4,6 +4,12 @@ import { render } from "solid-js/web";
 
 import App from "./App";
 
+declare global {
+  interface Window {
+    [key: string]: any;
+  }
+}
+
 render(
   () => (
     <Router>
