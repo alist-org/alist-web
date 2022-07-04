@@ -2,15 +2,27 @@ import { HopeThemeConfig } from "@hope-ui/solid";
 
 const theme: HopeThemeConfig = {
   initialColorMode: "system",
-  components:{
+  components: {
     Button: {
-      defaultProps:{
+      baseStyle: {
         root: {
-          colorScheme: "info"
-        }
-      }
-    }
-  }
-}
+          _active: {
+            transform: "scale(.95)",
+            transition: "0.2s",
+          },
+          _focus: {
+            boxShadow: "unset",
+          },
+        },
+      },
+      defaultProps: {
+        root: {
+          colorScheme: "info",
+          variant: "subtle",
+        },
+      },
+    },
+  },
+};
 
 export default theme;
