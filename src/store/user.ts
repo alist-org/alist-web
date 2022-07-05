@@ -11,4 +11,4 @@ const resetUser = async () => {
   }
 };
 
-export { user, setUser };
+export { user, setUser, resetUser };
