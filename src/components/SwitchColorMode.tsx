@@ -3,12 +3,21 @@ import { BsSunFill, BsMoonFill } from "solid-icons/bs";
 
 const SwitchColorMode = () => {
   const { toggleColorMode } = useColorMode();
-  const icon = useColorModeValue(BsMoonFill, BsSunFill);
+  const icon = useColorModeValue(
+    {
+      size: "$8",
+      component: BsMoonFill,
+    },
+    {
+      size: "$10",
+      component: BsSunFill,
+    }
+  );
   return (
     <Icon
       cursor="pointer"
-      boxSize="$10"
-      as={icon()}
+      boxSize={icon().size}
+      as={icon().component}
       onClick={toggleColorMode}
     />
   );
