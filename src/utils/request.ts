@@ -26,7 +26,8 @@ instance.interceptors.request.use(
 // response interceptor
 instance.interceptors.response.use(
   (response) => {
-    // const res = response.data
+    const resp = response.data
+    
     return response;
   },
   (error) => {
