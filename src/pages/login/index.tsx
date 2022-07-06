@@ -39,7 +39,7 @@ const Login = () => {
             </Heading>
           </Flex>
           <Input placeholder={t("login.username-tip")} my="$2" />
-          <Input placeholder={t("login.password-tip")} my="$2" />
+          <Input placeholder={t("login.password-tip")} my="$2" type="password" />
           <Button w="$full" my="$2">
             {t("login.login")}
           </Button>
