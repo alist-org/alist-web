@@ -8,7 +8,11 @@ const SwitchLnaguage = () => {
   const [, { locale }] = useI18n();
   return (
     <Menu>
-      <MenuTrigger as={TbLanguageHiragana} size={45}></MenuTrigger>
+      <MenuTrigger
+        as={TbLanguageHiragana}
+        size={45}
+        cursor="pointer"
+      ></MenuTrigger>
       <MenuContent>
         <For each={languages}>
           {(lang, i) => (
