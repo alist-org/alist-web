@@ -1,4 +1,4 @@
-import { HopeThemeConfig } from "@hope-ui/solid";
+import { globalCss, HopeThemeConfig } from "@hope-ui/solid";
 
 const theme: HopeThemeConfig = {
   initialColorMode: "system",
@@ -22,7 +22,26 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    Input: {
+      baseStyle: {
+        input: {
+          _focus: {
+            boxShadow: "unset",
+          },
+        },
+      },
+    },
   },
 };
+
+export const globalStyles = globalCss({
+  "*": {
+    margin: 0,
+    padding: 0,
+  },
+  "#root": {
+    height: "$full",
+  },
+});
 
 export default theme;
