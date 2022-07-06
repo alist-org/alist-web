@@ -49,7 +49,7 @@ const Login = () => {
         </Box>
       </Box>
       <Box pos="absolute" right="$10" top="$10">
-        <HStack>
+        <HStack spacing="$1">
           <SwitchLnaguage />
           <SwitchColorMode />
         </HStack>
