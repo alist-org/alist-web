@@ -7,9 +7,11 @@ import {
   Input,
   Button,
   useColorModeValue,
+  HStack,
 } from "@hope-ui/solid";
 import { useI18n } from "@solid-primitives/i18n";
 import { SwitchColorMode } from "~/components/SwitchColorMode";
+import { SwitchLnaguage } from "~/components/SwitchLanguage";
 import { useTitle } from "~/hooks/useTitle";
 import LoginBg from "./LoginBg";
 
@@ -47,7 +49,10 @@ const Login = () => {
         </Box>
       </Box>
       <Box pos="absolute" right="$10" top="$10">
-        <SwitchColorMode />
+        <HStack>
+          <SwitchLnaguage />
+          <SwitchColorMode />
+        </HStack>
       </Box>
       <LoginBg />
     </Center>
