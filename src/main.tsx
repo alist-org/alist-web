@@ -9,7 +9,6 @@ declare global {
     [key: string]: any;
   }
 }
-
 render(
   () => (
     <Router>
