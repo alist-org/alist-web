@@ -13,9 +13,9 @@ const SwitchLnaguage = () => {
         <For each={languages}>
           {(lang, i) => (
             <MenuItem
-              colorScheme="info"
               onSelect={() => {
                 locale(lang.lang);
+                localStorage.setItem("lang", lang.lang);
               }}
             >
               {lang.text}

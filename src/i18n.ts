@@ -15,7 +15,11 @@ for (const path in langs) {
     text: langs[path].text,
   });
 }
+const defaultLang =
+  languages.find((lang) => lang.lang === navigator.language.toLowerCase())
+    ?.lang || "en";
 
-const i18n = createI18nContext(dict, "en");
+const initialLang = localStorage.getItem("lang") || defaultLang;
+const i18n = createI18nContext(dict, initialLang);
 
 export { languages, i18n };
