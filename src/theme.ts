@@ -32,9 +32,9 @@ const theme: HopeThemeConfig = {
       },
       defaultProps: {
         input: {
-          variant: "filled"
-        }
-      }
+          variant: "filled",
+        },
+      },
     },
   },
 };
@@ -49,4 +49,4 @@ export const globalStyles = globalCss({
   },
 });
 
-export default theme;
+export { theme };

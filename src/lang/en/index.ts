@@ -5,3 +5,4 @@ for (const path in jsons) {
   langs[name] = (await jsons[path]()).default;
 }
 export default langs;
+export const text = "English";

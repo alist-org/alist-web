@@ -2,8 +2,8 @@ import { Center, HopeProvider, Spinner } from "@hope-ui/solid";
 import { I18nContext } from "@solid-primitives/i18n";
 import { Route, Routes } from "solid-app-router";
 import { Component, lazy, Suspense } from "solid-js";
-import i18n from "./i18n";
-import theme, { globalStyles } from "./theme";
+import { i18n } from "./i18n";
+import { globalStyles, theme } from "./theme";
 
 const Index = lazy(() => import("./pages/index"));
 const Manage = lazy(() => import("./pages/manage"));
