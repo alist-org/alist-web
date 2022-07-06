@@ -30,6 +30,11 @@ const theme: HopeThemeConfig = {
           },
         },
       },
+      defaultProps: {
+        input: {
+          variant: "filled"
+        }
+      }
     },
   },
 };
