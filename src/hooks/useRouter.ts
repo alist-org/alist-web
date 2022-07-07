@@ -7,6 +7,7 @@ const useRouter = () => {
   const location = useLocation();
   return {
     to: (path: string) => {
+      console.log("to:", path);
       if (path.startsWith("/")) {
         path = joinRoot(path);
       }

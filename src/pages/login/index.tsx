@@ -7,10 +7,8 @@ import {
   Input,
   Button,
   useColorModeValue,
-  HStack,
   notificationService,
 } from "@hope-ui/solid";
-import { useI18n } from "@solid-primitives/i18n";
 import { createSignal } from "solid-js";
 import { SwitchColorMode } from "~/components/SwitchColorMode";
 import { SwitchLnaguage } from "~/components/SwitchLanguage";
@@ -18,7 +16,7 @@ import { useLoading } from "~/hooks/useLoading";
 import { useT } from "~/hooks/useT";
 import { useTitle } from "~/hooks/useTitle";
 import { changeToken, r } from "~/utils/request";
-import { Resp } from "../types/resp";
+import { Resp } from "../../types/resp";
 import LoginBg from "./LoginBg";
 
 const Login = () => {

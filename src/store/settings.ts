@@ -1,4 +1,4 @@
-import { Resp } from "~/pages/types/resp";
+import { Resp } from "~/types/resp";
 import { r } from "~/utils/request";
 const settings: Record<string, string> = {};
 
