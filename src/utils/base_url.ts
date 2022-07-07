@@ -6,4 +6,11 @@ if (api.endsWith("/")) {
   api = api.slice(0, -1);
 }
 
-export { api };
+let root_path = "";
+export const setBasePath = (path: string) => {
+  root_path = path;
+  if (root_path.endsWith("/")) {
+    root_path = root_path.slice(0, -1);
+  }
+};
+export { api, root_path };

@@ -1,9 +1,14 @@
-import { Box, Heading } from "@hope-ui/solid"
+import { Box, Button, Heading } from "@hope-ui/solid";
+import { useRouter } from "~/hooks/useRouter";
 
 const Index = () => {
-  return <Box>
-    <Heading>Index here</Heading>
-  </Box>
-}
+  const { pathname, push } = useRouter();
+  return (
+    <Box>
+      <Heading>{pathname()}</Heading>
+      <Button onClick={() => push("login")}>login</Button>
+    </Box>
+  );
+};
 
 export default Index;
