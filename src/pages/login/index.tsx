@@ -14,6 +14,7 @@ import { useI18n } from "@solid-primitives/i18n";
 import { createSignal } from "solid-js";
 import { SwitchColorMode } from "~/components/SwitchColorMode";
 import { SwitchLnaguage } from "~/components/SwitchLanguage";
+import { useLoading } from "~/hooks/useLoading";
 import { useT } from "~/hooks/useT";
 import { useTitle } from "~/hooks/useTitle";
 import { changeToken, r } from "~/utils/request";
@@ -27,14 +28,15 @@ const Login = () => {
   const titleColor = useColorModeValue("#359eff", "#1890ff");
   const [username, setUsername] = createSignal("");
   const [password, setPassword] = createSignal("");
-  const [loading, setLoading] = createSignal(false);
-  const Login = async () => {
-    setLoading(true);
-    const resp: Resp<{ token: string }> = await r.post("/auth/login", {
+  // const [loading, setLoading] = createSignal(false);
+  const { loading, data } = useLoading(() =>
+    r.post("/auth/login", {
       username: username(),
       password: password(),
-    });
-    setLoading(false);
+    })
+  );
+  const Login = async () => {
+    const resp: Resp<{ token: string }> = await data();
     if (resp.code === 200) {
       notificationService.show({
         status: "success",
