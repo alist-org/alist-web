@@ -3,5 +3,6 @@
   "username-tip": "输入用户名",
   "password-tip": "输入密码",
   "login": "登录",
-  "use-guest": "以游客身份浏览"
+  "use-guest": "以游客身份浏览",
+  "success": "登录成功"
 }

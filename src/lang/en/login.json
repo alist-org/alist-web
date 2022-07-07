@@ -3,5 +3,6 @@
   "username-tip": "Input your username",
   "password-tip": "Input your password",
   "login": "Login",
-  "use-guest": "Browse as a guest"
+  "use-guest": "Browse as a guest",
+  "success": "Login success"
 }

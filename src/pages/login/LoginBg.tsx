@@ -3,7 +3,7 @@ import CornerBottom from "./CornerBottom";
 import CornerTop from "./CornerTop";
 
 const LoginBg = () => {
-  const bgColor = useColorModeValue("#dee8ff", "#a9c6ff");
+  const bgColor = useColorModeValue("#a9c6ff", "#062b74");
   return (
     <Box
       bgColor={bgColor()}

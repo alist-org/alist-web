@@ -6,6 +6,7 @@ const theme: HopeThemeConfig = {
     Button: {
       baseStyle: {
         root: {
+          borderRadius: "0.5rem",
           _active: {
             transform: "scale(.95)",
             transition: "0.2s",
@@ -25,6 +26,7 @@ const theme: HopeThemeConfig = {
     Input: {
       baseStyle: {
         input: {
+          borderRadius: "0.5rem",
           _focus: {
             boxShadow: "unset",
           },
@@ -33,6 +35,26 @@ const theme: HopeThemeConfig = {
       defaultProps: {
         input: {
           variant: "filled",
+        },
+      },
+    },
+    Menu: {
+      baseStyle: {
+        content: {
+          borderRadius: "0.5rem",
+          minW: "unset",
+          border: "unset",
+        },
+        item: {
+          borderRadius: "0.5rem",
+        },
+      },
+    },
+    Notification: {
+      baseStyle: {
+        root: {
+          borderRadius: "0.5rem",
+          border: "unset",
         },
       },
     },
