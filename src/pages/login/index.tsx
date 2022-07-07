@@ -35,7 +35,6 @@ const Login = () => {
       password: password(),
     });
     setLoading(false);
-    console.log(resp);
     if (resp.code === 200) {
       notificationService.show({
         status: "success",

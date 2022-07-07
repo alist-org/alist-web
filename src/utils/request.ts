@@ -1,3 +1,4 @@
+import { notificationService } from "@hope-ui/solid";
 import axios from "axios";
 import { api } from "./base_url";
 
@@ -26,18 +27,22 @@ instance.interceptors.request.use(
 // response interceptor
 instance.interceptors.response.use(
   (response) => {
-    const resp = response.data
+    const resp = response.data;
 
     return resp;
   },
   (error) => {
     // response error
     console.log(error); // for debug
-    if (!error.response || error.response.data.meta == undefined) {
-      return Promise.reject(error);
-    }
-    // return Promise.reject(error)
-    return error.response.data;
+    // notificationService.show({
+    //   status: "danger",
+    //   title: error.code,
+    //   description: error.message,
+    // });
+    return {
+      code: error.response.status,
+      message: error.message,
+    };
   }
 );
 
@@ -49,6 +54,4 @@ export const changeToken = (token: string) => {
   localStorage.setItem("token", token);
 };
 
-export {
-  instance as r,
-};
+export { instance as r };
