@@ -5,11 +5,11 @@ const SwitchColorMode = () => {
   const { toggleColorMode } = useColorMode();
   const icon = useColorModeValue(
     {
-      size: "$8",
+      size: "$6",
       component: BsMoonFill,
     },
     {
-      size: "$10",
+      size: "$8",
       component: BsSunFill,
     }
   );

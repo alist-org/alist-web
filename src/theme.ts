@@ -23,6 +23,11 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    IconButton: {
+      defaultProps: {
+        colorScheme: "info",
+      },
+    },
     Input: {
       baseStyle: {
         input: {

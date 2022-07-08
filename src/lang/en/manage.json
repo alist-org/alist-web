@@ -1,0 +1,20 @@
+{
+  "sidemenu": {
+    "settings": "Settings",
+    "site": "Site",
+    "style": "Style",
+    "preview": "Preview",
+    "global": "Global",
+    "other": "Other",
+    "users": "Users",
+    "accounts": "Accounts",
+    "metas": "Metas",
+    "profile": "Profile",
+    "about": "About",
+    "tasks": "Tasks",
+    "aria2": "Aria2",
+    "upload": "Upload",
+    "copy": "Copy"
+  },
+  "title": "AList Manage"
+}

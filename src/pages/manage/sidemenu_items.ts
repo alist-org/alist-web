@@ -19,78 +19,79 @@ import { IoCopy } from "solid-icons/io";
 
 export const side_menu_items: SideMenuItemProps[] = [
   {
-    title: "sidemenu.settings",
+    title: "manage.sidemenu.settings",
     icon: BsGearFill,
     children: [
       {
-        title: "sidemenu.site",
+        title: "manage.sidemenu.site",
         icon: BsWindow,
         to: "/@manage/settings/site",
       },
       {
-        title: "sidemenu.style",
+        title: "manage.sidemenu.style",
         icon: BsPaletteFill,
         to: "/@manage/settings/style",
       },
       {
-        title: "sidemenu.preview",
+        title: "manage.sidemenu.preview",
         icon: BsCameraFill,
         to: "/@manage/settings/preview",
       },
       {
-        title: "sidemenu.global",
+        title: "manage.sidemenu.global",
         icon: BsJoystick,
         to: "/@manage/settings/global",
       },
       {
-        title: "sidemenu.other",
+        title: "manage.sidemenu.other",
         icon: BsMedium,
         to: "/@manage/settings/other",
       },
     ],
   },
   {
-    title: "sidemenu.tasks",
+    title: "manage.sidemenu.tasks",
     icon: FaSolidTasks,
     children: [
       {
-        title: "sidemenu.aria2",
+        title: "manage.sidemenu.aria2",
         icon: BsCloudArrowDownFill,
         to: "/@manage/tasks/aria2",
       },
       {
-        title: "sidemenu.upload",
+        title: "manage.sidemenu.upload",
         icon: BsCloudUploadFill,
         to: "/@manage/tasks/upload",
       },
       {
-        title: "sidemenu.copy",
+        title: "manage.sidemenu.copy",
         icon: IoCopy,
         to: "/@manage/tasks/copy",
       },
     ],
   },
   {
-    title: "sidemenu.users",
+    title: "manage.sidemenu.users",
     icon: BsPersonCircle,
     to: "/@manage/users",
   },
   {
-    title: "sidemenu.accounts",
+    title: "manage.sidemenu.accounts",
     icon: CgDatabase,
+    to: "/@manage/accounts",
   },
   {
-    title: "sidemenu.metas",
+    title: "manage.sidemenu.metas",
     icon: SiMetabase,
     to: "/@manage/metas",
   },
   {
-    title: "sidemenu.profile",
+    title: "manage.sidemenu.profile",
     icon: BsFingerprint,
     to: "/@manage/profile",
   },
   {
-    title: "sidemenu.about",
+    title: "manage.sidemenu.about",
     icon: BsFront,
     to: "/@manage/about",
   },

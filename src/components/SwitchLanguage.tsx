@@ -10,7 +10,7 @@ const SwitchLnaguage = () => {
     <Menu>
       <MenuTrigger
         as={TbLanguageHiragana}
-        size={45}
+        size={40}
         cursor="pointer"
       ></MenuTrigger>
       <MenuContent>
