@@ -24,6 +24,7 @@ const SideMenuItem = (props: SideMenuItemProps) => {
 const SideMenuItemWithTo = (props: SideMenuItemProps) => {
   const { to, pathname } = useRouter();
   const t = useT();
+  const isActive = () => pathname() === props.to;
   return (
     <Flex
       onClick={() => {
@@ -33,12 +34,13 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       w="$full"
       alignItems="center"
       _hover={{
-        bgColor: "#9CA3AF40",
+        bgColor: isActive() ? "$info9" : "#9CA3AF40",
       }}
       p="$2"
       rounded="$md"
       cursor="pointer"
-      bgColor={pathname() === props.to ? "#9CA3AF40" : ""}
+      bgColor={isActive() ? "$info9" : ""}
+      color={isActive() ? "#fff" : ""}
     >
       <Show when={props.icon}>{<Icon mr="$2" as={props.icon} />}</Show>
       <Heading>{t(props.title)}</Heading>
