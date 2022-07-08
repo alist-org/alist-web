@@ -3,11 +3,14 @@ import {
   Center,
   Flex,
   Heading,
-  Box,
+  Text,
   Input,
   Button,
   useColorModeValue,
   notificationService,
+  HStack,
+  VStack,
+  Checkbox,
 } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { SwitchColorMode } from "~/components/SwitchColorMode";
@@ -24,9 +27,13 @@ const Login = () => {
   useTitle(t("login.title"));
   const bgColor = useColorModeValue("#fff", "#18181c");
   const titleColor = useColorModeValue("#359eff", "#1890ff");
-  const [username, setUsername] = createSignal("");
-  const [password, setPassword] = createSignal("");
-  // const [loading, setLoading] = createSignal(false);
+  const [username, setUsername] = createSignal(
+    localStorage.getItem("username") || ""
+  );
+  const [password, setPassword] = createSignal(
+    localStorage.getItem("password") || ""
+  );
+  const [remember, setRemember] = createSignal(false);
   const { loading, data } = useLoading(() =>
     r.post("/auth/login", {
       username: username(),
@@ -34,6 +41,13 @@ const Login = () => {
     })
   );
   const Login = async () => {
+    if (remember()) {
+      localStorage.setItem("username", username());
+      localStorage.setItem("password", password());
+    } else {
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
+    }
     const resp: Resp<{ token: string }> = await data();
     if (resp.code === 200) {
       notificationService.show({
@@ -51,7 +65,7 @@ const Login = () => {
   };
   return (
     <Center zIndex="1" w="$full" h="$full">
-      <Box
+      <VStack
         bgColor={bgColor()}
         rounded="$xl"
         p="24px"
@@ -59,8 +73,9 @@ const Login = () => {
           "@initial": "90%",
           "@sm": "364px",
         }}
+        spacing="$4"
       >
-        <Flex alignItems="center" justifyContent="space-around" my="$1">
+        <Flex alignItems="center" justifyContent="space-around">
           <Image
             boxSize="$12"
             src="https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg"
@@ -71,13 +86,11 @@ const Login = () => {
         </Flex>
         <Input
           placeholder={t("login.username-tip")}
-          my="$2"
           value={username()}
           onInput={(e) => setUsername(e.currentTarget.value)}
         />
         <Input
           placeholder={t("login.password-tip")}
-          my="$2"
           type="password"
           value={password()}
           onInput={(e) => setPassword(e.currentTarget.value)}
@@ -87,12 +100,39 @@ const Login = () => {
             }
           }}
         />
-        <Button w="$full" my="$2" loading={loading()} onClick={Login}>
-          {t("login.login")}
-        </Button>
+        <Flex
+          px="$1"
+          w="$full"
+          fontSize="$sm"
+          color="$neutral10"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Checkbox
+            checked={remember()}
+            onChange={() => setRemember(!remember())}
+          >
+            {t("login.remember")}
+          </Checkbox>
+          <Text>{t("login.forget")}</Text>
+        </Flex>
+        <HStack w="$full" spacing="$2">
+          <Button
+            colorScheme="primary"
+            w="$full"
+            onClick={() => {
+              setUsername("");
+              setPassword("");
+            }}
+          >
+            {t("login.clear")}
+          </Button>
+          <Button w="$full" loading={loading()} onClick={Login}>
+            {t("login.login")}
+          </Button>
+        </HStack>
         <Button
           w="$full"
-          my="$2"
           colorScheme="accent"
           onClick={() => {
             changeToken("");
@@ -100,11 +140,17 @@ const Login = () => {
         >
           {t("login.use-guest")}
         </Button>
-        <Flex mt="$2" justifyContent="space-evenly" color="$neutral10">
+        <Flex
+          mt="$2"
+          justifyContent="space-evenly"
+          alignItems="center"
+          color="$neutral10"
+          w="$full"
+        >
           <SwitchLnaguage />
           <SwitchColorMode />
         </Flex>
-      </Box>
+      </VStack>
       <LoginBg />
     </Center>
   );

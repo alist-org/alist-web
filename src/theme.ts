@@ -43,6 +43,14 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    Checkbox: {
+      defaultProps: {
+        root: {
+          colorScheme: "info",
+          variant: "filled"
+        },
+      },
+    },
     Menu: {
       baseStyle: {
         content: {

@@ -2,6 +2,9 @@
   "title": "Login to the ALIST",
   "username-tip": "Input your username",
   "password-tip": "Input your password",
+  "remember": "Remember me",
+  "forget": "Forget password?",
+  "clear": "Clear",
   "login": "Login",
   "use-guest": "Browse as a guest",
   "success": "Login success"

@@ -49,7 +49,7 @@ const Header = () => {
           <Heading fontSize="$2xl">{t("manage.title")}</Heading>
         </Flex>
         <Flex alignItems="center">
-          <HStack spacing="$2">
+          <HStack spacing="$2" color="$neutral11">
             <SwitchLnaguage />
             <SwitchColorMode />
           </HStack>
