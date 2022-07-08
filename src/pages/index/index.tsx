@@ -6,7 +6,7 @@ const Index = () => {
   return (
     <Box>
       <Heading>{pathname()}</Heading>
-      <Button onClick={() => push("login")}>login</Button>
+      <Button onClick={() => push("@login")}>login</Button>
     </Box>
   );
 };
