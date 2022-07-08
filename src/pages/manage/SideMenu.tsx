@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, HStack, Icon, VStack } from "@hope-ui/solid";
-import { createSignal, For, JSX, Show } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { useRouter } from "~/hooks/useRouter";
-import { BiSolidRightArrow, BiSolidDownArrow } from "solid-icons/bi";
+import { BiSolidRightArrow } from "solid-icons/bi";
 import { useT } from "~/hooks/useT";
 import { IconTypes } from "solid-icons/lib/browser/IconWrapper";
 
@@ -35,6 +35,7 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       }}
       p="$2"
       rounded="$md"
+      cursor="pointer"
     >
       <Show when={props.icon}>{<Icon mr="$2" as={props.icon} />}</Show>
       <Heading>{t(props.title)}</Heading>
@@ -59,14 +60,17 @@ const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
         }}
         p="$2"
         rounded="$md"
+        cursor="pointer"
       >
         <HStack>
           <Show when={props.icon}>{<Icon mr="$2" as={props.icon} />}</Show>
           <Heading>{t(props.title)}</Heading>
         </HStack>
-        <Show when={open()} fallback={<Icon as={BiSolidRightArrow} />}>
-          <Icon as={BiSolidDownArrow} />
-        </Show>
+        <Icon
+          as={BiSolidRightArrow}
+          transform={open() ? "rotate(90deg)" : "none"}
+          transition="transform 0.2s"
+        />
       </Flex>
       <Show when={open()}>
         <Box pl="$2">
