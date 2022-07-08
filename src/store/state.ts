@@ -2,7 +2,9 @@ import { createSignal } from "solid-js";
 
 export enum State {
   Initial, // Initial state
-  Loading, // Loading state
+  FetchingSettings,
+  FetchingObj,
+  FetchingObjs,
   TokenExpired, // Token expired
   Folder, // Folder state
   File, // File state
