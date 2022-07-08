@@ -8,7 +8,10 @@ const useT = () => {
     defaultValue?: string | undefined
   ) => {
     const value = t(key, params, defaultValue);
-    return value ?? key;
+    if (!value) {
+      return key;
+    }
+    return value;
   };
 };
 
