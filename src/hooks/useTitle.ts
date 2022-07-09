@@ -1,8 +1,15 @@
-import { onCleanup } from "solid-js";
+import { createEffect, onCleanup } from "solid-js";
 
-const useTitle = (title: string) => {
+const useTitle = (title: string | (() => string)) => {
   const pre = document.title;
-  document.title = title;
+  if (typeof title === "function") {
+    document.title = title();
+    createEffect(() => {
+      document.title = title();
+    });
+  } else {
+    document.title = title;
+  }
   onCleanup(() => {
     document.title = pre;
   });

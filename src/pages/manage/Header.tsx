@@ -24,6 +24,7 @@ const { isOpen, onOpen, onClose } = createDisclosure();
 
 const Header = () => {
   const t = useT();
+  const titleColor = useColorModeValue("#359eff", "#1890ff");
   return (
     <Box
       as="header"
@@ -32,7 +33,7 @@ const Header = () => {
       left="0"
       right="0"
       zIndex="$sticky"
-      height="72px"
+      height="64px"
       flexShrink={0}
       shadow="$md"
       p="$4"
@@ -47,14 +48,16 @@ const Header = () => {
             onClick={onOpen}
             mr="$2"
           />
-          <Heading fontSize="$2xl">{t("manage.title")}</Heading>
+          <Heading fontSize="$2xl" color={titleColor()}>
+            {t("manage.title")}
+          </Heading>
         </Flex>
       </Flex>
       <Drawer opened={isOpen()} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>AList Menu</DrawerHeader>
+          <DrawerHeader color={titleColor()}>{t("manage.title")}</DrawerHeader>
 
           <DrawerBody>
             <SideMenu items={side_menu_items} />

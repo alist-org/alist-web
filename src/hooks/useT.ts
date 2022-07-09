@@ -1,4 +1,5 @@
 import { useI18n } from "@solid-primitives/i18n";
+import { firstUpperCase } from "~/utils/str";
 
 const useT = () => {
   const [t] = useI18n();
@@ -9,7 +10,8 @@ const useT = () => {
   ) => {
     const value = t(key, params, defaultValue);
     if (!value) {
-      return key;
+      const last = key.slice(key.lastIndexOf(".") + 1);
+      return firstUpperCase(last).split("_").join(" ");
     }
     return value;
   };

@@ -24,7 +24,7 @@ import LoginBg from "./LoginBg";
 
 const Login = () => {
   const t = useT();
-  useTitle(t("login.title"));
+  useTitle(() => t("login.title"));
   const bgColor = useColorModeValue("#fff", "#18181c");
   const titleColor = useColorModeValue("#359eff", "#1890ff");
   const [username, setUsername] = createSignal(
