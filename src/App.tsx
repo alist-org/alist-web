@@ -1,9 +1,11 @@
 import { Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "solid-app-router";
-import { Component, lazy, Suspense } from "solid-js";
+import { Component, lazy, onCleanup, Suspense } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Boundary } from "./Boundary";
+import { useRouter } from "./hooks/useRouter";
 import { globalStyles, theme } from "./theme";
+import { bus } from "./utils/event-bus";
 
 const Index = lazy(() => import("./pages/index"));
 const Manage = lazy(() => import("./pages/manage"));
@@ -13,6 +15,14 @@ const Test = lazy(() => import("./pages/test"));
 const App: Component = () => {
   globalStyles();
   const isRouting = useIsRouting();
+  const { to } = useRouter();
+  const onTo = (path: string) => {
+    to(path);
+  };
+  bus.on("to", onTo);
+  onCleanup(() => {
+    bus.off("to", onTo);
+  });
   return (
     <Boundary>
       <Portal>

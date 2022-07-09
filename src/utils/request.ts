@@ -1,6 +1,7 @@
 import { notificationService } from "@hope-ui/solid";
 import axios from "axios";
 import { api } from "./base_url";
+import { bus } from "./event-bus";
 
 const instance = axios.create({
   baseURL: api + "/api",
@@ -28,7 +29,9 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     const resp = response.data;
-
+    if (resp.code === 401) {
+      bus.emit("to", "/@login");
+    }
     return resp;
   },
   (error) => {
