@@ -2,7 +2,7 @@
 import { Router } from "solid-app-router";
 import { render } from "solid-js/web";
 
-import App from "./App";
+import App from "./app";
 
 declare global {
   interface Window {

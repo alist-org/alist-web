@@ -1,7 +1,6 @@
-import { notificationService } from "@hope-ui/solid";
 import axios from "axios";
 import { api } from "./base_url";
-import { bus } from "./event-bus";
+import { bus } from "./bus";
 
 const instance = axios.create({
   baseURL: api + "/api",

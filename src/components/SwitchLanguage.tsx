@@ -1,7 +1,7 @@
-import { Icon, Menu, MenuContent, MenuItem, MenuTrigger } from "@hope-ui/solid";
+import { Menu, MenuContent, MenuItem, MenuTrigger } from "@hope-ui/solid";
 import { useI18n } from "@solid-primitives/i18n";
 import { For } from "solid-js";
-import { languages } from "~/i18n";
+import { languages } from "~/app/i18n";
 import { TbLanguageHiragana } from "solid-icons/tb";
 
 const SwitchLnaguage = () => {

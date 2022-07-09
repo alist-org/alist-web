@@ -4,7 +4,7 @@ interface Language {
   lang: string;
   text: string;
 }
-const langs = import.meta.globEager("./lang/*/index.ts");
+const langs = import.meta.globEager("~/lang/*/index.ts");
 const languages: Language[] = [];
 const dict: Record<string, Record<string, any>> = {};
 for (const path in langs) {

@@ -20,7 +20,7 @@ const Boundary = (props: { children: JSX.Element }) => {
     >
       <I18nContext.Provider value={i18n}>
         <HopeProvider config={theme}>
-          <NotificationsProvider duration={2000} >
+          <NotificationsProvider duration={2000}>
             <Suspense
               fallback={
                 <Center h="100vh">

@@ -1,16 +1,16 @@
 import { Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "solid-app-router";
-import { Component, lazy, onCleanup, Suspense } from "solid-js";
+import { Component, lazy, onCleanup } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Boundary } from "./Boundary";
-import { useRouter } from "./hooks/useRouter";
-import { globalStyles, theme } from "./theme";
-import { bus } from "./utils/event-bus";
+import { useRouter } from "~/hooks/useRouter";
+import { globalStyles } from "./theme";
+import { bus } from "~/utils/bus";
 
-const Index = lazy(() => import("./pages/index"));
-const Manage = lazy(() => import("./pages/manage"));
-const Login = lazy(() => import("./pages/login"));
-const Test = lazy(() => import("./pages/test"));
+const Index = lazy(() => import("~/pages/index"));
+const Manage = lazy(() => import("~/pages/manage"));
+const Login = lazy(() => import("~/pages/login"));
+const Test = lazy(() => import("~/pages/test"));
 
 const App: Component = () => {
   globalStyles();
