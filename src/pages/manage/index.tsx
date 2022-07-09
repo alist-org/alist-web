@@ -1,4 +1,6 @@
-import { Box, Flex, useColorModeValue } from "@hope-ui/solid";
+import { Box, Center, Flex, HStack, useColorModeValue } from "@hope-ui/solid";
+import { SwitchColorMode } from "~/components/SwitchColorMode";
+import { SwitchLnaguage } from "~/components/SwitchLanguage";
 import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
@@ -16,6 +18,12 @@ const Manage = () => {
           bgColor={useColorModeValue("", "$whiteAlpha3")()}
         >
           <SideMenu items={side_menu_items} />
+          <Center>
+            <HStack spacing="$4" p="$2" color="$neutral11">
+              <SwitchLnaguage />
+              <SwitchColorMode />
+            </HStack>
+          </Center>
         </Box>
       </Flex>
     </Box>

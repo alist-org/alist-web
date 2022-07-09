@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   createDisclosure,
   Drawer,
   DrawerBody,
@@ -48,12 +49,6 @@ const Header = () => {
           />
           <Heading fontSize="$2xl">{t("manage.title")}</Heading>
         </Flex>
-        <Flex alignItems="center">
-          <HStack spacing="$2" color="$neutral11">
-            <SwitchLnaguage />
-            <SwitchColorMode />
-          </HStack>
-        </Flex>
       </Flex>
       <Drawer opened={isOpen()} placement="left" onClose={onClose}>
         <DrawerOverlay />
@@ -63,6 +58,12 @@ const Header = () => {
 
           <DrawerBody>
             <SideMenu items={side_menu_items} />
+            <Center>
+              <HStack spacing="$4" p="$2" color="$neutral11">
+                <SwitchLnaguage />
+                <SwitchColorMode />
+              </HStack>
+            </Center>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
