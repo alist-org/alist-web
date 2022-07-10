@@ -21,6 +21,8 @@ import { changeToken, r } from "~/utils/request";
 import { Resp } from "~/types/resp";
 import LoginBg from "./LoginBg";
 import { notify } from "~/utils/notify";
+import { useRouter } from "~/hooks/useRouter";
+import { createStorageSignal } from "@solid-primitives/storage";
 
 const Login = () => {
   const t = useT();
@@ -33,13 +35,14 @@ const Login = () => {
   const [password, setPassword] = createSignal(
     localStorage.getItem("password") || ""
   );
-  const [remember, setRemember] = createSignal(false);
+  const [remember, setRemember] = createStorageSignal("remember-pwd", false);
   const { loading, data } = useLoading(() =>
     r.post("/auth/login", {
       username: username(),
       password: password(),
     })
   );
+  const { searchParams, to } = useRouter();
   const Login = async () => {
     if (remember()) {
       localStorage.setItem("username", username());
@@ -52,7 +55,7 @@ const Login = () => {
     if (resp.code === 200) {
       notify.success(t("login.success"));
       changeToken(resp.data.token);
-      // TODO go to redirect url
+      to(decodeURIComponent(searchParams.redirect) || "/", true);
     } else {
       notify.error(t(resp.message));
     }

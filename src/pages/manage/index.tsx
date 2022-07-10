@@ -17,7 +17,7 @@ const Manage = () => {
   const { to } = useRouter();
   if (UserMethods.is_guest(user()!)) {
     notify.warning(t("manage.not_admin"));
-    to("/@login");
+    to(`/@login?redirect=${encodeURIComponent(window.location.pathname)}`);
   }
   return (
     <Box>

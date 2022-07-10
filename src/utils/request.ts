@@ -29,7 +29,10 @@ instance.interceptors.response.use(
   (response) => {
     const resp = response.data;
     if (resp.code === 401) {
-      bus.emit("to", "/@login");
+      bus.emit(
+        "to",
+        `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
+      );
     }
     return resp;
   },
