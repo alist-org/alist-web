@@ -76,9 +76,9 @@ export const side_menu_items: SideMenuItemProps[] = [
     to: "/@manage/users",
   },
   {
-    title: "manage.sidemenu.accounts",
+    title: "manage.sidemenu.storages",
     icon: CgDatabase,
-    to: "/@manage/accounts",
+    to: "/@manage/storages",
   },
   {
     title: "manage.sidemenu.metas",
