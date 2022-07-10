@@ -5,11 +5,12 @@ import {
   Spinner,
 } from "@hope-ui/solid";
 import { I18nContext } from "@solid-primitives/i18n";
-import { ErrorBoundary, JSX, Suspense } from "solid-js";
+import { ErrorBoundary, JSXElement, Suspense } from "solid-js";
+import { FullScreenLoading } from "~/components/FullScreenLoading";
 import { i18n } from "./i18n";
 import { globalStyles, theme } from "./theme";
 
-const Boundary = (props: { children: JSX.Element }) => {
+const Boundary = (props: { children: JSXElement }) => {
   globalStyles();
   return (
     <ErrorBoundary
@@ -21,19 +22,7 @@ const Boundary = (props: { children: JSX.Element }) => {
       <I18nContext.Provider value={i18n}>
         <HopeProvider config={theme}>
           <NotificationsProvider duration={2000}>
-            <Suspense
-              fallback={
-                <Center h="100vh">
-                  <Spinner
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="$neutral4"
-                    color="$info10"
-                    size="xl"
-                  />
-                </Center>
-              }
-            >
+            <Suspense fallback={<FullScreenLoading />}>
               {props.children}
             </Suspense>
           </NotificationsProvider>

@@ -1,5 +1,6 @@
 import { Resp } from "~/types/resp";
 import { r } from "~/utils/request";
+import { setErr, setState, State } from "./state";
 const settings: Record<string, string> = {};
 
 export const initSettings = async () => {
@@ -8,6 +9,9 @@ export const initSettings = async () => {
     Object.keys(resp.data).forEach((key) => {
       settings[key] = resp.data[key];
     });
+    setState(State.FetchingSettingsSuccess);
+  } else {
+    setErr(resp.message);
   }
 };
 

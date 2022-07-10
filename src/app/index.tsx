@@ -1,11 +1,15 @@
-import { Progress, ProgressIndicator } from "@hope-ui/solid";
+import { Center, Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "solid-app-router";
-import { Component, lazy, onCleanup } from "solid-js";
+import { Component, lazy, Match, onCleanup, Switch } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Boundary } from "./Boundary";
 import { useRouter } from "~/hooks/useRouter";
 import { globalStyles } from "./theme";
 import { bus } from "~/utils/bus";
+import { err, State, state } from "~/store/state";
+import { FullScreenLoading } from "~/components/FullScreenLoading";
+import { initSettings } from "~/store/settings";
+import { MustUser } from "./MustUser";
 
 const Index = lazy(() => import("~/pages/index"));
 const Manage = lazy(() => import("~/pages/manage"));
@@ -23,6 +27,7 @@ const App: Component = () => {
   onCleanup(() => {
     bus.off("to", onTo);
   });
+  initSettings();
   return (
     <Boundary>
       <Portal>
@@ -39,12 +44,37 @@ const App: Component = () => {
           <ProgressIndicator />
         </Progress>
       </Portal>
-      <Routes>
-        <Route path="/@test" component={Test} />
-        <Route path="/@login" component={Login} />
-        <Route path="/@manage/*" component={Manage} />
-        <Route path="*" component={Index} />
-      </Routes>
+      <Switch
+        fallback={
+          <Routes>
+            <Route path="/@test" component={Test} />
+            <Route path="/@login" component={Login} />
+            <Route
+              path="/@manage/*"
+              element={
+                <MustUser>
+                  <Manage />
+                </MustUser>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <MustUser>
+                  <Index />
+                </MustUser>
+              }
+            />
+          </Routes>
+        }
+      >
+        <Match when={state() === State.FetchingSettings}>
+          <FullScreenLoading />
+        </Match>
+        <Match when={state() === State.FetchingSettingsError}>
+          <Center>{err}</Center>
+        </Match>
+      </Switch>
     </Boundary>
   );
 };

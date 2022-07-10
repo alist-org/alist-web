@@ -3,13 +3,20 @@ import { SwitchColorMode } from "~/components/SwitchColorMode";
 import { SwitchLnaguage } from "~/components/SwitchLanguage";
 import { useT } from "~/hooks/useT";
 import { useTitle } from "~/hooks/useTitle";
+import { user } from "~/store/user";
 import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
+import { UserMethods } from "~/types/user";
+import { useRouter } from "~/hooks/useRouter";
 
 const Manage = () => {
   const t = useT();
-  useTitle(()=>t("manage.title"));
+  useTitle(() => t("manage.title"));
+  const { to } = useRouter();
+  if (UserMethods.is_guest(user()!)) {
+    to("/@login");
+  }
   return (
     <Box>
       <Header />
