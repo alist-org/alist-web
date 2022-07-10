@@ -1,5 +1,4 @@
 import { Center, Heading } from "@hope-ui/solid";
-import { JSXElement } from "solid-js";
 import { trimLeft } from "~/utils/str";
 import { SideMenuItem, side_menu_items } from "./sidemenu_items";
 
