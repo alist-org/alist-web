@@ -21,7 +21,7 @@ const Boundary = (props: { children: JSXElement }) => {
     >
       <I18nContext.Provider value={i18n}>
         <HopeProvider config={theme}>
-          <NotificationsProvider duration={2000}>
+          <NotificationsProvider duration={3000}>
             <Suspense fallback={<FullScreenLoading />}>
               {props.children}
             </Suspense>

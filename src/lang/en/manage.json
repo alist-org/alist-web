@@ -16,5 +16,6 @@
     "upload": "Upload",
     "copy": "Copy"
   },
-  "title": "AList Manage"
+  "title": "AList Manage",
+  "not_admin": "You are not admin user, please login with admin account."
 }

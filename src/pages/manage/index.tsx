@@ -9,12 +9,14 @@ import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
 import { UserMethods } from "~/types/user";
 import { useRouter } from "~/hooks/useRouter";
+import { notify } from "~/utils/notify";
 
 const Manage = () => {
   const t = useT();
   useTitle(() => t("manage.title"));
   const { to } = useRouter();
   if (UserMethods.is_guest(user()!)) {
+    notify.warning(t("manage.not_admin"));
     to("/@login");
   }
   return (

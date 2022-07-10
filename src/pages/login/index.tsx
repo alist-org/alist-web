@@ -7,7 +7,6 @@ import {
   Input,
   Button,
   useColorModeValue,
-  notificationService,
   HStack,
   VStack,
   Checkbox,
@@ -21,6 +20,7 @@ import { useTitle } from "~/hooks/useTitle";
 import { changeToken, r } from "~/utils/request";
 import { Resp } from "~/types/resp";
 import LoginBg from "./LoginBg";
+import { notify } from "~/utils/notify";
 
 const Login = () => {
   const t = useT();
@@ -50,17 +50,11 @@ const Login = () => {
     }
     const resp: Resp<{ token: string }> = await data();
     if (resp.code === 200) {
-      notificationService.show({
-        status: "success",
-        title: t("login.success"),
-      });
+      notify.success(t("login.success"));
       changeToken(resp.data.token);
       // TODO go to redirect url
     } else {
-      notificationService.show({
-        status: "danger",
-        title: resp.message,
-      });
+      notify.error(t(resp.message));
     }
   };
   return (
