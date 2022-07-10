@@ -10,6 +10,11 @@ import { side_menu_items } from "./sidemenu_items";
 import { UserMethods } from "~/types/user";
 import { useRouter } from "~/hooks/useRouter";
 import { notify } from "~/utils/notify";
+import { Outlet, Route, Routes } from "solid-app-router";
+import { For, lazy } from "solid-js";
+import { routes } from "./helper";
+
+const Dashboard = lazy(() => import("./Dashboard"));
 
 const Manage = () => {
   const t = useT();
@@ -37,6 +42,15 @@ const Manage = () => {
               <SwitchColorMode />
             </HStack>
           </Center>
+        </Box>
+        <Box w="$full">
+          <Routes>
+            <For each={routes}>
+              {(route) => (
+                <Route path={route.to!} component={route.component} />
+              )}
+            </For>
+          </Routes>
         </Box>
       </Flex>
     </Box>

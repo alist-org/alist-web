@@ -16,8 +16,20 @@ import { SiMetabase } from "solid-icons/si";
 import { CgDatabase } from "solid-icons/cg";
 import { FaSolidTasks } from "solid-icons/fa";
 import { IoCopy } from "solid-icons/io";
+import { BiSolidDashboard } from "solid-icons/bi";
+import { Component, lazy } from "solid-js";
 
-export const side_menu_items: SideMenuItemProps[] = [
+export type SideMenuItem = SideMenuItemProps & {
+  component?: Component;
+};
+
+export const side_menu_items: SideMenuItem[] = [
+  {
+    title: "manage.sidemenu.dashboard",
+    icon: BiSolidDashboard,
+    to: "/@manage",
+    component: lazy(() => import("./dashboard")),
+  },
   {
     title: "manage.sidemenu.settings",
     icon: BsGearFill,

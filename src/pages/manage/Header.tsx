@@ -17,6 +17,7 @@ import {
 import { TiThMenu } from "solid-icons/ti";
 import { SwitchColorMode } from "~/components/SwitchColorMode";
 import { SwitchLnaguage } from "~/components/SwitchLanguage";
+import { useRouter } from "~/hooks/useRouter";
 import { useT } from "~/hooks/useT";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
@@ -25,6 +26,7 @@ const { isOpen, onOpen, onClose } = createDisclosure();
 const Header = () => {
   const t = useT();
   const titleColor = useColorModeValue("#359eff", "#1890ff");
+  const { to } = useRouter();
   return (
     <Box
       as="header"
@@ -48,7 +50,14 @@ const Header = () => {
             onClick={onOpen}
             mr="$2"
           />
-          <Heading fontSize="$2xl" color={titleColor()}>
+          <Heading
+            fontSize="$2xl"
+            color={titleColor()}
+            cursor="pointer"
+            onClick={() => {
+              to("/@manage");
+            }}
+          >
             {t("manage.title")}
           </Heading>
         </Flex>

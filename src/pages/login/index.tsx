@@ -106,7 +106,7 @@ const Login = () => {
           alignItems="center"
         >
           <Checkbox
-            checked={remember()}
+            checked={remember() || false}
             onChange={() => setRemember(!remember())}
           >
             {t("login.remember")}
