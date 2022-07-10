@@ -55,7 +55,7 @@ const Login = () => {
     if (resp.code === 200) {
       notify.success(t("login.success"));
       changeToken(resp.data.token);
-      to(decodeURIComponent(searchParams.redirect) || "/", true);
+      to(decodeURIComponent(searchParams.redirect || "/"), true);
     } else {
       notify.error(t(resp.message));
     }
