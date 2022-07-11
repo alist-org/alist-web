@@ -36,7 +36,7 @@ const Login = () => {
     localStorage.getItem("password") || ""
   );
   const [remember, setRemember] = createStorageSignal("remember-pwd", false);
-  const { loading, data } = useLoading(() =>
+  const [ loading, data ] = useLoading(() =>
     r.post("/auth/login", {
       username: username(),
       password: password(),

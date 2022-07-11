@@ -5,29 +5,35 @@ import { r } from "~/utils/request";
 import { createStore } from "solid-js/store";
 import { Resp } from "~/types/resp";
 import { notify } from "~/utils/notify";
-import { Grid } from "@hope-ui/solid";
+import { Button, SimpleGrid } from "@hope-ui/solid";
 import { Index } from "solid-js";
 import { Item } from "./SettingItem";
+import { useT } from "~/hooks/useT";
+import { getTarget } from "~/utils/proxy";
 
 export interface CommonSettingsProps {
   group: Group;
 }
 const CommonSettings = (props: CommonSettingsProps) => {
-  const { loading, data } = useLoading(() =>
+  const t = useT();
+  const [settings_loading, settings_data] = useLoading(() =>
     r.get(`/admin/setting/list?group=${props.group}`)
   );
   const [settings, setSettings] = createStore<SettingItem[]>([]);
   (async () => {
-    const res: Resp<SettingItem[]> = await data();
+    const res: Resp<SettingItem[]> = await settings_data();
     if (res.code === 200) {
       setSettings(res.data);
     } else {
       notify.error(res.message);
     }
   })();
+  const [save_loading, save_data] = useLoading(() =>
+    r.post("/admin/setting/save", getTarget(settings))
+  );
   return (
-    <MaybeLoading loading={loading()}>
-      <Grid templateColumns="repeat(auto-fill, minmax(400px,1fr))" gap="$2">
+    <MaybeLoading loading={settings_loading()}>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
         <Index each={settings}>
           {(item, i) => (
             <Item
@@ -38,7 +44,22 @@ const CommonSettings = (props: CommonSettingsProps) => {
             />
           )}
         </Index>
-      </Grid>
+      </SimpleGrid>
+      <Button
+        mt="$2"
+        loading={save_loading()}
+        onClick={async () => {
+          console.log(settings);
+          const res: Resp<{}> = await save_data();
+          if (res.code === 200) {
+            notify.success(t("manage.settings.success"));
+          } else {
+            notify.error(res.message);
+          }
+        }}
+      >
+        {t("manage.settings.save")}
+      </Button>
     </MaybeLoading>
   );
 };

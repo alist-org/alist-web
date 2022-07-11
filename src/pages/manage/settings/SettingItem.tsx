@@ -30,7 +30,7 @@ export type ItemProps = SettingItem & {
 const Item = (props: ItemProps) => {
   const t = useT();
   return (
-    <FormControl>
+    <FormControl w="$full">
       <FormLabel for={props.key}>{t(`manage.settings.${props.key}`)}</FormLabel>
       <Switch fallback={<Center>{t("manage.settings.unknown_type")}</Center>}>
         <Match when={[Type.TypeString, Type.TypeNumber].includes(props.type)}>
@@ -49,7 +49,7 @@ const Item = (props: ItemProps) => {
             // checked={props.value() === "true"}
             onChange={(e: any) =>
               // props.onChange?.(props.value() === "true" ? "false" : "true")
-              props.onChange?.(e.currentTarget.checked)
+              props.onChange?.(e.currentTarget.checked ? "true" : "false")
             }
           />
         </Match>

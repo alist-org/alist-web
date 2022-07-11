@@ -34,13 +34,13 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       w="$full"
       alignItems="center"
       _hover={{
-        bgColor: isActive() ? "$info9" : "#9CA3AF40",
+        bgColor: isActive() ? "$info4" : "$neutral4",
       }}
       p="$2"
       rounded="$md"
       cursor="pointer"
-      bgColor={isActive() ? "$info9" : ""}
-      color={isActive() ? "#fff" : ""}
+      bgColor={isActive() ? "$info4" : ""}
+      color={isActive() ? "$info11" : ""}
     >
       <Show when={props.icon}>{<Icon mr="$2" as={props.icon} />}</Show>
       <Heading>{t(props.title)}</Heading>
@@ -62,7 +62,7 @@ const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
         w="$full"
         alignItems="center"
         _hover={{
-          bgColor: "rgba(156,163,175,0.2)",
+          bgColor: "$neutral4",
         }}
         p="$2"
         rounded="$md"
