@@ -27,7 +27,7 @@ const Manage = () => {
   return (
     <Box>
       <Header />
-      <Flex h="calc(100vh - 64px)">
+      <Flex h="calc(100vh - 64px)" w="$full">
         <Box
           display={{ "@initial": "none", "@sm": "block" }}
           w="$56"
@@ -43,7 +43,7 @@ const Manage = () => {
             </HStack>
           </Center>
         </Box>
-        <Box w="$full" p="$2">
+        <Box w="$full" p="$4">
           <Routes>
             <For each={routes}>
               {(route) => (

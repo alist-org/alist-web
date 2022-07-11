@@ -10,6 +10,7 @@ import { err, State, state } from "~/store/state";
 import { FullScreenLoading } from "~/components/FullLoading";
 import { initSettings } from "~/store/settings";
 import { MustUser } from "./MustUser";
+import './index.css';
 
 const Index = lazy(() => import("~/pages/index"));
 const Manage = lazy(() => import("~/pages/manage"));

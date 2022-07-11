@@ -1,0 +1,47 @@
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background-color: #e2e2e2;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-button:vertical {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+  background-color: rgba(0, 0, 0, 0.38);
+}
+
+
+/* dark */
+
+.hope-ui-dark ::-webkit-scrollbar-corner,
+.hope-ui-dark ::-webkit-scrollbar-track {
+  background-color: rgb(15, 15, 15);
+}
+
+.hope-ui-dark ::-webkit-scrollbar-thumb {
+  background-color: #2d2d2d;
+}
+
+.hope-ui-dark ::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: rgb(58, 58, 58);
+}
+
+.hope-ui-dark ::-webkit-scrollbar-thumb:vertical:active {
+  background-color: rgb(58, 58, 58);
+}

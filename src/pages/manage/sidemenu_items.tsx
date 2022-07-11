@@ -37,6 +37,7 @@ export const side_menu_items: SideMenuItem[] = [
   {
     title: "manage.sidemenu.settings",
     icon: BsGearFill,
+    to: "/@manage/settings",
     children: [
       {
         title: "manage.sidemenu.site",
@@ -72,6 +73,7 @@ export const side_menu_items: SideMenuItem[] = [
   {
     title: "manage.sidemenu.tasks",
     icon: FaSolidTasks,
+    to: "/@manage/tasks",
     children: [
       {
         title: "manage.sidemenu.aria2",

@@ -43,11 +43,29 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    Textarea: {
+      baseStyle: {
+        borderRadius: "0.5rem",
+        _focus: {
+          boxShadow: "unset",
+        },
+      },
+      defaultProps: {
+        variant: "filled",
+      },
+    },
     Checkbox: {
       defaultProps: {
         root: {
           colorScheme: "info",
-          variant: "filled"
+          variant: "filled",
+        },
+      },
+    },
+    Switch: {
+      defaultProps: {
+        root: {
+          colorScheme: "info",
         },
       },
     },

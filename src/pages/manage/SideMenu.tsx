@@ -8,7 +8,7 @@ import { onClose } from "./Header";
 
 export interface SideMenuItemProps {
   title: string;
-  to?: string;
+  to: string;
   icon?: IconTypes;
   children?: SideMenuItemProps[];
 }
@@ -49,7 +49,8 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
 };
 
 const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
-  const [open, setOpen] = createSignal(false);
+  const { pathname } = useRouter();
+  const [open, setOpen] = createSignal(pathname().includes(props.to));
   const t = useT();
   return (
     <Box w="$full">
