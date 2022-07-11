@@ -89,6 +89,13 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    Alert: {
+      baseStyle: {
+        root: {
+          borderRadius: "0.5rem",
+        }
+      }
+    }
   },
 };
 
