@@ -7,7 +7,7 @@ import { useRouter } from "~/hooks/useRouter";
 import { globalStyles } from "./theme";
 import { bus } from "~/utils/bus";
 import { err, State, state } from "~/store/state";
-import { FullScreenLoading } from "~/components/FullScreenLoading";
+import { FullScreenLoading } from "~/components/FullLoading";
 import { initSettings } from "~/store/settings";
 import { MustUser } from "./MustUser";
 

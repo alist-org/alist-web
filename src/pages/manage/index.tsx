@@ -43,7 +43,7 @@ const Manage = () => {
             </HStack>
           </Center>
         </Box>
-        <Box w="$full">
+        <Box w="$full" p="$2">
           <Routes>
             <For each={routes}>
               {(route) => (

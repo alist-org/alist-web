@@ -17,11 +17,15 @@ import { CgDatabase } from "solid-icons/cg";
 import { FaSolidTasks } from "solid-icons/fa";
 import { IoCopy } from "solid-icons/io";
 import { BiSolidDashboard } from "solid-icons/bi";
-import { Component, lazy } from "solid-js";
+import { Component, JSXElement, lazy } from "solid-js";
+import { Group } from "~/types/setting";
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component;
+  children?: SideMenuItem[];
 };
+
+const CommonSettings = lazy(() => import("./settings/Common"));
 
 export const side_menu_items: SideMenuItem[] = [
   {
@@ -38,21 +42,25 @@ export const side_menu_items: SideMenuItem[] = [
         title: "manage.sidemenu.site",
         icon: BsWindow,
         to: "/@manage/settings/site",
+        component: () => <CommonSettings group={Group.SITE} />,
       },
       {
         title: "manage.sidemenu.style",
         icon: BsPaletteFill,
         to: "/@manage/settings/style",
+        component: () => <CommonSettings group={Group.STYLE} />,
       },
       {
         title: "manage.sidemenu.preview",
         icon: BsCameraFill,
         to: "/@manage/settings/preview",
+        component: () => <CommonSettings group={Group.PREVIEW} />,
       },
       {
         title: "manage.sidemenu.global",
         icon: BsJoystick,
         to: "/@manage/settings/global",
+        component: () => <CommonSettings group={Group.GLOBAL} />,
       },
       {
         title: "manage.sidemenu.other",
