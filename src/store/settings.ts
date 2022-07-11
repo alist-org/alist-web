@@ -12,6 +12,7 @@ export const initSettings = async () => {
     setState(State.FetchingSettingsSuccess);
   } else {
     setErr(resp.message);
+    setState(State.FetchingSettingsError);
   }
 };
 

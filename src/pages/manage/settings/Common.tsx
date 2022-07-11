@@ -6,7 +6,7 @@ import { createStore } from "solid-js/store";
 import { Resp } from "~/types/resp";
 import { notify } from "~/utils/notify";
 import { Button, SimpleGrid } from "@hope-ui/solid";
-import { Index } from "solid-js";
+import { createSignal, Index } from "solid-js";
 import { Item } from "./SettingItem";
 import { useT } from "~/hooks/useT";
 import { getTarget } from "~/utils/proxy";
@@ -20,19 +20,21 @@ const CommonSettings = (props: CommonSettingsProps) => {
     r.get(`/admin/setting/list?group=${props.group}`)
   );
   const [settings, setSettings] = createStore<SettingItem[]>([]);
-  (async () => {
+  const initSettings = async () => {
     const res: Resp<SettingItem[]> = await settings_data();
     if (res.code === 200) {
       setSettings(res.data);
     } else {
       notify.error(res.message);
     }
-  })();
+  };
+  initSettings();
   const [save_loading, save_data] = useLoading(() =>
     r.post("/admin/setting/save", getTarget(settings))
   );
+  const [loading, setLoading] = createSignal(false);
   return (
-    <MaybeLoading loading={settings_loading()}>
+    <MaybeLoading loading={settings_loading() || loading()}>
       <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
         <Index each={settings}>
           {(item, i) => (
@@ -40,6 +42,18 @@ const CommonSettings = (props: CommonSettingsProps) => {
               {...item()}
               onChange={(val) => {
                 setSettings((i) => item().key === i.key, "value", val);
+              }}
+              onDelete={async () => {
+                setLoading(true);
+                const res: Resp<{}> = await r.post(
+                  `/admin/setting/delete?key=${item().key}`
+                );
+                setLoading(false);
+                if (res.code === 200) {
+                  initSettings();
+                } else {
+                  notify.error(res.message);
+                }
               }}
             />
           )}
