@@ -39,7 +39,7 @@ const Header = () => {
       flexShrink={0}
       shadow="$md"
       p="$4"
-      bgColor={useColorModeValue("", "$whiteAlpha3")()}
+      bgColor={useColorModeValue("$background", "$neutral2")()}
     >
       <Flex alignItems="center" justifyContent="space-between" h="$full">
         <Flex alignItems="center">
