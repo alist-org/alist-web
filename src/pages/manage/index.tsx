@@ -10,11 +10,9 @@ import { side_menu_items } from "./sidemenu_items";
 import { UserMethods } from "~/types/user";
 import { useRouter } from "~/hooks/useRouter";
 import { notify } from "~/utils/notify";
-import { Outlet, Route, Routes } from "solid-app-router";
-import { For, lazy } from "solid-js";
+import { Route, Routes } from "solid-app-router";
+import { For } from "solid-js";
 import { routes } from "./helper";
-
-const Dashboard = lazy(() => import("./Dashboard"));
 
 const Manage = () => {
   const t = useT();
@@ -27,13 +25,13 @@ const Manage = () => {
   return (
     <Box>
       <Header />
-      <Flex h="calc(100vh - 64px)" w="$full">
+      <Flex w="$full">
         <Box
           display={{ "@initial": "none", "@sm": "block" }}
           w="$56"
-          h="$full"
+          h="calc(100vh - 64px)"
           shadow="$md"
-          bgColor={useColorModeValue("", "$whiteAlpha3")()}
+          bgColor={useColorModeValue("$background", "$neutral2")()}
         >
           <SideMenu items={side_menu_items} />
           <Center>

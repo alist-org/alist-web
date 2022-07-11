@@ -50,6 +50,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
                 );
                 setLoading(false);
                 if (res.code === 200) {
+                  notify.success(t("manage.settings.delete_success"));
                   initSettings();
                 } else {
                   notify.error(res.message);
@@ -60,13 +61,13 @@ const CommonSettings = (props: CommonSettingsProps) => {
         </Index>
       </SimpleGrid>
       <Button
-        mt="$2"
+        my="$2"
         loading={save_loading()}
         onClick={async () => {
           console.log(settings);
           const res: Resp<{}> = await save_data();
           if (res.code === 200) {
-            notify.success(t("manage.settings.success"));
+            notify.success(t("manage.settings.save_success"));
           } else {
             notify.error(res.message);
           }
