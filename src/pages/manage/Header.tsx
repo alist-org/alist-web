@@ -49,9 +49,11 @@ const Header = () => {
             display={{ "@sm": "none" }}
             onClick={onOpen}
             mr="$2"
+            size="sm"
+            variant="subtle"
           />
           <Heading
-            fontSize="$2xl"
+            fontSize="$xl"
             color={titleColor()}
             cursor="pointer"
             onClick={() => {
