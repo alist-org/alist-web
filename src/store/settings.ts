@@ -1,5 +1,5 @@
-import { Resp } from "~/types/resp";
-import { r } from "~/utils/request";
+import { Resp } from "~/types";
+import { r } from "~/utils";
 import { setErr, setState, State } from "./state";
 const settings: Record<string, string> = {};
 

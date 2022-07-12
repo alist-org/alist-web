@@ -1,5 +1,5 @@
 import { useI18n } from "@solid-primitives/i18n";
-import { firstUpperCase } from "~/utils/str";
+import { firstUpperCase } from "~/utils";
 
 const useT = () => {
   const [t] = useI18n();

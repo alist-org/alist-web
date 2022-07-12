@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from "solid-app-router";
 import { createMemo } from "solid-js";
-import { joinRoot, pathJoin, trimRoot } from "~/utils/path_join";
+import { joinRoot, pathJoin, trimRoot } from "~/utils";
 
 const useRouter = () => {
   const navigate = useNavigate();

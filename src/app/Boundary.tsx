@@ -6,7 +6,7 @@ import {
 } from "@hope-ui/solid";
 import { I18nContext } from "@solid-primitives/i18n";
 import { ErrorBoundary, JSXElement, Suspense } from "solid-js";
-import { FullScreenLoading } from "~/components/FullLoading";
+import { FullScreenLoading } from "~/components";
 import { i18n } from "./i18n";
 import { globalStyles, theme } from "./theme";
 

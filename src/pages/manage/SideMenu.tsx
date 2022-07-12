@@ -1,8 +1,7 @@
 import { Box, Flex, Heading, HStack, Icon, VStack } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
-import { useRouter } from "~/hooks/useRouter";
+import { useRouter, useT } from "~/hooks";
 import { BiSolidRightArrow } from "solid-icons/bi";
-import { useT } from "~/hooks/useT";
 import { IconTypes } from "solid-icons/lib/browser/IconWrapper";
 import { onClose } from "./Header";
 

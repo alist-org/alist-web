@@ -19,8 +19,8 @@ import {
   Textarea,
 } from "@hope-ui/solid";
 import { For, Match, Show, Switch } from "solid-js";
-import { useT } from "~/hooks/useT";
-import { Flag, SettingItem, Type } from "~/types/setting";
+import { useT } from "~/hooks";
+import { Flag, SettingItem, Type } from "~/types";
 import { TiDelete } from "solid-icons/ti";
 
 export type ItemProps = SettingItem & {

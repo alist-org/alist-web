@@ -1,5 +1,5 @@
 import { Center, Heading } from "@hope-ui/solid";
-import { trimLeft } from "~/utils/str";
+import { trimLeft } from "~/utils";
 import { SideMenuItem, side_menu_items } from "./sidemenu_items";
 
 type Route = Pick<SideMenuItem, "to" | "component">;

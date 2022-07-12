@@ -15,10 +15,8 @@ import {
   useColorModeValue,
 } from "@hope-ui/solid";
 import { TiThMenu } from "solid-icons/ti";
-import { SwitchColorMode } from "~/components/SwitchColorMode";
-import { SwitchLnaguage } from "~/components/SwitchLanguage";
-import { useRouter } from "~/hooks/useRouter";
-import { useT } from "~/hooks/useT";
+import { SwitchColorMode, SwitchLnaguage } from "~/components";
+import { useRouter, useT } from "~/hooks";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
 const { isOpen, onOpen, onClose } = createDisclosure();

@@ -1,12 +1,9 @@
 import { Button, Heading, HStack, Input, SimpleGrid } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
-import { MaybeLoading } from "~/components/FullLoading";
-import { useLoading } from "~/hooks/useLoading";
-import { useT } from "~/hooks/useT";
-import { Resp } from "~/types/resp";
-import { Flag, Group, SettingItem } from "~/types/setting";
-import { notify } from "~/utils/notify";
-import { r } from "~/utils/request";
+import { MaybeLoading } from "~/components";
+import { useLoading, useT } from "~/hooks";
+import { Resp, Group, SettingItem } from "~/types";
+import { notify, r } from "~/utils";
 import { Item } from "./SettingItem";
 import copy from "copy-to-clipboard";
 

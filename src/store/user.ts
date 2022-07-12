@@ -1,7 +1,6 @@
 import { createSignal } from "solid-js";
-import { Resp } from "~/types/resp";
-import { User } from "~/types/user";
-import { r } from "~/utils/request";
+import { Resp, User } from "~/types";
+import { r } from "~/utils";
 import { setState, State } from "./state";
 
 const [user, setUser] = createSignal<User>();

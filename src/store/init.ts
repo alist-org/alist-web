@@ -1,6 +1,5 @@
-import {resetUser} from "~/store/user";
+import {resetUser} from "~/store";
 
 export const initStore = () => {
-    resetUser()
-    
+    resetUser();
 }

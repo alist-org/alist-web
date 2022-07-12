@@ -12,16 +12,11 @@ import {
   Checkbox,
 } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
-import { SwitchColorMode } from "~/components/SwitchColorMode";
-import { SwitchLnaguage } from "~/components/SwitchLanguage";
-import { useLoading } from "~/hooks/useLoading";
-import { useT } from "~/hooks/useT";
-import { useTitle } from "~/hooks/useTitle";
-import { changeToken, r } from "~/utils/request";
-import { Resp } from "~/types/resp";
+import { SwitchColorMode, SwitchLnaguage } from "~/components";
+import { useLoading, useT, useTitle, useRouter } from "~/hooks";
+import { changeToken, r, notify } from "~/utils";
+import { Resp } from "~/types";
 import LoginBg from "./LoginBg";
-import { notify } from "~/utils/notify";
-import { useRouter } from "~/hooks/useRouter";
 import { createStorageSignal } from "@solid-primitives/storage";
 
 const Login = () => {
@@ -107,7 +102,9 @@ const Login = () => {
         >
           <Checkbox
             checked={remember() === "true"}
-            onChange={() => setRemember(remember() === "true" ? "false" : "true")}
+            onChange={() =>
+              setRemember(remember() === "true" ? "false" : "true")
+            }
           >
             {t("login.remember")}
           </Checkbox>

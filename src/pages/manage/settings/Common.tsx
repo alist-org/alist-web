@@ -1,15 +1,11 @@
-import { MaybeLoading } from "~/components/FullLoading";
-import { useLoading } from "~/hooks/useLoading";
-import { Group, SettingItem } from "~/types/setting";
-import { r } from "~/utils/request";
+import { MaybeLoading } from "~/components";
+import { useLoading, useT } from "~/hooks";
+import { Group, SettingItem, Resp } from "~/types";
+import { r, notify, getTarget } from "~/utils";
 import { createStore } from "solid-js/store";
-import { Resp } from "~/types/resp";
-import { notify } from "~/utils/notify";
 import { Button, SimpleGrid } from "@hope-ui/solid";
 import { createSignal, Index } from "solid-js";
 import { Item } from "./SettingItem";
-import { useT } from "~/hooks/useT";
-import { getTarget } from "~/utils/proxy";
 
 export interface CommonSettingsProps {
   group: Group;

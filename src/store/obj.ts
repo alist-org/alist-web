@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { Obj } from "~/types/obj";
+import { Obj } from "~/types";
 
 const [obj, setObj] = createSignal<Obj>();
 
