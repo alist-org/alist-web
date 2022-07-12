@@ -35,8 +35,8 @@ const Login = () => {
   const [password, setPassword] = createSignal(
     localStorage.getItem("password") || ""
   );
-  const [remember, setRemember] = createStorageSignal("remember-pwd", false);
-  const [ loading, data ] = useLoading(() =>
+  const [remember, setRemember] = createStorageSignal("remember-pwd", "false");
+  const [loading, data] = useLoading(() =>
     r.post("/auth/login", {
       username: username(),
       password: password(),
@@ -106,8 +106,8 @@ const Login = () => {
           alignItems="center"
         >
           <Checkbox
-            checked={remember() || false}
-            onChange={() => setRemember(!remember())}
+            checked={remember() === "true"}
+            onChange={() => setRemember(remember() === "true" ? "false" : "true")}
           >
             {t("login.remember")}
           </Checkbox>
