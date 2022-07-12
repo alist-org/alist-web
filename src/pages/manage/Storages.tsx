@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   HStack,
   Table,
@@ -30,7 +31,7 @@ const Storages = () => {
   };
   refresh();
   return (
-    <VStack spacing="$2" alignItems="start" w="$full" overflowX="auto">
+    <VStack spacing="$2" alignItems="start" w="$full">
       <HStack spacing="$2">
         <Button
           colorScheme="accent"
@@ -41,43 +42,45 @@ const Storages = () => {
         </Button>
         <Button>{t("manage.storages.add")}</Button>
       </HStack>
-      <Table highlightOnHover>
-        <Thead>
-          <Tr>
-            <For
-              each={[
-                "mount_path",
-                "driver",
-                "index",
-                "status",
-                "remark",
-                "operations",
-              ]}
-            >
-              {(title) => <Th>{t(`manage.storages.${title}`)}</Th>}
+      <Box w="$full" overflowX="auto">
+        <Table highlightOnHover>
+          <Thead>
+            <Tr>
+              <For
+                each={[
+                  "mount_path",
+                  "driver",
+                  "index",
+                  "status",
+                  "remark",
+                  "operations",
+                ]}
+              >
+                {(title) => <Th>{t(`manage.storages.${title}`)}</Th>}
+              </For>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <For each={storages()}>
+              {(storage) => (
+                <Tr>
+                  <Td>{storage.mount_path}</Td>
+                  <Td>{storage.driver}</Td>
+                  <Td>{storage.index}</Td>
+                  <Td>{storage.status}</Td>
+                  <Td>{storage.remark}</Td>
+                  <Td>
+                    <HStack spacing="$1">
+                      <Button>{t("manage.edit")}</Button>
+                      <Button colorScheme="danger">{t("manage.delete")}</Button>
+                    </HStack>
+                  </Td>
+                </Tr>
+              )}
             </For>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <For each={storages()}>
-            {(storage) => (
-              <Tr>
-                <Td>{storage.mount_path}</Td>
-                <Td>{storage.driver}</Td>
-                <Td>{storage.index}</Td>
-                <Td>{storage.status}</Td>
-                <Td>{storage.remark}</Td>
-                <Td>
-                  <HStack spacing="$1">
-                    <Button>{t("manage.edit")}</Button>
-                    <Button colorScheme="danger">{t("manage.delete")}</Button>
-                  </HStack>
-                </Td>
-              </Tr>
-            )}
-          </For>
-        </Tbody>
-      </Table>
+          </Tbody>
+        </Table>
+      </Box>
     </VStack>
   );
 };

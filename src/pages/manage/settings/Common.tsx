@@ -57,7 +57,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
         </Index>
       </SimpleGrid>
       <Button
-        my="$2"
+        mt="$2"
         loading={saveLoading()}
         onClick={async () => {
           console.log(settings);

@@ -22,11 +22,11 @@ const Manage = () => {
   return (
     <Box>
       <Header />
-      <Flex w="$full">
+      <Flex w="$full" h="calc(100vh - 64px)">
         <Box
           display={{ "@initial": "none", "@sm": "block" }}
           w="$56"
-          h="calc(100vh - 64px)"
+          h="$full"
           shadow="$md"
           bgColor={useColorModeValue("$background", "$neutral2")()}
         >
@@ -44,6 +44,7 @@ const Manage = () => {
             "@sm": "calc(100% - 14rem)",
           }}
           p="$4"
+          overflowY="auto"
         >
           <Routes>
             <For each={routes}>
