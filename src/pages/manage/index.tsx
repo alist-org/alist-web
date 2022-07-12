@@ -38,7 +38,13 @@ const Manage = () => {
             </HStack>
           </Center>
         </Box>
-        <Box w="$full" p="$4">
+        <Box
+          w={{
+            "@initial": "$full",
+            "@sm": "calc(100% - 14rem)",
+          }}
+          p="$4"
+        >
           <Routes>
             <For each={routes}>
               {(route) => (

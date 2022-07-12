@@ -17,11 +17,11 @@ const CommonSettings = (props: CommonSettingsProps) => {
   );
   const [settings, setSettings] = createStore<SettingItem[]>([]);
   const refresh = async () => {
-    const res: Resp<SettingItem[]> = await getSettings();
-    if (res.code === 200) {
-      setSettings(res.data);
+    const resp: Resp<SettingItem[]> = await getSettings();
+    if (resp.code === 200) {
+      setSettings(resp.data);
     } else {
-      notify.error(res.message);
+      notify.error(resp.message);
     }
   };
   refresh();
@@ -41,15 +41,15 @@ const CommonSettings = (props: CommonSettingsProps) => {
               }}
               onDelete={async () => {
                 setLoading(true);
-                const res: Resp<{}> = await r.post(
+                const resp: Resp<{}> = await r.post(
                   `/admin/setting/delete?key=${item().key}`
                 );
                 setLoading(false);
-                if (res.code === 200) {
+                if (resp.code === 200) {
                   notify.success(t("manage.settings.delete_success"));
                   refresh();
                 } else {
-                  notify.error(res.message);
+                  notify.error(resp.message);
                 }
               }}
             />
@@ -61,11 +61,11 @@ const CommonSettings = (props: CommonSettingsProps) => {
         loading={saveLoading()}
         onClick={async () => {
           console.log(settings);
-          const res: Resp<{}> = await saveSettings();
-          if (res.code === 200) {
+          const resp: Resp<{}> = await saveSettings();
+          if (resp.code === 200) {
             notify.success(t("manage.settings.save_success"));
           } else {
-            notify.error(res.message);
+            notify.error(resp.message);
           }
         }}
       >

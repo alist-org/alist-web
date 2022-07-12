@@ -20,14 +20,14 @@ const OtherSettings = () => {
     r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   );
   const refresh = async () => {
-    const res: Resp<SettingItem[]> = await settings_data();
-    if (res.code === 200) {
-      setUri(res.data.find((i) => i.key === "aria2_uri")?.value || "");
-      setSecret(res.data.find((i) => i.key === "aria2_secret")?.value || "");
-      setToken(res.data.find((i) => i.key === "token")?.value || "");
-      setSettings(res.data);
+    const resp: Resp<SettingItem[]> = await settings_data();
+    if (resp.code === 200) {
+      setUri(resp.data.find((i) => i.key === "aria2_uri")?.value || "");
+      setSecret(resp.data.find((i) => i.key === "aria2_secret")?.value || "");
+      setToken(resp.data.find((i) => i.key === "token")?.value || "");
+      setSettings(resp.data);
     } else {
-      notify.error(res.message);
+      notify.error(resp.message);
     }
   };
   refresh();
@@ -53,11 +53,11 @@ const OtherSettings = () => {
         my="$2"
         loading={setAria2Loading()}
         onClick={async () => {
-          const res: Resp<string> = await setAria2();
-          if (res.code === 200) {
-            notify.success(`${t("manage.settings.aria2_version")} ${res.data}`);
+          const resp: Resp<string> = await setAria2();
+          if (resp.code === 200) {
+            notify.success(`${t("manage.settings.aria2_version")} ${resp.data}`);
           } else {
-            notify.error(res.message);
+            notify.error(resp.message);
           }
         }}
       >
@@ -78,12 +78,12 @@ const OtherSettings = () => {
           colorScheme="danger"
           loading={resetTokenLoading()}
           onClick={async () => {
-            const res: Resp<string> = await resetToken();
-            if (res.code === 200) {
+            const resp: Resp<string> = await resetToken();
+            if (resp.code === 200) {
               notify.success(t("manage.settings.reset_token_success"));
-              setToken(res.data);
+              setToken(resp.data);
             } else {
-              notify.error(res.message);
+              notify.error(resp.message);
             }
           }}
         >

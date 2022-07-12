@@ -1,6 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from "solid-app-router";
 import { createMemo } from "solid-js";
-import { joinRoot, pathJoin, trimRoot } from "~/utils";
+import { joinRoot, log, pathJoin, trimRoot } from "~/utils";
 
 const useRouter = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const useRouter = () => {
       if (!ignore_root && path.startsWith("/")) {
         path = joinRoot(path);
       }
-      console.log("to:", path);
+      log("to:", path);
       navigate(path);
     },
     push: (path: string) => {
