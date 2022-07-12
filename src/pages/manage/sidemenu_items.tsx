@@ -67,6 +67,7 @@ export const side_menu_items: SideMenuItem[] = [
         title: "manage.sidemenu.other",
         icon: BsMedium,
         to: "/@manage/settings/other",
+        component: lazy(() => import("./settings/Other")),
       },
     ],
   },

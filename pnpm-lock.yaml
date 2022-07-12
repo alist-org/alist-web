@@ -7,6 +7,7 @@ specifiers:
   '@stitches/core': ^1.2.8
   '@types/node': ^18.0.0
   axios: ^0.27.2
+  copy-to-clipboard: ^3.3.1
   mitt: ^3.0.0
   solid-app-router: ^0.4.1
   solid-icons: ^0.5.0
@@ -22,6 +23,7 @@ dependencies:
   '@solid-primitives/storage': registry.npmmirror.com/@solid-primitives/storage/1.3.1_solid-js@1.4.5
   '@stitches/core': registry.npmmirror.com/@stitches/core/1.2.8
   axios: registry.npmmirror.com/axios/0.27.2
+  copy-to-clipboard: registry.npmmirror.com/copy-to-clipboard/3.3.1
   mitt: registry.npmmirror.com/mitt/3.0.0
   solid-app-router: registry.npmmirror.com/solid-app-router/0.4.1_solid-js@1.4.5
   solid-icons: registry.npmmirror.com/solid-icons/0.5.0_solid-js@1.4.5
@@ -661,6 +663,14 @@ packages:
       safe-buffer: registry.npmmirror.com/safe-buffer/5.1.2
     dev: true
 
+  registry.npmmirror.com/copy-to-clipboard/3.3.1:
+    resolution: {integrity: sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz}
+    name: copy-to-clipboard
+    version: 3.3.1
+    dependencies:
+      toggle-selection: registry.npmmirror.com/toggle-selection/1.0.6
+    dev: false
+
   registry.npmmirror.com/csstype/3.0.11:
     resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/-/csstype-3.0.11.tgz}
     name: csstype
@@ -1286,6 +1296,12 @@ packages:
     version: 2.0.0
     engines: {node: '>=4'}
     dev: true
+
+  registry.npmmirror.com/toggle-selection/1.0.6:
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/toggle-selection/-/toggle-selection-1.0.6.tgz}
+    name: toggle-selection
+    version: 1.0.6
+    dev: false
 
   registry.npmmirror.com/ts-toolbelt/9.6.0:
     resolution: {integrity: sha512-nsZd8ZeNUzukXPlJmTBwUAuABDe/9qtVDelJeT/qW0ow3ZS3BsQJtNkan1802aM9Uf68/Y8ljw86Hu0h5IUW3w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ts-toolbelt/-/ts-toolbelt-9.6.0.tgz}

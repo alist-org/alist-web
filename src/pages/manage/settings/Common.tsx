@@ -16,25 +16,25 @@ export interface CommonSettingsProps {
 }
 const CommonSettings = (props: CommonSettingsProps) => {
   const t = useT();
-  const [settings_loading, settings_data] = useLoading(() =>
+  const [settingsLoading, getSettings] = useLoading(() =>
     r.get(`/admin/setting/list?group=${props.group}`)
   );
   const [settings, setSettings] = createStore<SettingItem[]>([]);
-  const initSettings = async () => {
-    const res: Resp<SettingItem[]> = await settings_data();
+  const refresh = async () => {
+    const res: Resp<SettingItem[]> = await getSettings();
     if (res.code === 200) {
       setSettings(res.data);
     } else {
       notify.error(res.message);
     }
   };
-  initSettings();
-  const [save_loading, save_data] = useLoading(() =>
+  refresh();
+  const [saveLoading, saveSettings] = useLoading(() =>
     r.post("/admin/setting/save", getTarget(settings))
   );
   const [loading, setLoading] = createSignal(false);
   return (
-    <MaybeLoading loading={settings_loading() || loading()}>
+    <MaybeLoading loading={settingsLoading() || loading()}>
       <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
         <Index each={settings}>
           {(item, i) => (
@@ -51,7 +51,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
                 setLoading(false);
                 if (res.code === 200) {
                   notify.success(t("manage.settings.delete_success"));
-                  initSettings();
+                  refresh();
                 } else {
                   notify.error(res.message);
                 }
@@ -62,10 +62,10 @@ const CommonSettings = (props: CommonSettingsProps) => {
       </SimpleGrid>
       <Button
         my="$2"
-        loading={save_loading()}
+        loading={saveLoading()}
         onClick={async () => {
           console.log(settings);
-          const res: Resp<{}> = await save_data();
+          const res: Resp<{}> = await saveSettings();
           if (res.code === 200) {
             notify.success(t("manage.settings.save_success"));
           } else {

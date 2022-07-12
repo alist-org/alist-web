@@ -34,6 +34,7 @@ const theme: HopeThemeConfig = {
           borderRadius: "0.5rem",
           _focus: {
             boxShadow: "unset",
+            borderColor: "$info8"
           },
         },
       },
@@ -48,6 +49,7 @@ const theme: HopeThemeConfig = {
         borderRadius: "0.5rem",
         _focus: {
           boxShadow: "unset",
+          borderColor: "$info8"
         },
       },
       defaultProps: {
