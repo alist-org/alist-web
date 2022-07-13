@@ -1,0 +1,22 @@
+{
+  "sidemenu": {
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "site": "Site",
+    "style": "Style",
+    "preview": "Preview",
+    "global": "Global",
+    "other": "Other",
+    "users": "Users",
+    "storages": "Storages",
+    "metas": "Metas",
+    "profile": "Profile",
+    "about": "About",
+    "tasks": "Tasks",
+    "aria2": "Aria2",
+    "upload": "Upload",
+    "copy": "Copy"
+  },
+  "title": "AList Manage",
+  "not_admin": "You are not admin user, please login with admin account."
+}
