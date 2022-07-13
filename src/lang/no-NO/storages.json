@@ -1,0 +1,8 @@
+{
+  "mount_path": "Mount Path",
+  "driver": "Driver",
+  "index": "Index",
+  "status": "Status",
+  "remark": "Remark",
+  "operations": "Operations"
+}
