@@ -1,16 +1,24 @@
 import { Center, Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "solid-app-router";
-import { Component, lazy, Match, onCleanup, Switch } from "solid-js";
+import {
+  Component,
+  createSignal,
+  lazy,
+  Match,
+  onCleanup,
+  Switch,
+} from "solid-js";
 import { Portal } from "solid-js/web";
-import { useRouter } from "~/hooks";
+import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
-import { bus } from "~/utils";
-import { err, State, state, initSettings } from "~/store";
+import { bus, r } from "~/utils";
+import { setSettings } from "~/store";
 import { FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
 import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
 import { initialLang, langMap } from "./i18n";
+import { Resp } from "~/types";
 
 const Index = lazy(() => import("~/pages/index"));
 const Manage = lazy(() => import("~/pages/manage"));
@@ -29,11 +37,24 @@ const App: Component = () => {
   onCleanup(() => {
     bus.off("to", onTo);
   });
-  const init = async () => {
-    initSettings();
-    add(initialLang, (await langMap[initialLang]()).default);
-  };
-  init();
+
+  const [err, setErr] = createSignal("");
+  const [loading, data] = useLoading(() =>
+    Promise.all([
+      (async () => add(initialLang, (await langMap[initialLang]()).default))(),
+      (async () => {
+        const resp: Resp<Record<string, string>> = await r.get(
+          "/public/settings"
+        );
+        if (resp.code === 200) {
+          setSettings(resp.data);
+        } else {
+          setErr(resp.message);
+        }
+      })(),
+    ])
+  );
+  data();
   return (
     <>
       <Portal>
@@ -74,15 +95,10 @@ const App: Component = () => {
           </Routes>
         }
       >
-        <Match when={state() === State.FetchingSettingsError}>
-          <Center h="$full">Failed fetching settings: {err}</Center>
+        <Match when={err()}>
+          <Center h="$full">Failed fetching settings: {err()}</Center>
         </Match>
-        <Match
-          when={[
-            State.FetchingInitialLanguage,
-            State.FetchingSettings,
-          ].includes(state())}
-        >
+        <Match when={loading()}>
           <FullScreenLoading />
         </Match>
       </Switch>

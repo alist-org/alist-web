@@ -2,13 +2,6 @@ import { createSignal } from "solid-js";
 
 export enum State {
   Initial, // Initial state
-  FetchingInitialLanguage, // Fetching initial language
-  FetchingSettings,
-  FetchingSettingsError,
-  FetchingSettingsSuccess,
-  FetchingCurrentUser,
-  FetchingCurrentUserError,
-  FetchingCurrentUserSuccess,
   FetchingObj,
   FetchingObjs,
   TokenExpired, // Token expired
@@ -16,7 +9,7 @@ export enum State {
   File, // File state
 }
 
-const [state, setState] = createSignal<State>(State.FetchingSettings);
+const [state, setState] = createSignal<State>(State.Initial);
 const [err, setErr] = createSignal<string>("");
 
 export { state, setState };

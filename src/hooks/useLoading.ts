@@ -1,8 +1,8 @@
 import { Accessor } from "solid-js";
 import { createSignal } from "solid-js";
 
-const useLoading = (
-  p: () => Promise<any>
+const useLoading = <T>(
+  p: () => Promise<T>
 ): [Accessor<boolean>, () => Promise<any>] => {
   const [loading, setLoading] = createSignal(false);
   return [
