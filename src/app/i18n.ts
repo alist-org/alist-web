@@ -25,23 +25,19 @@ const defaultLang =
   )?.code ||
   "en";
 
-const initialLang = localStorage.getItem("lang") || defaultLang;
+export const initialLang = localStorage.getItem("lang") || defaultLang;
 
 // store lang and import
-export const langMap = new Map<string, any>();
+export const langMap: Record<string, any> = {};
 const imports = import.meta.glob("~/lang/*/index.ts");
 for (const path in imports) {
   const name = path.split("/")[2];
-  langMap.set(name, imports[path]);
+  langMap[name] = imports[path];
 }
 
-const init = {
-  [initialLang]: (await langMap.get(initialLang)()).default,
-};
 
 export const loadedLangs = new Set<string>();
-loadedLangs.add(initialLang);
 
-const i18n = createI18nContext(init, initialLang);
+const i18n = createI18nContext({}, initialLang);
 
 export { languages, i18n };

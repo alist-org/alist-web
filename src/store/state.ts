@@ -2,6 +2,7 @@ import { createSignal } from "solid-js";
 
 export enum State {
   Initial, // Initial state
+  FetchingInitialLanguage, // Fetching initial language
   FetchingSettings,
   FetchingSettingsError,
   FetchingSettingsSuccess,

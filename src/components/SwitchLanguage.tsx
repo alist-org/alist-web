@@ -33,7 +33,7 @@ const SwitchLnaguage = () => {
                 onSelect={async () => {
                   if (!loadedLangs.has(lang.code)) {
                     setFetchingLang(true);
-                    add(lang.code, (await langMap.get(lang.code)()).default);
+                    add(lang.code, (await langMap[lang.code]()).default);
                     setFetchingLang(false);
                     loadedLangs.add(lang.code);
                   }

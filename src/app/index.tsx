@@ -2,7 +2,6 @@ import { Center, Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "solid-app-router";
 import { Component, lazy, Match, onCleanup, Switch } from "solid-js";
 import { Portal } from "solid-js/web";
-import { Boundary } from "./Boundary";
 import { useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
 import { bus } from "~/utils";
@@ -10,6 +9,8 @@ import { err, State, state, initSettings } from "~/store";
 import { FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
 import "./index.css";
+import { useI18n } from "@solid-primitives/i18n";
+import { initialLang, langMap } from "./i18n";
 
 const Index = lazy(() => import("~/pages/index"));
 const Manage = lazy(() => import("~/pages/manage"));
@@ -18,6 +19,7 @@ const Test = lazy(() => import("~/pages/test"));
 
 const App: Component = () => {
   globalStyles();
+  const [, { add }] = useI18n();
   const isRouting = useIsRouting();
   const { to } = useRouter();
   const onTo = (path: string) => {
@@ -27,9 +29,13 @@ const App: Component = () => {
   onCleanup(() => {
     bus.off("to", onTo);
   });
-  initSettings();
+  const init = async () => {
+    initSettings();
+    add(initialLang, (await langMap[initialLang]()).default);
+  };
+  init();
   return (
-    <Boundary>
+    <>
       <Portal>
         <Progress
           indeterminate
@@ -68,14 +74,19 @@ const App: Component = () => {
           </Routes>
         }
       >
-        <Match when={state() === State.FetchingSettings}>
-          <FullScreenLoading />
-        </Match>
         <Match when={state() === State.FetchingSettingsError}>
           <Center h="$full">Failed fetching settings: {err}</Center>
         </Match>
+        <Match
+          when={[
+            State.FetchingInitialLanguage,
+            State.FetchingSettings,
+          ].includes(state())}
+        >
+          <FullScreenLoading />
+        </Match>
       </Switch>
-    </Boundary>
+    </>
   );
 };
 

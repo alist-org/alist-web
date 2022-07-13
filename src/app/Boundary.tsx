@@ -7,10 +7,11 @@ import {
 import { I18nContext } from "@solid-primitives/i18n";
 import { ErrorBoundary, JSXElement, Suspense } from "solid-js";
 import { FullScreenLoading } from "~/components";
+import App from ".";
 import { i18n } from "./i18n";
 import { globalStyles, theme } from "./theme";
 
-const Boundary = (props: { children: JSXElement }) => {
+const Boundary = () => {
   globalStyles();
   return (
     <ErrorBoundary
@@ -23,7 +24,7 @@ const Boundary = (props: { children: JSXElement }) => {
         <HopeProvider config={theme}>
           <NotificationsProvider duration={3000}>
             <Suspense fallback={<FullScreenLoading />}>
-              {props.children}
+              <App />
             </Suspense>
           </NotificationsProvider>
         </HopeProvider>
