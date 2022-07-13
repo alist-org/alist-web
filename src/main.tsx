@@ -2,7 +2,7 @@
 import { Router } from "solid-app-router";
 import { render } from "solid-js/web";
 
-import { Boundary } from "./app/Boundary";
+import { Index } from "./app";
 
 declare global {
   interface Window {
@@ -12,7 +12,7 @@ declare global {
 render(
   () => (
     <Router>
-      <Boundary />
+      <Index />
     </Router>
   ),
   document.getElementById("root") as HTMLElement

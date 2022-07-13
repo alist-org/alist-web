@@ -35,7 +35,6 @@ for (const path in imports) {
   langMap[name] = imports[path];
 }
 
-
 export const loadedLangs = new Set<string>();
 
 const i18n = createI18nContext({}, initialLang);
