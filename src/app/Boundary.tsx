@@ -16,7 +16,7 @@ const Boundary = (props: { children: JSXElement }) => {
     <ErrorBoundary
       fallback={(err) => {
         console.log("error", err);
-        return <Center h="100vh">{err.message}</Center>;
+        return <Center h="$full">{err.message}</Center>;
       }}
     >
       <I18nContext.Provider value={i18n}>

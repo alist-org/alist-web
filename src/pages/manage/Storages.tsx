@@ -38,9 +38,9 @@ const Storages = () => {
           loading={getStoragesLoading()}
           onClick={refresh}
         >
-          {t("manage.storages.refresh")}
+          {t("global.refresh")}
         </Button>
-        <Button>{t("manage.storages.add")}</Button>
+        <Button>{t("global.add")}</Button>
       </HStack>
       <Box w="$full" overflowX="auto">
         <Table highlightOnHover>
@@ -56,7 +56,7 @@ const Storages = () => {
                   "operations",
                 ]}
               >
-                {(title) => <Th>{t(`manage.storages.${title}`)}</Th>}
+                {(title) => <Th>{t(`storages.${title}`)}</Th>}
               </For>
             </Tr>
           </Thead>
@@ -71,8 +71,8 @@ const Storages = () => {
                   <Td>{storage.remark}</Td>
                   <Td>
                     <HStack spacing="$1">
-                      <Button>{t("manage.edit")}</Button>
-                      <Button colorScheme="danger">{t("manage.delete")}</Button>
+                      <Button>{t("global.edit")}</Button>
+                      <Button colorScheme="danger">{t("global.delete")}</Button>
                     </HStack>
                   </Td>
                 </Tr>

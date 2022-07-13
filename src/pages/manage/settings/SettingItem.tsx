@@ -49,7 +49,7 @@ const Item = (props: ItemProps) => {
           />
         </Show>
       </FormLabel>
-      <Switch fallback={<Center>{t("manage.settings.unknown_type")}</Center>}>
+      <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
         <Match when={[Type.TypeString, Type.TypeNumber].includes(props.type)}>
           <Input
             type={props.type === Type.TypeNumber ? "number" : ""}

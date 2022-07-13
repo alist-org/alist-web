@@ -1,0 +1,8 @@
+{
+  "mount_path": "挂载路径",
+  "driver": "驱动",
+  "index": "索引",
+  "status": "状态",
+  "remark": "备注",
+  "operations": "操作"
+}

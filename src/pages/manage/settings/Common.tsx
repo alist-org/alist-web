@@ -46,7 +46,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
                 );
                 setLoading(false);
                 if (resp.code === 200) {
-                  notify.success(t("manage.settings.delete_success"));
+                  notify.success(t("global.delete_success"));
                   refresh();
                 } else {
                   notify.error(resp.message);
@@ -63,13 +63,13 @@ const CommonSettings = (props: CommonSettingsProps) => {
           console.log(settings);
           const resp: Resp<{}> = await saveSettings();
           if (resp.code === 200) {
-            notify.success(t("manage.settings.save_success"));
+            notify.success(t("global.save_success"));
           } else {
             notify.error(resp.message);
           }
         }}
       >
-        {t("manage.settings.save")}
+        {t("global.save")}
       </Button>
     </MaybeLoading>
   );

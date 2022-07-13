@@ -72,7 +72,7 @@ const App: Component = () => {
           <FullScreenLoading />
         </Match>
         <Match when={state() === State.FetchingSettingsError}>
-          <Center>{err}</Center>
+          <Center h="$full">Failed fetching settings: {err}</Center>
         </Match>
       </Switch>
     </Boundary>

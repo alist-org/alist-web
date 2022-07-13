@@ -36,7 +36,7 @@ const OtherSettings = () => {
   );
   return (
     <MaybeLoading loading={settings_loading()}>
-      <Heading mb="$2">{t("manage.settings.aria2")}</Heading>
+      <Heading mb="$2">{t("settings.aria2")}</Heading>
       <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
         <Item
           {...settings().find((i) => i.key === "aria2_uri")!}
@@ -55,24 +55,24 @@ const OtherSettings = () => {
         onClick={async () => {
           const resp: Resp<string> = await setAria2();
           if (resp.code === 200) {
-            notify.success(`${t("manage.settings.aria2_version")} ${resp.data}`);
+            notify.success(`${t("settings.aria2_version")} ${resp.data}`);
           } else {
             notify.error(resp.message);
           }
         }}
       >
-        {t("manage.settings.set_aria2")}
+        {t("settings.set_aria2")}
       </Button>
-      <Heading my="$2">{t("manage.settings.token")}</Heading>
+      <Heading my="$2">{t("settings.token")}</Heading>
       <Input value={token()} readOnly />
       <HStack my="$2" spacing="$2">
         <Button
           onClick={() => {
             copy(token());
-            notify.success(t("manage.settings.copied"));
+            notify.success(t("global.copied"));
           }}
         >
-          {t("manage.settings.copy_token")}
+          {t("settings.copy_token")}
         </Button>
         <Button
           colorScheme="danger"
@@ -80,14 +80,14 @@ const OtherSettings = () => {
           onClick={async () => {
             const resp: Resp<string> = await resetToken();
             if (resp.code === 200) {
-              notify.success(t("manage.settings.reset_token_success"));
+              notify.success(t("settings.reset_token_success"));
               setToken(resp.data);
             } else {
               notify.error(resp.message);
             }
           }}
         >
-          {t("manage.settings.reset_token")}
+          {t("settings.reset_token")}
         </Button>
       </HStack>
     </MaybeLoading>
