@@ -29,6 +29,7 @@ const Manage = () => {
           h="$full"
           shadow="$md"
           bgColor={useColorModeValue("$background", "$neutral2")()}
+          overflowY="auto"
         >
           <SideMenu items={side_menu_items} />
           <Center>
