@@ -1,25 +1,47 @@
 import { createI18nContext } from "@solid-primitives/i18n";
 
 interface Language {
+  code: string;
   lang: string;
-  text: string;
 }
-const langs = import.meta.globEager("~/lang/*/index.ts");
+const langs = import.meta.globEager("~/lang/*/index.json");
 const languages: Language[] = [];
-const dict: Record<string, Record<string, any>> = {};
+
 for (const path in langs) {
   const name = path.split("/")[2];
-  dict[name] = langs[path].default;
   languages.push({
-    lang: name,
-    text: langs[path].text,
+    code: name,
+    lang: langs[path].lang,
   });
 }
 const defaultLang =
-  languages.find((lang) => lang.lang === navigator.language.toLowerCase())
-    ?.lang || "en";
+  languages.find(
+    (lang) => lang.code.toLowerCase() === navigator.language.toLowerCase()
+  )?.code ||
+  languages.find(
+    (lang) =>
+      lang.code.toLowerCase().split("_")[0] ===
+      navigator.language.toLowerCase().split("_")[0]
+  )?.code ||
+  "en";
 
 const initialLang = localStorage.getItem("lang") || defaultLang;
-const i18n = createI18nContext(dict, initialLang);
+
+// store lang and import
+export const langMap = new Map<string, any>();
+const imports = import.meta.glob("~/lang/*/index.ts");
+for (const path in imports) {
+  const name = path.split("/")[2];
+  langMap.set(name, imports[path]);
+}
+
+const init = {
+  [initialLang]: (await langMap.get(initialLang)()).default,
+};
+
+export const loadedLangs = new Set<string>();
+loadedLangs.add(initialLang);
+
+const i18n = createI18nContext(init, initialLang);
 
 export { languages, i18n };
