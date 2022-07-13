@@ -1,5 +1,4 @@
 import {
-  Box,
   Center,
   Menu,
   MenuContent,
@@ -19,7 +18,7 @@ const [fetchingLang, setFetchingLang] = createSignal(false);
 const SwitchLnaguage = () => {
   const [, { locale, add }] = useI18n();
   return (
-    <Box>
+    <>
       <Menu>
         <MenuTrigger
           as={TbLanguageHiragana}
@@ -55,7 +54,7 @@ const SwitchLnaguage = () => {
             pos="fixed"
             top={0}
             bg={useColorModeValue("$blackAlpha4", "$whiteAlpha4")()}
-            zIndex="100"
+            zIndex="9000"
           >
             <Spinner
               thickness="4px"
@@ -67,7 +66,7 @@ const SwitchLnaguage = () => {
           </Center>
         </Portal>
       </Show>
-    </Box>
+    </>
   );
 };
 
