@@ -11,12 +11,13 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { createSignal, For } from "solid-js";
-import { useLoading, useT } from "~/hooks";
+import { useLoading, useRouter, useT } from "~/hooks";
 import { notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 
 const Storages = () => {
   const t = useT();
+  const { to } = useRouter();
   const [getStoragesLoading, getStorages] = useLoading(() =>
     r.get("/admin/storage/list")
   );
@@ -40,7 +41,13 @@ const Storages = () => {
         >
           {t("global.refresh")}
         </Button>
-        <Button>{t("global.add")}</Button>
+        <Button
+          onClick={() => {
+            to("/@manage/storages/add");
+          }}
+        >
+          {t("global.add")}
+        </Button>
       </HStack>
       <Box w="$full" overflowX="auto">
         <Table highlightOnHover>
@@ -71,7 +78,13 @@ const Storages = () => {
                   <Td>{storage.remark}</Td>
                   <Td>
                     <HStack spacing="$1">
-                      <Button>{t("global.edit")}</Button>
+                      <Button
+                        onClick={() => {
+                          to(`/@manage/storages/edit/${storage.id}`);
+                        }}
+                      >
+                        {t("global.edit")}
+                      </Button>
                       <Button colorScheme="danger">{t("global.delete")}</Button>
                     </HStack>
                   </Td>

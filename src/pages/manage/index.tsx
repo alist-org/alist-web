@@ -9,7 +9,7 @@ import { UserMethods } from "~/types";
 import { notify } from "~/utils";
 import { Route, Routes } from "solid-app-router";
 import { For } from "solid-js";
-import { routes } from "./helper";
+import { routes } from "./routes";
 
 const Manage = () => {
   const t = useT();
@@ -49,9 +49,9 @@ const Manage = () => {
         >
           <Routes>
             <For each={routes}>
-              {(route) => (
-                <Route path={route.to!} component={route.component} />
-              )}
+              {(route) => {
+                return <Route path={route.to!} component={route.component} />;
+              }}
             </For>
           </Routes>
         </Box>

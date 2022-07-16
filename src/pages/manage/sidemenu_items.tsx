@@ -17,7 +17,7 @@ import { CgDatabase } from "solid-icons/cg";
 import { FaSolidTasks } from "solid-icons/fa";
 import { IoCopy } from "solid-icons/io";
 import { BiSolidDashboard } from "solid-icons/bi";
-import { Component, JSXElement, lazy } from "solid-js";
+import { Component, lazy } from "solid-js";
 import { Group } from "~/types";
 
 export type SideMenuItem = SideMenuItemProps & {
@@ -102,7 +102,7 @@ export const side_menu_items: SideMenuItem[] = [
     title: "manage.sidemenu.storages",
     icon: CgDatabase,
     to: "/@manage/storages",
-    component: lazy(() => import("./Storages")),
+    component: lazy(() => import("./storages")),
   },
   {
     title: "manage.sidemenu.metas",

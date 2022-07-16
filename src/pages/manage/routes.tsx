@@ -1,8 +1,20 @@
+import { lazy } from "solid-js";
 import { Center, Heading } from "@hope-ui/solid";
 import { trimLeft } from "~/utils";
 import { SideMenuItem, side_menu_items } from "./sidemenu_items";
 
 type Route = Pick<SideMenuItem, "to" | "component">;
+
+const ignore_routes: Route[] = [
+  {
+    to: "/storages/add",
+    component: lazy(() => import("./storages/AddOrEdit")),
+  },
+  {
+    to: "/storages/edit/:id",
+    component: lazy(() => import("./storages/AddOrEdit")),
+  },
+];
 
 const Placeholder = (props: { title: string }) => {
   return (
@@ -27,5 +39,5 @@ const get_routes = (items: SideMenuItem[], acc: Route[] = []) => {
   return acc;
 };
 
-const routes = get_routes(side_menu_items);
+const routes = get_routes(side_menu_items).concat(ignore_routes);
 export { routes };
