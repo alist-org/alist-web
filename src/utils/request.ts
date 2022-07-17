@@ -30,12 +30,12 @@ instance.interceptors.response.use(
   (response) => {
     const resp = response.data;
     log(resp);
-    if (resp.code === 401) {
-      bus.emit(
-        "to",
-        `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
-      );
-    }
+    // if (resp.code === 401) {
+    //   bus.emit(
+    //     "to",
+    //     `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
+    //   );
+    // }
     return resp;
   },
   (error) => {

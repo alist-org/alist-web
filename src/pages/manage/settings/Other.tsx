@@ -1,7 +1,7 @@
 import { Button, Heading, HStack, Input, SimpleGrid } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { MaybeLoading } from "~/components";
-import { useLoading, useT } from "~/hooks";
+import { useFetch, useT } from "~/hooks";
 import { Resp, Group, SettingItem } from "~/types";
 import { notify, r } from "~/utils";
 import { Item } from "./SettingItem";
@@ -13,10 +13,10 @@ const OtherSettings = () => {
   const [secret, setSecret] = createSignal("");
   const [token, setToken] = createSignal("");
   const [settings, setSettings] = createSignal<SettingItem[]>([]);
-  const [settings_loading, settings_data] = useLoading(() =>
+  const [settings_loading, settings_data] = useFetch(() =>
     r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`)
   );
-  const [setAria2Loading, setAria2] = useLoading(() =>
+  const [setAria2Loading, setAria2] = useFetch(() =>
     r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   );
   const refresh = async () => {
@@ -31,7 +31,7 @@ const OtherSettings = () => {
     }
   };
   refresh();
-  const [resetTokenLoading, resetToken] = useLoading(() =>
+  const [resetTokenLoading, resetToken] = useFetch(() =>
     r.post("/admin/setting/reset_token")
   );
   return (

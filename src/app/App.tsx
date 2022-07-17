@@ -5,13 +5,12 @@ import {
   createSignal,
   lazy,
   Match,
-  onCleanup,
   Switch,
 } from "solid-js";
 import { Portal } from "solid-js/web";
-import { useLoading, useRouter } from "~/hooks";
+import { useLoading } from "~/hooks";
 import { globalStyles } from "./theme";
-import { bus, r } from "~/utils";
+import { r } from "~/utils";
 import { setSettings } from "~/store";
 import { FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
@@ -29,14 +28,14 @@ const App: Component = () => {
   globalStyles();
   const [, { add }] = useI18n();
   const isRouting = useIsRouting();
-  const { to } = useRouter();
-  const onTo = (path: string) => {
-    to(path);
-  };
-  bus.on("to", onTo);
-  onCleanup(() => {
-    bus.off("to", onTo);
-  });
+  // const { to } = useRouter();
+  // const onTo = (path: string) => {
+  //   to(path);
+  // };
+  // bus.on("to", onTo);
+  // onCleanup(() => {
+  //   bus.off("to", onTo);
+  // });
 
   const [err, setErr] = createSignal("");
   const [loading, data] = useLoading(() =>

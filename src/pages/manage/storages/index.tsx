@@ -11,14 +11,14 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { createSignal, For } from "solid-js";
-import { useLoading, useRouter, useT } from "~/hooks";
+import { useFetch, useRouter, useT } from "~/hooks";
 import { notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 
 const Storages = () => {
   const t = useT();
   const { to } = useRouter();
-  const [getStoragesLoading, getStorages] = useLoading(() =>
+  const [getStoragesLoading, getStorages] = useFetch(() =>
     r.get("/admin/storage/list")
   );
   const [storages, setStorages] = createSignal<Storage[]>([]);
@@ -50,7 +50,7 @@ const Storages = () => {
         </Button>
       </HStack>
       <Box w="$full" overflowX="auto">
-        <Table highlightOnHover>
+        <Table highlightOnHover dense>
           <Thead>
             <Tr>
               <For

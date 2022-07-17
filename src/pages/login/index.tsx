@@ -13,7 +13,7 @@ import {
 } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { SwitchColorMode, SwitchLnaguage } from "~/components";
-import { useLoading, useT, useTitle, useRouter } from "~/hooks";
+import { useFetch, useT, useTitle, useRouter } from "~/hooks";
 import { changeToken, r, notify } from "~/utils";
 import { Resp } from "~/types";
 import LoginBg from "./LoginBg";
@@ -31,11 +31,13 @@ const Login = () => {
     localStorage.getItem("password") || ""
   );
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false");
-  const [loading, data] = useLoading(() =>
-    r.post("/auth/login", {
-      username: username(),
-      password: password(),
-    })
+  const [loading, data] = useFetch(
+    () =>
+      r.post("/auth/login", {
+        username: username(),
+        password: password(),
+      }),
+    false
   );
   const { searchParams, to } = useRouter();
   const Login = async () => {

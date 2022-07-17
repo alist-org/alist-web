@@ -1,5 +1,5 @@
 import { MaybeLoading } from "~/components";
-import { useLoading, useT } from "~/hooks";
+import { useAuth, useFetch, useT } from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
 import { r, notify, getTarget } from "~/utils";
 import { createStore } from "solid-js/store";
@@ -12,7 +12,7 @@ export interface CommonSettingsProps {
 }
 const CommonSettings = (props: CommonSettingsProps) => {
   const t = useT();
-  const [settingsLoading, getSettings] = useLoading(() =>
+  const [settingsLoading, getSettings] = useFetch(() =>
     r.get(`/admin/setting/list?group=${props.group}`)
   );
   const [settings, setSettings] = createStore<SettingItem[]>([]);
@@ -25,7 +25,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
     }
   };
   refresh();
-  const [saveLoading, saveSettings] = useLoading(() =>
+  const [saveLoading, saveSettings] = useFetch(() =>
     r.post("/admin/setting/save", getTarget(settings))
   );
   const [loading, setLoading] = createSignal(false);
@@ -41,9 +41,9 @@ const CommonSettings = (props: CommonSettingsProps) => {
               }}
               onDelete={async () => {
                 setLoading(true);
-                const resp: Resp<{}> = await r.post(
-                  `/admin/setting/delete?key=${item().key}`
-                );
+                const resp: Resp<{}> = await useAuth(() =>
+                  r.post(`/admin/setting/delete?key=${item().key}`)
+                )();
                 setLoading(false);
                 if (resp.code === 200) {
                   notify.success(t("global.delete_success"));

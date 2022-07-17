@@ -1,13 +1,13 @@
 import { Center } from "@hope-ui/solid";
 import { createSignal, JSXElement, Match, Switch } from "solid-js";
 import { FullScreenLoading } from "~/components";
-import { useLoading } from "~/hooks";
+import { useFetch } from "~/hooks";
 import { setUser } from "~/store";
 import { Resp, User } from "~/types";
 import { r } from "~/utils";
 
 const MustUser = (props: { children: JSXElement }) => {
-  const [loading, data] = useLoading(() => r.get("/auth/current"));
+  const [loading, data] = useFetch(() => r.get("/auth/current"));
   const [err, setErr] = createSignal("");
   (async () => {
     const resp: Resp<User> = await data();
