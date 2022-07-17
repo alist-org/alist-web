@@ -1,3 +1,5 @@
+import { Type } from ".";
+
 export enum Group {
   SITE,
   STYLE,
@@ -13,13 +15,6 @@ export enum Flag {
   DEPRECATED,
 }
 
-export enum Type {
-  TypeString = "string",
-  TypeSelect = "select",
-  TypeBool = "bool",
-  TypeText = "text",
-  TypeNumber = "number",
-}
 export interface SettingItem {
   key: string;
   value: string;
