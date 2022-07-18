@@ -34,7 +34,7 @@ const theme: HopeThemeConfig = {
           borderRadius: "0.5rem",
           _focus: {
             boxShadow: "unset",
-            borderColor: "$info8"
+            borderColor: "$info8",
           },
         },
       },
@@ -49,11 +49,32 @@ const theme: HopeThemeConfig = {
         borderRadius: "0.5rem",
         _focus: {
           boxShadow: "unset",
-          borderColor: "$info8"
+          borderColor: "$info8",
         },
+        resize: "vertical",
       },
       defaultProps: {
         variant: "filled",
+      },
+    },
+    Select: {
+      baseStyle: {
+        trigger: {
+          borderRadius: "0.5rem",
+          _focus: {
+            boxShadow: "unset",
+            borderColor: "$info8",
+          },
+        },
+        content: {
+          boxShadow: "unset",
+          borderRadius: "0.5rem",
+        },
+      },
+      defaultProps: {
+        root: {
+          variant: "filled",
+        },
       },
     },
     Checkbox: {
@@ -95,9 +116,9 @@ const theme: HopeThemeConfig = {
       baseStyle: {
         root: {
           borderRadius: "0.5rem",
-        }
-      }
-    }
+        },
+      },
+    },
   },
 };
 

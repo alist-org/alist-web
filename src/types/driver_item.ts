@@ -5,6 +5,6 @@ export interface DriverItem {
   type: Type;
   default: string;
   values: string;
-  required: boolean;
-  help: string;
+  required?: boolean;
+  help?: string;
 }

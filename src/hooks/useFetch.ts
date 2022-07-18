@@ -4,10 +4,11 @@ import { useAuth, useLoading } from ".";
 
 const useFetch = <T>(
   p: () => Promise<Resp<T>>,
+  loading?: boolean,
   auth: boolean = true
 ): [Accessor<boolean>, () => Promise<any>] => {
   p = auth ? useAuth(p) : p;
-  return useLoading(p, true);
+  return useLoading(p, true, loading);
 };
 
 export { useFetch };

@@ -21,20 +21,21 @@ import { For, Match, Switch } from "solid-js";
 import { useT } from "~/hooks";
 import { DriverItem, Type } from "~/types";
 
-export type ItemProps = DriverItem &
-  (
+export type ItemProps = DriverItem & {
+  readonly?: boolean;
+} & (
     | {
-        type: Type.TypeBool;
+        type: Type.Bool;
         onChange?: (value: boolean) => void;
         value: boolean;
       }
     | {
-        type: Type.TypeNumber;
+        type: Type.Number;
         onChange?: (value: number) => void;
         value: number;
       }
     | {
-        type: Type.TypeString | Type.TypeText | Type.TypeSelect;
+        type: Type.String | Type.Text | Type.Select;
         onChange?: (value: string) => void;
         value: string;
       }
@@ -43,68 +44,80 @@ export type ItemProps = DriverItem &
 const Item = (props: ItemProps) => {
   const t = useT();
   return (
-    <FormControl w="$full" display="flex" flexDirection="column">
+    <FormControl
+      w="$full"
+      display="flex"
+      flexDirection="column"
+      // p="$1"
+      // shadow="$sm"
+      // rounded="$lg"
+    >
       <FormLabel for={props.name} display="flex" alignItems="center">
         {t(`manage.settings.${props.name}`)}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
-        <Match when={props.type === Type.TypeString}>
+        <Match when={props.type === Type.String}>
           <Input
             id={props.name}
+            readOnly={props.readonly}
             value={props.value as string}
             onInput={
-              props.type === Type.TypeString
+              props.type === Type.String
                 ? (e) => props.onChange?.(e.currentTarget.value)
                 : undefined
             }
           />
         </Match>
-        <Match when={props.type === Type.TypeNumber}>
+        <Match when={props.type === Type.Number}>
           <Input
             type="number"
             id={props.name}
+            readOnly={props.readonly}
             value={props.value as number}
             onInput={
-              props.type === Type.TypeNumber
+              props.type === Type.Number
                 ? (e) => props.onChange?.(parseInt(e.currentTarget.value))
                 : undefined
             }
           />
         </Match>
-        <Match when={props.type === Type.TypeBool}>
+        <Match when={props.type === Type.Bool}>
           <HopeSwitch
             id={props.name}
+            readOnly={props.readonly}
             defaultChecked={props.value as boolean}
             onChange={
-              props.type === Type.TypeBool
+              props.type === Type.Bool
                 ? (e: any) => props.onChange?.(e.currentTarget.checked)
                 : undefined
             }
           />
         </Match>
-        <Match when={props.type === Type.TypeText}>
+        <Match when={props.type === Type.Text}>
           <Textarea
             id={props.name}
+            readOnly={props.readonly}
             value={props.value as string}
             onChange={
-              props.type === Type.TypeText
+              props.type === Type.Text
                 ? (e) => props.onChange?.(e.currentTarget.value)
                 : undefined
             }
           />
         </Match>
-        <Match when={props.type === Type.TypeSelect}>
+        <Match when={props.type === Type.Select}>
           <Select
             id={props.name}
+            readOnly={props.readonly}
             defaultValue={props.value}
             onChange={
-              props.type === Type.TypeSelect
+              props.type === Type.Select
                 ? (e) => props.onChange?.(e)
                 : undefined
             }
           >
             <SelectTrigger>
-              <SelectPlaceholder>Choose a framework</SelectPlaceholder>
+              <SelectPlaceholder>{t("global.choose")}</SelectPlaceholder>
               <SelectValue />
               <SelectIcon />
             </SelectTrigger>

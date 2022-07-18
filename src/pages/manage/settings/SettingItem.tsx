@@ -50,9 +50,9 @@ const Item = (props: ItemProps) => {
         </Show>
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
-        <Match when={[Type.TypeString, Type.TypeNumber].includes(props.type)}>
+        <Match when={[Type.String, Type.Number].includes(props.type)}>
           <Input
-            type={props.type === Type.TypeNumber ? "number" : ""}
+            type={props.type === Type.Number ? "number" : ""}
             id={props.key}
             // value={props.value()}
             value={props.value}
@@ -60,7 +60,7 @@ const Item = (props: ItemProps) => {
             readOnly={props.flag === Flag.READONLY}
           />
         </Match>
-        <Match when={props.type === Type.TypeBool}>
+        <Match when={props.type === Type.Bool}>
           <HopeSwitch
             id={props.key}
             defaultChecked={props.value === "true"}
@@ -72,7 +72,7 @@ const Item = (props: ItemProps) => {
             readOnly={props.flag === Flag.READONLY}
           />
         </Match>
-        <Match when={props.type === Type.TypeText}>
+        <Match when={props.type === Type.Text}>
           <Textarea
             id={props.key}
             value={props.value}
@@ -81,7 +81,7 @@ const Item = (props: ItemProps) => {
             readOnly={props.flag === Flag.READONLY}
           />
         </Match>
-        <Match when={props.type === Type.TypeSelect}>
+        <Match when={props.type === Type.Select}>
           <Select
             id={props.key}
             defaultValue={props.value}

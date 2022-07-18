@@ -1,7 +1,7 @@
 export enum Type {
-  TypeString = "string",
-  TypeSelect = "select",
-  TypeBool = "bool",
-  TypeText = "text",
-  TypeNumber = "number",
+  String = "string",
+  Select = "select",
+  Bool = "bool",
+  Text = "text",
+  Number = "number",
 }
