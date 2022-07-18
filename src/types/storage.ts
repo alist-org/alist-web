@@ -38,3 +38,5 @@ export interface Storage {
   web_proxy: boolean;
   webdav_policy: WebdavPolicy;
 }
+
+export type Addition = Record<string, string | boolean | number>;
