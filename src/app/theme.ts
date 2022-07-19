@@ -67,8 +67,11 @@ const theme: HopeThemeConfig = {
           },
         },
         content: {
-          boxShadow: "unset",
+          border: "none",
           borderRadius: "0.5rem",
+        },
+        optionIndicator: {
+          color: "$info10",
         },
       },
       defaultProps: {
