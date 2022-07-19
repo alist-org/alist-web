@@ -48,6 +48,7 @@ const Item = (props: ItemProps) => {
       w="$full"
       display="flex"
       flexDirection="column"
+      required={props.required}
       // p="$1"
       // shadow="$sm"
       // rounded="$lg"

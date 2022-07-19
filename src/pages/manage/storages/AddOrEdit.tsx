@@ -96,6 +96,7 @@ const AddOrEdit = () => {
           name="driver"
           default=""
           readonly={id !== undefined}
+          required
           type={Type.Select}
           values={id ? storage.driver : Object.keys(drivers()).join(",")}
           value={storage.driver}
