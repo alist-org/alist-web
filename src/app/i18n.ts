@@ -1,4 +1,5 @@
 import { createI18nContext } from "@solid-primitives/i18n";
+import { createSignal } from "solid-js";
 
 interface Language {
   code: string;
@@ -39,4 +40,6 @@ export const loadedLangs = new Set<string>();
 
 const i18n = createI18nContext({}, initialLang);
 
-export { languages, i18n };
+const [currentLang, setLang] = createSignal(initialLang);
+
+export { languages, i18n, currentLang, setLang };

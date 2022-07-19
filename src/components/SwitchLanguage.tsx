@@ -9,7 +9,7 @@ import {
 } from "@hope-ui/solid";
 import { useI18n } from "@solid-primitives/i18n";
 import { createSignal, For, Show } from "solid-js";
-import { langMap, languages, loadedLangs } from "~/app/i18n";
+import { langMap, languages, loadedLangs, setLang } from "~/app/i18n";
 import { TbLanguageHiragana } from "solid-icons/tb";
 import { Portal } from "solid-js/web";
 
@@ -17,6 +17,17 @@ const [fetchingLang, setFetchingLang] = createSignal(false);
 
 const SwitchLnaguage = () => {
   const [, { locale, add }] = useI18n();
+  const switchLang = async (lang: string) => {
+    if (!loadedLangs.has(lang)) {
+      setFetchingLang(true);
+      add(lang, (await langMap[lang]()).default);
+      setFetchingLang(false);
+      loadedLangs.add(lang);
+    }
+    locale(lang);
+    setLang(lang);
+    localStorage.setItem("lang", lang);
+  };
   return (
     <>
       <Menu>
@@ -29,15 +40,8 @@ const SwitchLnaguage = () => {
           <For each={languages}>
             {(lang, i) => (
               <MenuItem
-                onSelect={async () => {
-                  if (!loadedLangs.has(lang.code)) {
-                    setFetchingLang(true);
-                    add(lang.code, (await langMap[lang.code]()).default);
-                    setFetchingLang(false);
-                    loadedLangs.add(lang.code);
-                  }
-                  locale(lang.code);
-                  localStorage.setItem("lang", lang.code);
+                onSelect={() => {
+                  switchLang(lang.code);
                 }}
               >
                 {lang.lang}

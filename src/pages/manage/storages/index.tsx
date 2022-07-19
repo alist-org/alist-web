@@ -11,12 +11,13 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { createSignal, For } from "solid-js";
-import { useFetch, useRouter, useT } from "~/hooks";
+import { useFetch, useManageTitle, useRouter, useT } from "~/hooks";
 import { notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 
 const Storages = () => {
   const t = useT();
+  useManageTitle("manage.sidemenu.storages");
   const { to } = useRouter();
   const [getStoragesLoading, getStorages] = useFetch(() =>
     r.get("/admin/storage/list")

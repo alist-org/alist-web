@@ -1,5 +1,12 @@
 import { MaybeLoading } from "~/components";
-import { useAuth, useFetch, useT } from "~/hooks";
+import {
+  useAuth,
+  useFetch,
+  useT,
+  useTitle,
+  useRouter,
+  useManageTitle,
+} from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
 import { r, notify, getTarget } from "~/utils";
 import { createStore } from "solid-js/store";
@@ -12,6 +19,8 @@ export interface CommonSettingsProps {
 }
 const CommonSettings = (props: CommonSettingsProps) => {
   const t = useT();
+  const { pathname } = useRouter();
+  useManageTitle(`manage.sidemenu.${pathname().split("/").pop()}`);
   const [settingsLoading, getSettings] = useFetch(() =>
     r.get(`/admin/setting/list?group=${props.group}`)
   );

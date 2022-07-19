@@ -1,7 +1,7 @@
 import { Button, Heading, HStack, Input, SimpleGrid } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { MaybeLoading } from "~/components";
-import { useFetch, useT } from "~/hooks";
+import { useFetch, useT, useTitle } from "~/hooks";
 import { Resp, Group, SettingItem } from "~/types";
 import { notify, r } from "~/utils";
 import { Item } from "./SettingItem";
@@ -9,6 +9,7 @@ import copy from "copy-to-clipboard";
 
 const OtherSettings = () => {
   const t = useT();
+  useTitle(() => `${t("manage.sidemenu.other")} - ${t("manage.title")}`);
   const [uri, setUri] = createSignal("");
   const [secret, setSecret] = createSignal("");
   const [token, setToken] = createSignal("");
