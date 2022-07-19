@@ -1,4 +1,4 @@
-import { Button, Heading, SimpleGrid } from "@hope-ui/solid";
+import { Button, Heading } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
@@ -6,6 +6,7 @@ import { notify, r } from "~/utils";
 import { Addition, DriverItem, Resp, Storage, Type } from "~/types";
 import { createStore } from "solid-js/store";
 import { Item } from "./Item";
+import { ResponsiveGrid } from "../ResponsiveGrid";
 
 interface DriverItems {
   main: DriverItem[];
@@ -91,7 +92,7 @@ const AddOrEdit = () => {
       loading={id ? loadingStorage() || loadingDriver() : loadingDrivers()}
     >
       <Heading mb="$2">{t(`global.${id ? "edit" : "add"}`)}</Heading>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@lg": 2, "@2xl": 3 }}>
+      <ResponsiveGrid>
         <Item
           name="driver"
           default=""
@@ -140,7 +141,7 @@ const AddOrEdit = () => {
             )}
           </For>
         </Show>
-      </SimpleGrid>
+      </ResponsiveGrid>
       <Button
         mt="$2"
         loading={okLoading()}

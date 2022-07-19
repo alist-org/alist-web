@@ -1,18 +1,12 @@
 import { MaybeLoading } from "~/components";
-import {
-  useAuth,
-  useFetch,
-  useT,
-  useTitle,
-  useRouter,
-  useManageTitle,
-} from "~/hooks";
+import { useAuth, useFetch, useT, useRouter, useManageTitle } from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
 import { r, notify, getTarget } from "~/utils";
 import { createStore } from "solid-js/store";
-import { Button, SimpleGrid } from "@hope-ui/solid";
+import { Button } from "@hope-ui/solid";
 import { createSignal, Index } from "solid-js";
 import { Item } from "./SettingItem";
+import { ResponsiveGrid } from "../ResponsiveGrid";
 
 export interface CommonSettingsProps {
   group: Group;
@@ -40,7 +34,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
   const [loading, setLoading] = createSignal(false);
   return (
     <MaybeLoading loading={settingsLoading() || loading()}>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@lg": 2, "@2xl": 3 }}>
+      <ResponsiveGrid>
         <Index each={settings}>
           {(item, _) => (
             <Item
@@ -64,7 +58,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
             />
           )}
         </Index>
-      </SimpleGrid>
+      </ResponsiveGrid>
       <Button
         mt="$2"
         loading={saveLoading()}
