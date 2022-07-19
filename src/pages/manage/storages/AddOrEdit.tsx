@@ -91,7 +91,7 @@ const AddOrEdit = () => {
       loading={id ? loadingStorage() || loadingDriver() : loadingDrivers()}
     >
       <Heading mb="$2">{t(`global.${id ? "edit" : "add"}`)}</Heading>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@lg": 2, "@2xl": 3 }}>
         <Item
           name="driver"
           default=""

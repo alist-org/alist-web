@@ -40,9 +40,9 @@ const CommonSettings = (props: CommonSettingsProps) => {
   const [loading, setLoading] = createSignal(false);
   return (
     <MaybeLoading loading={settingsLoading() || loading()}>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2, "@2xl": 3 }}>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@lg": 2, "@2xl": 3 }}>
         <Index each={settings}>
-          {(item, i) => (
+          {(item, _) => (
             <Item
               {...item()}
               onChange={(val) => {
