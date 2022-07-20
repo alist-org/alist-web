@@ -38,7 +38,7 @@ const OtherSettings = () => {
   return (
     <MaybeLoading loading={settings_loading()}>
       <Heading mb="$2">{t("settings.aria2")}</Heading>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@lg": 2 }}>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
         <Item
           {...settings().find((i) => i.key === "aria2_uri")!}
           value={uri()}
