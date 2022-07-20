@@ -2,6 +2,11 @@ import { globalCss, HopeThemeConfig } from "@hope-ui/solid";
 
 const theme: HopeThemeConfig = {
   initialColorMode: "system",
+  lightTheme: {
+    colors: {
+      background: "$neutral1",
+    }
+  },
   components: {
     Button: {
       baseStyle: {
