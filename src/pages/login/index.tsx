@@ -22,8 +22,7 @@ import { createStorageSignal } from "@solid-primitives/storage";
 const Login = () => {
   const t = useT();
   useTitle(() => t("login.title"));
-  const bgColor = useColorModeValue("#fff", "#18181c");
-  const titleColor = useColorModeValue("#359eff", "#1890ff");
+  const bgColor = useColorModeValue("#fff", "$neutral1");
   const [username, setUsername] = createSignal(
     localStorage.getItem("username") || ""
   );
@@ -74,7 +73,7 @@ const Login = () => {
             boxSize="$12"
             src="https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg"
           />
-          <Heading color={titleColor()} fontSize="$2xl">
+          <Heading color="$info9" fontSize="$2xl">
             {t("login.title")}
           </Heading>
         </Flex>

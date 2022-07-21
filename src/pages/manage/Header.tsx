@@ -23,7 +23,6 @@ const { isOpen, onOpen, onClose } = createDisclosure();
 
 const Header = () => {
   const t = useT();
-  const titleColor = useColorModeValue("#359eff", "#1890ff");
   const { to } = useRouter();
   return (
     <Box
@@ -52,7 +51,7 @@ const Header = () => {
           />
           <Heading
             fontSize="$xl"
-            color={titleColor()}
+            color="$info9"
             cursor="pointer"
             onClick={() => {
               to("/@manage");
@@ -66,8 +65,7 @@ const Header = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader color={titleColor()}>{t("manage.title")}</DrawerHeader>
-
+          <DrawerHeader color="$info9">{t("manage.title")}</DrawerHeader>
           <DrawerBody>
             <SideMenu items={side_menu_items} />
             <Center>
