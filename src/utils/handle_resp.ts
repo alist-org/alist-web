@@ -13,15 +13,14 @@ export const handleRresp = <T>(
     notify_success && notify.success(resp.message);
     success?.(resp.data);
   } else {
+    notify_error && notify.error(resp.message);
     if (auth && resp.code === 401) {
-      notify_error && notify.error(resp.message);
       bus.emit(
         "to",
         `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
       );
       return;
     }
-    notify_error && notify.error(resp.message);
     fail?.(resp.message);
   }
 };

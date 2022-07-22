@@ -7,5 +7,8 @@
   "copied": "Copied",
   "delete_success": "Deleted successfully",
   "save_success": "Saved successfully",
-  "choose": "Choose"
+  "choose": "Choose",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "delete_confirm": "Are you sure you want to delete [{{name}}]?"
 }

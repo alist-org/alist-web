@@ -1,18 +1,17 @@
-import { Accessor } from "solid-js";
-import { createSignal } from "solid-js";
+import { Accessor, createSignal } from "solid-js";
 import { Resp } from "~/types";
 
-const useLoading = <T>(
-  p: () => Promise<T>,
+const useLoading = <T, K>(
+  p: (arg?: K) => Promise<T>,
   fetch?: boolean,
   t?: boolean // initial loading true
-): [Accessor<boolean>, () => Promise<any>] => {
+): [Accessor<boolean>, (arg?: K) => Promise<any>] => {
   const [loading, setLoading] = createSignal<boolean>(t ?? false);
   return [
     loading,
-    async () => {
+    async (arg?: K) => {
       setLoading(true);
-      const data: unknown = await p();
+      const data: unknown = await p(arg);
       if (!fetch || (data as Resp<{}>).code !== 401) {
         // why?
         // because if setLoading(false) here will rerender before navigate
@@ -24,4 +23,23 @@ const useLoading = <T>(
   ];
 };
 
-export { useLoading };
+const useListLoading = <T, K, D>(
+  p: (key: K, arg?: D) => Promise<T>,
+  fetch?: boolean,
+  initial?: K
+): [Accessor<K | undefined>, (key: K, arg?: D) => Promise<any>] => {
+  const [loading, setLoading] = createSignal<K | undefined>(initial);
+  return [
+    loading,
+    async (key: K, arg?: D) => {
+      setLoading(() => key);
+      const data: unknown = await p(key, arg);
+      if (!fetch || (data as Resp<{}>).code !== 401) {
+        setLoading(undefined);
+      }
+      return data;
+    },
+  ];
+};
+
+export { useLoading, useListLoading };
