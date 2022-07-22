@@ -5,13 +5,13 @@ const theme: HopeThemeConfig = {
   lightTheme: {
     colors: {
       background: "$neutral1",
-    }
+    },
   },
   components: {
     Button: {
       baseStyle: {
         root: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
           _active: {
             transform: "scale(.95)",
             transition: "0.2s",
@@ -36,7 +36,7 @@ const theme: HopeThemeConfig = {
     Input: {
       baseStyle: {
         input: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
           _focus: {
             boxShadow: "unset",
             borderColor: "$info8",
@@ -51,7 +51,7 @@ const theme: HopeThemeConfig = {
     },
     Textarea: {
       baseStyle: {
-        borderRadius: "0.5rem",
+        rounded: "$lg",
         _focus: {
           boxShadow: "unset",
           borderColor: "$info8",
@@ -65,7 +65,7 @@ const theme: HopeThemeConfig = {
     Select: {
       baseStyle: {
         trigger: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
           _focus: {
             boxShadow: "unset",
             borderColor: "$info8",
@@ -73,7 +73,7 @@ const theme: HopeThemeConfig = {
         },
         content: {
           border: "none",
-          borderRadius: "0.5rem",
+          rounded: "$lg",
         },
         optionIndicator: {
           color: "$info10",
@@ -103,19 +103,19 @@ const theme: HopeThemeConfig = {
     Menu: {
       baseStyle: {
         content: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
           minW: "unset",
           border: "unset",
         },
         item: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
         },
       },
     },
     Notification: {
       baseStyle: {
         root: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
           border: "unset",
         },
       },
@@ -123,7 +123,7 @@ const theme: HopeThemeConfig = {
     Alert: {
       baseStyle: {
         root: {
-          borderRadius: "0.5rem",
+          rounded: "$lg",
         },
       },
     },

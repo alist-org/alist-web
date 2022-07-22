@@ -49,9 +49,6 @@ const Item = (props: ItemProps) => {
       display="flex"
       flexDirection="column"
       required={props.required}
-      // p="$1"
-      // shadow="$sm"
-      // rounded="$lg"
     >
       <FormLabel for={props.name} display="flex" alignItems="center">
         {t(`manage.settings.${props.name}`)}

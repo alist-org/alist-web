@@ -91,7 +91,7 @@ const Storages = () => {
                   <Td>{storage.status}</Td>
                   <Td>{storage.remark}</Td>
                   <Td>
-                    <HStack spacing="$1">
+                    <HStack spacing="$2">
                       <Button
                         onClick={() => {
                           to(`/@manage/storages/edit/${storage.id}`);
