@@ -6,3 +6,4 @@ export * from "./path_join";
 export * from "./proxy";
 export * from "./request";
 export * from "./str";
+export * from "./handle_resp"

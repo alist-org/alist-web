@@ -12,7 +12,7 @@ import {
 } from "@hope-ui/solid";
 import { createSignal, For } from "solid-js";
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks";
-import { notify, r } from "~/utils";
+import { handleRresp, notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 
 const Storages = () => {
@@ -25,11 +25,7 @@ const Storages = () => {
   const [storages, setStorages] = createSignal<Storage[]>([]);
   const refresh = async () => {
     const resp: PageResp<Storage> = await getStorages();
-    if (resp.code === 200) {
-      setStorages(resp.data.content);
-    } else {
-      notify.error(resp.message);
-    }
+    handleRresp(resp, (data) => setStorages(data.content));
   };
   refresh();
   return (

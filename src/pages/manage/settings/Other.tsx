@@ -3,7 +3,7 @@ import { createSignal } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useT, useTitle } from "~/hooks";
 import { Resp, Group, SettingItem } from "~/types";
-import { notify, r } from "~/utils";
+import { handleRresp, notify, r } from "~/utils";
 import { Item } from "./SettingItem";
 import copy from "copy-to-clipboard";
 
@@ -14,29 +14,27 @@ const OtherSettings = () => {
   const [secret, setSecret] = createSignal("");
   const [token, setToken] = createSignal("");
   const [settings, setSettings] = createSignal<SettingItem[]>([]);
-  const [settings_loading, settings_data] = useFetch(() =>
+  const [settingsLoading, settingsData] = useFetch(() =>
     r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`)
   );
   const [setAria2Loading, setAria2] = useFetch(() =>
     r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   );
   const refresh = async () => {
-    const resp: Resp<SettingItem[]> = await settings_data();
-    if (resp.code === 200) {
-      setUri(resp.data.find((i) => i.key === "aria2_uri")?.value || "");
-      setSecret(resp.data.find((i) => i.key === "aria2_secret")?.value || "");
-      setToken(resp.data.find((i) => i.key === "token")?.value || "");
-      setSettings(resp.data);
-    } else {
-      notify.error(resp.message);
-    }
+    const resp: Resp<SettingItem[]> = await settingsData();
+    handleRresp(resp, (data) => {
+      setUri(data.find((i) => i.key === "aria2_uri")?.value || "");
+      setSecret(data.find((i) => i.key === "aria2_secret")?.value || "");
+      setToken(data.find((i) => i.key === "token")?.value || "");
+      setSettings(data);
+    });
   };
   refresh();
   const [resetTokenLoading, resetToken] = useFetch(() =>
     r.post("/admin/setting/reset_token")
   );
   return (
-    <MaybeLoading loading={settings_loading()}>
+    <MaybeLoading loading={settingsLoading()}>
       <Heading mb="$2">{t("settings.aria2")}</Heading>
       <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
         <Item
@@ -55,11 +53,9 @@ const OtherSettings = () => {
         loading={setAria2Loading()}
         onClick={async () => {
           const resp: Resp<string> = await setAria2();
-          if (resp.code === 200) {
-            notify.success(`${t("settings.aria2_version")} ${resp.data}`);
-          } else {
-            notify.error(resp.message);
-          }
+          handleRresp(resp, (data) => {
+            notify.success(`${t("settings.aria2_version")} ${data}`);
+          });
         }}
       >
         {t("settings.set_aria2")}
@@ -80,12 +76,10 @@ const OtherSettings = () => {
           loading={resetTokenLoading()}
           onClick={async () => {
             const resp: Resp<string> = await resetToken();
-            if (resp.code === 200) {
+            handleRresp(resp, (data) => {
               notify.success(t("settings.reset_token_success"));
-              setToken(resp.data);
-            } else {
-              notify.error(resp.message);
-            }
+              setToken(data);
+            });
           }}
         >
           {t("settings.reset_token")}

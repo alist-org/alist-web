@@ -14,7 +14,7 @@ import {
 import { createSignal } from "solid-js";
 import { SwitchColorMode, SwitchLnaguage } from "~/components";
 import { useFetch, useT, useTitle, useRouter } from "~/hooks";
-import { changeToken, r, notify } from "~/utils";
+import { changeToken, r, notify, handleRrespWithoutNotify } from "~/utils";
 import { Resp } from "~/types";
 import LoginBg from "./LoginBg";
 import { createStorageSignal } from "@solid-primitives/storage";
@@ -46,13 +46,15 @@ const Login = () => {
       localStorage.removeItem("password");
     }
     const resp: Resp<{ token: string }> = await data();
-    if (resp.code === 200) {
-      notify.success(t("login.success"));
-      changeToken(resp.data.token);
-      to(decodeURIComponent(searchParams.redirect || "/"), true);
-    } else {
-      notify.error(t(resp.message));
-    }
+    handleRrespWithoutNotify(
+      resp,
+      (data) => {
+        notify.success(t("login.success"));
+        changeToken(data.token);
+        to(decodeURIComponent(searchParams.redirect || "/"), true);
+      },
+      (msg) => notify.error(t(msg))
+    );
   };
   return (
     <Center zIndex="1" w="$full" h="$full">

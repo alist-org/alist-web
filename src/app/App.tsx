@@ -11,14 +11,13 @@ import {
 import { Portal } from "solid-js/web";
 import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
-import { bus, r } from "~/utils";
+import { bus, r, handleRrespWithoutAuthAndNotify } from "~/utils";
 import { setSettings } from "~/store";
 import { FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
 import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
 import { initialLang, langMap, loadedLangs } from "./i18n";
-import { Resp } from "~/types";
 
 const Index = lazy(() => import("~/pages/index"));
 const Manage = lazy(() => import("~/pages/manage"));
@@ -46,14 +45,11 @@ const App: Component = () => {
         loadedLangs.add(initialLang);
       })(),
       (async () => {
-        const resp: Resp<Record<string, string>> = await r.get(
-          "/public/settings"
+        handleRrespWithoutAuthAndNotify(
+          await r.get("/public/settings"),
+          setSettings,
+          setErr
         );
-        if (resp.code === 200) {
-          setSettings(resp.data);
-        } else {
-          setErr(resp.message);
-        }
       })(),
     ])
   );

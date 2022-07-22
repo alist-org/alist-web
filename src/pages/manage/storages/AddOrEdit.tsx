@@ -2,7 +2,7 @@ import { Button, Heading } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
-import { notify, r } from "~/utils";
+import { handleRresp, notify, r } from "~/utils";
 import { Addition, DriverItem, Resp, Storage, Type } from "~/types";
 import { createStore } from "solid-js/store";
 import { Item } from "./Item";
@@ -46,11 +46,7 @@ const AddOrEdit = () => {
   const [drivers, setDrivers] = createSignal<Drivers>({});
   const initAdd = async () => {
     const resp: Resp<Drivers> = await loadDrivers();
-    if (resp.code === 200) {
-      setDrivers(resp.data);
-    } else {
-      notify.error(resp.message);
-    }
+    handleRresp(resp, setDrivers);
   };
 
   const [loadingStorage, loadStorage] = useFetch(
@@ -63,18 +59,14 @@ const AddOrEdit = () => {
   );
   const initEdit = async () => {
     const storageResp: Resp<Storage> = await loadStorage();
-    if (storageResp.code === 200) {
-      setStorage(storageResp.data);
-      setAddition(JSON.parse(storageResp.data.addition));
+    handleRresp(storageResp, async (storageData) => {
+      setStorage(storageData);
+      setAddition(JSON.parse(storageData.addition));
       const driverResp: Resp<DriverItems> = await loadDriver();
-      if (driverResp.code === 200) {
-        setDrivers({ [storage.driver]: driverResp.data });
-      } else {
-        notify.error(driverResp.message);
-      }
-    } else {
-      notify.error(storageResp.message);
-    }
+      handleRresp(driverResp, (driverData) =>
+        setDrivers({ [storage.driver]: driverData })
+      );
+    });
   };
   if (id) {
     initEdit();
@@ -147,11 +139,8 @@ const AddOrEdit = () => {
         loading={okLoading()}
         onClick={async () => {
           const resp: Resp<{}> = await ok();
-          if (resp.code === 200) {
-            notify.success(t("global.success"));
-          } else {
-            notify.error(resp.message);
-          }
+          // TODO mybe can use handleRrespWithNotifySuccess
+          handleRresp(resp, () => notify.success(t("global.success")));
         }}
       >
         {t(`global.${id ? "save" : "add"}`)}

@@ -1,7 +1,7 @@
 import { MaybeLoading } from "~/components";
 import { useFetch, useT, useRouter, useManageTitle } from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
-import { r, notify, getTarget } from "~/utils";
+import { r, notify, getTarget, handleRresp } from "~/utils";
 import { createStore } from "solid-js/store";
 import { Button } from "@hope-ui/solid";
 import { createSignal, Index } from "solid-js";
@@ -21,11 +21,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
   const [settings, setSettings] = createStore<SettingItem[]>([]);
   const refresh = async () => {
     const resp: Resp<SettingItem[]> = await getSettings();
-    if (resp.code === 200) {
-      setSettings(resp.data);
-    } else {
-      notify.error(resp.message);
-    }
+    handleRresp(resp, setSettings);
   };
   refresh();
   const [saveLoading, saveSettings] = useFetch(() =>
@@ -48,12 +44,10 @@ const CommonSettings = (props: CommonSettingsProps) => {
                   `/admin/setting/delete?key=${item().key}`
                 );
                 setLoading(false);
-                if (resp.code === 200) {
+                handleRresp(resp, () => {
                   notify.success(t("global.delete_success"));
                   refresh();
-                } else {
-                  notify.error(resp.message);
-                }
+                });
               }}
             />
           )}
@@ -65,11 +59,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
         onClick={async () => {
           console.log(settings);
           const resp: Resp<{}> = await saveSettings();
-          if (resp.code === 200) {
-            notify.success(t("global.save_success"));
-          } else {
-            notify.error(resp.message);
-          }
+          handleRresp(resp, () => notify.success(t("global.save_success")));
         }}
       >
         {t("global.save")}
