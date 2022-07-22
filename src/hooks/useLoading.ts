@@ -1,15 +1,15 @@
 import { Accessor, createSignal } from "solid-js";
 import { Resp } from "~/types";
 
-const useLoading = <T, K>(
-  p: (arg?: K) => Promise<T>,
+const useLoading = <T, D>(
+  p: (arg?: D) => Promise<T>,
   fetch?: boolean,
   t?: boolean // initial loading true
-): [Accessor<boolean>, (arg?: K) => Promise<any>] => {
+): [Accessor<boolean>, (arg?: D) => Promise<any>] => {
   const [loading, setLoading] = createSignal<boolean>(t ?? false);
   return [
     loading,
-    async (arg?: K) => {
+    async (arg?: D) => {
       setLoading(true);
       const data: unknown = await p(arg);
       if (!fetch || (data as Resp<{}>).code !== 401) {

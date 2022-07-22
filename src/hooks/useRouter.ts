@@ -26,6 +26,12 @@ const useRouter = () => {
       }
       navigate(pathJoin(location.pathname, path));
     },
+    back: () => {
+      navigate(-1);
+    },
+    forward: () => {
+      navigate(1);
+    },
     pathname: createMemo(() => {
       return trimRoot(location.pathname);
     }),

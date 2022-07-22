@@ -37,7 +37,7 @@ type Drivers = Record<string, DriverItems>;
 
 const AddOrEdit = () => {
   const t = useT();
-  const { params } = useRouter();
+  const { params, back } = useRouter();
   const { id } = params;
   const [loadingDrivers, loadDrivers] = useFetch(
     () => r.get("/admin/driver/list"),
@@ -140,7 +140,10 @@ const AddOrEdit = () => {
         onClick={async () => {
           const resp: Resp<{}> = await ok();
           // TODO mybe can use handleRrespWithNotifySuccess
-          handleRresp(resp, () => notify.success(t("global.success")));
+          handleRresp(resp, () => {
+            notify.success(t("global.success"));
+            back();
+          });
         }}
       >
         {t(`global.${id ? "save" : "add"}`)}
