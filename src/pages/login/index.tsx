@@ -30,13 +30,11 @@ const Login = () => {
     localStorage.getItem("password") || ""
   );
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false");
-  const [loading, data] = useFetch(
-    () =>
-      r.post("/auth/login", {
-        username: username(),
-        password: password(),
-      }),
-    false
+  const [loading, data] = useFetch(() =>
+    r.post("/auth/login", {
+      username: username(),
+      password: password(),
+    })
   );
   const { searchParams, to } = useRouter();
   const Login = async () => {

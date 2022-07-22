@@ -2,6 +2,7 @@ import axios from "axios";
 import { api } from "./base_url";
 import { bus } from "./bus";
 import { log } from "./log";
+import { notify } from "./notify";
 
 const instance = axios.create({
   baseURL: api + "/api",
@@ -30,12 +31,13 @@ instance.interceptors.response.use(
   (response) => {
     const resp = response.data;
     log(resp);
-    // if (resp.code === 401) {
-    //   bus.emit(
-    //     "to",
-    //     `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
-    //   );
-    // }
+    if (resp.code === 401) {
+      notify.error(resp.message);
+      bus.emit(
+        "to",
+        `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
+      );
+    }
     return resp;
   },
   (error) => {

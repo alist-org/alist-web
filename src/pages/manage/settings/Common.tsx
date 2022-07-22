@@ -1,5 +1,5 @@
 import { MaybeLoading } from "~/components";
-import { useAuth, useFetch, useT, useRouter, useManageTitle } from "~/hooks";
+import { useFetch, useT, useRouter, useManageTitle } from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
 import { r, notify, getTarget } from "~/utils";
 import { createStore } from "solid-js/store";
@@ -44,9 +44,9 @@ const CommonSettings = (props: CommonSettingsProps) => {
               }}
               onDelete={async () => {
                 setLoading(true);
-                const resp: Resp<{}> = await useAuth(() =>
-                  r.post(`/admin/setting/delete?key=${item().key}`)
-                )();
+                const resp: Resp<{}> = await r.post(
+                  `/admin/setting/delete?key=${item().key}`
+                );
                 setLoading(false);
                 if (resp.code === 200) {
                   notify.success(t("global.delete_success"));
