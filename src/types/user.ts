@@ -1,3 +1,9 @@
+export enum UserRole {
+  GENERAL,
+  GUEST,
+  ADMIN,
+}
+
 export interface User {
   id: number;
   username: string;
@@ -7,8 +13,9 @@ export interface User {
 }
 
 export const UserMethods = {
-  is_guest: (user: User) => user.role === 1,
-  is_admin: (user: User) => user.role === 2,
+  is_guest: (user: User) => user.role === UserRole.GUEST,
+  is_admin: (user: User) => user.role === UserRole.ADMIN,
+  is_general: (user: User) => user.role === UserRole.GENERAL,
   can_see_hides: (user: User) => (user.permissions & 1) == 1,
   can_access_without_password: (user: User) =>
     ((user.permissions >> 1) & 1) == 1,

@@ -18,7 +18,7 @@ import { FaSolidTasks } from "solid-icons/fa";
 import { IoCopy } from "solid-icons/io";
 import { BiSolidDashboard } from "solid-icons/bi";
 import { Component, lazy } from "solid-js";
-import { Group } from "~/types";
+import { Group, UserRole } from "~/types";
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component;
@@ -28,11 +28,17 @@ export type SideMenuItem = SideMenuItemProps & {
 const CommonSettings = lazy(() => import("./settings/Common"));
 
 export const side_menu_items: SideMenuItem[] = [
+  // {
+  //   title: "manage.sidemenu.dashboard",
+  //   icon: BiSolidDashboard,
+  //   to: "/@manage",
+  //   component: lazy(() => import("./Dashboard")),
+  // },
   {
-    title: "manage.sidemenu.dashboard",
-    icon: BiSolidDashboard,
-    to: "/@manage",
-    component: lazy(() => import("./Dashboard")),
+    title: "manage.sidemenu.profile",
+    icon: BsFingerprint,
+    to: "/@manage/profile",
+    role: UserRole.GENERAL,
   },
   {
     title: "manage.sidemenu.settings",
@@ -110,13 +116,9 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/@manage/metas",
   },
   {
-    title: "manage.sidemenu.profile",
-    icon: BsFingerprint,
-    to: "/@manage/profile",
-  },
-  {
     title: "manage.sidemenu.about",
     icon: BsFront,
     to: "/@manage/about",
+    role: UserRole.GUEST,
   },
 ];

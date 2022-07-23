@@ -4,15 +4,23 @@ import { useRouter, useT } from "~/hooks";
 import { BiSolidRightArrow } from "solid-icons/bi";
 import { IconTypes } from "solid-icons/lib/browser/IconWrapper";
 import { onClose } from "./Header";
+import { UserMethods, UserRole } from "~/types";
+import { user } from "~/store";
 
 export interface SideMenuItemProps {
   title: string;
   to: string;
   icon?: IconTypes;
   children?: SideMenuItemProps[];
+  role?: number;
 }
 
 const SideMenuItem = (props: SideMenuItemProps) => {
+  if (!UserMethods.is_admin(user())) {
+    if (props.role === undefined) return null;
+    else if (props.role === UserRole.GENERAL && !UserMethods.is_general(user()))
+      return null;
+  }
   return (
     <Show when={props.children} fallback={<SideMenuItemWithTo {...props} />}>
       <SideMenuItemWithChildren {...props} />

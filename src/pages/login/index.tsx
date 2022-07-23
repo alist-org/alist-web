@@ -131,6 +131,7 @@ const Login = () => {
           colorScheme="accent"
           onClick={() => {
             changeToken("");
+            to(decodeURIComponent(searchParams.redirect || "/"), true);
           }}
         >
           {t("login.use-guest")}

@@ -5,7 +5,6 @@ import {
   Popover,
   PopoverArrow,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
   PopoverHeader,
   PopoverTrigger,
@@ -107,7 +106,6 @@ const Storages = () => {
                             </PopoverTrigger>
                             <PopoverContent>
                               <PopoverArrow />
-                              <PopoverCloseButton />
                               <PopoverHeader>
                                 {t("global.delete_confirm", {
                                   name: storage.mount_path,
@@ -115,6 +113,12 @@ const Storages = () => {
                               </PopoverHeader>
                               <PopoverBody>
                                 <HStack spacing="$2">
+                                  <Button
+                                    onClick={onClose}
+                                    colorScheme="neutral"
+                                  >
+                                    {t("global.cancel")}
+                                  </Button>
                                   <Button
                                     colorScheme="danger"
                                     loading={deleting() === storage.id}
@@ -131,12 +135,6 @@ const Storages = () => {
                                     }}
                                   >
                                     {t("global.confirm")}
-                                  </Button>
-                                  <Button
-                                    onClick={onClose}
-                                    colorScheme="neutral"
-                                  >
-                                    {t("global.cancel")}
                                   </Button>
                                 </HStack>
                               </PopoverBody>
