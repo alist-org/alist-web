@@ -130,7 +130,7 @@ const Login = () => {
           w="$full"
           colorScheme="accent"
           onClick={() => {
-            changeToken("");
+            changeToken();
             to(decodeURIComponent(searchParams.redirect || "/"), true);
           }}
         >

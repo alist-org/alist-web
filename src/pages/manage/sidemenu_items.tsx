@@ -37,7 +37,7 @@ export const side_menu_items: SideMenuItem[] = [
   {
     title: "manage.sidemenu.profile",
     icon: BsFingerprint,
-    to: "/@manage/profile",
+    to: "/@manage",
     role: UserRole.GENERAL,
   },
   {

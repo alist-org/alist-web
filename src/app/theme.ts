@@ -31,6 +31,7 @@ const theme: HopeThemeConfig = {
     IconButton: {
       defaultProps: {
         colorScheme: "info",
+        variant: "subtle",
       },
     },
     Input: {
