@@ -78,12 +78,12 @@ const Login = () => {
           </Heading>
         </Flex>
         <Input
-          placeholder={t("login.username-tip")}
+          placeholder={t("login.username_tips")}
           value={username()}
           onInput={(e) => setUsername(e.currentTarget.value)}
         />
         <Input
-          placeholder={t("login.password-tip")}
+          placeholder={t("login.password_tips")}
           type="password"
           value={password()}
           onInput={(e) => setPassword(e.currentTarget.value)}
@@ -134,7 +134,7 @@ const Login = () => {
             to(decodeURIComponent(searchParams.redirect || "/"), true);
           }}
         >
-          {t("login.use-guest")}
+          {t("login.use_guest")}
         </Button>
         <Flex
           mt="$2"

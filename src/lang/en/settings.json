@@ -6,5 +6,10 @@
   "copy_token": "Copy Token",
   "reset_token": "Reset Token",
   "reset_token_success": "Reset Token Successfully",
-  "unkown_type": "Unknown type"
+  "unkown_type": "Unknown type",
+  "update_profile": "Update Profile",
+  "update_profile_success": "Update profile successfully, please re-login.",
+  "change_username": "Change Username",
+  "change_password": "Change Password",
+  "change_password_tips": "Keep the password empty if you don't want to change it"
 }

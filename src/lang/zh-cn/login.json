@@ -1,11 +1,11 @@
 {
   "title": "登录到ALIST",
-  "username-tip": "输入用户名",
-  "password-tip": "输入密码",
+  "username_tips": "输入用户名",
+  "password_tips": "输入密码",
   "remember": "记住我",
   "forget": "忘记密码?",
   "clear": "清空",
   "login": "登录",
-  "use-guest": "以游客身份浏览",
+  "use_guest": "以游客身份浏览",
   "success": "登录成功"
 }

@@ -6,7 +6,7 @@ import { setUser } from "~/store";
 import { r, handleRresp } from "~/utils";
 
 const MustUser = (props: { children: JSXElement }) => {
-  const [loading, data] = useFetch(() => r.get("/auth/current"));
+  const [loading, data] = useFetch(() => r.get("/me"));
   const [err, setErr] = createSignal("");
   (async () => {
     // const resp: Resp<User> = await data();
@@ -18,7 +18,7 @@ const MustUser = (props: { children: JSXElement }) => {
         <FullScreenLoading />
       </Match>
       <Match when={err()}>
-        <Center>{err()}</Center>
+        <Center h="$full">{err()}</Center>
       </Match>
     </Switch>
   );

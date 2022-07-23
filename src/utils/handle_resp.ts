@@ -17,7 +17,7 @@ export const handleRresp = <T>(
     if (auth && resp.code === 401) {
       bus.emit(
         "to",
-        `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
+        `/@login?redirect=${encodeURIComponent(location.pathname)}`
       );
       return;
     }

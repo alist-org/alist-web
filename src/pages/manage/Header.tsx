@@ -67,11 +67,7 @@ const Header = () => {
             onClick={() => {
               changeToken();
               notify.success(t("manage.logout_success"));
-              to(
-                `/@login?redirect=${encodeURIComponent(
-                  window.location.pathname
-                )}`
-              );
+              to(`/@login?redirect=${encodeURIComponent(location.pathname)}`);
             }}
             size="sm"
           />
