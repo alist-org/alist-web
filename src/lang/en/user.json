@@ -1,0 +1,14 @@
+{
+  "permission": {
+    "see_hides": "Can see hides",
+    "access_without_password": "Access without password",
+    "add_aria2": "Add aria2 tasks",
+    "write": "Makedir or upload",
+    "rename": "Rename",
+    "move": "Move",
+    "copy": "Copy",
+    "remove": "Delete",
+    "webdav_read": "Webdav read",
+    "webdav_manage": "Webdav manage"
+  }
+}

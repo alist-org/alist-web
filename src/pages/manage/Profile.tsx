@@ -1,4 +1,5 @@
 import {
+  Badge,
   Button,
   FormControl,
   FormHelperText,
@@ -9,10 +10,19 @@ import {
   SimpleGrid,
   VStack,
 } from "@hope-ui/solid";
-import { createSignal } from "solid-js";
+import { createSignal, JSXElement } from "solid-js";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { setUser, user } from "~/store";
+import { UserMethods } from "~/types";
 import { handleRresp, notify, r } from "~/utils";
+
+const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
+  return (
+    <Badge colorScheme={props.can ? "success" : "danger"}>
+      {props.children}
+    </Badge>
+  );
+};
 
 const Profile = () => {
   const t = useT();
@@ -65,6 +75,38 @@ const Profile = () => {
       >
         {t("global.save")}
       </Button>
+      <HStack wrap="wrap" gap="$2" mt="$2">
+        <PermissionBadge can={UserMethods.can_see_hides(user())}>
+          {t("user.permission.see_hides")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_access_without_password(user())}>
+          {t("user.permission.access_without_password")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_add_aria2_tasks(user())}>
+          {t("user.permission.add_aria2")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_write(user())}>
+          {t("user.permission.write")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_rename(user())}>
+          {t("user.permission.rename")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_move(user())}>
+          {t("user.permission.move")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_copy(user())}>
+          {t("user.permission.copy")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_remove(user())}>
+          {t("user.permission.remove")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_webdav_read(user())}>
+          {t("user.permission.webdav_read")}
+        </PermissionBadge>
+        <PermissionBadge can={UserMethods.can_webdav_manage(user())}>
+          {t("user.permission.webdav_manage")}
+        </PermissionBadge>
+      </HStack>
     </VStack>
   );
 };
