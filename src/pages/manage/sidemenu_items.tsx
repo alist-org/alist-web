@@ -104,12 +104,13 @@ export const side_menu_items: SideMenuItem[] = [
     title: "manage.sidemenu.users",
     icon: BsPersonCircle,
     to: "/@manage/users",
+    component: lazy(() => import("./users/Users")),
   },
   {
     title: "manage.sidemenu.storages",
     icon: CgDatabase,
     to: "/@manage/storages",
-    component: lazy(() => import("./storages")),
+    component: lazy(() => import("./storages/Storages")),
   },
   {
     title: "manage.sidemenu.metas",

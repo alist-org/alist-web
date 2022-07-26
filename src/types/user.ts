@@ -8,7 +8,7 @@ export interface User {
   id: number;
   username: string;
   base_path: string;
-  role: number;
+  role: UserRole;
   permissions: number;
 }
 

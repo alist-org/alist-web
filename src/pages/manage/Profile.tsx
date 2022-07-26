@@ -54,6 +54,7 @@ const Profile = () => {
           <Input
             id="password"
             type="password"
+            placeholder="********"
             value={password()}
             onInput={(e) => {
               setPassword(e.currentTarget.value);
@@ -77,34 +78,34 @@ const Profile = () => {
       </Button>
       <HStack wrap="wrap" gap="$2" mt="$2">
         <PermissionBadge can={UserMethods.can_see_hides(user())}>
-          {t("user.permission.see_hides")}
+          {t("users.permission.see_hides")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_access_without_password(user())}>
-          {t("user.permission.access_without_password")}
+          {t("users.permission.access_without_password")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_add_aria2_tasks(user())}>
-          {t("user.permission.add_aria2")}
+          {t("users.permission.add_aria2")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_write(user())}>
-          {t("user.permission.write")}
+          {t("users.permission.write")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_rename(user())}>
-          {t("user.permission.rename")}
+          {t("users.permission.rename")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_move(user())}>
-          {t("user.permission.move")}
+          {t("users.permission.move")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_copy(user())}>
-          {t("user.permission.copy")}
+          {t("users.permission.copy")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_remove(user())}>
-          {t("user.permission.remove")}
+          {t("users.permission.remove")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_webdav_read(user())}>
-          {t("user.permission.webdav_read")}
+          {t("users.permission.webdav_read")}
         </PermissionBadge>
         <PermissionBadge can={UserMethods.can_webdav_manage(user())}>
-          {t("user.permission.webdav_manage")}
+          {t("users.permission.webdav_manage")}
         </PermissionBadge>
       </HStack>
     </VStack>
