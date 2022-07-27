@@ -9,7 +9,7 @@ import { Item } from "./Item";
 import { ResponsiveGrid } from "../ResponsiveGrid";
 
 interface DriverItems {
-  main: DriverItem[];
+  common: DriverItem[];
   additional: DriverItem[];
 }
 
@@ -93,9 +93,10 @@ const AddOrEdit = () => {
           type={Type.Select}
           values={id ? storage.driver : Object.keys(drivers()).join(",")}
           value={storage.driver}
+          scop="common"
           onChange={(value) => {
             setStorage("driver", value);
-            for (const item of drivers()[value].main) {
+            for (const item of drivers()[value].common) {
               setStorage(
                 item.name as keyof Storage,
                 GetDefaultValue(item.type, item.default) as any
@@ -110,10 +111,11 @@ const AddOrEdit = () => {
           }}
         />
         <Show when={drivers()[storage.driver]}>
-          <For each={drivers()[storage.driver].main}>
+          <For each={drivers()[storage.driver].common}>
             {(item) => (
               <Item
                 {...item}
+                scop="common"
                 value={(storage as any)[item.name]}
                 onChange={(val: any) => {
                   setStorage(item.name as keyof Storage, val);
@@ -125,6 +127,7 @@ const AddOrEdit = () => {
             {(item) => (
               <Item
                 {...item}
+                scop={storage.driver}
                 value={addition[item.name] as any}
                 onChange={(val: any) => {
                   setAddition(item.name, val);

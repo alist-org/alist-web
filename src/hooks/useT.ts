@@ -10,6 +10,7 @@ const useT = () => {
   ) => {
     const value = t(key, params, defaultValue);
     if (!value) {
+      if (import.meta.env.DEV) return key;
       let lastDotIndex = key.lastIndexOf(".");
       if (lastDotIndex === key.length - 1) {
         lastDotIndex = key.lastIndexOf(".", lastDotIndex - 1);

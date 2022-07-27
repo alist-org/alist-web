@@ -1,8 +1,40 @@
 {
-  "mount_path": "Mount Path",
-  "driver": "Driver",
-  "index": "Index",
-  "status": "Status",
-  "remark": "Remark",
-  "operations": "Operations"
+  "common": {
+    "mount_path": "Mount Path",
+    "driver": "Driver",
+    "drivers": {
+      "Local": "Local"
+    },
+    "index": "Index",
+    "status": "Status",
+    "remark": "Remark",
+    "operations": "Operations",
+    "down_proxy_url": "Download proxy URL",
+    "web_proxy": "Web proxy",
+    "webdav_policy": "WebDAV policy",
+    "webdav_policys": {
+      "302_redirect": "302 redirect",
+      "use_proxy_url": "use proxy URL",
+      "native_proxy": "native proxy"
+    },
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "size": "Size",
+      "modified": "Modified"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Ascending",
+      "desc": "Descending"
+    },
+    "extract_folder": "Extract folder",
+    "extract_folders": {
+      "front": "Extract to front",
+      "back": "Extract to back"
+    }
+  },
+  "Local": {
+    "root_folder": "Root folder"
+  }
 }

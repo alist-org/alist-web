@@ -23,6 +23,7 @@ import { DriverItem, Type } from "~/types";
 
 export type ItemProps = DriverItem & {
   readonly?: boolean;
+  scop?: string;
 } & (
     | {
         type: Type.Bool;
@@ -51,7 +52,7 @@ const Item = (props: ItemProps) => {
       required={props.required}
     >
       <FormLabel for={props.name} display="flex" alignItems="center">
-        {t(`manage.settings.${props.name}`)}
+        {t(`storages.${props.scop}.${props.name}`)}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
         <Match when={props.type === Type.String}>
@@ -125,7 +126,7 @@ const Item = (props: ItemProps) => {
                   {(item) => (
                     <SelectOption value={item}>
                       <SelectOptionText>
-                        {t(`manage.settings.${item}`)}
+                        {t(`storages.${props.scop}.${props.name}s.${item}`)}
                       </SelectOptionText>
                       <SelectOptionIndicator />
                     </SelectOption>
