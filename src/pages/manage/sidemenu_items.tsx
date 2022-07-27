@@ -116,6 +116,7 @@ export const side_menu_items: SideMenuItem[] = [
     title: "manage.sidemenu.metas",
     icon: SiMetabase,
     to: "/@manage/metas",
+    component: lazy(() => import("./metas/Metas")),
   },
   {
     title: "manage.sidemenu.about",

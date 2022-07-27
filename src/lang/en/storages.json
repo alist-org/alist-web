@@ -8,7 +8,6 @@
     "index": "Index",
     "status": "Status",
     "remark": "Remark",
-    "operations": "Operations",
     "down_proxy_url": "Download proxy URL",
     "web_proxy": "Web proxy",
     "webdav_policy": "WebDAV policy",
