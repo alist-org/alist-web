@@ -6,7 +6,7 @@ import { handleRresp, notify, r } from "~/utils";
 import { Addition, DriverItem, Resp, Storage, Type } from "~/types";
 import { createStore } from "solid-js/store";
 import { Item } from "./Item";
-import { ResponsiveGrid } from "../ResponsiveGrid";
+import { ResponsiveGrid } from "../common/ResponsiveGrid";
 
 interface DriverItems {
   common: DriverItem[];

@@ -2,12 +2,6 @@ import {
   Box,
   Button,
   HStack,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
   Table,
   Tbody,
   Td,
@@ -26,6 +20,7 @@ import {
 } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
+import { DeletePopover } from "../common/DeletePopover";
 
 const Storages = () => {
   const t = useT();
@@ -90,50 +85,17 @@ const Storages = () => {
                       >
                         {t("global.edit")}
                       </Button>
-                      <Popover>
-                        {({ onClose }) => (
-                          <>
-                            <PopoverTrigger as={Button} colorScheme="danger">
-                              {t("global.delete")}
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <PopoverArrow />
-                              <PopoverHeader>
-                                {t("global.delete_confirm", {
-                                  name: storage.mount_path,
-                                })}
-                              </PopoverHeader>
-                              <PopoverBody>
-                                <HStack spacing="$2">
-                                  <Button
-                                    onClick={onClose}
-                                    colorScheme="neutral"
-                                  >
-                                    {t("global.cancel")}
-                                  </Button>
-                                  <Button
-                                    colorScheme="danger"
-                                    loading={deleting() === storage.id}
-                                    onClick={async () => {
-                                      const resp = await deleteStorage(
-                                        storage.id
-                                      );
-                                      handleRresp(resp, () => {
-                                        notify.success(
-                                          t("global.delete_success")
-                                        );
-                                        refresh();
-                                      });
-                                    }}
-                                  >
-                                    {t("global.confirm")}
-                                  </Button>
-                                </HStack>
-                              </PopoverBody>
-                            </PopoverContent>
-                          </>
-                        )}
-                      </Popover>
+                      <DeletePopover
+                        name={storage.mount_path}
+                        loading={deleting() === storage.id}
+                        onClick={async () => {
+                          const resp = await deleteStorage(storage.id);
+                          handleRresp(resp, () => {
+                            notify.success(t("global.delete_success"));
+                            refresh();
+                          });
+                        }}
+                      />
                     </HStack>
                   </Td>
                 </Tr>

@@ -3,12 +3,6 @@ import {
   Box,
   Button,
   HStack,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
   Table,
   Tbody,
   Td,
@@ -28,6 +22,7 @@ import {
 } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
 import { PageResp, UserPermissions, User, UserMethods } from "~/types";
+import { DeletePopover } from "../common/DeletePopover";
 
 const Role = (props: { role: number }) => {
   const roles = [
@@ -99,14 +94,7 @@ const Users = () => {
         <Table highlightOnHover dense>
           <Thead>
             <Tr>
-              <For
-                each={[
-                  "username",
-                  "base_path",
-                  "role",
-                  "permission",
-                ]}
-              >
+              <For each={["username", "base_path", "role", "permission"]}>
                 {(title) => <Th>{t(`users.${title}`)}</Th>}
               </For>
               <Th>{t("global.operations")}</Th>
@@ -133,48 +121,17 @@ const Users = () => {
                       >
                         {t("global.edit")}
                       </Button>
-                      <Popover>
-                        {({ onClose }) => (
-                          <>
-                            <PopoverTrigger as={Button} colorScheme="danger">
-                              {t("global.delete")}
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <PopoverArrow />
-                              <PopoverHeader>
-                                {t("global.delete_confirm", {
-                                  name: user.username,
-                                })}
-                              </PopoverHeader>
-                              <PopoverBody>
-                                <HStack spacing="$2">
-                                  <Button
-                                    onClick={onClose}
-                                    colorScheme="neutral"
-                                  >
-                                    {t("global.cancel")}
-                                  </Button>
-                                  <Button
-                                    colorScheme="danger"
-                                    loading={deleting() === user.id}
-                                    onClick={async () => {
-                                      const resp = await deleteUser(user.id);
-                                      handleRresp(resp, () => {
-                                        notify.success(
-                                          t("global.delete_success")
-                                        );
-                                        refresh();
-                                      });
-                                    }}
-                                  >
-                                    {t("global.confirm")}
-                                  </Button>
-                                </HStack>
-                              </PopoverBody>
-                            </PopoverContent>
-                          </>
-                        )}
-                      </Popover>
+                      <DeletePopover
+                        name={user.username}
+                        loading={deleting() === user.id}
+                        onClick={async () => {
+                          const resp = await deleteUser(user.id);
+                          handleRresp(resp, () => {
+                            notify.success(t("global.delete_success"));
+                            refresh();
+                          });
+                        }}
+                      />
                     </HStack>
                   </Td>
                 </Tr>

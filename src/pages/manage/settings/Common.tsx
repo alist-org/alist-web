@@ -6,7 +6,7 @@ import { createStore } from "solid-js/store";
 import { Button } from "@hope-ui/solid";
 import { createSignal, Index } from "solid-js";
 import { Item } from "./SettingItem";
-import { ResponsiveGrid } from "../ResponsiveGrid";
+import { ResponsiveGrid } from "../common/ResponsiveGrid";
 
 export interface CommonSettingsProps {
   group: Group;

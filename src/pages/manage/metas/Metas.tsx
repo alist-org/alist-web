@@ -1,14 +1,7 @@
 import {
-  Badge,
   Box,
   Button,
   HStack,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
   Table,
   Tbody,
   Td,
@@ -27,6 +20,7 @@ import {
 } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
 import { Meta, PageResp } from "~/types";
+import { DeletePopover } from "../common/DeletePopover";
 
 const Metas = () => {
   const t = useT();
@@ -88,48 +82,17 @@ const Metas = () => {
                       >
                         {t("global.edit")}
                       </Button>
-                      <Popover>
-                        {({ onClose }) => (
-                          <>
-                            <PopoverTrigger as={Button} colorScheme="danger">
-                              {t("global.delete")}
-                            </PopoverTrigger>
-                            <PopoverContent>
-                              <PopoverArrow />
-                              <PopoverHeader>
-                                {t("global.delete_confirm", {
-                                  name: meta.path,
-                                })}
-                              </PopoverHeader>
-                              <PopoverBody>
-                                <HStack spacing="$2">
-                                  <Button
-                                    onClick={onClose}
-                                    colorScheme="neutral"
-                                  >
-                                    {t("global.cancel")}
-                                  </Button>
-                                  <Button
-                                    colorScheme="danger"
-                                    loading={deleting() === meta.id}
-                                    onClick={async () => {
-                                      const resp = await deleteMeta(meta.id);
-                                      handleRresp(resp, () => {
-                                        notify.success(
-                                          t("global.delete_success")
-                                        );
-                                        refresh();
-                                      });
-                                    }}
-                                  >
-                                    {t("global.confirm")}
-                                  </Button>
-                                </HStack>
-                              </PopoverBody>
-                            </PopoverContent>
-                          </>
-                        )}
-                      </Popover>
+                      <DeletePopover
+                        name={meta.path}
+                        loading={deleting() === meta.id}
+                        onClick={async () => {
+                          const resp = await deleteMeta(meta.id);
+                          handleRresp(resp, () => {
+                            notify.success(t("global.delete_success"));
+                            refresh();
+                          });
+                        }}
+                      />
                     </HStack>
                   </Td>
                 </Tr>
