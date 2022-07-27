@@ -10,10 +10,10 @@ import {
   SimpleGrid,
   VStack,
 } from "@hope-ui/solid";
-import { createSignal, JSXElement } from "solid-js";
+import { createSignal, For, JSXElement } from "solid-js";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { setUser, user } from "~/store";
-import { UserMethods } from "~/types";
+import { UserMethods, UserPermissions } from "~/types";
 import { handleRresp, notify, r } from "~/utils";
 
 const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
@@ -77,36 +77,13 @@ const Profile = () => {
         {t("global.save")}
       </Button>
       <HStack wrap="wrap" gap="$2" mt="$2">
-        <PermissionBadge can={UserMethods.can_see_hides(user())}>
-          {t("users.permission.see_hides")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_access_without_password(user())}>
-          {t("users.permission.access_without_password")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_add_aria2_tasks(user())}>
-          {t("users.permission.add_aria2")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_write(user())}>
-          {t("users.permission.write")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_rename(user())}>
-          {t("users.permission.rename")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_move(user())}>
-          {t("users.permission.move")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_copy(user())}>
-          {t("users.permission.copy")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_remove(user())}>
-          {t("users.permission.remove")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_webdav_read(user())}>
-          {t("users.permission.webdav_read")}
-        </PermissionBadge>
-        <PermissionBadge can={UserMethods.can_webdav_manage(user())}>
-          {t("users.permission.webdav_manage")}
-        </PermissionBadge>
+        <For each={UserPermissions}>
+          {(item, i) => (
+            <PermissionBadge can={UserMethods.can(user(), i())}>
+              {t(`users.permission.${item}`)}
+            </PermissionBadge>
+          )}
+        </For>
       </HStack>
     </VStack>
   );

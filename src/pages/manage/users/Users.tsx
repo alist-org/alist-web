@@ -27,7 +27,7 @@ import {
   useT,
 } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
-import { PageResp, User, UserMethods } from "~/types";
+import { PageResp, UserPermissions, User, UserMethods } from "~/types";
 
 const Role = (props: { role: number }) => {
   const roles = [
@@ -47,35 +47,14 @@ const Permissions = (props: { user: User }) => {
   const color = (can: boolean) => `$${can ? "success" : "danger"}9`;
   return (
     <HStack spacing="$0_5">
-      <For
-        each={[
-          { name: "see_hides", can: UserMethods.can_see_hides(props.user) },
-          {
-            name: "access_without_password",
-            can: UserMethods.can_access_without_password(props.user),
-          },
-          {
-            name: "add_aria2",
-            can: UserMethods.can_add_aria2_tasks(props.user),
-          },
-          {
-            name: "write",
-            can: UserMethods.can_write(props.user),
-          },
-          { name: "rename", can: UserMethods.can_rename(props.user) },
-          { name: "move", can: UserMethods.can_move(props.user) },
-          { name: "copy", can: UserMethods.can_copy(props.user) },
-          { name: "remove", can: UserMethods.can_remove(props.user) },
-          { name: "webdav_read", can: UserMethods.can_webdav_read(props.user) },
-          {
-            name: "webdav_manage",
-            can: UserMethods.can_webdav_manage(props.user),
-          },
-        ]}
-      >
-        {(item) => (
-          <Tooltip label={t(`users.permissions.${item.name}`)}>
-            <Box boxSize="$2" rounded="$full" bg={color(item.can)}></Box>
+      <For each={UserPermissions}>
+        {(item, i) => (
+          <Tooltip label={t(`users.permissions.${item}`)}>
+            <Box
+              boxSize="$2"
+              rounded="$full"
+              bg={color(UserMethods.can(props.user, i()))}
+            ></Box>
           </Tooltip>
         )}
       </For>
@@ -125,7 +104,7 @@ const Users = () => {
                   "username",
                   "base_path",
                   "role",
-                  "permissions",
+                  "permission",
                   "operations",
                 ]}
               >

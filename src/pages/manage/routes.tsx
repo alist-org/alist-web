@@ -15,6 +15,14 @@ const ignore_routes: Route[] = [
     to: "/storages/edit/:id",
     component: lazy(() => import("./storages/AddOrEdit")),
   },
+  {
+    to: "/users/add",
+    component: lazy(() => import("./users/AddOrEdit")),
+  },
+  {
+    to: "/users/edit/:id",
+    component: lazy(() => import("./users/AddOrEdit")),
+  }
 ];
 
 const Placeholder = (props: { title: string; to: string }) => {

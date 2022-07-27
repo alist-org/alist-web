@@ -11,3 +11,8 @@ export const joinRoot = (...paths: string[]) => {
 export const trimRoot = (path: string) => {
   return path.replace(root_path, "");
 };
+
+export const baseName = (path: string) => {
+  return path.split("/").pop();
+};
+

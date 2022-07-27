@@ -1,5 +1,5 @@
 {
-  "permission": {
+  "permissions": {
     "see_hides": "Can see hides",
     "access_without_password": "Access without password",
     "add_aria2": "Add aria2 tasks",
@@ -10,5 +10,10 @@
     "remove": "Delete",
     "webdav_read": "Webdav read",
     "webdav_manage": "Webdav manage"
-  }
+  },
+  "username": "Username",
+  "password": "Pssword",
+  "base_path": "Base path",
+  "role": "Role",
+  "permission": "Permission"
 }

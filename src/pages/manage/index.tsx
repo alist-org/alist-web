@@ -12,7 +12,11 @@ const Manage = () => {
   const t = useT();
   useTitle(() => t("manage.title"));
   return (
-    <Box>
+    <Box
+      css={{
+        "--hope-colors-background": "var(--hope-colors-loContrast)",
+      }}
+    >
       <Header />
       <Flex w="$full" h="calc(100vh - 64px)">
         <Box

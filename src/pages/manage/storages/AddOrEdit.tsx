@@ -39,7 +39,7 @@ const AddOrEdit = () => {
   const t = useT();
   const { params, back } = useRouter();
   const { id } = params;
-  const [loadingDrivers, loadDrivers] = useFetch(
+  const [driversLoading, loadDrivers] = useFetch(
     () => r.get("/admin/driver/list"),
     true
   );
@@ -49,11 +49,11 @@ const AddOrEdit = () => {
     handleRresp(resp, setDrivers);
   };
 
-  const [loadingStorage, loadStorage] = useFetch(
+  const [storageLoading, loadStorage] = useFetch(
     () => r.get(`/admin/storage/get?id=${id}`),
     true
   );
-  const [loadingDriver, loadDriver] = useFetch(
+  const [driverLoading, loadDriver] = useFetch(
     () => r.get(`/admin/driver/items?driver=${storage.driver}`),
     true
   );
@@ -81,7 +81,7 @@ const AddOrEdit = () => {
   });
   return (
     <MaybeLoading
-      loading={id ? loadingStorage() || loadingDriver() : loadingDrivers()}
+      loading={id ? storageLoading() || driverLoading() : driversLoading()}
     >
       <Heading mb="$2">{t(`global.${id ? "edit" : "add"}`)}</Heading>
       <ResponsiveGrid>
