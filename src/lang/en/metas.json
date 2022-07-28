@@ -4,5 +4,7 @@
   "write": "Write",
   "hide": "Hide",
   "readme": "Readme",
-  "apply_sub": "Apply to sub folder"
+  "apply_sub": "Apply to sub folder",
+  "hide_help": "One regular expression per line",
+  "readme_help": "Support markdown content or markdown link"
 }

@@ -5,55 +5,60 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  HStack,
   Input,
   VStack,
   Flex,
+  Textarea,
+  FormHelperText,
 } from "@hope-ui/solid";
 import { MaybeLoading, FolderChooseInput } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
 import { Resp, Meta } from "~/types";
 import { createStore } from "solid-js/store";
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 
-type ItemProps = { name: string; onSub: (val: boolean) => void } & (
-  | { value: string; onChange: (val: string) => void }
-  | { value: boolean; onChange: (val: boolean) => void }
-  | { value: number; onChange: (val: number) => void }
+type ItemProps = {
+  name: string;
+  onSub: (val: boolean) => void;
+  help?: boolean;
+} & (
+  | { type: "string"; value: string; onChange: (val: string) => void }
+  | { type: "text"; value: string; onChange: (val: string) => void }
+  | { type: "bool"; value: boolean; onChange: (val: boolean) => void }
 );
 const Item = (props: ItemProps) => {
   const t = useT();
   return (
-    <FormControl w="$full" display="flex" flexDirection="column" required>
+    <FormControl w="$full" display="flex" flexDirection="column">
       <FormLabel for={props.name} display="flex" alignItems="center">
         {t(`metas.${props.name}`)}
       </FormLabel>
       <Flex
         w="$full"
         direction={
-          typeof props.value === "boolean"
-            ? "row"
-            : { "@initial": "column", "@md": "row" }
+          props.type === "bool" ? "row" : { "@initial": "column", "@md": "row" }
         }
         gap="$2"
       >
-        {typeof props.value === "string" ? (
+        {props.type === "string" ? (
           <Input
             id={props.name}
             value={props.value}
-            // @ts-ignore
             onInput={(e) => props.onChange(e.currentTarget.value)}
           />
-        ) : typeof props.value === "boolean" ? (
+        ) : props.type === "bool" ? (
           <HopeSwitch
             id={props.name}
             defaultChecked={props.value}
-            // @ts-ignore
             onChange={(e: any) => props.onChange(e.currentTarget.checked)}
           />
         ) : (
-          <></>
+          <Textarea
+            id={props.name}
+            value={props.value}
+            onChange={(e) => props.onChange(e.currentTarget.value)}
+          />
         )}
         <FormControl w="fit-content" display="flex">
           <Checkbox
@@ -67,6 +72,9 @@ const Item = (props: ItemProps) => {
           </Checkbox>
         </FormControl>
       </Flex>
+      <Show when={props.help}>
+        <FormHelperText>{t(`metas.${props.name}_help`)}</FormHelperText>
+      </Show>
     </FormControl>
   );
 };
@@ -126,15 +134,27 @@ const AddOrEdit = () => {
             onInput={(e) => setMeta("password", e.currentTarget.value)}
           />
         </FormControl> */}
-        <For each={["password", "write", "hide", "readme"] as (keyof Meta)[]}>
+        <For
+          each={[
+            { name: "password", type: "string" },
+            { name: "write", type: "bool" },
+            { name: "hide", type: "text", help: true },
+            { name: "readme", type: "text", help: true },
+          ]}
+        >
           {(item) => (
+            // @ts-ignore
             <Item
-              name={item}
-              value={meta[item]}
-              onChange={(val: any): void => setMeta(item, val)}
-              onSub={(val: boolean): void =>
-                setMeta(`${item[0]}_sub` as keyof Meta, val)
+              name={item.name}
+              type={item.type as "string" | "bool" | "text"}
+              value={meta[item.name as keyof Meta] as string | boolean}
+              onChange={(val: any): void =>
+                setMeta(item.name as keyof Meta, val)
               }
+              onSub={(val: boolean): void =>
+                setMeta(`${item.name[0]}_sub` as keyof Meta, val)
+              }
+              help={item.help}
             />
           )}
         </For>

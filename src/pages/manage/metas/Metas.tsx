@@ -21,6 +21,7 @@ import {
 import { handleRresp, notify, r } from "~/utils";
 import { Meta, PageResp } from "~/types";
 import { DeletePopover } from "../common/DeletePopover";
+import { Wether } from "~/components";
 
 const Metas = () => {
   const t = useT();
@@ -59,7 +60,7 @@ const Metas = () => {
         <Table highlightOnHover dense>
           <Thead>
             <Tr>
-              <For each={["path", "password", "write", "hide"]}>
+              <For each={["path", "password", "write"]}>
                 {(title) => <Th>{t(`metas.${title}`)}</Th>}
               </For>
               <Th>{t("global.operations")}</Th>
@@ -71,8 +72,10 @@ const Metas = () => {
                 <Tr>
                   <Td>{meta.path}</Td>
                   <Td>{meta.password}</Td>
-                  <Td>{meta.write}</Td>
-                  <Td>{meta.hide}</Td>
+                  <Td>
+                    <Wether yes={meta.write} />
+                  </Td>
+                  {/* <Td>{meta.hide}</Td> */}
                   <Td>
                     <HStack spacing="$2">
                       <Button
