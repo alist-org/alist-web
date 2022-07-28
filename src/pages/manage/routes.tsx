@@ -22,7 +22,15 @@ const ignore_routes: Route[] = [
   {
     to: "/users/edit/:id",
     component: lazy(() => import("./users/AddOrEdit")),
-  }
+  },
+  {
+    to: "/metas/add",
+    component: lazy(() => import("./metas/AddOrEdit")),
+  },
+  {
+    to: "/metas/edit/:id",
+    component: lazy(() => import("./metas/AddOrEdit")),
+  },
 ];
 
 const Placeholder = (props: { title: string; to: string }) => {

@@ -25,7 +25,7 @@ const useTitle = (title: string | (() => string)) => {
     document.title = title;
   }
   onCleanup(() => {
-    document.title = pre;
+    // document.title = pre;
     delete effects[cid];
     for (const key in valids) {
       effects[key] = true;

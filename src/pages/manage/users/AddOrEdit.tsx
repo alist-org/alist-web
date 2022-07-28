@@ -11,12 +11,7 @@ import {
 import { MaybeLoading, FolderChooseInput } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
-import {
-  Resp,
-  User,
-  UserMethods,
-  UserPermissions,
-} from "~/types";
+import { Resp, User, UserMethods, UserPermissions } from "~/types";
 import { createStore } from "solid-js/store";
 import { For } from "solid-js";
 
@@ -98,10 +93,11 @@ const AddOrEdit = () => {
           />
         </FormControl>
         <FormControl w="$full" display="flex" flexDirection="column" required>
-          <FormLabel display="flex" alignItems="center">
+          <FormLabel for="base_path" display="flex" alignItems="center">
             {t(`users.base_path`)}
           </FormLabel>
           <FolderChooseInput
+            id="base_path"
             value={user.base_path}
             onChange={(path) => setUser("base_path", path)}
           />

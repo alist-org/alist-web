@@ -70,7 +70,10 @@ const FolderTreeNode = (props: { path: string }) => {
   return (
     <Box>
       <HStack spacing="$2">
-        <Show when={!loading()} fallback={<Spinner color={getIconColor()} />}>
+        <Show
+          when={!loading()}
+          fallback={<Spinner size="sm" color={getIconColor()} />}
+        >
           <Icon
             color={getIconColor()}
             as={BiSolidRightArrow}
@@ -95,9 +98,9 @@ const FolderTreeNode = (props: { path: string }) => {
           cursor="pointer"
           px="$1"
           rounded="$sm"
-          bgColor={active() ? "$neutral8" : "transparent"}
+          bgColor={active() ? "$info8" : "transparent"}
           _hover={{
-            bgColor: active() ? "$neutral8" : "$neutral4",
+            bgColor: active() ? "$info8" : "$neutral4",
           }}
           onClick={() => {
             onChange(props.path);
@@ -122,12 +125,14 @@ const FolderTreeNode = (props: { path: string }) => {
 export const FolderChooseInput = (props: {
   value: string;
   onChange: (path: string) => void;
+  id?: string;
 }) => {
   const { isOpen, onOpen, onClose } = createDisclosure();
   const t = useT();
   return (
     <>
       <Input
+        id={props.id}
         onClick={onOpen}
         value={props.value}
         readOnly
