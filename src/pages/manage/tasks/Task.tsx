@@ -60,7 +60,12 @@ export const Task = (props: TaskInfo & TasksProps) => {
         <Heading size="sm">{props.name}</Heading>
         <TaskState state={props.state} />
         <Text>{props.status}</Text>
-        <Progress w="$full" trackColor="$info3" value={props.progress}>
+        <Progress
+          w="$full"
+          trackColor="$info3"
+          rounded="$md"
+          value={props.progress}
+        >
           <ProgressIndicator color="$info8" rounded="$md" />
           {/* <ProgressLabel /> */}
         </Progress>
