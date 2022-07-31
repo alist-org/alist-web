@@ -11,7 +11,7 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { createSignal, For, JSXElement } from "solid-js";
-import { useFetch, useRouter, useT, useTitle } from "~/hooks";
+import { useFetch, useManageTitle, useRouter, useT, useTitle } from "~/hooks";
 import { setUser, user } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
 import { handleRresp, notify, r } from "~/utils";
@@ -26,7 +26,7 @@ const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
 
 const Profile = () => {
   const t = useT();
-  useTitle(() => t("manage.sidemenu.profile"));
+  useManageTitle("manage.sidemenu.profile");
   const { to } = useRouter();
   const [username, setUsername] = createSignal(user().username);
   const [password, setPassword] = createSignal("");
