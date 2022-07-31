@@ -53,22 +53,26 @@ export const Task = (props: TaskInfo & TasksProps) => {
       shadow="$md"
       rounded="$lg"
       p="$2"
-      direction={{ "@initial": "column", "@2xl": "row" }}
+      direction={{ "@initial": "column", "@xl": "row" }}
       spacing="$2"
     >
       <VStack w="$full" alignItems="start" spacing="$1">
         <Heading size="sm">{props.name}</Heading>
         <TaskState state={props.state} />
-        <Text>{props.done}</Text>
+        <Text>{props.status}</Text>
         <Progress w="$full" trackColor="$info3" value={props.progress}>
           <ProgressIndicator color="$info8" rounded="$md" />
           {/* <ProgressLabel /> */}
         </Progress>
       </VStack>
       <Show when={props.done === "undone"}>
-        <HStack spacing="$1">
+        <Stack
+          direction={{ "@initial": "row", "@xl": "column" }}
+          justifyContent={{ "@xl": "center" }}
+          spacing="$1"
+        >
           <Button colorScheme="danger">{t("global.cancel")}</Button>
-        </HStack>
+        </Stack>
       </Show>
     </Stack>
   );
