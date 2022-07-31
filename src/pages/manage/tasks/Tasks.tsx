@@ -1,5 +1,5 @@
-import { Heading, VStack } from "@hope-ui/solid";
-import { createSignal, For, onCleanup } from "solid-js";
+import { Button, Heading, VStack } from "@hope-ui/solid";
+import { createSignal, For, onCleanup, Show } from "solid-js";
 import { useFetch, useT } from "~/hooks";
 import { Resp, TaskInfo } from "~/types";
 import { handleRresp, r } from "~/utils";
@@ -24,9 +24,26 @@ export const Tasks = (props: TasksProps) => {
     const interval = setInterval(refresh, 2000);
     onCleanup(() => clearInterval(interval));
   }
+  const [clearLoading, clear] = useFetch(() =>
+    r.post(`/admin/task/${props.type}/clear_done`)
+  );
   return (
-    <VStack w="$full" alignItems="start">
-      <Heading size="lg">{t(`tasks.${props.done}`)}</Heading>
+    <VStack w="$full" alignItems="start" spacing="$2">
+      <Heading size="lg">
+        {t(`tasks.${props.done}`)}
+        <Show when={props.done === "done"}>
+          <Button
+            ml="$2"
+            loading={clearLoading()}
+            onClick={async () => {
+              const resp = await clear();
+              handleRresp(resp, () => refresh());
+            }}
+          >
+            {t(`global.clear`)}
+          </Button>
+        </Show>
+      </Heading>
       <VStack w="$full" spacing="$2">
         <For each={tasks()}>{(task) => <Task {...task} {...props} />}</For>
       </VStack>
