@@ -1,13 +1,19 @@
-import { Box, Button, Heading } from "@hope-ui/solid";
+import { Box, Button, Container, Heading } from "@hope-ui/solid";
+import { MaybeLoading } from "~/components";
 import { useRouter } from "~/hooks";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { Toolbar } from "./toolbar/Toolbar";
 
 const Index = () => {
   const { pathname, push } = useRouter();
   return (
-    <Box>
+    <Container p="$2" pos="relative" minH="$full">
+      <Header />
+      <Toolbar />
       <Heading>{pathname()}</Heading>
-      <Button onClick={() => push("@login")}>login</Button>
-    </Box>
+      <Footer />
+    </Container>
   );
 };
 
