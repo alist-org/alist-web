@@ -128,6 +128,17 @@ const theme: HopeThemeConfig = {
         },
       },
     },
+    Anchor: {
+      baseStyle: {
+        rounded: "$lg",
+        px: "$2",
+        py: "$1",
+        _hover: {
+          bgColor: "$neutral4",
+          textDecoration: "none",
+        },
+      },
+    },
   },
 };
 
