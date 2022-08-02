@@ -5,14 +5,17 @@ interface Language {
   code: string;
   lang: string;
 }
-const langs = import.meta.globEager("~/lang/*/index.json");
+const langs = import.meta.glob("~/lang/*/index.json", {
+  eager: true,
+  import: "lang",
+});
 const languages: Language[] = [];
 
 for (const path in langs) {
   const name = path.split("/")[3];
   languages.push({
     code: name,
-    lang: langs[path].lang,
+    lang: langs[path] as string,
   });
 }
 const defaultLang =
@@ -30,7 +33,7 @@ export const initialLang = localStorage.getItem("lang") || defaultLang;
 
 // store lang and import
 export const langMap: Record<string, any> = {};
-const imports = import.meta.glob("~/lang/*/index.ts");
+const imports = import.meta.glob("~/lang/*/entry.ts");
 for (const path in imports) {
   const name = path.split("/")[3];
   langMap[name] = imports[path];

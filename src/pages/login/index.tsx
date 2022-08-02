@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
-import { SwitchColorMode, SwitchLnaguage } from "~/components";
+import { SwitchColorMode, SwitchLnaguageWhite } from "~/components";
 import { useFetch, useT, useTitle, useRouter } from "~/hooks";
 import { changeToken, r, notify, handleRrespWithoutNotify } from "~/utils";
 import { Resp } from "~/types";
@@ -143,7 +143,7 @@ const Login = () => {
           color="$neutral10"
           w="$full"
         >
-          <SwitchLnaguage />
+          <SwitchLnaguageWhite />
           <SwitchColorMode />
         </Flex>
       </VStack>

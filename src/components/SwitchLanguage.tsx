@@ -1,9 +1,11 @@
 import {
   Center,
+  ElementType,
   Menu,
   MenuContent,
   MenuItem,
   MenuTrigger,
+  MenuTriggerProps,
   Spinner,
   useColorModeValue,
 } from "@hope-ui/solid";
@@ -15,7 +17,9 @@ import { Portal } from "solid-js/web";
 
 const [fetchingLang, setFetchingLang] = createSignal(false);
 
-const SwitchLnaguage = () => {
+export const SwitchLnaguage = <C extends ElementType = "button">(
+  props: MenuTriggerProps<C>
+) => {
   const [, { locale, add }] = useI18n();
   const switchLang = async (lang: string) => {
     if (!loadedLangs.has(lang)) {
@@ -31,11 +35,7 @@ const SwitchLnaguage = () => {
   return (
     <>
       <Menu>
-        <MenuTrigger
-          as={TbLanguageHiragana}
-          size={40}
-          cursor="pointer"
-        ></MenuTrigger>
+        <MenuTrigger cursor="pointer" {...props} />
         <MenuContent>
           <For each={languages}>
             {(lang, i) => (
@@ -74,4 +74,6 @@ const SwitchLnaguage = () => {
   );
 };
 
-export { SwitchLnaguage };
+export const SwitchLnaguageWhite = () => (
+  <SwitchLnaguage as={TbLanguageHiragana} size={40} />
+);

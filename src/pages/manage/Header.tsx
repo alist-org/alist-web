@@ -16,7 +16,7 @@ import {
 } from "@hope-ui/solid";
 import { TiThMenu } from "solid-icons/ti";
 import { IoExit } from "solid-icons/io";
-import { SwitchColorMode, SwitchLnaguage } from "~/components";
+import { SwitchColorMode, SwitchLnaguageWhite } from "~/components";
 import { useRouter, useT } from "~/hooks";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
@@ -82,7 +82,7 @@ const Header = () => {
             <SideMenu items={side_menu_items} />
             <Center>
               <HStack spacing="$4" p="$2" color="$neutral11">
-                <SwitchLnaguage />
+                <SwitchLnaguageWhite />
                 <SwitchColorMode />
               </HStack>
             </Center>

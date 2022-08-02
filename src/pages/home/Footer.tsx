@@ -1,9 +1,10 @@
 import { Anchor, HStack, VStack } from "@hope-ui/solid";
 import { Link } from "@solidjs/router";
 import { AnchorWithBase } from "~/components";
-import { joinBase } from "~/utils";
+import { useT } from "~/hooks";
 
 export const Footer = () => {
+  const t = useT();
   return (
     <VStack class="footer" w="$full">
       <HStack spacing="$0_5">
@@ -12,7 +13,7 @@ export const Footer = () => {
         </Anchor>
         <span>|</span>
         <AnchorWithBase as={Link} href="/@manage">
-          Manage
+          {t("home.manage")}
         </AnchorWithBase>
       </HStack>
     </VStack>

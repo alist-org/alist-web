@@ -10,6 +10,8 @@ import { Portal } from "solid-js/web";
 import { ToolIcon } from "./Icon";
 import { CgMoreO } from "solid-icons/cg";
 import { Motion } from "@motionone/solid";
+import { SwitchLnaguage } from "~/components";
+import { TbLanguageHiragana } from "solid-icons/tb";
 
 const Toolbar = () => {
   const { isOpen, onToggle } = createDisclosure();
@@ -40,7 +42,12 @@ const Toolbar = () => {
               exit={{ opacity: 0, scale: 0.6 }}
               transition={{ duration: 0.2 }}
             >
-              <SwitchColorMode />
+              <VStack spacing="$1">
+                <SwitchLnaguage as="span">
+                  <ToolIcon as={TbLanguageHiragana} />
+                </SwitchLnaguage>
+                <SwitchColorMode />
+              </VStack>
             </Motion>
             <ToolIcon as={CgMoreO} onClick={onToggle} />
           </VStack>
