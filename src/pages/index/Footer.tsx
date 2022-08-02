@@ -4,8 +4,8 @@ import { joinBase } from "~/utils";
 
 export const Footer = () => {
   return (
-    <VStack w="$full">
-      <HStack spacing="$2">
+    <VStack class="footer" w="$full">
+      <HStack spacing="$0_5">
         <Anchor href="https://github.com/Xhofe/alist" external>
           Powered by AList
         </Anchor>

@@ -19,7 +19,7 @@ import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
 import { initialLang, langMap, loadedLangs } from "./i18n";
 
-const Index = lazy(() => import("~/pages/index"));
+const Index = lazy(() => import("~/pages/index/Layout"));
 const Manage = lazy(() => import("~/pages/manage"));
 const Login = lazy(() => import("~/pages/login"));
 const Test = lazy(() => import("~/pages/test"));
