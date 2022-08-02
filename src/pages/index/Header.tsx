@@ -17,7 +17,7 @@ export const Header = () => {
   const logo = useColorModeValue(logos[0], logos.pop());
   return (
     <Box class="header">
-      <Container display="flex" p="$2" justifyContent="space-between">
+      <Container display="flex" px="$4" py="$2" justifyContent="space-between">
         <HStack>
           <Image src={logo()!} h="44px" w="auto" />
         </HStack>

@@ -15,7 +15,8 @@
     "tasks": "Tasks",
     "aria2": "Aria2",
     "upload": "Upload",
-    "copy": "Copy"
+    "copy": "Copy",
+    "home": "Home"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",

@@ -15,8 +15,8 @@ import {
 import { SiMetabase } from "solid-icons/si";
 import { CgDatabase } from "solid-icons/cg";
 import { FaSolidTasks } from "solid-icons/fa";
-import { IoCopy } from "solid-icons/io";
-import { BiSolidDashboard } from "solid-icons/bi";
+import { IoCopy, IoHome } from "solid-icons/io";
+// import { BiSolidDashboard } from "solid-icons/bi";
 import { Component, lazy } from "solid-js";
 import { Group, UserRole } from "~/types";
 
@@ -126,5 +126,10 @@ export const side_menu_items: SideMenuItem[] = [
     icon: BsFront,
     to: "/@manage/about",
     role: UserRole.GUEST,
+  },
+  {
+    title: "manage.sidemenu.home",
+    icon: IoHome,
+    to: "/",
   },
 ];

@@ -1,4 +1,5 @@
 import {
+  NavigateOptions,
   useLocation,
   useNavigate,
   useParams,
@@ -13,12 +14,16 @@ const useRouter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const params = useParams();
   return {
-    to: (path: string, ignore_root?: boolean) => {
+    to: (
+      path: string,
+      ignore_root?: boolean,
+      options?: Partial<NavigateOptions>
+    ) => {
       if (!ignore_root && path.startsWith("/")) {
         path = joinBase(path);
       }
       log("to:", path);
-      navigate(path);
+      navigate(path, options);
     },
     push: (path: string) => {
       if (path.startsWith("/")) {

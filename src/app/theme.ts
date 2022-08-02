@@ -137,6 +137,10 @@ const theme: HopeThemeConfig = {
           bgColor: "$neutral4",
           textDecoration: "none",
         },
+        _focus: {
+          boxShadow: "unset",
+        },
+        _active: { transform: "scale(.95)", transition: "0.1s" },
       },
     },
   },
