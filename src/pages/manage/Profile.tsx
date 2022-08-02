@@ -81,7 +81,7 @@ const Profile = () => {
         <For each={UserPermissions}>
           {(item, i) => (
             <PermissionBadge can={UserMethods.can(user(), i())}>
-              {t(`users.permission.${item}`)}
+              {t(`users.permissions.${item}`)}
             </PermissionBadge>
           )}
         </For>
