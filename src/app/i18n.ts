@@ -9,7 +9,7 @@ const langs = import.meta.globEager("~/lang/*/index.json");
 const languages: Language[] = [];
 
 for (const path in langs) {
-  const name = path.split("/")[2];
+  const name = path.split("/")[3];
   languages.push({
     code: name,
     lang: langs[path].lang,
@@ -32,7 +32,7 @@ export const initialLang = localStorage.getItem("lang") || defaultLang;
 export const langMap: Record<string, any> = {};
 const imports = import.meta.glob("~/lang/*/index.ts");
 for (const path in imports) {
-  const name = path.split("/")[2];
+  const name = path.split("/")[3];
   langMap[name] = imports[path];
 }
 
