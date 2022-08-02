@@ -4,7 +4,7 @@ const theme: HopeThemeConfig = {
   initialColorMode: "system",
   lightTheme: {
     colors: {
-      background: "$neutral1",
+      background: "$neutral2",
     },
   },
   components: {
@@ -131,7 +131,7 @@ const theme: HopeThemeConfig = {
     Anchor: {
       baseStyle: {
         rounded: "$lg",
-        px: "$2",
+        px: "$1_5",
         py: "$1",
         _hover: {
           bgColor: "$neutral4",

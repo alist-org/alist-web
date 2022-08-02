@@ -16,16 +16,22 @@ const Toolbar = () => {
   const margin = createMemo(() => (isOpen() ? "$4" : "$5"));
   return (
     <Portal>
-      <Box pos="fixed" right={margin()} bottom={margin()}>
+      <Box
+        pos="fixed"
+        right={margin()}
+        bottom={margin()}
+        // bottom="50%"
+        // transform="translateY(50%)"
+      >
         <Show
           when={isOpen()}
           fallback={<ToolIcon as={CgMoreO} onClick={onToggle} />}
         >
           <VStack
             p="$1"
-            shadow="$md"
+            // shadow="$md"
             rounded="$lg"
-            bgColor={useColorModeValue("$background", "$neutral3")()}
+            bgColor={useColorModeValue("white", "$neutral4")()}
             spacing="$1"
           >
             <Motion

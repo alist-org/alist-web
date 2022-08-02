@@ -14,6 +14,14 @@ export const ToolIcon = <C extends ElementType = "svg">(
     boxSize="$8"
     rounded="$md"
     p="$1"
+    _active={{
+      transform: "scale(.94)",
+      transition: "0.2s",
+    }}
     {...props}
   />
 );
+
+// export const ToolIcon = <C extends ElementType = "button">(
+//   props: IconButtonProps<C>
+// ) => <IconButton {...props} compact />;
