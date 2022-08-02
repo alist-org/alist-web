@@ -11,7 +11,7 @@ import {
 import { Portal } from "solid-js/web";
 import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
-import { bus, r, handleRrespWithoutAuthAndNotify } from "~/utils";
+import { bus, r, handleRrespWithoutAuthAndNotify, base_path } from "~/utils";
 import { setSettings } from "~/store";
 import { FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
@@ -72,7 +72,7 @@ const App: Component = () => {
       </Portal>
       <Switch
         fallback={
-          <Routes>
+          <Routes base={base_path}>
             <Route path="/@test" component={Test} />
             <Route path="/@login" component={Login} />
             <Route

@@ -9,10 +9,13 @@ export const joinBase = (...paths: string[]) => {
 };
 
 export const trimBase = (path: string) => {
-  return path.replace(base_path, "");
+  const res = path.replace(base_path, "");
+  if (res.startsWith("/")) {
+    return res;
+  }
+  return "/" + res;
 };
 
 export const baseName = (path: string) => {
   return path.split("/").pop();
 };
-

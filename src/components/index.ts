@@ -4,3 +4,4 @@ export * from "./SwitchLanguage";
 export * from "./Hello";
 export * from "./FolderTree";
 export * from "./Wether";
+export * from "./LinkWithBase";

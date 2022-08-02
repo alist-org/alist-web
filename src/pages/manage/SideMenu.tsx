@@ -6,6 +6,8 @@ import { IconTypes } from "solid-icons/lib/browser/IconWrapper";
 import { onClose } from "./Header";
 import { UserMethods, UserRole } from "~/types";
 import { user } from "~/store";
+import { AnchorWithBase } from "~/components";
+import { Link } from "solid-app-router";
 
 export interface SideMenuItemProps {
   title: string;
@@ -33,15 +35,19 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
   const t = useT();
   const isActive = () => pathname() === props.to;
   return (
-    <Flex
+    <AnchorWithBase
+      display="flex"
+      as={Link}
+      href={props.to}
       onClick={() => {
-        to(props.to!);
+        // to(props.to!);
         onClose();
       }}
       w="$full"
       alignItems="center"
       _hover={{
         bgColor: isActive() ? "$info4" : "$neutral4",
+        textDecoration: "none",
       }}
       p="$2"
       rounded="$md"
@@ -52,7 +58,7 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
     >
       <Show when={props.icon}>{<Icon mr="$2" as={props.icon} />}</Show>
       <Heading>{t(props.title)}</Heading>
-    </Flex>
+    </AnchorWithBase>
   );
 };
 

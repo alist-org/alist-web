@@ -1,5 +1,6 @@
 import { Anchor, HStack, VStack } from "@hope-ui/solid";
 import { Link } from "solid-app-router";
+import { AnchorWithBase } from "~/components";
 import { joinBase } from "~/utils";
 
 export const Footer = () => {
@@ -10,9 +11,9 @@ export const Footer = () => {
           Powered by AList
         </Anchor>
         <span>|</span>
-        <Anchor as={Link} href={joinBase("/@manage")}>
+        <AnchorWithBase as={Link} href="/@manage">
           Manage
-        </Anchor>
+        </AnchorWithBase>
       </HStack>
     </VStack>
   );
