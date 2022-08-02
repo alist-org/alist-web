@@ -4,7 +4,7 @@ import { useT, useTitle } from "~/hooks";
 import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
-import { Route, Routes } from "solid-app-router";
+import { Route, Routes } from "@solidjs/router";
 import { For } from "solid-js";
 import { routes } from "./routes";
 

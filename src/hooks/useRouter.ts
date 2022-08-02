@@ -4,7 +4,7 @@ import {
   useNavigate,
   useParams,
   useSearchParams,
-} from "solid-app-router";
+} from "@solidjs/router";
 import { createMemo } from "solid-js";
 import { joinBase, log, pathJoin, trimBase } from "~/utils";
 

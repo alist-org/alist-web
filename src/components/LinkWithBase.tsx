@@ -1,4 +1,4 @@
-import { Link, LinkProps } from "solid-app-router";
+import { Link, LinkProps } from "@solidjs/router";
 import { Anchor, AnchorProps, ElementType } from "@hope-ui/solid";
 import { joinBase } from "~/utils";
 export const LinkWithBase = (props: LinkProps) => (

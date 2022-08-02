@@ -4,10 +4,11 @@ import {
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "@hope-ui/solid";
-import { Link } from "solid-app-router";
+import { Link } from "@solidjs/router";
 import { createMemo, For, Show } from "solid-js";
 import { useRouter, useT } from "~/hooks";
 import { getSetting } from "~/store";
+import { joinBase } from "~/utils";
 
 export const Nav = () => {
   const { pathname, to } = useRouter();
@@ -45,7 +46,7 @@ export const Nav = () => {
                 rounded="$lg"
                 currentPage={isLast()}
                 as={isLast() ? undefined : Link}
-                href={href}
+                href={joinBase(href)}
                 onClick={() => {
                   to(href, false, { replace: true });
                 }}

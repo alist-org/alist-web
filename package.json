@@ -24,7 +24,7 @@
     "axios": "^0.27.2",
     "copy-to-clipboard": "^3.3.1",
     "mitt": "^3.0.0",
-    "solid-app-router": "^0.4.1",
+    "@solidjs/router": "^0.4.2",
     "solid-icons": "^0.5.0",
     "solid-js": "^1.4.5",
     "solid-transition-group": "^0.0.10"

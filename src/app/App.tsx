@@ -1,5 +1,5 @@
 import { Center, Progress, ProgressIndicator } from "@hope-ui/solid";
-import { Route, Routes, useIsRouting } from "solid-app-router";
+import { Route, Routes, useIsRouting } from "@solidjs/router";
 import {
   Component,
   createSignal,

@@ -1,5 +1,5 @@
 import { Anchor, HStack, VStack } from "@hope-ui/solid";
-import { Link } from "solid-app-router";
+import { Link } from "@solidjs/router";
 import { AnchorWithBase } from "~/components";
 import { joinBase } from "~/utils";
 

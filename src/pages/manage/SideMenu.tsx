@@ -7,7 +7,7 @@ import { onClose } from "./Header";
 import { UserMethods, UserRole } from "~/types";
 import { user } from "~/store";
 import { AnchorWithBase } from "~/components";
-import { Link } from "solid-app-router";
+import { Link } from "@solidjs/router";
 
 export interface SideMenuItemProps {
   title: string;
