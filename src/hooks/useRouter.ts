@@ -25,12 +25,6 @@ const useRouter = () => {
       log("to:", path);
       navigate(path, options);
     },
-    push: (path: string) => {
-      if (path.startsWith("/")) {
-        path = joinBase(path);
-      }
-      navigate(pathJoin(location.pathname, path));
-    },
     back: () => {
       navigate(-1);
     },
@@ -40,9 +34,9 @@ const useRouter = () => {
     pathname: createMemo(() => {
       return trimBase(location.pathname);
     }),
-    searchParams,
-    setSearchParams,
-    params,
+    searchParams: searchParams,
+    setSearchParams: setSearchParams,
+    params: params,
   };
 };
 

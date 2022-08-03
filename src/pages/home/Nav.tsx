@@ -6,9 +6,9 @@ import {
 } from "@hope-ui/solid";
 import { Link } from "@solidjs/router";
 import { createMemo, For, Show } from "solid-js";
-import { useRouter, useT } from "~/hooks";
+import { usePath, useRouter, useT } from "~/hooks";
 import { getSetting } from "~/store";
-import { joinBase } from "~/utils";
+import { encodePath, joinBase } from "~/utils";
 
 export const Nav = () => {
   const { pathname, to } = useRouter();
@@ -18,20 +18,17 @@ export const Nav = () => {
   ]);
   // console.log(pathname(), paths());
   const t = useT();
+  const { enterDir } = usePath();
   return (
     <Breadcrumb>
       <For each={paths()}>
-        {(path, i) => {
+        {(name, i) => {
           const isLast = createMemo(() => i() === paths().length - 1);
-          const href = `${paths()
+          const path = paths()
             .slice(0, i() + 1)
-            .map((p) =>
-              ["/", "#", "?"].some((c) => p.includes(c))
-                ? encodeURIComponent(p)
-                : p
-            )
-            .join("/")}`;
-          let text = path;
+            .join("/");
+          const href = encodePath(path);
+          let text = name;
           if (text === "") {
             text = getSetting("home_icon") + t("manage.sidemenu.home");
           }
@@ -48,7 +45,7 @@ export const Nav = () => {
                 as={isLast() ? undefined : Link}
                 href={joinBase(href)}
                 onClick={() => {
-                  to(href, false, { replace: true });
+                  enterDir(path);
                 }}
               >
                 {text}

@@ -4,7 +4,7 @@ import { bus, notify } from ".";
 export const handleRresp = <T>(
   resp: Resp<T>,
   success?: (data: T) => void,
-  fail?: (message: string) => void,
+  fail?: (message: string, code: number) => void,
   auth: boolean = true,
   notify_error: boolean = true,
   notify_success?: boolean
@@ -21,14 +21,14 @@ export const handleRresp = <T>(
       );
       return;
     }
-    fail?.(resp.message);
+    fail?.(resp.message, resp.code);
   }
 };
 
 export const handleRrespWithoutAuth = <T>(
   resp: Resp<T>,
   success?: (data: T) => void,
-  fail?: (message: string) => void,
+  fail?: (message: string, code?: number) => void,
   notify_error: boolean = true
 ) => {
   return handleRresp(resp, success, fail, false, notify_error);
@@ -37,7 +37,7 @@ export const handleRrespWithoutAuth = <T>(
 export const handleRrespWithoutNotify = <T>(
   resp: Resp<T>,
   success?: (data: T) => void,
-  fail?: (message: string) => void,
+  fail?: (message: string, code?: number) => void,
   auth: boolean = true
 ) => {
   return handleRresp(resp, success, fail, auth, false);
@@ -46,7 +46,7 @@ export const handleRrespWithoutNotify = <T>(
 export const handleRrespWithoutAuthAndNotify = <T>(
   resp: Resp<T>,
   success?: (data: T) => void,
-  fail?: (message: string) => void
+  fail?: (message: string, code?: number) => void
 ) => {
   return handleRresp(resp, success, fail, false, false);
 };
@@ -54,7 +54,7 @@ export const handleRrespWithoutAuthAndNotify = <T>(
 export const handleRrespWithNotifySuccess = <T>(
   resp: Resp<T>,
   success?: (data: T) => void,
-  fail?: (message: string) => void,
+  fail?: (message: string, code?: number) => void,
   auth: boolean = true,
   notify_error: boolean = true
 ) => {

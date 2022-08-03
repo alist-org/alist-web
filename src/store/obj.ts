@@ -9,6 +9,7 @@ export enum State {
   FetchingObjs,
   Folder, // Folder state
   File, // File state
+  NeedPassword,
 }
 
 const [state, setState] = createSignal<State>(State.Initial);
@@ -17,9 +18,15 @@ const [err, setErr] = createSignal<string>("");
 export { state, setState };
 export { err, setErr };
 
-
-const [objStore, setObjStore] = createStore<{ obj?: Obj; objs: Obj[] }>({
+const [objStore, setObjStore] = createStore<{
+  obj?: Obj;
+  objs: Obj[];
+  pageIndex: number;
+  pageSize: number;
+}>({
   objs: [],
+  pageIndex: 1,
+  pageSize: 50,
 });
 
 export type OrderBy = "name" | "size" | "modified";
@@ -36,5 +43,6 @@ export const sort = (orderBy: OrderBy, reverse?: boolean) => {
 
 export type Layout = "list" | "grid";
 const [layout, setLayout] = createStorageSignal<Layout>("list");
+const [password, setPassword] = createStorageSignal<string>("");
 
-export { objStore, setObjStore, layout, setLayout };
+export { objStore, setObjStore, layout, setLayout, password, setPassword };
