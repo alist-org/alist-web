@@ -31,7 +31,6 @@ const Toolbar = () => {
         >
           <VStack
             p="$1"
-            // shadow="$md"
             rounded="$lg"
             bgColor={useColorModeValue("white", "$neutral4")()}
             spacing="$1"

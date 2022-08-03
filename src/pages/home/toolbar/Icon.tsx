@@ -12,7 +12,7 @@ export const ToolIcon = <C extends ElementType = "svg">(
     }}
     cursor="pointer"
     boxSize="$8"
-    rounded="$md"
+    rounded="$lg"
     p="$1"
     _active={{
       transform: "scale(.94)",

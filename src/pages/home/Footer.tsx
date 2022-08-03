@@ -7,7 +7,7 @@ export const Footer = () => {
   const t = useT();
   return (
     <VStack class="footer" w="$full">
-      <HStack spacing="$0_5">
+      <HStack spacing="$1">
         <Anchor href="https://github.com/Xhofe/alist" external>
           Powered by AList
         </Anchor>

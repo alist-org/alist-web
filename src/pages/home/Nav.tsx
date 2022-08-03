@@ -28,9 +28,9 @@ export const Nav = () => {
             .slice(0, i() + 1)
             .join("/");
           const href = encodePath(path);
-          let text = name;
-          if (text === "") {
-            text = getSetting("home_icon") + t("manage.sidemenu.home");
+          let text = () => name;
+          if (text() === "") {
+            text = () => getSetting("home_icon") + t("manage.sidemenu.home");
           }
           return (
             <BreadcrumbItem>

@@ -97,7 +97,7 @@ const FolderTreeNode = (props: { path: string }) => {
           fontSize="$md"
           cursor="pointer"
           px="$1"
-          rounded="$sm"
+          rounded="$md"
           bgColor={active() ? "$info8" : "transparent"}
           _hover={{
             bgColor: active() ? "$info8" : "$neutral4",

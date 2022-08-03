@@ -16,7 +16,7 @@ export const Body = () => {
         <Center
           class="obj-container"
           w="$full"
-          rounded="$lg"
+          rounded="$xl"
           bgColor={cardBg()}
         >
           <Switch>
