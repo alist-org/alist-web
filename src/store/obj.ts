@@ -1,6 +1,22 @@
 import { createStorageSignal } from "@solid-primitives/storage";
+import { createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Obj } from "~/types";
+
+export enum State {
+  Initial, // Initial state
+  FetchingObj,
+  FetchingObjs,
+  Folder, // Folder state
+  File, // File state
+}
+
+const [state, setState] = createSignal<State>(State.Initial);
+const [err, setErr] = createSignal<string>("");
+
+export { state, setState };
+export { err, setErr };
+
 
 const [objStore, setObjStore] = createStore<{ obj?: Obj; objs: Obj[] }>({
   objs: [],
@@ -16,10 +32,6 @@ export const sort = (orderBy: OrderBy, reverse?: boolean) => {
       return 0;
     })
   );
-};
-
-export const enterObj = (obj: Obj) => {
-  setObjStore("obj", obj);
 };
 
 export type Layout = "list" | "grid";

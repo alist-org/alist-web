@@ -13,7 +13,7 @@ export const Footer = () => {
         </Anchor>
         <span>|</span>
         <AnchorWithBase as={Link} href="/@manage">
-          {t("home.manage")}
+          {t("home.footer.manage")}
         </AnchorWithBase>
       </HStack>
     </VStack>

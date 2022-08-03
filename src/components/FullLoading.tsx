@@ -1,6 +1,6 @@
 import { Center, Spinner } from "@hope-ui/solid";
 import { JSXElement, Show } from "solid-js";
-const FullScreenLoading = () => {
+export const FullScreenLoading = () => {
   return (
     <Center h="100vh">
       <Spinner
@@ -14,7 +14,7 @@ const FullScreenLoading = () => {
   );
 };
 
-const FullLoading = () => {
+export const FullLoading = () => {
   return (
     <Center h="$full" w="$full">
       <Spinner
@@ -28,12 +28,13 @@ const FullLoading = () => {
   );
 };
 
-const MaybeLoading = (props: { children?: JSXElement; loading: boolean }) => {
+export const MaybeLoading = (props: {
+  children?: JSXElement;
+  loading: boolean;
+}) => {
   return (
     <Show when={!props.loading} fallback={<FullLoading />}>
       {props.children}
     </Show>
   );
 };
-
-export { FullScreenLoading, MaybeLoading };

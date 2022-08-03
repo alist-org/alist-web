@@ -1,3 +1,5 @@
 {
-  "manage": "Manage"
+  "footer": {
+    "manage": "Manage"
+  }
 }
