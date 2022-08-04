@@ -6,7 +6,7 @@
     "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skiping pnpm install",
     "start": "vite",
     "dev": "vite",
-    "router:build": "pnpm --filter 'solid-router' build",
+    "router:build": "pnpm --filter '@solidjs/router' build",
     "build": "pnpm router:build && vite build",
     "serve": "vite preview"
   },
