@@ -1,6 +1,6 @@
 import { Center, Spinner } from "@hope-ui/solid";
 import { JSXElement, Show } from "solid-js";
-export const FullScreenLoading = () => {
+const FullScreenLoading = () => {
   return (
     <Center h="100vh">
       <Spinner
@@ -16,7 +16,7 @@ export const FullScreenLoading = () => {
 
 export const FullLoading = () => {
   return (
-    <Center h="$full" w="$full">
+    <Center h="$full" w="$full" py="$8">
       <Spinner
         thickness="4px"
         speed="0.65s"

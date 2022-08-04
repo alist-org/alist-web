@@ -6,7 +6,7 @@ import {
 } from "@hope-ui/solid";
 import { I18nContext } from "@solid-primitives/i18n";
 import { ErrorBoundary, JSXElement, Suspense } from "solid-js";
-import { Error, FullScreenLoading } from "~/components";
+import { Error, FullLoading } from "~/components";
 import App from "./App";
 import { i18n } from "./i18n";
 import { globalStyles, theme } from "./theme";
@@ -23,7 +23,7 @@ const Index = () => {
       >
         <I18nContext.Provider value={i18n}>
           <NotificationsProvider duration={3000}>
-            <Suspense fallback={<FullScreenLoading />}>
+            <Suspense fallback={<FullLoading />}>
               <App />
             </Suspense>
           </NotificationsProvider>

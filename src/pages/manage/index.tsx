@@ -1,11 +1,15 @@
 import { Box, Center, Flex, HStack, useColorModeValue } from "@hope-ui/solid";
-import { SwitchColorMode, SwitchLnaguageWhite } from "~/components";
+import {
+  FullLoading,
+  SwitchColorMode,
+  SwitchLnaguageWhite,
+} from "~/components";
 import { useT, useTitle } from "~/hooks";
 import { Header } from "./Header";
 import { SideMenu } from "./SideMenu";
 import { side_menu_items } from "./sidemenu_items";
 import { Route, Routes } from "@solidjs/router";
-import { For } from "solid-js";
+import { For, Suspense } from "solid-js";
 import { routes } from "./routes";
 
 const Manage = () => {

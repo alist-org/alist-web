@@ -1,6 +1,6 @@
 import { Center } from "@hope-ui/solid";
 import { createSignal, JSXElement, Match, Switch } from "solid-js";
-import { FullScreenLoading } from "~/components";
+import { FullLoading } from "~/components";
 import { useFetch } from "~/hooks";
 import { setUser } from "~/store";
 import { r, handleRresp } from "~/utils";
@@ -15,7 +15,7 @@ const MustUser = (props: { children: JSXElement }) => {
   return (
     <Switch fallback={props.children}>
       <Match when={loading()}>
-        <FullScreenLoading />
+        <FullLoading />
       </Match>
       <Match when={err()}>
         <Center h="$full">{err()}</Center>

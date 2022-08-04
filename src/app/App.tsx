@@ -13,7 +13,7 @@ import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
 import { bus, r, handleRrespWithoutAuthAndNotify, base_path } from "~/utils";
 import { setSettings } from "~/store";
-import { FullScreenLoading, Error } from "~/components";
+import { FullLoading, Error } from "~/components";
 import { MustUser } from "./MustUser";
 import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
@@ -98,7 +98,7 @@ const App: Component = () => {
           <Error msg={`Failed fetching settings: ${err()}`} />
         </Match>
         <Match when={loading()}>
-          <FullScreenLoading />
+          <FullLoading />
         </Match>
       </Switch>
     </>
