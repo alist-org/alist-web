@@ -100,7 +100,7 @@ const Item = (props: ItemProps) => {
                   {(item) => (
                     <SelectOption value={item}>
                       <SelectOptionText>
-                        {t(`manage.settings.${item}`)}
+                        {t(`settings.${props.key}s.${item}`)}
                       </SelectOptionText>
                       <SelectOptionIndicator />
                     </SelectOption>

@@ -1,4 +1,6 @@
+import { produce } from "solid-js/store";
 import {
+  getSetting,
   objStore,
   password,
   setErr,
@@ -12,7 +14,7 @@ import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
 export const usePath = () => {
-  const { pathname, to } = useRouter();
+  const { pathname, to, searchParams, setSearchParams } = useRouter();
   const [, getObj] = useFetch(() =>
     r.post("/fs/get", {
       path: pathname(),
@@ -23,21 +25,33 @@ export const usePath = () => {
     r.post("/fs/list", {
       path: path,
       password: password(),
-      page_index: objStore.pageIndex,
-      page_size: objStore.pageSize,
+      page_index: parseInt(searchParams.index) ?? 1,
+      page_size: parseInt(searchParams.size) ?? getSetting("page_size") ?? 50,
     })
   );
 
-  const handlePath = async (path: string, router = false, link = true) => {
+  const handlePath = async (
+    path: string,
+    router = false,
+    link = true,
+    append = false
+  ) => {
     if (router) {
       to(encodePath(path), false, { replace: link });
     }
-    setState(State.FetchingObjs);
+    setState(append ? State.FetchingMore : State.FetchingObjs);
     const resp: Resp<Obj[]> = await getObjs(path);
     handleRresp(
       resp,
       (objs) => {
-        setObjStore("objs", objs);
+        if (append) {
+          setObjStore(
+            "objs",
+            produce((prev) => prev.push(...objs))
+          );
+        } else {
+          setObjStore("objs", objs);
+        }
         setState(State.Folder);
       },
       handleErr
@@ -83,9 +97,19 @@ export const usePath = () => {
   const enterDir = (path: string, link = true) => {
     handlePath(path, true);
   };
+  const turnPage = (pageIndex: number) => {
+    setSearchParams({ index: pageIndex.toString() });
+    handlePath(pathname(), false);
+  };
+  const loadMore = () => {
+    setSearchParams({ index: (parseInt(searchParams.index) + 1).toString() });
+    handlePath(pathname(), false, false, true);
+  };
   return {
     init: refreshObj,
     enterObj,
     enterDir,
+    turnPage,
+    loadMore,
   };
 };

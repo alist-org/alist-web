@@ -7,6 +7,7 @@ export enum State {
   Initial, // Initial state
   FetchingObj,
   FetchingObjs,
+  FetchingMore,
   Folder, // Folder state
   File, // File state
   NeedPassword,
@@ -21,12 +22,12 @@ export { err, setErr };
 const [objStore, setObjStore] = createStore<{
   obj?: Obj;
   objs: Obj[];
-  pageIndex: number;
-  pageSize: number;
+  // pageIndex: number;
+  // pageSize: number;
 }>({
   objs: [],
-  pageIndex: 1,
-  pageSize: 50,
+  // pageIndex: 1,
+  // pageSize: 50,
 });
 
 export type OrderBy = "name" | "size" | "modified";
