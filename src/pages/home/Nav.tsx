@@ -45,7 +45,7 @@ export const Nav = () => {
                 as={isLast() ? undefined : Link}
                 href={joinBase(href)}
                 onClick={() => {
-                  enterDir(path);
+                  // enterDir(path);
                 }}
               >
                 {text}

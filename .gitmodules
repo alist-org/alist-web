@@ -1,0 +1,3 @@
+[submodule "packages/solid-router"]
+	path = packages/solid-router
+	url = https://github.com/alist-org/solid-router.git
