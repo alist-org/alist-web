@@ -13,7 +13,7 @@ import { BsGridFill } from "solid-icons/bs";
 import { FaSolidListUl } from "solid-icons/fa";
 
 export const Header = () => {
-  const logos = getSetting("site_logo").split(",");
+  const logos = getSetting("logo").split(",");
   const logo = useColorModeValue(logos[0], logos.pop());
   return (
     <Box class="header">

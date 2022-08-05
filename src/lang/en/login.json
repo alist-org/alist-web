@@ -2,6 +2,7 @@
   "title": "Login to the ALIST",
   "username_tips": "Input your username",
   "password_tips": "Input your password",
+  "otp_tips": "Input your OTP Code",
   "remember": "Remember me",
   "forget": "Forget password?",
   "clear": "Clear",

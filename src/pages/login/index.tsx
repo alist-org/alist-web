@@ -11,7 +11,7 @@ import {
   VStack,
   Checkbox,
 } from "@hope-ui/solid";
-import { createSignal } from "solid-js";
+import { createSignal, Show } from "solid-js";
 import { SwitchColorMode, SwitchLnaguageWhite } from "~/components";
 import { useFetch, useT, useTitle, useRouter } from "~/hooks";
 import { changeToken, r, notify, handleRrespWithoutNotify } from "~/utils";
@@ -29,11 +29,13 @@ const Login = () => {
   const [password, setPassword] = createSignal(
     localStorage.getItem("password") || ""
   );
+  const [opt, setOpt] = createSignal("");
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false");
   const [loading, data] = useFetch(() =>
     r.post("/auth/login", {
       username: username(),
       password: password(),
+      otp_code: opt(),
     })
   );
   const { searchParams, to } = useRouter();
@@ -53,9 +55,17 @@ const Login = () => {
         changeToken(data.token);
         to(decodeURIComponent(searchParams.redirect || "/"), true);
       },
-      (msg) => notify.error(t(msg))
+      (msg, code) => {
+        if (code === 402) {
+          setNeedOpt(true);
+        } else {
+          notify.error(msg);
+        }
+      }
     );
   };
+  const [needOpt, setNeedOpt] = createSignal(false);
+
   return (
     <Center zIndex="1" w="$full" h="$full">
       <VStack
@@ -77,45 +87,59 @@ const Login = () => {
             {t("login.title")}
           </Heading>
         </Flex>
-        <Input
-          placeholder={t("login.username_tips")}
-          value={username()}
-          onInput={(e) => setUsername(e.currentTarget.value)}
-        />
-        <Input
-          placeholder={t("login.password_tips")}
-          type="password"
-          value={password()}
-          onInput={(e) => setPassword(e.currentTarget.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              Login();
-            }
-          }}
-        />
-        <Flex
-          px="$1"
-          w="$full"
-          fontSize="$sm"
-          color="$neutral10"
-          justifyContent="space-between"
-          alignItems="center"
+        <Show
+          when={!needOpt()}
+          fallback={
+            <Input
+              placeholder={t("login.otp_tips")}
+              value={opt()}
+              onChange={(e) => setOpt(e.currentTarget.value)}
+            />
+          }
         >
-          <Checkbox
-            checked={remember() === "true"}
-            onChange={() =>
-              setRemember(remember() === "true" ? "false" : "true")
-            }
+          <Input
+            placeholder={t("login.username_tips")}
+            value={username()}
+            onInput={(e) => setUsername(e.currentTarget.value)}
+          />
+          <Input
+            placeholder={t("login.password_tips")}
+            type="password"
+            value={password()}
+            onInput={(e) => setPassword(e.currentTarget.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                Login();
+              }
+            }}
+          />
+          <Flex
+            px="$1"
+            w="$full"
+            fontSize="$sm"
+            color="$neutral10"
+            justifyContent="space-between"
+            alignItems="center"
           >
-            {t("login.remember")}
-          </Checkbox>
-          <Text>{t("login.forget")}</Text>
-        </Flex>
+            <Checkbox
+              checked={remember() === "true"}
+              onChange={() =>
+                setRemember(remember() === "true" ? "false" : "true")
+              }
+            >
+              {t("login.remember")}
+            </Checkbox>
+            <Text>{t("login.forget")}</Text>
+          </Flex>
+        </Show>
         <HStack w="$full" spacing="$2">
           <Button
             colorScheme="primary"
             w="$full"
             onClick={() => {
+              if (needOpt()) {
+                setOpt("");
+              }
               setUsername("");
               setPassword("");
             }}
