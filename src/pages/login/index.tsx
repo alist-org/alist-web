@@ -56,7 +56,7 @@ const Login = () => {
         to(decodeURIComponent(searchParams.redirect || "/"), true);
       },
       (msg, code) => {
-        if (code === 402) {
+        if (!needOpt() && code === 402) {
           setNeedOpt(true);
         } else {
           notify.error(msg);
@@ -94,6 +94,11 @@ const Login = () => {
               placeholder={t("login.otp_tips")}
               value={opt()}
               onChange={(e) => setOpt(e.currentTarget.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  Login();
+                }
+              }}
             />
           }
         >
@@ -139,9 +144,10 @@ const Login = () => {
             onClick={() => {
               if (needOpt()) {
                 setOpt("");
+              } else {
+                setUsername("");
+                setPassword("");
               }
-              setUsername("");
-              setPassword("");
             }}
           >
             {t("login.clear")}

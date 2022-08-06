@@ -15,5 +15,15 @@
   "password": "Pssword",
   "base_path": "Base path",
   "role": "Role",
-  "permission": "Permission"
+  "permission": "Permission",
+  "update_profile": "Update Profile",
+  "update_profile_success": "Update profile successfully, please re-login.",
+  "change_username": "Change Username",
+  "change_password": "Change Password",
+  "change_password_tips": "Keep the password empty if you don't want to change it",
+  "enable_2fa": "Enable 2FA",
+  "2fa_already_enabled": "2FA is already enabled",
+  "scan_qr": "Scan the QR code to save the secret key",
+  "input_code": "Input the code of your 2FA app",
+  "verify": "Verify"
 }

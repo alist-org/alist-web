@@ -24,6 +24,8 @@ export const encodePath = (path: string) =>
   path
     .split("/")
     .map((p) =>
-      ["/", "#", "?"].some((c) => p.includes(c)) ? encodeURIComponent(p) : p
+      ["/", "#", "?", "%"].some((c) => p.includes(c))
+        ? encodeURIComponent(p)
+        : p
     )
     .join("/");
