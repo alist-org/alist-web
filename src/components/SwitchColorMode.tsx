@@ -1,16 +1,16 @@
 import { Icon, useColorMode, useColorModeValue } from "@hope-ui/solid";
-import { BsSunFill, BsMoonFill } from "solid-icons/bs";
+import { FaSolidMoon as Moon, FaSolidSun as Sun } from "solid-icons/fa";
 
 const SwitchColorMode = () => {
   const { toggleColorMode } = useColorMode();
   const icon = useColorModeValue(
     {
-      size: "$6",
-      component: BsMoonFill,
+      size: "$8",
+      component: Moon,
     },
     {
       size: "$8",
-      component: BsSunFill,
+      component: Sun,
     }
   );
   return (
