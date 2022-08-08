@@ -58,6 +58,7 @@ const theme: HopeThemeConfig = {
           borderColor: "$info8",
         },
         resize: "vertical",
+        wordBreak: "break-all",
       },
       defaultProps: {
         variant: "filled",

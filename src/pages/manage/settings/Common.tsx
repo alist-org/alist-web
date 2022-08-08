@@ -1,9 +1,8 @@
-import { MaybeLoading } from "~/components";
 import { useFetch, useT, useRouter, useManageTitle } from "~/hooks";
 import { Group, SettingItem, Resp } from "~/types";
 import { r, notify, getTarget, handleRresp } from "~/utils";
 import { createStore } from "solid-js/store";
-import { Button } from "@hope-ui/solid";
+import { Button, HStack, VStack } from "@hope-ui/solid";
 import { createSignal, Index } from "solid-js";
 import { Item } from "./SettingItem";
 import { ResponsiveGrid } from "../common/ResponsiveGrid";
@@ -29,7 +28,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
   );
   const [loading, setLoading] = createSignal(false);
   return (
-    <MaybeLoading loading={settingsLoading() || loading()}>
+    <VStack w="$full" alignItems="start" spacing="$2">
       <ResponsiveGrid>
         <Index each={settings}>
           {(item, _) => (
@@ -53,18 +52,26 @@ const CommonSettings = (props: CommonSettingsProps) => {
           )}
         </Index>
       </ResponsiveGrid>
-      <Button
-        mt="$2"
-        loading={saveLoading()}
-        onClick={async () => {
-          console.log(settings);
-          const resp: Resp<{}> = await saveSettings();
-          handleRresp(resp, () => notify.success(t("global.save_success")));
-        }}
-      >
-        {t("global.save")}
-      </Button>
-    </MaybeLoading>
+      <HStack spacing="$2">
+        <Button
+          colorScheme="accent"
+          onClick={refresh}
+          loading={settingsLoading() || loading()}
+        >
+          {t("global.refresh")}
+        </Button>
+        <Button
+          loading={saveLoading()}
+          onClick={async () => {
+            console.log(settings);
+            const resp: Resp<{}> = await saveSettings();
+            handleRresp(resp, () => notify.success(t("global.save_success")));
+          }}
+        >
+          {t("global.save")}
+        </Button>
+      </HStack>
+    </VStack>
   );
 };
 
