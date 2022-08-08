@@ -7,4 +7,6 @@ export const setSettings = (items: Record<string, string>) => {
 };
 
 export const getSetting = (key: string) => settings[key] ?? "";
+export const getSettingNumber = (key: string) =>
+  parseInt(getSetting(key) === "" ? "0" : getSetting(key));
 export const getIconColor = () => getSetting("icon_color") || "#1890ff";

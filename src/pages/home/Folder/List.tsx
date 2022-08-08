@@ -1,6 +1,8 @@
 import { HStack, VStack, Text } from "@hope-ui/solid";
 import { For } from "solid-js";
 import { useT } from "~/hooks";
+import { objStore } from "~/store";
+import { ListItem } from "./ListItem";
 
 const cols = [
   { name: "name", initial: "67%", md: "50%", textAlign: "left" },
@@ -31,6 +33,11 @@ const ListLayout = () => {
           )}
         </For>
       </HStack>
+      <For each={objStore.objs}>
+        {(obj) => {
+          return <ListItem obj={obj} />;
+        }}
+      </For>
     </VStack>
   );
 };

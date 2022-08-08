@@ -11,14 +11,13 @@ import { getSetting } from "~/store";
 import { encodePath, joinBase } from "~/utils";
 
 export const Nav = () => {
-  const { pathname, to } = useRouter();
+  const { pathname } = useRouter();
   const paths = createMemo(() => [
     "",
     ...pathname().split("/").filter(Boolean),
   ]);
-  // console.log(pathname(), paths());
   const t = useT();
-  const { enterDir } = usePath();
+  const { setPathAsDir } = usePath();
   return (
     <Breadcrumb>
       <For each={paths()}>
@@ -44,9 +43,7 @@ export const Nav = () => {
                 currentPage={isLast()}
                 as={isLast() ? undefined : Link}
                 href={joinBase(href)}
-                onClick={() => {
-                  // enterDir(path);
-                }}
+                onMouseEnter={() => setPathAsDir(path)}
               >
                 {text}
               </BreadcrumbLink>
