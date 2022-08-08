@@ -1,4 +1,9 @@
 {
+  "obj": {
+    "name": "Name",
+    "size": "Size",
+    "modified": "Modified"
+  },
   "footer": {
     "manage": "Manage"
   }
