@@ -28,7 +28,7 @@ import {
 import { useFetch, useT } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj, Resp } from "~/types";
-import { baseName, handleRresp, pathJoin, r } from "~/utils";
+import { baseName, handleRresp, hoverColor, pathJoin, r } from "~/utils";
 
 export interface FolderTreeProps {
   onChange: (path: string) => void;
@@ -100,7 +100,7 @@ const FolderTreeNode = (props: { path: string }) => {
           rounded="$md"
           bgColor={active() ? "$info8" : "transparent"}
           _hover={{
-            bgColor: active() ? "$info8" : "$neutral4",
+            bgColor: active() ? "$info8" : hoverColor,
           }}
           onClick={() => {
             onChange(props.path);

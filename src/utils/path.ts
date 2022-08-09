@@ -29,3 +29,7 @@ export const encodePath = (path: string) =>
         : p
     )
     .join("/");
+
+export const ext = (path: string): string => {
+  return path.split(".").pop() ?? "";
+};

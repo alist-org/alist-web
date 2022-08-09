@@ -5,4 +5,5 @@ export interface Obj {
   modified: string;
   sign?: string;
   raw_url?: string;
+  type: number;
 }

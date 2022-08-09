@@ -8,6 +8,7 @@ import { UserMethods, UserRole } from "~/types";
 import { user } from "~/store";
 import { AnchorWithBase } from "~/components";
 import { Link } from "@solidjs/router";
+import { hoverColor } from "~/utils";
 
 export interface SideMenuItemProps {
   title: string;
@@ -55,7 +56,7 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       w="$full"
       alignItems="center"
       _hover={{
-        bgColor: isActive() ? "$info4" : "$neutral4",
+        bgColor: isActive() ? "$info4" : hoverColor,
         textDecoration: "none",
       }}
       p="$2"
@@ -85,7 +86,7 @@ const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
         w="$full"
         alignItems="center"
         _hover={{
-          bgColor: "$neutral4",
+          bgColor: hoverColor,
         }}
         p="$2"
         rounded="$md"

@@ -2,27 +2,21 @@ import { HStack, VStack, Text } from "@hope-ui/solid";
 import { For } from "solid-js";
 import { useT } from "~/hooks";
 import { objStore } from "~/store";
-import { ListItem } from "./ListItem";
-
-const cols = [
-  { name: "name", initial: "67%", md: "50%", textAlign: "left" },
-  { name: "size", initial: "33%", md: "17%", textAlign: "right" },
-  { name: "modified", initial: 0, md: "33%", textAlign: "right" },
-];
+import { cols, ListItem } from "./ListItem";
 
 const ListLayout = () => {
   const t = useT();
   return (
-    <VStack w="$full">
+    <VStack w="$full" spacing="$1">
       <HStack w="$full" p="$2">
         <For each={cols}>
           {(item) => (
             <Text
               display={{
-                "@initial": item.initial ? "inline" : "none",
+                "@initial": item.w["@initial"] ? "inline" : "none",
                 "@md": "inline",
               }}
-              w={{ "@initial": item.initial, "@md": item.md }}
+              w={item.w}
               fontWeight="bold"
               fontSize="$sm"
               color="$neutral11"

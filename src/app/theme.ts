@@ -1,4 +1,5 @@
 import { globalCss, HopeThemeConfig } from "@hope-ui/solid";
+import { hoverColor } from "~/utils";
 
 const theme: HopeThemeConfig = {
   initialColorMode: "system",
@@ -135,7 +136,7 @@ const theme: HopeThemeConfig = {
         px: "$1_5",
         py: "$1",
         _hover: {
-          bgColor: "$neutral4",
+          bgColor: hoverColor,
           textDecoration: "none",
         },
         _focus: {
@@ -152,12 +153,15 @@ export const globalStyles = globalCss({
     margin: 0,
     padding: 0,
   },
+  html: {
+    // fontFamily: `-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+  },
   "#root": {
     height: "$full",
   },
   ".hope-breadcrumb__list": {
     flexWrap: "wrap",
-    rowGap: "0",
+    rowGap: "0 !important",
   },
 });
 

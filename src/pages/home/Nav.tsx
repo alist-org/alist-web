@@ -8,7 +8,7 @@ import { Link } from "@solidjs/router";
 import { createMemo, For, Show } from "solid-js";
 import { usePath, useRouter, useT } from "~/hooks";
 import { getSetting } from "~/store";
-import { encodePath, joinBase } from "~/utils";
+import { encodePath, hoverColor, joinBase } from "~/utils";
 
 export const Nav = () => {
   const { pathname } = useRouter();
@@ -38,7 +38,7 @@ export const Nav = () => {
                   wordBreak: "break-all",
                 }}
                 color="unset"
-                _hover={{ bgColor: "$neutral4", color: "unset" }}
+                _hover={{ bgColor: hoverColor, color: "unset" }}
                 _active={{ transform: "scale(.95)", transition: "0.1s" }}
                 cursor="pointer"
                 p="$1"

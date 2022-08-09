@@ -13,9 +13,15 @@ import {
   BsFileEarmarkZipFill,
   BsMarkdownFill,
 } from "solid-icons/bs";
-import { FaSolidDatabase, FaSolidBook, FaSolidCompactDisc } from "solid-icons/fa";
+import {
+  FaSolidDatabase,
+  FaSolidBook,
+  FaSolidCompactDisc,
+} from "solid-icons/fa";
 import { IoFolder } from "solid-icons/io";
-import { ImAndroid } from 'solid-icons/im'
+import { ImAndroid } from "solid-icons/im";
+import { Obj } from "~/types";
+import { ext } from "./path";
 
 const iconMap = {
   "dmg,ipa,plist": BsApple,
@@ -29,7 +35,7 @@ const iconMap = {
   m3u8: BsFileEarmarkPlayFill,
 };
 
-const getIcon = (type: number, ext: string) => {
+export const getIconByTypeAndExt = (type: number, ext: string) => {
   if (type !== 1) {
     for (const [extensions, icon] of Object.entries(iconMap)) {
       if (extensions.split(",").includes(ext.toLowerCase())) {
@@ -66,4 +72,6 @@ const getIcon = (type: number, ext: string) => {
   }
 };
 
-export default getIcon;
+export const getIconByObj = (obj: Obj) => {
+  return getIconByTypeAndExt(obj.type, ext(obj.name));
+};
