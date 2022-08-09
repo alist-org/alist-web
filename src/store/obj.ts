@@ -2,6 +2,7 @@ import { createStorageSignal } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import { Obj } from "~/types";
+import { log } from "~/utils";
 
 export enum State {
   Initial, // Initial state
@@ -33,12 +34,16 @@ const [objStore, setObjStore] = createStore<{
 export type OrderBy = "name" | "size" | "modified";
 
 export const sortObjs = (orderBy: OrderBy, reverse?: boolean) => {
-  setObjStore("objs", (objs) =>
-    objs.sort((a, b) => {
-      if (a[orderBy] < b[orderBy]) return reverse ? 1 : -1;
-      if (a[orderBy] > b[orderBy]) return reverse ? -1 : 1;
-      return 0;
-    })
+  log("sort:", orderBy, reverse);
+  setObjStore(
+    "objs",
+    produce((objs) =>
+      objs.sort((a, b) => {
+        if (a[orderBy] < b[orderBy]) return reverse ? 1 : -1;
+        if (a[orderBy] > b[orderBy]) return reverse ? -1 : 1;
+        return 0;
+      })
+    )
   );
 };
 

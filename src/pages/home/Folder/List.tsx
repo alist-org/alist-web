@@ -1,11 +1,19 @@
 import { HStack, VStack, Text } from "@hope-ui/solid";
-import { For } from "solid-js";
+import { createEffect, createSignal, For } from "solid-js";
 import { useT } from "~/hooks";
-import { objStore } from "~/store";
+import { objStore, sortObjs } from "~/store";
+import { OrderBy } from "~/store";
 import { cols, ListItem } from "./ListItem";
 
 const ListLayout = () => {
   const t = useT();
+  const [orderBy, setOrderBy] = createSignal<OrderBy>();
+  const [reverse, setReverse] = createSignal(false);
+  createEffect(() => {
+    if (orderBy()) {
+      sortObjs(orderBy()!, reverse());
+    }
+  });
   return (
     <VStack class="list" w="$full" spacing="$1">
       <HStack class="title" w="$full" p="$2">
@@ -21,6 +29,14 @@ const ListLayout = () => {
               fontSize="$sm"
               color="$neutral11"
               textAlign={item.textAlign as any}
+              cursor="pointer"
+              onClick={() => {
+                if (item.name === orderBy()) {
+                  setReverse(!reverse());
+                } else {
+                  setOrderBy(item.name as OrderBy);
+                }
+              }}
             >
               {t(`home.obj.${item.name}`)}
             </Text>
