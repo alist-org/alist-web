@@ -155,6 +155,10 @@ export const globalStyles = globalCss({
   "#root": {
     height: "$full",
   },
+  ".hope-breadcrumb__list": {
+    flexWrap: "wrap",
+    rowGap: "0",
+  },
 });
 
 export { theme };

@@ -19,7 +19,7 @@ export const Nav = () => {
   const t = useT();
   const { setPathAsDir } = usePath();
   return (
-    <Breadcrumb>
+    <Breadcrumb class="nav" w="$full">
       <For each={paths()}>
         {(name, i) => {
           const isLast = createMemo(() => i() === paths().length - 1);
@@ -34,6 +34,9 @@ export const Nav = () => {
           return (
             <BreadcrumbItem>
               <BreadcrumbLink
+                css={{
+                  wordBreak: "break-all",
+                }}
                 color="unset"
                 _hover={{ bgColor: "$neutral4", color: "unset" }}
                 _active={{ transform: "scale(.95)", transition: "0.1s" }}
