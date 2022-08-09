@@ -6,7 +6,7 @@ import { useT } from "~/hooks";
 export const Footer = () => {
   const t = useT();
   return (
-    <VStack class="footer" w="$full">
+    <VStack class="footer" w="$full" py="$4">
       <HStack spacing="$1">
         <Anchor href="https://github.com/Xhofe/alist" external>
           Powered by AList

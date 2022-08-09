@@ -8,7 +8,7 @@ import {
   State,
 } from "~/store";
 import { Obj, PageResp, Resp } from "~/types";
-import { handleRresp, pathJoin, r } from "~/utils";
+import { handleRresp, log, pathJoin, r } from "~/utils";
 import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
@@ -16,9 +16,9 @@ const IsDirRecord: Record<string, boolean> = {};
 
 export const usePath = () => {
   const { pathname, setSearchParams } = useRouter();
-  const [, getObj] = useFetch(() =>
+  const [, getObj] = useFetch((path?: string) =>
     r.post("/fs/get", {
-      path: pathname(),
+      path: path,
       password: password(),
     })
   );
@@ -42,7 +42,7 @@ export const usePath = () => {
     if (push) {
       path = pathJoin(pathname(), path);
     }
-    console.log(`set [${path}] as dir`);
+    log(`set [${path}] as dir`);
     IsDirRecord[path] = true;
   };
 
@@ -50,7 +50,8 @@ export const usePath = () => {
   // if confirm current path is dir, fetch List directly
   // if not, fetch get then determine if it is dir or file
   const handlePathChange = (path: string) => {
-    console.log(`handle [${path}] change`);
+    log(`handle [${path}] change`);
+    handleErr("");
     if (IsDirRecord[path]) {
       handleFolder(path, 1);
     } else {
@@ -61,7 +62,7 @@ export const usePath = () => {
   // handle enter obj that don't know if it is dir or file
   const handleObj = async (path: string) => {
     setState(State.FetchingObj);
-    const resp: Resp<Obj> = await getObj();
+    const resp: Resp<Obj> = await getObj(path);
     handleRresp(
       resp,
       (obj: Obj) => {
@@ -99,7 +100,7 @@ export const usePath = () => {
     );
   };
 
-  const handleErr = (msg: string, code: number) => {
+  const handleErr = (msg: string, code?: number) => {
     setErr(msg);
     if (code === 403) {
       setState(State.NeedPassword);

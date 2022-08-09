@@ -12,7 +12,11 @@ export const ListItem = (props: { obj: Obj }) => {
       p="$2"
       as={LinkWithBase}
       href={pushHref(props.obj.name)}
-      onMouseEnter={() => setPathAsDir(props.obj.name, true)}
+      onMouseEnter={() => {
+        if (props.obj.is_dir) {
+          setPathAsDir(props.obj.name, true);
+        }
+      }}
     >
       <div>{props.obj.name}</div>
     </HStack>
