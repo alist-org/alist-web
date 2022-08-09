@@ -1,5 +1,5 @@
 import { HStack, VStack, Text } from "@hope-ui/solid";
-import { createEffect, createSignal, For } from "solid-js";
+import { batch, createEffect, createSignal, For } from "solid-js";
 import { useT } from "~/hooks";
 import { objStore, sortObjs } from "~/store";
 import { OrderBy } from "~/store";
@@ -34,7 +34,10 @@ const ListLayout = () => {
                 if (item.name === orderBy()) {
                   setReverse(!reverse());
                 } else {
-                  setOrderBy(item.name as OrderBy);
+                  batch(() => {
+                    setOrderBy(item.name as OrderBy);
+                    setReverse(false);
+                  });
                 }
               }}
             >
