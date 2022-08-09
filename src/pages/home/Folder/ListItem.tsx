@@ -1,4 +1,4 @@
-import { HStack, Icon, Text } from "@hope-ui/solid";
+import { HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
 import { LinkWithBase } from "~/components";
 import { usePath, useRouter } from "~/hooks";
 import { getIconColor } from "~/store";
@@ -7,8 +7,8 @@ import { formatDate, getFileSize, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
 export const cols = [
-  { name: "name", textAlign: "left", w: { "@initial": "67%", "@md": "50%" } },
-  { name: "size", textAlign: "right", w: { "@initial": "33%", "@md": "17%" } },
+  { name: "name", textAlign: "left", w: { "@initial": "76%", "@md": "50%" } },
+  { name: "size", textAlign: "right", w: { "@initial": "24%", "@md": "17%" } },
   { name: "modified", textAlign: "right", w: { "@initial": 0, "@md": "33%" } },
 ];
 
@@ -34,18 +34,31 @@ export const ListItem = (props: { obj: Obj }) => {
         }
       }}
     >
-      <HStack spacing="$2" w={cols[0].w}>
+      <HStack class="name-box" spacing="$2" w={cols[0].w}>
         <Icon
+          class="icon"
           boxSize="$6"
           color={getIconColor()}
           as={getIconByObj(props.obj)}
         />
-        <Text>{props.obj.name}</Text>
+        <Tooltip label={props.obj.name}>
+          <Text
+            class="name"
+            css={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {props.obj.name}
+          </Text>
+        </Tooltip>
       </HStack>
-      <Text w={cols[1].w} textAlign={cols[1].textAlign as any}>
+      <Text class="size" w={cols[1].w} textAlign={cols[1].textAlign as any}>
         {getFileSize(props.obj.size)}
       </Text>
       <Text
+        class="modified"
         display={{ "@initial": "none", "@md": "inline" }}
         w={cols[2].w}
         textAlign={cols[2].textAlign as any}

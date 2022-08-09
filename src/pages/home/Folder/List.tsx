@@ -7,8 +7,8 @@ import { cols, ListItem } from "./ListItem";
 const ListLayout = () => {
   const t = useT();
   return (
-    <VStack w="$full" spacing="$1">
-      <HStack w="$full" p="$2">
+    <VStack class="list" w="$full" spacing="$1">
+      <HStack class="title" w="$full" p="$2">
         <For each={cols}>
           {(item) => (
             <Text

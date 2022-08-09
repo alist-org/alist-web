@@ -19,6 +19,7 @@ const Toolbar = () => {
   return (
     <Portal>
       <Box
+        class="toolbar-box"
         pos="fixed"
         right={margin()}
         bottom={margin()}
@@ -27,9 +28,12 @@ const Toolbar = () => {
       >
         <Show
           when={isOpen()}
-          fallback={<ToolIcon as={CgMoreO} onClick={onToggle} />}
+          fallback={
+            <ToolIcon class="toolbar-toggle" as={CgMoreO} onClick={onToggle} />
+          }
         >
           <VStack
+            class="toolbar"
             p="$1"
             rounded="$lg"
             bgColor={useColorModeValue("white", "$neutral4")()}

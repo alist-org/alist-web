@@ -32,8 +32,9 @@ export const Nav = () => {
             text = () => getSetting("home_icon") + t("manage.sidemenu.home");
           }
           return (
-            <BreadcrumbItem>
+            <BreadcrumbItem class="nav-item">
               <BreadcrumbLink
+                class="nav-link"
                 css={{
                   wordBreak: "break-all",
                 }}
@@ -51,7 +52,7 @@ export const Nav = () => {
                 {text}
               </BreadcrumbLink>
               <Show when={!isLast()}>
-                <BreadcrumbSeparator />
+                <BreadcrumbSeparator class="nav-separator" />
               </Show>
             </BreadcrumbItem>
           );

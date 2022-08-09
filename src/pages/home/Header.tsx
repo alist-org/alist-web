@@ -18,10 +18,10 @@ export const Header = () => {
   return (
     <Box class="header">
       <Container display="flex" px="$4" py="$2" justifyContent="space-between">
-        <HStack>
+        <HStack class="header-left">
           <Image src={logo()!} h="44px" w="auto" />
         </HStack>
-        <HStack spacing="$2">
+        <HStack class="header-right" spacing="$2">
           <Show when={state() === State.Folder}>
             <IconButton
               aria-label="switch layout"
