@@ -40,17 +40,19 @@ const context = createContext<{
 export const FolderTree = (props: FolderTreeProps) => {
   const [path, setPath] = createSignal("/");
   return (
-    <context.Provider
-      value={{
-        value: path,
-        onChange: (val) => {
-          setPath(val);
-          props.onChange(val);
-        },
-      }}
-    >
-      <FolderTreeNode path="/" />
-    </context.Provider>
+    <Box class="folder-tree-box" w="$full" overflowX="auto">
+      <context.Provider
+        value={{
+          value: path,
+          onChange: (val) => {
+            setPath(val);
+            props.onChange(val);
+          },
+        }}
+      >
+        <FolderTreeNode path="/" />
+      </context.Provider>
+    </Box>
   );
 };
 
@@ -90,10 +92,10 @@ const FolderTreeNode = (props: { path: string }) => {
         </Show>
         <Text
           css={{
-            textOverflow: "ellipsis",
+            // textOverflow: "ellipsis",
             whiteSpace: "nowrap",
           }}
-          overflow="hidden"
+          // overflow="hidden"
           fontSize="$md"
           cursor="pointer"
           px="$1"
