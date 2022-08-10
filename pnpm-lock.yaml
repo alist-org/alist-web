@@ -9,6 +9,7 @@ specifiers:
   '@types/node': ^18.6.3
   axios: ^0.27.2
   copy-to-clipboard: ^3.3.1
+  lightgallery: ^2.5.0
   mitt: ^3.0.0
   solid-icons: ^0.5.0
   solid-js: ^1.4.8
@@ -25,6 +26,7 @@ dependencies:
   '@stitches/core': registry.npmmirror.com/@stitches/core/1.2.8
   axios: registry.npmmirror.com/axios/0.27.2
   copy-to-clipboard: registry.npmmirror.com/copy-to-clipboard/3.3.1
+  lightgallery: 2.5.0
   mitt: registry.npmmirror.com/mitt/3.0.0
   solid-icons: registry.npmmirror.com/solid-icons/0.5.0_solid-js@1.4.8
   solid-js: registry.npmmirror.com/solid-js/1.4.8
@@ -244,6 +246,11 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /lightgallery/2.5.0:
+    resolution: {integrity: sha512-pzg5gwflLGlKaK1VqDKpb7yqQ/WSV/TxFaHRR7ld7G5iOI9gkJZ2qKKo2lyqvTvu8yAqNYXoU0w9O/Dll6POkw==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}

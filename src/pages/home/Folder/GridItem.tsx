@@ -4,12 +4,11 @@ import { FullLoading, LinkWithPush } from "~/components";
 import { usePath } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj, ObjType } from "~/types";
-import { hoverColor } from "~/utils";
+import { bus, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
 export const GridItem = (props: { obj: Obj }) => {
   const { setPathAsDir } = usePath();
-  const [] = createSignal(true);
   return (
     <VStack
       class="grid-item"
@@ -38,6 +37,7 @@ export const GridItem = (props: { obj: Obj }) => {
           if (props.obj.type === ObjType.IMAGE) {
             e.stopPropagation();
             e.preventDefault();
+            bus.emit("gallery", props.obj.name);
           }
         }}
       >

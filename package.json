@@ -23,6 +23,7 @@
     "@stitches/core": "^1.2.8",
     "axios": "^0.27.2",
     "copy-to-clipboard": "^3.3.1",
+    "lightgallery": "^2.5.0",
     "mitt": "^3.0.0",
     "solid-icons": "^0.5.0",
     "solid-js": "^1.4.8",
