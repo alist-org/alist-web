@@ -8,7 +8,7 @@ import { GridItem } from "./GridItem";
 import lightGallery from "lightgallery";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
-import lgRotate from "lightGallery/plugins/rotate";
+import lgRotate from "lightgallery/plugins/rotate";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import "lightgallery/css/lightgallery-bundle.css";
