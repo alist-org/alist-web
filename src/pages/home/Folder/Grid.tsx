@@ -12,33 +12,38 @@ import lgRotate from "lightgallery/plugins/rotate";
 import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import "lightgallery/css/lightgallery-bundle.css";
+import { LightGallery } from "lightgallery/lightgallery";
 
 const GridLayout = () => {
   const { rawUrl } = useUrl();
   const images = createMemo(() =>
     objStore.objs.filter((obj) => obj.type === ObjType.IMAGE)
   );
-  let dynamicGallery: any;
+  let dynamicGallery: LightGallery | undefined;
   createEffect(() => {
-    dynamicGallery = lightGallery(document.createElement("div"), {
-      dynamic: true,
-      thumbnail: true,
-      plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
-      dynamicEl: images().map((obj) => {
-        const raw = rawUrl(obj);
-        return {
-          src: raw,
-          thumb: obj.thumbnail === "" ? raw : obj.thumbnail,
-          subHtml: `<h4>${obj.name}</h4>`,
-        };
-      }),
-    });
+    dynamicGallery?.destroy();
+    if (images().length > 0) {
+      dynamicGallery = lightGallery(document.createElement("div"), {
+        dynamic: true,
+        thumbnail: true,
+        plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
+        dynamicEl: images().map((obj) => {
+          const raw = rawUrl(obj);
+          return {
+            src: raw,
+            thumb: obj.thumbnail === "" ? raw : obj.thumbnail,
+            subHtml: `<h4>${obj.name}</h4>`,
+          };
+        }),
+      });
+    }
   });
   bus.on("gallery", (name) => {
-    dynamicGallery.openGallery(images().findIndex((obj) => obj.name === name));
+    dynamicGallery?.openGallery(images().findIndex((obj) => obj.name === name));
   });
   onCleanup(() => {
     bus.off("gallery");
+    dynamicGallery?.destroy();
   });
   return (
     <Grid
