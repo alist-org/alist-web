@@ -1,6 +1,6 @@
 import { HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
-import { LinkWithBase } from "~/components";
-import { usePath, useRouter } from "~/hooks";
+import { LinkWithPush } from "~/components";
+import { usePath } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj } from "~/types";
 import { formatDate, getFileSize, hoverColor } from "~/utils";
@@ -13,7 +13,6 @@ export const cols = [
 ];
 
 export const ListItem = (props: { obj: Obj }) => {
-  const { pushHref } = useRouter();
   const { setPathAsDir } = usePath();
   return (
     <HStack
@@ -26,8 +25,8 @@ export const ListItem = (props: { obj: Obj }) => {
         bgColor: hoverColor,
         transition: "all 0.3s",
       }}
-      as={LinkWithBase}
-      href={pushHref(props.obj.name)}
+      as={LinkWithPush}
+      href={props.obj.name}
       onMouseEnter={() => {
         if (props.obj.is_dir) {
           setPathAsDir(props.obj.name, true);

@@ -1,3 +1,13 @@
+export enum ObjType {
+  UNKNOWN,
+  FOLDER,
+  OFFICE,
+  VIDEO,
+  AUDIO,
+  TEXT,
+  IMAGE,
+}
+
 export interface Obj {
   name: string;
   size: number;
@@ -5,5 +15,6 @@ export interface Obj {
   modified: string;
   sign?: string;
   raw_url?: string;
-  type: number;
+  type: ObjType;
+  thumbnail: string;
 }

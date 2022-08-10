@@ -20,7 +20,7 @@ import {
 } from "solid-icons/fa";
 import { IoFolder } from "solid-icons/io";
 import { ImAndroid } from "solid-icons/im";
-import { Obj } from "~/types";
+import { Obj, ObjType } from "~/types";
 import { ext } from "./path";
 
 const iconMap = {
@@ -36,7 +36,7 @@ const iconMap = {
 };
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {
-  if (type !== 1) {
+  if (type !== ObjType.FOLDER) {
     for (const [extensions, icon] of Object.entries(iconMap)) {
       if (extensions.split(",").includes(ext.toLowerCase())) {
         return icon;
@@ -44,9 +44,9 @@ export const getIconByTypeAndExt = (type: number, ext: string) => {
     }
   }
   switch (type) {
-    case 1:
+    case ObjType.FOLDER:
       return IoFolder;
-    case 2: {
+    case ObjType.OFFICE: {
       if (ext === "doc" || ext === "docx") {
         return BsFileEarmarkWordFill;
       }
@@ -59,13 +59,13 @@ export const getIconByTypeAndExt = (type: number, ext: string) => {
         return BsFileEarmarkPdfFill;
       }
     }
-    case 3:
+    case ObjType.VIDEO:
       return BsFileEarmarkPlayFill;
-    case 4:
+    case ObjType.AUDIO:
       return BsFileEarmarkMusicFill;
-    case 5:
+    case ObjType.TEXT:
       return BsFileEarmarkFontFill;
-    case 6:
+    case ObjType.IMAGE:
       return BsFileEarmarkImageFill;
     default:
       return BsFileEarmarkMinusFill;
