@@ -1,5 +1,4 @@
 import {
-  Flex,
   HStack,
   useColorModeValue,
   Image,
@@ -11,6 +10,7 @@ import { Show } from "solid-js";
 import { getSetting, layout, setLayout, State, state } from "~/store";
 import { BsGridFill } from "solid-icons/bs";
 import { FaSolidListUl } from "solid-icons/fa";
+import { CenterLoding } from "~/components";
 
 export const Header = () => {
   const logos = getSetting("logo").split(",");
@@ -18,8 +18,8 @@ export const Header = () => {
   return (
     <Box class="header">
       <Container display="flex" px="$4" py="$2" justifyContent="space-between">
-        <HStack class="header-left">
-          <Image src={logo()!} h="44px" w="auto" />
+        <HStack class="header-left" h="44px">
+          <Image src={logo()!} h="$full" w="auto" fallback={<CenterLoding />} />
         </HStack>
         <HStack class="header-right" spacing="$2">
           <Show when={state() === State.Folder}>

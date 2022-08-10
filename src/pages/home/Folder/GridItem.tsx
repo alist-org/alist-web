@@ -1,6 +1,6 @@
 import { Center, VStack, Image, Icon, Text } from "@hope-ui/solid";
-import { createSignal, Show } from "solid-js";
-import { FullLoading, LinkWithPush } from "~/components";
+import { Show } from "solid-js";
+import { CenterLoding, LinkWithPush } from "~/components";
 import { usePath } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj, ObjType } from "~/types";
@@ -56,7 +56,7 @@ export const GridItem = (props: { obj: Obj }) => {
             maxW="$full"
             rounded="$lg"
             shadow="$lg"
-            fallback={<FullLoading py="0" />}
+            fallback={<CenterLoding size="lg" />}
             src={props.obj.thumbnail}
           />
         </Show>

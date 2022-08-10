@@ -1,4 +1,4 @@
-import { Center, Spinner } from "@hope-ui/solid";
+import { Center, ElementType, Spinner, SpinnerProps } from "@hope-ui/solid";
 import { JSXElement, mergeProps, Show } from "solid-js";
 import { getIconColor } from "~/store";
 const FullScreenLoading = () => {
@@ -43,5 +43,15 @@ export const MaybeLoading = (props: {
     <Show when={!props.loading} fallback={<FullLoading />}>
       {props.children}
     </Show>
+  );
+};
+
+export const CenterLoding = <C extends ElementType = "div">(
+  props: SpinnerProps<C>
+) => {
+  return (
+    <Center w="$full" h="$full">
+      <Spinner {...props} color={getIconColor()} />
+    </Center>
   );
 };
