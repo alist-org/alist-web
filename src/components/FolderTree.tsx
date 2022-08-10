@@ -28,7 +28,7 @@ import {
 import { useFetch, useT } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj, Resp } from "~/types";
-import { baseName, handleRresp, hoverColor, pathJoin, r } from "~/utils";
+import { pathBase, handleRresp, hoverColor, pathJoin, r } from "~/utils";
 
 export interface FolderTreeProps {
   onChange: (path: string) => void;
@@ -108,7 +108,7 @@ const FolderTreeNode = (props: { path: string }) => {
             onChange(props.path);
           }}
         >
-          {props.path === "/" ? "root" : baseName(props.path)}
+          {props.path === "/" ? "root" : pathBase(props.path)}
         </Text>
       </HStack>
       <Show when={isOpen()}>
