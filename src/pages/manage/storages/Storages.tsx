@@ -18,7 +18,7 @@ import {
   useRouter,
   useT,
 } from "~/hooks";
-import { handleRresp, notify, r } from "~/utils";
+import { handleRresp, handleRrespWithNotifySuccess, notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 import { DeletePopover } from "../common/DeletePopover";
 
@@ -38,6 +38,12 @@ const Storages = () => {
 
   const [deleting, deleteStorage] = useListFetch((id: number) =>
     r.post(`/admin/storage/delete?id=${id}`)
+  );
+  const [enableLoading, enable] = useListFetch((id: number) =>
+    r.post(`/admin/storage/enable?id=${id}`)
+  );
+  const [disableLoading, disable] = useListFetch((id: number) =>
+    r.post(`/admin/storage/disable?id=${id}`)
   );
   return (
     <VStack spacing="$2" alignItems="start" w="$full">
@@ -84,6 +90,26 @@ const Storages = () => {
                         }}
                       >
                         {t("global.edit")}
+                      </Button>
+                      <Button
+                        loading={
+                          enableLoading() === storage.id ||
+                          disableLoading() === storage.id
+                        }
+                        colorScheme="warning"
+                        onClick={async () => {
+                          let resp;
+                          if (storage.disabled) {
+                            resp = await enable(storage.id);
+                          } else {
+                            resp = await disable(storage.id);
+                          }
+                          handleRrespWithNotifySuccess(resp, () => {
+                            refresh();
+                          });
+                        }}
+                      >
+                        {t(`global.${storage.disabled ? "enable" : "disable"}`)}
                       </Button>
                       <DeletePopover
                         name={storage.mount_path}

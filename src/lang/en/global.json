@@ -17,5 +17,7 @@
   "yes": "Yes",
   "no": "No",
   "clear": "Clear",
-  "choose_folder": "Select folder"
+  "choose_folder": "Select folder",
+  "disable": "Disable",
+  "enable": "Enable"
 }

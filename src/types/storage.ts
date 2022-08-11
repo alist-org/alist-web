@@ -37,6 +37,7 @@ export interface Storage {
   extract_folder: ExtractFolder;
   web_proxy: boolean;
   webdav_policy: WebdavPolicy;
+  disabled: boolean;
 }
 
 export type Addition = Record<string, string | boolean | number>;
