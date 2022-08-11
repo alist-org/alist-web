@@ -29,13 +29,13 @@ export const Obj = () => {
     >
       <Suspense fallback={<FullLoading />}>
         <Switch>
+          <Match when={err()}>
+            <Error msg={err()} disableColor />
+          </Match>
           <Match
             when={[State.FetchingObj, State.FetchingObjs].includes(state())}
           >
             <FullLoading />
-          </Match>
-          <Match when={err()}>
-            <Error msg={err()} disableColor />
           </Match>
           <Match when={state() === State.Folder}>
             <Folder />

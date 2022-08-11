@@ -39,11 +39,13 @@ const Storages = () => {
   const [deleting, deleteStorage] = useListFetch((id: number) =>
     r.post(`/admin/storage/delete?id=${id}`)
   );
-  const [enableLoading, enable] = useListFetch((id: number) =>
-    r.post(`/admin/storage/enable?id=${id}`)
-  );
-  const [disableLoading, disable] = useListFetch((id: number) =>
-    r.post(`/admin/storage/disable?id=${id}`)
+  const [enableOrDisableLoading, enableOrDisable] = useListFetch(
+    (id: number, storage?: Storage) =>
+      r.post(
+        `/admin/storage/${storage?.disabled ? "enable" : "disable"}?id=${
+          storage?.id
+        }`
+      )
   );
   return (
     <VStack spacing="$2" alignItems="start" w="$full">
@@ -92,18 +94,13 @@ const Storages = () => {
                         {t("global.edit")}
                       </Button>
                       <Button
-                        loading={
-                          enableLoading() === storage.id ||
-                          disableLoading() === storage.id
-                        }
+                        loading={enableOrDisableLoading() === storage.id}
                         colorScheme="warning"
                         onClick={async () => {
-                          let resp;
-                          if (storage.disabled) {
-                            resp = await enable(storage.id);
-                          } else {
-                            resp = await disable(storage.id);
-                          }
+                          const resp = await enableOrDisable(
+                            storage.id,
+                            storage
+                          );
                           handleRrespWithNotifySuccess(resp, () => {
                             refresh();
                           });

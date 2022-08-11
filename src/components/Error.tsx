@@ -11,7 +11,13 @@ export const Error = (props: { msg: string; disableColor?: boolean }) => {
         py="$6"
         bgColor={useColorModeValue("white", "$neutral3")()}
       >
-        <Heading>{props.msg}</Heading>
+        <Heading
+          css={{
+            wordBreak: "break-all",
+          }}
+        >
+          {props.msg}
+        </Heading>
         <Show when={!props.disableColor}>
           <Flex mt="$2" justifyContent="end">
             <SwitchColorMode />
