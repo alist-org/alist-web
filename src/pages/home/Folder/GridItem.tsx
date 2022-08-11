@@ -1,6 +1,6 @@
-import { Center, VStack, Image, Icon, Text } from "@hope-ui/solid";
+import { Center, VStack, Icon, Text } from "@hope-ui/solid";
 import { Show } from "solid-js";
-import { CenterLoding, LinkWithPush } from "~/components";
+import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
 import { usePath } from "~/hooks";
 import { getIconColor } from "~/store";
 import { Obj, ObjType } from "~/types";
@@ -9,6 +9,9 @@ import { getIconByObj } from "~/utils/icon";
 
 export const GridItem = (props: { obj: Obj }) => {
   const { setPathAsDir } = usePath();
+  const objIcon = (
+    <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />
+  );
   return (
     <VStack
       class="grid-item"
@@ -41,23 +44,15 @@ export const GridItem = (props: { obj: Obj }) => {
           }
         }}
       >
-        <Show
-          when={props.obj.thumbnail}
-          fallback={
-            <Icon
-              color={getIconColor()}
-              boxSize="$12"
-              as={getIconByObj(props.obj)}
-            />
-          }
-        >
-          <Image
+        <Show when={props.obj.thumb} fallback={objIcon}>
+          <ImageWithError
             maxH="$full"
             maxW="$full"
             rounded="$lg"
             shadow="$lg"
             fallback={<CenterLoding size="lg" />}
-            src={props.obj.thumbnail}
+            fallbackErr={objIcon}
+            src={props.obj.thumb}
           />
         </Show>
       </Center>

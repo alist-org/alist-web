@@ -31,7 +31,7 @@ const GridLayout = () => {
           const raw = rawUrl(obj);
           return {
             src: raw,
-            thumb: obj.thumbnail === "" ? raw : obj.thumbnail,
+            thumb: obj.thumb === "" ? raw : obj.thumb,
             subHtml: `<h4>${obj.name}</h4>`,
           };
         }),

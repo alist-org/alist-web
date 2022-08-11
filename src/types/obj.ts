@@ -16,5 +16,5 @@ export interface Obj {
   sign?: string;
   raw_url?: string;
   type: ObjType;
-  thumbnail: string;
+  thumb: string;
 }
