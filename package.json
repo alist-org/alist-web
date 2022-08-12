@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "i18n": "node ./scripts/i18n.mjs",
+    "crowdin": "crowdin download",
+    "i18n": "pnpm crowdin -b main --verbose && node ./scripts/i18n.mjs",
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +12,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@crowdin/cli": "^3.7.10",
     "@types/node": "^18.6.3",
     "typescript": "^4.7.4",
     "vite": "^3.0.4",
