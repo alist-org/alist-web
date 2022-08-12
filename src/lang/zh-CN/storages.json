@@ -3,9 +3,9 @@
     "mount_path": "挂载路径",
     "driver": "驱动器",
     "drivers": {
-      "Local": "本地"
+      "Local": "本机存储"
     },
-    "index": "索引(数字越小排序越靠前)",
+    "index": "索引",
     "status": "状态",
     "remark": "备注",
     "down_proxy_url": "下载代理URL",
@@ -20,17 +20,17 @@
     "order_bys": {
       "name": "名称",
       "size": "文件大小",
-      "modified": "Modified"
+      "modified": "修改时间"
     },
     "order_direction": "排序方式",
     "order_directions": {
       "asc": "升序",
       "desc": "降序"
     },
-    "extract_folder": "Extract folder",
+    "extract_folder": "抽取文件夹",
     "extract_folders": {
-      "front": "Extract to front",
-      "back": "Extract to back"
+      "front": "抽取到最前",
+      "back": "抽取到最后"
     }
   },
   "Local": {
