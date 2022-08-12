@@ -1,10 +1,10 @@
 {
   "obj": {
-    "name": "Name",
-    "size": "Size",
-    "modified": "Modified"
+    "name": "名称",
+    "size": "大小",
+    "modified": "修改时间"
   },
   "footer": {
-    "manage": "Manage"
+    "manage": "管理"
   }
 }
