@@ -1,14 +1,14 @@
 {
-  "down": "Download file to local machine",
-  "transfer": "Transfer downloaded file to corresponding storage",
-  "upload": "Upload file to corresponding storage",
-  "copy": "Copy file from a storage to another storage",
-  "done": "Completed",
-  "undone": "Running",
-  "pending": "Pending",
-  "running": "Running",
-  "canceling": "Canceling",
-  "succeeded": "Succeeded",
-  "canceled": "Canceled",
-  "errored": "Errored"
+  "down": "下載文件到本地機器",
+  "transfer": "將下載的文件傳輸到相應的存儲",
+  "upload": "上傳文件到對應的存儲",
+  "copy": "將文件從存儲複製到另一個存儲",
+  "done": "已完成",
+  "undone": "執行中",
+  "pending": "等待中",
+  "running": "執行中",
+  "canceling": "正在取消...",
+  "succeeded": "成功",
+  "canceled": "取消",
+  "errored": "錯誤"
 }
