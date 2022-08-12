@@ -8,7 +8,7 @@
     "move": "移动",
     "copy": "复制",
     "remove": "删除",
-    "webdav_read": "webdav 读取",
+    "webdav_read": "Webdav 读取",
     "webdav_manage": "Webdav 管理文件"
   },
   "username": "用户名/账号",
