@@ -2,23 +2,23 @@
   "sidemenu": {
     "dashboard": "控制面板",
     "settings": "设置",
-    "site": "Site",
+    "site": "站点",
     "style": "样式",
     "preview": "预览",
     "global": "全局设置",
     "other": "其他",
-    "users": "Users",
+    "users": "用户",
     "storages": "存储",
     "metas": "元信息",
-    "profile": "Profile",
+    "profile": "个人资料",
     "about": "关于",
-    "tasks": "Tasks",
+    "tasks": "任务",
     "aria2": "Aria2",
     "upload": "上传",
     "copy": "复制",
     "home": "主页"
   },
-  "title": "AList Manage",
+  "title": "AList 管理",
   "not_admin": "您不是管理员用户，请使用管理员帐户登录。",
   "logout_success": "退出成功"
 }
