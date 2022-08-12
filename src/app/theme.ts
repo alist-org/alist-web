@@ -106,12 +106,15 @@ const theme: HopeThemeConfig = {
     Menu: {
       baseStyle: {
         content: {
-          rounded: "$lg",
+          rounded: "$md",
           minW: "unset",
           border: "unset",
+          py: "0",
         },
         item: {
-          rounded: "$lg",
+          rounded: "$md",
+          py: "$1",
+          mx: "0",
         },
       },
     },
