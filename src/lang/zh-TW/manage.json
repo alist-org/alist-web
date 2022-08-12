@@ -1,24 +1,24 @@
 {
   "sidemenu": {
-    "dashboard": "Dashboard",
-    "settings": "Settings",
+    "dashboard": "控制面板",
+    "settings": "設置",
     "site": "Site",
     "style": "Style",
-    "preview": "Preview",
-    "global": "Global",
+    "preview": "預覽",
+    "global": "全域設定",
     "other": "Other",
-    "users": "Users",
-    "storages": "Storages",
-    "metas": "Metas",
-    "profile": "Profile",
-    "about": "About",
-    "tasks": "Tasks",
+    "users": "用戶",
+    "storages": "存储",
+    "metas": "元信息",
+    "profile": "配置文件",
+    "about": "關於",
+    "tasks": "任務",
     "aria2": "Aria2",
-    "upload": "Upload",
-    "copy": "Copy",
-    "home": "Home"
+    "upload": "上傳",
+    "copy": "複製",
+    "home": "主頁"
   },
   "title": "AList Manage",
-  "not_admin": "You are not admin user, please login with admin account.",
-  "logout_success": "Logout successfully"
+  "not_admin": "你不是管理員，請使用管理員賬戶登錄。",
+  "logout_success": "登錄成功"
 }
