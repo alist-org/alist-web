@@ -1,0 +1,23 @@
+{
+  "refresh": "Refresh",
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "save": "Save",
+  "update": "Update",
+  "copied": "Copied",
+  "delete_success": "Deleted successfully",
+  "save_success": "Saved successfully",
+  "update_success": "Updated successfully",
+  "choose": "Choose",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "delete_confirm": "Are you sure you want to delete [{{name}}]?",
+  "operations": "Operations",
+  "yes": "Yes",
+  "no": "No",
+  "clear": "Clear",
+  "choose_folder": "Select folder",
+  "disable": "Disable",
+  "enable": "Enable"
+}
