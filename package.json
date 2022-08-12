@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
+    "i18n": "node ./scripts/i18n.mjs",
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
