@@ -1,10 +1,10 @@
 {
-  "path": "Path",
-  "password": "Password",
-  "write": "Write",
-  "hide": "Hide",
-  "readme": "Readme",
-  "apply_sub": "Apply to sub folder",
-  "hide_help": "One regular expression per line",
-  "readme_help": "Support markdown content or markdown link"
+  "path": "路徑",
+  "password": "密碼",
+  "write": "寫入",
+  "hide": "隱藏",
+  "readme": "說明",
+  "apply_sub": "應用到子文件夾",
+  "hide_help": "每行一個正則表達式",
+  "readme_help": "支持Markdown内容或Markdown链接"
 }
