@@ -1,31 +1,31 @@
 {
   "common": {
-    "mount_path": "Mount Path",
-    "driver": "Driver",
+    "mount_path": "挂载路径",
+    "driver": "驱动器",
     "drivers": {
-      "Local": "Local"
+      "Local": "本地"
     },
-    "index": "Index",
-    "status": "Status",
-    "remark": "Remark",
-    "down_proxy_url": "Download proxy URL",
-    "web_proxy": "Web proxy",
-    "webdav_policy": "WebDAV policy",
+    "index": "索引(数字越小排序越靠前)",
+    "status": "状态",
+    "remark": "备注",
+    "down_proxy_url": "下载代理URL",
+    "web_proxy": "Web 代理",
+    "webdav_policy": "WebDAV 策略",
     "webdav_policys": {
-      "302_redirect": "302 redirect",
-      "use_proxy_url": "use proxy URL",
-      "native_proxy": "native proxy"
+      "302_redirect": "302重定向",
+      "use_proxy_url": "使用代理地址",
+      "native_proxy": "本地代理"
     },
-    "order_by": "Order by",
+    "order_by": "排序",
     "order_bys": {
-      "name": "Name",
-      "size": "Size",
+      "name": "名称",
+      "size": "文件大小",
       "modified": "Modified"
     },
-    "order_direction": "Order direction",
+    "order_direction": "排序方式",
     "order_directions": {
-      "asc": "Ascending",
-      "desc": "Descending"
+      "asc": "升序",
+      "desc": "降序"
     },
     "extract_folder": "Extract folder",
     "extract_folders": {
@@ -34,6 +34,6 @@
     }
   },
   "Local": {
-    "root_folder": "Root folder"
+    "root_folder": "根目录"
   }
 }
