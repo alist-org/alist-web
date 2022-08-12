@@ -1,0 +1,14 @@
+{
+  "down": "Download file to local machine",
+  "transfer": "Transfer downloaded file to corresponding storage",
+  "upload": "Upload file to corresponding storage",
+  "copy": "Copy file from a storage to another storage",
+  "done": "Completed",
+  "undone": "Running",
+  "pending": "Pending",
+  "running": "Running",
+  "canceling": "Canceling",
+  "succeeded": "Succeeded",
+  "canceled": "Canceled",
+  "errored": "Errored"
+}
