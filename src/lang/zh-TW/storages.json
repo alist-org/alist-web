@@ -1,14 +1,14 @@
 {
   "common": {
-    "mount_path": "Mount Path",
+    "mount_path": "掛載路徑",
     "driver": "Driver",
     "drivers": {
-      "Local": "Local"
+      "Local": "本機"
     },
     "index": "Index",
-    "status": "Status",
+    "status": "狀態",
     "remark": "Remark",
-    "down_proxy_url": "Download proxy URL",
+    "down_proxy_url": "下載代理URL",
     "web_proxy": "Web proxy",
     "webdav_policy": "WebDAV policy",
     "webdav_policys": {
