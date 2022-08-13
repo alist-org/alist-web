@@ -22,7 +22,7 @@ import { createStorageSignal } from "@solid-primitives/storage";
 const Login = () => {
   const t = useT();
   useTitle(() => t("login.title"));
-  const bgColor = useColorModeValue("#fff", "$neutral1");
+  const bgColor = useColorModeValue("white", "$neutral1");
   const [username, setUsername] = createSignal(
     localStorage.getItem("username") || ""
   );

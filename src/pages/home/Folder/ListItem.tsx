@@ -22,7 +22,7 @@ export const ListItem = (props: { obj: Obj }) => {
       rounded="$lg"
       _hover={{
         transform: "scale(1.01)",
-        bgColor: hoverColor,
+        bgColor: hoverColor(),
         transition: "all 0.3s",
       }}
       as={LinkWithPush}

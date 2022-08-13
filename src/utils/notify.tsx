@@ -1,4 +1,5 @@
 import {
+  Box,
   // Alert,
   // AlertDescription,
   // AlertIcon,
@@ -6,8 +7,30 @@ import {
   // CloseButton,
   notificationService,
 } from "@hope-ui/solid";
+import { JSXElement } from "solid-js";
+import { alphaBgColor } from ".";
 
 const notify = {
+  render: (element: JSXElement) => {
+    notificationService.show({
+      render: (props) => {
+        return (
+          <Box
+            class="notify-render"
+            css={{
+              backdropFilter: "blur(8px)",
+            }}
+            bgColor={alphaBgColor()}
+            shadow="$md"
+            rounded="$lg"
+            p="$3"
+          >
+            {element}
+          </Box>
+        );
+      },
+    });
+  },
   success: (message: string) => {
     notificationService.show({
       status: "success",

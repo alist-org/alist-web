@@ -21,7 +21,7 @@ export const GridItem = (props: { obj: Obj }) => {
       rounded="$lg"
       _hover={{
         transform: "scale(1.06)",
-        bgColor: hoverColor,
+        bgColor: hoverColor(),
         transition: "all 0.3s",
       }}
       as={LinkWithPush}
@@ -49,7 +49,7 @@ export const GridItem = (props: { obj: Obj }) => {
             maxH="$full"
             maxW="$full"
             rounded="$lg"
-            shadow="$lg"
+            shadow="$md"
             fallback={<CenterLoding size="lg" />}
             fallbackErr={objIcon}
             src={props.obj.thumb}

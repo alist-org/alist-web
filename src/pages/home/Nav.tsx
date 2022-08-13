@@ -39,7 +39,7 @@ export const Nav = () => {
                   wordBreak: "break-all",
                 }}
                 color="unset"
-                _hover={{ bgColor: hoverColor, color: "unset" }}
+                _hover={{ bgColor: hoverColor(), color: "unset" }}
                 _active={{ transform: "scale(.95)", transition: "0.1s" }}
                 cursor="pointer"
                 p="$1"

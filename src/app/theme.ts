@@ -139,7 +139,7 @@ const theme: HopeThemeConfig = {
         px: "$1_5",
         py: "$1",
         _hover: {
-          bgColor: hoverColor,
+          bgColor: hoverColor(),
           textDecoration: "none",
         },
         _focus: {
