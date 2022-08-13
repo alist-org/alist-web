@@ -2,7 +2,7 @@ import { Button, Heading } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
-import { handleRresp, notify, r } from "~/utils";
+import { handleRresp, joinBase, notify, r } from "~/utils";
 import { Addition, DriverItem, Resp, Storage, Type } from "~/types";
 import { createStore } from "solid-js/store";
 import { Item } from "./Item";
@@ -141,6 +141,8 @@ const AddOrEdit = () => {
         mt="$2"
         loading={okLoading()}
         onClick={async () => {
+          notify.info(t("manage.add_storage_tips"));
+          window.open(joinBase("/@manage/messenger"), "_blank");
           const resp: Resp<{}> = await ok();
           // TODO mybe can use handleRrespWithNotifySuccess
           handleRresp(resp, () => {
