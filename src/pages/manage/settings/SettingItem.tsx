@@ -34,7 +34,7 @@ const Item = (props: ItemProps) => {
   return (
     <FormControl w="$full" display="flex" flexDirection="column">
       <FormLabel for={props.key} display="flex" alignItems="center">
-        {t(`manage.settings.${props.key}`)}
+        {t(`settings.${props.key}`)}
         <Show when={props.flag === Flag.DEPRECATED}>
           <Icon
             ml="$2"
