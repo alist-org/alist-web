@@ -20,5 +20,10 @@
   },
   "title": "AList Manage",
   "not_admin": "你不是管理員，請使用管理員賬戶登錄。",
-  "logout_success": "登錄成功"
+  "logout_success": "登錄成功",
+  "send": "Send",
+  "recieve": "Recieve",
+  "recieved_msgs": "Recieved messages",
+  "add_storage_tips": "You may need to fill in some information in the newly opened tab.",
+  "messenger_tips": "You may need to fill in some information on this tab as prompted."
 }
