@@ -20,5 +20,10 @@
   },
   "title": "AList 管理",
   "not_admin": "您不是管理员用户，请使用管理员帐户登录。",
-  "logout_success": "退出成功"
+  "logout_success": "退出成功",
+  "send": "Send",
+  "recieve": "Recieve",
+  "recieved_msgs": "Recieved messages",
+  "add_storage_tips": "You may need to fill in some information in the newly opened tab.",
+  "messenger_tips": "You may need to fill in some information on this tab as prompted."
 }
