@@ -126,6 +126,7 @@ export const side_menu_items: SideMenuItem[] = [
     icon: BsFront,
     to: "/@manage/about",
     role: UserRole.GUEST,
+    component: lazy(() => import("./About")),
   },
   {
     title: "manage.sidemenu.home",

@@ -7,3 +7,4 @@ export * from "./Wether";
 export * from "./LinkWithBase";
 export * from "./Error";
 export * from "./ImageWithError"
+export * from "./Markdown"

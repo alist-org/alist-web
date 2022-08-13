@@ -28,8 +28,12 @@
     "copy-to-clipboard": "^3.3.1",
     "lightgallery": "^2.5.0",
     "mitt": "^3.0.0",
+    "rehype-highlight": "^5.0.2",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
     "solid-icons": "^0.5.0",
     "solid-js": "^1.4.8",
+    "solid-markdown": "^1.2.0",
     "solid-transition-group": "^0.0.10"
   }
 }
