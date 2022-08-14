@@ -26,9 +26,16 @@ import {
   For,
 } from "solid-js";
 import { useFetch, useT } from "~/hooks";
-import { getIconColor } from "~/store";
+import { getIconColor, password } from "~/store";
 import { Obj, Resp } from "~/types";
-import { pathBase, handleRresp, hoverColor, pathJoin, r } from "~/utils";
+import {
+  pathBase,
+  handleRresp,
+  hoverColor,
+  pathJoin,
+  r,
+  fsDirs,
+} from "~/utils";
 
 export interface FolderTreeProps {
   onChange: (path: string) => void;
@@ -60,7 +67,7 @@ const FolderTreeNode = (props: { path: string }) => {
   const [children, setChildren] = createSignal<Obj[]>([]);
   const { value, onChange } = useContext(context)!;
   const [loading, fetchDirs] = useFetch(() =>
-    r.post("/fs/dirs", { path: props.path })
+    fsDirs(props.path, password() ?? "")
   );
   const load = async () => {
     if (children().length > 0) return;

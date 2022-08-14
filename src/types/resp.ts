@@ -8,3 +8,5 @@ export type PageResp<T> = Resp<{
   content: T[];
   total: number;
 }>;
+
+export type EmptyResp = Resp<{}>;

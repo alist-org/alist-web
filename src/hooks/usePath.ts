@@ -8,7 +8,7 @@ import {
   State,
 } from "~/store";
 import { Obj, PageResp, Resp } from "~/types";
-import { handleRresp, log, pathJoin, r } from "~/utils";
+import { fsGet, fsList, handleRresp, log, pathJoin, r } from "~/utils";
 import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
@@ -16,12 +16,7 @@ const IsDirRecord: Record<string, boolean> = {};
 
 export const usePath = () => {
   const { pathname, setSearchParams } = useRouter();
-  const [, getObj] = useFetch((path?: string) =>
-    r.post("/fs/get", {
-      path: path,
-      password: password(),
-    })
-  );
+  const [, getObj] = useFetch((path?: string) => fsGet(path, password() ?? ""));
   const [, getObjs] = useFetch(
     (arg?: { path: string; index?: number; size?: number }) => {
       const page = {
@@ -29,12 +24,7 @@ export const usePath = () => {
         size: arg?.size ?? getSettingNumber("page_size") ?? 50,
       };
       // setSearchParams(page);
-      return r.post("/fs/list", {
-        path: arg?.path,
-        password: password(),
-        page_index: page.index,
-        page_size: page.size,
-      });
+      return fsList(arg?.path, password() ?? "", page.index, page.size);
     }
   );
   // set a path must be a dir
@@ -62,7 +52,7 @@ export const usePath = () => {
   // handle enter obj that don't know if it is dir or file
   const handleObj = async (path: string) => {
     setState(State.FetchingObj);
-    const resp: Resp<Obj> = await getObj(path);
+    const resp = await getObj(path);
     handleRresp(
       resp,
       (obj: Obj) => {
@@ -85,7 +75,7 @@ export const usePath = () => {
     append = false
   ) => {
     setState(append ? State.FetchingMore : State.FetchingObjs);
-    const resp: PageResp<Obj> = await getObjs({ path, index, size });
+    const resp = await getObjs({ path, index, size });
     handleRresp(
       resp,
       (data) => {

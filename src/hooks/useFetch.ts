@@ -26,7 +26,10 @@ export const useLoading = <T, D>(
 export const useFetch = <T, D>(
   p: (arg?: D) => Promise<Resp<T>>,
   loading?: boolean
-): [Accessor<boolean>, (arg?: D) => Promise<any>] => {
+): [
+  Accessor<boolean>,
+  (arg?: D) => Promise<Resp<T extends unknown ? any : T>>
+] => {
   return useLoading(p, true, loading);
 };
 
