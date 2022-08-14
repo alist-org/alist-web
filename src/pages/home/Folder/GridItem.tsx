@@ -1,13 +1,13 @@
-import { Center, VStack, Icon, Text } from "@hope-ui/solid";
+import { Center, VStack, Icon, Text, Tooltip } from "@hope-ui/solid";
 import { Show } from "solid-js";
 import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
 import { usePath } from "~/hooks";
 import { getIconColor } from "~/store";
-import { Obj, ObjType } from "~/types";
+import { ObjType, StoreObj } from "~/types";
 import { bus, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
-export const GridItem = (props: { obj: Obj }) => {
+export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAsDir } = usePath();
   const objIcon = (
     <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />
@@ -36,7 +36,7 @@ export const GridItem = (props: { obj: Obj }) => {
         class="item-thumbnail"
         h="70px"
         // @ts-ignore
-        on:click={(e: any) => {
+        on:click={(e) => {
           if (props.obj.type === ObjType.IMAGE) {
             e.stopPropagation();
             e.preventDefault();
@@ -56,18 +56,20 @@ export const GridItem = (props: { obj: Obj }) => {
           />
         </Show>
       </Center>
-      <Text
-        css={{
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis",
-        }}
-        w="$full"
-        overflow="hidden"
-        textAlign="center"
-        fontSize="$sm"
-      >
-        {props.obj.name}
-      </Text>
+      <Tooltip label={props.obj.name}>
+        <Text
+          css={{
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+          w="$full"
+          overflow="hidden"
+          textAlign="center"
+          fontSize="$sm"
+        >
+          {props.obj.name}
+        </Text>
+      </Tooltip>
     </VStack>
   );
 };

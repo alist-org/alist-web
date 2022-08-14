@@ -18,3 +18,7 @@ export interface Obj {
   type: ObjType;
   thumb: string;
 }
+
+export type StoreObj = Obj & {
+  selected?: boolean;
+};

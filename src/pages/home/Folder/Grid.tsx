@@ -28,7 +28,7 @@ const GridLayout = () => {
         thumbnail: true,
         plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
         dynamicEl: images().map((obj) => {
-          const raw = rawUrl(obj);
+          const raw = rawUrl(obj, true);
           return {
             src: raw,
             thumb: obj.thumb === "" ? raw : obj.thumb,
@@ -52,8 +52,8 @@ const GridLayout = () => {
       templateColumns="repeat(auto-fill, minmax(100px,1fr))"
     >
       <For each={objStore.objs}>
-        {(obj) => {
-          return <GridItem obj={obj} />;
+        {(obj, i) => {
+          return <GridItem obj={obj} index={i()} />;
         }}
       </For>
     </Grid>

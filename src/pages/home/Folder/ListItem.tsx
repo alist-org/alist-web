@@ -1,19 +1,27 @@
-import { HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
+import { Checkbox, HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
+import { Show } from "solid-js";
 import { LinkWithPush } from "~/components";
 import { usePath } from "~/hooks";
-import { getIconColor } from "~/store";
-import { Obj } from "~/types";
+import { checkboxOpen, getIconColor, OrderBy, selectIndex } from "~/store";
+import { StoreObj } from "~/types";
 import { formatDate, getFileSize, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
-export const cols = [
+export interface Col {
+  name: OrderBy;
+  textAlign: "left" | "right";
+  w: any;
+}
+
+export const cols: Col[] = [
   { name: "name", textAlign: "left", w: { "@initial": "76%", "@md": "50%" } },
   { name: "size", textAlign: "right", w: { "@initial": "24%", "@md": "17%" } },
   { name: "modified", textAlign: "right", w: { "@initial": 0, "@md": "33%" } },
 ];
 
-export const ListItem = (props: { obj: Obj }) => {
+export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAsDir } = usePath();
+
   return (
     <HStack
       class="list-item"
@@ -33,12 +41,25 @@ export const ListItem = (props: { obj: Obj }) => {
         }
       }}
     >
-      <HStack class="name-box" spacing="$2" w={cols[0].w}>
+      <HStack class="name-box" spacing="$1" w={cols[0].w}>
+        <Show when={checkboxOpen() === "true"}>
+          <Checkbox
+            // @ts-ignore
+            on:click={(e) => {
+              e.stopPropagation();
+            }}
+            checked={props.obj.selected}
+            onChange={(e: any) => {
+              selectIndex(props.index, e.target.checked);
+            }}
+          />
+        </Show>
         <Icon
           class="icon"
           boxSize="$6"
           color={getIconColor()}
           as={getIconByObj(props.obj)}
+          mr="$1"
         />
         <Tooltip label={props.obj.name}>
           <Text
