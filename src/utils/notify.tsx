@@ -1,5 +1,6 @@
 import {
   Box,
+  CloseButton,
   // Alert,
   // AlertDescription,
   // AlertIcon,
@@ -25,6 +26,12 @@ const notify = {
             rounded="$lg"
             p="$3"
           >
+            <CloseButton
+              pos="absolute"
+              right="$2"
+              top="$2"
+              onClick={props.close}
+            />
             {element}
           </Box>
         );
