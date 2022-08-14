@@ -80,8 +80,12 @@ const [password, setPassword] = createStorageSignal<string>(
 );
 const [checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",
-  "true"
+  "false"
 );
+
+export const toggleCheckbox = () => {
+  setCheckboxOpen(checkboxOpen() === "true" ? "false" : "true");
+};
 
 export {
   objStore,
@@ -91,5 +95,4 @@ export {
   password,
   setPassword,
   checkboxOpen,
-  setCheckboxOpen,
 };

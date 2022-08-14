@@ -12,6 +12,8 @@ import { CgMoreO } from "solid-icons/cg";
 import { Motion } from "@motionone/solid";
 import { SwitchLnaguage } from "~/components";
 import { TbLanguageHiragana } from "solid-icons/tb";
+import { TbCheckbox } from "solid-icons/tb";
+import { toggleCheckbox } from "~/store";
 
 const Toolbar = () => {
   const { isOpen, onToggle } = createDisclosure();
@@ -46,6 +48,7 @@ const Toolbar = () => {
               transition={{ duration: 0.2 }}
             >
               <VStack spacing="$1">
+                <ToolIcon as={TbCheckbox} onClick={toggleCheckbox} />
                 <SwitchLnaguage as="span">
                   <ToolIcon as={TbLanguageHiragana} />
                 </SwitchLnaguage>
