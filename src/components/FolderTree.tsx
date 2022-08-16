@@ -66,9 +66,7 @@ export const FolderTree = (props: FolderTreeProps) => {
 const FolderTreeNode = (props: { path: string }) => {
   const [children, setChildren] = createSignal<Obj[]>([]);
   const { value, onChange } = useContext(context)!;
-  const [loading, fetchDirs] = useFetch(() =>
-    fsDirs(props.path, password() ?? "")
-  );
+  const [loading, fetchDirs] = useFetch(() => fsDirs(props.path, password()));
   const load = async () => {
     if (children().length > 0) return;
     const resp: Resp<Obj[]> = await fetchDirs();

@@ -8,7 +8,14 @@ import {
   Show,
 } from "solid-js";
 import { useT } from "~/hooks";
-import { checkboxOpen, objStore, selectAll, sortObjs } from "~/store";
+import {
+  allChecked,
+  checkboxOpen,
+  isIndeterminate,
+  objStore,
+  selectAll,
+  sortObjs,
+} from "~/store";
 import { OrderBy } from "~/store";
 import { Col, cols, ListItem } from "./ListItem";
 
@@ -40,17 +47,11 @@ const ListLayout = () => {
       },
     };
   };
-  const allChecked = createMemo(() =>
-    objStore.objs.every((obj) => obj.selected)
-  );
-  const isIndeterminate = createMemo(
-    () => objStore.objs.some((obj) => obj.selected) && !allChecked()
-  );
   return (
     <VStack class="list" w="$full" spacing="$1">
       <HStack class="title" w="$full" p="$2">
         <HStack w={cols[0].w} spacing="$1">
-          <Show when={checkboxOpen() === "true"}>
+          <Show when={checkboxOpen()}>
             <Checkbox
               checked={allChecked()}
               indeterminate={isIndeterminate()}

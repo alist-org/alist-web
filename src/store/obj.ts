@@ -31,6 +31,17 @@ const [objStore, setObjStore] = createStore<{
   // pageSize: 50,
 });
 
+const [selectedNum, setSelectedNum] = createSignal(0);
+
+export const setObj = (obj: Obj) => {
+  setObjStore("obj", obj);
+};
+
+export const setObjs = (objs: Obj[]) => {
+  setSelectedNum(0);
+  setObjStore("objs", objs);
+};
+
 export type OrderBy = "name" | "size" | "modified";
 
 export const sortObjs = (orderBy: OrderBy, reverse?: boolean) => {
@@ -59,12 +70,16 @@ export const selectIndex = (index: number, selected: boolean) => {
     "objs",
     index,
     produce((obj) => {
+      if (obj.selected !== selected) {
+        setSelectedNum(selected ? selectedNum() + 1 : selectedNum() - 1);
+      }
       obj.selected = selected;
     })
   );
 };
 
 export const selectAll = (selected: boolean) => {
+  setSelectedNum(selected ? objStore.objs.length : 0);
   setObjStore("objs", {}, (obj) => ({ selected: selected }));
 };
 
@@ -72,27 +87,33 @@ export const selectedObjs = () => {
   return objStore.objs.filter((obj) => obj.selected);
 };
 
+export const allChecked = () => {
+  return objStore.objs.length === selectedNum();
+};
+
+export const haveSelected = () => {
+  return selectedNum() > 0;
+};
+
+export const isIndeterminate = () => {
+  return selectedNum() > 0 && selectedNum() < objStore.objs.length;
+};
+
 export type Layout = "list" | "grid";
 const [layout, setLayout] = createStorageSignal<Layout>("layout", "list");
-const [password, setPassword] = createStorageSignal<string>(
+const [_password, setPassword] = createStorageSignal<string>(
   "browser-password",
   ""
 );
-const [checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
+export const password = () => _password() ?? "";
+const [_checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",
   "false"
 );
+export const checkboxOpen = () => _checkboxOpen() === "true";
 
 export const toggleCheckbox = () => {
-  setCheckboxOpen(checkboxOpen() === "true" ? "false" : "true");
+  setCheckboxOpen(checkboxOpen() ? "false" : "true");
 };
 
-export {
-  objStore,
-  setObjStore,
-  layout,
-  setLayout,
-  password,
-  setPassword,
-  checkboxOpen,
-};
+export { objStore, layout, setLayout, setPassword };

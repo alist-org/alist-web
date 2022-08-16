@@ -42,7 +42,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
       }}
     >
       <HStack class="name-box" spacing="$1" w={cols[0].w}>
-        <Show when={checkboxOpen() === "true"}>
+        <Show when={checkboxOpen()}>
           <Checkbox
             // @ts-ignore
             on:click={(e) => {

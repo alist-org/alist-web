@@ -3,12 +3,13 @@ import {
   getSettingNumber,
   password,
   setErr,
-  setObjStore,
+  setObj,
+  setObjs,
   setState,
   State,
 } from "~/store";
-import { Obj, PageResp, Resp } from "~/types";
-import { fsGet, fsList, handleRresp, log, pathJoin, r } from "~/utils";
+import { Obj } from "~/types";
+import { fsGet, fsList, handleRresp, log, pathJoin } from "~/utils";
 import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
@@ -16,7 +17,7 @@ const IsDirRecord: Record<string, boolean> = {};
 
 export const usePath = () => {
   const { pathname, setSearchParams } = useRouter();
-  const [, getObj] = useFetch((path?: string) => fsGet(path, password() ?? ""));
+  const [, getObj] = useFetch((path?: string) => fsGet(path, password()));
   const [, getObjs] = useFetch(
     (arg?: { path: string; index?: number; size?: number }) => {
       const page = {
@@ -24,7 +25,7 @@ export const usePath = () => {
         size: arg?.size ?? getSettingNumber("page_size") ?? 50,
       };
       // setSearchParams(page);
-      return fsList(arg?.path, password() ?? "", page.index, page.size);
+      return fsList(arg?.path, password(), page.index, page.size);
     }
   );
   // set a path must be a dir
@@ -56,7 +57,7 @@ export const usePath = () => {
     handleRresp(
       resp,
       (obj: Obj) => {
-        setObjStore("obj", obj);
+        setObj(obj);
         if (obj.is_dir) {
           handleFolder(path, 1);
         } else {
@@ -82,7 +83,7 @@ export const usePath = () => {
         if (append) {
           appendObjs(data.content);
         } else {
-          setObjStore("objs", data.content);
+          setObjs(data.content);
         }
         setState(State.Folder);
       },
