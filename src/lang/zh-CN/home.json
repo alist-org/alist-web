@@ -4,6 +4,16 @@
     "size": "大小",
     "modified": "修改时间"
   },
+  "toolbar": {
+    "more": "More",
+    "toggle_theme": "Toggle Theme",
+    "switch_lang": "Switch Language",
+    "toggle_checkbox": "Toggle Checkbox",
+    "rename": "Rename",
+    "move": "Move",
+    "copy": "Copy",
+    "delete": "Delete"
+  },
   "footer": {
     "manage": "管理"
   }
