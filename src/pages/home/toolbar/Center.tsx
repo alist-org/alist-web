@@ -7,19 +7,19 @@ import { RiSystemDeleteBinLine } from "solid-icons/ri";
 import { TbCopy } from "solid-icons/tb";
 
 const Rename = () => {
-  return <CenterIcon as={CgRename} />;
+  return <CenterIcon tip="rename" as={CgRename} />;
 };
 
 const Delete = () => {
-  return <CenterIcon as={RiSystemDeleteBinLine} />;
+  return <CenterIcon tip="delete" as={RiSystemDeleteBinLine} />;
 };
 
 const Move = () => {
-  return <CenterIcon as={CgMoveRight} />;
+  return <CenterIcon tip="move" as={CgMoveRight} />;
 };
 
 const Copy = () => {
-  return <CenterIcon as={TbCopy} />;
+  return <CenterIcon tip="copy" as={TbCopy} />;
 };
 
 export const Center = () => {
@@ -34,11 +34,14 @@ export const Center = () => {
         css={{
           backdropFilter: "blur(8px)",
         }}
-        shadow="$md"
+        // shadow="$md"
         rounded="$lg"
         // border="1px solid $neutral4"
         p="$2"
-        bgColor="$neutral2"
+        // color="$neutral12"
+        // bgColor="$neutral2"
+        color="white"
+        bgColor="#000000d0"
         spacing="$1"
       >
         <Rename />

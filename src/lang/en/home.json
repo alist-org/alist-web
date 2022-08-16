@@ -4,6 +4,16 @@
     "size": "Size",
     "modified": "Modified"
   },
+  "toolbar": {
+    "more": "More",
+    "toggle_theme": "Toggle Theme",
+    "switch_lang": "Switch Language",
+    "toggle_checkbox": "Toggle Checkbox",
+    "rename": "Rename",
+    "move": "Move",
+    "copy": "Copy",
+    "delete": "Delete"
+  },
   "footer": {
     "manage": "Manage"
   }

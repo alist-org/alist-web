@@ -46,14 +46,18 @@ export const Right = () => {
             transition={{ duration: 0.2 }}
           >
             <VStack spacing="$1">
-              <RightIcon as={TbCheckbox} onClick={toggleCheckbox} />
+              <RightIcon
+                tip="toggle_checkbox"
+                as={TbCheckbox}
+                onClick={toggleCheckbox}
+              />
               <SwitchLnaguage as="span">
-                <RightIcon as={TbLanguageHiragana} />
+                <RightIcon tip="switch_lang" as={TbLanguageHiragana} />
               </SwitchLnaguage>
               <SwitchColorMode />
             </VStack>
           </Motion>
-          <RightIcon as={CgMoreO} onClick={onToggle} />
+          <RightIcon tip="more" as={CgMoreO} onClick={onToggle} />
         </VStack>
       </Show>
     </Box>
