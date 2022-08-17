@@ -36,7 +36,8 @@ export const Center = () => {
     {
       opacity: [0, 1],
       scale: [0.9, 1],
-      y: -10,
+      y: [10, 0],
+      x: ["-50%", "-50%"],
     },
     {
       duration: 0.2,
@@ -56,7 +57,7 @@ export const Center = () => {
         pos="fixed"
         bottom="$4"
         left="50%"
-        transform="translateX(-50%)"
+        // transform="translateX(-50%)"
         css={{
           backdropFilter: "blur(8px)",
         }}
