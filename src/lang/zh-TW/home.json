@@ -4,6 +4,13 @@
     "size": "大小",
     "modified": "Modified"
   },
+  "password": {
+    "have_account": "Have an account?",
+    "go_login": "Go to login",
+    "input_password": "Please input password",
+    "ok": "OK",
+    "back": "Back"
+  },
   "toolbar": {
     "more": "More",
     "toggle_theme": "Toggle Theme",
