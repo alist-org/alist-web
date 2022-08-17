@@ -1,15 +1,12 @@
 import { Box, useColorModeValue } from "@hope-ui/solid";
 import axios from "axios";
 import {
-  createEffect,
   createMemo,
   Show,
-  on,
-  createSignal,
   createResource,
 } from "solid-js";
 import { Markdown, MaybeLoading } from "~/components";
-import { useLoading, useUrl } from "~/hooks";
+import { useUrl } from "~/hooks";
 import { objStore, State } from "~/store";
 
 export const Readme = () => {

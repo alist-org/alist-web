@@ -32,7 +32,8 @@ export const getUrlByDirAndObj = (
 export const useUrl = () => {
   const { pathname } = useRouter();
   const getUrlByObj = (obj: Obj, type?: URLType, encodeAll?: boolean) => {
-    const dir = objStore.state === State.Folder ? pathname() : pathDir(pathname());
+    const dir =
+      objStore.state === State.Folder ? pathname() : pathDir(pathname());
     return getUrlByDirAndObj(dir, obj, type, encodeAll);
   };
   return {
@@ -50,7 +51,7 @@ export const useUrl = () => {
 };
 
 export const useSelectedUrl = () => {
-  const { previewPage, rawUrl, proxyUrl } = useUrl();
+  const { previewPage, rawUrl } = useUrl();
   return {
     previewPage: () => {
       return selectedObjs()
@@ -59,6 +60,7 @@ export const useSelectedUrl = () => {
     },
     rawUrl: (encodeAll?: boolean) => {
       return selectedObjs()
+        .filter((obj) => !obj.is_dir)
         .map((obj) => rawUrl(obj, encodeAll))
         .join("\n");
     },
