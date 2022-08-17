@@ -1,12 +1,22 @@
-import { HStack } from "@hope-ui/solid";
+import {
+  HStack,
+  Menu,
+  MenuContent,
+  MenuItem,
+  MenuTrigger,
+  useColorModeValue,
+} from "@hope-ui/solid";
 import { createEffect, createMemo, Show } from "solid-js";
-import { checkboxOpen, haveSelected } from "~/store";
+import { checkboxOpen, haveSelected, selectedObjs } from "~/store";
 import { CenterIcon } from "./Icon";
 import { CgRename } from "solid-icons/cg";
 import { RiSystemDeleteBinLine } from "solid-icons/ri";
 import { TbCopy } from "solid-icons/tb";
 import { OcFilemoved2 } from "solid-icons/oc";
 import { createAnimation } from "motion-signals";
+import { useSelectedUrl, useT } from "~/hooks";
+import copy from "copy-to-clipboard";
+import { notify } from "~/utils";
 
 const Rename = () => {
   return <CenterIcon tip="rename" as={CgRename} />;
@@ -28,6 +38,44 @@ const Move = () => {
 
 const Copy = () => {
   return <CenterIcon tip="copy" as={TbCopy} />;
+};
+
+const CopyLink = () => {
+  const t = useT();
+  const { previewPage, rawUrl } = useSelectedUrl();
+  return (
+    <Menu>
+      <MenuTrigger as="span">
+        <CenterIcon tip="copy_url" as={TbCopy} />
+      </MenuTrigger>
+      <MenuContent>
+        <MenuItem
+          onSelect={() => {
+            copy(previewPage());
+            notify.success(t("global.copied"));
+          }}
+        >
+          {t("home.toolbar.preview_page")}
+        </MenuItem>
+        <MenuItem
+          onSelect={() => {
+            copy(rawUrl());
+            notify.success(t("global.copied"));
+          }}
+        >
+          {t("home.toolbar.down_url")}
+        </MenuItem>
+        <MenuItem
+          onSelect={() => {
+            copy(rawUrl(true));
+            notify.success(t("global.copied"));
+          }}
+        >
+          {t("home.toolbar.encode_down_url")}
+        </MenuItem>
+      </MenuContent>
+    </Menu>
+  );
 };
 
 export const Center = () => {
@@ -65,16 +113,17 @@ export const Center = () => {
         rounded="$lg"
         // border="1px solid $neutral4"
         p="$2"
-        // color="$neutral12"
-        // bgColor="$neutral2"
-        color="white"
-        bgColor="#000000d0"
+        color="$neutral12"
+        bgColor={useColorModeValue("$neutral3", "#000000d0")()}
+        // color="white"
+        // bgColor="#000000d0"
         spacing="$1"
       >
         <Rename />
         <Move />
         <Copy />
         <Delete />
+        <CopyLink />
       </HStack>
     </Show>
   );
