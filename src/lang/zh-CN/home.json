@@ -5,14 +5,14 @@
     "modified": "修改时间"
   },
   "toolbar": {
-    "more": "More",
-    "toggle_theme": "Toggle Theme",
-    "switch_lang": "Switch Language",
-    "toggle_checkbox": "Toggle Checkbox",
-    "rename": "Rename",
-    "move": "Move",
-    "copy": "Copy",
-    "delete": "Delete"
+    "more": "更多",
+    "toggle_theme": "切换主题",
+    "switch_lang": "切换语言",
+    "toggle_checkbox": "开关复选框",
+    "rename": "重命名",
+    "move": "移动",
+    "copy": "复制",
+    "delete": "删除"
   },
   "footer": {
     "manage": "管理"
