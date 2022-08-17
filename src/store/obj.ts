@@ -15,7 +15,9 @@ export enum State {
 }
 
 const [objStore, setObjStore] = createStore<{
-  obj?: Obj;
+  obj: Obj;
+  raw_url: string;
+
   objs: StoreObj[];
   readme: string;
   related: Obj[];
@@ -25,6 +27,8 @@ const [objStore, setObjStore] = createStore<{
   state: State;
   err: string;
 }>({
+  obj: {} as Obj,
+  raw_url: "",
   objs: [],
   readme: "",
   related: [],
@@ -44,6 +48,9 @@ const setObjs = (objs: Obj[]) => {
 export const ObjStore = {
   setObj: (obj: Obj) => {
     setObjStore("obj", obj);
+  },
+  setRawUrl: (raw_url: string) => {
+    setObjStore("raw_url", raw_url);
   },
   setObjs: setObjs,
   setReadme: (readme: string) => setObjStore("readme", readme),
