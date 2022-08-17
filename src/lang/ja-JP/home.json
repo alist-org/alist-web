@@ -4,6 +4,10 @@
     "size": "Size",
     "modified": "Modified"
   },
+  "preview": {
+    "download": "Download",
+    "failed_load_img": "Failed to load image"
+  },
   "password": {
     "have_account": "Have an account?",
     "go_login": "Go to login",
