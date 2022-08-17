@@ -12,7 +12,11 @@
     "rename": "重命名",
     "move": "移动",
     "copy": "复制",
-    "delete": "删除"
+    "delete": "删除",
+    "copy_url": "Copy Link",
+    "preview_page": "Preview Page",
+    "down_url": "Download URL",
+    "encode_down_url": "Encode Download URL"
   },
   "footer": {
     "manage": "管理"
