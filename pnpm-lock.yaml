@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@crowdin/cli': ^3.7.10
   '@hope-ui/solid': 0.6.2
-  '@motionone/solid': ^10.13.3
   '@solid-primitives/i18n': ^1.1.0
   '@solid-primitives/storage': ^1.3.1
   '@stitches/core': ^1.2.8
@@ -12,10 +11,12 @@ specifiers:
   copy-to-clipboard: ^3.3.2
   lightgallery: ^2.5.0
   mitt: ^3.0.0
+  motion: ^10.13.3
+  motion-signals: ^0.0.3
   rehype-highlight: ^5.0.2
   rehype-raw: ^6.1.1
   remark-gfm: ^3.0.1
-  solid-icons: ^0.5.0
+  solid-icons: ^1.0.1
   solid-js: ^1.4.8
   solid-markdown: ^1.2.0
   solid-transition-group: ^0.0.10
@@ -25,7 +26,6 @@ specifiers:
 
 dependencies:
   '@hope-ui/solid': 0.6.2_sszzskbueur5rfztas6oehtsky
-  '@motionone/solid': 10.13.3_solid-js@1.4.8
   '@solid-primitives/i18n': 1.1.0_solid-js@1.4.8
   '@solid-primitives/storage': 1.3.1_solid-js@1.4.8
   '@stitches/core': 1.2.8
@@ -33,10 +33,12 @@ dependencies:
   copy-to-clipboard: 3.3.2
   lightgallery: 2.5.0
   mitt: 3.0.0
+  motion: 10.13.3
+  motion-signals: 0.0.3_kv43xjhm7bdq7qrz6n6e5lov3i
   rehype-highlight: 5.0.2
   rehype-raw: 6.1.1
   remark-gfm: 3.0.1
-  solid-icons: 0.5.0_solid-js@1.4.8
+  solid-icons: 1.0.1_solid-js@1.4.8
   solid-js: 1.4.8
   solid-markdown: 1.2.0_solid-js@1.4.8
   solid-transition-group: 0.0.10_solid-js@1.4.8
@@ -482,15 +484,10 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@motionone/solid/10.13.3_solid-js@1.4.8:
-    resolution: {integrity: sha512-xj6jDouEEGIulJCZ9W68RVFtnQVNQLrt3ITtxiw4xBthZdsSmRDMGvOPJhG4812CEaFkhcTkZrADA8Ov1MEt/g==}
-    peerDependencies:
-      solid-js: ^1.4.1
+  /@motionone/svelte/10.13.2:
+    resolution: {integrity: sha512-p6gH7oGhbonHzrPeUPzZiU3dx2yjDYQ7K00w9GaTbXBfmH/+rjUQ6vvG5SPvjY6BLtMK3/FMK512WvOMtvDQPQ==}
     dependencies:
       '@motionone/dom': 10.13.2
-      '@motionone/utils': 10.13.2
-      '@solid-primitives/props': 2.2.1_solid-js@1.4.8
-      solid-js: 1.4.8
       tslib: 2.4.0
     dev: false
 
@@ -506,6 +503,13 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /@motionone/vue/10.13.2:
+    resolution: {integrity: sha512-DfMzOUwKlzyjpwxF+RP1Q74ClmeoanPAeSGfD/JTvAyR1W6ARCOBMFpdgDvile1o7FNgHGx2RHt8210MsOE59g==}
+    dependencies:
+      '@motionone/dom': 10.13.2
+      tslib: 2.4.0
+    dev: false
+
   /@solid-primitives/i18n/1.1.0_solid-js@1.4.8:
     resolution: {integrity: sha512-aqJttEb8rmsQTU5VqfBfaeHFMIqKu1eXHVEahtW4DGKYBz/CDis5V25psQEyspuVTmPs7RpX99Whe9jV7ib4pg==}
     peerDependencies:
@@ -514,27 +518,10 @@ packages:
       solid-js: 1.4.8
     dev: false
 
-  /@solid-primitives/props/2.2.1_solid-js@1.4.8:
-    resolution: {integrity: sha512-QET+aNszJXZqRHmzip72lufEKr8j4oEvgu183GWd532NkhmG/TLvKh/q2dr2+H6FIeBuJ2kjquYnrqszHDRbTA==}
-    peerDependencies:
-      solid-js: ^1.3.0
-    dependencies:
-      '@solid-primitives/utils': 3.0.1_solid-js@1.4.8
-      solid-js: 1.4.8
-    dev: false
-
   /@solid-primitives/storage/1.3.1_solid-js@1.4.8:
     resolution: {integrity: sha512-3By9cxqCGGkXrw3gYj7h2c5SCWxiDIYc2C3O6GLVyzN4JCIKzcMlm3HLK0gKMUbR/MzAs265XyAc3rqsMq1ixw==}
     peerDependencies:
       solid-js: ^1.3.1
-    dependencies:
-      solid-js: 1.4.8
-    dev: false
-
-  /@solid-primitives/utils/3.0.1_solid-js@1.4.8:
-    resolution: {integrity: sha512-tQl0z8HG+iJ7eryq5KmRkr9xNk9oU06gOUQ37YKod0N5oPaWEvP+ATzi7Uo7w5L67wjaZuQCt80p9vlm1/J/Mg==}
-    peerDependencies:
-      solid-js: ^1.4.1
     dependencies:
       solid-js: 1.4.8
     dev: false
@@ -1700,6 +1687,27 @@ packages:
       minimist: 1.2.6
     dev: true
 
+  /motion-signals/0.0.3_kv43xjhm7bdq7qrz6n6e5lov3i:
+    resolution: {integrity: sha512-DWxBZzED7L/cq0oxYVM86y0HC9JY27cqbBqLZERh2nRY8uzmZtoFkjmmTOaAwTsI7iIGYJWKOhbCmBs24TBOKQ==}
+    peerDependencies:
+      motion: ~10.6.1
+      solid-js: ~1.3.3
+    dependencies:
+      motion: 10.13.3
+      solid-js: 1.4.8
+    dev: false
+
+  /motion/10.13.3:
+    resolution: {integrity: sha512-lfBuoZL8xo0djAD3zGrMuSuc4J9MquE6hzRCsO9cVp+DgIUvNmvbM7+7SrZtpjLKxPWbppm+P56FRtVvMcGj1A==}
+    dependencies:
+      '@motionone/animation': 10.13.2
+      '@motionone/dom': 10.13.2
+      '@motionone/svelte': 10.13.2
+      '@motionone/types': 10.13.2
+      '@motionone/utils': 10.13.2
+      '@motionone/vue': 10.13.2
+    dev: false
+
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -1888,10 +1896,11 @@ packages:
       rechoir: 0.6.2
     dev: true
 
-  /solid-icons/0.5.0_solid-js@1.4.8:
-    resolution: {integrity: sha512-diDMdtV2loH0LDbAPHAQiQNcxw2lXtzlw1qBDYtmZKSY1vedOdBk/aVylmVhzTYP12SQYeJdcg25MY6CHnkn8w==}
+  /solid-icons/1.0.1_solid-js@1.4.8:
+    resolution: {integrity: sha512-9rxPeJ1UDGzWGlksjuXuyK2CdL1vg89inDyOl43koL3zoMgXLzY6LVLuMeuhslHbjq7Fp2h6fSSImj9ygfvleA==}
+    engines: {node: '>= 16'}
     peerDependencies:
-      solid-js: ^1.3.0
+      solid-js: '*'
     dependencies:
       solid-js: 1.4.8
     dev: false

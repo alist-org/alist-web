@@ -14,9 +14,8 @@ import {
 } from "solid-icons/bs";
 import { SiMetabase } from "solid-icons/si";
 import { CgDatabase } from "solid-icons/cg";
-import { FaSolidTasks } from "solid-icons/fa";
+import { OcWorkflow2 } from 'solid-icons/oc'
 import { IoCopy, IoHome } from "solid-icons/io";
-// import { BiSolidDashboard } from "solid-icons/bi";
 import { Component, lazy } from "solid-js";
 import { Group, UserRole } from "~/types";
 
@@ -80,7 +79,7 @@ export const side_menu_items: SideMenuItem[] = [
   },
   {
     title: "manage.sidemenu.tasks",
-    icon: FaSolidTasks,
+    icon: OcWorkflow2,
     to: "/@manage/tasks",
     children: [
       {

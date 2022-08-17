@@ -12,7 +12,7 @@ import { FullLoading, Error } from "~/components";
 import { usePath, useRouter } from "~/hooks";
 import { err, layout, State, state } from "~/store";
 
-const Folder = lazy(() => import("./Folder/Folder"));
+const Folder = lazy(() => import("./folder/Folder"));
 const File = lazy(() => import("./File"));
 // const ListSkeleton = lazy(() => import("./Folder/ListSkeleton"));
 // const GridSkeleton = lazy(() => import("./Folder/GridSkeleton"));
