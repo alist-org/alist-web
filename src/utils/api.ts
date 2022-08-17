@@ -1,5 +1,5 @@
 import { type } from "os";
-import { EmptyResp, Obj, PageResp, Resp } from "~/types";
+import { EmptyResp, FsGetResp, FsListResp, Obj, PageResp, Resp } from "~/types";
 import { r } from ".";
 
 type EmptyRespPromise = Promise<EmptyResp>;
@@ -7,7 +7,7 @@ type EmptyRespPromise = Promise<EmptyResp>;
 export const fsGet = (
   path: string = "/",
   password = ""
-): Promise<Resp<Obj>> => {
+): Promise<FsGetResp> => {
   return r.post("/fs/get", {
     path: path,
     password: password,
@@ -18,7 +18,7 @@ export const fsList = (
   password = "",
   page = 1,
   per_page = 50
-): Promise<PageResp<Obj>> => {
+): Promise<FsListResp> => {
   return r.post("/fs/list", {
     path,
     password,

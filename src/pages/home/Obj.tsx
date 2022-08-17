@@ -1,16 +1,8 @@
 import { Center, useColorModeValue } from "@hope-ui/solid";
-import {
-  Suspense,
-  Switch,
-  Match,
-  lazy,
-  createEffect,
-  on,
-  Show,
-} from "solid-js";
+import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js";
 import { FullLoading, Error } from "~/components";
 import { usePath, useRouter } from "~/hooks";
-import { err, /*layout,*/ State, state } from "~/store";
+import { objStore, /*layout,*/ State } from "~/store";
 
 const Folder = lazy(() => import("./folder/Folder"));
 const File = lazy(() => import("./File"));
@@ -30,21 +22,23 @@ export const Obj = () => {
     <Center class="obj-box" w="$full" rounded="$xl" bgColor={cardBg()} p="$2">
       <Suspense fallback={<FullLoading />}>
         <Switch>
-          <Match when={err()}>
-            <Error msg={err()} disableColor />
+          <Match when={objStore.err}>
+            <Error msg={objStore.err} disableColor />
           </Match>
           <Match
-            when={[State.FetchingObj, State.FetchingObjs].includes(state())}
+            when={[State.FetchingObj, State.FetchingObjs].includes(
+              objStore.state
+            )}
           >
             <FullLoading />
             {/* <Show when={layout() === "list"} fallback={<GridSkeleton />}>
               <ListSkeleton />
             </Show> */}
           </Match>
-          <Match when={state() === State.Folder}>
+          <Match when={objStore.state === State.Folder}>
             <Folder />
           </Match>
-          <Match when={state() === State.File}>
+          <Match when={objStore.state === State.File}>
             <File />
           </Match>
         </Switch>

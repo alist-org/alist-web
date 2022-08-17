@@ -1,7 +1,7 @@
 import { createStorageSignal } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import { Obj, StoreObj } from "~/types";
+import { FsGetResp, FsListResp, Obj, StoreObj } from "~/types";
 import { log } from "~/utils";
 
 export enum State {
@@ -14,32 +14,53 @@ export enum State {
   NeedPassword,
 }
 
-const [state, setState] = createSignal<State>(State.Initial);
-const [err, setErr] = createSignal<string>("");
-
-export { state, setState };
-export { err, setErr };
-
 const [objStore, setObjStore] = createStore<{
   obj?: Obj;
   objs: StoreObj[];
+  readme: string;
+  related: Obj[];
+  write?: boolean;
   // pageIndex: number;
   // pageSize: number;
+  state: State;
+  err: string;
 }>({
   objs: [],
+  readme: "",
+  related: [],
   // pageIndex: 1,
   // pageSize: 50,
+  state: State.Initial,
+  err: "",
 });
 
 const [selectedNum, setSelectedNum] = createSignal(0);
 
-export const setObj = (obj: Obj) => {
-  setObjStore("obj", obj);
-};
-
-export const setObjs = (objs: Obj[]) => {
+const setObjs = (objs: Obj[]) => {
   setSelectedNum(0);
   setObjStore("objs", objs);
+};
+
+export const ObjStore = {
+  setObj: (obj: Obj) => {
+    setObjStore("obj", obj);
+  },
+  setObjs: setObjs,
+  setReadme: (readme: string) => setObjStore("readme", readme),
+  setRelated: (related: Obj[]) => setObjStore("related", related),
+  setWrite: (write: boolean) => setObjStore("write", write),
+  // setGetResp: (resp: FsGetResp) => {
+  //   setObjStore("obj", resp.data);
+  //   setObjs(resp.data.related);
+  //   setObjStore("readme", resp.data.readme);
+  // },
+  // setListResp: (resp: FsListResp) => {
+  //   setObjs(resp.data.content);
+  //   setObjStore("readme", resp.data.readme);
+  //   setObjStore("write", resp.data.write);
+  // },
+  setState: (state: State) => setObjStore("state", state),
+  setErr: (err: string) => setObjStore("err", err),
 };
 
 export type OrderBy = "name" | "size" | "modified";

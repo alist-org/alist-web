@@ -5,14 +5,14 @@ export const useLoading = <T, D>(
   p: (arg?: D) => Promise<T>,
   fetch?: boolean,
   t?: boolean // initial loading true
-): [Accessor<boolean>, (arg?: D) => Promise<any>] => {
+): [Accessor<boolean>, (arg?: D) => Promise<unknown extends T ? any : T>] => {
   const [loading, setLoading] = createSignal<boolean>(t ?? false);
   return [
     loading,
     async (arg?: D) => {
       setLoading(true);
-      const data: unknown = await p(arg);
-      if (!fetch || (data as Resp<{}>).code !== 401) {
+      const data = await p(arg);
+      if (!fetch || (data as unknown as Resp<{}>).code !== 401) {
         // why?
         // because if setLoading(false) here will rerender before navigate
         // maybe cause some bugs
@@ -28,7 +28,7 @@ export const useFetch = <T, D>(
   loading?: boolean
 ): [
   Accessor<boolean>,
-  (arg?: D) => Promise<Resp<T extends unknown ? any : T>>
+  (arg?: D) => Promise<Resp<unknown extends T ? any : T>>
 ] => {
   return useLoading(p, true, loading);
 };

@@ -2,10 +2,7 @@ import {
   appendObjs,
   getSettingNumber,
   password,
-  setErr,
-  setObj,
-  setObjs,
-  setState,
+  ObjStore,
   State,
 } from "~/store";
 import { Obj } from "~/types";
@@ -52,16 +49,18 @@ export const usePath = () => {
 
   // handle enter obj that don't know if it is dir or file
   const handleObj = async (path: string) => {
-    setState(State.FetchingObj);
+    ObjStore.setState(State.FetchingObj);
     const resp = await getObj(path);
     handleRresp(
       resp,
-      (obj: Obj) => {
-        setObj(obj);
-        if (obj.is_dir) {
+      (data) => {
+        ObjStore.setObj(data);
+        if (data.is_dir) {
           handleFolder(path, 1);
         } else {
-          setState(State.File);
+          ObjStore.setReadme(data.readme);
+          ObjStore.setRelated(data.related);
+          ObjStore.setState(State.File);
         }
       },
       handleErr
@@ -75,7 +74,7 @@ export const usePath = () => {
     size?: number,
     append = false
   ) => {
-    setState(append ? State.FetchingMore : State.FetchingObjs);
+    ObjStore.setState(append ? State.FetchingMore : State.FetchingObjs);
     const resp = await getObjs({ path, index, size });
     handleRresp(
       resp,
@@ -83,18 +82,20 @@ export const usePath = () => {
         if (append) {
           appendObjs(data.content);
         } else {
-          setObjs(data.content);
+          ObjStore.setObjs(data.content);
         }
-        setState(State.Folder);
+        ObjStore.setReadme(data.readme);
+        ObjStore.setWrite(data.write);
+        ObjStore.setState(State.Folder);
       },
       handleErr
     );
   };
 
   const handleErr = (msg: string, code?: number) => {
-    setErr(msg);
+    ObjStore.setErr(msg);
     if (code === 403) {
-      setState(State.NeedPassword);
+      ObjStore.setState(State.NeedPassword);
     }
   };
 

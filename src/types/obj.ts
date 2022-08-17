@@ -14,9 +14,8 @@ export interface Obj {
   is_dir: boolean;
   modified: string;
   sign?: string;
-  raw_url?: string;
-  type: ObjType;
   thumb: string;
+  type: ObjType;
 }
 
 export type StoreObj = Obj & {

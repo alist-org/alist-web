@@ -7,7 +7,7 @@ import {
   Container,
 } from "@hope-ui/solid";
 import { Show } from "solid-js";
-import { getSetting, layout, setLayout, State, state } from "~/store";
+import { getSetting, layout, objStore, setLayout, State } from "~/store";
 import { BsGridFill } from "solid-icons/bs";
 import { FaSolidListUl } from "solid-icons/fa";
 import { CenterLoding } from "~/components";
@@ -22,7 +22,7 @@ export const Header = () => {
           <Image src={logo()!} h="$full" w="auto" fallback={<CenterLoding />} />
         </HStack>
         <HStack class="header-right" spacing="$2">
-          <Show when={state() === State.Folder}>
+          <Show when={objStore.state === State.Folder}>
             <IconButton
               aria-label="switch layout"
               compact

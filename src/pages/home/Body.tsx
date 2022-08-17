@@ -1,6 +1,7 @@
 import { Container } from "@hope-ui/solid";
 import { Nav } from "./Nav";
 import { Obj } from "./Obj";
+import { Readme } from "./Readme";
 
 export const Body = () => {
   return (
@@ -15,6 +16,7 @@ export const Body = () => {
     >
       <Nav />
       <Obj />
+      <Readme />
     </Container>
   );
 };

@@ -1,4 +1,4 @@
-import { selectedObjs, State, state } from "~/store";
+import { objStore, selectedObjs, State } from "~/store";
 import { Obj } from "~/types";
 import { api, base_path, encodePath, pathDir, standardizePath } from "~/utils";
 import { useRouter } from ".";
@@ -32,7 +32,7 @@ export const getUrlByDirAndObj = (
 export const useUrl = () => {
   const { pathname } = useRouter();
   const getUrlByObj = (obj: Obj, type?: URLType, encodeAll?: boolean) => {
-    const dir = state() === State.Folder ? pathname() : pathDir(pathname());
+    const dir = objStore.state === State.Folder ? pathname() : pathDir(pathname());
     return getUrlByDirAndObj(dir, obj, type, encodeAll);
   };
   return {
