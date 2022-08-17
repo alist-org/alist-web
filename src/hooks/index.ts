@@ -4,3 +4,4 @@ export * from "./useT";
 export * from "./useTitle";
 export * from "./usePath";
 export * from "./useUrl";
+export * from "./useUtil";

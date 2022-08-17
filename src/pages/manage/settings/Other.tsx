@@ -1,11 +1,10 @@
 import { Button, Heading, HStack, Input, SimpleGrid } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { MaybeLoading } from "~/components";
-import { useFetch, useT, useTitle } from "~/hooks";
+import { useFetch, useT, useTitle, useUtil } from "~/hooks";
 import { Resp, Group, SettingItem } from "~/types";
 import { handleRresp, notify, r } from "~/utils";
 import { Item } from "./SettingItem";
-import copy from "copy-to-clipboard";
 
 const OtherSettings = () => {
   const t = useT();
@@ -33,6 +32,7 @@ const OtherSettings = () => {
   const [resetTokenLoading, resetToken] = useFetch(() =>
     r.post("/admin/setting/reset_token")
   );
+  const { copy } = useUtil();
   return (
     <MaybeLoading loading={settingsLoading()}>
       <Heading mb="$2">{t("settings.aria2")}</Heading>
@@ -66,7 +66,6 @@ const OtherSettings = () => {
         <Button
           onClick={() => {
             copy(token());
-            notify.success(t("global.copied"));
           }}
         >
           {t("settings.copy_token")}

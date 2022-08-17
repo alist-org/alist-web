@@ -1,6 +1,6 @@
 import { selectedObjs, State, state } from "~/store";
 import { Obj } from "~/types";
-import { api, encodePath, pathDir, standardizePath } from "~/utils";
+import { api, base_path, encodePath, pathDir, standardizePath } from "~/utils";
 import { useRouter } from ".";
 
 type URLType = "preview" | "direct" | "proxy";
@@ -15,8 +15,13 @@ export const getUrlByDirAndObj = (
   dir = standardizePath(dir, true);
   let path = `${dir}/${obj.name}`;
   path = encodePath(path, encodeAll);
-  const prefix = type === "preview" ? "" : type === "direct" ? "/d" : "/p";
-  let ans = `${api}${prefix}${path}`;
+  let host = api;
+  let prefix = type === "direct" ? "/d" : "/p";
+  if (type === "preview") {
+    host = location.origin + base_path;
+    prefix = "";
+  }
+  let ans = `${host}${prefix}${path}`;
   if (type !== "preview" && obj.sign) {
     ans += `?sign=${obj.sign}`;
   }

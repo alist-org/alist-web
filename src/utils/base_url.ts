@@ -5,6 +5,9 @@ import { pathJoin } from "./path";
 export let base_path = "";
 export const setBasePath = (path: string) => {
   base_path = path;
+  if (!base_path.startsWith("/")) {
+    base_path = "/" + base_path;
+  }
   if (base_path.endsWith("/")) {
     base_path = base_path.slice(0, -1);
   }
@@ -18,7 +21,7 @@ if (window.ALIST.api) {
   api = window.ALIST.api;
 }
 if (api === "/") {
-  api = pathJoin(location.origin, base_path);
+  api = location.origin + base_path;
 }
 if (api.endsWith("/")) {
   api = api.slice(0, -1);
