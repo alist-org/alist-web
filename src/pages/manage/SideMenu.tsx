@@ -2,13 +2,13 @@ import { Box, Flex, Heading, HStack, Icon, VStack } from "@hope-ui/solid";
 import { createMemo, createSignal, For, Match, Show, Switch } from "solid-js";
 import { useRouter, useT } from "~/hooks";
 import { BiSolidRightArrow } from "solid-icons/bi";
-import { IconTypes } from "solid-icons/lib/browser/IconWrapper";
 import { onClose } from "./Header";
 import { UserMethods, UserRole } from "~/types";
 import { user } from "~/store";
 import { AnchorWithBase } from "~/components";
 import { Link } from "@solidjs/router";
 import { hoverColor } from "~/utils";
+import { IconTypes } from "solid-icons";
 
 export interface SideMenuItemProps {
   title: string;

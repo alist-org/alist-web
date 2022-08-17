@@ -6,6 +6,7 @@ import { Readme } from "./Readme";
 export const Body = () => {
   return (
     <Container
+      // mt="$2"
       class="body"
       p="$2"
       minH="80%"

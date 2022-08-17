@@ -5,8 +5,14 @@ import {
   ObjStore,
   State,
 } from "~/store";
-import { Obj } from "~/types";
-import { fsGet, fsList, handleRresp, log, pathJoin } from "~/utils";
+import {
+  fsGet,
+  fsList,
+  handleRrespWithoutNotify,
+  log,
+  notify,
+  pathJoin,
+} from "~/utils";
 import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
@@ -34,11 +40,14 @@ export const usePath = () => {
     IsDirRecord[path] = true;
   };
 
+  // record is second time password is wrong
+  let retry_pass = false;
   // handle pathname change
   // if confirm current path is dir, fetch List directly
   // if not, fetch get then determine if it is dir or file
-  const handlePathChange = (path: string) => {
+  const handlePathChange = (path: string, rp?: boolean) => {
     log(`handle [${path}] change`);
+    retry_pass = rp ?? false;
     handleErr("");
     if (IsDirRecord[path]) {
       handleFolder(path, 1);
@@ -51,7 +60,7 @@ export const usePath = () => {
   const handleObj = async (path: string) => {
     ObjStore.setState(State.FetchingObj);
     const resp = await getObj(path);
-    handleRresp(
+    handleRrespWithoutNotify(
       resp,
       (data) => {
         ObjStore.setObj(data);
@@ -76,7 +85,7 @@ export const usePath = () => {
   ) => {
     ObjStore.setState(append ? State.FetchingMore : State.FetchingObjs);
     const resp = await getObjs({ path, index, size });
-    handleRresp(
+    handleRrespWithoutNotify(
       resp,
       (data) => {
         if (append) {
@@ -93,14 +102,21 @@ export const usePath = () => {
   };
 
   const handleErr = (msg: string, code?: number) => {
-    ObjStore.setErr(msg);
     if (code === 403) {
       ObjStore.setState(State.NeedPassword);
+      if (retry_pass) {
+        notify.error(msg);
+      }
+    } else {
+      ObjStore.setErr(msg);
     }
   };
 
   return {
     handlePathChange,
     setPathAsDir,
+    refresh: (retry_pass?: boolean) => {
+      handlePathChange(pathname(), retry_pass);
+    },
   };
 };

@@ -5,7 +5,8 @@ import { usePath, useRouter } from "~/hooks";
 import { objStore, /*layout,*/ State } from "~/store";
 
 const Folder = lazy(() => import("./folder/Folder"));
-const File = lazy(() => import("./File"));
+const File = lazy(() => import("./file/File"));
+const Password = lazy(() => import("./Password"));
 // const ListSkeleton = lazy(() => import("./Folder/ListSkeleton"));
 // const GridSkeleton = lazy(() => import("./Folder/GridSkeleton"));
 
@@ -34,6 +35,9 @@ export const Obj = () => {
             {/* <Show when={layout() === "list"} fallback={<GridSkeleton />}>
               <ListSkeleton />
             </Show> */}
+          </Match>
+          <Match when={objStore.state === State.NeedPassword}>
+            <Password />
           </Match>
           <Match when={objStore.state === State.Folder}>
             <Folder />
