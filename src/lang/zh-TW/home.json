@@ -12,7 +12,11 @@
     "rename": "Rename",
     "move": "Move",
     "copy": "Copy",
-    "delete": "Delete"
+    "delete": "Delete",
+    "copy_url": "Copy Link",
+    "preview_page": "Preview Page",
+    "down_url": "Download URL",
+    "encode_down_url": "Encode Download URL"
   },
   "footer": {
     "manage": "管理"
