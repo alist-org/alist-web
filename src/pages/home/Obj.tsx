@@ -10,7 +10,7 @@ import {
 } from "solid-js";
 import { FullLoading, Error } from "~/components";
 import { usePath, useRouter } from "~/hooks";
-import { err, layout, State, state } from "~/store";
+import { err, /*layout,*/ State, state } from "~/store";
 
 const Folder = lazy(() => import("./folder/Folder"));
 const File = lazy(() => import("./File"));

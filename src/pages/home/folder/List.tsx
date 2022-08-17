@@ -2,7 +2,6 @@ import { HStack, VStack, Text, Box, Checkbox } from "@hope-ui/solid";
 import {
   batch,
   createEffect,
-  createMemo,
   createSignal,
   For,
   Show,
