@@ -6,7 +6,8 @@
   },
   "preview": {
     "download": "Download",
-    "failed_load_img": "Failed to load image"
+    "failed_load_img": "Failed to load image",
+    "open_with": "Open with ..."
   },
   "password": {
     "have_account": "Have an account?",

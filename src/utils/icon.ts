@@ -33,6 +33,10 @@ const iconMap = {
   epub: FaSolidBook,
   iso: FaSolidCompactDisc,
   m3u8: BsFileEarmarkPlayFill,
+  "doc,docx": BsFileEarmarkWordFill,
+  "xls,xlsx": BsFileEarmarkExcelFill,
+  "ppt,pptx": BsFileEarmarkPptFill,
+  pdf: BsFileEarmarkPdfFill,
 };
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {
@@ -46,19 +50,19 @@ export const getIconByTypeAndExt = (type: number, ext: string) => {
   switch (type) {
     case ObjType.FOLDER:
       return IoFolder;
-    case ObjType.OFFICE: {
-      if (ext === "doc" || ext === "docx") {
-        return BsFileEarmarkWordFill;
-      }
-      if (ext === "xls" || ext === "xlsx") {
-        return BsFileEarmarkExcelFill;
-      }
-      if (ext === "ppt" || ext === "pptx") {
-        return BsFileEarmarkPptFill;
-      } else {
-        return BsFileEarmarkPdfFill;
-      }
-    }
+    // case ObjType.OFFICE: {
+    //   if (ext === "doc" || ext === "docx") {
+    //     return BsFileEarmarkWordFill;
+    //   }
+    //   if (ext === "xls" || ext === "xlsx") {
+    //     return BsFileEarmarkExcelFill;
+    //   }
+    //   if (ext === "ppt" || ext === "pptx") {
+    //     return BsFileEarmarkPptFill;
+    //   } else {
+    //     return BsFileEarmarkPdfFill;
+    //   }
+    // }
     case ObjType.VIDEO:
       return BsFileEarmarkPlayFill;
     case ObjType.AUDIO:
