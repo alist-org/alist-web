@@ -28,7 +28,9 @@
     "copy_url": "Copy URL",
     "preview_page": "Preview Page",
     "down_url": "Download URL",
-    "encode_down_url": "Encode Download URL"
+    "encode_down_url": "Encode Download URL",
+    "mkdir": "New Folder",
+    "new_file": "New File"
   },
   "footer": {
     "manage": "Manage"

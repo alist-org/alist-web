@@ -11,13 +11,13 @@ export interface MonacoEditorProps {
   language?: string;
 }
 let monaco: any;
-const [loading, setLoading] = createSignal(true);
-loader.init().then((m) => {
-  monaco = m;
-  setLoading(false);
-});
 
 export const MonacoEditorLoader = (props: MonacoEditorProps) => {
+  const [loading, setLoading] = createSignal(true);
+  loader.init().then((m) => {
+    monaco = m;
+    setLoading(false);
+  });
   return (
     <MaybeLoading loading={loading()}>
       <MonacoEditor {...props} />

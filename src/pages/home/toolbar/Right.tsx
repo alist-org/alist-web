@@ -13,9 +13,15 @@ import { TbLanguageHiragana } from "solid-icons/tb";
 import { TbCheckbox } from "solid-icons/tb";
 import { toggleCheckbox } from "~/store";
 import { createAnimation } from "motion-signals";
+import { Mkdir } from "./Mkdir";
+import { NewFile } from "./NewFile";
 
 export const Right = () => {
-  const { isOpen, onToggle } = createDisclosure();
+  const { isOpen, onToggle } = createDisclosure({
+    defaultIsOpen: localStorage.getItem("more-open") === "true",
+    onClose: () => localStorage.setItem("more-open", "false"),
+    onOpen: () => localStorage.setItem("more-open", "true"),
+  });
   const margin = createMemo(() => (isOpen() ? "$4" : "$5"));
   const { replay } = createAnimation(
     ".left-toolbar-in",
@@ -55,6 +61,8 @@ export const Right = () => {
           spacing="$1"
         >
           <VStack spacing="$1" class="left-toolbar-in">
+            <NewFile />
+            <Mkdir />
             <RightIcon
               tip="toggle_checkbox"
               as={TbCheckbox}
