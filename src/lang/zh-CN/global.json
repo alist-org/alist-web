@@ -18,6 +18,9 @@
   "no": "否",
   "clear": "清除",
   "choose_folder": "选择文件夹",
+  "choose_or_input_path": "Select folder or input path",
   "disable": "禁用",
-  "enable": "启用"
+  "enable": "启用",
+  "ok": "OK",
+  "back": "Back"
 }
