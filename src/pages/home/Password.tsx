@@ -52,9 +52,9 @@ const Password = () => {
         </Flex>
         <HStack spacing="$2">
           <Button colorScheme="neutral" onClick={back}>
-            {t("home.password.back")}
+            {t("global.back")}
           </Button>
-          <Button onClick={() => refresh(true)}>{t("home.password.ok")}</Button>
+          <Button onClick={() => refresh(true)}>{t("global.ok")}</Button>
         </HStack>
       </HStack>
     </VStack>

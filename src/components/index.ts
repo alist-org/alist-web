@@ -8,3 +8,4 @@ export * from "./LinkWithBase";
 export * from "./Error";
 export * from "./ImageWithError";
 export * from "./Markdown";
+export * from "./ModalInput";

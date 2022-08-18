@@ -1,7 +1,7 @@
 import { createStorageSignal } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
-import { FsGetResp, FsListResp, Obj, StoreObj } from "~/types";
+import { Obj, StoreObj } from "~/types";
 import { log } from "~/utils";
 
 export enum State {
@@ -125,6 +125,10 @@ export const selectedObjs = () => {
 
 export const allChecked = () => {
   return objStore.objs.length === selectedNum();
+};
+
+export const oneChecked = () => {
+  return selectedNum() === 1;
 };
 
 export const haveSelected = () => {

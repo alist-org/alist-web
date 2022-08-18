@@ -129,6 +129,47 @@ const FolderTreeNode = (props: { path: string }) => {
   );
 };
 
+export type ModalFolderChooseProps = {
+  opened: boolean;
+  onClose: () => void;
+  onSubmit?: (text: string) => void;
+  type?: string;
+  defaultValue?: string;
+  loading?: boolean;
+};
+export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
+  const t = useT();
+  const [value, setValue] = createSignal(props.defaultValue ?? "");
+  return (
+    <Modal
+      size="xl"
+      blockScrollOnMount={false}
+      opened={props.opened}
+      onClose={props.onClose}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalCloseButton />
+        <ModalHeader>{t("home.toolbar.choose_dst_folder")}</ModalHeader>
+        <ModalBody>
+          <FolderTree onChange={setValue} />
+        </ModalBody>
+        <ModalFooter display="flex" gap="$2">
+          <Button
+            loading={props.loading}
+            onClick={() => props.onSubmit?.(value())}
+          >
+            {t("global.ok")}
+          </Button>
+          <Button onClick={props.onClose} colorScheme="neutral">
+            {t("global.cancel")}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
+
 export const FolderChooseInput = (props: {
   value: string;
   onChange: (path: string) => void;
