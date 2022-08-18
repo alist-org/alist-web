@@ -100,6 +100,7 @@ const AddOrEdit = () => {
             id="base_path"
             value={user.base_path}
             onChange={(path) => setUser("base_path", path)}
+            onlyFolder
           />
         </FormControl>
         <FormControl w="$full" required>

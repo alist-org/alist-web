@@ -133,18 +133,28 @@ export const FolderChooseInput = (props: {
   value: string;
   onChange: (path: string) => void;
   id?: string;
+  onlyFolder?: boolean;
 }) => {
   const { isOpen, onOpen, onClose } = createDisclosure();
   const t = useT();
   return (
     <>
-      <Input
-        id={props.id}
-        onClick={onOpen}
-        value={props.value}
-        readOnly
-        placeholder={t("global.choose_folder")}
-      />
+      <HStack w="$full" spacing="$2">
+        <Input
+          id={props.id}
+          value={props.value}
+          readOnly={props.onlyFolder}
+          onClick={props.onlyFolder ? onOpen : () => {}}
+          placeholder={t(
+            `global.${
+              props.onlyFolder ? "choose_folder" : "choose_or_input_path"
+            }`
+          )}
+        />
+        <Show when={!props.onlyFolder}>
+          <Button onClick={onOpen}>{t("global.choose")}</Button>
+        </Show>
+      </HStack>
       <Modal size="xl" opened={isOpen()} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
