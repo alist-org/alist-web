@@ -1,3 +1,6 @@
+.markdown-body {
+  width: 100%;
+}
 .markdown-body .octicon {
   display: inline-block;
   fill: currentColor;

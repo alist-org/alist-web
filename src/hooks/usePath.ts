@@ -64,6 +64,7 @@ export const usePath = () => {
       resp,
       (data) => {
         ObjStore.setObj(data);
+        ObjStore.setProvider(data.provider);
         if (data.is_dir) {
           handleFolder(path, 1);
         } else {

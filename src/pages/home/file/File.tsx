@@ -19,8 +19,6 @@ const previews = import.meta.glob("../preview/*.tsx", {
   // import: "default",
 }) as Record<string, () => Promise<{ default: Component }>>;
 
-console.log(fileTypes, previews);
-
 const getPreview = (obj: Obj) => {
   for (const path in fileTypes) {
     const fileType = fileTypes[path];

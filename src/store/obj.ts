@@ -17,11 +17,13 @@ export enum State {
 const [objStore, setObjStore] = createStore<{
   obj: Obj;
   raw_url: string;
+  related: Obj[];
 
   objs: StoreObj[];
-  readme: string;
-  related: Obj[];
   write?: boolean;
+
+  readme: string;
+  provider: string;
   // pageIndex: number;
   // pageSize: number;
   state: State;
@@ -29,9 +31,12 @@ const [objStore, setObjStore] = createStore<{
 }>({
   obj: {} as Obj,
   raw_url: "",
-  objs: [],
-  readme: "",
   related: [],
+
+  objs: [],
+
+  readme: "",
+  provider: "",
   // pageIndex: 1,
   // pageSize: 50,
   state: State.Initial,
@@ -51,6 +56,9 @@ export const ObjStore = {
   },
   setRawUrl: (raw_url: string) => {
     setObjStore("raw_url", raw_url);
+  },
+  setProvider: (provider: string) => {
+    setObjStore("provider", provider);
   },
   setObjs: setObjs,
   setReadme: (readme: string) => setObjStore("readme", readme),

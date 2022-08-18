@@ -19,6 +19,7 @@ export const getPreviewURL = (
   let ans = placehoder;
   ans = ans.replace("$name", name);
   ans = ans.replace("$url", url);
+  ans = ans.replace("$e_url", encodeURIComponent(url));
   ans = ans.replace("$b_url", window.btoa(url));
   ans = ans.replace("$eb_url", encodeURIComponent(window.btoa(url)));
   return ans;
