@@ -90,7 +90,7 @@ const Item = (props: ItemProps) => {
             readOnly={props.flag === Flag.READONLY}
           >
             <SelectTrigger>
-              <SelectPlaceholder>Choose a framework</SelectPlaceholder>
+              <SelectPlaceholder>{t("global.choose")}</SelectPlaceholder>
               <SelectValue />
               <SelectIcon />
             </SelectTrigger>

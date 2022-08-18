@@ -1,13 +1,9 @@
 import { Box, useColorModeValue } from "@hope-ui/solid";
-import axios from "axios";
-import {
-  createMemo,
-  Show,
-  createResource,
-} from "solid-js";
+import { createMemo, Show, createResource } from "solid-js";
 import { Markdown, MaybeLoading } from "~/components";
 import { useUrl } from "~/hooks";
 import { objStore, State } from "~/store";
+import { fetchText } from "~/utils";
 
 export const Readme = () => {
   const cardBg = useColorModeValue("white", "$neutral3");
@@ -33,8 +29,7 @@ export const Readme = () => {
   });
   const fetchContent = async (readme: string) => {
     if (/https?:\/\//g.test(readme)) {
-      const resp = await axios.get(readme, { responseType: "blob" });
-      return await resp.data.text();
+      return await fetchText(readme);
     }
     return readme;
   };

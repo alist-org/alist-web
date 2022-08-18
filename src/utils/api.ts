@@ -1,3 +1,4 @@
+import axios from "axios";
 import { type } from "os";
 import { EmptyResp, FsGetResp, FsListResp, Obj, PageResp, Resp } from "~/types";
 import { r } from ".";
@@ -63,4 +64,12 @@ export const fsPut = () => {};
 
 export const addAria2 = (path: string, urls: string[]) => {
   return r.post("/fs/add_aria2", { path, urls });
+};
+
+export const fetchText = async (url: string) => {
+  const resp = await axios.get(url, {
+    responseType: "blob",
+  });
+  const res = await resp.data.text();
+  return res;
 };

@@ -1,6 +1,9 @@
 import copy from "copy-to-clipboard";
-import { notify } from "~/utils";
+import { createResource } from "solid-js";
+import { objStore } from "~/store";
+import { fetchText, notify } from "~/utils";
 import { useT } from "./useT";
+import { useUrl } from "./useUrl";
 
 export const useUtil = () => {
   const t = useT();
@@ -10,4 +13,12 @@ export const useUtil = () => {
       notify.success(t("global.copied"));
     },
   };
+};
+
+export const useFetchText = () => {
+  const { proxyUrl } = useUrl();
+  const fetchContent = async () => {
+    return fetchText(proxyUrl(objStore.obj, true));
+  };
+  return createResource("", fetchContent);
 };
