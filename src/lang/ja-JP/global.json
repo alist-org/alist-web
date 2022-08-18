@@ -18,6 +18,9 @@
   "no": "No",
   "clear": "Clear",
   "choose_folder": "Select folder",
+  "choose_or_input_path": "Select folder or input path",
   "disable": "Disable",
-  "enable": "Enable"
+  "enable": "Enable",
+  "ok": "OK",
+  "back": "Back"
 }
