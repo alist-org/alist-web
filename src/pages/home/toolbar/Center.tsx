@@ -5,7 +5,7 @@ import { createAnimation } from "motion-signals";
 import { Copy, Move } from "./CopyMove";
 import { Delete } from "./Delete";
 import { Rename } from "./Rename";
-import { CopyURL } from "./CopyUrl";
+import { CopyURL } from "./CopyURL";
 
 export const Center = () => {
   const { replay } = createAnimation(
