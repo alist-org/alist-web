@@ -17,7 +17,7 @@ const Index = () => {
     <HopeProvider config={theme}>
       <ErrorBoundary
         fallback={(err) => {
-          console.log("error", err);
+          console.error("error", err);
           return <Error msg={`System error: ${err.message}`} />;
         }}
       >

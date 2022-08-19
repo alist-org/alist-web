@@ -3,6 +3,7 @@ import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import { Obj, StoreObj } from "~/types";
 import { log } from "~/utils";
+import { keyPressed } from "./key-event";
 
 export enum State {
   Initial, // Initial state
@@ -47,6 +48,7 @@ const [selectedNum, setSelectedNum] = createSignal(0);
 
 const setObjs = (objs: Obj[]) => {
   setSelectedNum(0);
+  lastChecked = { index: -1, selected: false };
   setObjStore("objs", objs);
 };
 
@@ -101,17 +103,43 @@ export const appendObjs = (objs: Obj[]) => {
   );
 };
 
+let lastChecked = {
+  index: -1,
+  selected: false,
+};
+
 export const selectIndex = (index: number, selected: boolean) => {
-  setObjStore(
-    "objs",
-    index,
-    produce((obj) => {
-      if (obj.selected !== selected) {
-        setSelectedNum(selected ? selectedNum() + 1 : selectedNum() - 1);
-      }
-      obj.selected = selected;
-    })
-  );
+  if (
+    keyPressed["Shift"] &&
+    lastChecked.index !== -1 &&
+    lastChecked.selected === selected
+  ) {
+    const start = Math.min(lastChecked.index, index);
+    const end = Math.max(lastChecked.index, index);
+    const curCheckedNum = objStore.objs
+      .slice(start, end + 1)
+      .filter((o) => o.selected).length;
+
+    setObjStore("objs", { from: start, to: end }, () => ({
+      selected: selected,
+    }));
+    // update selected num
+    const newSelectedNum =
+      selectedNum() - curCheckedNum + (selected ? end - start + 1 : 0);
+    setSelectedNum(newSelectedNum);
+  } else {
+    setObjStore(
+      "objs",
+      index,
+      produce((obj) => {
+        if (obj.selected !== selected) {
+          setSelectedNum(selected ? selectedNum() + 1 : selectedNum() - 1);
+        }
+        obj.selected = selected;
+      })
+    );
+  }
+  lastChecked = { index, selected };
 };
 
 export const selectAll = (selected: boolean) => {

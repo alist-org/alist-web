@@ -30,13 +30,13 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       }}
       as={LinkWithPush}
       href={props.obj.name}
-      onMouseEnter={() => {
+      onMouseOver={() => {
         setHover(true);
         if (props.obj.is_dir) {
           setPathAsDir(props.obj.name, true);
         }
       }}
-      onMouseLeave={() => {
+      onMouseOut={() => {
         setHover(false);
       }}
     >
@@ -58,7 +58,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           <Checkbox
             pos="absolute"
             left="$1"
-            top="$1" 
+            top="$1"
             // colorScheme="neutral"
             // @ts-ignore
             on:click={(e) => {

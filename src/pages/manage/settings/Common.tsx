@@ -63,7 +63,6 @@ const CommonSettings = (props: CommonSettingsProps) => {
         <Button
           loading={saveLoading()}
           onClick={async () => {
-            console.log(settings);
             const resp: Resp<{}> = await saveSettings();
             handleRresp(resp, () => notify.success(t("global.save_success")));
           }}
