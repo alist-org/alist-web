@@ -14,7 +14,7 @@ import {
 } from "solid-icons/bs";
 import { SiMetabase } from "solid-icons/si";
 import { CgDatabase } from "solid-icons/cg";
-import { OcWorkflow2 } from 'solid-icons/oc'
+import { OcWorkflow2 } from "solid-icons/oc";
 import { IoCopy, IoHome } from "solid-icons/io";
 import { Component, lazy } from "solid-js";
 import { Group, UserRole } from "~/types";
@@ -37,7 +37,7 @@ export const side_menu_items: SideMenuItem[] = [
     title: "manage.sidemenu.profile",
     icon: BsFingerprint,
     to: "/@manage",
-    role: UserRole.GENERAL,
+    role: UserRole.GUEST,
     component: lazy(() => import("./users/Profile")),
   },
   {
@@ -131,5 +131,6 @@ export const side_menu_items: SideMenuItem[] = [
     title: "manage.sidemenu.home",
     icon: IoHome,
     to: "/",
+    role: UserRole.GUEST,
   },
 ];

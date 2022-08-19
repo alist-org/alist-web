@@ -1,5 +1,6 @@
 import { useColorMode, useColorModeValue } from "@hope-ui/solid";
-import { FaSolidMoon as Moon, FaSolidSun as Sun } from "solid-icons/fa";
+import { IoMoonOutline as Moon } from "solid-icons/io";
+import { FiSun as Sun } from "solid-icons/fi";
 import { RightIcon } from "./Icon";
 
 const SwitchColorMode = () => {

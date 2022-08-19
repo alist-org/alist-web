@@ -36,7 +36,7 @@ export const usePath = () => {
     if (push) {
       path = pathJoin(pathname(), path);
     }
-    log(`set [${path}] as dir`);
+    // log(`set [${path}] as dir`);
     IsDirRecord[path] = true;
   };
 

@@ -9,7 +9,8 @@ import { SwitchColorMode } from "./SwitchColorMode";
 import { RightIcon } from "./Icon";
 import { CgMoreO } from "solid-icons/cg";
 import { SwitchLnaguage } from "~/components";
-import { TbLanguageHiragana } from "solid-icons/tb";
+// import { TbLanguageHiragana } from "solid-icons/tb";
+import { IoLanguageOutline } from "solid-icons/io";
 import { TbCheckbox } from "solid-icons/tb";
 import { toggleCheckbox } from "~/store";
 import { createAnimation } from "motion-signals";
@@ -69,7 +70,7 @@ export const Right = () => {
               onClick={toggleCheckbox}
             />
             <SwitchLnaguage as="span">
-              <RightIcon tip="switch_lang" as={TbLanguageHiragana} />
+              <RightIcon tip="switch_lang" as={IoLanguageOutline} />
             </SwitchLnaguage>
             <SwitchColorMode />
           </VStack>

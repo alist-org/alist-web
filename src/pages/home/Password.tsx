@@ -45,9 +45,9 @@ const Password = () => {
           direction={{ "@initial": "column", "@sm": "row" }}
           columnGap="$1"
         >
-          <Text>{t("home.password.have_account")}</Text>
+          <Text>{t("global.have_account")}</Text>
           <Text color="$info9" as={LinkWithBase} href="/@login">
-            {t("home.password.go_login")}
+            {t("global.go_login")}
           </Text>
         </Flex>
         <HStack spacing="$2">

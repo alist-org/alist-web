@@ -9,11 +9,7 @@
     "failed_load_img": "Failed to load image",
     "open_with": "Open with ..."
   },
-  "password": {
-    "have_account": "Have an account?",
-    "go_login": "Go to login",
-    "input_password": "Please input password"
-  },
+  "input_password": "Please input password",
   "toolbar": {
     "more": "More",
     "toggle_theme": "Toggle Theme",
