@@ -5,14 +5,14 @@
     "modified": "修改时间"
   },
   "preview": {
-    "download": "Download",
-    "failed_load_img": "Failed to load image",
-    "open_with": "Open with ..."
+    "download": "下载",
+    "failed_load_img": "载入图像失败",
+    "open_with": "使用... 打开"
   },
   "password": {
-    "have_account": "Have an account?",
-    "go_login": "Go to login",
-    "input_password": "Please input password"
+    "have_account": "已有账号？",
+    "go_login": "转到登录",
+    "input_password": "请输入密码"
   },
   "toolbar": {
     "more": "更多",
@@ -20,20 +20,21 @@
     "switch_lang": "切换语言",
     "toggle_checkbox": "开关复选框",
     "rename": "重命名",
-    "input_new_name": "Input new name",
-    "only_one_tip": "Only one object can be selected to rename",
+    "input_new_name": "输入一个新名称",
+    "only_one_tips": "Only one object can be selected to rename",
     "move": "移动",
     "copy": "复制",
-    "choose_dst_folder": "Select destination folder",
+    "choose_dst_folder": "选择目标文件夹",
     "delete": "删除",
-    "copy_url": "Copy URL",
-    "preview_page": "Preview Page",
-    "down_url": "Download URL",
-    "encode_down_url": "Encode Download URL",
-    "mkdir": "New Folder",
-    "input_dir_name": "Input folder name",
-    "new_file": "New File",
-    "input_filename": "Input filename"
+    "delete_tips": "Are you sure to delete the selected object?",
+    "copy_url": "复制链接",
+    "preview_page": "预览页面",
+    "down_url": "下载链接",
+    "encode_down_url": "编码下载链接",
+    "mkdir": "新建文件夹",
+    "input_dir_name": "输入文件夹名称",
+    "new_file": "新建文件",
+    "input_filename": "输入文件名"
   },
   "footer": {
     "manage": "管理"
