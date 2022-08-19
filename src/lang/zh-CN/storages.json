@@ -1,7 +1,7 @@
 {
   "common": {
     "mount_path": "挂载路径",
-    "driver": "驱动器",
+    "driver": "驱动",
     "drivers": {
       "Local": "本机存储"
     },
@@ -27,10 +27,10 @@
       "asc": "升序",
       "desc": "降序"
     },
-    "extract_folder": "抽取文件夹",
+    "extract_folder": "提取文件夹",
     "extract_folders": {
-      "front": "抽取到最前",
-      "back": "抽取到最后"
+      "front": "提取到最前",
+      "back": "提取到最后"
     }
   },
   "Local": {
