@@ -9,11 +9,7 @@
     "failed_load_img": "载入图像失败",
     "open_with": "使用... 打开"
   },
-  "password": {
-    "have_account": "已有账号？",
-    "go_login": "转到登录",
-    "input_password": "请输入密码"
-  },
+  "input_password": "Please input password",
   "toolbar": {
     "more": "更多",
     "toggle_theme": "切换主题",
