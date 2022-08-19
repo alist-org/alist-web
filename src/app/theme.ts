@@ -148,6 +148,13 @@ const theme: HopeThemeConfig = {
         _active: { transform: "scale(.95)", transition: "0.1s" },
       },
     },
+    Modal: {
+      baseStyle: {
+        content: {
+          rounded: "$lg",
+        },
+      },
+    },
   },
 };
 

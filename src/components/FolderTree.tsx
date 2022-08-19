@@ -155,14 +155,14 @@ export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
           <FolderTree onChange={setValue} />
         </ModalBody>
         <ModalFooter display="flex" gap="$2">
+          <Button onClick={props.onClose} colorScheme="neutral">
+            {t("global.cancel")}
+          </Button>
           <Button
             loading={props.loading}
             onClick={() => props.onSubmit?.(value())}
           >
             {t("global.ok")}
-          </Button>
-          <Button onClick={props.onClose} colorScheme="neutral">
-            {t("global.cancel")}
           </Button>
         </ModalFooter>
       </ModalContent>

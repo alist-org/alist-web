@@ -9,7 +9,7 @@ import {
   notificationService,
 } from "@hope-ui/solid";
 import { JSXElement } from "solid-js";
-import { alphaBgColor } from ".";
+import { alphaBgColor, firstUpperCase } from ".";
 
 const notify = {
   render: (element: JSXElement) => {
@@ -41,7 +41,7 @@ const notify = {
   success: (message: string) => {
     notificationService.show({
       status: "success",
-      title: message,
+      title: firstUpperCase(message),
       // render: (props) => (
       //   <Alert status="success" shadow="$md">
       //     <AlertIcon mr="$2_5" />
@@ -54,7 +54,7 @@ const notify = {
   error: (message: string) => {
     notificationService.show({
       status: "danger",
-      title: message,
+      title: firstUpperCase(message),
       // render: (props) => (
       //   <Alert status="danger" shadow="$md">
       //     <AlertIcon mr="$2_5" />
@@ -67,7 +67,7 @@ const notify = {
   info: (message: string) => {
     notificationService.show({
       status: "info",
-      title: message,
+      title: firstUpperCase(message),
       // render: (props) => (
       //   <Alert status="info" shadow="$md">
       //     <AlertIcon mr="$2_5" />
@@ -80,7 +80,7 @@ const notify = {
   warning: (message: string) => {
     notificationService.show({
       status: "warning",
-      title: message,
+      title: firstUpperCase(message),
       // render: (props) => (
       //   <Alert status="warning" shadow="$md">
       //     <AlertIcon mr="$2_5" />

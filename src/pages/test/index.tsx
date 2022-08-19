@@ -1,6 +1,11 @@
 import { Box, Button, Grid, Heading, Input } from "@hope-ui/solid";
 import { useI18n } from "@solid-primitives/i18n";
 
+const receiveFunc = (func: Function)=>{
+
+}
+
+
 const Index = () => {
   const [t] = useI18n();
   return (

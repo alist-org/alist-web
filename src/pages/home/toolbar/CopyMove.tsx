@@ -2,24 +2,68 @@ import { createDisclosure } from "@hope-ui/solid";
 import { OcFilemoved2 } from "solid-icons/oc";
 import { TbCopy } from "solid-icons/tb";
 import { ModalFolderChoose } from "~/components";
+import { useFetch, usePath, useRouter } from "~/hooks";
+import { selectedObjs } from "~/store";
+import {
+  fsCopy,
+  fsMove,
+  handleRresp,
+  handleRrespWithNotifySuccess,
+} from "~/utils";
 import { CenterIcon } from "./Icon";
 
 export const Copy = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();
+  const [loading, ok] = useFetch(fsCopy);
+  const { pathname } = useRouter();
+  const { refresh } = usePath();
   return (
     <>
       <CenterIcon tip="copy" as={TbCopy} onClick={onOpen} />
-      <ModalFolderChoose opened={isOpen()} onClose={onClose} />
+      <ModalFolderChoose
+        opened={isOpen()}
+        onClose={onClose}
+        loading={loading()}
+        onSubmit={async (dst) => {
+          const resp = await ok(
+            pathname(),
+            dst,
+            selectedObjs().map((obj) => obj.name)
+          );
+          handleRrespWithNotifySuccess(resp, () => {
+            refresh();
+            onClose();
+          });
+        }}
+      />
     </>
   );
 };
 
 export const Move = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();
+  const [loading, ok] = useFetch(fsMove);
+  const { pathname } = useRouter();
+  const { refresh } = usePath();
   return (
     <>
       <CenterIcon tip="move" p="$1_5" as={OcFilemoved2} onClick={onOpen} />
-      <ModalFolderChoose opened={isOpen()} onClose={onClose} />
+      <ModalFolderChoose
+        opened={isOpen()}
+        onClose={onClose}
+        loading={loading()}
+        onSubmit={async (dst) => {
+          const resp = await ok(
+            pathname(),
+            dst,
+            selectedObjs().map((obj) => obj.name)
+          );
+          handleRrespWithNotifySuccess(resp, () => {
+            refresh();
+            onClose();
+          });
+        }}
+      />
     </>
     // <CenterIcon tip="move" viewBox="0 0 1024 1024" fill="currentColor">
     //   <path d="M840.704 256h-36.992c-82.624 0-82.496-128-140.864-128H311.232C245.44 128 192 181.44 192 247.296V384h64V247.296C256 216.832 280.832 192 311.232 192h339.456c3.968 6.144 9.024 15.36 12.672 22.208C684.8 253.76 720.704 320 803.712 320h36.992C869.12 320 896 351.104 896 384v392.768c0 30.4-24.832 55.232-55.296 55.232H311.232c-30.4 0-55.232-24.832-55.232-55.232V704h-64v72.768C192 842.624 245.44 896 311.232 896H840.64C906.56 896 960 842.624 960 776.768V384c0-65.856-53.44-128-119.296-128z"></path>

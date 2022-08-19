@@ -7,13 +7,15 @@ export const CopyURL = () => {
   const t = useT();
   const { previewPage, rawUrl } = useSelectedUrl();
   const { copy } = useUtil();
+  const colorScheme = "neutral";
   return (
-    <Menu>
+    <Menu placement="top" offset={10}>
       <MenuTrigger as="span">
         <CenterIcon tip="copy_url" as={TbCopy} />
       </MenuTrigger>
       <MenuContent>
         <MenuItem
+          colorScheme={colorScheme}
           onSelect={() => {
             copy(previewPage());
           }}
@@ -21,6 +23,7 @@ export const CopyURL = () => {
           {t("home.toolbar.preview_page")}
         </MenuItem>
         <MenuItem
+          colorScheme={colorScheme}
           onSelect={() => {
             copy(rawUrl());
           }}
@@ -28,6 +31,7 @@ export const CopyURL = () => {
           {t("home.toolbar.down_url")}
         </MenuItem>
         <MenuItem
+          colorScheme={colorScheme}
           onSelect={() => {
             copy(rawUrl(true));
           }}

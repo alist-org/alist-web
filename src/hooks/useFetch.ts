@@ -1,17 +1,20 @@
 import { Accessor, createSignal } from "solid-js";
 import { Resp } from "~/types";
 
-export const useLoading = <T, D>(
-  p: (arg?: D) => Promise<T>,
+export const useLoading = <T>(
+  p: (...arg: any[]) => Promise<T>,
   fetch?: boolean,
   t?: boolean // initial loading true
-): [Accessor<boolean>, (arg?: D) => Promise<unknown extends T ? any : T>] => {
+): [
+  Accessor<boolean>,
+  (...arg: any[]) => Promise<unknown extends T ? any : T>
+] => {
   const [loading, setLoading] = createSignal<boolean>(t ?? false);
   return [
     loading,
-    async (arg?: D) => {
+    async (...arg: any[]) => {
       setLoading(true);
-      const data = await p(arg);
+      const data = await p(...arg);
       if (!fetch || (data as unknown as Resp<{}>).code !== 401) {
         // why?
         // because if setLoading(false) here will rerender before navigate
@@ -23,27 +26,27 @@ export const useLoading = <T, D>(
   ];
 };
 
-export const useFetch = <T, D>(
-  p: (arg?: D) => Promise<Resp<T>>,
+export const useFetch = <T>(
+  p: (...arg: any[]) => Promise<Resp<T>>,
   loading?: boolean
 ): [
   Accessor<boolean>,
-  (arg?: D) => Promise<Resp<unknown extends T ? any : T>>
+  (...arg: Parameters<typeof p>) => Promise<Resp<unknown extends T ? any : T>>
 ] => {
   return useLoading(p, true, loading);
 };
 
 const useListLoading = <T, K, D>(
-  p: (key: K, arg?: D) => Promise<T>,
+  p: (key: K, ...arg: any[]) => Promise<T>,
   fetch?: boolean,
   initial?: K
-): [Accessor<K | undefined>, (key: K, arg?: D) => Promise<any>] => {
+): [Accessor<K | undefined>, (key: K, ...arg: any[]) => Promise<any>] => {
   const [loading, setLoading] = createSignal<K | undefined>(initial);
   return [
     loading,
-    async (key: K, arg?: D) => {
+    async (key: K, ...arg: any[]) => {
       setLoading(() => key);
-      const data: unknown = await p(key, arg);
+      const data: unknown = await p(key, ...arg);
       if (!fetch || (data as Resp<{}>).code !== 401) {
         setLoading(undefined);
       }
@@ -53,8 +56,8 @@ const useListLoading = <T, K, D>(
 };
 
 export const useListFetch = <T, K, D>(
-  p: (key: K, arg?: D) => Promise<Resp<T>>,
+  p: (key: K, ...arg: any[]) => Promise<Resp<T>>,
   initial?: K
-): [Accessor<K | undefined>, (key: K, arg?: D) => Promise<any>] => {
+): [Accessor<K | undefined>, (key: K, ...arg: any[]) => Promise<any>] => {
   return useListLoading(p, true, initial);
 };

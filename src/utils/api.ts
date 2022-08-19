@@ -60,7 +60,13 @@ export const fsRemove = (dir: string, names: string[]): EmptyRespPromise => {
   return r.post("/fs/remove", { dir, names });
 };
 
-export const fsPut = () => {};
+export const fsNewFile = (path: string): EmptyRespPromise => {
+  return r.put("/fs/put", undefined, {
+    headers: {
+      "File-Path": path,
+    },
+  });
+};
 
 export const addAria2 = (path: string, urls: string[]) => {
   return r.post("/fs/add_aria2", { path, urls });

@@ -20,7 +20,7 @@ const IsDirRecord: Record<string, boolean> = {};
 
 export const usePath = () => {
   const { pathname, setSearchParams } = useRouter();
-  const [, getObj] = useFetch((path?: string) => fsGet(path, password()));
+  const [, getObj] = useFetch((path: string) => fsGet(path, password()));
   const [, getObjs] = useFetch(
     (arg?: { path: string; index?: number; size?: number }) => {
       const page = {
@@ -93,7 +93,7 @@ export const usePath = () => {
         if (append) {
           appendObjs(data.content);
         } else {
-          ObjStore.setObjs(data.content);
+          ObjStore.setObjs(data.content ?? []);
         }
         ObjStore.setReadme(data.readme);
         ObjStore.setWrite(data.write);
