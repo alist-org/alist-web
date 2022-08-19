@@ -1,6 +1,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
+import legacy from "@vitejs/plugin-legacy";
 
 export default defineConfig({
   resolve: {
@@ -9,7 +10,12 @@ export default defineConfig({
       "@solidjs/router": path.resolve(__dirname, "solid-router/src"),
     },
   },
-  plugins: [solidPlugin()],
+  plugins: [
+    solidPlugin(),
+    legacy({
+      targets: ["defaults"],
+    }),
+  ],
   build: {
     target: "esnext",
     // polyfillDynamicImport: false,
