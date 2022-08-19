@@ -1,18 +1,18 @@
 {
-  "refresh": "更新",
+  "refresh": "刷新",
   "add": "添加",
   "edit": "编辑",
   "delete": "删除",
   "save": "保存",
   "update": "更新",
-  "copied": "复制成功",
+  "copied": "已复制",
   "delete_success": "删除成功!",
   "save_success": "保存成功",
   "update_success": "更新成功",
   "choose": "选择",
   "confirm": "确认",
   "cancel": "取消",
-  "delete_confirm": "你确认要删除'{{name}}'?",
+  "delete_confirm": "确认要删除 [{{name}}] 吗？",
   "operations": "操作",
   "yes": "是",
   "no": "否",
@@ -22,5 +22,7 @@
   "disable": "禁用",
   "enable": "启用",
   "ok": "确定",
-  "back": "返回"
+  "back": "返回",
+  "have_account": "Have an account?",
+  "go_login": "Go to login"
 }
