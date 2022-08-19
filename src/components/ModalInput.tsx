@@ -28,17 +28,24 @@ export const ModalInput = (props: ModalInputProps) => {
       blockScrollOnMount={false}
       opened={props.opened}
       onClose={props.onClose}
+      initialFocus="#modal-input"
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalCloseButton />
+        {/* <ModalCloseButton /> */}
         <ModalHeader>{t(props.title)}</ModalHeader>
         <ModalBody>
           <Input
+            id="modal-input"
             type={props.type}
             value={value()}
             onInput={(e) => {
               setValue(e.currentTarget.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                props.onSubmit?.(value());
+              }
             }}
           />
         </ModalBody>

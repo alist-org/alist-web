@@ -44,6 +44,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
       <HStack class="name-box" spacing="$1" w={cols[0].w}>
         <Show when={checkboxOpen()}>
           <Checkbox
+            // colorScheme="neutral"
             // @ts-ignore
             on:click={(e) => {
               e.stopPropagation();

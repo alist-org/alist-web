@@ -149,7 +149,7 @@ export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
     >
       <ModalOverlay />
       <ModalContent>
-        <ModalCloseButton />
+        {/* <ModalCloseButton /> */}
         <ModalHeader>{t("home.toolbar.choose_dst_folder")}</ModalHeader>
         <ModalBody>
           <FolderTree onChange={setValue} />

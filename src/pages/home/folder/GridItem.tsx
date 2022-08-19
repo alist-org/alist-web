@@ -1,8 +1,8 @@
-import { Center, VStack, Icon, Text, Tooltip } from "@hope-ui/solid";
-import { Show } from "solid-js";
+import { Center, VStack, Icon, Text, Tooltip, Checkbox } from "@hope-ui/solid";
+import { createMemo, createSignal, Show } from "solid-js";
 import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
 import { usePath } from "~/hooks";
-import { getIconColor } from "~/store";
+import { checkboxOpen, getIconColor, selectIndex } from "~/store";
 import { ObjType, StoreObj } from "~/types";
 import { bus, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
@@ -11,6 +11,10 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAsDir } = usePath();
   const objIcon = (
     <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />
+  );
+  const [hover, setHover] = createSignal(false);
+  const showCheckbox = createMemo(
+    () => checkboxOpen() && (hover() || props.obj.selected)
   );
   return (
     <VStack
@@ -27,14 +31,19 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       as={LinkWithPush}
       href={props.obj.name}
       onMouseEnter={() => {
+        setHover(true);
         if (props.obj.is_dir) {
           setPathAsDir(props.obj.name, true);
         }
+      }}
+      onMouseLeave={() => {
+        setHover(false);
       }}
     >
       <Center
         class="item-thumbnail"
         h="70px"
+        w="$full"
         // @ts-ignore
         on:click={(e) => {
           if (props.obj.type === ObjType.IMAGE) {
@@ -43,7 +52,24 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
             bus.emit("gallery", props.obj.name);
           }
         }}
+        pos="relative"
       >
+        <Show when={showCheckbox()}>
+          <Checkbox
+            pos="absolute"
+            left="$1"
+            top="$1" 
+            // colorScheme="neutral"
+            // @ts-ignore
+            on:click={(e) => {
+              e.stopPropagation();
+            }}
+            checked={props.obj.selected}
+            onChange={(e: any) => {
+              selectIndex(props.index, e.target.checked);
+            }}
+          />
+        </Show>
         <Show when={props.obj.thumb} fallback={objIcon}>
           <ImageWithError
             maxH="$full"
