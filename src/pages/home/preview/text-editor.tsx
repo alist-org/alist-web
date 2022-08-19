@@ -19,7 +19,7 @@ const TextEditor = () => {
   const t = useT();
   return (
     <MaybeLoading loading={content.loading}>
-      <VStack w="$full" alignItems="start">
+      <VStack w="$full" alignItems="start" spacing="$2">
         <MonacoEditorLoader
           value={content()}
           theme={theme()}

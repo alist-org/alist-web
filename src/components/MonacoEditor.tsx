@@ -2,7 +2,13 @@ import { Box } from "@hope-ui/solid";
 import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import { MaybeLoading } from "./FullLoading";
 import loader from "@monaco-editor/loader";
+import { monaco_cdn } from "~/utils";
 
+loader.config({
+  paths: {
+    vs: monaco_cdn,
+  },
+});
 export interface MonacoEditorProps {
   value: string;
   onChange?: (value: string) => void;

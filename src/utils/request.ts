@@ -1,6 +1,5 @@
 import axios from "axios";
-import { api } from "./base_url";
-import { log } from "./log";
+import { api, log } from ".";
 
 const instance = axios.create({
   baseURL: api + "/api",

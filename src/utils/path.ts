@@ -1,4 +1,4 @@
-import { base_path } from "./base_url";
+import { base_path } from ".";
 
 export const standardizePath = (path: string, noRootSlash?: boolean) => {
   if (path.endsWith("/")) {

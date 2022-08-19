@@ -1,4 +1,4 @@
-export * from "./base_url";
+export * from "./config";
 export * from "./bus";
 export * from "./log";
 export * from "./notify";

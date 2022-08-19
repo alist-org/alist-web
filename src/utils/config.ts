@@ -1,7 +1,5 @@
 // api and base_path both don't endsWith /
 
-import { pathJoin } from "./path";
-
 export let base_path = "";
 export const setBasePath = (path: string) => {
   base_path = path;
@@ -26,3 +24,7 @@ if (api === "/") {
 if (api.endsWith("/")) {
   api = api.slice(0, -1);
 }
+
+export const monaco_cdn =
+  window.ALIST.monaco_cdn ||
+  "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/monaco-editor/0.33.0-dev.20220228/min/vs";
