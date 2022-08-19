@@ -22,5 +22,7 @@
   "disable": "Disable",
   "enable": "Enable",
   "ok": "OK",
-  "back": "Back"
+  "back": "Back",
+  "have_account": "Have an account?",
+  "go_login": "Go to login"
 }
