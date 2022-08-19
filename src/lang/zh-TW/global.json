@@ -22,5 +22,7 @@
   "disable": "禁用",
   "enable": "啟用",
   "ok": "OK",
-  "back": "Back"
+  "back": "Back",
+  "have_account": "Have an account?",
+  "go_login": "Go to login"
 }
