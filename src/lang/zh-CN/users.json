@@ -26,6 +26,6 @@
   "scan_qr": "扫描二维码保存密钥",
   "input_code": "输入您的双重验证应用中显示的验证码",
   "verify": "验证",
-  "guest_tips": "You are currently visiting as a guest.",
-  "modify_nothing": "So you cannot modify anything in the manage page."
+  "guest_tips": "您正在作为访客访问。",
+  "modify_nothing": "所以您不能在管理页面中修改任何内容。"
 }
