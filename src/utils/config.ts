@@ -14,7 +14,7 @@ if (window.ALIST.base_path) {
   setBasePath(window.ALIST.base_path);
 }
 
-export let api = import.meta.env.VITE_SERVER_URL as string;
+export let api = import.meta.env.VITE_API_URL as string;
 if (window.ALIST.api) {
   api = window.ALIST.api;
 }

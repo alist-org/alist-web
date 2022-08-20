@@ -2,6 +2,7 @@ import path from "path";
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 import legacy from "@vitejs/plugin-legacy";
+import { dynamicBase } from "vite-plugin-dynamic-base";
 
 export default defineConfig({
   resolve: {
@@ -15,9 +16,25 @@ export default defineConfig({
     legacy({
       targets: ["defaults"],
     }),
+    dynamicBase({
+      // dynamic public path var string, default window.__dynamic_base__
+      publicPath: " window.__dynamic_base__",
+      // dynamic load resources on index.html, default false. maybe change default true
+      transformIndexHtml: true,
+    }),
   ],
+  base: process.env.NODE_ENV === "production" ? "/__dynamic_base__/" : "/",
+  // base: "/",
   build: {
-    target: "esnext",
+    target: "es2015", //next
     // polyfillDynamicImport: false,
   },
+  // experimental: {
+  //   renderBuiltUrl: (filename, { type, hostId, hostType }) => {
+  //     if (type === "asset") {
+  //       return { runtime: `window.ALIST.cdn/${filename}` };
+  //     }
+  //     return { relative: true };
+  //   },
+  // },
 });

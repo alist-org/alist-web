@@ -11,16 +11,17 @@
       href="https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg"
     />
     <title>Loading...</title>
-  </head>
-  <body>
     <script>
       window.ALIST = {
-        cdn: "/CDN_URL",
+        cdn: undefined,
         monaco_cdn: undefined,
         base_path: undefined,
         api: undefined,
       };
+      window.__dynamic_base__ = window.ALIST.cdn || "";
     </script>
+  </head>
+  <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
