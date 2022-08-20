@@ -22,7 +22,10 @@ const previews = import.meta.glob("../preview/*.tsx", {
 const getPreview = (obj: Obj) => {
   for (const path in fileTypes) {
     const fileType = fileTypes[path];
-    if (fileType.type === obj.type || fileType.exts.includes(ext(obj.name))) {
+    if (
+      fileType.type === obj.type ||
+      fileType.exts.includes(ext(obj.name).toLowerCase())
+    ) {
       return lazy(previews[path]);
     }
   }

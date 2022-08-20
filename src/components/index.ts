@@ -5,7 +5,7 @@ export * from "./Hello";
 export * from "./FolderTree";
 export * from "./Wether";
 export * from "./LinkWithBase";
-export * from "./Error";
 export * from "./ImageWithError";
 export * from "./Markdown";
 export * from "./ModalInput";
+export * from "./Base";
