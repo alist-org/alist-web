@@ -33,6 +33,7 @@
     "input_filename": "输入文件名"
   },
   "footer": {
+    "powered_by": "Powered by AList",
     "manage": "管理"
   }
 }
