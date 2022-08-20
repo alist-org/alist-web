@@ -1,4 +1,4 @@
-import { ext, recordToArray } from "~/utils";
+import { ext, recordToArray, strToRegExp } from "~/utils";
 
 const settings: Record<string, string> = {};
 
@@ -9,6 +9,10 @@ export const setSettings = (items: Record<string, string>) => {
 };
 
 export const getSetting = (key: string) => settings[key] ?? "";
+export const getSettingBool = (key: string) => {
+  const value = getSetting(key);
+  return value === "true" || value === "1";
+};
 export const getSettingNumber = (key: string) =>
   parseInt(getSetting(key) === "" ? "0" : getSetting(key));
 export const getIconColor = () => getSetting("main_color") || "#1890ff";
@@ -35,9 +39,16 @@ const getPreviews = (): Previews => {
 
 export const getPreviewsByName = (name: string) => {
   const extension = ext(name);
+  const res: { key: string; value: string }[] = [];
   for (const key in getPreviews()) {
-    if (key.split(",").includes(extension)) {
-      return recordToArray(getPreviews()[key]);
+    if (key.startsWith("/")) {
+      const reg = strToRegExp(key);
+      if (reg.test(extension)) {
+        res.push(...recordToArray(getPreviews()[key]));
+      }
+    } else if (key.split(",").includes(extension)) {
+      res.push(...recordToArray(getPreviews()[key]));
     }
   }
+  return res;
 };

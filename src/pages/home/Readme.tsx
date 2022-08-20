@@ -1,5 +1,5 @@
 import { Box, useColorModeValue } from "@hope-ui/solid";
-import { createMemo, Show, createResource } from "solid-js";
+import { createMemo, Show, createResource, on } from "solid-js";
 import { Markdown, MaybeLoading } from "~/components";
 import { useUrl } from "~/hooks";
 import { objStore, State } from "~/store";
@@ -8,25 +8,32 @@ import { fetchText } from "~/utils";
 export const Readme = () => {
   const cardBg = useColorModeValue("white", "$neutral3");
   const { proxyUrl } = useUrl();
-  const readme = createMemo(() => {
-    if (
-      ![State.FetchingMore, State.Folder, State.File].includes(objStore.state)
-    ) {
-      return "";
-    }
-    if (objStore.readme) {
-      return objStore.readme;
-    }
-    if ([State.FetchingMore, State.Folder].includes(objStore.state)) {
-      const obj = objStore.objs.find(
-        (item) => item.name.toLowerCase() === "readme.md"
-      );
-      if (obj) {
-        return proxyUrl(obj, true);
+  const readme = createMemo(
+    on(
+      () => objStore.state,
+      () => {
+        if (
+          ![State.FetchingMore, State.Folder, State.File].includes(
+            objStore.state
+          )
+        ) {
+          return "";
+        }
+        if (objStore.readme) {
+          return objStore.readme;
+        }
+        if ([State.FetchingMore, State.Folder].includes(objStore.state)) {
+          const obj = objStore.objs.find(
+            (item) => item.name.toLowerCase() === "readme.md"
+          );
+          if (obj) {
+            return proxyUrl(obj, true);
+          }
+        }
+        return "";
       }
-    }
-    return "";
-  });
+    )
+  );
   const fetchContent = async (readme: string) => {
     if (/https?:\/\//g.test(readme)) {
       return await fetchText(readme);

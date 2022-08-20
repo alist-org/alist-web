@@ -10,20 +10,7 @@ import { createMemo, For, Show } from "solid-js";
 import { useT } from "~/hooks";
 import { getPreviewsByName, objStore } from "~/store";
 import { FaSolidAngleDown } from "solid-icons/fa";
-
-export const getPreviewURL = (
-  placehoder: string,
-  url: string,
-  name: string
-) => {
-  let ans = placehoder;
-  ans = ans.replace("$name", name);
-  ans = ans.replace("$url", url);
-  ans = ans.replace("$e_url", encodeURIComponent(url));
-  ans = ans.replace("$b_url", window.btoa(url));
-  ans = ans.replace("$eb_url", encodeURIComponent(window.btoa(url)));
-  return ans;
-};
+import { convertURL } from "~/utils";
 
 export const ExternalPreview = () => {
   const t = useT();
@@ -45,7 +32,8 @@ export const ExternalPreview = () => {
             {(preview) => (
               <MenuItem
                 as="a"
-                href={getPreviewURL(
+                target="_blank"
+                href={convertURL(
                   preview.value,
                   objStore.raw_url,
                   objStore.obj.name

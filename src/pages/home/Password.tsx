@@ -46,7 +46,11 @@ const Password = () => {
           columnGap="$1"
         >
           <Text>{t("global.have_account")}</Text>
-          <Text color="$info9" as={LinkWithBase} href="/@login">
+          <Text
+            color="$info9"
+            as={LinkWithBase}
+            href={`/@login?redirect=${encodeURIComponent(location.pathname)}`}
+          >
             {t("global.go_login")}
           </Text>
         </Flex>

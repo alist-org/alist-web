@@ -69,7 +69,7 @@ export const usePath = () => {
           handleFolder(path, 1);
         } else {
           ObjStore.setReadme(data.readme);
-          ObjStore.setRelated(data.related);
+          ObjStore.setRelated(data.related ?? []);
           ObjStore.setRawUrl(data.raw_url);
           ObjStore.setState(State.File);
         }

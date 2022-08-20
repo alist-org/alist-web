@@ -50,3 +50,21 @@ export function formatDate(dateStr: string) {
     full(sec)
   );
 }
+
+export const convertURL = (scheme: string, url: string, name: string) => {
+  let ans = scheme;
+  ans = ans.replace("$name", name);
+  ans = ans.replace("$url", url);
+  ans = ans.replace("$e_url", encodeURIComponent(url));
+  ans = ans.replace("$b_url", window.btoa(url));
+  ans = ans.replace("$eb_url", encodeURIComponent(window.btoa(url)));
+  return ans;
+};
+
+export const strToRegExp = (str: string) => {
+  str = str.trim();
+  let pattern = str.replace(/^\/(.*)\/([a-z]*)$/, "$1");
+  let args = str.replace(/^\/(.*)\/([a-z]*)$/, "$2");
+  const reg = new RegExp(pattern, args);
+  return reg;
+};

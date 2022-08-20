@@ -33,6 +33,7 @@
     "input_filename": "Input filename"
   },
   "footer": {
+    "powered_by": "Powered by AList",
     "manage": "Manage"
   }
 }

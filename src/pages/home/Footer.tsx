@@ -9,7 +9,7 @@ export const Footer = () => {
     <VStack class="footer" w="$full" py="$4">
       <HStack spacing="$1">
         <Anchor href="https://github.com/Xhofe/alist" external>
-          Powered by AList
+          {t("home.footer.powered_by")}
         </Anchor>
         <span>|</span>
         <AnchorWithBase as={Link} href="/@manage">

@@ -6,7 +6,14 @@ import {
   useSearchParams,
 } from "@solidjs/router";
 import { createMemo } from "solid-js";
-import { encodePath, joinBase, log, pathJoin, trimBase } from "~/utils";
+import {
+  encodePath,
+  joinBase,
+  log,
+  pathDir,
+  pathJoin,
+  trimBase,
+} from "~/utils";
 
 const useRouter = () => {
   const navigate = useNavigate();
@@ -24,6 +31,9 @@ const useRouter = () => {
       }
       log("to:", path);
       navigate(path, options);
+    },
+    replace: (to: string) => {
+      navigate(encodePath(pathJoin(pathDir(location.pathname), to), true));
     },
     pushHref: (to: string): string => {
       return encodePath(pathJoin(location.pathname, to));
