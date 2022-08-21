@@ -23,7 +23,7 @@ import Artplayer from "artplayer";
 import flvjs from "flv.js";
 import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
-import { ExternalPreview } from "../file/ExternalPreview";
+import { OpenWith } from "../file/open-with";
 
 export const fileType = {
   type: ObjType.VIDEO,
@@ -188,7 +188,7 @@ const Preview = () => {
             );
           }}
         </For>
-        <ExternalPreview />
+        <OpenWith />
       </Flex>
     </VStack>
   );

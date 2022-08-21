@@ -3,12 +3,7 @@ import { BoxWithFullScreen, SelectWrapper } from "~/components";
 import { getSetting, objStore } from "~/store";
 import { hope, HStack, VStack } from "@hope-ui/solid";
 import { convertURL, recordToArray } from "~/utils";
-import { ExternalPreview } from "../file/ExternalPreview";
-
-export const fileType = {
-  type: -1,
-  exts: ["pdf"],
-};
+import { OpenWith } from "../file/open-with";
 
 const PdfPreview = () => {
   const previews = createMemo(() => {
@@ -35,7 +30,7 @@ const PdfPreview = () => {
             label: preview.key,
           }))}
         />
-        <ExternalPreview />
+        <OpenWith />
       </HStack>
       <BoxWithFullScreen w="$full" h="70vh">
         <hope.iframe

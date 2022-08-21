@@ -12,13 +12,13 @@ import { getPreviewsByName, objStore } from "~/store";
 import { FaSolidAngleDown } from "solid-icons/fa";
 import { convertURL } from "~/utils";
 
-export const ExternalPreview = () => {
+export const OpenWith = () => {
   const t = useT();
   const previews = createMemo(() => {
     return getPreviewsByName(objStore.obj.name);
   });
   return (
-    <Show when={previews()}>
+    <Show when={previews().length}>
       <Menu>
         <MenuTrigger
           as={Button}

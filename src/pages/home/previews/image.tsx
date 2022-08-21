@@ -3,11 +3,6 @@ import { useT } from "~/hooks";
 import { objStore } from "~/store";
 import { ObjType } from "~/types";
 
-export const fileType = {
-  type: ObjType.IMAGE,
-  exts: [],
-};
-
 const Preview = () => {
   const t = useT();
   return (

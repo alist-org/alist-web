@@ -79,6 +79,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
             fallback={<CenterLoding size="lg" />}
             fallbackErr={objIcon}
             src={props.obj.thumb}
+            loading="lazy"
           />
         </Show>
       </Center>

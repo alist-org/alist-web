@@ -1,42 +1,31 @@
-import { Component, createMemo, lazy, Show } from "solid-js";
+import { HStack, VStack } from "@hope-ui/solid";
+import { createMemo, createSignal, Show } from "solid-js";
 import { Dynamic } from "solid-js/web";
+import { SelectWrapper } from "~/components";
 import { objStore } from "~/store";
-import { Obj, ObjType } from "~/types";
-import { ext } from "~/utils";
-import { CommonPreview } from "./Common";
-
-interface FileType {
-  type: ObjType;
-  exts: string[];
-}
-
-const fileTypes = import.meta.glob("../preview/*.tsx", {
-  import: "fileType",
-  eager: true,
-}) as Record<string, FileType>;
-
-const previews = import.meta.glob("../preview/*.tsx", {
-  // import: "default",
-}) as Record<string, () => Promise<{ default: Component }>>;
-
-const getPreview = (obj: Obj) => {
-  for (const path in fileTypes) {
-    const fileType = fileTypes[path];
-    if (
-      fileType.type === obj.type ||
-      fileType.exts.includes(ext(obj.name).toLowerCase())
-    ) {
-      return lazy(previews[path]);
-    }
-  }
-  return CommonPreview;
-};
+import { CommonPreview } from "./common-preview";
+import { OpenWith } from "./open-with";
+import { getPreviews, previewRecord } from "./previews";
 
 const File = () => {
-  const preview = createMemo(() => getPreview(objStore.obj));
+  const previews = createMemo(() => {
+    return getPreviews({ ...objStore.obj, provider: objStore.provider });
+  });
+  const [cur, setCur] = createSignal(previews()[0]);
   return (
-    <Show when={preview()}>
-      <Dynamic component={preview()!} />
+    <Show when={previews().length > 1} fallback={<CommonPreview />}>
+      <VStack w="$full" spacing="$2">
+        <HStack w="$full" spacing="$2">
+          <SelectWrapper
+            alwaysShowBorder
+            value={cur()}
+            onChange={setCur}
+            options={previews().map((item) => ({ value: item }))}
+          />
+          <OpenWith />
+        </HStack>
+        <Dynamic component={previewRecord[cur()]} />
+      </VStack>
     </Show>
   );
 };

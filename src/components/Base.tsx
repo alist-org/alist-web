@@ -88,12 +88,15 @@ export const SelectWrapper = (props: {
   onChange: (value: string) => void;
   options: {
     value: string;
-    label: string;
+    label?: string;
   }[];
+  alwaysShowBorder?: boolean;
 }) => {
   return (
     <Select value={props.value} onChange={props.onChange}>
-      <SelectTrigger>
+      <SelectTrigger
+        borderColor={props.alwaysShowBorder ? "$info5" : undefined}
+      >
         <SelectValue />
         <SelectIcon />
       </SelectTrigger>
@@ -102,7 +105,7 @@ export const SelectWrapper = (props: {
           <For each={props.options}>
             {(item) => (
               <SelectOption value={item.value}>
-                <SelectOptionText>{item.label}</SelectOptionText>
+                <SelectOptionText>{item.label ?? item.value}</SelectOptionText>
                 <SelectOptionIndicator />
               </SelectOption>
             )}

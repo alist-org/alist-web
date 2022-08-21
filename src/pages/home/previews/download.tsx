@@ -2,9 +2,8 @@ import { Button, Heading, HStack, Icon, VStack } from "@hope-ui/solid";
 import { useT } from "~/hooks";
 import { getIconColor, objStore } from "~/store";
 import { getIconByObj } from "~/utils/icon";
-import { ExternalPreview } from "./ExternalPreview";
 
-export const CommonPreview = () => {
+const Download = () => {
   const t = useT();
   return (
     <VStack py="$6" spacing="$6">
@@ -18,8 +17,9 @@ export const CommonPreview = () => {
         <Button as="a" href={objStore.raw_url} target="_blank">
           {t("home.preview.download")}
         </Button>
-        <ExternalPreview />
       </HStack>
     </VStack>
   );
 };
+
+export default Download;
