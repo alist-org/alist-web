@@ -1,5 +1,4 @@
 import { createDisclosure } from "@hope-ui/solid";
-import { CgRename } from "solid-icons/cg";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter, useT } from "~/hooks";
 import { oneChecked, selectedObjs } from "~/store";
@@ -20,8 +19,7 @@ export const Rename = () => {
   return (
     <>
       <CenterIcon
-        tip="rename"
-        as={CgRename}
+        name="rename"
         onClick={() => {
           if (!oneChecked()) {
             notify.warning(t("home.toolbar.only_one_tips"));

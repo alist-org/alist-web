@@ -1,8 +1,16 @@
 import { Checkbox, HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
-import { Show } from "solid-js";
+import { useContextMenu } from "solid-contextmenu";
+import { batch, Show } from "solid-js";
 import { LinkWithPush } from "~/components";
 import { usePath } from "~/hooks";
-import { checkboxOpen, getIconColor, OrderBy, selectIndex } from "~/store";
+import {
+  checkboxOpen,
+  getIconColor,
+  OrderBy,
+  selectAll,
+  selectIndex,
+  toggleCheckbox,
+} from "~/store";
 import { StoreObj } from "~/types";
 import { formatDate, getFileSize, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
@@ -21,7 +29,7 @@ export const cols: Col[] = [
 
 export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAsDir } = usePath();
-
+  const { show } = useContextMenu({ id: 1 });
   return (
     <HStack
       class="list-item"
@@ -39,6 +47,16 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         if (props.obj.is_dir) {
           setPathAsDir(props.obj.name, true);
         }
+      }}
+      onContextMenu={(e: MouseEvent) => {
+        batch(() => {
+          if (!checkboxOpen()) {
+            toggleCheckbox();
+          }
+          selectAll(false);
+          selectIndex(props.index, true, true);
+        });
+        show(e, { props: props.obj });
       }}
     >
       <HStack class="name-box" spacing="$1" w={cols[0].w}>

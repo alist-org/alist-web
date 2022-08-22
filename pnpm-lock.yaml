@@ -21,6 +21,7 @@ specifiers:
   rehype-highlight: ^5.0.2
   rehype-raw: ^6.1.1
   remark-gfm: ^3.0.1
+  solid-contextmenu: 0.0.1-alpha.1
   solid-icons: ^1.0.1
   solid-js: ^1.4.8
   solid-markdown: ^1.2.0
@@ -49,6 +50,7 @@ dependencies:
   rehype-highlight: 5.0.2
   rehype-raw: 6.1.1
   remark-gfm: 3.0.1
+  solid-contextmenu: 0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm
   solid-icons: 1.0.1_solid-js@1.4.8
   solid-js: 1.4.8
   solid-markdown: 1.2.0_solid-js@1.4.8
@@ -734,6 +736,11 @@ packages:
   /chownr/1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
     dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -2081,6 +2088,18 @@ packages:
       interpret: 1.4.0
       rechoir: 0.6.2
     dev: true
+
+  /solid-contextmenu/0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm:
+    resolution: {integrity: sha512-OAt9IxDJdqPYQ//hzqtuiClVdAFIsttKrS3al80KAOSeTU1j5uWstSXAZNS3Hl/fuEFL4IfLTwILvrykMkPe8Q==}
+    peerDependencies:
+      solid-js: ^1.4.8
+      solid-transition-group: ^0.0.10
+    dependencies:
+      clsx: 1.2.1
+      mitt: 3.0.0
+      solid-js: 1.4.8
+      solid-transition-group: 0.0.10_solid-js@1.4.8
+    dev: false
 
   /solid-icons/1.0.1_solid-js@1.4.8:
     resolution: {integrity: sha512-9rxPeJ1UDGzWGlksjuXuyK2CdL1vg89inDyOl43koL3zoMgXLzY6LVLuMeuhslHbjq7Fp2h6fSSImj9ygfvleA==}

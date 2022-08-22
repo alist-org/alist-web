@@ -1,7 +1,7 @@
 import { objStore, selectedObjs, State } from "~/store";
 import { Obj } from "~/types";
 import { api, base_path, encodePath, pathDir, standardizePath } from "~/utils";
-import { useRouter } from ".";
+import { useRouter, useUtil } from ".";
 
 type URLType = "preview" | "direct" | "proxy";
 
@@ -63,6 +63,19 @@ export const useSelectedUrl = () => {
         .filter((obj) => !obj.is_dir)
         .map((obj) => rawUrl(obj, encodeAll))
         .join("\n");
+    },
+  };
+};
+
+export const useCopyUrl = () => {
+  const { copy } = useUtil();
+  const { previewPage, rawUrl } = useSelectedUrl();
+  return {
+    copyPreviewPage: () => {
+      copy(previewPage());
+    },
+    copyRawUrl: (encodeAll?: boolean) => {
+      copy(rawUrl(encodeAll));
     },
   };
 };

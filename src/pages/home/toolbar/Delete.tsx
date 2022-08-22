@@ -8,7 +8,6 @@ import {
   Button,
   createDisclosure,
 } from "@hope-ui/solid";
-import { AiOutlineDelete } from "solid-icons/ai";
 import { useFetch, usePath, useRouter, useT } from "~/hooks";
 import { selectedObjs } from "~/store";
 import { fsRemove, handleRrespWithNotifySuccess } from "~/utils";
@@ -22,7 +21,7 @@ export const Delete = () => {
   const { pathname } = useRouter();
   return (
     <>
-      <CenterIcon tip="delete" as={AiOutlineDelete} onClick={onOpen} />
+      <CenterIcon name="delete" onClick={onOpen} />
       <Modal
         opened={isOpen()}
         onClose={onClose}

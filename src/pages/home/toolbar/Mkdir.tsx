@@ -1,9 +1,9 @@
 import { RightIcon } from "./Icon";
-import { CgFolderAdd } from "solid-icons/cg";
 import { createDisclosure } from "@hope-ui/solid";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
 import { fsMkdir, handleRrespWithNotifySuccess, pathJoin } from "~/utils";
+import { operations } from "./operations";
 
 export const Mkdir = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();
@@ -12,7 +12,12 @@ export const Mkdir = () => {
   const { refresh } = usePath();
   return (
     <>
-      <RightIcon as={CgFolderAdd} p="$1_5" tip="mkdir" onClick={onOpen} />
+      <RightIcon
+        as={operations.mkdir.icon}
+        p="$1_5"
+        tip="mkdir"
+        onClick={onOpen}
+      />
       <ModalInput
         title="home.toolbar.input_dir_name"
         opened={isOpen()}

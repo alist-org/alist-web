@@ -1,23 +1,21 @@
 import { Menu, MenuTrigger, MenuContent, MenuItem } from "@hope-ui/solid";
-import { TbCopy } from "solid-icons/tb";
-import { useT, useSelectedUrl, useUtil } from "~/hooks";
+import { useT, useCopyUrl } from "~/hooks";
 import { CenterIcon } from "./Icon";
 
 export const CopyURL = () => {
   const t = useT();
-  const { previewPage, rawUrl } = useSelectedUrl();
-  const { copy } = useUtil();
+  const { copyPreviewPage, copyRawUrl } = useCopyUrl();
   const colorScheme = "neutral";
   return (
     <Menu placement="top" offset={10}>
       <MenuTrigger as="span">
-        <CenterIcon tip="copy_url" as={TbCopy} />
+        <CenterIcon name="copy_url" />
       </MenuTrigger>
       <MenuContent>
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copy(previewPage());
+            copyPreviewPage();
           }}
         >
           {t("home.toolbar.preview_page")}
@@ -25,7 +23,7 @@ export const CopyURL = () => {
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copy(rawUrl());
+            copyRawUrl();
           }}
         >
           {t("home.toolbar.down_url")}
@@ -33,7 +31,7 @@ export const CopyURL = () => {
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copy(rawUrl(true));
+            copyRawUrl(true);
           }}
         >
           {t("home.toolbar.encode_down_url")}

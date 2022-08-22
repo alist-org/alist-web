@@ -108,11 +108,15 @@ let lastChecked = {
   selected: false,
 };
 
-export const selectIndex = (index: number, selected: boolean) => {
+export const selectIndex = (
+  index: number,
+  checked: boolean,
+  one?: boolean
+) => {
   if (
     keyPressed["Shift"] &&
     lastChecked.index !== -1 &&
-    lastChecked.selected === selected
+    lastChecked.selected === checked
   ) {
     const start = Math.min(lastChecked.index, index);
     const end = Math.max(lastChecked.index, index);
@@ -121,30 +125,31 @@ export const selectIndex = (index: number, selected: boolean) => {
       .filter((o) => o.selected).length;
 
     setObjStore("objs", { from: start, to: end }, () => ({
-      selected: selected,
+      selected: checked,
     }));
     // update selected num
     const newSelectedNum =
-      selectedNum() - curCheckedNum + (selected ? end - start + 1 : 0);
+      selectedNum() - curCheckedNum + (checked ? end - start + 1 : 0);
     setSelectedNum(newSelectedNum);
   } else {
     setObjStore(
       "objs",
       index,
       produce((obj) => {
-        if (obj.selected !== selected) {
-          setSelectedNum(selected ? selectedNum() + 1 : selectedNum() - 1);
+        if (obj.selected !== checked) {
+          setSelectedNum(checked ? selectedNum() + 1 : selectedNum() - 1);
         }
-        obj.selected = selected;
+        obj.selected = checked;
       })
     );
   }
-  lastChecked = { index, selected };
+  lastChecked = { index, selected: checked };
+  one && setSelectedNum(checked ? 1 : 0);
 };
 
-export const selectAll = (selected: boolean) => {
-  setSelectedNum(selected ? objStore.objs.length : 0);
-  setObjStore("objs", {}, (obj) => ({ selected: selected }));
+export const selectAll = (checked: boolean) => {
+  setSelectedNum(checked ? objStore.objs.length : 0);
+  setObjStore("objs", {}, (obj) => ({ selected: checked }));
 };
 
 export const selectedObjs = () => {

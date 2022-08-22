@@ -1,13 +1,10 @@
 import { createDisclosure } from "@hope-ui/solid";
-import { OcFilemoved2 } from "solid-icons/oc";
-import { TbCopy } from "solid-icons/tb";
 import { ModalFolderChoose } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
 import { selectedObjs } from "~/store";
 import {
   fsCopy,
   fsMove,
-  handleRresp,
   handleRrespWithNotifySuccess,
 } from "~/utils";
 import { CenterIcon } from "./Icon";
@@ -19,7 +16,7 @@ export const Copy = () => {
   const { refresh } = usePath();
   return (
     <>
-      <CenterIcon tip="copy" as={TbCopy} onClick={onOpen} />
+      <CenterIcon name="copy" onClick={onOpen} />
       <ModalFolderChoose
         opened={isOpen()}
         onClose={onClose}
@@ -47,7 +44,10 @@ export const Move = () => {
   const { refresh } = usePath();
   return (
     <>
-      <CenterIcon tip="move" p="$1_5" as={OcFilemoved2} onClick={onOpen} />
+      <CenterIcon
+        name="move"
+        onClick={onOpen}
+      />
       <ModalFolderChoose
         opened={isOpen()}
         onClose={onClose}

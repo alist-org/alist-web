@@ -1,9 +1,9 @@
 import { createDisclosure } from "@hope-ui/solid";
-import { CgFileAdd } from "solid-icons/cg";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
 import { fsNewFile, handleRrespWithNotifySuccess, pathJoin } from "~/utils";
 import { RightIcon } from "./Icon";
+import { operations } from "./operations";
 
 export const NewFile = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();
@@ -12,7 +12,11 @@ export const NewFile = () => {
   const { pathname } = useRouter();
   return (
     <>
-      <RightIcon as={CgFileAdd} tip="new_file" onClick={onOpen} />
+      <RightIcon
+        as={operations.new_file.icon}
+        tip="new_file"
+        onClick={onOpen}
+      />
       <ModalInput
         title="home.toolbar.input_filename"
         opened={isOpen()}

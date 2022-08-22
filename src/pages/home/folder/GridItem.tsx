@@ -1,8 +1,15 @@
 import { Center, VStack, Icon, Text, Tooltip, Checkbox } from "@hope-ui/solid";
-import { createMemo, createSignal, Show } from "solid-js";
+import { useContextMenu } from "solid-contextmenu";
+import { batch, createMemo, createSignal, Show } from "solid-js";
 import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
 import { usePath } from "~/hooks";
-import { checkboxOpen, getIconColor, selectIndex } from "~/store";
+import {
+  checkboxOpen,
+  getIconColor,
+  selectAll,
+  selectIndex,
+  toggleCheckbox,
+} from "~/store";
 import { ObjType, StoreObj } from "~/types";
 import { bus, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
@@ -16,6 +23,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const showCheckbox = createMemo(
     () => checkboxOpen() && (hover() || props.obj.selected)
   );
+  const { show } = useContextMenu({ id: 1 });
   return (
     <VStack
       class="grid-item"
@@ -30,14 +38,24 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       }}
       as={LinkWithPush}
       href={props.obj.name}
-      onMouseOver={() => {
+      onMouseEnter={() => {
         setHover(true);
         if (props.obj.is_dir) {
           setPathAsDir(props.obj.name, true);
         }
       }}
-      onMouseOut={() => {
+      onMouseLeave={() => {
         setHover(false);
+      }}
+      onContextMenu={(e: MouseEvent) => {
+        batch(() => {
+          if (!checkboxOpen()) {
+            toggleCheckbox();
+          }
+          selectAll(false);
+          selectIndex(props.index, true, true);
+        });
+        show(e, { props: props.obj });
       }}
     >
       <Center

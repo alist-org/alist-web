@@ -1,21 +1,27 @@
 import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
+import { onCleanup } from "solid-js";
 import { useT } from "~/hooks";
-import { hoverColor } from "~/utils";
+import { bus, hoverColor } from "~/utils";
+import { operations } from "./operations";
 
 export const CenterIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
-    tip?: string;
+    name: string;
   }
 ) => {
   const t = useT();
+  bus.on("click", (name) => {
+    if (name === `toolbar-${props.name}`) {
+      props.onClick && props.onClick();
+    }
+  });
+  onCleanup(() => {
+    bus.off("click");
+  });
   return (
-    <Tooltip
-      disabled={!props.tip}
-      placement="top"
-      withArrow
-      label={t(`home.toolbar.${props.tip}`)}
-    >
+    <Tooltip placement="top" withArrow label={t(`home.toolbar.${props.name}`)}>
       <Icon
+        class={`toolbar-${props.name}`}
         _hover={{
           bgColor: hoverColor(),
         }}
@@ -25,11 +31,12 @@ export const CenterIcon = <C extends ElementType = "svg">(
         cursor="pointer"
         boxSize="$7"
         rounded="$md"
-        p="$1"
+        p={operations[props.name].p ? "$1_5" : "$1"}
         _active={{
           transform: "scale(.94)",
           transition: "0.2s",
         }}
+        as={operations[props.name].icon}
         {...props}
       />
     </Tooltip>
