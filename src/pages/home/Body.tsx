@@ -6,14 +6,14 @@ import { Readme } from "./Readme";
 export const Body = () => {
   return (
     <Container
-      // mt="$2"
+      mt="$1"
       class="body"
       p="$2"
       minH="80%"
       display="flex"
       flexDirection="column"
       w="$full"
-      gap="$2"
+      gap="$4"
     >
       <Nav />
       <Obj />

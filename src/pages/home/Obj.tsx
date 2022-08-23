@@ -20,7 +20,14 @@ export const Obj = () => {
     })
   );
   return (
-    <Center class="obj-box" w="$full" rounded="$xl" bgColor={cardBg()} p="$2">
+    <Center
+      class="obj-box"
+      w="$full"
+      rounded="$xl"
+      bgColor={cardBg()}
+      p="$2"
+      shadow="$lg"
+    >
       <Suspense fallback={<FullLoading />}>
         <Switch>
           <Match when={objStore.err}>

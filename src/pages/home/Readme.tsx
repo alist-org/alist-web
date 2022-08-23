@@ -43,7 +43,7 @@ export const Readme = () => {
   const [content] = createResource(readme, fetchContent);
   return (
     <Show when={readme()}>
-      <Box w="$full" rounded="$xl" p="$4" bgColor={cardBg()}>
+      <Box w="$full" rounded="$xl" p="$4" bgColor={cardBg()} shadow="$lg">
         <MaybeLoading loading={content.loading}>
           <Markdown children={content()} />
         </MaybeLoading>

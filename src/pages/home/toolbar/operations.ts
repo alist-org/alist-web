@@ -1,7 +1,7 @@
 import { IconTypes } from "solid-icons";
-import { AiOutlineDelete } from "solid-icons/ai";
+import { TiDeleteOutline } from "solid-icons/ti";
 import { CgFileAdd, CgFolderAdd, CgRename } from "solid-icons/cg";
-import { OcFilemoved2 } from "solid-icons/oc";
+import { TbFileArrowRight } from "solid-icons/tb";
 import { TbCopy, TbLink } from "solid-icons/tb";
 
 interface Operations {
@@ -14,8 +14,8 @@ interface Operations {
 export const operations: Operations = {
   rename: { icon: CgRename, color: "$accent9" },
   copy: { icon: TbCopy, color: "$success9" },
-  move: { icon: OcFilemoved2, p: true, color: "$success9" },
-  delete: { icon: AiOutlineDelete, color: "$danger9" },
+  move: { icon: TbFileArrowRight, color: "$warning9" },
+  delete: { icon: TiDeleteOutline, color: "$danger9" },
   copy_url: { icon: TbLink, color: "$info9" },
   mkdir: { icon: CgFolderAdd, p: true },
   new_file: { icon: CgFileAdd, p: true },
