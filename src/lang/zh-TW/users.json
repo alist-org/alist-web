@@ -7,7 +7,7 @@
     "rename": "重命名",
     "move": "移動",
     "copy": "複製",
-    "remove": "刪除",
+    "delete": "Delete",
     "webdav_read": "Webdav 读取",
     "webdav_manage": "Webdav 管理文件"
   },
