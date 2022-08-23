@@ -8,14 +8,14 @@ import {
 } from "@hope-ui/solid";
 import { createMemo, For, Show } from "solid-js";
 import { useT } from "~/hooks";
-import { getPreviewsByName, objStore } from "~/store";
+import { getExternalPreviews, objStore } from "~/store";
 import { FaSolidAngleDown } from "solid-icons/fa";
 import { convertURL } from "~/utils";
 
 export const OpenWith = () => {
   const t = useT();
   const previews = createMemo(() => {
-    return getPreviewsByName(objStore.obj.name);
+    return getExternalPreviews(objStore.obj.name);
   });
   return (
     <Show when={previews().length}>

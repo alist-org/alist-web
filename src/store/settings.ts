@@ -1,3 +1,4 @@
+import { type } from "os";
 import { ext, recordToArray, strToRegExp } from "~/utils";
 
 const settings: Record<string, string> = {};
@@ -28,27 +29,33 @@ export const getIconColor = () => getSetting("main_color") || "#1890ff";
  */
 
 type Previews = Record<string, Record<string, string>>;
-let previews: Previews | undefined = undefined;
+let previewsRecord: Record<string, Previews> = {};
+type PreviewsType = "external_previews" | "iframe_previews";
 
-const getPreviews = (): Previews => {
-  if (previews === undefined) {
-    previews = JSON.parse(getSetting("external_previews"));
+const getPreviews = (type: PreviewsType): Previews => {
+  if (!previewsRecord[type]) {
+    previewsRecord[type] = JSON.parse(getSetting(type));
   }
-  return previews!;
+  return previewsRecord[type];
 };
 
-export const getPreviewsByName = (name: string) => {
+const getPreviewsByName = (name: string, type: PreviewsType) => {
   const extension = ext(name);
   const res: { key: string; value: string }[] = [];
-  for (const key in getPreviews()) {
+  for (const key in getPreviews(type)) {
     if (key.startsWith("/")) {
       const reg = strToRegExp(key);
       if (reg.test(extension)) {
-        res.push(...recordToArray(getPreviews()[key]));
+        res.push(...recordToArray(getPreviews(type)[key]));
       }
     } else if (key.split(",").includes(extension)) {
-      res.push(...recordToArray(getPreviews()[key]));
+      res.push(...recordToArray(getPreviews(type)[key]));
     }
   }
   return res;
 };
+
+export const getExternalPreviews = (name: string) =>
+  getPreviewsByName(name, "external_previews");
+export const getIframePreviews = (name: string) =>
+  getPreviewsByName(name, "iframe_previews");

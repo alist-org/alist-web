@@ -5,7 +5,6 @@ import {
   Heading,
   useColorModeValue,
   createDisclosure,
-  IconButton,
   Select,
   SelectContent,
   SelectIcon,
@@ -15,10 +14,12 @@ import {
   SelectOptionText,
   SelectTrigger,
   SelectValue,
+  Icon,
 } from "@hope-ui/solid";
 import { SwitchColorMode } from "./SwitchColorMode";
 import { createMemo, For, Show, splitProps } from "solid-js";
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai";
+import { hoverColor } from "~/utils";
 
 export const Error = (props: { msg: string; disableColor?: boolean }) => {
   return (
@@ -66,18 +67,18 @@ export const BoxWithFullScreen = (props: Parameters<typeof Box>[0]) => {
       transition="all 0.2s ease-in-out"
     >
       {local.children}
-      <IconButton
-        colorScheme="neutral"
+      <Icon
         pos="absolute"
         right="$2"
-        top="$2"
+        bottom="$2"
         aria-label="toggle fullscreen"
-        icon={
-          <Show when={isOpen()} fallback={<AiOutlineFullscreen />}>
-            <AiOutlineFullscreenExit />
-          </Show>
-        }
+        as={isOpen() ? AiOutlineFullscreenExit : AiOutlineFullscreen}
         onClick={onToggle}
+        cursor="pointer"
+        rounded="$md"
+        bgColor={hoverColor()}
+        p="$1"
+        boxSize="$7"
       />
     </Box>
   );

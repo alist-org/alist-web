@@ -1,15 +1,6 @@
 import {
   Box,
   Flex,
-  Select,
-  SelectContent,
-  SelectIcon,
-  SelectListbox,
-  SelectOption,
-  SelectOptionIndicator,
-  SelectOptionText,
-  SelectTrigger,
-  SelectValue,
   VStack,
   Image,
   Anchor,
@@ -23,7 +14,7 @@ import Artplayer from "artplayer";
 import flvjs from "flv.js";
 import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
-import { OpenWith } from "../file/open-with";
+import { SelectWrapper } from "~/components";
 
 export const fileType = {
   type: ObjType.VIDEO,
@@ -147,30 +138,14 @@ const Preview = () => {
   });
   return (
     <VStack w="$full" spacing="$2">
-      <Select
+      <Box w="$full" h="60vh" id="video-player" />
+      <SelectWrapper
         onChange={(name: string) => {
           replace(name);
         }}
-        defaultValue={objStore.obj.name}
-      >
-        <SelectTrigger>
-          <SelectValue />
-          <SelectIcon />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectListbox>
-            <For each={videos}>
-              {(item) => (
-                <SelectOption value={item.name}>
-                  <SelectOptionText>{item.name}</SelectOptionText>
-                  <SelectOptionIndicator />
-                </SelectOption>
-              )}
-            </For>
-          </SelectListbox>
-        </SelectContent>
-      </Select>
-      <Box w="$full" h="60vh" id="video-player" />
+        value={objStore.obj.name}
+        options={videos.map((obj) => ({ value: obj.name }))}
+      />
       <Flex wrap="wrap" gap="$2" justifyContent="center">
         <For each={players}>
           {(item) => {
@@ -188,7 +163,6 @@ const Preview = () => {
             );
           }}
         </For>
-        <OpenWith />
       </Flex>
     </VStack>
   );

@@ -1,6 +1,9 @@
+import { type } from "os";
 import { Component, lazy } from "solid-js";
+import { getIframePreviews } from "~/store";
 import { Obj, ObjType } from "~/types";
 import { ext } from "~/utils";
+import { generateIframePreview } from "../previews/iframe";
 
 export interface Preview {
   name: string;
@@ -9,6 +12,8 @@ export interface Preview {
   provider?: RegExp;
   component: Component;
 }
+
+export type PreviewComponent = Pick<Preview, "name" | "component">;
 
 const previews: Preview[] = [
   {
@@ -32,26 +37,17 @@ const previews: Preview[] = [
     component: lazy(() => import("../previews/image")),
   },
   {
-    name: "PDF",
-    exts: ["pdf"],
-    component: lazy(() => import("../previews/pdf")),
-  },
-  {
     name: "Video",
     type: ObjType.VIDEO,
     component: lazy(() => import("../previews/video")),
   },
 ];
 
-export const previewRecord: Record<string, Component> = {
-  Download: lazy(() => import("../previews/download")),
-};
-previews.forEach(({ name, component }) => {
-  previewRecord[name] = component;
-});
-
-export const getPreviews = (file: Obj & { provider: string }): string[] => {
-  const res: string[] = [];
+export const getPreviews = (
+  file: Obj & { provider: string }
+): PreviewComponent[] => {
+  const res: PreviewComponent[] = [];
+  // internal previews
   previews.forEach((preview) => {
     if (preview.provider && !preview.provider.test(file.provider)) {
       return;
@@ -61,9 +57,21 @@ export const getPreviews = (file: Obj & { provider: string }): string[] => {
       preview.exts === "*" ||
       preview.exts?.includes(ext(file.name).toLowerCase())
     ) {
-      res.push(preview.name);
+      res.push({ name: preview.name, component: preview.component });
     }
   });
-  res.push("Download");
+  // iframe previews
+  const iframePreviews = getIframePreviews(file.name);
+  iframePreviews.forEach((preview) => {
+    res.push({
+      name: preview.key,
+      component: generateIframePreview(preview.value),
+    });
+  });
+  // download page
+  res.push({
+    name: "Download",
+    component: lazy(() => import("../previews/download")),
+  });
   return res;
 };

@@ -1,7 +1,7 @@
 export enum ObjType {
   UNKNOWN,
   FOLDER,
-  OFFICE,
+  // OFFICE,
   VIDEO,
   AUDIO,
   TEXT,
