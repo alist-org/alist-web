@@ -11,7 +11,7 @@ export interface User {
   base_path: string;
   role: UserRole;
   permission: number;
-  otp: boolean;
+  // otp: boolean;
 }
 
 export const UserPermissions = [

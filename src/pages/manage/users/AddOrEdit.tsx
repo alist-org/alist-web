@@ -131,7 +131,7 @@ const AddOrEdit = () => {
             const resp: Resp<{}> = await ok();
             // TODO mybe can use handleRrespWithNotifySuccess
             handleRresp(resp, () => {
-              notify.success(t("global.success"));
+              notify.success(t("global.save_success"));
               back();
             });
           }}

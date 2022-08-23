@@ -1,6 +1,7 @@
 import { createSignal } from "solid-js";
 import { User } from "~/types";
 
-const [user, setUser] = createSignal<User>({} as User);
+type Me = User & { otp: boolean };
+const [user, setUser] = createSignal<Me>({} as Me);
 
 export { user, setUser };
