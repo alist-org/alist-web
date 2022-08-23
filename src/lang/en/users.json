@@ -7,7 +7,7 @@
     "rename": "Rename",
     "move": "Move",
     "copy": "Copy",
-    "remove": "Delete",
+    "delete": "Delete",
     "webdav_read": "Webdav read",
     "webdav_manage": "Webdav manage"
   },

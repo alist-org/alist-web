@@ -50,6 +50,7 @@ const setObjs = (objs: Obj[]) => {
   setSelectedNum(0);
   lastChecked = { index: -1, selected: false };
   setObjStore("objs", objs);
+  setObjStore("obj", "is_dir", true);
 };
 
 export const ObjStore = {
@@ -108,11 +109,7 @@ let lastChecked = {
   selected: false,
 };
 
-export const selectIndex = (
-  index: number,
-  checked: boolean,
-  one?: boolean
-) => {
+export const selectIndex = (index: number, checked: boolean, one?: boolean) => {
   if (
     keyPressed["Shift"] &&
     lastChecked.index !== -1 &&

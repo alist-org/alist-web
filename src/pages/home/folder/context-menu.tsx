@@ -5,6 +5,8 @@ import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid";
 import { operations } from "../toolbar/operations";
 import { For } from "solid-js";
 import { bus } from "~/utils";
+import { Obj, UserMethods, UserPermissions } from "~/types";
+import { user } from "~/store";
 
 const ItemContent = (props: { name: string }) => {
   const t = useT();
@@ -23,7 +25,7 @@ const ItemContent = (props: { name: string }) => {
 
 export const ContextMenu = () => {
   const { colorMode } = useColorMode();
-  const { copyRawUrl } = useCopyUrl();
+  const { copyRawUrl, copyPreviewPage } = useCopyUrl();
   return (
     <Menu
       id={1}
@@ -33,6 +35,10 @@ export const ContextMenu = () => {
       <For each={["rename", "move", "copy", "delete"]}>
         {(name) => (
           <Item
+            hidden={() => {
+              const index = UserPermissions.findIndex((item) => item === name);
+              return !UserMethods.can(user(), index);
+            }}
             onClick={() => {
               bus.emit("click", `toolbar-${name}`);
             }}
@@ -42,8 +48,12 @@ export const ContextMenu = () => {
         )}
       </For>
       <Item
-        onClick={() => {
-          copyRawUrl(true);
+        onClick={({ props }) => {
+          if (props.is_dir) {
+            copyPreviewPage();
+          } else {
+            copyRawUrl(true);
+          }
         }}
       >
         <ItemContent name="copy_url" />

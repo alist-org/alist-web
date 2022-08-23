@@ -22,7 +22,7 @@ export const UserPermissions = [
   "rename",
   "move",
   "copy",
-  "remove",
+  "delete",
   "webdav_read",
   "webdav_manage",
 ];

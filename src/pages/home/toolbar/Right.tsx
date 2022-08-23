@@ -12,10 +12,11 @@ import { SwitchLnaguage } from "~/components";
 // import { TbLanguageHiragana } from "solid-icons/tb";
 import { IoLanguageOutline } from "solid-icons/io";
 import { TbCheckbox } from "solid-icons/tb";
-import { toggleCheckbox } from "~/store";
+import { objStore, toggleCheckbox, user } from "~/store";
 import { createAnimation } from "motion-signals";
 import { Mkdir } from "./Mkdir";
 import { NewFile } from "./NewFile";
+import { UserMethods } from "~/types";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -34,6 +35,10 @@ export const Right = () => {
       duration: 0.2,
     }
   );
+  const showWrite = () => {
+    if (!objStore.obj.is_dir) return false;
+    return UserMethods.can(user(), 3);
+  };
   return (
     <Box
       class="left-toolbar-box"
@@ -62,8 +67,10 @@ export const Right = () => {
           spacing="$1"
         >
           <VStack spacing="$1" class="left-toolbar-in">
-            <NewFile />
-            <Mkdir />
+            <Show when={showWrite()}>
+              <NewFile />
+              <Mkdir />
+            </Show>
             <RightIcon
               tip="toggle_checkbox"
               as={TbCheckbox}
