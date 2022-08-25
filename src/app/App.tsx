@@ -37,7 +37,7 @@ const App: Component = () => {
     bus.off("to", onTo);
   });
 
-  const [err, setErr] = createSignal("");
+  const [err, setErr] = createSignal<string>();
   const [loading, data] = useLoading(() =>
     Promise.all([
       (async () => {
@@ -94,7 +94,7 @@ const App: Component = () => {
           </Routes>
         }
       >
-        <Match when={err()}>
+        <Match when={err() !== undefined}>
           <Error msg={`Failed fetching settings: ${err()}`} />
         </Match>
         <Match when={loading()}>

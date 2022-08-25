@@ -39,6 +39,7 @@ export const Center = () => {
           backdropFilter: "blur(8px)",
         }}
         // shadow="$md"
+        shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         rounded="$lg"
         // border="1px solid $neutral4"
         p="$2"

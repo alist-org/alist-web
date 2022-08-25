@@ -1,13 +1,13 @@
 import { Center } from "@hope-ui/solid";
 import { createSignal, JSXElement, Match, Switch } from "solid-js";
-import { FullLoading } from "~/components";
+import { Error, FullLoading } from "~/components";
 import { useFetch } from "~/hooks";
 import { setUser } from "~/store";
 import { r, handleRresp } from "~/utils";
 
 const MustUser = (props: { children: JSXElement }) => {
   const [loading, data] = useFetch(() => r.get("/me"));
-  const [err, setErr] = createSignal("");
+  const [err, setErr] = createSignal<string>();
   (async () => {
     // const resp: Resp<User> = await data();
     handleRresp(await data(), setUser, setErr);
@@ -17,8 +17,8 @@ const MustUser = (props: { children: JSXElement }) => {
       <Match when={loading()}>
         <FullLoading />
       </Match>
-      <Match when={err()}>
-        <Center h="$full">{err()}</Center>
+      <Match when={err() !== undefined}>
+        <Error msg={`failed get current user: ${err()}`} />
       </Match>
     </Switch>
   );

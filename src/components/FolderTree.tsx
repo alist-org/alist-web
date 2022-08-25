@@ -117,7 +117,7 @@ const FolderTreeNode = (props: { path: string }) => {
         </Text>
       </HStack>
       <Show when={isOpen()}>
-        <VStack pl="$4" alignItems="start" spacing="$1">
+        <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
           <For each={children()}>
             {(item) => (
               <FolderTreeNode path={pathJoin(props.path, item.name)} />

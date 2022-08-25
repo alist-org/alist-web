@@ -41,7 +41,7 @@ const SideMenuItem = (props: SideMenuItemProps) => {
 };
 
 const SideMenuItemWithTo = (props: SideMenuItemProps) => {
-  const { to, pathname } = useRouter();
+  const { pathname } = useRouter();
   const t = useT();
   const isActive = () => pathname() === props.to;
   return (
@@ -59,7 +59,8 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
         bgColor: isActive() ? "$info4" : hoverColor(),
         textDecoration: "none",
       }}
-      p="$2"
+      px="$2"
+      py="$1_5"
       rounded="$md"
       cursor="pointer"
       bgColor={isActive() ? "$info4" : ""}
@@ -88,7 +89,8 @@ const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
         _hover={{
           bgColor: hoverColor(),
         }}
-        p="$2"
+        px="$2"
+        py="$1_5"
         rounded="$md"
         cursor="pointer"
       >
@@ -113,9 +115,9 @@ const SideMenuItemWithChildren = (props: SideMenuItemProps) => {
 
 export const SideMenu = (props: { items: SideMenuItemProps[] }) => {
   return (
-    <VStack p="$2" w="$full" color="$neutral11">
+    <VStack p="$2" w="$full" color="$neutral11" spacing="$1">
       <For each={props.items}>
-        {(item, i) => {
+        {(item) => {
           return <SideMenuItem {...item} />;
         }}
       </For>
