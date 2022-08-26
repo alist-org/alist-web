@@ -30,7 +30,8 @@
     "mkdir": "New Folder",
     "input_dir_name": "Input folder name",
     "new_file": "New File",
-    "input_filename": "Input filename"
+    "input_filename": "Input filename",
+    "cancel_select": "Cancel Select"
   },
   "footer": {
     "powered_by": "Powered by AList",
