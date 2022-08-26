@@ -33,6 +33,7 @@ export const CenterIcon = <C extends ElementType = "svg">(
           transition: "0.2s",
         }}
         as={operations[props.name].icon}
+        color={operations[props.name].color}
         {...props}
       />
     </Tooltip>

@@ -40,7 +40,7 @@ export const Center = () => {
         shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         rounded="$lg"
         p="$2"
-        color="$neutral12"
+        color="$neutral11"
         bgColor={useColorModeValue("white", "#000000d0")()}
         spacing="$1"
       >
