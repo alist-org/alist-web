@@ -91,7 +91,7 @@ const Login = () => {
           when={!needOpt()}
           fallback={
             <Input
-              placeholder={t("login.otp_tips")}
+              placeholder={t("login.otp-tips")}
               value={opt()}
               onChange={(e) => setOpt(e.currentTarget.value)}
               onKeyDown={(e) => {
@@ -103,12 +103,12 @@ const Login = () => {
           }
         >
           <Input
-            placeholder={t("login.username_tips")}
+            placeholder={t("login.username-tips")}
             value={username()}
             onInput={(e) => setUsername(e.currentTarget.value)}
           />
           <Input
-            placeholder={t("login.password_tips")}
+            placeholder={t("login.password-tips")}
             type="password"
             value={password()}
             onInput={(e) => setPassword(e.currentTarget.value)}

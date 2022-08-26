@@ -4,7 +4,7 @@ export interface DriverItem {
   name: string;
   type: Type;
   default: string;
-  values: string;
+  options: string;
   required?: boolean;
   help?: string;
 }

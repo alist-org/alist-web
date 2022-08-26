@@ -56,7 +56,7 @@ const Profile = () => {
               }}
             >
               <AlertIcon mr="$2_5" />
-              <AlertTitle mr="$2_5">{t("users.guest_tips")}</AlertTitle>
+              <AlertTitle mr="$2_5">{t("users.guest-tips")}</AlertTitle>
               <AlertDescription>{t("users.modify_nothing")}</AlertDescription>
             </Alert>
             <HStack spacing="$2">
@@ -97,7 +97,7 @@ const Profile = () => {
                 setPassword(e.currentTarget.value);
               }}
             />
-            <FormHelperText>{t("users.change_password_tips")}</FormHelperText>
+            <FormHelperText>{t("users.change_password-tips")}</FormHelperText>
           </FormControl>
         </SimpleGrid>
         <HStack spacing="$2">

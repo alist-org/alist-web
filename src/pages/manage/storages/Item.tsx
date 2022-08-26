@@ -23,7 +23,9 @@ import { DriverItem, Type } from "~/types";
 
 export type ItemProps = DriverItem & {
   readonly?: boolean;
-  scop?: string;
+  full_name_path?: string;
+  options_prefix?: string;
+  driver?: string;
 } & (
     | {
         type: Type.Bool;
@@ -52,7 +54,7 @@ const Item = (props: ItemProps) => {
       required={props.required}
     >
       <FormLabel for={props.name} display="flex" alignItems="center">
-        {t(`storages.${props.scop}.${props.name}`)}
+        {t(props.full_name_path ?? `drivers.${props.driver}.${props.name}`)}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
         <Match when={props.type === Type.String}>
@@ -122,11 +124,14 @@ const Item = (props: ItemProps) => {
             </SelectTrigger>
             <SelectContent>
               <SelectListbox>
-                <For each={props.values?.split(",")}>
+                <For each={props.options?.split(",")}>
                   {(item) => (
                     <SelectOption value={item}>
                       <SelectOptionText>
-                        {t(`storages.${props.scop}.${props.name}s.${item}`)}
+                        {t(
+                          (props.options_prefix ??
+                            `drivers.${props.driver}.${props.name}s`) + `.${item}`
+                        )}
                       </SelectOptionText>
                       <SelectOptionIndicator />
                     </SelectOption>

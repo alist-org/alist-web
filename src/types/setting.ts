@@ -20,7 +20,7 @@ export interface SettingItem {
   value: string;
   type: Type;
   help: string;
-  values?: string;
+  options?: string;
   group: Group;
   flag: Flag;
 }

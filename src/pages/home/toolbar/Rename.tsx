@@ -22,7 +22,7 @@ export const Rename = () => {
         name="rename"
         onClick={() => {
           if (!oneChecked()) {
-            notify.warning(t("home.toolbar.only_one_tips"));
+            notify.warning(t("home.toolbar.only_one-tips"));
             return;
           }
           onOpen();

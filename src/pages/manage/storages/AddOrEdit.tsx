@@ -91,9 +91,11 @@ const AddOrEdit = () => {
           readonly={id !== undefined}
           required
           type={Type.Select}
-          values={id ? storage.driver : Object.keys(drivers()).join(",")}
+          options={id ? storage.driver : Object.keys(drivers()).join(",")}
           value={storage.driver}
-          scop="common"
+          full_name_path="storages.common.driver"
+          options_prefix="drivers.drivers"
+          driver="drivers"
           onChange={(value) => {
             setStorage("driver", value);
             for (const item of drivers()[value].common) {
@@ -115,7 +117,7 @@ const AddOrEdit = () => {
             {(item) => (
               <Item
                 {...item}
-                scop="common"
+                driver="common"
                 value={(storage as any)[item.name]}
                 onChange={(val: any) => {
                   setStorage(item.name as keyof Storage, val);
@@ -127,7 +129,7 @@ const AddOrEdit = () => {
             {(item) => (
               <Item
                 {...item}
-                scop={storage.driver}
+                driver={storage.driver}
                 value={addition[item.name] as any}
                 onChange={(val: any) => {
                   setAddition(item.name, val);
@@ -141,7 +143,7 @@ const AddOrEdit = () => {
         mt="$2"
         loading={okLoading()}
         onClick={async () => {
-          notify.info(t("manage.add_storage_tips"));
+          notify.info(t("manage.add_storage-tips"));
           window.open(joinBase("/@manage/messenger"), "_blank");
           const resp: Resp<{}> = await ok();
           // TODO mybe can use handleRrespWithNotifySuccess

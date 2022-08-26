@@ -80,7 +80,7 @@ const Storages = () => {
               {(storage) => (
                 <Tr>
                   <Td>{storage.mount_path}</Td>
-                  <Td>{storage.driver}</Td>
+                  <Td>{t(`drivers.drivers.${storage.driver}`)}</Td>
                   <Td>{storage.index}</Td>
                   <Td>{storage.status}</Td>
                   <Td>{storage.remark}</Td>

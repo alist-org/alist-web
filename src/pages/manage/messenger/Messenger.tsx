@@ -24,7 +24,7 @@ export const Shower: Record<string, Component<Message>> = {
 
 export const Messenger = () => {
   const t = useT();
-  notify.info(t("manage.messenger_tips"));
+  notify.info(t("manage.messenger-tips"));
   const [toSend, setToSend] = createSignal("");
   const [getLoading, getR] = useFetch(() => r.post("/admin/message/get"));
   const [sendLoading, sendR] = useFetch(() =>

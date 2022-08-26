@@ -34,7 +34,7 @@ export const Delete = () => {
         <ModalContent>
           <ModalHeader>{t("home.toolbar.delete")}</ModalHeader>
           <ModalBody>
-            <p>{t("home.toolbar.delete_tips")}</p>
+            <p>{t("home.toolbar.delete-tips")}</p>
           </ModalBody>
           <ModalFooter display="flex" gap="$2">
             <Button onClick={onClose} colorScheme="neutral">

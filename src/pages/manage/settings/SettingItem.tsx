@@ -96,7 +96,7 @@ const Item = (props: ItemProps) => {
             </SelectTrigger>
             <SelectContent>
               <SelectListbox>
-                <For each={props.values?.split(",")}>
+                <For each={props.options?.split(",")}>
                   {(item) => (
                     <SelectOption value={item}>
                       <SelectOptionText>
