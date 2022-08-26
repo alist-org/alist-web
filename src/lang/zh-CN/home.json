@@ -31,7 +31,9 @@
     "input_dir_name": "输入文件夹名称",
     "new_file": "新建文件",
     "input_filename": "输入文件名",
-    "cancel_select": "Cancel Select"
+    "cancel_select": "Cancel Select",
+    "add_aria2": "Add to Aria2 download",
+    "add_aria2-tips": "One URL per line"
   },
   "footer": {
     "powered_by": "Powered by AList",
