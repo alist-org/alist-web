@@ -20,12 +20,12 @@
   "update_profile_success": "更新個人資料成功，請重新登錄。",
   "change_username": "修改用戶名稱",
   "change_password": "變更密碼",
-  "change_password_tips": "如果沒有要更改密碼，請留空不填。",
+  "change_password-tips": "Keep the password empty if you don't want to change it",
   "enable_2fa": "啟用雙重驗證",
   "2fa_already_enabled": "雙重驗證已启用",
   "scan_qr": "掃描二維碼保存秘鑰",
   "input_code": "請輸入您的雙重驗證應用程式中的驗證碼",
   "verify": "驗證",
-  "guest_tips": "You are currently visiting as a guest.",
+  "guest-tips": "You are currently visiting as a guest.",
   "modify_nothing": "So you cannot modify anything in the manage page."
 }
