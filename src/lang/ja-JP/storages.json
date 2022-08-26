@@ -2,9 +2,6 @@
   "common": {
     "mount_path": "Mount Path",
     "driver": "Driver",
-    "drivers": {
-      "Local": "Local"
-    },
     "index": "Index",
     "status": "Status",
     "remark": "Remark",
@@ -32,8 +29,5 @@
       "front": "Extract to front",
       "back": "Extract to back"
     }
-  },
-  "Local": {
-    "root_folder": "Root folder"
   }
 }
