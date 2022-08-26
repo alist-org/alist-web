@@ -24,6 +24,6 @@
   "send": "Send",
   "recieve": "Recieve",
   "recieved_msgs": "Recieved messages",
-  "add_storage_tips": "You may need to fill in some information in the newly opened tab.",
-  "messenger_tips": "You may need to fill in some information on this tab as prompted."
+  "add_storage-tips": "You may need to fill in some information in the newly opened tab.",
+  "messenger-tips": "You may need to fill in some information on this tab as prompted."
 }
