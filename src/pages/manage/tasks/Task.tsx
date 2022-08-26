@@ -64,9 +64,22 @@ export const Task = (props: TaskInfo & TasksProps) => {
         spacing="$2"
       >
         <VStack w="$full" alignItems="start" spacing="$1">
-          <Heading size="sm">{props.name}</Heading>
+          <Heading
+            size="sm"
+            css={{
+              wordBreak: "break-all",
+            }}
+          >
+            {props.name}
+          </Heading>
           <TaskState state={props.state} />
-          <Text>{props.status}</Text>
+          <Text
+            css={{
+              wordBreak: "break-all",
+            }}
+          >
+            {props.status}
+          </Text>
           <Progress
             w="$full"
             trackColor="$info3"

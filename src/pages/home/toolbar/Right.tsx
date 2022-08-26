@@ -12,14 +12,11 @@ import { SwitchLnaguage } from "~/components";
 // import { TbLanguageHiragana } from "solid-icons/tb";
 import { IoLanguageOutline } from "solid-icons/io";
 import { TbCheckbox } from "solid-icons/tb";
-import { objStore, toggleCheckbox, user } from "~/store";
+import { objStore, toggleCheckbox, user, userCan } from "~/store";
 import { createAnimation } from "motion-signals";
-import { Mkdir } from "./Mkdir";
-import { NewFile } from "./NewFile";
-import { UserMethods } from "~/types";
-import { operations } from "./operations";
 import { bus } from "~/utils";
-import { Add } from "./Add";
+import { operations } from "./operations";
+import { IoMagnetOutline } from "solid-icons/io";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -40,7 +37,7 @@ export const Right = () => {
   );
   const showWrite = () => {
     if (!objStore.obj.is_dir) return false;
-    return UserMethods.can(user(), 3);
+    return userCan("write");
   };
   return (
     <Box
@@ -68,13 +65,14 @@ export const Right = () => {
           rounded="$lg"
           bgColor={useColorModeValue("white", "$neutral4")()}
           spacing="$1"
+          shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         >
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={showWrite()}>
-              <Add />
+              {/* <Add /> */}
               <RightIcon
                 as={operations.new_file.icon}
-                tip="new_file"
+                tips="new_file"
                 onClick={() => {
                   bus.emit("tool", "new_file");
                 }}
@@ -82,23 +80,33 @@ export const Right = () => {
               <RightIcon
                 as={operations.mkdir.icon}
                 p="$1_5"
-                tip="mkdir"
+                tips="mkdir"
                 onClick={() => {
                   bus.emit("tool", "mkdir");
                 }}
               />
             </Show>
+            <Show when={userCan("add_aria2")}>
+              <RightIcon
+                as={IoMagnetOutline}
+                pl="0"
+                tips="add_aria2"
+                onClick={() => {
+                  bus.emit("tool", "add_aria2");
+                }}
+              />
+            </Show>
             <RightIcon
-              tip="toggle_checkbox"
+              tips="toggle_checkbox"
               as={TbCheckbox}
               onClick={toggleCheckbox}
             />
             <SwitchLnaguage as="span">
-              <RightIcon tip="switch_lang" as={IoLanguageOutline} />
+              <RightIcon tips="switch_lang" as={IoLanguageOutline} />
             </SwitchLnaguage>
             <SwitchColorMode />
           </VStack>
-          <RightIcon tip="more" as={CgMoreO} onClick={onToggle} />
+          <RightIcon tips="more" as={CgMoreO} onClick={onToggle} />
         </VStack>
       </Show>
     </Box>

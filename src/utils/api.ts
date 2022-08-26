@@ -68,14 +68,18 @@ export const fsNewFile = (path: string): EmptyRespPromise => {
   });
 };
 
-export const addAria2 = (path: string, urls: string[]) => {
+export const addAria2 = (path: string, urls: string[]):EmptyRespPromise => {
   return r.post("/fs/add_aria2", { path, urls });
 };
 
 export const fetchText = async (url: string) => {
-  const resp = await axios.get(url, {
-    responseType: "blob",
-  });
-  const res = await resp.data.text();
-  return res;
+  try {
+    const resp = await axios.get(url, {
+      responseType: "blob",
+    });
+    const res = await resp.data.text();
+    return res;
+  } catch (e) {
+    return `Failed to fetch ${url}: ${e}`;
+  }
 };

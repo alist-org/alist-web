@@ -6,6 +6,7 @@ import { Delete } from "./Delete";
 import { Rename } from "./Rename";
 import { NewFile } from "./NewFile";
 import { Mkdir } from "./Mkdir";
+import { Aria2 } from "./Aria2";
 
 export const Modal = () => {
   return (
@@ -16,6 +17,7 @@ export const Modal = () => {
       <Delete />
       <NewFile />
       <Mkdir />
+      <Aria2 />
     </>
   );
 };

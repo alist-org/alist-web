@@ -33,6 +33,7 @@ export const Center = () => {
         pos="fixed"
         bottom="$4"
         left="50%"
+        w="max-content"
         css={{
           backdropFilter: "blur(8px)",
         }}

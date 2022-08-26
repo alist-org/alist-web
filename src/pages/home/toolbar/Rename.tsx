@@ -10,7 +10,6 @@ import {
   notify,
   pathJoin,
 } from "~/utils";
-import { CenterIcon } from "./Icon";
 
 export const Rename = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();

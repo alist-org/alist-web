@@ -1,9 +1,10 @@
 import { IconTypes } from "solid-icons";
 import { TiDeleteOutline } from "solid-icons/ti";
-import { CgFileAdd, CgFolderAdd, CgRename } from "solid-icons/cg";
+import { CgRename } from "solid-icons/cg";
 import { TbFileArrowRight } from "solid-icons/tb";
 import { TbCopy, TbLink } from "solid-icons/tb";
 import { AiTwotoneDelete } from "solid-icons/ai";
+import { CgFileAdd, CgFolderAdd } from "solid-icons/cg";
 
 interface Operations {
   [key: string]: {

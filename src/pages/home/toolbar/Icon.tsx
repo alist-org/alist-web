@@ -1,4 +1,5 @@
 import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
+import { IconTypes } from "solid-icons";
 import { useT } from "~/hooks";
 import { user } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
@@ -40,16 +41,17 @@ export const CenterIcon = <C extends ElementType = "svg">(
 
 export const RightIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
-    tip?: string;
+    tips?: string;
+    icon?: IconTypes;
   }
 ) => {
   const t = useT();
   return (
     <Tooltip
-      disabled={!props.tip}
+      disabled={!props.tips}
       placement="left"
       withArrow
-      label={t(`home.toolbar.${props.tip}`)}
+      label={t(`home.toolbar.${props.tips}`)}
     >
       <Icon
         bgColor="$info4"
@@ -69,6 +71,7 @@ export const RightIcon = <C extends ElementType = "svg">(
           transform: "scale(.94)",
           transition: "0.2s",
         }}
+        as={props.icon}
         {...props}
       />
     </Tooltip>
