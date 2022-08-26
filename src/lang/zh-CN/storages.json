@@ -2,9 +2,6 @@
   "common": {
     "mount_path": "挂载路径",
     "driver": "驱动",
-    "drivers": {
-      "Local": "本机存储"
-    },
     "index": "索引",
     "status": "状态",
     "remark": "备注",
@@ -32,8 +29,5 @@
       "front": "提取到最前",
       "back": "提取到最后"
     }
-  },
-  "Local": {
-    "root_folder": "根目录"
   }
 }
