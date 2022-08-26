@@ -8,9 +8,7 @@ export const CopyURL = () => {
   const colorScheme = "neutral";
   return (
     <Menu placement="top" offset={10}>
-      <MenuTrigger as="span">
-        <CenterIcon name="copy_url" />
-      </MenuTrigger>
+      <MenuTrigger as={CenterIcon} name="copy_url" />
       <MenuContent>
         <MenuItem
           colorScheme={colorScheme}

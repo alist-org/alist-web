@@ -33,19 +33,14 @@ export const Center = () => {
         pos="fixed"
         bottom="$4"
         left="50%"
-        // transform="translateX(-50%)"
         css={{
           backdropFilter: "blur(8px)",
         }}
-        // shadow="$md"
         shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         rounded="$lg"
-        // border="1px solid $neutral4"
         p="$2"
         color="$neutral12"
         bgColor={useColorModeValue("white", "#000000d0")()}
-        // color="white"
-        // bgColor="#000000d0"
         spacing="$1"
       >
         <For each={["rename", "move", "copy", "delete"]}>

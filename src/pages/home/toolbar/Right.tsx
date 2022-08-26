@@ -19,6 +19,7 @@ import { NewFile } from "./NewFile";
 import { UserMethods } from "~/types";
 import { operations } from "./operations";
 import { bus } from "~/utils";
+import { Add } from "./Add";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -70,6 +71,7 @@ export const Right = () => {
         >
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={showWrite()}>
+              <Add />
               <RightIcon
                 as={operations.new_file.icon}
                 tip="new_file"
