@@ -20,12 +20,12 @@
   "update_profile_success": "更新个人资料成功，请重新登录。",
   "change_username": "修改用户名",
   "change_password": "更改密码",
-  "change_password_tips": "如果您不想更改密码，请保持为空",
+  "change_password-tips": "Keep the password empty if you don't want to change it",
   "enable_2fa": "启用双重身份验证",
   "2fa_already_enabled": "已启用双重身份验证",
   "scan_qr": "扫描二维码保存密钥",
   "input_code": "输入您的双重验证应用中显示的验证码",
   "verify": "验证",
-  "guest_tips": "您正在作为访客访问。",
+  "guest-tips": "You are currently visiting as a guest.",
   "modify_nothing": "所以您不能在管理页面中修改任何内容。"
 }
