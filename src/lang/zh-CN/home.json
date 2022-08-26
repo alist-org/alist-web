@@ -17,12 +17,12 @@
     "toggle_checkbox": "开关复选框",
     "rename": "重命名",
     "input_new_name": "输入一个新名称",
-    "only_one-tips": "Only one object can be selected to rename",
+    "only_one-tips": "只能选择一个对象重命名",
     "move": "移动",
     "copy": "复制",
     "choose_dst_folder": "选择目标文件夹",
     "delete": "删除",
-    "delete-tips": "Are you sure to delete the selected object?",
+    "delete-tips": "确定要删除所选对象吗?",
     "copy_url": "复制链接",
     "preview_page": "预览页面",
     "down_url": "下载链接",
@@ -31,12 +31,12 @@
     "input_dir_name": "输入文件夹名称",
     "new_file": "新建文件",
     "input_filename": "输入文件名",
-    "cancel_select": "Cancel Select",
-    "add_aria2": "Add to Aria2 download",
-    "add_aria2-tips": "One URL per line"
+    "cancel_select": "取消选择",
+    "add_aria2": "添加到Aria2 下载",
+    "add_aria2-tips": "每行一个链接"
   },
   "footer": {
-    "powered_by": "Powered by AList",
+    "powered_by": "由 AList 驱动",
     "manage": "管理"
   }
 }
