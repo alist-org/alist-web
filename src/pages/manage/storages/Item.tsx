@@ -54,7 +54,11 @@ const Item = (props: ItemProps) => {
       required={props.required}
     >
       <FormLabel for={props.name} display="flex" alignItems="center">
-        {t(props.full_name_path ?? `drivers.${props.driver}.${props.name}`)}
+        {t(
+          props.full_name_path ?? props.driver === "common"
+            ? `storages.common.${props.name}`
+            : `drivers.${props.driver}.${props.name}`
+        )}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
         <Match when={props.type === Type.String}>
@@ -145,7 +149,11 @@ const Item = (props: ItemProps) => {
       </Switch>
       <Show when={props.help}>
         <FormHelperText>
-          {t(`drivers.${props.driver}.${props.name}-tips`)}
+          {t(
+            props.driver === "common"
+              ? `storages.common.${props.name}-tips`
+              : `drivers.${props.driver}.${props.name}-tips`
+          )}
         </FormHelperText>
       </Show>
     </FormControl>
