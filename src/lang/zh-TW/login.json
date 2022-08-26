@@ -1,8 +1,8 @@
 {
   "title": "登錄Alist",
-  "username_tips": "輸入您的用戶名",
-  "password_tips": "輸入您的密碼",
-  "otp_tips": "輸入您的一次性密碼",
+  "username-tips": "Input your username",
+  "password-tips": "Input your password",
+  "otp-tips": "Input your OTP Code",
   "remember": "記住我的登錄資料",
   "forget": "忘記密碼？",
   "clear": "清除",
