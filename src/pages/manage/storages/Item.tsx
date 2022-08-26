@@ -17,7 +17,7 @@ import {
   Switch as HopeSwitch,
   Textarea,
 } from "@hope-ui/solid";
-import { For, Match, Switch } from "solid-js";
+import { For, Match, Show, Switch } from "solid-js";
 import { useT } from "~/hooks";
 import { DriverItem, Type } from "~/types";
 
@@ -130,7 +130,8 @@ const Item = (props: ItemProps) => {
                       <SelectOptionText>
                         {t(
                           (props.options_prefix ??
-                            `drivers.${props.driver}.${props.name}s`) + `.${item}`
+                            `drivers.${props.driver}.${props.name}s`) +
+                            `.${item}`
                         )}
                       </SelectOptionText>
                       <SelectOptionIndicator />
@@ -142,7 +143,11 @@ const Item = (props: ItemProps) => {
           </Select>
         </Match>
       </Switch>
-      <FormHelperText>{props.help}</FormHelperText>
+      <Show when={props.help}>
+        <FormHelperText>
+          {t(`drivers.${props.driver}.${props.name}-tips`)}
+        </FormHelperText>
+      </Show>
     </FormControl>
   );
 };
