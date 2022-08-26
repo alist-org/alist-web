@@ -1,8 +1,8 @@
 {
   "title": "登录到ALIST",
-  "username_tips": "输入您的用户名",
-  "password_tips": "输入您的密码",
-  "otp_tips": "输入您的 OTP 代码",
+  "username-tips": "Input your username",
+  "password-tips": "Input your password",
+  "otp-tips": "Input your OTP Code",
   "remember": "记住账号",
   "forget": "忘记密码？",
   "clear": "清空",
