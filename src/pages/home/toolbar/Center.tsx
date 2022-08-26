@@ -1,6 +1,6 @@
 import { HStack, useColorModeValue } from "@hope-ui/solid";
 import { createEffect, createMemo, For, Show } from "solid-js";
-import { checkboxOpen, haveSelected } from "~/store";
+import { checkboxOpen, haveSelected, selectAll } from "~/store";
 import { createAnimation } from "motion-signals";
 import { CopyURL } from "./CopyURL";
 import { CenterIcon } from "./Icon";
@@ -43,7 +43,7 @@ export const Center = () => {
         // border="1px solid $neutral4"
         p="$2"
         color="$neutral12"
-        bgColor={useColorModeValue("$neutral3", "#000000d0")()}
+        bgColor={useColorModeValue("white", "#000000d0")()}
         // color="white"
         // bgColor="#000000d0"
         spacing="$1"
@@ -61,6 +61,12 @@ export const Center = () => {
           }}
         </For>
         <CopyURL />
+        <CenterIcon
+          name="cancel_select"
+          onClick={() => {
+            selectAll(false);
+          }}
+        />
       </HStack>
     </Show>
   );
