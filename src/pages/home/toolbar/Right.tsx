@@ -17,6 +17,8 @@ import { createAnimation } from "motion-signals";
 import { Mkdir } from "./Mkdir";
 import { NewFile } from "./NewFile";
 import { UserMethods } from "~/types";
+import { operations } from "./operations";
+import { bus } from "~/utils";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -68,8 +70,21 @@ export const Right = () => {
         >
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={showWrite()}>
-              <NewFile />
-              <Mkdir />
+              <RightIcon
+                as={operations.new_file.icon}
+                tip="new_file"
+                onClick={() => {
+                  bus.emit("tool", "new_file");
+                }}
+              />
+              <RightIcon
+                as={operations.mkdir.icon}
+                p="$1_5"
+                tip="mkdir"
+                onClick={() => {
+                  bus.emit("tool", "mkdir");
+                }}
+              />
             </Show>
             <RightIcon
               tip="toggle_checkbox"

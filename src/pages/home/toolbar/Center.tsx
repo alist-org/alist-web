@@ -1,11 +1,10 @@
 import { HStack, useColorModeValue } from "@hope-ui/solid";
-import { createEffect, createMemo, Show } from "solid-js";
+import { createEffect, createMemo, For, Show } from "solid-js";
 import { checkboxOpen, haveSelected } from "~/store";
 import { createAnimation } from "motion-signals";
-import { Copy, Move } from "./CopyMove";
-import { Delete } from "./Delete";
-import { Rename } from "./Rename";
 import { CopyURL } from "./CopyURL";
+import { CenterIcon } from "./Icon";
+import { bus } from "~/utils";
 
 export const Center = () => {
   const { replay } = createAnimation(
@@ -49,10 +48,18 @@ export const Center = () => {
         // bgColor="#000000d0"
         spacing="$1"
       >
-        <Rename />
-        <Move />
-        <Copy />
-        <Delete />
+        <For each={["rename", "move", "copy", "delete"]}>
+          {(name) => {
+            return (
+              <CenterIcon
+                name={name}
+                onClick={() => {
+                  bus.emit("tool", name);
+                }}
+              />
+            );
+          }}
+        </For>
         <CopyURL />
       </HStack>
     </Show>

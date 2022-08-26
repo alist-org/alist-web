@@ -40,7 +40,7 @@ export const ContextMenu = () => {
               return !UserMethods.can(user(), index);
             }}
             onClick={() => {
-              bus.emit("click", `toolbar-${name}`);
+              bus.emit("tool", name);
             }}
           >
             <ItemContent name={name} />

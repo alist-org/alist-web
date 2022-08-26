@@ -3,9 +3,7 @@ import mitt from "mitt";
 type Events = {
   to: string;
   gallery: string;
-  click: string;
+  tool: string;
 };
 
-const bus = mitt<Events>();
-
-export { bus };
+export const bus = mitt<Events>();

@@ -1,12 +1,9 @@
 import { createDisclosure } from "@hope-ui/solid";
+import { onCleanup } from "solid-js";
 import { ModalFolderChoose } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
 import { selectedObjs } from "~/store";
-import {
-  fsCopy,
-  fsMove,
-  handleRrespWithNotifySuccess,
-} from "~/utils";
+import { bus, fsCopy, fsMove, handleRrespWithNotifySuccess } from "~/utils";
 import { CenterIcon } from "./Icon";
 
 export const Copy = () => {
@@ -14,26 +11,31 @@ export const Copy = () => {
   const [loading, ok] = useFetch(fsCopy);
   const { pathname } = useRouter();
   const { refresh } = usePath();
+  bus.on("tool", (name) => {
+    if (name === "copy") {
+      onOpen();
+    }
+  });
+  onCleanup(() => {
+    bus.off("tool");
+  });
   return (
-    <>
-      <CenterIcon name="copy" onClick={onOpen} />
-      <ModalFolderChoose
-        opened={isOpen()}
-        onClose={onClose}
-        loading={loading()}
-        onSubmit={async (dst) => {
-          const resp = await ok(
-            pathname(),
-            dst,
-            selectedObjs().map((obj) => obj.name)
-          );
-          handleRrespWithNotifySuccess(resp, () => {
-            refresh();
-            onClose();
-          });
-        }}
-      />
-    </>
+    <ModalFolderChoose
+      opened={isOpen()}
+      onClose={onClose}
+      loading={loading()}
+      onSubmit={async (dst) => {
+        const resp = await ok(
+          pathname(),
+          dst,
+          selectedObjs().map((obj) => obj.name)
+        );
+        handleRrespWithNotifySuccess(resp, () => {
+          refresh();
+          onClose();
+        });
+      }}
+    />
   );
 };
 
@@ -42,12 +44,17 @@ export const Move = () => {
   const [loading, ok] = useFetch(fsMove);
   const { pathname } = useRouter();
   const { refresh } = usePath();
+  bus.on("tool", (name) => {
+    if (name === "move") {
+      onOpen();
+    }
+  });
+  onCleanup(() => {
+    bus.off("tool");
+  });
   return (
     <>
-      <CenterIcon
-        name="move"
-        onClick={onOpen}
-      />
+      <CenterIcon name="move" onClick={onOpen} />
       <ModalFolderChoose
         opened={isOpen()}
         onClose={onClose}
