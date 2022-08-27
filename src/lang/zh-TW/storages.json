@@ -18,8 +18,8 @@
     },
     "order_by": "Order by",
     "order_bys": {
-      "name": "Name",
-      "size": "Size",
+      "name": "名稱",
+      "size": "大小",
       "modified": "Modified"
     },
     "order_direction": "Order direction",
