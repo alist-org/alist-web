@@ -1,7 +1,25 @@
-import { Menu, MenuTrigger, MenuContent, MenuItem } from "@hope-ui/solid";
-import { onCleanup } from "solid-js";
+import {
+  Menu,
+  MenuTrigger,
+  MenuContent,
+  MenuItem,
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  createDisclosure,
+} from "@hope-ui/solid";
+import { ok } from "assert";
+import { createSignal, lazy, onCleanup, Show, Suspense } from "solid-js";
+import { FullLoading } from "~/components";
 import { useT, useDownload } from "~/hooks";
-import { bus } from "~/utils";
+import { onClose } from "~/pages/manage/Header";
+import { getSettingBool, selectedObjs, user } from "~/store";
+import { UserMethods } from "~/types";
+import { bus, handleRrespWithNotifySuccess } from "~/utils";
 import { CenterIcon } from "./Icon";
 
 export const Download = () => {
@@ -15,9 +33,20 @@ export const Download = () => {
         <MenuItem colorScheme={colorScheme} onSelect={batchDownloadSelected}>
           {t("home.toolbar.batch_download")}
         </MenuItem>
-        <MenuItem colorScheme={colorScheme} onSelect={() => {}}>
-          {t("home.toolbar.package_download")}
-        </MenuItem>
+        <Show
+          when={
+            UserMethods.is_admin(user()) || getSettingBool("package_download")
+          }
+        >
+          <MenuItem
+            colorScheme={colorScheme}
+            onSelect={() => {
+              bus.emit("tool", "package_download");
+            }}
+          >
+            {t("home.toolbar.package_download")}
+          </MenuItem>
+        </Show>
         <MenuItem colorScheme={colorScheme} onSelect={sendToAria2}>
           {t("home.toolbar.send_aria2")}
         </MenuItem>
@@ -26,13 +55,59 @@ export const Download = () => {
   );
 };
 
-export const PackageDownload = () => {
+const PackageDownload = lazy(() => import("./PackageDownload"));
+
+export const PackageDownloadModal = () => {
+  const t = useT();
   bus.on("tool", (name) => {
     if (name === "package_download") {
+      onOpen();
     }
   });
   onCleanup(() => {
     bus.off("tool");
   });
-  return <></>;
+  const { isOpen, onOpen, onClose } = createDisclosure();
+  const [show, setShow] = createSignal("pre_tips");
+  return (
+    <Modal
+      blockScrollOnMount={false}
+      opened={isOpen()}
+      onClose={onClose}
+      closeOnOverlayClick={false}
+      closeOnEsc={false}
+      // size={{
+      //   "@initial": "xs",
+      //   "@md": "md",
+      // }}
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{t("home.toolbar.package_download")}</ModalHeader>
+        <Suspense fallback={<FullLoading />}>
+          <Show
+            when={show() === "pre_tips"}
+            fallback={<PackageDownload onClose={onClose} />}
+          >
+            <ModalBody>
+              <p>{t("home.toolbar.pre_package_download-tips")}</p>
+            </ModalBody>
+            <ModalFooter display="flex" gap="$2">
+              <Button onClick={onClose} colorScheme="neutral">
+                {t("global.cancel")}
+              </Button>
+              <Button
+                colorScheme="info"
+                onClick={() => {
+                  setShow("package_download");
+                }}
+              >
+                {t("global.confirm")}
+              </Button>
+            </ModalFooter>
+          </Show>
+        </Suspense>
+      </ModalContent>
+    </Modal>
+  );
 };

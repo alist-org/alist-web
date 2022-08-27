@@ -39,10 +39,21 @@
     "package_download": "Package Download",
     "send_aria2": "Send to Aria2",
     "aria2_not_set": "Please set aria2 rpc url",
-    "send_aria2_success": "Send to aria2 successfully"
+    "send_aria2_success": "Send to aria2 successfully",
+    "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
+    "package_download-tips": "Downloading, please wait don't close the page"
   },
   "context_menu": {
     "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
+  },
+  "package_download": {
+    "current_status": "Current Status",
+    "initializing": "Initializing",
+    "fetching_struct": "Fetching folder structure",
+    "fetching_struct_failed": "Failed to fetch folder structure",
+    "downloading": "Downloading files, don't close or refresh the page",
+    "failed": "Failed to package download",
+    "success": "Download completed"
   },
   "footer": {
     "powered_by": "Powered by AList",

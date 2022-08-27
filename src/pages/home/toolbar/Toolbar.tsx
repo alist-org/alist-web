@@ -7,7 +7,7 @@ import { Rename } from "./Rename";
 import { NewFile } from "./NewFile";
 import { Mkdir } from "./Mkdir";
 import { Aria2 } from "./Aria2";
-import { PackageDownload } from "./Download";
+import { PackageDownloadModal } from "./Download";
 
 export const Modal = () => {
   return (
@@ -19,7 +19,7 @@ export const Modal = () => {
       <NewFile />
       <Mkdir />
       <Aria2 />
-      <PackageDownload />
+      <PackageDownloadModal />
     </>
   );
 };
