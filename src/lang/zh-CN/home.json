@@ -9,6 +9,8 @@
     "failed_load_img": "载入图像失败",
     "open_with": "使用... 打开"
   },
+  "load_more": "Load more",
+  "no_more": "No more",
   "input_password": "请输入密码",
   "toolbar": {
     "more": "更多",
