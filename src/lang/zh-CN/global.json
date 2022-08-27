@@ -24,5 +24,6 @@
   "ok": "确定",
   "back": "返回",
   "have_account": "已有账号？",
-  "go_login": "转到登录"
+  "go_login": "转到登录",
+  "close": "Close"
 }
