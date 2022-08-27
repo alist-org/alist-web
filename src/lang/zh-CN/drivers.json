@@ -1,0 +1,20 @@
+{
+  "drivers": {
+    "Local": "本机存储",
+    "Virtual": "虚拟"
+  },
+  "Local": {
+    "root_folder-tips": "根文件夹路径",
+    "thumbnail": "缩略图",
+    "thumbnail-tips": "启用缩略图",
+    "root_folder": "根目录"
+  },
+  "Virtual": {
+    "num_file": "文件数量",
+    "num_folder": "文件夹数量",
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹路径"
+  }
+}
