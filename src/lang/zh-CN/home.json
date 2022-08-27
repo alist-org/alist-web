@@ -34,26 +34,26 @@
     "cancel_select": "取消选择",
     "add_aria2": "添加到Aria2 下载",
     "add_aria2-tips": "每行一个链接",
-    "download": "Download",
-    "batch_download": "Batch Download",
-    "package_download": "Package Download",
-    "send_aria2": "Send to Aria2",
-    "aria2_not_set": "Please set aria2 rpc url",
-    "send_aria2_success": "Send to aria2 successfully",
-    "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
-    "package_download-tips": "Downloading, please wait don't close the page"
+    "download": "下载",
+    "batch_download": "批量下载",
+    "package_download": "打包下载",
+    "send_aria2": "发送到Aria2",
+    "aria2_not_set": "请设置 aria2 rpc url",
+    "send_aria2_success": "成功发送到aria2",
+    "pre_package_download-tips": "在浏览器中使用streamsaver而不是服务器来进行包下载需要相应的存储支持cors，而不支持的存储将失败。",
+    "package_download-tips": "正在下载，请稍候不要关闭页面"
   },
   "context_menu": {
-    "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
+    "can_not_down_dir": "无法在这里下载文件夹，请在中心工具栏中使用“打包下载”。"
   },
   "package_download": {
-    "current_status": "Current Status",
-    "initializing": "Initializing",
-    "fetching_struct": "Fetching folder structure",
-    "fetching_struct_failed": "Failed to fetch folder structure",
-    "downloading": "Downloading files, don't close or refresh the page",
-    "failed": "Failed to package download",
-    "success": "Download completed"
+    "current_status": "当前状态",
+    "initializing": "正在初始化",
+    "fetching_struct": "正在获取文件夹结构",
+    "fetching_struct_failed": "获取文件夹结构失败",
+    "downloading": "下载文件中，不要关闭或刷新页面",
+    "failed": "打包下载失败",
+    "success": "下载完成"
   },
   "footer": {
     "powered_by": "由 AList 驱动",
