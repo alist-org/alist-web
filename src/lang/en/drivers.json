@@ -1,0 +1,20 @@
+{
+  "drivers": {
+    "Local": "Local",
+    "Virtual": "Virtual"
+  },
+  "Local": {
+    "root_folder-tips": "root folder path",
+    "thumbnail": "Thumbnail",
+    "thumbnail-tips": "enable thumbnail",
+    "root_folder": "Root folder"
+  },
+  "Virtual": {
+    "num_file": "Num file",
+    "num_folder": "Num folder",
+    "max_file_size": "Max file size",
+    "min_file_size": "Min file size",
+    "root_folder": "Root folder",
+    "root_folder-tips": "root folder path"
+  }
+}
