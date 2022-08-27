@@ -1,0 +1,9 @@
+{
+  "aria2": "Aria2",
+  "aria2_version": "Aria2 Version:",
+  "set_aria2": "Set aria2",
+  "copy_token": "Copy Token",
+  "reset_token": "Reset Token",
+  "reset_token_success": "Reset Token Successfully",
+  "unkown_type": "Unknown type"
+}
