@@ -1,10 +1,10 @@
 import { Menu, Item } from "solid-contextmenu";
-import { useCopyUrl, useT } from "~/hooks";
+import { useCopyUrl, useDownload, useT } from "~/hooks";
 import "solid-contextmenu/dist/style.css";
 import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid";
 import { operations } from "../toolbar/operations";
 import { For } from "solid-js";
-import { bus } from "~/utils";
+import { bus, notify } from "~/utils";
 import { Obj, UserMethods, UserPermissions } from "~/types";
 import { user } from "~/store";
 
@@ -24,8 +24,10 @@ const ItemContent = (props: { name: string }) => {
 };
 
 export const ContextMenu = () => {
+  const t = useT();
   const { colorMode } = useColorMode();
   const { copyRawUrl, copyPreviewPage } = useCopyUrl();
+  const { batchDownloadSelected } = useDownload();
   return (
     <Menu
       id={1}
@@ -57,6 +59,17 @@ export const ContextMenu = () => {
         }}
       >
         <ItemContent name="copy_url" />
+      </Item>
+      <Item
+        onClick={({ props }) => {
+          if (props.is_dir) {
+            notify.warning(t("home.context_menu.can_not_down_dir"));
+          } else {
+            batchDownloadSelected();
+          }
+        }}
+      >
+        <ItemContent name="download" />
       </Item>
     </Menu>
   );

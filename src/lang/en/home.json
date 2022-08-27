@@ -33,7 +33,16 @@
     "input_filename": "Input filename",
     "cancel_select": "Cancel Select",
     "add_aria2": "Add to Aria2 download",
-    "add_aria2-tips": "One URL per line"
+    "add_aria2-tips": "One URL per line",
+    "download": "Download",
+    "batch_download": "Batch Download",
+    "package_download": "Package Download",
+    "send_aria2": "Send to Aria2",
+    "aria2_not_set": "Please set aria2 rpc url",
+    "send_aria2_success": "Send to aria2 successfully"
+  },
+  "context_menu": {
+    "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
   },
   "footer": {
     "powered_by": "Powered by AList",

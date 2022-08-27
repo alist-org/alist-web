@@ -5,6 +5,7 @@ import { TbFileArrowRight } from "solid-icons/tb";
 import { TbCopy, TbLink } from "solid-icons/tb";
 import { AiTwotoneDelete } from "solid-icons/ai";
 import { CgFileAdd, CgFolderAdd } from "solid-icons/cg";
+import { AiOutlineCloudDownload } from "solid-icons/ai";
 
 interface Operations {
   [key: string]: {
@@ -22,6 +23,7 @@ export const operations: Operations = {
   mkdir: { icon: CgFolderAdd, p: true },
   new_file: { icon: CgFileAdd, p: true },
   cancel_select: { icon: TiDeleteOutline },
+  download: { icon: AiOutlineCloudDownload, color: "$primary9" },
 };
 // interface Operation {
 //   label: string;

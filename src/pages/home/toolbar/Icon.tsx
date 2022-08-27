@@ -27,13 +27,13 @@ export const CenterIcon = <C extends ElementType = "svg">(
         cursor="pointer"
         boxSize="$7"
         rounded="$md"
-        p={operations[props.name].p ? "$1_5" : "$1"}
+        p={operations[props.name]?.p ? "$1_5" : "$1"}
         _active={{
           transform: "scale(.94)",
           transition: "0.2s",
         }}
-        as={operations[props.name].icon}
-        color={operations[props.name].color}
+        as={operations[props.name]?.icon}
+        color={operations[props.name]?.color}
         {...props}
       />
     </Tooltip>

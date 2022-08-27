@@ -52,24 +52,28 @@ export const useUrl = () => {
 
 export const useSelectedUrl = () => {
   const { previewPage, rawUrl } = useUrl();
+  const rawUrls = (encodeAll?: boolean) => {
+    return selectedObjs()
+      .filter((obj) => !obj.is_dir)
+      .map((obj) => rawUrl(obj, encodeAll));
+  };
   return {
-    previewPage: () => {
+    rawUrls: rawUrls,
+    previewPagesText: () => {
       return selectedObjs()
         .map((obj) => previewPage(obj, true))
         .join("\n");
     },
-    rawUrl: (encodeAll?: boolean) => {
-      return selectedObjs()
-        .filter((obj) => !obj.is_dir)
-        .map((obj) => rawUrl(obj, encodeAll))
-        .join("\n");
+    rawUrlsText: (encodeAll?: boolean) => {
+      return rawUrls(encodeAll).join("\n");
     },
   };
 };
 
 export const useCopyUrl = () => {
   const { copy } = useUtil();
-  const { previewPage, rawUrl } = useSelectedUrl();
+  const { previewPagesText: previewPage, rawUrlsText: rawUrl } =
+    useSelectedUrl();
   return {
     copyPreviewPage: () => {
       copy(previewPage());

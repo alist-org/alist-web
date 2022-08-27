@@ -5,6 +5,7 @@ import { createAnimation } from "motion-signals";
 import { CopyURL } from "./CopyURL";
 import { CenterIcon } from "./Icon";
 import { bus } from "~/utils";
+import { Download } from "./Download";
 
 export const Center = () => {
   const { replay } = createAnimation(
@@ -13,7 +14,7 @@ export const Center = () => {
       opacity: [0, 1],
       scale: [0.9, 1],
       y: [10, 0],
-      x: ["-50%", "-50%"],
+      x: ["50%", "50%"],
     },
     {
       duration: 0.2,
@@ -32,7 +33,7 @@ export const Center = () => {
         class="center-toolbar"
         pos="fixed"
         bottom="$4"
-        left="50%"
+        right="50%"
         w="max-content"
         css={{
           backdropFilter: "blur(8px)",
@@ -57,6 +58,7 @@ export const Center = () => {
           }}
         </For>
         <CopyURL />
+        <Download />
         <CenterIcon
           name="cancel_select"
           onClick={() => {
