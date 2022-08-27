@@ -35,7 +35,7 @@ const OtherSettings = () => {
   const { copy } = useUtil();
   return (
     <MaybeLoading loading={settingsLoading()}>
-      <Heading mb="$2">{t("settings.aria2")}</Heading>
+      <Heading mb="$2">{t("settings_other.aria2")}</Heading>
       <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
         <Item
           {...settings().find((i) => i.key === "aria2_uri")!}
@@ -54,11 +54,11 @@ const OtherSettings = () => {
         onClick={async () => {
           const resp: Resp<string> = await setAria2();
           handleRresp(resp, (data) => {
-            notify.success(`${t("settings.aria2_version")} ${data}`);
+            notify.success(`${t("settings_other.aria2_version")} ${data}`);
           });
         }}
       >
-        {t("settings.set_aria2")}
+        {t("settings_other.set_aria2")}
       </Button>
       <Heading my="$2">{t("settings.token")}</Heading>
       <Input value={token()} readOnly />
@@ -68,7 +68,7 @@ const OtherSettings = () => {
             copy(token());
           }}
         >
-          {t("settings.copy_token")}
+          {t("settings_other.copy_token")}
         </Button>
         <Button
           colorScheme="danger"
@@ -76,12 +76,12 @@ const OtherSettings = () => {
           onClick={async () => {
             const resp: Resp<string> = await resetToken();
             handleRresp(resp, (data) => {
-              notify.success(t("settings.reset_token_success"));
+              notify.success(t("settings_other.reset_token_success"));
               setToken(data);
             });
           }}
         >
-          {t("settings.reset_token")}
+          {t("settings_other.reset_token")}
         </Button>
       </HStack>
     </MaybeLoading>

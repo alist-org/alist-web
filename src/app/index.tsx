@@ -1,11 +1,9 @@
 import {
-  Center,
   HopeProvider,
   NotificationsProvider,
-  Spinner,
 } from "@hope-ui/solid";
 import { I18nContext } from "@solid-primitives/i18n";
-import { ErrorBoundary, JSXElement, Suspense } from "solid-js";
+import { ErrorBoundary, Suspense } from "solid-js";
 import { Error, FullLoading } from "~/components";
 import App from "./App";
 import { i18n } from "./i18n";
@@ -18,7 +16,7 @@ const Index = () => {
       <ErrorBoundary
         fallback={(err) => {
           console.error("error", err);
-          return <Error msg={`System error: ${err.message}`} />;
+          return <Error msg={`System error: ${err}`} />;
         }}
       >
         <I18nContext.Provider value={i18n}>

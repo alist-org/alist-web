@@ -49,7 +49,7 @@ const Item = (props: ItemProps) => {
           />
         </Show>
       </FormLabel>
-      <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
+      <Switch fallback={<Center>{t("settings_other.unknown_type")}</Center>}>
         <Match when={[Type.String, Type.Number].includes(props.type)}>
           <Input
             type={props.type === Type.Number ? "number" : ""}
@@ -111,7 +111,9 @@ const Item = (props: ItemProps) => {
           </Select>
         </Match>
       </Switch>
-      <FormHelperText>{props.help}</FormHelperText>
+      <FormHelperText>
+        {props.help ? t(`settings.${props.key}-tips`) : ""}
+      </FormHelperText>
     </FormControl>
   );
 };
