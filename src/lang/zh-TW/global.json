@@ -24,5 +24,6 @@
   "ok": "OK",
   "back": "Back",
   "have_account": "Have an account?",
-  "go_login": "Go to login"
+  "go_login": "Go to login",
+  "close": "Close"
 }
