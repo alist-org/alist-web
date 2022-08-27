@@ -18,7 +18,7 @@ export const fsList = (
   path: string = "/",
   password = "",
   page = 1,
-  per_page = 50
+  per_page = 0
 ): Promise<FsListResp> => {
   return r.post("/fs/list", {
     path,
@@ -68,7 +68,7 @@ export const fsNewFile = (path: string): EmptyRespPromise => {
   });
 };
 
-export const addAria2 = (path: string, urls: string[]):EmptyRespPromise => {
+export const addAria2 = (path: string, urls: string[]): EmptyRespPromise => {
   return r.post("/fs/add_aria2", { path, urls });
 };
 

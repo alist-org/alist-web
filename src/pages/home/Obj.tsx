@@ -1,4 +1,4 @@
-import { Center, useColorModeValue } from "@hope-ui/solid";
+import { useColorModeValue, VStack } from "@hope-ui/solid";
 import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js";
 import { FullLoading, Error } from "~/components";
 import { usePath, useRouter } from "~/hooks";
@@ -20,13 +20,14 @@ export const Obj = () => {
     })
   );
   return (
-    <Center
+    <VStack
       class="obj-box"
       w="$full"
       rounded="$xl"
       bgColor={cardBg()}
       p="$2"
       shadow="$lg"
+      spacing="$2"
     >
       <Suspense fallback={<FullLoading />}>
         <Switch>
@@ -46,7 +47,9 @@ export const Obj = () => {
           <Match when={objStore.state === State.NeedPassword}>
             <Password />
           </Match>
-          <Match when={objStore.state === State.Folder}>
+          <Match
+            when={[State.Folder, State.FetchingMore].includes(objStore.state)}
+          >
             <Folder />
           </Match>
           <Match when={objStore.state === State.File}>
@@ -54,6 +57,6 @@ export const Obj = () => {
           </Match>
         </Switch>
       </Suspense>
-    </Center>
+    </VStack>
   );
 };

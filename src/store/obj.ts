@@ -21,6 +21,7 @@ const [objStore, setObjStore] = createStore<{
   related: Obj[];
 
   objs: StoreObj[];
+  total: number;
   write?: boolean;
 
   readme: string;
@@ -35,6 +36,7 @@ const [objStore, setObjStore] = createStore<{
   related: [],
 
   objs: [],
+  total: 0,
 
   readme: "",
   provider: "",
@@ -64,6 +66,9 @@ export const ObjStore = {
     setObjStore("provider", provider);
   },
   setObjs: setObjs,
+  setTotal: (total: number) => {
+    setObjStore("total", total);
+  },
   setReadme: (readme: string) => setObjStore("readme", readme),
   setRelated: (related: Obj[]) => setObjStore("related", related),
   setWrite: (write: boolean) => setObjStore("write", write),

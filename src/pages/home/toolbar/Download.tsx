@@ -12,14 +12,12 @@ import {
   ModalOverlay,
   createDisclosure,
 } from "@hope-ui/solid";
-import { ok } from "assert";
 import { createSignal, lazy, onCleanup, Show, Suspense } from "solid-js";
 import { FullLoading } from "~/components";
 import { useT, useDownload } from "~/hooks";
-import { onClose } from "~/pages/manage/Header";
-import { getSettingBool, selectedObjs, user } from "~/store";
+import { getSettingBool, user } from "~/store";
 import { UserMethods } from "~/types";
-import { bus, handleRrespWithNotifySuccess } from "~/utils";
+import { bus } from "~/utils";
 import { CenterIcon } from "./Icon";
 
 export const Download = () => {
@@ -81,7 +79,7 @@ export const PackageDownloadModal = () => {
       //   "@md": "md",
       // }}
     >
-      <ModalOverlay />
+      {/* <ModalOverlay /> */}
       <ModalContent>
         <ModalHeader>{t("home.toolbar.package_download")}</ModalHeader>
         <Suspense fallback={<FullLoading />}>

@@ -14,8 +14,13 @@ export const getSettingBool = (key: string) => {
   const value = getSetting(key);
   return value === "true" || value === "1";
 };
-export const getSettingNumber = (key: string) =>
-  parseInt(getSetting(key) === "" ? "0" : getSetting(key));
+export const getSettingNumber = (key: string, defaultV?: number) => {
+  const value = getSetting(key);
+  if (value) {
+    return Number(value);
+  }
+  return defaultV ?? 0;
+};
 export const getIconColor = () => getSetting("main_color") || "#1890ff";
 
 /**
@@ -59,3 +64,13 @@ export const getExternalPreviews = (name: string) =>
   getPreviewsByName(name, "external_previews");
 export const getIframePreviews = (name: string) =>
   getPreviewsByName(name, "iframe_previews");
+
+export const getPagination = (): {
+  size: number;
+  type: "all" | "pagination" | "load_more" | "auto_load_more";
+} => {
+  return {
+    type: (getSetting("pagination_type") || "all") as any,
+    size: getSettingNumber("default_page_size", 30),
+  };
+};

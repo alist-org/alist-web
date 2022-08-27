@@ -1,9 +1,12 @@
+import { createSignal } from "solid-js";
 import {
   appendObjs,
   getSettingNumber,
   password,
   ObjStore,
   State,
+  getPagination,
+  objStore,
 } from "~/store";
 import {
   fsGet,
@@ -17,15 +20,16 @@ import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
 const IsDirRecord: Record<string, boolean> = {};
-
+let globalPage = 1;
 export const usePath = () => {
   const { pathname, setSearchParams } = useRouter();
   const [, getObj] = useFetch((path: string) => fsGet(path, password()));
+  const pagination = getPagination();
   const [, getObjs] = useFetch(
     (arg?: { path: string; index?: number; size?: number }) => {
       const page = {
-        index: arg?.index ?? 1,
-        size: arg?.size ?? getSettingNumber("page_size") ?? 50,
+        index: arg?.index,
+        size: arg?.size,
       };
       // setSearchParams(page);
       return fsList(arg?.path, password(), page.index, page.size);
@@ -85,6 +89,13 @@ export const usePath = () => {
     size?: number,
     append = false
   ) => {
+    if (!size) {
+      size = pagination.size;
+    }
+    if (size !== undefined && pagination.type === "all") {
+      size = undefined;
+    }
+    globalPage = index ?? 1;
     ObjStore.setState(append ? State.FetchingMore : State.FetchingObjs);
     const resp = await getObjs({ path, index, size });
     handleRrespWithoutNotify(
@@ -94,6 +105,7 @@ export const usePath = () => {
           appendObjs(data.content);
         } else {
           ObjStore.setObjs(data.content ?? []);
+          ObjStore.setTotal(data.total);
         }
         ObjStore.setReadme(data.readme);
         ObjStore.setWrite(data.write);
@@ -113,12 +125,20 @@ export const usePath = () => {
       ObjStore.setErr(msg);
     }
   };
-
+  const pageChange = (index?: number, size?: number, append = false) => {
+    handleFolder(pathname(), index, size, append);
+  };
   return {
     handlePathChange,
     setPathAsDir,
     refresh: (retry_pass?: boolean) => {
       handlePathChange(pathname(), retry_pass);
     },
+    pageChange,
+    page: globalPage,
+    loadMore: () => {
+      pageChange(globalPage + 1, undefined, true);
+    },
+    allLoaded: () => globalPage >= Math.ceil(objStore.total / pagination.size),
   };
 };

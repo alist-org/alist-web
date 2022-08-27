@@ -9,6 +9,8 @@
     "failed_load_img": "Failed to load image",
     "open_with": "Open with ..."
   },
+  "load_more": "Load more",
+  "no_more": "No more",
   "input_password": "Please input password",
   "toolbar": {
     "more": "More",

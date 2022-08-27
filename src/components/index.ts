@@ -9,3 +9,4 @@ export * from "./ImageWithError";
 export * from "./Markdown";
 export * from "./ModalInput";
 export * from "./Base";
+export * from "./Paginator";
