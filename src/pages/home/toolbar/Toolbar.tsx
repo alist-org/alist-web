@@ -8,6 +8,9 @@ import { NewFile } from "./NewFile";
 import { Mkdir } from "./Mkdir";
 import { Aria2 } from "./Aria2";
 import { PackageDownloadModal } from "./Download";
+import { lazy } from "solid-js";
+import { ModalWrapper } from "./ModalWrapper";
+const Upload = lazy(() => import("./Upload"));
 
 export const Modal = () => {
   return (
@@ -20,6 +23,9 @@ export const Modal = () => {
       <Mkdir />
       <Aria2 />
       <PackageDownloadModal />
+      <ModalWrapper name="upload" title="home.toolbar.upload">
+        <Upload />
+      </ModalWrapper>
     </>
   );
 };

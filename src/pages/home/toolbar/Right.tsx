@@ -17,6 +17,7 @@ import { createAnimation } from "motion-signals";
 import { bus } from "~/utils";
 import { operations } from "./operations";
 import { IoMagnetOutline } from "solid-icons/io";
+import { AiOutlineCloudUpload } from "solid-icons/ai";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -83,6 +84,15 @@ export const Right = () => {
                 tips="mkdir"
                 onClick={() => {
                   bus.emit("tool", "mkdir");
+                }}
+              />
+            </Show>
+            <Show when={userCan("write")}>
+              <RightIcon
+                as={AiOutlineCloudUpload}
+                tips="upload"
+                onClick={() => {
+                  bus.emit("tool", "upload");
                 }}
               />
             </Show>

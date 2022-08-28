@@ -79,7 +79,7 @@ export const PackageDownloadModal = () => {
       //   "@md": "md",
       // }}
     >
-      {/* <ModalOverlay /> */}
+      <ModalOverlay />
       <ModalContent>
         <ModalHeader>{t("home.toolbar.package_download")}</ModalHeader>
         <Suspense fallback={<FullLoading />}>
