@@ -13,7 +13,7 @@ const MdPreview = () => {
   };
   return (
     <MaybeLoading loading={content.loading}>
-      <Markdown children={convertToMd(content())} />
+      <Markdown children={convertToMd(content()?.content)} />
     </MaybeLoading>
   );
 };

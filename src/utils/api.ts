@@ -63,7 +63,7 @@ export const fsRemove = (dir: string, names: string[]): EmptyRespPromise => {
 export const fsNewFile = (path: string): EmptyRespPromise => {
   return r.put("/fs/put", undefined, {
     headers: {
-      "File-Path": path,
+      "File-Path": encodeURIComponent(path),
     },
   });
 };
@@ -77,9 +77,13 @@ export const fetchText = async (url: string) => {
     const resp = await axios.get(url, {
       responseType: "blob",
     });
-    const res = await resp.data.text();
-    return res;
+    const content = await resp.data.text();
+    const contentType = resp.headers["content-type"];
+    return { content, contentType };
   } catch (e) {
-    return `Failed to fetch ${url}: ${e}`;
+    return {
+      content: `Failed to fetch ${url}: ${e}`,
+      contentType: "",
+    };
   }
 };

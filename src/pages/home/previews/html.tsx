@@ -11,7 +11,7 @@ const HtmlPreview = () => {
         minH="70vh"
         rounded="$lg"
         shadow="$md"
-        srcdoc={content()}
+        srcdoc={content()?.content}
       />
     </MaybeLoading>
   );

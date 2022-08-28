@@ -38,14 +38,16 @@ export const Readme = () => {
     if (/https?:\/\//g.test(readme)) {
       return await fetchText(readme);
     }
-    return readme;
+    return {
+      content: readme,
+    };
   };
   const [content] = createResource(readme, fetchContent);
   return (
     <Show when={readme()}>
       <Box w="$full" rounded="$xl" p="$4" bgColor={cardBg()} shadow="$lg">
         <MaybeLoading loading={content.loading}>
-          <Markdown children={content()} />
+          <Markdown children={content()?.content} />
         </MaybeLoading>
       </Box>
     </Show>
