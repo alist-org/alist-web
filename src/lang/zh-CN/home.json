@@ -45,7 +45,22 @@
     "aria2_not_set": "请设置 aria2 rpc url",
     "send_aria2_success": "成功发送到aria2",
     "pre_package_download-tips": "在浏览器中使用streamsaver而不是服务器来进行包下载需要相应的存储支持cors，而不支持的存储将失败。",
-    "package_download-tips": "正在下载，请稍候不要关闭页面"
+    "package_download-tips": "正在下载，请稍候不要关闭页面",
+    "upload": "上传"
+  },
+  "upload": {
+    "add_as_task": "Add as task",
+    "upload-tips": "Drag files here to upload, or click:",
+    "release": "Release to upload",
+    "upload_files": "Choose Files",
+    "upload_folder": "Choose Folder",
+    "pending": "等待中...",
+    "uploading": "Uploading",
+    "backending": "Uploading in the backend",
+    "success": "Success",
+    "error": "Error",
+    "back": "Back to Upload",
+    "clear_done": "Clear Done"
   },
   "context_menu": {
     "can_not_down_dir": "无法在这里下载文件夹，请在中心工具栏中使用“打包下载”。"
