@@ -1,9 +1,8 @@
-import { type } from "os";
 import { Component, lazy } from "solid-js";
 import { getIframePreviews } from "~/store";
 import { Obj, ObjType } from "~/types";
 import { ext } from "~/utils";
-import { generateIframePreview } from "../previews/iframe";
+import { generateIframePreview } from "./iframe";
 
 export interface Preview {
   name: string;
@@ -19,27 +18,37 @@ const previews: Preview[] = [
   {
     name: "Markdown",
     type: ObjType.TEXT,
-    component: lazy(() => import("../previews/markdown")),
+    component: lazy(() => import("./markdown")),
   },
   {
     name: "Text Editor",
     type: ObjType.TEXT,
-    component: lazy(() => import("../previews/text-editor")),
+    component: lazy(() => import("./text-editor")),
   },
   {
     name: "HTML render",
     exts: ["html"],
-    component: lazy(() => import("../previews/html")),
+    component: lazy(() => import("./html")),
   },
   {
     name: "Image",
     type: ObjType.IMAGE,
-    component: lazy(() => import("../previews/image")),
+    component: lazy(() => import("./image")),
   },
   {
     name: "Video",
     type: ObjType.VIDEO,
-    component: lazy(() => import("../previews/video")),
+    component: lazy(() => import("./video")),
+  },
+  {
+    name: "Ipa",
+    exts: ["ipa"],
+    component: lazy(() => import("./ipa")),
+  },
+  {
+    name: "Plist",
+    exts: ["plist"],
+    component: lazy(() => import("./plist")),
   },
 ];
 
@@ -71,7 +80,7 @@ export const getPreviews = (
   // download page
   res.push({
     name: "Download",
-    component: lazy(() => import("../previews/download")),
+    component: lazy(() => import("./download")),
   });
   return res;
 };

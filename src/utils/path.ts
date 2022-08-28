@@ -52,3 +52,7 @@ export const encodePath = (path: string, all?: boolean) => {
 export const ext = (path: string): string => {
   return path.split(".").pop() ?? "";
 };
+
+export const baseName = (fullName: string) => {
+  return fullName.split(".").slice(0, -1);
+};

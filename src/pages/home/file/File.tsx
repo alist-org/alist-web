@@ -5,7 +5,7 @@ import { FullLoading, SelectWrapper } from "~/components";
 import { objStore } from "~/store";
 import { CommonPreview } from "./common-preview";
 import { OpenWith } from "./open-with";
-import { getPreviews } from "./previews";
+import { getPreviews } from "../previews";
 
 const File = () => {
   const previews = createMemo(() => {

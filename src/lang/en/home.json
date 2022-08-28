@@ -7,7 +7,9 @@
   "preview": {
     "download": "Download",
     "failed_load_img": "Failed to load image",
-    "open_with": "Open with ..."
+    "open_with": "Open with ...",
+    "install": "Install",
+    "installing": "Installing"
   },
   "load_more": "Load more",
   "no_more": "No more",
