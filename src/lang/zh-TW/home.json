@@ -45,7 +45,22 @@
     "aria2_not_set": "Please set aria2 rpc url",
     "send_aria2_success": "Send to aria2 successfully",
     "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
-    "package_download-tips": "Downloading, please wait don't close the page"
+    "package_download-tips": "Downloading, please wait don't close the page",
+    "upload": "上傳"
+  },
+  "upload": {
+    "add_as_task": "Add as task",
+    "upload-tips": "Drag files here to upload, or click:",
+    "release": "Release to upload",
+    "upload_files": "Choose Files",
+    "upload_folder": "Choose Folder",
+    "pending": "等待中",
+    "uploading": "Uploading",
+    "backending": "Uploading in the backend",
+    "success": "Success",
+    "error": "Error",
+    "back": "Back to Upload",
+    "clear_done": "Clear Done"
   },
   "context_menu": {
     "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
