@@ -1,5 +1,4 @@
-import axios from "axios";
-import { type } from "os";
+import axios, { CancelToken } from "axios";
 import { EmptyResp, FsGetResp, FsListResp, Obj, PageResp, Resp } from "~/types";
 import { r } from ".";
 
@@ -19,15 +18,22 @@ export const fsList = (
   password = "",
   page = 1,
   per_page = 0,
-  refresh = false
+  refresh = false,
+  cancelToken: CancelToken
 ): Promise<FsListResp> => {
-  return r.post("/fs/list", {
-    path,
-    password,
-    page,
-    per_page,
-    refresh,
-  });
+  return r.post(
+    "/fs/list",
+    {
+      path,
+      password,
+      page,
+      per_page,
+      refresh,
+    },
+    {
+      cancelToken: cancelToken,
+    }
+  );
 };
 
 export const fsDirs = (path = "/", password = ""): Promise<Resp<Obj[]>> => {

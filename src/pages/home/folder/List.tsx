@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Box, Checkbox } from "@hope-ui/solid";
+import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid";
 import {
   batch,
   createEffect,

@@ -1,3 +1,4 @@
+import axios, { Canceler } from "axios";
 import { createSignal } from "solid-js";
 import {
   appendObjs,
@@ -19,6 +20,7 @@ import {
 import { useFetch } from "./useFetch";
 import { useRouter } from "./useRouter";
 
+let cancelList: Canceler;
 const IsDirRecord: Record<string, boolean> = {};
 let globalPage = 1;
 export const usePath = () => {
@@ -37,7 +39,16 @@ export const usePath = () => {
         size: arg?.size,
       };
       // setSearchParams(page);
-      return fsList(arg?.path, password(), page.index, page.size, arg?.force);
+      return fsList(
+        arg?.path,
+        password(),
+        page.index,
+        page.size,
+        arg?.force,
+        new axios.CancelToken(function executor(c) {
+          cancelList = c;
+        })
+      );
     }
   );
   // set a path must be a dir
@@ -56,6 +67,7 @@ export const usePath = () => {
   // if not, fetch get then determine if it is dir or file
   const handlePathChange = (path: string, rp?: boolean, force?: boolean) => {
     log(`handle [${path}] change`);
+    cancelList?.();
     retry_pass = rp ?? false;
     handleErr("");
     if (IsDirRecord[path]) {
