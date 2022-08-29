@@ -18,13 +18,15 @@ export const fsList = (
   path: string = "/",
   password = "",
   page = 1,
-  per_page = 0
+  per_page = 0,
+  refresh = false
 ): Promise<FsListResp> => {
   return r.post("/fs/list", {
     path,
     password,
     page,
     per_page,
+    refresh,
   });
 };
 

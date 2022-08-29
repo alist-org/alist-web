@@ -26,13 +26,18 @@ export const usePath = () => {
   const [, getObj] = useFetch((path: string) => fsGet(path, password()));
   const pagination = getPagination();
   const [, getObjs] = useFetch(
-    (arg?: { path: string; index?: number; size?: number }) => {
+    (arg?: {
+      path: string;
+      index?: number;
+      size?: number;
+      force?: boolean;
+    }) => {
       const page = {
         index: arg?.index,
         size: arg?.size,
       };
       // setSearchParams(page);
-      return fsList(arg?.path, password(), page.index, page.size);
+      return fsList(arg?.path, password(), page.index, page.size, arg?.force);
     }
   );
   // set a path must be a dir
@@ -49,12 +54,12 @@ export const usePath = () => {
   // handle pathname change
   // if confirm current path is dir, fetch List directly
   // if not, fetch get then determine if it is dir or file
-  const handlePathChange = (path: string, rp?: boolean) => {
+  const handlePathChange = (path: string, rp?: boolean, force?: boolean) => {
     log(`handle [${path}] change`);
     retry_pass = rp ?? false;
     handleErr("");
     if (IsDirRecord[path]) {
-      handleFolder(path, 1);
+      handleFolder(path, 1, undefined, undefined, force);
     } else {
       handleObj(path);
     }
@@ -70,6 +75,7 @@ export const usePath = () => {
         ObjStore.setObj(data);
         ObjStore.setProvider(data.provider);
         if (data.is_dir) {
+          setPathAsDir(path);
           handleFolder(path, 1);
         } else {
           ObjStore.setReadme(data.readme);
@@ -87,7 +93,8 @@ export const usePath = () => {
     path: string,
     index?: number,
     size?: number,
-    append = false
+    append = false,
+    force?: boolean
   ) => {
     if (!size) {
       size = pagination.size;
@@ -97,7 +104,7 @@ export const usePath = () => {
     }
     globalPage = index ?? 1;
     ObjStore.setState(append ? State.FetchingMore : State.FetchingObjs);
-    const resp = await getObjs({ path, index, size });
+    const resp = await getObjs({ path, index, size, force });
     handleRrespWithoutNotify(
       resp,
       (data) => {
@@ -131,8 +138,8 @@ export const usePath = () => {
   return {
     handlePathChange,
     setPathAsDir,
-    refresh: (retry_pass?: boolean) => {
-      handlePathChange(pathname(), retry_pass);
+    refresh: (retry_pass?: boolean, force?: boolean) => {
+      handlePathChange(pathname(), retry_pass, force);
     },
     pageChange,
     page: globalPage,

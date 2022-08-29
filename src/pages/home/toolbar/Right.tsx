@@ -14,6 +14,8 @@ import { bus } from "~/utils";
 import { operations } from "./operations";
 import { IoMagnetOutline } from "solid-icons/io";
 import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai";
+import { RiSystemRefreshLine } from "solid-icons/ri";
+import { usePath } from "~/hooks";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -33,6 +35,7 @@ export const Right = () => {
     }
   );
   const isFolder = createMemo(() => objStore.state === State.Folder);
+  const { refresh } = usePath();
   return (
     <Box
       class="left-toolbar-box"
@@ -64,6 +67,13 @@ export const Right = () => {
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={isFolder() && userCan("write")}>
               {/* <Add /> */}
+              <RightIcon
+                as={RiSystemRefreshLine}
+                tips="refresh"
+                onClick={() => {
+                  refresh(undefined, true);
+                }}
+              />
               <RightIcon
                 as={operations.new_file.icon}
                 tips="new_file"
