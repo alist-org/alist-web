@@ -50,17 +50,17 @@
   },
   "upload": {
     "add_as_task": "添加为任务",
-    "upload-tips": "Drag files here to upload, or click:",
-    "release": "Release to upload",
-    "upload_files": "Choose Files",
-    "upload_folder": "Choose Folder",
+    "upload-tips": "拖动文件到此处以上传，或点击：",
+    "release": "松开以上传",
+    "upload_files": "选择文件",
+    "upload_folder": "选择文件夹",
     "pending": "等待中...",
-    "uploading": "Uploading",
-    "backending": "Uploading in the backend",
-    "success": "Success",
-    "error": "Error",
-    "back": "Back to Upload",
-    "clear_done": "Clear Done"
+    "uploading": "上传中",
+    "backending": "正在后台上传",
+    "success": "成功",
+    "error": "错误",
+    "back": "返回上传",
+    "clear_done": "清空完成"
   },
   "context_menu": {
     "can_not_down_dir": "无法在这里下载文件夹，请在中心工具栏中使用“打包下载”。"
