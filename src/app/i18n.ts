@@ -29,7 +29,10 @@ const defaultLang =
   )?.code ||
   "en";
 
-export const initialLang = localStorage.getItem("lang") || defaultLang;
+export let initialLang = localStorage.getItem("lang");
+if (!initialLang || !languages.find((lang) => lang.code === initialLang)) {
+  initialLang = defaultLang;
+}
 
 // store lang and import
 export const langMap: Record<string, any> = {};
