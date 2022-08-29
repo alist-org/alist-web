@@ -20,7 +20,7 @@
     "order_bys": {
       "name": "名稱",
       "size": "大小",
-      "modified": "Modified"
+      "modified": "修改時間"
     },
     "order_direction": "Order direction",
     "order_directions": {
