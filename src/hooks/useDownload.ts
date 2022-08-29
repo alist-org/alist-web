@@ -16,22 +16,23 @@ export const useDownload = () => {
     },
     sendToAria2: async () => {
       const selectedFiles = selectedObjs().filter((obj) => !obj.is_dir);
-      const { aria2RpcUrl, aria2RpcSecret } = local;
-      if (!aria2RpcUrl) {
+      const { aria2_rpc_url, aria2_rpc_secret, aria2_dir } = local;
+      if (!aria2_rpc_url) {
         notify.warning(t("home.toolbar.aria2_not_set"));
         return;
       }
       try {
         for (const file of selectedFiles) {
-          const resp = await axios.post(aria2RpcUrl, {
+          const resp = await axios.post(aria2_rpc_url, {
             id: Math.random().toString(),
             jsonrpc: "2.0",
             method: "aria2.addUri",
             params: [
-              "token:" + aria2RpcSecret ?? "",
+              "token:" + aria2_rpc_secret ?? "",
               [rawLink(file)],
               {
                 out: file.name,
+                // dir: aria2_dir,
                 "check-certificate": "false",
               },
             ],

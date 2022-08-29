@@ -8,13 +8,14 @@ export function isValidKey(
   return key in object;
 }
 
-const initial = {
+export const initialLocalSettings = {
   aria2_rpc_url: "http://localhost:6800/jsonrpc",
   aria2_rpc_secret: "",
+  aria2_dir: "alist",
 };
-for (const key in initial) {
-  if (!local[key] && isValidKey(key, initial)) {
-    setLocal(key, initial[key]);
+for (const key in initialLocalSettings) {
+  if (!local[key] && isValidKey(key, initialLocalSettings)) {
+    setLocal(key, initialLocalSettings[key]);
   }
 }
 

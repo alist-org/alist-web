@@ -16,7 +16,7 @@ import {
 import { For, onCleanup } from "solid-js";
 import { SwitchLnaguageWhite, SwitchColorMode } from "~/components";
 import { useT } from "~/hooks";
-import { local, setLocal } from "~/store";
+import { initialLocalSettings, local, setLocal } from "~/store";
 import { bus } from "~/utils";
 
 const LocalSettingsInput = (props: { name: string }) => {
@@ -51,10 +51,12 @@ export const LocalSettings = () => {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader color="$info9">{t("home.toolbar.local_settings")}</DrawerHeader>
+        <DrawerHeader color="$info9">
+          {t("home.toolbar.local_settings")}
+        </DrawerHeader>
         <DrawerBody>
           <VStack spacing="$2">
-            <For each={["aria2_rpc_url", "aria2_rpc_secret"]}>
+            <For each={Object.keys(initialLocalSettings)}>
               {(name) => <LocalSettingsInput name={name} />}
             </For>
           </VStack>

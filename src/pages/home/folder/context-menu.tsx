@@ -5,7 +5,7 @@ import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid";
 import { operations } from "../toolbar/operations";
 import { For } from "solid-js";
 import { bus, notify } from "~/utils";
-import { Obj, UserMethods, UserPermissions } from "~/types";
+import { UserMethods, UserPermissions } from "~/types";
 import { user } from "~/store";
 
 const ItemContent = (props: { name: string }) => {
@@ -58,7 +58,7 @@ export const ContextMenu = () => {
           }
         }}
       >
-        <ItemContent name="copy_url" />
+        <ItemContent name="copy_link" />
       </Item>
       <Item
         onClick={({ props }) => {

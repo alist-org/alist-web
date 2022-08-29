@@ -51,6 +51,9 @@ const UploadFile = (props: UploadFileProps) => {
       border="1px solid $neutral7"
       alignItems="start"
       p="$2"
+      _hover={{
+        border: `1px solid ${getIconColor()}`,
+      }}
     >
       <Text
         css={{
@@ -72,7 +75,7 @@ const UploadFile = (props: UploadFileProps) => {
         value={props.progress}
         size="sm"
       >
-        <ProgressIndicator color="$info8" rounded="$md" />
+        <ProgressIndicator color={getIconColor()} rounded="$md" />
         {/* <ProgressLabel /> */}
       </Progress>
       <Text color="$danger10">{props.msg}</Text>

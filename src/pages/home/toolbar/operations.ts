@@ -19,7 +19,7 @@ export const operations: Operations = {
   copy: { icon: TbCopy, color: "$success9" },
   move: { icon: TbFileArrowRight, color: "$warning9" },
   delete: { icon: AiTwotoneDelete, color: "$danger9" },
-  copy_url: { icon: TbLink, color: "$info9" },
+  copy_link: { icon: TbLink, color: "$info9" },
   mkdir: { icon: CgFolderAdd, p: true },
   new_file: { icon: CgFileAdd, p: true },
   cancel_select: { icon: TiDeleteOutline },

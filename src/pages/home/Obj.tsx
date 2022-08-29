@@ -16,8 +16,8 @@ export const Obj = () => {
   const { handlePathChange } = usePath();
   createEffect(
     on(pathname, (pathname) => {
-      handlePathChange(pathname);
       useObjTitle();
+      handlePathChange(pathname);
     })
   );
   return (

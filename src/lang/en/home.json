@@ -65,7 +65,8 @@
   },
   "local_settings": {
     "aria2_rpc_url": "Aria2 RPC URL",
-    "aria2_rpc_secret": "Aria2 RPC Secret"
+    "aria2_rpc_secret": "Aria2 RPC secret",
+    "aria2_dir": "Aria2 download directory"
   },
   "context_menu": {
     "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
