@@ -1,7 +1,7 @@
 import { useColorModeValue, VStack } from "@hope-ui/solid";
 import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js";
 import { FullLoading, Error } from "~/components";
-import { usePath, useRouter } from "~/hooks";
+import { useObjTitle, usePath, useRouter } from "~/hooks";
 import { objStore, /*layout,*/ State } from "~/store";
 
 const Folder = lazy(() => import("./folder/Folder"));
@@ -17,6 +17,7 @@ export const Obj = () => {
   createEffect(
     on(pathname, (pathname) => {
       handlePathChange(pathname);
+      useObjTitle();
     })
   );
   return (

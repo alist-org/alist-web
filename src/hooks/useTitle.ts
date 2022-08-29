@@ -1,4 +1,7 @@
 import { createEffect, onCleanup } from "solid-js";
+import { getSetting } from "~/store";
+import { pathBase } from "~/utils";
+import { useRouter } from "./useRouter";
 import { useT } from "./useT";
 
 let id = 0;
@@ -33,9 +36,20 @@ const useTitle = (title: string | (() => string)) => {
   });
 };
 
+export const useObjTitle = () => {
+  const t = useT();
+  const { pathname } = useRouter();
+  useTitle(
+    () =>
+      `${
+        pathname() === "/" ? t("manage.sidemenu.home") : pathBase(pathname())
+      } | ${getSetting("site_title")}`
+  );
+};
+
 export const useManageTitle = (title: string) => {
   const t = useT();
-  useTitle(() => `${t(title)} - ${t("manage.title")}`);
+  useTitle(() => `${t(title)} | ${t("manage.title")}`);
 };
 
 export { useTitle };
