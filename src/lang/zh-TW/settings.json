@@ -26,7 +26,7 @@
   "pagination_types": {
     "all": "All",
     "pagination": "Pagination",
-    "load_more": "Load more",
+    "load_more": "加載更多",
     "auto_load_more": "Auto load more"
   },
   "home_icon": "Home icon",
