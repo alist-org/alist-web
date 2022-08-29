@@ -27,10 +27,10 @@
     "choose_dst_folder": "选择目标文件夹",
     "delete": "删除",
     "delete-tips": "确定要删除所选对象吗?",
-    "copy_link": "复制链接",
+    "copy_link": "Copy link",
     "preview_page": "预览页面",
     "down_link": "下载链接",
-    "encode_down_link": "Encode download link",
+    "encode_down_link": "编码下载链接",
     "mkdir": "新建文件夹",
     "input_dir_name": "输入文件夹名称",
     "new_file": "新建文件",
@@ -47,7 +47,7 @@
     "pre_package_download-tips": "在浏览器中使用streamsaver而不是服务器来进行包下载需要相应的存储支持cors，而不支持的存储将失败。",
     "package_download-tips": "正在下载，请稍候不要关闭页面",
     "upload": "上传",
-    "local_settings": "Local Settings"
+    "local_settings": "本地设置"
   },
   "upload": {
     "add_as_task": "添加为任务",
@@ -64,8 +64,9 @@
     "clear_done": "清空完成"
   },
   "local_settings": {
-    "aria2_rpc_url": "Aria2 RPC URL",
-    "aria2_rpc_secret": "Aria2 RPC Secret"
+    "aria2_rpc_url": "Aria2 RPC 链接",
+    "aria2_rpc_secret": "Aria2 RPC secret",
+    "aria2_dir": "Aria2 download directory"
   },
   "context_menu": {
     "can_not_down_dir": "无法在这里下载文件夹，请在中心工具栏中使用“打包下载”。"
