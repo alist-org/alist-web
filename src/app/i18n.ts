@@ -29,7 +29,7 @@ const defaultLang =
   )?.code ||
   "en";
 
-export let initialLang = localStorage.getItem("lang");
+export let initialLang = localStorage.getItem("lang") ?? "";
 if (!initialLang || !languages.find((lang) => lang.code === initialLang)) {
   initialLang = defaultLang;
 }

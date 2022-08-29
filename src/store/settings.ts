@@ -39,7 +39,12 @@ type PreviewsType = "external_previews" | "iframe_previews";
 
 const getPreviews = (type: PreviewsType): Previews => {
   if (!previewsRecord[type]) {
-    previewsRecord[type] = JSON.parse(getSetting(type));
+    try {
+      previewsRecord[type] = JSON.parse(getSetting(type));
+    } catch (e) {
+      console.error(`failed parse ${type}, use default`, e);
+      previewsRecord[type] = {};
+    }
   }
   return previewsRecord[type];
 };

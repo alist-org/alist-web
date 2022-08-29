@@ -39,7 +39,7 @@ instance.interceptors.response.use(
   },
   (error) => {
     // response error
-    console.log(error); // for debug
+    console.error(error); // for debug
     // notificationService.show({
     //   status: "danger",
     //   title: error.code,

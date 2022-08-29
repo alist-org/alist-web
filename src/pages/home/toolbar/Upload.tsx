@@ -169,7 +169,7 @@ const Upload = () => {
         setUpload(path, "msg", resp.message);
       }
     } catch (e: any) {
-      console.log(e);
+      console.error(e);
       setUpload(path, "status", "error");
       setUpload(path, "msg", e.message);
     }
