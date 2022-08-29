@@ -27,10 +27,10 @@
     "choose_dst_folder": "Select destination folder",
     "delete": "Delete",
     "delete-tips": "Are you sure to delete the selected object?",
-    "copy_url": "Copy URL",
-    "preview_page": "Preview Page",
-    "down_url": "Download URL",
-    "encode_down_url": "Encode Download URL",
+    "copy_link": "Copy Link",
+    "preview_page": "Preview page",
+    "down_link": "Download link",
+    "encode_down_link": "Encode download link",
     "mkdir": "New Folder",
     "input_dir_name": "Input folder name",
     "new_file": "New File",
@@ -46,7 +46,8 @@
     "send_aria2_success": "Send to aria2 successfully",
     "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
     "package_download-tips": "Downloading, please wait don't close the page",
-    "upload": "Upload"
+    "upload": "Upload",
+    "local_settings": "Local Settings"
   },
   "upload": {
     "add_as_task": "Add as task",
@@ -61,6 +62,10 @@
     "error": "Error",
     "back": "Back to Upload",
     "clear_done": "Clear Done"
+  },
+  "local_settings": {
+    "aria2_rpc_url": "Aria2 RPC URL",
+    "aria2_rpc_secret": "Aria2 RPC Secret"
   },
   "context_menu": {
     "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
