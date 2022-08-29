@@ -8,8 +8,8 @@
     "download": "下载",
     "failed_load_img": "载入图像失败",
     "open_with": "使用... 打开",
-    "install": "Install",
-    "installing": "Installing"
+    "install": "安装",
+    "installing": "正在安装"
   },
   "load_more": "加载更多",
   "no_more": "没有更多了",
@@ -49,7 +49,7 @@
     "upload": "上传"
   },
   "upload": {
-    "add_as_task": "Add as task",
+    "add_as_task": "添加为任务",
     "upload-tips": "Drag files here to upload, or click:",
     "release": "Release to upload",
     "upload_files": "Choose Files",
