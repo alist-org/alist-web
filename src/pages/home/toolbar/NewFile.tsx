@@ -14,13 +14,14 @@ export const NewFile = () => {
   const [loading, ok] = useFetch(fsNewFile);
   const { refresh } = usePath();
   const { pathname } = useRouter();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "new_file") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalInput

@@ -10,13 +10,14 @@ export const Copy = () => {
   const [loading, ok] = useFetch(fsCopy);
   const { pathname } = useRouter();
   const { refresh } = usePath();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "copy") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalFolderChoose
@@ -43,13 +44,14 @@ export const Move = () => {
   const [loading, ok] = useFetch(fsMove);
   const { pathname } = useRouter();
   const { refresh } = usePath();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "move") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalFolderChoose

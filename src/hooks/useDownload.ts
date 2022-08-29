@@ -16,19 +16,19 @@ export const useDownload = () => {
     },
     sendToAria2: async () => {
       const selectedFiles = selectedObjs().filter((obj) => !obj.is_dir);
-      const { rpcUrl, rpcSecret } = local;
-      if (!rpcUrl) {
+      const { aria2RpcUrl, aria2RpcSecret } = local;
+      if (!aria2RpcUrl) {
         notify.warning(t("home.toolbar.aria2_not_set"));
         return;
       }
       try {
         for (const file of selectedFiles) {
-          const resp = await axios.post(rpcUrl, {
+          const resp = await axios.post(aria2RpcUrl, {
             id: Math.random().toString(),
             jsonrpc: "2.0",
             method: "aria2.addUri",
             params: [
-              "token:" + rpcSecret ?? "",
+              "token:" + aria2RpcSecret ?? "",
               [rawLink(file)],
               {
                 out: file.name,

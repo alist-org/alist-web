@@ -10,13 +10,14 @@ export const Aria2 = () => {
   const [loading, ok] = useFetch(addAria2);
   const { pathname } = useRouter();
   const { refresh } = usePath();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "add_aria2") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalInput

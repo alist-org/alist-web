@@ -57,13 +57,14 @@ const PackageDownload = lazy(() => import("./PackageDownload"));
 
 export const PackageDownloadModal = () => {
   const t = useT();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "package_download") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   const { isOpen, onOpen, onClose } = createDisclosure();
   const [show, setShow] = createSignal("pre_tips");

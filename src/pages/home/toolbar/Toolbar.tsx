@@ -10,6 +10,7 @@ import { Aria2 } from "./Aria2";
 import { PackageDownloadModal } from "./Download";
 import { lazy } from "solid-js";
 import { ModalWrapper } from "./ModalWrapper";
+import { LocalSettings } from "./LocalSettings";
 const Upload = lazy(() => import("./Upload"));
 
 export const Modal = () => {
@@ -26,6 +27,7 @@ export const Modal = () => {
       <ModalWrapper name="upload" title="home.toolbar.upload">
         <Upload />
       </ModalWrapper>
+      <LocalSettings />
     </>
   );
 };

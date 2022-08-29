@@ -5,19 +5,15 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { createMemo, Show } from "solid-js";
-import { SwitchColorMode } from "./SwitchColorMode";
 import { RightIcon } from "./Icon";
 import { CgMoreO } from "solid-icons/cg";
-import { SwitchLnaguage } from "~/components";
-// import { TbLanguageHiragana } from "solid-icons/tb";
-import { IoLanguageOutline } from "solid-icons/io";
 import { TbCheckbox } from "solid-icons/tb";
 import { objStore, State, toggleCheckbox, userCan } from "~/store";
 import { createAnimation } from "motion-signals";
 import { bus } from "~/utils";
 import { operations } from "./operations";
 import { IoMagnetOutline } from "solid-icons/io";
-import { AiOutlineCloudUpload } from "solid-icons/ai";
+import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -106,10 +102,13 @@ export const Right = () => {
               as={TbCheckbox}
               onClick={toggleCheckbox}
             />
-            <SwitchLnaguage as="span">
-              <RightIcon tips="switch_lang" as={IoLanguageOutline} />
-            </SwitchLnaguage>
-            <SwitchColorMode />
+            <RightIcon
+              as={AiOutlineSetting}
+              tips="local_settings"
+              onClick={() => {
+                bus.emit("tool", "local_settings");
+              }}
+            />
           </VStack>
           <RightIcon tips="more" as={CgMoreO} onClick={onToggle} />
         </VStack>

@@ -19,13 +19,14 @@ export const Delete = () => {
   const [loading, ok] = useFetch(fsRemove);
   const { refresh } = usePath();
   const { pathname } = useRouter();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "delete") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <Modal

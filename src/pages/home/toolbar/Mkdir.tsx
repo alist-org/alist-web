@@ -9,13 +9,14 @@ export const Mkdir = () => {
   const [loading, ok] = useFetch(fsMkdir);
   const { pathname } = useRouter();
   const { refresh } = usePath();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "mkdir") {
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalInput

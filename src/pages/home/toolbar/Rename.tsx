@@ -17,7 +17,7 @@ export const Rename = () => {
   const [loading, ok] = useFetch(fsRename);
   const { pathname } = useRouter();
   const { refresh } = usePath();
-  bus.on("tool", (name) => {
+  const handler = (name: string) => {
     if (name === "rename") {
       if (!oneChecked()) {
         notify.warning(t("home.toolbar.only_one-tips"));
@@ -25,9 +25,10 @@ export const Rename = () => {
       }
       onOpen();
     }
-  });
+  };
+  bus.on("tool", handler);
   onCleanup(() => {
-    bus.off("tool");
+    bus.off("tool", handler);
   });
   return (
     <ModalInput

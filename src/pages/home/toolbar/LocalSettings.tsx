@@ -1,0 +1,71 @@
+import {
+  Center,
+  createDisclosure,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  FormControl,
+  FormLabel,
+  HStack,
+  Input,
+  VStack,
+} from "@hope-ui/solid";
+import { For, onCleanup } from "solid-js";
+import { SwitchLnaguageWhite, SwitchColorMode } from "~/components";
+import { useT } from "~/hooks";
+import { local, setLocal } from "~/store";
+import { bus } from "~/utils";
+
+const LocalSettingsInput = (props: { name: string }) => {
+  const t = useT();
+  return (
+    <FormControl>
+      <FormLabel>{t(`home.local_settings.${props.name}`)}</FormLabel>
+      <Input
+        value={local[props.name]}
+        onInput={(e) => {
+          setLocal(props.name, e.currentTarget.value);
+        }}
+      />
+    </FormControl>
+  );
+};
+
+export const LocalSettings = () => {
+  const { isOpen, onOpen, onClose } = createDisclosure();
+  const t = useT();
+  const handler = (name: string) => {
+    if (name === "local_settings") {
+      onOpen();
+    }
+  };
+  bus.on("tool", handler);
+  onCleanup(() => {
+    bus.off("tool", handler);
+  });
+  return (
+    <Drawer opened={isOpen()} placement="left" onClose={onClose}>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerCloseButton />
+        <DrawerHeader color="$info9">{t("home.toolbar.local_settings")}</DrawerHeader>
+        <DrawerBody>
+          <VStack spacing="$2">
+            <For each={["aria2_rpc_url", "aria2_rpc_secret"]}>
+              {(name) => <LocalSettingsInput name={name} />}
+            </For>
+          </VStack>
+          <Center mt="$4">
+            <HStack spacing="$4" p="$2" color="$neutral11">
+              <SwitchLnaguageWhite />
+              <SwitchColorMode />
+            </HStack>
+          </Center>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
+  );
+};
