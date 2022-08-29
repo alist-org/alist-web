@@ -6,7 +6,7 @@ import { useRouter, useUtil } from ".";
 type URLType = "preview" | "direct" | "proxy";
 
 // get download url by dir and obj
-export const getUrlByDirAndObj = (
+export const getLinkByDirAndObj = (
   dir: string,
   obj: Obj,
   type: URLType = "direct",
@@ -29,57 +29,64 @@ export const getUrlByDirAndObj = (
 };
 
 // get download link by current state and pathname
-export const useUrl = () => {
+export const useLink = () => {
   const { pathname } = useRouter();
-  const getUrlByObj = (obj: Obj, type?: URLType, encodeAll?: boolean) => {
+  const getLinkByObj = (obj: Obj, type?: URLType, encodeAll?: boolean) => {
     const dir =
       objStore.state === State.Folder ? pathname() : pathDir(pathname());
-    return getUrlByDirAndObj(dir, obj, type, encodeAll);
+    return getLinkByDirAndObj(dir, obj, type, encodeAll);
+  };
+  const rawLink = (obj: Obj, encodeAll?: boolean) => {
+    return getLinkByObj(obj, "direct", encodeAll);
   };
   return {
-    getUrlByObj: getUrlByObj,
-    rawUrl: (obj: Obj, encodeAll?: boolean) => {
-      return getUrlByObj(obj, "direct", encodeAll);
-    },
-    proxyUrl: (obj: Obj, encodeAll?: boolean) => {
-      return getUrlByObj(obj, "proxy", encodeAll);
+    getLinkByObj: getLinkByObj,
+    rawLink: rawLink,
+    proxyLink: (obj: Obj, encodeAll?: boolean) => {
+      return getLinkByObj(obj, "proxy", encodeAll);
     },
     previewPage: (obj: Obj, encodeAll?: boolean) => {
-      return getUrlByObj(obj, "preview", encodeAll);
+      return getLinkByObj(obj, "preview", encodeAll);
+    },
+    currentObjLink: (encodeAll?: boolean) => {
+      return rawLink(objStore.obj, encodeAll);
     },
   };
 };
 
-export const useSelectedUrl = () => {
-  const { previewPage, rawUrl } = useUrl();
-  const rawUrls = (encodeAll?: boolean) => {
+export const useSelectedLink = () => {
+  const { previewPage, rawLink: rawUrl } = useLink();
+  const rawLinks = (encodeAll?: boolean) => {
     return selectedObjs()
       .filter((obj) => !obj.is_dir)
       .map((obj) => rawUrl(obj, encodeAll));
   };
   return {
-    rawUrls: rawUrls,
+    rawLinks: rawLinks,
     previewPagesText: () => {
       return selectedObjs()
         .map((obj) => previewPage(obj, true))
         .join("\n");
     },
-    rawUrlsText: (encodeAll?: boolean) => {
-      return rawUrls(encodeAll).join("\n");
+    rawLinksText: (encodeAll?: boolean) => {
+      return rawLinks(encodeAll).join("\n");
     },
   };
 };
 
-export const useCopyUrl = () => {
+export const useCopyLink = () => {
   const { copy } = useUtil();
-  const { previewPagesText: previewPage, rawUrlsText: rawUrl } =
-    useSelectedUrl();
+  const { previewPagesText, rawLinksText } = useSelectedLink();
+  const { currentObjLink } = useLink();
   return {
-    copyPreviewPage: () => {
-      copy(previewPage());
+    copySelectedPreviewPage: () => {
+      copy(previewPagesText());
     },
-    copyRawUrl: (encodeAll?: boolean) => {
-      copy(rawUrl(encodeAll));
+    copySelectedRawLink: (encodeAll?: boolean) => {
+      copy(rawLinksText(encodeAll));
+    },
+    copyCurrentRawLink: (encodeAll?: boolean) => {
+      copy(currentObjLink(encodeAll));
     },
   };
 };

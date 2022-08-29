@@ -1,5 +1,5 @@
 import { Menu, Item } from "solid-contextmenu";
-import { useCopyUrl, useDownload, useT } from "~/hooks";
+import { useCopyLink, useDownload, useT } from "~/hooks";
 import "solid-contextmenu/dist/style.css";
 import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid";
 import { operations } from "../toolbar/operations";
@@ -26,7 +26,7 @@ const ItemContent = (props: { name: string }) => {
 export const ContextMenu = () => {
   const t = useT();
   const { colorMode } = useColorMode();
-  const { copyRawUrl, copyPreviewPage } = useCopyUrl();
+  const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink();
   const { batchDownloadSelected } = useDownload();
   return (
     <Menu
@@ -52,9 +52,9 @@ export const ContextMenu = () => {
       <Item
         onClick={({ props }) => {
           if (props.is_dir) {
-            copyPreviewPage();
+            copySelectedPreviewPage();
           } else {
-            copyRawUrl(true);
+            copySelectedRawLink(true);
           }
         }}
       >

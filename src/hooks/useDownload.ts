@@ -1,15 +1,15 @@
 import axios from "axios";
 import { local, selectedObjs } from "~/store";
 import { notify } from "~/utils";
-import { useSelectedUrl, useUrl, useT } from ".";
+import { useSelectedLink, useLink, useT } from ".";
 
 export const useDownload = () => {
-  const { rawUrls } = useSelectedUrl();
-  const { rawUrl } = useUrl();
+  const { rawLinks } = useSelectedLink();
+  const { rawLink } = useLink();
   const t = useT();
   return {
     batchDownloadSelected: () => {
-      const urls = rawUrls(true);
+      const urls = rawLinks(true);
       urls.forEach((url) => {
         window.open(url, "_blank");
       });
@@ -29,7 +29,7 @@ export const useDownload = () => {
             method: "aria2.addUri",
             params: [
               "token:" + rpcSecret ?? "",
-              [rawUrl(file)],
+              [rawLink(file)],
               {
                 out: file.name,
                 "check-certificate": "false",

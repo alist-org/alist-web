@@ -1,25 +1,23 @@
-import { Button, Heading, HStack, Icon, VStack } from "@hope-ui/solid";
-import { useT } from "~/hooks";
-import { getIconColor, objStore } from "~/store";
-import { getIconByObj } from "~/utils/icon";
+import { Button, HStack } from "@hope-ui/solid";
+import { useCopyLink, useT } from "~/hooks";
+import { objStore } from "~/store";
+import { IconName } from "../previews/icon-name";
 import { OpenWith } from "./open-with";
 
 export const CommonPreview = () => {
   const t = useT();
+  const { copyCurrentRawLink } = useCopyLink();
   return (
-    <VStack py="$6" spacing="$6">
-      <Icon
-        color={getIconColor()}
-        boxSize="$20"
-        as={getIconByObj(objStore.obj)}
-      />
-      <Heading size="lg">{objStore.obj.name}</Heading>
+    <IconName>
       <HStack spacing="$2">
+        <Button colorScheme="accent" onClick={() => copyCurrentRawLink(true)}>
+          {t("home.toolbar.copy_link")}
+        </Button>
         <Button as="a" href={objStore.raw_url} target="_blank">
           {t("home.preview.download")}
         </Button>
-        <OpenWith />
       </HStack>
-    </VStack>
+      <OpenWith />
+    </IconName>
   );
 };

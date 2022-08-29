@@ -1,6 +1,6 @@
 import "~/utils/zip-stream.js";
 import streamSaver from "streamsaver";
-import { getUrlByDirAndObj, useRouter, useT } from "~/hooks";
+import { getLinkByDirAndObj, useRouter, useT } from "~/hooks";
 import { fsList, pathBase, pathJoin } from "~/utils";
 import { password, selectedObjs as _selectedObjs } from "~/store";
 import { createSignal, For, Show } from "solid-js";
@@ -48,7 +48,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
       return [
         {
           path: pathJoin(pre, obj.name),
-          url: getUrlByDirAndObj(
+          url: getLinkByDirAndObj(
             pathJoin(pathname(), pre),
             obj,
             "direct",

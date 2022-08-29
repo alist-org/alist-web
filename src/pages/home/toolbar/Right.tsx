@@ -12,7 +12,7 @@ import { SwitchLnaguage } from "~/components";
 // import { TbLanguageHiragana } from "solid-icons/tb";
 import { IoLanguageOutline } from "solid-icons/io";
 import { TbCheckbox } from "solid-icons/tb";
-import { objStore, toggleCheckbox, user, userCan } from "~/store";
+import { objStore, State, toggleCheckbox, userCan } from "~/store";
 import { createAnimation } from "motion-signals";
 import { bus } from "~/utils";
 import { operations } from "./operations";
@@ -36,10 +36,7 @@ export const Right = () => {
       duration: 0.2,
     }
   );
-  const showWrite = () => {
-    if (!objStore.obj.is_dir) return false;
-    return userCan("write");
-  };
+  const isFolder = createMemo(() => objStore.state === State.Folder);
   return (
     <Box
       class="left-toolbar-box"
@@ -69,7 +66,7 @@ export const Right = () => {
           shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         >
           <VStack spacing="$1" class="left-toolbar-in">
-            <Show when={showWrite()}>
+            <Show when={isFolder() && userCan("write")}>
               {/* <Add /> */}
               <RightIcon
                 as={operations.new_file.icon}
@@ -86,8 +83,6 @@ export const Right = () => {
                   bus.emit("tool", "mkdir");
                 }}
               />
-            </Show>
-            <Show when={userCan("write")}>
               <RightIcon
                 as={AiOutlineCloudUpload}
                 tips="upload"
@@ -96,7 +91,7 @@ export const Right = () => {
                 }}
               />
             </Show>
-            <Show when={userCan("add_aria2")}>
+            <Show when={isFolder() && userCan("add_aria2")}>
               <RightIcon
                 as={IoMagnetOutline}
                 pl="0"

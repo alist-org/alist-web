@@ -1,19 +1,19 @@
 import { Menu, MenuTrigger, MenuContent, MenuItem } from "@hope-ui/solid";
-import { useT, useCopyUrl } from "~/hooks";
+import { useT, useCopyLink } from "~/hooks";
 import { CenterIcon } from "./Icon";
 
-export const CopyURL = () => {
+export const CopyLink = () => {
   const t = useT();
-  const { copyPreviewPage, copyRawUrl } = useCopyUrl();
+  const { copySelectedPreviewPage, copySelectedRawLink } = useCopyLink();
   const colorScheme = "neutral";
   return (
     <Menu placement="top" offset={10}>
-      <MenuTrigger as={CenterIcon} name="copy_url" />
+      <MenuTrigger as={CenterIcon} name="copy_link" />
       <MenuContent>
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copyPreviewPage();
+            copySelectedPreviewPage();
           }}
         >
           {t("home.toolbar.preview_page")}
@@ -21,18 +21,18 @@ export const CopyURL = () => {
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copyRawUrl();
+            copySelectedRawLink();
           }}
         >
-          {t("home.toolbar.down_url")}
+          {t("home.toolbar.down_link")}
         </MenuItem>
         <MenuItem
           colorScheme={colorScheme}
           onSelect={() => {
-            copyRawUrl(true);
+            copySelectedRawLink(true);
           }}
         >
-          {t("home.toolbar.encode_down_url")}
+          {t("home.toolbar.encode_down_link")}
         </MenuItem>
       </MenuContent>
     </Menu>

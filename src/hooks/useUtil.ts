@@ -2,8 +2,7 @@ import copy from "copy-to-clipboard";
 import { createResource } from "solid-js";
 import { objStore } from "~/store";
 import { fetchText, notify } from "~/utils";
-import { useT } from "./useT";
-import { useUrl } from "./useUrl";
+import { useT, useLink } from ".";
 
 export const useUtil = () => {
   const t = useT();
@@ -16,9 +15,9 @@ export const useUtil = () => {
 };
 
 export const useFetchText = () => {
-  const { proxyUrl } = useUrl();
+  const { proxyLink } = useLink();
   const fetchContent = async () => {
-    return fetchText(proxyUrl(objStore.obj, true));
+    return fetchText(proxyLink(objStore.obj, true));
   };
   return createResource("", fetchContent);
 };

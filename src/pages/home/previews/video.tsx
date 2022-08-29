@@ -1,12 +1,6 @@
-import {
-  Box,
-  Flex,
-  VStack,
-  Image,
-  Anchor,
-} from "@hope-ui/solid";
+import { Box, Flex, VStack, Image, Anchor } from "@hope-ui/solid";
 import { For, onCleanup, onMount } from "solid-js";
-import { useRouter, useUrl } from "~/hooks";
+import { useRouter, useLink } from "~/hooks";
 import { getSettingBool, objStore } from "~/store";
 import { ObjType } from "~/types";
 import { convertURL, ext } from "~/utils";
@@ -40,7 +34,7 @@ const players: { icon: string; scheme: string }[] = [
 
 const Preview = () => {
   const { replace } = useRouter();
-  const { proxyUrl, rawUrl } = useUrl();
+  const { proxyLink } = useLink();
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO);
   if (videos.length === 0) {
     videos = [objStore.obj];
@@ -120,7 +114,7 @@ const Preview = () => {
   });
   if (subtitle) {
     option.subtitle = {
-      url: proxyUrl(subtitle, true),
+      url: proxyLink(subtitle, true),
       type: ext(subtitle.name) as any,
     };
   }

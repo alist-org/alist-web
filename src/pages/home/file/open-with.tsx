@@ -22,7 +22,7 @@ export const OpenWith = () => {
       <Menu>
         <MenuTrigger
           as={Button}
-          colorScheme="accent"
+          colorScheme="success"
           rightIcon={<Icon as={FaSolidAngleDown} />}
         >
           {t("home.preview.open_with")}

@@ -2,6 +2,8 @@ import { Anchor, HStack, VStack } from "@hope-ui/solid";
 import { Link } from "@solidjs/router";
 import { AnchorWithBase } from "~/components";
 import { useT } from "~/hooks";
+import { user } from "~/store";
+import { UserMethods } from "~/types";
 
 export const Footer = () => {
   const t = useT();
@@ -12,8 +14,13 @@ export const Footer = () => {
           {t("home.footer.powered_by")}
         </Anchor>
         <span>|</span>
-        <AnchorWithBase as={Link} href="/@manage">
-          {t("home.footer.manage")}
+        <AnchorWithBase
+          as={Link}
+          href={UserMethods.is_guest(user()) ? "/@login" : "/@manage"}
+        >
+          {t(
+            UserMethods.is_guest(user()) ? "login.login" : "home.footer.manage"
+          )}
         </AnchorWithBase>
       </HStack>
     </VStack>

@@ -3,6 +3,6 @@ export * from "./useRouter";
 export * from "./useT";
 export * from "./useTitle";
 export * from "./usePath";
-export * from "./useUrl";
+export * from "./useLink";
 export * from "./useUtil";
 export * from "./useDownload";

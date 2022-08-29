@@ -1,13 +1,13 @@
 import { Box, useColorModeValue } from "@hope-ui/solid";
 import { createMemo, Show, createResource, on } from "solid-js";
 import { Markdown, MaybeLoading } from "~/components";
-import { useUrl } from "~/hooks";
+import { useLink } from "~/hooks";
 import { objStore, State } from "~/store";
 import { fetchText } from "~/utils";
 
 export const Readme = () => {
   const cardBg = useColorModeValue("white", "$neutral3");
-  const { proxyUrl } = useUrl();
+  const { proxyLink } = useLink();
   const readme = createMemo(
     on(
       () => objStore.state,
@@ -27,7 +27,7 @@ export const Readme = () => {
             (item) => item.name.toLowerCase() === "readme.md"
           );
           if (obj) {
-            return proxyUrl(obj, true);
+            return proxyLink(obj, true);
           }
         }
         return "";
