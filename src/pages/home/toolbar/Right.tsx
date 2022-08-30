@@ -65,7 +65,7 @@ export const Right = () => {
           shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
         >
           <VStack spacing="$1" class="left-toolbar-in">
-            <Show when={isFolder() && userCan("write")}>
+            <Show when={isFolder() && (userCan("write") || objStore.write)}>
               {/* <Add /> */}
               <RightIcon
                 as={RiSystemRefreshLine}

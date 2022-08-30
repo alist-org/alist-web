@@ -3,14 +3,22 @@ import { createSignal, For, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { handleRresp, joinBase, notify, r } from "~/utils";
-import { Addition, DriverItem, Resp, Storage, Type } from "~/types";
+import {
+  Addition,
+  DriverConfig,
+  DriverItem,
+  Resp,
+  Storage,
+  Type,
+} from "~/types";
 import { createStore } from "solid-js/store";
 import { Item } from "./Item";
 import { ResponsiveGrid } from "../common/ResponsiveGrid";
 
-interface DriverItems {
+interface DriverInfo {
   common: DriverItem[];
   additional: DriverItem[];
+  config: DriverConfig;
 }
 
 function GetDefaultValue(type: Type, value?: string) {
@@ -33,7 +41,7 @@ function GetDefaultValue(type: Type, value?: string) {
   }
 }
 
-type Drivers = Record<string, DriverItems>;
+type Drivers = Record<string, DriverInfo>;
 
 const AddOrEdit = () => {
   const t = useT();
@@ -54,7 +62,7 @@ const AddOrEdit = () => {
     true
   );
   const [driverLoading, loadDriver] = useFetch(
-    () => r.get(`/admin/driver/items?driver=${storage.driver}`),
+    () => r.get(`/admin/driver/info?driver=${storage.driver}`),
     true
   );
   const initEdit = async () => {
@@ -62,7 +70,7 @@ const AddOrEdit = () => {
     handleRresp(storageResp, async (storageData) => {
       setStorage(storageData);
       setAddition(JSON.parse(storageData.addition));
-      const driverResp: Resp<DriverItems> = await loadDriver();
+      const driverResp: Resp<DriverInfo> = await loadDriver();
       handleRresp(driverResp, (driverData) =>
         setDrivers({ [storage.driver]: driverData })
       );
@@ -143,8 +151,10 @@ const AddOrEdit = () => {
         mt="$2"
         loading={okLoading()}
         onClick={async () => {
-          notify.info(t("manage.add_storage-tips"));
-          window.open(joinBase("/@manage/messenger"), "_blank");
+          if (drivers()[storage.driver].config.need_ms) {
+            notify.info(t("manage.add_storage-tips"));
+            window.open(joinBase("/@manage/messenger"), "_blank");
+          }
           const resp: Resp<{}> = await ok();
           // TODO mybe can use handleRrespWithNotifySuccess
           handleRresp(resp, () => {
