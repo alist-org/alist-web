@@ -53,6 +53,8 @@
     "add_as_task": "添加為任務",
     "upload-tips": "拖動文件到此處以上傳，或點擊：",
     "release": "松開以上傳",
+    "no_files_drag": "No files were dragged in.",
+    "only_files_or_one_folder": "Only files or one folder can be dragged at a time.",
     "upload_files": "選擇文件",
     "upload_folder": "選擇文件夾",
     "pending": "等待中",
