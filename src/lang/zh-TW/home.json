@@ -27,10 +27,10 @@
     "choose_dst_folder": "選擇目標文件夾",
     "delete": "刪除",
     "delete-tips": "確定要刪除所選對象嗎?",
-    "copy_link": "Copy link",
-    "preview_page": "Preview page",
-    "down_link": "Download link",
-    "encode_down_link": "Encode download link",
+    "copy_link": "復製鏈接",
+    "preview_page": "預覽頁面",
+    "down_link": "下載鏈接",
+    "encode_down_link": "編碼下載鏈接",
     "mkdir": "新建文件夾",
     "input_dir_name": "輸入文件夾名稱",
     "new_file": "新建文件",
@@ -45,43 +45,43 @@
     "aria2_not_set": "请设置 aria2 rpc url",
     "send_aria2_success": "成功發送到aria2",
     "pre_package_download-tips": "在瀏覽器中使用streamsaver而不是服務器來進行包下載需要相應的存儲支持cors，而不支持的存儲將失敗。",
-    "package_download-tips": "Downloading, please wait don't close the page",
+    "package_download-tips": "正在下載，請稍候不要關閉頁面",
     "upload": "上傳",
-    "local_settings": "Local Settings"
+    "local_settings": "本地設置"
   },
   "upload": {
-    "add_as_task": "Add as task",
-    "upload-tips": "Drag files here to upload, or click:",
-    "release": "Release to upload",
-    "upload_files": "Choose Files",
-    "upload_folder": "Choose Folder",
+    "add_as_task": "添加為任務",
+    "upload-tips": "拖動文件到此處以上傳，或點擊：",
+    "release": "松開以上傳",
+    "upload_files": "選擇文件",
+    "upload_folder": "選擇文件夾",
     "pending": "等待中",
-    "uploading": "Uploading",
-    "backending": "Uploading in the backend",
-    "success": "Success",
-    "error": "Error",
-    "back": "Back to Upload",
-    "clear_done": "Clear Done"
+    "uploading": "上傳中",
+    "backending": "正在後臺上傳",
+    "success": "成功",
+    "error": "錯誤",
+    "back": "返回上傳",
+    "clear_done": "清空完成"
   },
   "local_settings": {
-    "aria2_rpc_url": "Aria2 RPC URL",
-    "aria2_rpc_secret": "Aria2 RPC secret",
-    "aria2_dir": "Aria2 download directory"
+    "aria2_rpc_url": "Aria2 RPC 鏈接",
+    "aria2_rpc_secret": "Aria2 RPC 密鑰",
+    "aria2_dir": "Aria2 下載目錄"
   },
   "context_menu": {
-    "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
+    "can_not_down_dir": "無法在這裏下載文件夾，請在中心工具欄中使用「打包下載」。"
   },
   "package_download": {
-    "current_status": "Current Status",
-    "initializing": "Initializing",
-    "fetching_struct": "Fetching folder structure",
-    "fetching_struct_failed": "Failed to fetch folder structure",
-    "downloading": "Downloading files, don't close or refresh the page",
-    "failed": "Failed to package download",
-    "success": "Download completed"
+    "current_status": "當前狀態",
+    "initializing": "正在初始化",
+    "fetching_struct": "正在獲取文件夾結構",
+    "fetching_struct_failed": "獲取文件夾結構失敗",
+    "downloading": "下載文件中，不要關閉或刷新頁面",
+    "failed": "打包下載失敗",
+    "success": "下載完成"
   },
   "footer": {
-    "powered_by": "Powered by AList",
+    "powered_by": "由 AList 驅動",
     "manage": "管理"
   }
 }
