@@ -1,5 +1,5 @@
 import { createDisclosure } from "@hope-ui/solid";
-import { onCleanup } from "solid-js";
+import { onCleanup, Show } from "solid-js";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter, useT } from "~/hooks";
 import { oneChecked, selectedObjs } from "~/store";
@@ -31,22 +31,24 @@ export const Rename = () => {
     bus.off("tool", handler);
   });
   return (
-    <ModalInput
-      title="home.toolbar.input_new_name"
-      opened={isOpen()}
-      onClose={onClose}
-      defaultValue={selectedObjs()[0]?.name ?? ""}
-      loading={loading()}
-      onSubmit={async (name) => {
-        const resp = await ok(
-          pathJoin(pathname(), selectedObjs()[0].name),
-          name
-        );
-        handleRrespWithNotifySuccess(resp, () => {
-          refresh();
-          onClose();
-        });
-      }}
-    />
+    <Show when={isOpen()}>
+      <ModalInput
+        title="home.toolbar.input_new_name"
+        opened={isOpen()}
+        onClose={onClose}
+        defaultValue={selectedObjs()[0]?.name ?? ""}
+        loading={loading()}
+        onSubmit={async (name) => {
+          const resp = await ok(
+            pathJoin(pathname(), selectedObjs()[0].name),
+            name
+          );
+          handleRrespWithNotifySuccess(resp, () => {
+            refresh();
+            onClose();
+          });
+        }}
+      />
+    </Show>
   );
 };
