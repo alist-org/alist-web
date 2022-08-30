@@ -10,11 +10,11 @@
     "thumbnail-tips": "enable thumbnail"
   },
   "Virtual": {
-    "max_file_size": "Max file size",
-    "min_file_size": "Min file size",
     "root_folder": "Root folder",
     "root_folder-tips": "root folder path",
     "num_file": "Num file",
-    "num_folder": "Num folder"
+    "num_folder": "Num folder",
+    "max_file_size": "Max file size",
+    "min_file_size": "Min file size"
   }
 }
