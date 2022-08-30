@@ -169,6 +169,9 @@ export const globalStyles = globalCss({
   },
   "#root": {
     height: "$full",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   ".hope-breadcrumb__list": {
     flexWrap: "wrap",

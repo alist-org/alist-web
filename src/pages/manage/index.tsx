@@ -21,6 +21,7 @@ const Manage = () => {
         "--hope-colors-background": "var(--hope-colors-loContrast)",
       }}
       bgColor="$background"
+      w="$full"
     >
       <Header />
       <Flex w="$full" h="calc(100vh - 64px)">
