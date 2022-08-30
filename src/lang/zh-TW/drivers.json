@@ -1,20 +1,20 @@
 {
   "drivers": {
-    "Local": "本機存儲",
-    "Virtual": "虛擬"
+    "Virtual": "虛擬",
+    "Local": "本機存儲"
+  },
+  "Virtual": {
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小",
+    "root_folder": "根目錄",
+    "root_folder-tips": "根文件夾路徑",
+    "num_file": "文件數量",
+    "num_folder": "文件夾數量"
   },
   "Local": {
     "root_folder": "根目錄",
     "root_folder-tips": "根文件夾路徑",
     "thumbnail": "縮略圖",
     "thumbnail-tips": "啟用縮略圖"
-  },
-  "Virtual": {
-    "root_folder": "根目錄",
-    "root_folder-tips": "根文件夾路徑",
-    "num_file": "文件數量",
-    "num_folder": "文件夾數量",
-    "max_file_size": "最大文件大小",
-    "min_file_size": "最小文件大小"
   }
 }
