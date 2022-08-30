@@ -10,11 +10,11 @@
     "thumbnail-tips": "启用缩略图"
   },
   "Virtual": {
-    "max_file_size": "最大文件大小",
-    "min_file_size": "最小文件大小",
     "root_folder": "根目录",
     "root_folder-tips": "根文件夹路径",
     "num_file": "文件数量",
-    "num_folder": "文件夹数量"
+    "num_folder": "文件夹数量",
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小"
   }
 }
