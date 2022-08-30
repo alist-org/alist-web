@@ -3,9 +3,7 @@ import { Markdown, MaybeLoading } from "~/components";
 
 const fetchReadme = async () =>
   await (
-    await fetch(
-      "https://api.nn.ci/proxy/raw.githubusercontent.com/alist-org/alist/main/README.md"
-    )
+    await fetch("https://jsd.nn.ci/gh/alist-org/alist@main/README.md")
   ).text();
 
 const About = () => {

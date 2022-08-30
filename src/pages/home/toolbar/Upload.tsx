@@ -41,6 +41,43 @@ const StatusBadge = {
   error: "danger",
 } as const;
 
+const sleep = async (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+const traverseFileTree = async (entry: FileSystemEntry) => {
+  let res: File[] = [];
+  const internalProcess = async (entry: FileSystemEntry, path: string) => {
+    const promise = new Promise<{}>((resolve) => {
+      const errorCallback: ErrorCallback = (e) => {
+        console.error(e);
+        resolve({});
+      };
+      if (entry.isFile) {
+        (entry as FileSystemFileEntry).file((file) => {
+          const newFile = new File([file], path + file.name, {
+            type: file.type,
+          });
+          res.push(newFile);
+          console.log(newFile);
+          resolve({});
+        }, errorCallback);
+      } else if (entry.isDirectory) {
+        const dirReader = (entry as FileSystemDirectoryEntry).createReader();
+        dirReader.readEntries(async (entries) => {
+          for (let i = 0; i < entries.length; i++) {
+            await internalProcess(entries[i], path + entry.name + "/");
+          }
+          resolve({});
+        }, errorCallback);
+      }
+    });
+    await promise;
+  };
+  await internalProcess(entry, "");
+  return res;
+};
+
 const UploadFile = (props: UploadFileProps) => {
   const t = useT();
   return (
@@ -247,11 +284,38 @@ const Upload = () => {
           onDragLeave={() => {
             setDrag(false);
           }}
-          onDrop={(e: DragEvent) => {
+          onDrop={async (e: DragEvent) => {
             e.preventDefault();
             e.stopPropagation();
             setDrag(false);
-            notify.warning(t("global.no_support_now"));
+            const res: File[] = [];
+            const items = Array.from(e.dataTransfer?.items ?? []);
+            const files = Array.from(e.dataTransfer?.files ?? []);
+            let foldersCount = 0;
+            let itemLength = items.length;
+            for (let i = 0; i < itemLength; i++) {
+              if (foldersCount > 0) {
+                notify.warning(t("home.upload.only_files_or_one_folder"));
+                return;
+              }
+              const item = items[i];
+              const entry = item.webkitGetAsEntry();
+              console.log(entry);
+              if (entry?.isFile) {
+                res.push(files[i]);
+              } else if (entry?.isDirectory) {
+                res.push(...(await traverseFileTree(entry)));
+                foldersCount++;
+              }
+            }
+            if (foldersCount > 0 && itemLength > 1) {
+              notify.warning(t("home.upload.only_files_or_one_folder"));
+              return;
+            }
+            if (res.length === 0) {
+              notify.warning(t("home.upload.no_files_drag"));
+            }
+            hanldAddFiles(res);
           }}
           spacing="$4"
           // py="$4"
