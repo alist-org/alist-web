@@ -1,38 +1,45 @@
 {
-  "local": {
-    "root_folder": "根目录",
-    "root_folder-tips": "根文件夹路径",
-    "thumbnail": "缩略图",
-    "thumbnail-tips": "启用缩略图"
-  },
   "drivers": {
+    "local": "本机存储",
     "onedrive": "Onedrive",
-    "virtual": "虚拟存储",
-    "local": "本机存储"
+    "PikPak": "PikPak",
+    "virtual": "虚拟存储"
+  },
+  "local": {
+    "thumbnail": "缩略图",
+    "thumbnail-tips": "启用缩略图",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹路径"
   },
   "onedrive": {
-    "root_folder": "根目录",
-    "region": "地区",
-    "is_sharepoint": "是否Sharepoint",
     "client_id": "客户端ID",
-    "redirect_uri": "重定向 Uri",
+    "client_secret": "客户端密钥",
+    "refresh_token": "刷新令牌",
+    "site_id": "站点ID",
     "root_folder-tips": "根文件夹路径",
+    "region": "地区",
     "regions": {
       "global": "国际版",
       "cn": "世纪互联",
       "us": "美国版",
       "de": "德国版"
     },
-    "client_secret": "客户端密钥",
-    "refresh_token": "刷新令牌",
-    "site_id": "站点ID"
+    "is_sharepoint": "是否Sharepoint",
+    "root_folder": "根目录",
+    "redirect_uri": "重定向 Uri"
+  },
+  "PikPak": {
+    "root_folder-tips": "Root folder id",
+    "username": "用户名",
+    "password": "密码",
+    "root_folder": "根目录"
   },
   "virtual": {
-    "min_file_size": "最小文件大小",
     "root_folder": "根目录",
     "root_folder-tips": "根文件夹路径",
     "num_file": "文件数量",
     "num_folder": "文件夹数量",
-    "max_file_size": "最大文件大小"
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小"
   }
 }
