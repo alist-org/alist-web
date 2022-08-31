@@ -17,7 +17,16 @@ export const Tasks = (props: TasksProps) => {
   const [tasks, setTasks] = createSignal<TaskInfo[]>([]);
   const refresh = async () => {
     const resp: Resp<TaskInfo[]> = await get();
-    handleRresp(resp, (data) => setTasks(data));
+    handleRresp(resp, (data) =>
+      setTasks(
+        data.sort((a, b) => {
+          if (a.id > b.id) {
+            return 1;
+          }
+          return -1;
+        })
+      )
+    );
   };
   refresh();
   if (props.done === "undone") {
