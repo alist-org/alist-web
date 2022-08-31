@@ -6,11 +6,6 @@ import { useFetch, useFetchText, useRouter, useT } from "~/hooks";
 import { objStore } from "~/store";
 import { handleRresp, notify, r } from "~/utils";
 
-export const fileType = {
-  type: -1,
-  exts: [],
-};
-
 const TextEditor = () => {
   const [content] = useFetchText();
   const { colorMode } = useColorMode();

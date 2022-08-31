@@ -10,6 +10,7 @@ specifiers:
   '@types/node': ^18.7.5
   '@types/streamsaver': ^2.0.1
   '@vitejs/plugin-legacy': ^2.0.1
+  aplayer: ^1.10.1
   artplayer: ^4.5.4
   axios: ^0.27.2
   copy-to-clipboard: ^3.3.2
@@ -40,6 +41,7 @@ dependencies:
   '@solid-primitives/i18n': 1.1.0_solid-js@1.4.8
   '@solid-primitives/storage': 1.3.1_solid-js@1.4.8
   '@stitches/core': 1.2.8
+  aplayer: 1.10.1
   artplayer: 4.5.4
   axios: 0.27.2
   copy-to-clipboard: 3.3.2
@@ -641,6 +643,14 @@ packages:
       color-convert: 1.9.3
     dev: true
 
+  /aplayer/1.10.1:
+    resolution: {integrity: sha512-HAfyxgCUTLAqtYlxzzK9Fyqg6y+kZ9CqT1WfeWE8FSzwspT6oBqWOZHANPHF3RGTtC33IsyEgrfthPDzU5r9kQ==}
+    dependencies:
+      balloon-css: 0.5.2
+      promise-polyfill: 7.1.0
+      smoothscroll: 0.4.0
+    dev: false
+
   /artplayer/4.5.4:
     resolution: {integrity: sha512-3dw9m6aDPsHwFHzN0Yj8zlPdKbKzxlPcaNgvl1XTbLiPaHY2Lt5BbP1qz/NR2VHmSgaMxmfs/ha1ufZjSbwsEg==}
     dependencies:
@@ -689,6 +699,10 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
+
+  /balloon-css/0.5.2:
+    resolution: {integrity: sha512-zheJpzwyNrG4t39vusA67v3BYg1HTVXOF8cErPEHzWK88PEOFwgo6Ea9VHOgOWNMgeuOtFVtB73NE2NWl9uDyQ==}
+    dev: false
 
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -1978,6 +1992,10 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
+  /promise-polyfill/7.1.0:
+    resolution: {integrity: sha512-P6NJ2wU/8fac44ENORsuqT8TiolKGB2u0fEClPtXezn7w5cmLIjM/7mhPlTebke2EPr6tmqZbXvnX0TxwykGrg==}
+    dev: false
+
   /property-information/6.1.1:
     resolution: {integrity: sha512-hrzC564QIl0r0vy4l6MvRLhafmUowhO/O3KgVSoXIbbA2Sz4j8HGpJc6T2cubRVwMwpdiG/vKGfhT4IixmKN9w==}
     dev: false
@@ -2096,6 +2114,10 @@ packages:
       interpret: 1.4.0
       rechoir: 0.6.2
     dev: true
+
+  /smoothscroll/0.4.0:
+    resolution: {integrity: sha512-sggQ3U2Un38b3+q/j1P4Y4fCboCtoUIaBYoge+Lb6Xg1H8RTIif/hugVr+ErMtIDpvBbhQfTjtiTeYAfbw1ZGQ==}
+    dev: false
 
   /solid-contextmenu/0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm:
     resolution: {integrity: sha512-OAt9IxDJdqPYQ//hzqtuiClVdAFIsttKrS3al80KAOSeTU1j5uWstSXAZNS3Hl/fuEFL4IfLTwILvrykMkPe8Q==}

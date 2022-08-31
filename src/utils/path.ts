@@ -54,5 +54,5 @@ export const ext = (path: string): string => {
 };
 
 export const baseName = (fullName: string) => {
-  return fullName.split(".").slice(0, -1);
+  return fullName.split(".").slice(0, -1).join(".");
 };

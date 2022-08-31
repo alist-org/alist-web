@@ -1,7 +1,6 @@
 import { Error, FullLoading, ImageWithError } from "~/components";
 import { useT } from "~/hooks";
 import { objStore } from "~/store";
-import { ObjType } from "~/types";
 
 const Preview = () => {
   const t = useT();

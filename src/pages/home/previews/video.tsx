@@ -10,11 +10,6 @@ import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
 import { SelectWrapper } from "~/components";
 
-export const fileType = {
-  type: ObjType.VIDEO,
-  exts: [],
-};
-
 const players: { icon: string; scheme: string }[] = [
   { icon: "iina", scheme: "iina://weblink?url=$url" },
   { icon: "potplayer", scheme: "potplayer://$e_url" },

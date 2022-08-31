@@ -1,0 +1,53 @@
+#audio-player {
+  border-radius: 8px;
+}
+.hope-ui-dark .aplayer {
+  background: rgba(30, 144, 255, 0.05);
+  color: #ecedee !important;
+}
+.hope-ui-dark .aplayer .aplayer-info .aplayer-music .aplayer-author {
+  color: #ddd;
+}
+.hope-ui-dark .aplayer .aplayer-list ol li:hover {
+  background: #505050;
+}
+.hope-ui-dark .aplayer .aplayer-list ol li.aplayer-list-light {
+  background: #505050;
+}
+.hope-ui-dark .aplayer .aplayer-list ol li .aplayer-list-author {
+  color: #aaa;
+}
+.hope-ui-dark .aplayer .aplayer-list ol li .aplayer-list-index {
+  color: #cfcfcf;
+}
+.hope-ui-dark .aplayer .aplayer-lrc:after {
+  background: linear-gradient(
+    180deg,
+    hsl(221deg 33% 17% / 0%) 0,
+    hsl(221deg 33% 17%)
+  );
+}
+.hope-ui-dark .aplayer .aplayer-lrc:before {
+  background: linear-gradient(180deg, #1d263a 0, hsl(0deg 0% 0% / 0%));
+}
+.hope-ui-dark
+  .aplayer
+  .aplayer-info
+  .aplayer-controller
+  .aplayer-time
+  .aplayer-icon
+  path {
+  fill: #fff;
+}
+.hope-ui-dark .aplayer .aplayer-lrc p {
+  color: #fff;
+}
+.hope-ui-dark .aplayer .aplayer-list ol li {
+  border-top: 1px solid #2e2e2e;
+}
+.hope-ui-dark .aplayer.aplayer-withlist .aplayer-info {
+  border-bottom: 1px solid #404040;
+}
+.hope-ui-dark .aplayer {
+  color: var(--hty-text-color);
+}
