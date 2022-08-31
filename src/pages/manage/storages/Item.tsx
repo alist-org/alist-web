@@ -134,7 +134,9 @@ const Item = (props: ItemProps) => {
                       <SelectOptionText>
                         {t(
                           (props.options_prefix ??
-                            `drivers.${props.driver}.${props.name}s`) +
+                            (props.driver === "common"
+                              ? `storages.common.${props.name}s`
+                              : `drivers.${props.driver}.${props.name}s`)) +
                             `.${item}`
                         )}
                       </SelectOptionText>
