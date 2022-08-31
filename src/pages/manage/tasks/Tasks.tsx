@@ -1,4 +1,4 @@
-import { Button, Heading, VStack } from "@hope-ui/solid";
+import { Button, Heading, HStack, VStack } from "@hope-ui/solid";
 import { createSignal, For, onCleanup, Show } from "solid-js";
 import { useFetch, useT } from "~/hooks";
 import { Resp, TaskInfo } from "~/types";
@@ -29,11 +29,13 @@ export const Tasks = (props: TasksProps) => {
   );
   return (
     <VStack w="$full" alignItems="start" spacing="$2">
-      <Heading size="lg">
-        {t(`tasks.${props.done}`)}
-        <Show when={props.done === "done"}>
+      <Heading size="lg">{t(`tasks.${props.done}`)}</Heading>
+      <Show when={props.done === "done"}>
+        <HStack spacing="$2">
+          <Button colorScheme="accent" loading={loading()} onClick={refresh}>
+            {t(`global.refresh`)}
+          </Button>
           <Button
-            ml="$2"
             loading={clearLoading()}
             onClick={async () => {
               const resp = await clear();
@@ -42,8 +44,8 @@ export const Tasks = (props: TasksProps) => {
           >
             {t(`global.clear`)}
           </Button>
-        </Show>
-      </Heading>
+        </HStack>
+      </Show>
       <VStack w="$full" spacing="$2">
         <For each={tasks()}>{(task) => <Task {...task} {...props} />}</For>
       </VStack>
