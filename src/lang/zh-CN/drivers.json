@@ -3,43 +3,62 @@
     "local": "本机存储",
     "onedrive": "Onedrive",
     "PikPak": "PikPak",
-    "virtual": "虚拟存储"
+    "virtual": "虚拟存储",
+    "aliyundrive": "Aliyundrive"
+  },
+  "virtual": {
+    "root_folder-tips": "根文件夹路径",
+    "num_file": "文件数量",
+    "num_folder": "文件夹数量",
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小",
+    "root_folder": "根目录"
+  },
+  "aliyundrive": {
+    "rapid_upload": "Rapid upload",
+    "root_folder": "根目录",
+    "root_folder-tips": "Root folder id",
+    "refresh_token": "刷新令牌",
+    "order_by": "排序",
+    "order_bys": {
+      "name": "名称",
+      "size": "大小",
+      "updated_at": "Updated at",
+      "created_at": "Created at"
+    },
+    "order_direction": "排序方式",
+    "order_directions": {
+      "ASC": "ASC",
+      "DESC": "DESC"
+    }
   },
   "local": {
-    "thumbnail": "缩略图",
     "thumbnail-tips": "启用缩略图",
     "root_folder": "根目录",
-    "root_folder-tips": "根文件夹路径"
+    "root_folder-tips": "根文件夹路径",
+    "thumbnail": "缩略图"
   },
   "onedrive": {
-    "client_id": "客户端ID",
-    "client_secret": "客户端密钥",
-    "refresh_token": "刷新令牌",
-    "site_id": "站点ID",
+    "root_folder": "根目录",
     "root_folder-tips": "根文件夹路径",
-    "region": "地区",
     "regions": {
       "global": "国际版",
       "cn": "世纪互联",
       "us": "美国版",
       "de": "德国版"
     },
+    "client_secret": "客户端密钥",
+    "site_id": "站点ID",
+    "region": "地区",
     "is_sharepoint": "是否Sharepoint",
-    "root_folder": "根目录",
-    "redirect_uri": "重定向 Uri"
+    "client_id": "客户端ID",
+    "redirect_uri": "重定向 Uri",
+    "refresh_token": "刷新令牌"
   },
   "PikPak": {
-    "root_folder-tips": "Root folder id",
     "username": "用户名",
     "password": "密码",
-    "root_folder": "根目录"
-  },
-  "virtual": {
     "root_folder": "根目录",
-    "root_folder-tips": "根文件夹路径",
-    "num_file": "文件数量",
-    "num_folder": "文件夹数量",
-    "max_file_size": "最大文件大小",
-    "min_file_size": "最小文件大小"
+    "root_folder-tips": "Root folder id"
   }
 }
