@@ -1,84 +1,84 @@
 {
   "Virtual": {
     "root_folder": "根目录",
-    "root_folder-tips": "Root folder path",
-    "num_file": "Num file",
-    "num_folder": "Num folder",
-    "max_file_size": "Max file size",
-    "min_file_size": "Min file size"
+    "root_folder-tips": "根文件夹路径",
+    "num_file": "文件数量",
+    "num_folder": "文件夹数量",
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小"
   },
   "123Pan": {
     "order_by": "排序",
     "order_bys": {
-      "createAt": "CreateAt",
+      "createAt": "创建时间",
       "name": "名称",
-      "fileId": "FileId",
-      "updateAt": "UpdateAt"
+      "fileId": "文件ID",
+      "updateAt": "修改时间"
     },
     "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
+      "asc": "升序",
+      "desc": "降序"
     },
     "root_folder": "根目录",
-    "stream_upload": "Stream upload",
+    "stream_upload": "流式上传",
     "username": "用户名",
     "password": "密码",
     "order_direction": "排序方式",
-    "root_folder-tips": "Root folder id"
+    "root_folder-tips": "根文件夹ID"
   },
   "Aliyundrive": {
-    "root_folder-tips": "Root folder id",
-    "refresh_token": "Refresh token",
+    "root_folder-tips": "根文件夹ID",
+    "refresh_token": "刷新令牌",
     "order_by": "排序",
     "order_bys": {
       "name": "名称",
       "size": "大小",
-      "updated_at": "Updated at",
-      "created_at": "Created at"
+      "updated_at": "修改时间",
+      "created_at": "创建时间"
     },
     "order_direction": "排序方式",
     "order_directions": {
-      "ASC": "ASC",
-      "DESC": "DESC"
+      "ASC": "升序",
+      "DESC": "降序"
     },
-    "rapid_upload": "Rapid upload",
+    "rapid_upload": "秒传",
     "root_folder": "根目录"
   },
   "Local": {
-    "thumbnail": "Thumbnail",
-    "thumbnail-tips": "enable thumbnail",
+    "thumbnail": "缩略图",
+    "thumbnail-tips": "启用缩略图",
     "root_folder": "根目录",
-    "root_folder-tips": "Root folder path"
+    "root_folder-tips": "根文件夹路径"
   },
   "Onedrive": {
-    "is_sharepoint": "Is sharepoint",
-    "client_id": "Client id",
-    "redirect_uri": "Redirect uri",
-    "refresh_token": "Refresh token",
+    "is_sharepoint": "是否Sharepoint",
+    "client_id": "客户端ID",
+    "redirect_uri": "重定向 Uri",
+    "refresh_token": "刷新令牌",
     "root_folder": "根目录",
-    "region": "Region",
-    "client_secret": "Client secret",
-    "site_id": "Site id",
-    "root_folder-tips": "Root folder path",
+    "region": "地区",
+    "client_secret": "客户端密钥",
+    "site_id": "站点ID",
+    "root_folder-tips": "根文件夹路径",
     "regions": {
-      "us": "Us",
-      "de": "De",
+      "us": "美国版",
+      "de": "德国版",
       "global": "全局设置",
-      "cn": "Cn"
+      "cn": "世纪互联"
     }
   },
   "PikPak": {
     "root_folder": "根目录",
-    "root_folder-tips": "Root folder id",
+    "root_folder-tips": "根文件夹ID",
     "username": "用户名",
     "password": "密码"
   },
   "drivers": {
     "Onedrive": "Onedrive",
     "PikPak": "PikPak",
-    "Virtual": "Virtual",
-    "123Pan": "123Pan",
-    "Aliyundrive": "Aliyundrive",
-    "Local": "Local"
+    "Virtual": "虚拟存储",
+    "123Pan": "123云盘",
+    "Aliyundrive": "阿里云盘",
+    "Local": "本机存储"
   }
 }
