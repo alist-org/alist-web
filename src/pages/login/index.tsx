@@ -67,7 +67,7 @@ const Login = () => {
   const [needOpt, setNeedOpt] = createSignal(false);
 
   return (
-    <Center zIndex="1" w="$full" h="$full">
+    <Center zIndex="1" w="$full" h="100vh">
       <VStack
         bgColor={bgColor()}
         rounded="$xl"
