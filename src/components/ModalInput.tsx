@@ -12,6 +12,7 @@ import {
 } from "@hope-ui/solid";
 import { createSignal, Show } from "solid-js";
 import { useT } from "~/hooks";
+import { notify } from "~/utils";
 export type ModalInputProps = {
   opened: boolean;
   onClose: () => void;
@@ -25,6 +26,13 @@ export type ModalInputProps = {
 export const ModalInput = (props: ModalInputProps) => {
   const [value, setValue] = createSignal(props.defaultValue ?? "");
   const t = useT();
+  const submit = () => {
+    if (!value()) {
+      notify.warning(t("global.empty_input"));
+      return;
+    }
+    props.onSubmit?.(value());
+  };
   return (
     <Modal
       blockScrollOnMount={false}
@@ -49,7 +57,7 @@ export const ModalInput = (props: ModalInputProps) => {
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    props.onSubmit?.(value());
+                    submit();
                   }
                 }}
               />
@@ -71,10 +79,7 @@ export const ModalInput = (props: ModalInputProps) => {
           <Button onClick={props.onClose} colorScheme="neutral">
             {t("global.cancel")}
           </Button>
-          <Button
-            loading={props.loading}
-            onClick={() => props.onSubmit?.(value())}
-          >
+          <Button loading={props.loading} onClick={() => submit()}>
             {t("global.ok")}
           </Button>
         </ModalFooter>

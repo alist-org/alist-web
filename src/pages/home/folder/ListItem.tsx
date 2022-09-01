@@ -11,8 +11,8 @@ import {
   selectIndex,
   toggleCheckbox,
 } from "~/store";
-import { StoreObj } from "~/types";
-import { formatDate, getFileSize, hoverColor } from "~/utils";
+import { ObjType, StoreObj } from "~/types";
+import { bus, formatDate, getFileSize, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
 export interface Col {
@@ -79,6 +79,14 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           color={getIconColor()}
           as={getIconByObj(props.obj)}
           mr="$1"
+          // @ts-ignore
+          on:click={(e) => {
+            if (props.obj.type === ObjType.IMAGE) {
+              e.stopPropagation();
+              e.preventDefault();
+              bus.emit("gallery", props.obj.name);
+            }
+          }}
         />
         <Tooltip label={props.obj.name}>
           <Text

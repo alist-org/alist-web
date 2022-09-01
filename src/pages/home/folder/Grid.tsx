@@ -15,36 +15,6 @@ import "lightgallery/css/lightgallery-bundle.css";
 import { LightGallery } from "lightgallery/lightgallery";
 
 const GridLayout = () => {
-  const { rawLink } = useLink();
-  const images = createMemo(() =>
-    objStore.objs.filter((obj) => obj.type === ObjType.IMAGE)
-  );
-  let dynamicGallery: LightGallery | undefined;
-  createEffect(() => {
-    dynamicGallery?.destroy();
-    if (images().length > 0) {
-      dynamicGallery = lightGallery(document.createElement("div"), {
-        dynamic: true,
-        thumbnail: true,
-        plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
-        dynamicEl: images().map((obj) => {
-          const raw = rawLink(obj, true);
-          return {
-            src: raw,
-            thumb: obj.thumb === "" ? raw : obj.thumb,
-            subHtml: `<h4>${obj.name}</h4>`,
-          };
-        }),
-      });
-    }
-  });
-  bus.on("gallery", (name) => {
-    dynamicGallery?.openGallery(images().findIndex((obj) => obj.name === name));
-  });
-  onCleanup(() => {
-    bus.off("gallery");
-    dynamicGallery?.destroy();
-  });
   return (
     <Grid
       w="$full"
