@@ -41,6 +41,7 @@
     "download": "Download",
     "batch_download": "Batch Download",
     "package_download": "Package Download",
+    "package_download_disabled": "Package download is disabled",
     "send_aria2": "Send to Aria2",
     "aria2_not_set": "Please set aria2 rpc url",
     "send_aria2_success": "Send to aria2 successfully",
@@ -69,9 +70,6 @@
     "aria2_rpc_url": "Aria2 RPC URL",
     "aria2_rpc_secret": "Aria2 RPC secret",
     "aria2_dir": "Aria2 download directory"
-  },
-  "context_menu": {
-    "can_not_down_dir": "The folder cannot be downloaded here, please use `Package Download` in the center toolbar."
   },
   "package_download": {
     "current_status": "Current Status",
