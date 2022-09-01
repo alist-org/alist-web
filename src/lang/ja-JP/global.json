@@ -26,5 +26,6 @@
   "have_account": "Have an account?",
   "go_login": "Go to login",
   "close": "Close",
-  "no_support_now": "Not currently supported"
+  "no_support_now": "Not currently supported",
+  "empty_input": "Please enter"
 }
