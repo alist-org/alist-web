@@ -41,7 +41,7 @@
     "download": "下载",
     "batch_download": "批量下载",
     "package_download": "打包下载",
-    "package_download_disabled": "Package download is disabled",
+    "package_download_disabled": "打包下载已禁用",
     "send_aria2": "发送到Aria2",
     "aria2_not_set": "请设置 aria2 rpc url",
     "send_aria2_success": "成功发送到aria2",
