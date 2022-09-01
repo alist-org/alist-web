@@ -17,13 +17,24 @@ import {
   Icon,
 } from "@hope-ui/solid";
 import { SwitchColorMode } from "./SwitchColorMode";
-import { createMemo, For, Show, splitProps } from "solid-js";
+import { createMemo, For, mergeProps, Show, splitProps } from "solid-js";
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai";
 import { hoverColor } from "~/utils";
 
-export const Error = (props: { msg: string; disableColor?: boolean }) => {
+export const Error = (props: {
+  msg: string;
+  disableColor?: boolean;
+  h?: string;
+}) => {
+  const merged = mergeProps(
+    {
+      h: "$full",
+    },
+    props
+  );
+  console.log(merged.h);
   return (
-    <Center h="$full" p="$2" flexDirection="column">
+    <Center h={merged.h} p="$2" flexDirection="column">
       <Box
         rounded="$lg"
         px="$4"

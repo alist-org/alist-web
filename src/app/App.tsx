@@ -1,4 +1,4 @@
-import { Center, Progress, ProgressIndicator } from "@hope-ui/solid";
+import { Progress, ProgressIndicator } from "@hope-ui/solid";
 import { Route, Routes, useIsRouting } from "@solidjs/router";
 import {
   Component,
@@ -13,7 +13,7 @@ import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
 import { bus, r, handleRrespWithoutAuthAndNotify, base_path } from "~/utils";
 import { setSettings } from "~/store";
-import { FullLoading, Error } from "~/components";
+import { Error, FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
 import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
@@ -95,10 +95,10 @@ const App: Component = () => {
         }
       >
         <Match when={err() !== undefined}>
-          <Error msg={`Failed fetching settings: ${err()}`} />
+          <Error h="100vh" msg={`Failed fetching settings: ${err()}`} />
         </Match>
         <Match when={loading()}>
-          <FullLoading />
+          <FullScreenLoading />
         </Match>
       </Switch>
     </>
