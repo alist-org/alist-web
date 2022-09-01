@@ -6,3 +6,4 @@ export * from "./usePath";
 export * from "./useLink";
 export * from "./useUtil";
 export * from "./useDownload";
+export * from "./useObjs";

@@ -79,3 +79,20 @@ export const getPagination = (): {
     size: getSettingNumber("default_page_size", 30),
   };
 };
+
+let hideFiles: RegExp[];
+
+export const getHideFiles = () => {
+  if (!hideFiles) {
+    hideFiles = getSetting("hide_files")
+      .split(/\n/g)
+      .filter((item) => !!item.trim())
+      .map((item) => {
+        item = item.trim();
+        let str = item.replace(/^\/(.*)\/([a-z]*)$/, "$1");
+        let args = item.replace(/^\/(.*)\/([a-z]*)$/, "$2");
+        return new RegExp(str, args);
+      });
+  }
+  return hideFiles;
+};
