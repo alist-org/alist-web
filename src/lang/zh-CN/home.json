@@ -41,6 +41,7 @@
     "download": "下载",
     "batch_download": "批量下载",
     "package_download": "打包下载",
+    "package_download_disabled": "Package download is disabled",
     "send_aria2": "发送到Aria2",
     "aria2_not_set": "请设置 aria2 rpc url",
     "send_aria2_success": "成功发送到aria2",
@@ -69,9 +70,6 @@
     "aria2_rpc_url": "Aria2 RPC 链接",
     "aria2_rpc_secret": "Aria2 RPC 密钥",
     "aria2_dir": "Aria2 下载目录"
-  },
-  "context_menu": {
-    "can_not_down_dir": "无法在这里下载文件夹，请在中心工具栏中使用“打包下载”。"
   },
   "package_download": {
     "current_status": "当前状态",
