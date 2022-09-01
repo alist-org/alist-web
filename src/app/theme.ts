@@ -168,7 +168,6 @@ export const globalStyles = globalCss({
     fontFamily: `-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important`,
   },
   "#root": {
-    height: "$full",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
