@@ -26,5 +26,6 @@
   "have_account": "已有賬號？",
   "go_login": "轉到登錄",
   "close": "關閉",
-  "no_support_now": "暫不支持"
+  "no_support_now": "暫不支持",
+  "empty_input": "Please enter"
 }
