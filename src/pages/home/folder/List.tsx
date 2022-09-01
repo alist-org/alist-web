@@ -1,10 +1,11 @@
 import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid";
 import { batch, createEffect, createSignal, For, Show } from "solid-js";
-import { useObjs, useT } from "~/hooks";
+import { useT } from "~/hooks";
 import {
   allChecked,
   checkboxOpen,
   isIndeterminate,
+  objStore,
   selectAll,
   sortObjs,
 } from "~/store";
@@ -39,7 +40,6 @@ const ListLayout = () => {
       },
     };
   };
-  const { objsAfterHide } = useObjs();
   return (
     <VStack class="list" w="$full" spacing="$1">
       <HStack class="title" w="$full" p="$2">
@@ -66,7 +66,7 @@ const ListLayout = () => {
           {t(`home.obj.${cols[2].name}`)}
         </Text>
       </HStack>
-      <For each={objsAfterHide()}>
+      <For each={objStore.objs}>
         {(obj, i) => {
           return <ListItem obj={obj} index={i()} />;
         }}

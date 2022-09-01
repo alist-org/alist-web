@@ -2,7 +2,7 @@ import { Center, VStack, Icon, Text, Tooltip, Checkbox } from "@hope-ui/solid";
 import { useContextMenu } from "solid-contextmenu";
 import { batch, createMemo, createSignal, Show } from "solid-js";
 import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
-import { usePath } from "~/hooks";
+import { usePath, useUtil } from "~/hooks";
 import {
   checkboxOpen,
   getIconColor,
@@ -15,6 +15,10 @@ import { bus, hoverColor } from "~/utils";
 import { getIconByObj } from "~/utils/icon";
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
+  const { isHide } = useUtil();
+  if (isHide(props.obj)) {
+    return null;
+  }
   const { setPathAsDir } = usePath();
   const objIcon = (
     <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />

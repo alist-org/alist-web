@@ -6,7 +6,7 @@ import { operations } from "../toolbar/operations";
 import { For } from "solid-js";
 import { bus, notify } from "~/utils";
 import { UserMethods, UserPermissions } from "~/types";
-import { user } from "~/store";
+import { getSettingBool, user } from "~/store";
 
 const ItemContent = (props: { name: string }) => {
   const t = useT();
@@ -28,6 +28,9 @@ export const ContextMenu = () => {
   const { colorMode } = useColorMode();
   const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink();
   const { batchDownloadSelected } = useDownload();
+  const canPackageDownload = () => {
+    return UserMethods.is_admin(user()) || getSettingBool("package_download");
+  };
   return (
     <Menu
       id={1}
@@ -63,7 +66,11 @@ export const ContextMenu = () => {
       <Item
         onClick={({ props }) => {
           if (props.is_dir) {
-            notify.warning(t("home.context_menu.can_not_down_dir"));
+            if (!canPackageDownload()) {
+              notify.warning(t("home.toolbar.package_download_disabled"));
+              return;
+            }
+            bus.emit("tool", "package_download");
           } else {
             batchDownloadSelected();
           }

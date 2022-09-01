@@ -2,7 +2,7 @@ import { Checkbox, HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
 import { useContextMenu } from "solid-contextmenu";
 import { batch, Show } from "solid-js";
 import { LinkWithPush } from "~/components";
-import { usePath } from "~/hooks";
+import { usePath, useUtil } from "~/hooks";
 import {
   checkboxOpen,
   getIconColor,
@@ -28,6 +28,10 @@ export const cols: Col[] = [
 ];
 
 export const ListItem = (props: { obj: StoreObj; index: number }) => {
+  const { isHide } = useUtil();
+  if (isHide(props.obj)) {
+    return null;
+  }
   const { setPathAsDir } = usePath();
   const { show } = useContextMenu({ id: 1 });
   return (
