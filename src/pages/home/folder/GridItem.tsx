@@ -1,4 +1,5 @@
 import { Center, VStack, Icon, Text, Tooltip, Checkbox } from "@hope-ui/solid";
+import { Motion } from "@motionone/solid";
 import { useContextMenu } from "solid-contextmenu";
 import { batch, createMemo, createSignal, Show } from "solid-js";
 import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
@@ -29,96 +30,105 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   );
   const { show } = useContextMenu({ id: 1 });
   return (
-    <VStack
-      class="grid-item"
-      w="$full"
-      p="$1"
-      spacing="$1"
-      rounded="$lg"
-      _hover={{
-        transform: "scale(1.06)",
-        bgColor: hoverColor(),
-        transition: "all 0.3s",
-      }}
-      as={LinkWithPush}
-      href={props.obj.name}
-      onMouseEnter={() => {
-        setHover(true);
-        if (props.obj.is_dir) {
-          setPathAsDir(props.obj.name, true);
-        }
-      }}
-      onMouseLeave={() => {
-        setHover(false);
-      }}
-      onContextMenu={(e: MouseEvent) => {
-        batch(() => {
-          if (!checkboxOpen()) {
-            toggleCheckbox();
-          }
-          selectAll(false);
-          selectIndex(props.index, true, true);
-        });
-        show(e, { props: props.obj });
+    <Motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+      style={{
+        width: "100%",
       }}
     >
-      <Center
-        class="item-thumbnail"
-        h="70px"
+      <VStack
+        class="grid-item"
         w="$full"
-        // @ts-ignore
-        on:click={(e) => {
-          if (props.obj.type === ObjType.IMAGE) {
-            e.stopPropagation();
-            e.preventDefault();
-            bus.emit("gallery", props.obj.name);
+        p="$1"
+        spacing="$1"
+        rounded="$lg"
+        _hover={{
+          transform: "scale(1.06)",
+          bgColor: hoverColor(),
+          transition: "all 0.3s",
+        }}
+        as={LinkWithPush}
+        href={props.obj.name}
+        onMouseEnter={() => {
+          setHover(true);
+          if (props.obj.is_dir) {
+            setPathAsDir(props.obj.name, true);
           }
         }}
-        pos="relative"
+        onMouseLeave={() => {
+          setHover(false);
+        }}
+        onContextMenu={(e: MouseEvent) => {
+          batch(() => {
+            if (!checkboxOpen()) {
+              toggleCheckbox();
+            }
+            selectAll(false);
+            selectIndex(props.index, true, true);
+          });
+          show(e, { props: props.obj });
+        }}
       >
-        <Show when={showCheckbox()}>
-          <Checkbox
-            pos="absolute"
-            left="$1"
-            top="$1"
-            // colorScheme="neutral"
-            // @ts-ignore
-            on:click={(e) => {
-              e.stopPropagation();
-            }}
-            checked={props.obj.selected}
-            onChange={(e: any) => {
-              selectIndex(props.index, e.target.checked);
-            }}
-          />
-        </Show>
-        <Show when={props.obj.thumb} fallback={objIcon}>
-          <ImageWithError
-            maxH="$full"
-            maxW="$full"
-            rounded="$lg"
-            shadow="$md"
-            fallback={<CenterLoding size="lg" />}
-            fallbackErr={objIcon}
-            src={props.obj.thumb}
-            loading="lazy"
-          />
-        </Show>
-      </Center>
-      <Tooltip label={props.obj.name}>
-        <Text
-          css={{
-            whiteSpace: "nowrap",
-            textOverflow: "ellipsis",
-          }}
+        <Center
+          class="item-thumbnail"
+          h="70px"
           w="$full"
-          overflow="hidden"
-          textAlign="center"
-          fontSize="$sm"
+          // @ts-ignore
+          on:click={(e) => {
+            if (props.obj.type === ObjType.IMAGE) {
+              e.stopPropagation();
+              e.preventDefault();
+              bus.emit("gallery", props.obj.name);
+            }
+          }}
+          pos="relative"
         >
-          {props.obj.name}
-        </Text>
-      </Tooltip>
-    </VStack>
+          <Show when={showCheckbox()}>
+            <Checkbox
+              pos="absolute"
+              left="$1"
+              top="$1"
+              // colorScheme="neutral"
+              // @ts-ignore
+              on:click={(e) => {
+                e.stopPropagation();
+              }}
+              checked={props.obj.selected}
+              onChange={(e: any) => {
+                selectIndex(props.index, e.target.checked);
+              }}
+            />
+          </Show>
+          <Show when={props.obj.thumb} fallback={objIcon}>
+            <ImageWithError
+              maxH="$full"
+              maxW="$full"
+              rounded="$lg"
+              shadow="$md"
+              fallback={<CenterLoding size="lg" />}
+              fallbackErr={objIcon}
+              src={props.obj.thumb}
+              loading="lazy"
+            />
+          </Show>
+        </Center>
+        <Tooltip label={props.obj.name}>
+          <Text
+            css={{
+              whiteSpace: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+            w="$full"
+            overflow="hidden"
+            textAlign="center"
+            fontSize="$sm"
+          >
+            {props.obj.name}
+          </Text>
+        </Tooltip>
+      </VStack>
+    </Motion.div>
   );
 };

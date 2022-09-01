@@ -22,7 +22,7 @@ export const Header = () => {
       // shadow="$md"
     >
       <Container>
-        <HStack px="$4" py="$2" w="$full" justifyContent="space-between">
+        <HStack px="calc(2% + 0.5rem)" py="$2" w="$full" justifyContent="space-between">
           <HStack class="header-left" h="44px">
             <Image
               src={logo()!}

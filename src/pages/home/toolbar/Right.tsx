@@ -9,13 +9,13 @@ import { RightIcon } from "./Icon";
 import { CgMoreO } from "solid-icons/cg";
 import { TbCheckbox } from "solid-icons/tb";
 import { objStore, State, toggleCheckbox, userCan } from "~/store";
-import { createAnimation } from "motion-signals";
 import { bus } from "~/utils";
 import { operations } from "./operations";
 import { IoMagnetOutline } from "solid-icons/io";
 import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai";
 import { RiSystemRefreshLine } from "solid-icons/ri";
 import { usePath } from "~/hooks";
+import { Motion } from "@motionone/solid";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -24,16 +24,6 @@ export const Right = () => {
     onOpen: () => localStorage.setItem("more-open", "true"),
   });
   const margin = createMemo(() => (isOpen() ? "$4" : "$5"));
-  const { replay } = createAnimation(
-    ".left-toolbar-in",
-    {
-      opacity: [0, 1],
-      scale: [0.6, 1],
-    },
-    {
-      duration: 0.2,
-    }
-  );
   const isFolder = createMemo(() => objStore.state === State.Folder);
   const { refresh } = usePath();
   return (
@@ -51,7 +41,6 @@ export const Right = () => {
             as={CgMoreO}
             onClick={() => {
               onToggle();
-              replay();
             }}
           />
         }
@@ -63,6 +52,12 @@ export const Right = () => {
           bgColor={useColorModeValue("white", "$neutral4")()}
           spacing="$1"
           shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
+          as={Motion.div}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.6 }}
+          // @ts-ignore
+          transition={{ duration: 0.2 }}
         >
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={isFolder() && (userCan("write") || objStore.write)}>
