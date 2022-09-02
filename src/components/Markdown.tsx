@@ -1,15 +1,20 @@
+// @ts-ignore
+import { hljs } from "./highlight.js";
 import SolidMarkdown from "solid-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import rehypeHighlight from "rehype-highlight";
 import "./markdown.css";
+import { onMount } from "solid-js";
 
 export const Markdown = (props: { children?: string }) => {
+  onMount(() => {
+    hljs.highlightAll();
+  });
   return (
     <SolidMarkdown
       class="markdown-body"
       remarkPlugins={[remarkGfm]}
-      rehypePlugins={[rehypeRaw, [rehypeHighlight, { ignoreMissing: true }]]}
+      rehypePlugins={[rehypeRaw]}
       children={props.children}
     />
   );

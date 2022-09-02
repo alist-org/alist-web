@@ -19,7 +19,6 @@ specifiers:
   hls.js: ^1.2.1
   lightgallery: ^2.5.0
   mitt: ^3.0.0
-  rehype-highlight: ^5.0.2
   rehype-raw: ^6.1.1
   remark-gfm: ^3.0.1
   solid-contextmenu: 0.0.1-alpha.1
@@ -49,7 +48,6 @@ dependencies:
   hls.js: 1.2.1
   lightgallery: 2.5.0
   mitt: 3.0.0
-  rehype-highlight: 5.0.2
   rehype-raw: 6.1.1
   remark-gfm: 3.0.1
   solid-contextmenu: 0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm
@@ -1146,12 +1144,6 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
     dev: false
 
-  /fault/2.0.1:
-    resolution: {integrity: sha512-WtySTkS4OKev5JtpHXnib4Gxiurzh5NCGvWrFaZ34m6JehfTUhKZvn9njTfw48t6JumVQOmrKqpmGcdwxnhqBQ==}
-    dependencies:
-      format: 0.2.2
-    dev: false
-
   /fd-slicer/1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
     dependencies:
@@ -1188,11 +1180,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: false
-
-  /format/0.2.2:
-    resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
-    engines: {node: '>=0.4.x'}
     dev: false
 
   /fs-minipass/1.2.7:
@@ -1275,13 +1262,6 @@ packages:
       web-namespaces: 2.0.1
     dev: false
 
-  /hast-util-is-element/2.1.2:
-    resolution: {integrity: sha512-thjnlGAnwP8ef/GSO1Q8BfVk2gundnc2peGQqEg2kUt/IqesiGg/5mSwN2fE7nLzy61pg88NG6xV+UrGOrx9EA==}
-    dependencies:
-      '@types/hast': 2.3.4
-      '@types/unist': 2.0.6
-    dev: false
-
   /hast-util-parse-selector/3.1.0:
     resolution: {integrity: sha512-AyjlI2pTAZEOeu7GeBPZhROx0RHBnydkQIXlhnFzDi0qfXTmGUWoCYZtomHbrdrheV4VFUlPcfJ6LMF5T6sQzg==}
     dependencies:
@@ -1315,14 +1295,6 @@ packages:
       zwitch: 2.0.2
     dev: false
 
-  /hast-util-to-text/3.1.1:
-    resolution: {integrity: sha512-7S3mOBxACy8syL45hCn3J7rHqYaXkxRfsX6LXEU5Shz4nt4GxdjtMUtG+T6G/ZLUHd7kslFAf14kAN71bz30xA==}
-    dependencies:
-      '@types/hast': 2.3.4
-      hast-util-is-element: 2.1.2
-      unist-util-find-after: 4.0.0
-    dev: false
-
   /hastscript/7.0.2:
     resolution: {integrity: sha512-uA8ooUY4ipaBvKcMuPehTAB/YfFLSSzCwFSwT6ltJbocFUKH/GDHLN+tflq7lSRf9H86uOuxOFkh1KgIy3Gg2g==}
     dependencies:
@@ -1340,11 +1312,6 @@ packages:
 
   /hey-listen/1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
-    dev: false
-
-  /highlight.js/11.6.0:
-    resolution: {integrity: sha512-ig1eqDzJaB0pqEvlPVIpSSyMaO92bH1N2rJpLMN/nX396wTpDA4Eq0uK+7I/2XG17pFaaKE0kjV/XPeGt7Evjw==}
-    engines: {node: '>=12.0.0'}
     dev: false
 
   /hls.js/1.2.1:
@@ -1437,14 +1404,6 @@ packages:
 
   /longest-streak/3.0.1:
     resolution: {integrity: sha512-cHlYSUpL2s7Fb3394mYxwTYj8niTaNHUCLr0qdiCXQfSjfuA7CKofpX2uSwEfFDQ0EB7JcnMnm+GjbqqoinYYg==}
-    dev: false
-
-  /lowlight/2.7.0:
-    resolution: {integrity: sha512-RRdrHalFfjpxL91ITTX7KhJYH3QmX5bW9Uie2D2E5GPIR3XBYDYhScBjE291ewFZkStz/k2PN9KC+8deNLiI3Q==}
-    dependencies:
-      '@types/hast': 2.3.4
-      fault: 2.0.1
-      highlight.js: 11.6.0
     dev: false
 
   /magic-string/0.26.2:
@@ -2003,16 +1962,6 @@ packages:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
     dev: true
 
-  /rehype-highlight/5.0.2:
-    resolution: {integrity: sha512-ZNm8V8BQUDn05cJPzAu/PjiloaFFrh+Pt3bY+NCcdCggI7Uyl5mW0FGR7RATeIz5/ECUd1D8Kvjt4HaLPmnOMw==}
-    dependencies:
-      '@types/hast': 2.3.4
-      hast-util-to-text: 3.1.1
-      lowlight: 2.7.0
-      unified: 10.1.2
-      unist-util-visit: 4.1.0
-    dev: false
-
   /rehype-raw/6.1.1:
     resolution: {integrity: sha512-d6AKtisSRtDRX4aSPsJGTfnzrX2ZkHQLE5kiUuGOeEoLpbEulFF4hj0mLPbsa+7vmguDKOVVEQdHKDSwoaIDsQ==}
     dependencies:
@@ -2308,13 +2257,6 @@ packages:
     resolution: {integrity: sha512-GFxmfEAa0vi9i5sd0R2kcrI9ks0r82NasRq5QHh2ysGngrc6GiqD5CDf1FjPenY4vApmFASBIIlk/jj5J5YbmQ==}
     dependencies:
       '@types/unist': 2.0.6
-    dev: false
-
-  /unist-util-find-after/4.0.0:
-    resolution: {integrity: sha512-gfpsxKQde7atVF30n5Gff2fQhAc4/HTOV4CvkXpTg9wRfQhZWdXitpyXHWB6YcYgnsxLx+4gGHeVjCTAAp9sjw==}
-    dependencies:
-      '@types/unist': 2.0.6
-      unist-util-is: 5.1.1
     dev: false
 
   /unist-util-generated/2.0.0:
