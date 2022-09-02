@@ -11,7 +11,7 @@ import {
   Storage,
   Type,
 } from "~/types";
-import { createStore } from "solid-js/store";
+import { createStore, produce } from "solid-js/store";
 import { Item } from "./Item";
 import { ResponsiveGrid } from "../common/ResponsiveGrid";
 
@@ -105,19 +105,27 @@ const AddOrEdit = () => {
           options_prefix="drivers.drivers"
           driver="drivers"
           onChange={(value) => {
-            setStorage("driver", value);
             for (const item of drivers()[value].common) {
               setStorage(
                 item.name as keyof Storage,
                 GetDefaultValue(item.type, item.default) as any
               );
             }
+            // clear addition first
+            setAddition(
+              produce((addition) => {
+                for (const key in addition) {
+                  delete addition[key];
+                }
+              })
+            );
             for (const item of drivers()[value].additional) {
               setAddition(
                 item.name,
                 GetDefaultValue(item.type, item.default) as any
               );
             }
+            setStorage("driver", value);
           }}
         />
         <Show when={drivers()[storage.driver]}>
