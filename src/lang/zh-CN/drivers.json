@@ -1,22 +1,51 @@
 {
-  "123Pan": {
-    "username": "用户名",
+  "Teambition": {
+    "cookie": "Cookie",
+    "project_id": "Project id",
+    "order_bys": {
+      "created": "Created",
+      "fileName": "FileName",
+      "fileSize": "FileSize",
+      "updated": "Updated"
+    },
+    "region": "地区",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹ID",
     "order_by": "排序",
     "order_direction": "排序方式",
-    "root_folder": "根目录",
-    "stream_upload": "流式上传",
-    "password": "密码",
-    "order_bys": {
-      "createAt": "创建时间",
-      "name": "名称",
-      "fileId": "文件ID",
-      "updateAt": "修改时间"
-    },
     "order_directions": {
-      "desc": "降序",
-      "asc": "升序"
+      "Desc": "降序",
+      "Asc": "升序"
     },
-    "root_folder-tips": "根文件夹ID"
+    "regions": {
+      "international": "International",
+      "china": "China"
+    }
+  },
+  "Virtual": {
+    "num_file": "文件数量",
+    "num_folder": "文件夹数量",
+    "max_file_size": "最大文件大小",
+    "min_file_size": "最小文件大小",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹路径"
+  },
+  "drivers": {
+    "Onedrive": "Onedrive",
+    "Aliyundrive": "阿里云盘",
+    "Quark": "Quark",
+    "123Pan": "123云盘",
+    "BaiduNetdisk": "百度网盘",
+    "Local": "本机存储",
+    "PikPak": "PikPak",
+    "Teambition": "Teambition",
+    "Virtual": "虚拟存储"
+  },
+  "Local": {
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹路径",
+    "thumbnail": "缩略图",
+    "thumbnail-tips": "启用缩略图"
   },
   "PikPak": {
     "root_folder": "根目录",
@@ -24,19 +53,42 @@
     "username": "用户名",
     "password": "密码"
   },
-  "drivers": {
-    "Aliyundrive": "阿里云盘",
-    "Teambition": "Teambition",
-    "Local": "本机存储",
-    "Onedrive": "Onedrive",
-    "BaiduNetdisk": "百度网盘",
-    "Quark": "Quark",
-    "Virtual": "虚拟存储",
-    "123Pan": "123云盘",
-    "PikPak": "PikPak"
+  "Aliyundrive": {
+    "order_by": "排序",
+    "order_bys": {
+      "name": "名称",
+      "size": "大小",
+      "updated_at": "修改时间",
+      "created_at": "创建时间"
+    },
+    "order_direction": "排序方式",
+    "order_directions": {
+      "ASC": "升序",
+      "DESC": "降序"
+    },
+    "rapid_upload": "秒传",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹ID",
+    "refresh_token": "刷新令牌"
+  },
+  "Onedrive": {
+    "is_sharepoint": "是否Sharepoint",
+    "client_id": "客户端ID",
+    "refresh_token": "刷新令牌",
+    "redirect_uri": "重定向 Uri",
+    "site_id": "站点ID",
+    "root_folder": "根目录",
+    "root_folder-tips": "根文件夹路径",
+    "region": "地区",
+    "regions": {
+      "global": "全局设置",
+      "cn": "世纪互联",
+      "us": "美国版",
+      "de": "德国版"
+    },
+    "client_secret": "客户端密钥"
   },
   "Quark": {
-    "cookie": "Cookie",
     "root_folder": "根目录",
     "root_folder-tips": "根文件夹ID",
     "order_by": "排序",
@@ -49,101 +101,49 @@
     "order_directions": {
       "asc": "升序",
       "desc": "降序"
-    }
+    },
+    "cookie": "Cookie"
   },
-  "Teambition": {
+  "123Pan": {
     "root_folder": "根目录",
-    "order_by": "排序",
-    "order_direction": "排序方式",
-    "order_directions": {
-      "Asc": "升序",
-      "Desc": "降序"
-    },
-    "cookie": "Cookie",
-    "regions": {
-      "china": "China",
-      "international": "International"
-    },
-    "project_id": "Project id",
     "root_folder-tips": "根文件夹ID",
-    "order_bys": {
-      "fileName": "FileName",
-      "fileSize": "FileSize",
-      "updated": "Updated",
-      "created": "Created"
-    },
-    "region": "地区"
-  },
-  "Local": {
-    "thumbnail": "缩略图",
-    "thumbnail-tips": "启用缩略图",
-    "root_folder": "根目录",
-    "root_folder-tips": "根文件夹路径"
-  },
-  "Onedrive": {
-    "root_folder-tips": "根文件夹路径",
-    "client_id": "客户端ID",
-    "client_secret": "客户端密钥",
-    "site_id": "站点ID",
-    "root_folder": "根目录",
-    "regions": {
-      "global": "全局设置",
-      "cn": "世纪互联",
-      "us": "美国版",
-      "de": "德国版"
-    },
-    "is_sharepoint": "是否Sharepoint",
-    "redirect_uri": "重定向 Uri",
-    "refresh_token": "刷新令牌",
-    "region": "地区"
-  },
-  "Aliyundrive": {
-    "root_folder-tips": "根文件夹ID",
-    "refresh_token": "刷新令牌",
+    "stream_upload": "流式上传",
+    "username": "用户名",
+    "password": "密码",
     "order_by": "排序",
     "order_bys": {
-      "updated_at": "修改时间",
-      "created_at": "创建时间",
-      "name": "名称",
-      "size": "大小"
-    },
-    "order_direction": "排序方式",
-    "order_directions": {
-      "ASC": "升序",
-      "DESC": "降序"
-    },
-    "rapid_upload": "秒传",
-    "root_folder": "根目录"
-  },
-  "BaiduNetdisk": {
-    "order_bys": {
-      "time": "Time",
-      "size": "大小",
+      "fileId": "文件ID",
+      "updateAt": "修改时间",
+      "createAt": "创建时间",
       "name": "名称"
     },
     "order_direction": "排序方式",
-    "client_secret": "客户端密钥",
-    "root_folder": "根目录",
-    "root_folder-tips": "根文件夹路径",
-    "order_by": "排序",
     "order_directions": {
       "asc": "升序",
       "desc": "降序"
-    },
+    }
+  },
+  "BaiduNetdisk": {
+    "order_direction": "排序方式",
     "download_api": "Download api",
     "download_apis": {
       "official": "Official",
       "crack": "Crack"
     },
     "client_id": "客户端ID",
-    "refresh_token": "刷新令牌"
-  },
-  "Virtual": {
+    "refresh_token": "刷新令牌",
+    "root_folder": "根目录",
+    "order_bys": {
+      "name": "名称",
+      "time": "Time",
+      "size": "大小"
+    },
+    "order_directions": {
+      "asc": "升序",
+      "desc": "降序"
+    },
+    "client_secret": "客户端密钥",
     "root_folder-tips": "根文件夹路径",
-    "num_file": "文件数量",
-    "num_folder": "文件夹数量",
-    "max_file_size": "最大文件大小",
-    "min_file_size": "最小文件大小",
-    "root_folder": "根目录"
+    "order_by": "排序"
   }
 }
