@@ -59,25 +59,21 @@ export const Error = (props: {
 };
 
 export const BoxWithFullScreen = (props: Parameters<typeof Box>[0]) => {
-  const [local, _others] = splitProps(props, ["children"]);
   const { isOpen, onToggle } = createDisclosure();
-  const others = createMemo(() => {
-    let ans = _others;
-    if (isOpen()) {
-      ans = { ...ans, top: 0, left: 0, zIndex: 1, w: "100vw", h: "100vh" };
-    }
-    return ans;
-  });
   return (
     <Box
-      {...others()}
       pos={isOpen() ? "fixed" : "relative"}
+      w={isOpen() ? "100vw" : props.w}
+      h={isOpen() ? "100vh" : props.h}
       top={0}
       left={0}
       zIndex={1}
       transition="all 0.2s ease-in-out"
+      css={{
+        backdropFilter: isOpen() ? "blur(5px)" : undefined,
+      }}
     >
-      {local.children}
+      {props.children}
       <Icon
         pos="absolute"
         right="$2"
