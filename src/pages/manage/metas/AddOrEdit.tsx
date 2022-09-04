@@ -20,6 +20,7 @@ import { For, Show } from "solid-js";
 
 type ItemProps = {
   name: string;
+  sub?: boolean;
   onSub: (val: boolean) => void;
   help?: boolean;
 } & (
@@ -67,6 +68,7 @@ const Item = (props: ItemProps) => {
             onChange={(e: any) => props.onSub(e.currentTarget.checked)}
             color="$neutral10"
             fontSize="$sm"
+            checked={props.sub}
           >
             {t("metas.apply_sub")}
           </Checkbox>
@@ -142,21 +144,24 @@ const AddOrEdit = () => {
             { name: "readme", type: "text", help: true },
           ]}
         >
-          {(item) => (
-            // @ts-ignore
-            <Item
-              name={item.name}
-              type={item.type as "string" | "bool" | "text"}
-              value={meta[item.name as keyof Meta] as string | boolean}
-              onChange={(val: any): void =>
-                setMeta(item.name as keyof Meta, val)
-              }
-              onSub={(val: boolean): void =>
-                setMeta(`${item.name[0]}_sub` as keyof Meta, val)
-              }
-              help={item.help}
-            />
-          )}
+          {(item) => {
+            return (
+              // @ts-ignore
+              <Item
+                name={item.name}
+                type={item.type as "string" | "bool" | "text"}
+                value={meta[item.name as keyof Meta] as string | boolean}
+                onChange={(val: any): void =>
+                  setMeta(item.name as keyof Meta, val)
+                }
+                sub={meta[`${item.name[0]}_sub` as keyof Meta] as boolean}
+                onSub={(val: boolean): void =>
+                  setMeta(`${item.name[0]}_sub` as keyof Meta, val)
+                }
+                help={item.help}
+              />
+            );
+          }}
         </For>
         <Button
           loading={okLoading()}
