@@ -7,11 +7,13 @@ const LoginBg = () => {
   return (
     <Box
       bgColor={bgColor()}
-      pos="absolute"
+      pos="fixed"
+      top="0"
+      left="0"
       overflow="hidden"
       zIndex="-1"
-      w="$full"
-      h="$full"
+      w="100vw"
+      h="100vh"
     >
       <Box
         pos="absolute"
