@@ -26,7 +26,7 @@ const Password = () => {
       spacing="$3"
       alignItems="start"
     >
-      <Heading>{t("home.password.input_password")}</Heading>
+      <Heading>{t("home.input_password")}</Heading>
       <Input
         type="password"
         value={password()}

@@ -3,13 +3,13 @@ import { createSignal } from "solid-js";
 import { useT } from "~/hooks";
 import { objStore } from "~/store";
 import { api, baseName } from "~/utils";
-import { IconName } from "./icon-name";
+import { FileInfo } from "./info";
 
 const Ipa = () => {
   const t = useT();
   const [installing, setInstalling] = createSignal(false);
   return (
-    <IconName>
+    <FileInfo>
       <Button
         as="a"
         href={
@@ -24,7 +24,7 @@ const Ipa = () => {
       >
         {t(`home.preview.${installing() ? "installing" : "install"}`)}
       </Button>
-    </IconName>
+    </FileInfo>
   );
 };
 

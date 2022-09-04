@@ -1,13 +1,15 @@
 import { Button, HStack } from "@hope-ui/solid";
 import { useCopyLink, useT } from "~/hooks";
 import { objStore } from "~/store";
-import { IconName } from "./icon-name";
+import { FileInfo } from "./info";
+import { OpenWith } from "../file/open-with";
+import { Show } from "solid-js";
 
-const Download = () => {
+export const Download = (props: { openWith?: boolean }) => {
   const t = useT();
   const { copyCurrentRawLink } = useCopyLink();
   return (
-    <IconName>
+    <FileInfo>
       <HStack spacing="$2">
         <Button colorScheme="accent" onClick={() => copyCurrentRawLink(true)}>
           {t("home.toolbar.copy_link")}
@@ -16,7 +18,10 @@ const Download = () => {
           {t("home.preview.download")}
         </Button>
       </HStack>
-    </IconName>
+      <Show when={props.openWith}>
+        <OpenWith />
+      </Show>
+    </FileInfo>
   );
 };
 

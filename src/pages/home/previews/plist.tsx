@@ -2,13 +2,13 @@ import { Button } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { useT } from "~/hooks";
 import { objStore } from "~/store";
-import { IconName } from "./icon-name";
+import { FileInfo } from "./info";
 
 const Plist = () => {
   const t = useT();
   const [installing, setInstalling] = createSignal(false);
   return (
-    <IconName>
+    <FileInfo>
       <Button
         as="a"
         href={
@@ -20,7 +20,7 @@ const Plist = () => {
       >
         {t(`home.preview.${installing() ? "installing" : "install"}`)}
       </Button>
-    </IconName>
+    </FileInfo>
   );
 };
 
