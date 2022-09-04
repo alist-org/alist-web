@@ -1,117 +1,45 @@
 {
-  "BaiduNetdisk": {
-    "refresh_token": "Refresh token",
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
-    "download_api": "Download api",
-    "download_apis": {
-      "official": "Official",
-      "crack": "Crack"
-    },
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "root_folder_path": "Root folder path",
-    "order_by": "Order by",
-    "order_bys": {
-      "time": "Time",
-      "size": "大小",
-      "name": "名稱"
-    }
-  },
-  "Virtual": {
-    "num_file": "Num file",
-    "num_folder": "Num folder",
-    "max_file_size": "Max file size",
-    "min_file_size": "Min file size",
-    "root_folder_path": "Root folder path"
-  },
-  "Quark": {
-    "cookie": "Cookie",
-    "root_folder_id": "Root folder id",
-    "order_by": "Order by",
-    "order_bys": {
-      "file_type": "File type",
-      "file_name": "File name",
-      "updated_at": "Updated at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    }
-  },
-  "S3": {
-    "endpoint": "Endpoint",
-    "region": "Region",
-    "access_key_id": "Access key id",
-    "custom_host": "Custom host",
-    "force_path_style": "Force path style",
-    "bucket": "Bucket",
-    "secret_access_key": "Secret access key",
-    "sign_url_expire": "Sign url expire",
-    "placeholder": "Placeholder",
-    "list_object_version": "List object version",
-    "list_object_versions": {
-      "v1": "V1",
-      "v2": "V2"
-    },
-    "root_folder_path": "Root folder path"
-  },
-  "USS": {
-    "operator_name": "Operator name",
-    "operator_password": "Operator password",
-    "custom_host": "Custom host",
-    "sign_url_expire": "Sign url expire",
-    "root_folder_path": "Root folder path",
-    "bucket": "Bucket",
-    "endpoint": "Endpoint"
-  },
-  "SFTP": {
-    "private_key": "Private key",
-    "password": "密碼",
-    "root_folder_path": "Root folder path",
-    "address": "Address",
-    "username": "用戶名"
-  },
-  "WebDav": {
+  "FTP": {
     "address": "Address",
     "username": "用戶名",
     "password": "密碼",
-    "root_folder_path": "Root folder path",
-    "vendor": "Vendor",
-    "vendors": {
-      "sharepoint": "Sharepoint",
-      "other": "其他"
-    }
+    "root_folder_path": "Root folder path"
   },
-  "Onedrive": {
-    "region": "Region",
-    "refresh_token": "Refresh token",
-    "site_id": "Site id",
+  "PikPak": {
+    "root_folder_id": "Root folder id",
+    "username": "用戶名",
+    "password": "密碼"
+  },
+  "USS": {
+    "custom_host": "Custom host",
+    "sign_url_expire": "Sign url expire",
     "root_folder_path": "Root folder path",
-    "regions": {
-      "de": "De",
-      "global": "全域設定",
-      "cn": "Cn",
-      "us": "Us"
-    },
-    "is_sharepoint": "Is sharepoint",
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "redirect_uri": "Redirect uri"
+    "bucket": "Bucket",
+    "endpoint": "Endpoint",
+    "operator_name": "Operator name",
+    "operator_password": "Operator password"
+  },
+  "Virtual": {
+    "num_folder": "Num folder",
+    "max_file_size": "Max file size",
+    "min_file_size": "Min file size",
+    "root_folder_path": "Root folder path",
+    "num_file": "Num file"
+  },
+  "Local": {
+    "root_folder_path": "Root folder path",
+    "thumbnail": "Thumbnail",
+    "thumbnail-tips": "enable thumbnail"
   },
   "Aliyundrive": {
     "root_folder_id": "Root folder id",
     "refresh_token": "Refresh token",
     "order_by": "Order by",
     "order_bys": {
+      "name": "名稱",
       "size": "大小",
       "updated_at": "Updated at",
-      "created_at": "Created at",
-      "name": "名稱"
+      "created_at": "Created at"
     },
     "order_direction": "Order direction",
     "order_directions": {
@@ -120,50 +48,32 @@
     },
     "rapid_upload": "Rapid upload"
   },
-  "Local": {
-    "thumbnail": "Thumbnail",
-    "thumbnail-tips": "enable thumbnail",
-    "root_folder_path": "Root folder path"
-  },
-  "drivers": {
-    "BaiduNetdisk": "BaiduNetdisk",
-    "USS": "USS",
-    "Aliyundrive": "Aliyundrive",
-    "Teambition": "Teambition",
-    "WebDav": "WebDav",
-    "GoogleDrive": "GoogleDrive",
-    "FTP": "FTP",
-    "S3": "S3",
-    "PikPak": "PikPak",
-    "123Pan": "123Pan",
-    "Quark": "Quark",
-    "Local": "Local",
-    "Virtual": "Virtual",
-    "Onedrive": "Onedrive",
-    "SFTP": "SFTP"
-  },
-  "GoogleDrive": {
-    "order_by-tips": "such as: folder,name,modifiedTime",
+  "BaiduNetdisk": {
+    "root_folder_path": "Root folder path",
+    "order_bys": {
+      "name": "名稱",
+      "time": "Time",
+      "size": "大小"
+    },
     "order_direction": "Order direction",
+    "download_api": "Download api",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "refresh_token": "Refresh token",
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
     },
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "root_folder_id": "Root folder id",
-    "refresh_token": "Refresh token",
+    "download_apis": {
+      "official": "Official",
+      "crack": "Crack"
+    },
     "order_by": "Order by"
-  },
-  "PikPak": {
-    "root_folder_id": "Root folder id",
-    "username": "用戶名",
-    "password": "密碼"
   },
   "123Pan": {
     "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
+      "desc": "Desc",
+      "asc": "Asc"
     },
     "root_folder_id": "Root folder id",
     "stream_upload": "Stream upload",
@@ -178,32 +88,142 @@
     },
     "order_direction": "Order direction"
   },
-  "FTP": {
-    "address": "Address",
+  "GoogleDrive": {
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "root_folder_id": "Root folder id",
+    "refresh_token": "Refresh token",
+    "order_by": "Order by",
+    "order_by-tips": "such as: folder,name,modifiedTime",
+    "order_direction": "Order direction"
+  },
+  "Onedrive": {
+    "regions": {
+      "de": "De",
+      "global": "全域設定",
+      "cn": "Cn",
+      "us": "Us"
+    },
+    "is_sharepoint": "Is sharepoint",
+    "refresh_token": "Refresh token",
+    "site_id": "Site id",
+    "root_folder_path": "Root folder path",
+    "region": "Region",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "redirect_uri": "Redirect uri"
+  },
+  "SFTP": {
     "username": "用戶名",
+    "private_key": "Private key",
     "password": "密碼",
-    "root_folder_path": "Root folder path"
+    "root_folder_path": "Root folder path",
+    "address": "Address"
+  },
+  "drivers": {
+    "GoogleDrive": "GoogleDrive",
+    "PikPak": "PikPak",
+    "WebDav": "WebDav",
+    "Local": "Local",
+    "Teambition": "Teambition",
+    "SFTP": "SFTP",
+    "Aliyundrive": "Aliyundrive",
+    "123Pan": "123Pan",
+    "Virtual": "Virtual",
+    "S3": "S3",
+    "YandexDisk": "YandexDisk",
+    "BaiduNetdisk": "BaiduNetdisk",
+    "Onedrive": "Onedrive",
+    "FTP": "FTP",
+    "USS": "USS",
+    "Quark": "Quark"
+  },
+  "Quark": {
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "cookie": "Cookie",
+    "root_folder_id": "Root folder id",
+    "order_by": "Order by",
+    "order_bys": {
+      "file_type": "File type",
+      "file_name": "File name",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction"
+  },
+  "S3": {
+    "access_key_id": "Access key id",
+    "secret_access_key": "Secret access key",
+    "sign_url_expire": "Sign url expire",
+    "placeholder": "Placeholder",
+    "list_object_version": "List object version",
+    "root_folder_path": "Root folder path",
+    "bucket": "Bucket",
+    "endpoint": "Endpoint",
+    "list_object_versions": {
+      "v1": "V1",
+      "v2": "V2"
+    },
+    "region": "Region",
+    "custom_host": "Custom host",
+    "force_path_style": "Force path style"
   },
   "Teambition": {
-    "order_bys": {
-      "fileName": "FileName",
-      "fileSize": "FileSize",
-      "updated": "Updated",
-      "created": "Created"
-    },
-    "order_direction": "Order direction",
+    "order_by": "Order by",
     "region": "Region",
+    "cookie": "Cookie",
+    "root_folder_id": "Root folder id",
+    "order_direction": "Order direction",
+    "order_directions": {
+      "Asc": "Asc",
+      "Desc": "Desc"
+    },
     "regions": {
       "china": "China",
       "international": "International"
     },
     "project_id": "Project id",
-    "order_directions": {
-      "Asc": "Asc",
-      "Desc": "Desc"
+    "order_bys": {
+      "fileName": "FileName",
+      "fileSize": "FileSize",
+      "updated": "Updated",
+      "created": "Created"
+    }
+  },
+  "YandexDisk": {
+    "client_secret": "Client secret",
+    "refresh_token": "Refresh token",
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "名稱",
+      "path": "路徑",
+      "created": "Created",
+      "modified": "修改時間",
+      "size": "大小"
     },
-    "cookie": "Cookie",
-    "root_folder_id": "Root folder id",
-    "order_by": "Order by"
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_path": "Root folder path",
+    "client_id": "Client id"
+  },
+  "WebDav": {
+    "address": "Address",
+    "username": "用戶名",
+    "password": "密碼",
+    "root_folder_path": "Root folder path",
+    "vendor": "Vendor",
+    "vendors": {
+      "sharepoint": "Sharepoint",
+      "other": "其他"
+    }
   }
 }
