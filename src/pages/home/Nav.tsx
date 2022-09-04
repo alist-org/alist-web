@@ -17,7 +17,7 @@ export const Nav = () => {
     ...pathname().split("/").filter(Boolean),
   ]);
   const t = useT();
-  const { setPathAsDir } = usePath();
+  const { setPathAs } = usePath();
   return (
     <Breadcrumb class="nav" w="$full">
       <For each={paths()}>
@@ -47,7 +47,7 @@ export const Nav = () => {
                 currentPage={isLast()}
                 as={isLast() ? undefined : Link}
                 href={joinBase(href)}
-                onMouseEnter={() => setPathAsDir(path)}
+                onMouseEnter={() => setPathAs(path)}
               >
                 {text}
               </BreadcrumbLink>

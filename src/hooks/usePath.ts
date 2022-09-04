@@ -52,12 +52,15 @@ export const usePath = () => {
     }
   );
   // set a path must be a dir
-  const setPathAsDir = (path: string, push = false) => {
+  const setPathAs = (path: string, dir = true, push = false) => {
     if (push) {
       path = pathJoin(pathname(), path);
     }
-    // log(`set [${path}] as dir`);
-    IsDirRecord[path] = true;
+    if (dir) {
+      IsDirRecord[path] = true;
+    } else {
+      delete IsDirRecord[path];
+    }
   };
 
   // record is second time password is wrong
@@ -87,7 +90,7 @@ export const usePath = () => {
         ObjStore.setObj(data);
         ObjStore.setProvider(data.provider);
         if (data.is_dir) {
-          setPathAsDir(path);
+          setPathAs(path);
           handleFolder(path, 1);
         } else {
           ObjStore.setReadme(data.readme);
@@ -149,7 +152,7 @@ export const usePath = () => {
   };
   return {
     handlePathChange,
-    setPathAsDir,
+    setPathAs: setPathAs,
     refresh: (retry_pass?: boolean, force?: boolean) => {
       handlePathChange(pathname(), retry_pass, force);
     },

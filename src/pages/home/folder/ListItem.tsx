@@ -33,7 +33,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   if (isHide(props.obj)) {
     return null;
   }
-  const { setPathAsDir } = usePath();
+  const { setPathAs } = usePath();
   const { show } = useContextMenu({ id: 1 });
   return (
     <Motion.div
@@ -57,9 +57,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         as={LinkWithPush}
         href={props.obj.name}
         onMouseEnter={() => {
-          if (props.obj.is_dir) {
-            setPathAsDir(props.obj.name, true);
-          }
+          setPathAs(props.obj.name, props.obj.is_dir, true);
         }}
         onContextMenu={(e: MouseEvent) => {
           batch(() => {

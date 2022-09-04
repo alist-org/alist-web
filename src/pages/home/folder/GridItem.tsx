@@ -20,7 +20,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   if (isHide(props.obj)) {
     return null;
   }
-  const { setPathAsDir } = usePath();
+  const { setPathAs } = usePath();
   const objIcon = (
     <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />
   );
@@ -53,9 +53,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         href={props.obj.name}
         onMouseEnter={() => {
           setHover(true);
-          if (props.obj.is_dir) {
-            setPathAsDir(props.obj.name, true);
-          }
+          setPathAs(props.obj.name, props.obj.is_dir, true);
         }}
         onMouseLeave={() => {
           setHover(false);
