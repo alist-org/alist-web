@@ -1,6 +1,12 @@
 import { HStack, useColorModeValue } from "@hope-ui/solid";
 import { createMemo, For, Show } from "solid-js";
-import { checkboxOpen, haveSelected, selectAll } from "~/store";
+import {
+  checkboxOpen,
+  haveSelected,
+  objStore,
+  selectAll,
+  State,
+} from "~/store";
 import { CopyLink } from "./CopyLink";
 import { CenterIcon } from "./Icon";
 import { bus } from "~/utils";
@@ -8,7 +14,12 @@ import { Download } from "./Download";
 import { Motion, Presence } from "@motionone/solid";
 
 export const Center = () => {
-  const show = createMemo(() => checkboxOpen() && haveSelected());
+  const show = createMemo(
+    () =>
+      [State.Folder, State.FetchingMore].includes(objStore.state) &&
+      checkboxOpen() &&
+      haveSelected()
+  );
   return (
     <Presence exitBeforeEnter>
       <Show when={show()}>
