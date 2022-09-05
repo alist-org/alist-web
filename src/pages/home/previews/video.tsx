@@ -9,6 +9,7 @@ import flvjs from "flv.js";
 import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
 import { SelectWrapper } from "~/components";
+import { isMobile } from "~/utils/compatibility";
 
 const players: { icon: string; scheme: string }[] = [
   { icon: "iina", scheme: "iina://weblink?url=$url" },
@@ -99,6 +100,9 @@ const Preview = () => {
     autoOrientation: true,
     airplay: true,
   };
+  if (isMobile) {
+    option.moreVideoAttr.controls = true;
+  }
   const subtitle = objStore.related.find((obj) => {
     for (const ext of [".srt", ".ass", ".vtt"]) {
       if (obj.name.endsWith(ext)) {
