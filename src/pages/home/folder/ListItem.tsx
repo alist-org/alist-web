@@ -61,9 +61,9 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         onContextMenu={(e: MouseEvent) => {
           batch(() => {
-            if (!checkboxOpen()) {
-              toggleCheckbox();
-            }
+            // if (!checkboxOpen()) {
+            //   toggleCheckbox();
+            // }
             selectAll(false);
             selectIndex(props.index, true, true);
           });
