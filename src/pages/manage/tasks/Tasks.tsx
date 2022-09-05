@@ -19,12 +19,12 @@ export const Tasks = (props: TasksProps) => {
     const resp: Resp<TaskInfo[]> = await get();
     handleRresp(resp, (data) =>
       setTasks(
-        data.sort((a, b) => {
+        data?.sort((a, b) => {
           if (a.id > b.id) {
             return 1;
           }
           return -1;
-        })
+        }) ?? []
       )
     );
   };
