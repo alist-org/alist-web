@@ -13,7 +13,7 @@ import {
 } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
 import { useRouter, useT } from "~/hooks";
-import { getIconColor } from "~/store";
+import { getMainColor } from "~/store";
 import {
   RiDocumentFolderUploadFill,
   RiDocumentFileUploadFill,
@@ -89,7 +89,7 @@ const UploadFile = (props: UploadFileProps) => {
       alignItems="start"
       p="$2"
       _hover={{
-        border: `1px solid ${getIconColor()}`,
+        border: `1px solid ${getMainColor()}`,
       }}
     >
       <Text
@@ -112,7 +112,7 @@ const UploadFile = (props: UploadFileProps) => {
         value={props.progress}
         size="sm"
       >
-        <ProgressIndicator color={getIconColor()} rounded="$md" />
+        <ProgressIndicator color={getMainColor()} rounded="$md" />
         {/* <ProgressLabel /> */}
       </Progress>
       <Text color="$danger10">{props.msg}</Text>
@@ -275,7 +275,7 @@ const Upload = () => {
         <VStack
           w="$full"
           justifyContent="center"
-          border={`2px dashed ${drag() ? getIconColor() : "$neutral8"}`}
+          border={`2px dashed ${drag() ? getMainColor() : "$neutral8"}`}
           rounded="$lg"
           onDragOver={(e: DragEvent) => {
             e.preventDefault();

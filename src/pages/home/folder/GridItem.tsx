@@ -6,7 +6,7 @@ import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
 import { usePath, useUtil } from "~/hooks";
 import {
   checkboxOpen,
-  getIconColor,
+  getMainColor,
   selectAll,
   selectIndex,
   toggleCheckbox,
@@ -22,7 +22,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   }
   const { setPathAs } = usePath();
   const objIcon = (
-    <Icon color={getIconColor()} boxSize="$12" as={getIconByObj(props.obj)} />
+    <Icon color={getMainColor()} boxSize="$12" as={getIconByObj(props.obj)} />
   );
   const [hover, setHover] = createSignal(false);
   const showCheckbox = createMemo(

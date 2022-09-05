@@ -6,7 +6,7 @@ import { LinkWithPush } from "~/components";
 import { usePath, useUtil } from "~/hooks";
 import {
   checkboxOpen,
-  getIconColor,
+  getMainColor,
   OrderBy,
   selectAll,
   selectIndex,
@@ -87,7 +87,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           <Icon
             class="icon"
             boxSize="$6"
-            color={getIconColor()}
+            color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
             // @ts-ignore

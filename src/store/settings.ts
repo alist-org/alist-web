@@ -21,7 +21,12 @@ export const getSettingNumber = (key: string, defaultV?: number) => {
   }
   return defaultV ?? 0;
 };
-export const getIconColor = () => getSetting("main_color") || "#1890ff";
+export const getMainColor = (): string => {
+  if (window.ALIST.main_color) {
+    return window.ALIST.main_color;
+  }
+  return getSetting("main_color") || "#1890ff";
+};
 
 /**
  * like this:

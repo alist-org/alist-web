@@ -1,7 +1,7 @@
 import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
 import { IconTypes } from "solid-icons";
 import { useT } from "~/hooks";
-import { getIconColor, user } from "~/store";
+import { getMainColor, user } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
 import { hoverColor } from "~/utils";
 import { operations } from "./operations";

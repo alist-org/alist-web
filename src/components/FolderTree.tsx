@@ -26,7 +26,7 @@ import {
   For,
 } from "solid-js";
 import { useFetch, useT } from "~/hooks";
-import { getIconColor, password } from "~/store";
+import { getMainColor, password } from "~/store";
 import { Obj, Resp } from "~/types";
 import {
   pathBase,
@@ -79,10 +79,10 @@ const FolderTreeNode = (props: { path: string }) => {
       <HStack spacing="$2">
         <Show
           when={!loading()}
-          fallback={<Spinner size="sm" color={getIconColor()} />}
+          fallback={<Spinner size="sm" color={getMainColor()} />}
         >
           <Icon
-            color={getIconColor()}
+            color={getMainColor()}
             as={BiSolidRightArrow}
             transform={isOpen() ? "rotate(90deg)" : "none"}
             transition="transform 0.2s"
