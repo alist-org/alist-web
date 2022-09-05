@@ -13,7 +13,7 @@
   "USS": {
     "custom_host": "自定义HOST",
     "sign_url_expire": "签名链接有效期",
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "bucket": "存储桶",
     "endpoint": "Endpoint",
     "operator_name": "操作员名称",
@@ -23,11 +23,11 @@
     "num_folder": "文件夹数量",
     "max_file_size": "最大文件大小",
     "min_file_size": "最小文件大小",
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "num_file": "文件数量"
   },
   "Local": {
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "thumbnail": "缩略图",
     "thumbnail-tips": "启用缩略图"
   },
@@ -49,7 +49,7 @@
     "rapid_upload": "秒传"
   },
   "BaiduNetdisk": {
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "order_bys": {
       "name": "名称",
       "time": "时间",
@@ -111,7 +111,7 @@
     "is_sharepoint": "是否Sharepoint",
     "refresh_token": "刷新令牌",
     "site_id": "站点ID",
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "region": "地区",
     "client_id": "客户端ID",
     "client_secret": "客户端密钥",
@@ -121,8 +121,8 @@
     "username": "用户名",
     "private_key": "私钥",
     "password": "密码",
-    "root_folder_path": "Root folder path",
-    "address": "Address"
+    "root_folder_path": "根文件夹路径",
+    "address": "地址"
   },
   "drivers": {
     "GoogleDrive": "谷歌云盘",
@@ -134,7 +134,7 @@
     "Aliyundrive": "阿里云盘",
     "123Pan": "123云盘",
     "Virtual": "虚拟存储",
-    "S3": "S3",
+    "S3": "对象存储",
     "YandexDisk": "YandexDisk",
     "BaiduNetdisk": "百度网盘",
     "Onedrive": "Onedrive",
@@ -185,15 +185,15 @@
       "Desc": "降序"
     },
     "regions": {
-      "china": "China",
-      "international": "International"
+      "china": "中国",
+      "international": "国际版"
     },
-    "project_id": "Project id",
+    "project_id": "项目 ID",
     "order_bys": {
-      "fileName": "FileName",
-      "fileSize": "FileSize",
-      "updated": "Updated",
-      "created": "Created"
+      "fileName": "文件名",
+      "fileSize": "文件大小",
+      "updated": "修改时间",
+      "created": "创建时间"
     }
   },
   "YandexDisk": {
@@ -203,7 +203,7 @@
     "order_bys": {
       "name": "名称",
       "path": "路径",
-      "created": "Created",
+      "created": "创建时间",
       "modified": "修改时间",
       "size": "大小"
     },
@@ -212,14 +212,14 @@
       "asc": "升序",
       "desc": "降序"
     },
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "client_id": "客户端ID"
   },
   "WebDav": {
-    "address": "Address",
+    "address": "地址",
     "username": "用户名",
     "password": "密码",
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "vendor": "Vendor",
     "vendors": {
       "sharepoint": "Sharepoint",
