@@ -1,7 +1,7 @@
 import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
 import { IconTypes } from "solid-icons";
 import { useT } from "~/hooks";
-import { user } from "~/store";
+import { getIconColor, user } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
 import { hoverColor } from "~/utils";
 import { operations } from "./operations";
@@ -55,8 +55,8 @@ export const RightIcon = <C extends ElementType = "svg">(
       label={t(`home.toolbar.${props.tips}`)}
     >
       <Icon
-        bgColor="$info4"
-        color="$info11"
+        // bgColor="$info4"
+        color="$info9"
         _hover={{
           bgColor: "$info9",
           color: "white",

@@ -1,4 +1,4 @@
-import { HStack, useColorModeValue } from "@hope-ui/solid";
+import { Box, HStack, useColorModeValue } from "@hope-ui/solid";
 import { createMemo, For, Show } from "solid-js";
 import {
   checkboxOpen,
@@ -23,21 +23,13 @@ export const Center = () => {
   return (
     <Presence exitBeforeEnter>
       <Show when={show()}>
-        <HStack
+        <Box
           class="center-toolbar"
           pos="fixed"
           bottom="$4"
           right="50%"
           w="max-content"
-          css={{
-            backdropFilter: "blur(8px)",
-          }}
-          shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
-          rounded="$lg"
-          p="$2"
           color="$neutral11"
-          bgColor={useColorModeValue("white", "#000000d0")()}
-          spacing="$1"
           as={Motion.div}
           initial={{ opacity: 0, scale: 0.9, x: "50% ", y: 10 }}
           animate={{ opacity: 1, scale: 1, x: "50%", y: 0 }}
@@ -45,27 +37,38 @@ export const Center = () => {
           // @ts-ignore
           transition={{ duration: 0.2 }}
         >
-          <For each={["rename", "move", "copy", "delete"]}>
-            {(name) => {
-              return (
-                <CenterIcon
-                  name={name}
-                  onClick={() => {
-                    bus.emit("tool", name);
-                  }}
-                />
-              );
+          <HStack
+            p="$2"
+            bgColor={useColorModeValue("white", "#000000d0")()}
+            spacing="$1"
+            shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
+            rounded="$lg"
+            css={{
+              backdropFilter: "blur(8px)",
             }}
-          </For>
-          <CopyLink />
-          <Download />
-          <CenterIcon
-            name="cancel_select"
-            onClick={() => {
-              selectAll(false);
-            }}
-          />
-        </HStack>
+          >
+            <For each={["rename", "move", "copy", "delete"]}>
+              {(name) => {
+                return (
+                  <CenterIcon
+                    name={name}
+                    onClick={() => {
+                      bus.emit("tool", name);
+                    }}
+                  />
+                );
+              }}
+            </For>
+            <CopyLink />
+            <Download />
+            <CenterIcon
+              name="cancel_select"
+              onClick={() => {
+                selectAll(false);
+              }}
+            />
+          </HStack>
+        </Box>
       </Show>
     </Presence>
   );

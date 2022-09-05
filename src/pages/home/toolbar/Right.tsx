@@ -49,9 +49,10 @@ export const Right = () => {
           class="left-toolbar"
           p="$1"
           rounded="$lg"
-          bgColor={useColorModeValue("white", "$neutral4")()}
           spacing="$1"
-          shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
+          // shadow="0px 10px 30px -5px rgba(0, 0, 0, 0.3)"
+          // bgColor={useColorModeValue("white", "$neutral4")()}
+          bgColor="$neutral1"
           as={Motion.div}
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
