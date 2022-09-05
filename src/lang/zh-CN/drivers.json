@@ -1,23 +1,23 @@
 {
   "FTP": {
-    "address": "Address",
+    "address": "地址",
     "username": "用户名",
     "password": "密码",
-    "root_folder_path": "Root folder path"
+    "root_folder_path": "根文件夹路径"
   },
   "PikPak": {
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "username": "用户名",
     "password": "密码"
   },
   "USS": {
-    "custom_host": "Custom host",
-    "sign_url_expire": "Sign url expire",
+    "custom_host": "自定义HOST",
+    "sign_url_expire": "签名链接有效期",
     "root_folder_path": "Root folder path",
-    "bucket": "Bucket",
+    "bucket": "存储桶",
     "endpoint": "Endpoint",
-    "operator_name": "Operator name",
-    "operator_password": "Operator password"
+    "operator_name": "操作员名称",
+    "operator_password": "操作员密码"
   },
   "Virtual": {
     "num_folder": "文件夹数量",
@@ -32,7 +32,7 @@
     "thumbnail-tips": "启用缩略图"
   },
   "Aliyundrive": {
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "refresh_token": "刷新令牌",
     "order_by": "排序",
     "order_bys": {
@@ -52,11 +52,11 @@
     "root_folder_path": "Root folder path",
     "order_bys": {
       "name": "名称",
-      "time": "Time",
+      "time": "时间",
       "size": "大小"
     },
     "order_direction": "排序方式",
-    "download_api": "Download api",
+    "download_api": "下载接口",
     "client_id": "客户端ID",
     "client_secret": "客户端密钥",
     "refresh_token": "刷新令牌",
@@ -65,7 +65,7 @@
       "desc": "降序"
     },
     "download_apis": {
-      "official": "Official",
+      "official": "官方",
       "crack": "Crack"
     },
     "order_by": "排序"
@@ -75,7 +75,7 @@
       "desc": "降序",
       "asc": "升序"
     },
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "stream_upload": "流式上传",
     "username": "用户名",
     "password": "密码",
@@ -95,10 +95,10 @@
     },
     "client_id": "客户端ID",
     "client_secret": "客户端密钥",
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "refresh_token": "刷新令牌",
     "order_by": "排序",
-    "order_by-tips": "such as: folder,name,modifiedTime",
+    "order_by-tips": "例如: folder,name,modifiedTime",
     "order_direction": "排序方式"
   },
   "Onedrive": {
@@ -119,13 +119,13 @@
   },
   "SFTP": {
     "username": "用户名",
-    "private_key": "Private key",
+    "private_key": "私钥",
     "password": "密码",
     "root_folder_path": "Root folder path",
     "address": "Address"
   },
   "drivers": {
-    "GoogleDrive": "GoogleDrive",
+    "GoogleDrive": "谷歌云盘",
     "PikPak": "PikPak",
     "WebDav": "WebDav",
     "Local": "本机存储",
@@ -139,8 +139,8 @@
     "BaiduNetdisk": "百度网盘",
     "Onedrive": "Onedrive",
     "FTP": "FTP",
-    "USS": "USS",
-    "Quark": "Quark"
+    "USS": "又拍云存储",
+    "Quark": "夸克"
   },
   "Quark": {
     "order_directions": {
@@ -148,11 +148,11 @@
       "desc": "降序"
     },
     "cookie": "Cookie",
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "order_by": "排序",
     "order_bys": {
-      "file_type": "File type",
-      "file_name": "File name",
+      "file_type": "文件类型",
+      "file_name": "文件名称",
       "updated_at": "修改时间"
     },
     "order_direction": "排序方式"
@@ -160,25 +160,25 @@
   "S3": {
     "access_key_id": "Access key id",
     "secret_access_key": "Secret access key",
-    "sign_url_expire": "Sign url expire",
+    "sign_url_expire": "签名链接有效期",
     "placeholder": "Placeholder",
     "list_object_version": "List object version",
     "root_folder_path": "Root folder path",
-    "bucket": "Bucket",
+    "bucket": "存储桶",
     "endpoint": "Endpoint",
     "list_object_versions": {
       "v1": "V1",
       "v2": "V2"
     },
     "region": "地区",
-    "custom_host": "Custom host",
-    "force_path_style": "Force path style"
+    "custom_host": "自定义HOST",
+    "force_path_style": "强制路径样式"
   },
   "Teambition": {
     "order_by": "排序",
     "region": "地区",
     "cookie": "Cookie",
-    "root_folder_id": "Root folder id",
+    "root_folder_id": "根文件夹ID",
     "order_direction": "排序方式",
     "order_directions": {
       "Asc": "升序",
