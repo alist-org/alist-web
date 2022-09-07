@@ -2,8 +2,8 @@
   "common": {
     "mount_path": "掛載路徑",
     "driver": "驅動",
-    "index": "索引",
-    "index-tips": "用於排序",
+    "order": "Order",
+    "order-tips": "Use to sort",
     "status": "狀態",
     "remark": "Remark",
     "cache_expiration": "Cache Expiration",
