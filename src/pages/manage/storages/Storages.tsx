@@ -69,7 +69,7 @@ const Storages = () => {
         <Table highlightOnHover dense>
           <Thead>
             <Tr>
-              <For each={["mount_path", "driver", "index", "status", "remark"]}>
+              <For each={["mount_path", "driver", "order", "status", "remark"]}>
                 {(title) => <Th>{t(`storages.common.${title}`)}</Th>}
               </For>
               <Th>{t("global.operations")}</Th>
@@ -81,7 +81,7 @@ const Storages = () => {
                 <Tr>
                   <Td>{storage.mount_path}</Td>
                   <Td>{t(`drivers.drivers.${storage.driver}`)}</Td>
-                  <Td>{storage.index}</Td>
+                  <Td>{storage.order}</Td>
                   <Td>{storage.status}</Td>
                   <Td>{storage.remark}</Td>
                   <Td>

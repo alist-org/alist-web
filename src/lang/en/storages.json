@@ -2,8 +2,8 @@
   "common": {
     "mount_path": "Mount Path",
     "driver": "Driver",
-    "index": "Index",
-    "index-tips": "Use to sort",
+    "order": "Order",
+    "order-tips": "Use to sort",
     "status": "Status",
     "remark": "Remark",
     "cache_expiration": "Cache Expiration",

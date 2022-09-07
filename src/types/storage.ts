@@ -26,7 +26,7 @@ export enum WebdavPolicy {
 export interface Storage {
   id: number;
   mount_path: string;
-  index: number;
+  order: number;
   driver: string;
   status: string;
   addition: string;
