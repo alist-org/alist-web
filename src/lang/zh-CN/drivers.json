@@ -16,7 +16,7 @@
     "Local": "本机存储",
     "189Cloud": "天翼云盘",
     "WebDav": "WebDav",
-    "139Yun": "139Yun",
+    "139Yun": "中国移动云盘",
     "YandexDisk": "YandexDisk",
     "USS": "又拍云存储"
   },
@@ -235,7 +235,7 @@
     "root_folder_id": "根文件夹ID",
     "type": "Type",
     "types": {
-      "personal": "Personal",
+      "personal": "个人云",
       "family": "Family"
     },
     "cloud_id": "Cloud id"
