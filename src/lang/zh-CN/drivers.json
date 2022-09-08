@@ -17,7 +17,7 @@
     "189Cloud": "天翼云盘",
     "WebDav": "WebDav",
     "139Yun": "中国移动云盘",
-    "YandexDisk": "YandexDisk",
+    "YandexDisk": "Yandex网盘",
     "USS": "又拍云存储"
   },
   "Quark": {
@@ -236,9 +236,9 @@
     "type": "Type",
     "types": {
       "personal": "个人云",
-      "family": "Family"
+      "family": "家庭云"
     },
-    "cloud_id": "Cloud id"
+    "cloud_id": "云盘id"
   },
   "Aliyundrive": {
     "refresh_token": "刷新令牌",
