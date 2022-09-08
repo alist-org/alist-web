@@ -1,7 +1,7 @@
 {
   "external_previews": "外部预览",
   "link_expiration": "直链有效期",
-  "ocr_api": "Ocr api",
+  "ocr_api": "Ocr接口",
   "aria2_uri": "Aria2地址",
   "version": "版本",
   "main_color": "主颜色",
@@ -23,7 +23,7 @@
   "iframe_previews": "Iframe 预览",
   "package_download": "打包下载",
   "image_types": "图片类型",
-  "audio_cover": "Audio cover",
+  "audio_cover": "音频封面",
   "api_url": "Api地址",
   "pagination_types": {
     "all": "全部",
