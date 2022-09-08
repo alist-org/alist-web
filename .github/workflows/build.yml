@@ -6,7 +6,23 @@ on:
       - main
 
 jobs:
+  changelog:
+    name: Create release changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      
+      - name: Generate changelog
+        if: startsWith(github.ref, 'refs/tags/')
+        run: npx changelogithub # or changelogithub@0.12 if ensure the stable result
+        env:
+          GITHUB_TOKEN: ${{secrets.MY_TOKEN}}
+
   build:
+    needs: changelog
     strategy:
       matrix:
         platform: [ubuntu-latest]
@@ -44,12 +60,19 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Replace version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          version=$(git describe --abbrev=0 --tags)
+          sed -i -e "s/0.0.0/$version/g" alist-web/package.json
+
       - name: Build
         run: |
           cd alist-web
           pnpm install
           pnpm i18n
           pnpm build
+          cp -r dist ../
           cd ..
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
@@ -59,7 +82,7 @@ jobs:
         run: |
           cd web-dist
           rm -rf dist
-          cp -r ../alist-web/dist .
+          cp -r ../dist .
           git add .
           git config --local user.email "i@nn.ci"
           git config --local user.name "Noah Hsu"
@@ -74,3 +97,22 @@ jobs:
           directory: web-dist
           repository: alist-org/web-dist
 
+      - name: Publish npm
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          cd alist-web
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc
+          pnpm publish --no-git-checks
+          cd ..
+
+      - name: Compress dist files
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          tar -czvf compress/dist.tar.gz dist/*
+          zip -r compress/dist.zip dist/*
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: compress/*
