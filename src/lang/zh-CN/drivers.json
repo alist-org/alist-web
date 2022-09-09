@@ -42,11 +42,11 @@
       "personal": "个人云",
       "family": "家庭云"
     },
-    "cloud_id": "云盘id",
-    "account": "Account",
+    "cloud_id": "Cloud id",
+    "account": "帐号",
     "cookie": "Cookie",
     "root_folder_id": "根文件夹ID",
-    "type": "Type"
+    "type": "类型"
   },
   "USS": {
     "sign_url_expire": "签名链接有效期",
@@ -131,7 +131,7 @@
     "refresh_token": "刷新令牌",
     "download_apis": {
       "official": "官方",
-      "crack": "Crack"
+      "crack": "非官方"
     },
     "client_id": "客户端ID",
     "client_secret": "客户端密钥",
@@ -147,33 +147,33 @@
     "thumbnail-tips": "启用缩略图"
   },
   "S3": {
-    "secret_access_key": "Secret access key",
+    "secret_access_key": "安全访问密钥",
     "custom_host": "自定义HOST",
     "force_path_style": "强制路径样式",
-    "root_folder_path": "Root folder path",
+    "root_folder_path": "根文件夹路径",
     "bucket": "存储桶",
     "endpoint": "Endpoint",
     "region": "地区",
-    "access_key_id": "Access key id",
-    "list_object_version": "List object version",
+    "access_key_id": "访问密钥 Id",
+    "list_object_version": "列出对象版本",
     "list_object_versions": {
       "v1": "V1",
       "v2": "V2"
     },
     "sign_url_expire": "签名链接有效期",
-    "placeholder": "Placeholder"
+    "placeholder": "占位文件名"
   },
   "MediaTrack": {
-    "access_token": "Access token",
+    "access_token": "访问令牌",
     "project_id": "项目 ID",
     "root_folder_id": "根文件夹ID",
     "order_by": "排序",
     "order_bys": {
       "size": "大小",
       "updated_at": "修改时间",
-      "title": "Title"
+      "title": "名称"
     },
-    "order_desc": "Order desc"
+    "order_desc": "降序排列"
   },
   "Onedrive": {
     "is_sharepoint": "是否Sharepoint",
@@ -200,7 +200,7 @@
     "Quark": "夸克",
     "Teambition": "Teambition网盘",
     "123Pan": "123云盘",
-    "MediaTrack": "MediaTrack",
+    "MediaTrack": "分秒帧",
     "YandexDisk": "Yandex网盘",
     "189Cloud": "天翼云盘",
     "PikPak": "PikPak",
@@ -215,20 +215,20 @@
   },
   "189CloudPC": {
     "username": "用户名",
-    "type": "Type",
+    "type": "类型",
     "family_id": "Family id",
     "types": {
       "personal": "个人云",
       "family": "家庭云"
     },
     "password": "密码",
-    "validate_code": "Validate code",
+    "validate_code": "验证码",
     "root_folder_id": "根文件夹ID",
     "order_by": "排序",
     "order_bys": {
-      "filename": "Filename",
-      "filesize": "Filesize",
-      "lastOpTime": "LastOpTime"
+      "filename": "文件名",
+      "filesize": "文件大小",
+      "lastOpTime": "修改时间"
     },
     "order_direction": "排序方式",
     "order_directions": {
@@ -243,7 +243,7 @@
     "password": "密码"
   },
   "WebDav": {
-    "vendor": "Vendor",
+    "vendor": "供应商",
     "vendors": {
       "sharepoint": "Sharepoint",
       "other": "其他"
