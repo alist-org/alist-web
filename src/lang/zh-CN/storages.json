@@ -2,8 +2,8 @@
   "common": {
     "mount_path": "挂载路径",
     "driver": "驱动",
-    "order": "顺序",
-    "order-tips": "使用排序",
+    "order": "序号",
+    "order-tips": "用于排序",
     "status": "状态",
     "remark": "备注",
     "cache_expiration": "缓存过期时间",
