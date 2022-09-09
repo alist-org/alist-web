@@ -1,7 +1,23 @@
 {
   "name": "alist-web",
   "version": "0.0.0",
-  "description": "",
+  "author": {
+    "name": "Xhofe",
+    "email": "i@nn.ci",
+    "url": "https://www.nn.ci"
+  },
+  "description": "The front end of Alist V3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alist-org/alist-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Xhofe/alist/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://alist.nn.ci",
   "scripts": {
     "crowdin": "crowdin download",
     "i18n": "pnpm crowdin -b main --verbose && node ./scripts/i18n.mjs",
