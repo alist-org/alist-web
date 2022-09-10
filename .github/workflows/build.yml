@@ -30,27 +30,47 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+          path: alist-web
           persist-credentials: false
           fetch-depth: 0
           submodules: recursive
 
+      - name: Checkout dist repo
+        uses: actions/checkout@v2
+        with:
+          repository: alist-org/web-dist
+          ref: dev
+          path: web-dist
+          persist-credentials: false
+          fetch-depth: 0
+
       - name: Build
         run: |
+          cd alist-web
           pnpm install
           pnpm i18n
           pnpm build
+          cd ..
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Compress dist
+      - name: Commit dist
         run: |
-          mkdir compress
-          tar -czvf compress/dist.tar.gz dist/*
-          zip -r compress/dist.zip dist/*
+          cd web-dist
+          rm -rf dist
+          cp -r ../alist-web/dist .
+          git add .
+          git config --local user.email "i@nn.ci"
+          git config --local user.name "Noah Hsu"
+          git commit --amend -m "upload dev dist"
+          cd ..
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Upload dist files
+        uses: ad-m/github-push-action@master
         with:
-          name: alist-web
-          path: compress
+          github_token: ${{ secrets.MY_TOKEN }}
+          branch: dev
+          directory: web-dist
+          repository: alist-org/web-dist
+          force: true
