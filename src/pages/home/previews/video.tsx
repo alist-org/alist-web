@@ -5,6 +5,7 @@ import { getSettingBool, objStore } from "~/store";
 import { ObjType } from "~/types";
 import { convertURL, ext } from "~/utils";
 import Artplayer from "artplayer";
+import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import flvjs from "flv.js";
 import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
@@ -111,11 +112,40 @@ const Preview = () => {
     }
     return false;
   });
+  const danmu = objStore.related.find((obj) => {
+    for (const ext of [".xml"]) {
+      if (obj.name.endsWith(ext)) {
+        return true;
+      }
+    }
+    return false;
+  });
   if (subtitle) {
     option.subtitle = {
       url: proxyLink(subtitle, true),
       type: ext(subtitle.name) as any,
     };
+  }
+  if (danmu) {
+    option.plugins = [
+      artplayerPluginDanmuku({
+        danmuku: proxyLink(danmu, true),
+        speed: 5,
+        opacity: 1,
+        fontSize: 25,
+        color: '#FFFFFF',
+        mode: 0,
+        margin: [0, '0%'],
+        antiOverlap: false,
+        useWorker: true,
+        synchronousPlayback: false,
+        lockTime: 5,
+        maxLength: 100,
+        minWidth: 200,
+        maxWidth: 400,
+        theme: 'dark',
+      })
+    ]
   }
   onMount(() => {
     player = new Artplayer(option);
