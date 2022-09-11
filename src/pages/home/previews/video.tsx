@@ -5,7 +5,7 @@ import { getSettingBool, objStore } from "~/store";
 import { ObjType } from "~/types";
 import { convertURL, ext } from "~/utils";
 import Artplayer from "artplayer";
-import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
+import artplayerPluginDanmuku from "artplayer-plugin-danmuku";
 import flvjs from "flv.js";
 import Hls from "hls.js";
 import { currentLang } from "~/app/i18n";
@@ -31,7 +31,7 @@ const players: { icon: string; scheme: string }[] = [
 
 const Preview = () => {
   const { replace } = useRouter();
-  const { proxyLink } = useLink();
+  const { proxyLink, rawLink } = useLink();
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO);
   if (videos.length === 0) {
     videos = [objStore.obj];
@@ -133,9 +133,9 @@ const Preview = () => {
         speed: 5,
         opacity: 1,
         fontSize: 25,
-        color: '#FFFFFF',
+        color: "#FFFFFF",
         mode: 0,
-        margin: [0, '0%'],
+        margin: [0, "0%"],
         antiOverlap: false,
         useWorker: true,
         synchronousPlayback: false,
@@ -143,9 +143,9 @@ const Preview = () => {
         maxLength: 100,
         minWidth: 200,
         maxWidth: 400,
-        theme: 'dark',
-      })
-    ]
+        theme: "dark",
+      }),
+    ];
   }
   onMount(() => {
     player = new Artplayer(option);
@@ -177,7 +177,7 @@ const Preview = () => {
                 // external
                 href={convertURL(
                   item.scheme,
-                  objStore.raw_url,
+                  rawLink(objStore.obj, true),
                   objStore.obj.name
                 )}
               >
