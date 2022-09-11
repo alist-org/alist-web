@@ -5,6 +5,7 @@
   "otp-tips": "輸入您的 OTP 代碼",
   "remember": "記住我的登錄資料",
   "forget": "忘記密碼？",
+  "forget_url": "https://alist.nn.ci/faq/howto.html#how-to-get-password-if-i-forget-it",
   "clear": "清除",
   "login": "登錄",
   "use_guest": "以遊客身份瀏覽",
