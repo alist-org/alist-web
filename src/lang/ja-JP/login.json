@@ -5,6 +5,7 @@
   "otp-tips": "Input your OTP Code",
   "remember": "Remember me",
   "forget": "Forget password?",
+  "forget_url": "https://alist.nn.ci/faq/howto.html#how-to-get-password-if-i-forget-it",
   "clear": "Clear",
   "login": "Login",
   "use_guest": "Browse as a guest",
