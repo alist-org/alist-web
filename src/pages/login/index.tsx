@@ -31,12 +31,13 @@ const Login = () => {
   );
   const [opt, setOpt] = createSignal("");
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false");
-  const [loading, data] = useFetch(() =>
-    r.post("/auth/login", {
-      username: username(),
-      password: password(),
-      otp_code: opt(),
-    })
+  const [loading, data] = useFetch(
+    (): Promise<Resp<{ token: string }>> =>
+      r.post("/auth/login", {
+        username: username(),
+        password: password(),
+        otp_code: opt(),
+      })
   );
   const { searchParams, to } = useRouter();
   const Login = async () => {
@@ -47,7 +48,7 @@ const Login = () => {
       localStorage.removeItem("username");
       localStorage.removeItem("password");
     }
-    const resp: Resp<{ token: string }> = await data();
+    const resp = await data();
     handleRrespWithoutNotify(
       resp,
       (data) => {
@@ -134,7 +135,9 @@ const Login = () => {
             >
               {t("login.remember")}
             </Checkbox>
-            <Text>{t("login.forget")}</Text>
+            <Text as="a" target="_blank" href={t("login.forget_url")}>
+              {t("login.forget")}
+            </Text>
           </Flex>
         </Show>
         <HStack w="$full" spacing="$2">
