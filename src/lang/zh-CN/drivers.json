@@ -40,13 +40,13 @@
   },
   "BaiduPhoto": {
     "refresh_token": "刷新令牌",
-    "show_type": "Show type",
+    "show_type": "展示类型",
     "show_types": {
       "root_only_file": "Root only file",
       "root": "Root",
       "root_only_album": "Root only album"
     },
-    "album_id": "Album id",
+    "album_id": "相簿id",
     "client_id": "客户端ID",
     "client_secret": "客户端密钥"
   },
@@ -84,7 +84,7 @@
     "MediaTrack": "分秒帧",
     "YandexDisk": "Yandex网盘",
     "123Pan": "123云盘",
-    "BaiduPhoto": "BaiduPhoto",
+    "BaiduPhoto": "一刻相册",
     "Teambition": "Teambition网盘",
     "139Yun": "中国移动云盘",
     "WebDav": "WebDav",
