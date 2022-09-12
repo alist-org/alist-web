@@ -1,50 +1,30 @@
 {
-  "Onedrive": {
-    "refresh_token": "Refresh token",
-    "site_id": "Site id",
-    "root_folder_path": "Root folder path",
-    "regions": {
-      "global": "全域設定",
-      "cn": "Cn",
-      "us": "Us",
-      "de": "De"
-    },
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "redirect_uri": "Redirect uri",
-    "region": "Region",
-    "is_sharepoint": "Is sharepoint"
-  },
-  "Teambition": {
-    "project_id": "Project id",
-    "root_folder_id": "Root folder id",
-    "order_directions": {
-      "Asc": "Asc",
-      "Desc": "Desc"
-    },
-    "region": "Region",
-    "cookie": "Cookie",
+  "Aliyundrive": {
     "order_bys": {
-      "created": "Created",
-      "fileName": "FileName",
-      "fileSize": "FileSize",
-      "updated": "Updated"
+      "name": "名稱",
+      "size": "大小",
+      "updated_at": "Updated at",
+      "created_at": "Created at"
     },
     "order_direction": "Order direction",
-    "regions": {
-      "china": "China",
-      "international": "International"
+    "order_directions": {
+      "ASC": "ASC",
+      "DESC": "DESC"
     },
+    "rapid_upload": "Rapid upload",
+    "root_folder_id": "Root folder id",
+    "refresh_token": "Refresh token",
     "order_by": "Order by"
   },
-  "USS": {
-    "operator_name": "Operator name",
-    "operator_password": "Operator password",
-    "custom_host": "Custom host",
-    "sign_url_expire": "Sign url expire",
+  "Local": {
     "root_folder_path": "Root folder path",
-    "bucket": "Bucket",
-    "endpoint": "Endpoint"
+    "thumbnail": "Thumbnail",
+    "thumbnail-tips": "enable thumbnail"
+  },
+  "PikPak": {
+    "root_folder_id": "Root folder id",
+    "username": "用戶名",
+    "password": "密碼"
   },
   "MediaTrack": {
     "access_token": "Access token",
@@ -52,199 +32,200 @@
     "root_folder_id": "Root folder id",
     "order_by": "Order by",
     "order_bys": {
+      "updated_at": "Updated at",
       "title": "Title",
-      "size": "大小",
-      "updated_at": "Updated at"
+      "size": "大小"
     },
     "order_desc": "Order desc"
   },
-  "PikPak": {
-    "root_folder_id": "Root folder id",
-    "username": "用戶名",
-    "password": "密碼"
-  },
-  "Local": {
-    "root_folder_path": "Root folder path",
-    "thumbnail": "Thumbnail",
-    "thumbnail-tips": "enable thumbnail"
-  },
-  "BaiduNetdisk": {
-    "download_apis": {
-      "official": "Official",
-      "crack": "Crack"
-    },
+  "BaiduPhoto": {
     "refresh_token": "Refresh token",
+    "show_type": "Show type",
+    "show_types": {
+      "root_only_file": "Root only file",
+      "root": "Root",
+      "root_only_album": "Root only album"
+    },
+    "album_id": "Album id",
+    "client_id": "Client id",
+    "client_secret": "Client secret"
+  },
+  "SFTP": {
+    "address": "Address",
+    "username": "用戶名",
+    "private_key": "Private key",
+    "password": "密碼",
+    "root_folder_path": "Root folder path"
+  },
+  "139Yun": {
+    "cookie": "Cookie",
+    "root_folder_id": "Root folder id",
+    "type": "Type",
+    "types": {
+      "family": "Family",
+      "personal": "Personal"
+    },
+    "cloud_id": "Cloud id",
+    "account": "Account"
+  },
+  "drivers": {
+    "GoogleDrive": "GoogleDrive",
+    "Virtual": "Virtual",
+    "Onedrive": "Onedrive",
+    "189CloudPC": "189CloudPC",
+    "FTP": "FTP",
+    "ThunderExpert": "ThunderExpert",
+    "SFTP": "SFTP",
+    "189Cloud": "189Cloud",
+    "Local": "Local",
+    "Thunder": "Thunder",
+    "Aliyundrive": "Aliyundrive",
+    "PikPak": "PikPak",
+    "MediaTrack": "MediaTrack",
+    "YandexDisk": "YandexDisk",
+    "123Pan": "123Pan",
+    "BaiduPhoto": "BaiduPhoto",
+    "Teambition": "Teambition",
+    "139Yun": "139Yun",
+    "WebDav": "WebDav",
+    "S3": "S3",
+    "Quark": "Quark",
+    "BaiduNetdisk": "BaiduNetdisk",
+    "USS": "USS"
+  },
+  "Teambition": {
+    "cookie": "Cookie",
+    "root_folder_id": "Root folder id",
+    "order_by": "Order by",
+    "order_direction": "Order direction",
+    "region": "Region",
+    "regions": {
+      "china": "China",
+      "international": "International"
+    },
+    "project_id": "Project id",
+    "order_bys": {
+      "fileName": "FileName",
+      "fileSize": "FileSize",
+      "updated": "Updated",
+      "created": "Created"
+    },
+    "order_directions": {
+      "Asc": "Asc",
+      "Desc": "Desc"
+    }
+  },
+  "USS": {
+    "operator_password": "Operator password",
+    "custom_host": "Custom host",
+    "sign_url_expire": "Sign url expire",
     "root_folder_path": "Root folder path",
+    "bucket": "Bucket",
+    "endpoint": "Endpoint",
+    "operator_name": "Operator name"
+  },
+  "123Pan": {
+    "root_folder_id": "Root folder id",
+    "stream_upload": "Stream upload",
+    "username": "用戶名",
+    "password": "密碼",
     "order_by": "Order by",
     "order_bys": {
+      "updateAt": "UpdateAt",
+      "createAt": "CreateAt",
       "name": "名稱",
-      "time": "Time",
-      "size": "大小"
+      "fileId": "FileId"
     },
     "order_direction": "Order direction",
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
-    },
-    "download_api": "Download api",
-    "client_id": "Client id",
-    "client_secret": "Client secret"
-  },
-  "Thunder": {
-    "root_folder_id": "Root folder id",
-    "username": "用戶名",
-    "password": "密碼",
-    "captcha_token": "Captcha token"
-  },
-  "drivers": {
-    "Teambition": "Teambition",
-    "Thunder": "Thunder",
-    "Quark": "Quark",
-    "USS": "USS",
-    "Onedrive": "Onedrive",
-    "BaiduNetdisk": "BaiduNetdisk",
-    "YandexDisk": "YandexDisk",
-    "FTP": "FTP",
-    "PikPak": "PikPak",
-    "Aliyundrive": "Aliyundrive",
-    "139Yun": "139Yun",
-    "WebDav": "WebDav",
-    "MediaTrack": "MediaTrack",
-    "GoogleDrive": "GoogleDrive",
-    "SFTP": "SFTP",
-    "Virtual": "Virtual",
-    "S3": "S3",
-    "ThunderExpert": "ThunderExpert",
-    "123Pan": "123Pan",
-    "189Cloud": "189Cloud",
-    "Local": "Local",
-    "189CloudPC": "189CloudPC"
-  },
-  "ThunderExpert": {
-    "username-tips": "login type is user,this is required",
-    "password": "密碼",
-    "timestamp": "Timestamp",
-    "client_secret": "Client secret",
-    "user_agent": "User agent",
-    "login_types": {
-      "user": "User",
-      "refresh_token": "Refresh token"
-    },
-    "sign_types": {
-      "algorithms": "Algorithms",
-      "captcha_sign": "Captcha sign"
-    },
-    "refresh_token-tips": "login type is refresh_token,this is required",
-    "captcha_sign": "Captcha sign",
-    "captcha_token": "Captcha token",
-    "package_name": "Package name",
-    "root_folder_id": "Root folder id",
-    "username": "用戶名",
-    "password-tips": "login type is user,this is required",
-    "refresh_token": "Refresh token",
-    "algorithms": "Algorithms",
-    "algorithms-tips": "sign type is algorithms,this is required",
-    "timestamp-tips": "sign type is captcha_sign,this is required",
-    "client_id": "Client id",
-    "download_user_agent": "Download user agent",
-    "login_type": "Login type",
-    "sign_type": "Sign type",
-    "captcha_sign-tips": "sign type is captcha_sign,this is required",
-    "device_id": "Device id",
-    "client_version": "Client version"
-  },
-  "YandexDisk": {
-    "client_secret": "Client secret",
-    "refresh_token": "Refresh token",
-    "order_by": "Order by",
-    "order_bys": {
-      "name": "名稱",
-      "path": "路徑",
-      "created": "Created",
-      "modified": "修改時間",
-      "size": "大小"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "desc": "Desc",
-      "asc": "Asc"
-    },
-    "root_folder_path": "Root folder path",
-    "client_id": "Client id"
+    }
   },
   "Virtual": {
+    "min_file_size": "Min file size",
     "root_folder_path": "Root folder path",
     "num_file": "Num file",
     "num_folder": "Num folder",
-    "max_file_size": "Max file size",
-    "min_file_size": "Min file size"
+    "max_file_size": "Max file size"
   },
   "189CloudPC": {
+    "order_by": "Order by",
     "order_bys": {
       "filename": "Filename",
       "filesize": "Filesize",
       "lastOpTime": "LastOpTime"
     },
     "order_direction": "Order direction",
+    "order_directions": {
+      "desc": "Desc",
+      "asc": "Asc"
+    },
+    "types": {
+      "family": "Family",
+      "personal": "Personal"
+    },
+    "validate_code": "Validate code",
+    "password": "密碼",
+    "root_folder_id": "Root folder id",
     "type": "Type",
+    "family_id": "Family id",
     "rapid_upload": "Rapid upload",
+    "username": "用戶名"
+  },
+  "FTP": {
+    "address": "Address",
     "username": "用戶名",
     "password": "密碼",
-    "validate_code": "Validate code",
-    "order_by": "Order by",
-    "root_folder_id": "Root folder id",
+    "root_folder_path": "Root folder path"
+  },
+  "Quark": {
+    "order_direction": "Order direction",
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
     },
-    "types": {
-      "personal": "Personal",
-      "family": "Family"
-    },
-    "family_id": "Family id"
-  },
-  "Aliyundrive": {
-    "root_folder_id": "Root folder id",
-    "refresh_token": "Refresh token",
-    "order_by": "Order by",
-    "order_bys": {
-      "size": "大小",
-      "updated_at": "Updated at",
-      "created_at": "Created at",
-      "name": "名稱"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "ASC": "ASC",
-      "DESC": "DESC"
-    },
-    "rapid_upload": "Rapid upload"
-  },
-  "Quark": {
+    "cookie": "Cookie",
     "root_folder_id": "Root folder id",
     "order_by": "Order by",
     "order_bys": {
       "file_type": "File type",
       "file_name": "File name",
       "updated_at": "Updated at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
-    "cookie": "Cookie"
+    }
   },
-  "FTP": {
-    "password": "密碼",
-    "root_folder_path": "Root folder path",
-    "address": "Address",
-    "username": "用戶名"
-  },
-  "189Cloud": {
+  "ThunderExpert": {
+    "login_types": {
+      "user": "User",
+      "refresh_token": "Refresh token"
+    },
+    "captcha_sign-tips": "sign type is captcha_sign,this is required",
+    "client_id": "Client id",
+    "user_agent": "User agent",
+    "captcha_token": "Captcha token",
+    "download_user_agent": "Download user agent",
+    "login_type": "Login type",
+    "refresh_token": "Refresh token",
+    "timestamp": "Timestamp",
+    "timestamp-tips": "sign type is captcha_sign,this is required",
+    "refresh_token-tips": "login type is refresh_token,this is required",
+    "algorithms": "Algorithms",
+    "client_version": "Client version",
+    "package_name": "Package name",
     "root_folder_id": "Root folder id",
+    "sign_types": {
+      "algorithms": "Algorithms",
+      "captcha_sign": "Captcha sign"
+    },
     "username": "用戶名",
-    "password": "密碼"
+    "password": "密碼",
+    "captcha_sign": "Captcha sign",
+    "device_id": "Device id",
+    "client_secret": "Client secret",
+    "sign_type": "Sign type",
+    "username-tips": "login type is user,this is required",
+    "password-tips": "login type is user,this is required",
+    "algorithms-tips": "sign type is algorithms,this is required"
   },
   "GoogleDrive": {
     "order_by-tips": "such as: folder,name,modifiedTime",
@@ -259,68 +240,100 @@
     "refresh_token": "Refresh token",
     "order_by": "Order by"
   },
-  "SFTP": {
-    "root_folder_path": "Root folder path",
-    "address": "Address",
-    "username": "用戶名",
-    "private_key": "Private key",
-    "password": "密碼"
-  },
-  "139Yun": {
-    "account": "Account",
-    "cookie": "Cookie",
-    "root_folder_id": "Root folder id",
-    "type": "Type",
-    "types": {
-      "personal": "Personal",
-      "family": "Family"
-    },
-    "cloud_id": "Cloud id"
-  },
-  "S3": {
-    "bucket": "Bucket",
-    "endpoint": "Endpoint",
-    "custom_host": "Custom host",
-    "placeholder": "Placeholder",
-    "force_path_style": "Force path style",
-    "root_folder_path": "Root folder path",
-    "region": "Region",
-    "access_key_id": "Access key id",
-    "secret_access_key": "Secret access key",
-    "sign_url_expire": "Sign url expire",
-    "list_object_version": "List object version",
-    "list_object_versions": {
-      "v1": "V1",
-      "v2": "V2"
-    }
-  },
   "WebDav": {
-    "address": "Address",
-    "username": "用戶名",
-    "password": "密碼",
     "root_folder_path": "Root folder path",
     "vendor": "Vendor",
     "vendors": {
       "sharepoint": "Sharepoint",
       "other": "其他"
-    }
+    },
+    "address": "Address",
+    "username": "用戶名",
+    "password": "密碼"
   },
-  "123Pan": {
+  "189Cloud": {
+    "password": "密碼",
+    "root_folder_id": "Root folder id",
+    "username": "用戶名"
+  },
+  "BaiduNetdisk": {
     "order_by": "Order by",
     "order_bys": {
       "name": "名稱",
-      "fileId": "FileId",
-      "updateAt": "UpdateAt",
-      "createAt": "CreateAt"
+      "time": "Time",
+      "size": "大小"
     },
     "order_direction": "Order direction",
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
     },
+    "download_api": "Download api",
+    "refresh_token": "Refresh token",
+    "root_folder_path": "Root folder path",
+    "download_apis": {
+      "official": "Official",
+      "crack": "Crack"
+    },
+    "client_id": "Client id",
+    "client_secret": "Client secret"
+  },
+  "Thunder": {
+    "captcha_token": "Captcha token",
     "root_folder_id": "Root folder id",
-    "stream_upload": "Stream upload",
     "username": "用戶名",
     "password": "密碼"
+  },
+  "S3": {
+    "secret_access_key": "Secret access key",
+    "custom_host": "Custom host",
+    "sign_url_expire": "Sign url expire",
+    "placeholder": "Placeholder",
+    "force_path_style": "Force path style",
+    "bucket": "Bucket",
+    "endpoint": "Endpoint",
+    "access_key_id": "Access key id",
+    "list_object_versions": {
+      "v1": "V1",
+      "v2": "V2"
+    },
+    "root_folder_path": "Root folder path",
+    "region": "Region",
+    "list_object_version": "List object version"
+  },
+  "Onedrive": {
+    "region": "Region",
+    "regions": {
+      "global": "全域設定",
+      "cn": "Cn",
+      "us": "Us",
+      "de": "De"
+    },
+    "is_sharepoint": "Is sharepoint",
+    "client_secret": "Client secret",
+    "redirect_uri": "Redirect uri",
+    "site_id": "Site id",
+    "root_folder_path": "Root folder path",
+    "client_id": "Client id",
+    "refresh_token": "Refresh token"
+  },
+  "YandexDisk": {
+    "root_folder_path": "Root folder path",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "refresh_token": "Refresh token",
+    "order_by": "Order by",
+    "order_bys": {
+      "path": "路徑",
+      "created": "Created",
+      "modified": "修改時間",
+      "size": "大小",
+      "name": "名稱"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    }
   }
 }
