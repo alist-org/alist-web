@@ -14,7 +14,7 @@ import {
 import { MaybeLoading, FolderChooseInput } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
 import { handleRresp, notify, r } from "~/utils";
-import { Resp, Meta } from "~/types";
+import { Resp, Meta, EmptyResp } from "~/types";
 import { createStore } from "solid-js/store";
 import { For, Show } from "solid-js";
 
@@ -51,7 +51,7 @@ const Item = (props: ItemProps) => {
         ) : props.type === "bool" ? (
           <HopeSwitch
             id={props.name}
-            defaultChecked={props.value}
+            checked={props.value}
             onChange={(e: any) => props.onChange(e.currentTarget.checked)}
           />
         ) : (
@@ -97,18 +97,18 @@ const AddOrEdit = () => {
     readme: "",
     r_sub: false,
   });
-  const [metaLoading, loadMeta] = useFetch(() =>
-    r.get(`/admin/meta/get?id=${id}`)
+  const [metaLoading, loadMeta] = useFetch(
+    (): Promise<Resp<Meta>> => r.get(`/admin/meta/get?id=${id}`)
   );
 
   const initEdit = async () => {
-    const resp: Resp<Meta> = await loadMeta();
+    const resp = await loadMeta();
     handleRresp(resp, setMeta);
   };
   if (id) {
     initEdit();
   }
-  const [okLoading, ok] = useFetch(() => {
+  const [okLoading, ok] = useFetch((): Promise<EmptyResp> => {
     return r.post(`/admin/meta/${id ? "update" : "create"}`, meta);
   });
   return (
@@ -166,7 +166,7 @@ const AddOrEdit = () => {
         <Button
           loading={okLoading()}
           onClick={async () => {
-            const resp: Resp<{}> = await ok();
+            const resp = await ok();
             // TODO mybe can use handleRrespWithNotifySuccess
             handleRresp(resp, () => {
               notify.success(t("global.save_success"));
