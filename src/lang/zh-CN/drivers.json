@@ -42,9 +42,9 @@
     "refresh_token": "刷新令牌",
     "show_type": "展示类型",
     "show_types": {
-      "root_only_file": "Root only file",
-      "root": "Root",
-      "root_only_album": "Root only album"
+      "root_only_file": "仅根目录下文件",
+      "root": "根目录",
+      "root_only_album": "仅根目录下相簿"
     },
     "album_id": "相簿id",
     "client_id": "客户端ID",
