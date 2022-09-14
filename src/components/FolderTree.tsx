@@ -28,21 +28,16 @@ import {
 import { useFetch, useT } from "~/hooks";
 import { getMainColor, password } from "~/store";
 import { Obj, Resp } from "~/types";
-import {
-  pathBase,
-  handleRresp,
-  hoverColor,
-  pathJoin,
-  r,
-  fsDirs,
-} from "~/utils";
+import { pathBase, handleRresp, hoverColor, pathJoin, fsDirs } from "~/utils";
 
 export interface FolderTreeProps {
   onChange: (path: string) => void;
+  forceRoot?: boolean;
 }
 const context = createContext<{
   value: Accessor<string>;
   onChange: (val: string) => void;
+  forceRoot: boolean;
 }>();
 export const FolderTree = (props: FolderTreeProps) => {
   const [path, setPath] = createSignal("/");
@@ -55,6 +50,7 @@ export const FolderTree = (props: FolderTreeProps) => {
             setPath(val);
             props.onChange(val);
           },
+          forceRoot: props.forceRoot ?? false,
         }}
       >
         <FolderTreeNode path="/" />
@@ -65,8 +61,10 @@ export const FolderTree = (props: FolderTreeProps) => {
 
 const FolderTreeNode = (props: { path: string }) => {
   const [children, setChildren] = createSignal<Obj[]>([]);
-  const { value, onChange } = useContext(context)!;
-  const [loading, fetchDirs] = useFetch(() => fsDirs(props.path, password()));
+  const { value, onChange, forceRoot } = useContext(context)!;
+  const [loading, fetchDirs] = useFetch(() =>
+    fsDirs(props.path, password(), forceRoot)
+  );
   const load = async () => {
     if (children().length > 0) return;
     const resp: Resp<Obj[]> = await fetchDirs();
@@ -203,7 +201,7 @@ export const FolderChooseInput = (props: {
           <ModalCloseButton />
           <ModalHeader>{t("global.choose_folder")}</ModalHeader>
           <ModalBody>
-            <FolderTree onChange={props.onChange} />
+            <FolderTree forceRoot onChange={props.onChange} />
           </ModalBody>
           <ModalFooter>
             <Button onClick={onClose}>{t("global.confirm")}</Button>

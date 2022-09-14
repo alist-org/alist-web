@@ -36,8 +36,12 @@ export const fsList = (
   );
 };
 
-export const fsDirs = (path = "/", password = ""): Promise<Resp<Obj[]>> => {
-  return r.post("/fs/dirs", { path, password });
+export const fsDirs = (
+  path = "/",
+  password = "",
+  forceRoot = false
+): Promise<Resp<Obj[]>> => {
+  return r.post("/fs/dirs", { path, password, force_root: forceRoot });
 };
 
 export const fsMkdir = (path: string): EmptyRespPromise => {
