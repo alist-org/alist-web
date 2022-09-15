@@ -41,7 +41,7 @@ const Login = () => {
   );
   const { searchParams, to } = useRouter();
   const Login = async () => {
-    if (remember()) {
+    if (remember() === "true") {
       localStorage.setItem("username", username());
       localStorage.setItem("password", password());
     } else {
