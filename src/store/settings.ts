@@ -7,6 +7,13 @@ export const setSettings = (items: Record<string, string>) => {
   Object.keys(items).forEach((key) => {
     settings[key] = items[key];
   });
+  const version = settings["version"] || "Unknown";
+  console.log(
+    `%c AList %c ${version} %c https://github.com/Xhofe/alist`,
+    "color: #fff; background: #5f5f5f",
+    "color: #fff; background: #70c6be",
+    ""
+  );
 };
 
 export const getSetting = (key: string) => settings[key] ?? "";

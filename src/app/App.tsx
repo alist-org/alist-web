@@ -18,6 +18,7 @@ import { MustUser } from "./MustUser";
 import "./index.css";
 import { useI18n } from "@solid-primitives/i18n";
 import { initialLang, langMap, loadedLangs } from "./i18n";
+import { Resp } from "~/types";
 
 const Home = lazy(() => import("~/pages/home/Layout"));
 const Manage = lazy(() => import("~/pages/manage"));
@@ -46,7 +47,7 @@ const App: Component = () => {
       })(),
       (async () => {
         handleRrespWithoutAuthAndNotify(
-          await r.get("/public/settings"),
+          (await r.get("/public/settings")) as Resp<Record<string, string>>,
           setSettings,
           setErr
         );
