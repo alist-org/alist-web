@@ -317,7 +317,7 @@
     },
     "captcha_token": "验证码",
     "device_id": "设备id",
-    "use_video_url": "Use video url",
+    "use_video_url": "使用视频url",
     "username": "用户名",
     "captcha_sign-tips": "签名类型是验证码签名,此为必填项",
     "client_secret": "客户端密钥",
