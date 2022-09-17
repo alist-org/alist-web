@@ -68,3 +68,22 @@ export const strToRegExp = (str: string) => {
   const reg = new RegExp(pattern, args);
   return reg;
 };
+
+const ENC = {
+  "+": "-",
+  "/": "_",
+  "=": ".",
+};
+const DEC = {
+  "-": "+",
+  _: "/",
+  ".": "=",
+};
+
+export const safeBase64 = (base64: string) => {
+  return base64.replace(/[+/=]/g, (m) => ENC[m as "+" | "/" | "="]);
+};
+
+export const safeBtoa = (str: string) => {
+  return safeBase64(window.btoa(str));
+};

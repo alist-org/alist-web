@@ -2,7 +2,7 @@ import { Button } from "@hope-ui/solid";
 import { createSignal } from "solid-js";
 import { useT } from "~/hooks";
 import { objStore } from "~/store";
-import { api, baseName } from "~/utils";
+import { api, baseName, safeBtoa } from "~/utils";
 import { FileInfo } from "./info";
 
 const Ipa = () => {
@@ -14,9 +14,9 @@ const Ipa = () => {
         as="a"
         href={
           "itms-services://?action=download-manifest&url=" +
-          `${api}/i/${encodeURIComponent(
-            encodeURIComponent(objStore.raw_url)
-          )}/${baseName(objStore.obj.name)}.plist`
+          `${api}/i/${safeBtoa(objStore.raw_url)}/${baseName(
+            objStore.obj.name
+          )}.plist`
         }
         onClick={() => {
           setInstalling(true);
