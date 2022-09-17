@@ -1,4 +1,4 @@
-import { createStorageSignal } from "@solid-primitives/storage";
+import { cookieStorage, createStorageSignal } from "@solid-primitives/storage";
 import { createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import { Obj, StoreObj } from "~/types";
@@ -176,11 +176,7 @@ export const isIndeterminate = () => {
 
 export type Layout = "list" | "grid";
 const [layout, setLayout] = createStorageSignal<Layout>("layout", "list");
-const [_password, setPassword] = createStorageSignal<string>(
-  "browser-password",
-  ""
-);
-export const password = () => _password() ?? "";
+
 const [_checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",
   "false"
@@ -191,4 +187,13 @@ export const toggleCheckbox = () => {
   setCheckboxOpen(checkboxOpen() ? "false" : "true");
 };
 
-export { objStore, layout, setLayout, setPassword };
+export { objStore, layout, setLayout };
+// browser password
+const [_password, _setPassword] = createSignal<string>(
+  cookieStorage.getItem("browser-password") || ""
+);
+export { _password as password };
+export const setPassword = (password: string) => {
+  _setPassword(password);
+  cookieStorage.setItem("browser-password", password);
+};
