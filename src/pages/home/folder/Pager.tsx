@@ -4,6 +4,29 @@ import { FullLoading, Paginator } from "~/components";
 import { usePath, useT } from "~/hooks";
 import { getPagination, objStore, State } from "~/store";
 
+function addOrUpdateQuery(key: string, value: any, type = "pushState") {
+  let url = type === "location" ? location.href : location.hash;
+
+  if (!url.includes("?")) {
+    url = `${url}?${key}=${value}`;
+  } else {
+    if (!url.includes(key)) {
+      url = `${url}&${key}=${value}`;
+    } else {
+      const re = `(\\?|&|\#)${key}([^&|^#]*)(&|$|#)`;
+      url = url.replace(new RegExp(re), "$1" + key + "=" + value + "$3");
+    }
+  }
+
+  if (type === "location") {
+    location.href = url;
+  }
+
+  if (type === "pushState") {
+    history.pushState({}, "", url);
+  }
+}
+
 const Pagination = () => {
   const pagination = getPagination();
   const { pageChange, page } = usePath();
@@ -13,6 +36,7 @@ const Pagination = () => {
       defaultCurrent={page}
       defaultPageSize={pagination.size}
       onChange={(page) => {
+        addOrUpdateQuery("page", page);
         pageChange(page);
       }}
     />

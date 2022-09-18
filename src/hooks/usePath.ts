@@ -24,9 +24,12 @@ let cancelList: Canceler;
 const IsDirRecord: Record<string, boolean> = {};
 let globalPage = 1;
 export const usePath = () => {
-  const { pathname, setSearchParams } = useRouter();
+  const { pathname, searchParams } = useRouter();
   const [, getObj] = useFetch((path: string) => fsGet(path, password()));
   const pagination = getPagination();
+  if (pagination.type === "pagination" && searchParams.page) {
+    globalPage = parseInt(searchParams.page);
+  }
   const [, getObjs] = useFetch(
     (arg?: {
       path: string;
@@ -74,7 +77,7 @@ export const usePath = () => {
     retry_pass = rp ?? false;
     handleErr("");
     if (IsDirRecord[path]) {
-      handleFolder(path, 1, undefined, undefined, force);
+      handleFolder(path, globalPage, undefined, undefined, force);
     } else {
       handleObj(path);
     }
@@ -91,7 +94,7 @@ export const usePath = () => {
         ObjStore.setProvider(data.provider);
         if (data.is_dir) {
           setPathAs(path);
-          handleFolder(path, 1);
+          handleFolder(path, globalPage);
         } else {
           ObjStore.setReadme(data.readme);
           ObjStore.setRelated(data.related ?? []);
@@ -156,7 +159,7 @@ export const usePath = () => {
     refresh: (retry_pass?: boolean, force?: boolean) => {
       handlePathChange(pathname(), retry_pass, force);
     },
-    pageChange,
+    pageChange: pageChange,
     page: globalPage,
     loadMore: () => {
       pageChange(globalPage + 1, undefined, true);
