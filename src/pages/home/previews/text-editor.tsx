@@ -1,9 +1,10 @@
 import { Button, useColorMode, VStack } from "@hope-ui/solid";
-import { createMemo, createSignal } from "solid-js";
+import { createMemo, createSignal, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { MonacoEditorLoader } from "~/components/MonacoEditor";
 import { useFetch, useFetchText, useRouter, useT } from "~/hooks";
-import { objStore } from "~/store";
+import { objStore, userCan } from "~/store";
+import { EmptyResp } from "~/types";
 import { handleRresp, notify, r } from "~/utils";
 
 const TextEditor = () => {
@@ -15,13 +16,14 @@ const TextEditor = () => {
   const { pathname } = useRouter();
   const [value, setValue] = createSignal(content()?.content);
   const t = useT();
-  const [loading, save] = useFetch(() =>
-    r.put("/fs/put", value(), {
-      headers: {
-        "File-Path": encodeURIComponent(pathname()),
-        "Content-Type": content()?.contentType || "text/plain",
-      },
-    })
+  const [loading, save] = useFetch(
+    (): Promise<EmptyResp> =>
+      r.put("/fs/put", value(), {
+        headers: {
+          "File-Path": encodeURIComponent(pathname()),
+          "Content-Type": content()?.contentType || "text/plain",
+        },
+      })
   );
   return (
     <MaybeLoading loading={content.loading}>
@@ -34,21 +36,23 @@ const TextEditor = () => {
             setValue(value);
           }}
         />
-        <Button
-          loading={loading()}
-          onClick={async () => {
-            if (!value()) {
-              notify.success(t("global.save_success"));
-              return;
-            }
-            const resp = await save();
-            handleRresp(resp, () => {
-              notify.success(t("global.save_success"));
-            });
-          }}
-        >
-          {t("global.save")}
-        </Button>
+        <Show when={userCan("write") || objStore.write}>
+          <Button
+            loading={loading()}
+            onClick={async () => {
+              if (!value()) {
+                notify.success(t("global.save_success"));
+                return;
+              }
+              const resp = await save();
+              handleRresp(resp, () => {
+                notify.success(t("global.save_success"));
+              });
+            }}
+          >
+            {t("global.save")}
+          </Button>
+        </Show>
       </VStack>
     </MaybeLoading>
   );
