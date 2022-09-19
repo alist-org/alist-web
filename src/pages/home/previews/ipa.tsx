@@ -14,8 +14,10 @@ const Ipa = () => {
         as="a"
         href={
           "itms-services://?action=download-manifest&url=" +
-          `${api}/i/${safeBtoa(objStore.raw_url)}/${safeBtoa(
-            baseName(objStore.obj.name)
+          `${api}/i/${safeBtoa(
+            encodeURIComponent(objStore.raw_url) +
+              "/" +
+              baseName(encodeURIComponent(objStore.obj.name))
           )}.plist`
         }
         onClick={() => {
