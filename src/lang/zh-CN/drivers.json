@@ -2,14 +2,14 @@
   "Lanzou": {
     "types": {
       "cookie": "Cookie",
-      "url": "Url"
+      "url": "链接"
     },
     "cookie": "Cookie",
-    "cookie-tips": "about 15 days valid",
+    "cookie-tips": "大概15天有效",
     "root_folder_id": "根文件夹ID",
-    "share_password": "Share password",
+    "share_password": "分享密码",
     "baseUrl": "BaseUrl",
-    "shareUrl": "ShareUrl",
+    "shareUrl": "分享链接",
     "type": "类型"
   },
   "drivers": {
