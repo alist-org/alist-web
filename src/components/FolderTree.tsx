@@ -28,7 +28,7 @@ import {
 import { useFetch, useT } from "~/hooks";
 import { getMainColor, password } from "~/store";
 import { Obj, Resp } from "~/types";
-import { pathBase, handleRresp, hoverColor, pathJoin, fsDirs } from "~/utils";
+import { pathBase, handleResp, hoverColor, pathJoin, fsDirs } from "~/utils";
 
 export interface FolderTreeProps {
   onChange: (path: string) => void;
@@ -68,7 +68,7 @@ const FolderTreeNode = (props: { path: string }) => {
   const load = async () => {
     if (children().length > 0) return;
     const resp: Resp<Obj[]> = await fetchDirs();
-    handleRresp(resp, setChildren);
+    handleResp(resp, setChildren);
   };
   const { isOpen, onToggle } = createDisclosure();
   const active = () => value() === props.path;

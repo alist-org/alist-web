@@ -3,7 +3,7 @@ import { MaybeLoading } from "~/components";
 import { useFetch, useRouter } from "~/hooks";
 import { password } from "~/store";
 import { Resp } from "~/types";
-import { handleRresp, r } from "~/utils";
+import { handleResp, r } from "~/utils";
 
 const AliDocPreview = () => {
   const { pathname } = useRouter();
@@ -17,7 +17,7 @@ const AliDocPreview = () => {
   );
   const init = async () => {
     const resp = await post();
-    handleRresp(resp, (data) => {
+    handleResp(resp, (data) => {
       const docOptions = aliyun.config({
         mount: document.querySelector("#office-preview")!,
         url: data.preview_url,

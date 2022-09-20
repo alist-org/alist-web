@@ -14,7 +14,7 @@ import {
 import { createSignal, Show } from "solid-js";
 import { SwitchColorMode, SwitchLnaguageWhite } from "~/components";
 import { useFetch, useT, useTitle, useRouter } from "~/hooks";
-import { changeToken, r, notify, handleRrespWithoutNotify } from "~/utils";
+import { changeToken, r, notify, handleRespWithoutNotify } from "~/utils";
 import { Resp } from "~/types";
 import LoginBg from "./LoginBg";
 import { createStorageSignal } from "@solid-primitives/storage";
@@ -49,7 +49,7 @@ const Login = () => {
       localStorage.removeItem("password");
     }
     const resp = await data();
-    handleRrespWithoutNotify(
+    handleRespWithoutNotify(
       resp,
       (data) => {
         notify.success(t("login.success"));

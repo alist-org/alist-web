@@ -1,7 +1,7 @@
 import { createDisclosure } from "@hope-ui/solid";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
-import { bus, fsMkdir, handleRrespWithNotifySuccess, pathJoin } from "~/utils";
+import { bus, fsMkdir, handleRespWithNotifySuccess, pathJoin } from "~/utils";
 import { onCleanup } from "solid-js";
 
 export const Mkdir = () => {
@@ -26,7 +26,7 @@ export const Mkdir = () => {
       loading={loading()}
       onSubmit={async (name) => {
         const resp = await ok(pathJoin(pathname(), name));
-        handleRrespWithNotifySuccess(resp, () => {
+        handleRespWithNotifySuccess(resp, () => {
           refresh();
           onClose();
         });

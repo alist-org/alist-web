@@ -6,7 +6,7 @@ import { oneChecked, selectedObjs } from "~/store";
 import {
   bus,
   fsRename,
-  handleRrespWithNotifySuccess,
+  handleRespWithNotifySuccess,
   notify,
   pathJoin,
 } from "~/utils";
@@ -43,7 +43,7 @@ export const Rename = () => {
             pathJoin(pathname(), selectedObjs()[0].name),
             name
           );
-          handleRrespWithNotifySuccess(resp, () => {
+          handleRespWithNotifySuccess(resp, () => {
             refresh();
             onClose();
           });

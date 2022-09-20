@@ -1,7 +1,7 @@
 import { createDisclosure } from "@hope-ui/solid";
 import { ModalInput } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
-import { addAria2, bus, handleRrespWithNotifySuccess } from "~/utils";
+import { addAria2, bus, handleRespWithNotifySuccess } from "~/utils";
 import { onCleanup } from "solid-js";
 
 export const Aria2 = () => {
@@ -28,7 +28,7 @@ export const Aria2 = () => {
       tips={t("home.toolbar.add_aria2-tips")}
       onSubmit={async (urls) => {
         const resp = await ok(pathname(), urls.split("\n"));
-        handleRrespWithNotifySuccess(resp, () => {
+        handleRespWithNotifySuccess(resp, () => {
           onClose();
         });
       }}

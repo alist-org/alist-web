@@ -2,7 +2,7 @@ import { Button, Heading, HStack, VStack } from "@hope-ui/solid";
 import { createSignal, For, onCleanup, Show } from "solid-js";
 import { useFetch, useT } from "~/hooks";
 import { Resp, TaskInfo } from "~/types";
-import { handleRresp, r } from "~/utils";
+import { handleResp, r } from "~/utils";
 import { Task } from "./Task";
 
 export interface TasksProps {
@@ -17,7 +17,7 @@ export const Tasks = (props: TasksProps) => {
   const [tasks, setTasks] = createSignal<TaskInfo[]>([]);
   const refresh = async () => {
     const resp: Resp<TaskInfo[]> = await get();
-    handleRresp(resp, (data) =>
+    handleResp(resp, (data) =>
       setTasks(
         data?.sort((a, b) => {
           if (a.id > b.id) {
@@ -48,7 +48,7 @@ export const Tasks = (props: TasksProps) => {
             loading={clearLoading()}
             onClick={async () => {
               const resp = await clear();
-              handleRresp(resp, () => refresh());
+              handleResp(resp, () => refresh());
             }}
           >
             {t(`global.clear`)}

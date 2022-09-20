@@ -2,7 +2,7 @@ import { Button, Heading } from "@hope-ui/solid";
 import { createSignal, For, Show } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
-import { handleRresp, joinBase, notify, r } from "~/utils";
+import { handleResp, joinBase, notify, r } from "~/utils";
 import {
   Addition,
   DriverConfig,
@@ -54,7 +54,7 @@ const AddOrEdit = () => {
   const [drivers, setDrivers] = createSignal<Drivers>({});
   const initAdd = async () => {
     const resp: Resp<Drivers> = await loadDrivers();
-    handleRresp(resp, setDrivers);
+    handleResp(resp, setDrivers);
   };
 
   const [storageLoading, loadStorage] = useFetch(
@@ -67,11 +67,11 @@ const AddOrEdit = () => {
   );
   const initEdit = async () => {
     const storageResp: Resp<Storage> = await loadStorage();
-    handleRresp(storageResp, async (storageData) => {
+    handleResp(storageResp, async (storageData) => {
       setStorage(storageData);
       setAddition(JSON.parse(storageData.addition));
       const driverResp: Resp<DriverInfo> = await loadDriver();
-      handleRresp(driverResp, (driverData) =>
+      handleResp(driverResp, (driverData) =>
         setDrivers({ [storage.driver]: driverData })
       );
     });
@@ -165,7 +165,7 @@ const AddOrEdit = () => {
           }
           const resp: Resp<{}> = await ok();
           // TODO mybe can use handleRrespWithNotifySuccess
-          handleRresp(resp, () => {
+          handleResp(resp, () => {
             notify.success(t("global.save_success"));
             back();
           });

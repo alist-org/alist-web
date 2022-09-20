@@ -11,7 +11,7 @@ import {
 import { Portal } from "solid-js/web";
 import { useLoading, useRouter } from "~/hooks";
 import { globalStyles } from "./theme";
-import { bus, r, handleRrespWithoutAuthAndNotify, base_path } from "~/utils";
+import { bus, r, handleRespWithoutAuthAndNotify, base_path } from "~/utils";
 import { setSettings } from "~/store";
 import { Error, FullScreenLoading } from "~/components";
 import { MustUser } from "./MustUser";
@@ -46,7 +46,7 @@ const App: Component = () => {
         loadedLangs.add(initialLang);
       })(),
       (async () => {
-        handleRrespWithoutAuthAndNotify(
+        handleRespWithoutAuthAndNotify(
           (await r.get("/public/settings")) as Resp<Record<string, string>>,
           setSettings,
           setErr

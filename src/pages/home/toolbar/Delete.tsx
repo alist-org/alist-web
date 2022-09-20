@@ -11,7 +11,7 @@ import {
 import { onCleanup } from "solid-js";
 import { useFetch, usePath, useRouter, useT } from "~/hooks";
 import { selectedObjs } from "~/store";
-import { bus, fsRemove, handleRrespWithNotifySuccess } from "~/utils";
+import { bus, fsRemove, handleRespWithNotifySuccess } from "~/utils";
 
 export const Delete = () => {
   const t = useT();
@@ -56,7 +56,7 @@ export const Delete = () => {
                 pathname(),
                 selectedObjs().map((obj) => obj.name)
               );
-              handleRrespWithNotifySuccess(resp, () => {
+              handleRespWithNotifySuccess(resp, () => {
                 refresh();
                 onClose();
               });

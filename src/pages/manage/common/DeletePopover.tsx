@@ -9,7 +9,7 @@ import {
   HStack,
 } from "@hope-ui/solid";
 import { useT } from "~/hooks";
-import { handleRresp, notify } from "~/utils";
+import { handleResp, notify } from "~/utils";
 
 export interface DeletePopoverProps {
   name: string;

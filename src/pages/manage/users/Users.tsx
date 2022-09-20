@@ -20,7 +20,7 @@ import {
   useRouter,
   useT,
 } from "~/hooks";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 import { PageResp, UserPermissions, User, UserMethods } from "~/types";
 import { DeletePopover } from "../common/DeletePopover";
 
@@ -65,7 +65,7 @@ const Users = () => {
   const [users, setUsers] = createSignal<User[]>([]);
   const refresh = async () => {
     const resp: PageResp<User> = await getUsers();
-    handleRresp(resp, (data) => setUsers(data.content));
+    handleResp(resp, (data) => setUsers(data.content));
   };
   refresh();
 
@@ -126,7 +126,7 @@ const Users = () => {
                         loading={deleting() === user.id}
                         onClick={async () => {
                           const resp = await deleteUser(user.id);
-                          handleRresp(resp, () => {
+                          handleResp(resp, () => {
                             notify.success(t("global.delete_success"));
                             refresh();
                           });

@@ -18,7 +18,7 @@ import {
   useRouter,
   useT,
 } from "~/hooks";
-import { handleRresp, handleRrespWithNotifySuccess, notify, r } from "~/utils";
+import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils";
 import { PageResp, Storage } from "~/types";
 import { DeletePopover } from "../common/DeletePopover";
 
@@ -32,7 +32,7 @@ const Storages = () => {
   const [storages, setStorages] = createSignal<Storage[]>([]);
   const refresh = async () => {
     const resp: PageResp<Storage> = await getStorages();
-    handleRresp(resp, (data) => setStorages(data.content));
+    handleResp(resp, (data) => setStorages(data.content));
   };
   refresh();
 
@@ -101,7 +101,7 @@ const Storages = () => {
                             storage.id,
                             storage
                           );
-                          handleRrespWithNotifySuccess(resp, () => {
+                          handleRespWithNotifySuccess(resp, () => {
                             refresh();
                           });
                         }}
@@ -113,7 +113,7 @@ const Storages = () => {
                         loading={deleting() === storage.id}
                         onClick={async () => {
                           const resp = await deleteStorage(storage.id);
-                          handleRresp(resp, () => {
+                          handleResp(resp, () => {
                             notify.success(t("global.delete_success"));
                             refresh();
                           });

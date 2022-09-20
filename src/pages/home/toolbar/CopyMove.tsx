@@ -3,7 +3,7 @@ import { onCleanup } from "solid-js";
 import { ModalFolderChoose } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
 import { selectedObjs } from "~/store";
-import { bus, fsCopy, fsMove, handleRrespWithNotifySuccess } from "~/utils";
+import { bus, fsCopy, fsMove, handleRespWithNotifySuccess } from "~/utils";
 
 export const Copy = () => {
   const { isOpen, onOpen, onClose } = createDisclosure();
@@ -30,7 +30,7 @@ export const Copy = () => {
           dst,
           selectedObjs().map((obj) => obj.name)
         );
-        handleRrespWithNotifySuccess(resp, () => {
+        handleRespWithNotifySuccess(resp, () => {
           refresh();
           onClose();
         });
@@ -64,7 +64,7 @@ export const Move = () => {
           dst,
           selectedObjs().map((obj) => obj.name)
         );
-        handleRrespWithNotifySuccess(resp, () => {
+        handleRespWithNotifySuccess(resp, () => {
           refresh();
           onClose();
         });

@@ -14,7 +14,7 @@ import {
 import { createSignal, Show } from "solid-js";
 import { useT, useFetch } from "~/hooks";
 import { TaskInfo } from "~/types";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 import { TasksProps } from "./Tasks";
 
 const StateMap: Record<
@@ -102,7 +102,7 @@ export const Task = (props: TaskInfo & TasksProps) => {
             loading={operateLoading()}
             onClick={async () => {
               const resp = await operate();
-              handleRresp(resp, () => {
+              handleResp(resp, () => {
                 notify.success(t("global.delete_success"));
                 setDeleted(true);
               });

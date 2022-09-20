@@ -5,7 +5,7 @@ import { useFetch, usePath, useRouter } from "~/hooks";
 import {
   bus,
   fsNewFile,
-  handleRrespWithNotifySuccess,
+  handleRespWithNotifySuccess,
   pathJoin,
 } from "~/utils";
 
@@ -31,7 +31,7 @@ export const NewFile = () => {
       loading={loading()}
       onSubmit={async (name) => {
         const resp = await ok(pathJoin(pathname(), name));
-        handleRrespWithNotifySuccess(resp, () => {
+        handleRespWithNotifySuccess(resp, () => {
           refresh();
           onClose();
         });

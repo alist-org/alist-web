@@ -5,8 +5,8 @@ import { Dynamic } from "solid-js/web";
 import { useFetch, useT } from "~/hooks";
 import { Resp } from "~/types";
 import {
-  handleRrespWithNotifySuccess,
-  handleRrespWithoutNotify,
+  handleRespWithNotifySuccess,
+  handleRespWithoutNotify,
   notify,
   r,
 } from "~/utils";
@@ -35,13 +35,13 @@ export const Messenger = () => {
   const [recieved, setRecieved] = createStore<Message[]>([]);
   const get = async () => {
     const resp: Resp<Message> = await getR();
-    handleRrespWithoutNotify(resp, (msg) => {
+    handleRespWithoutNotify(resp, (msg) => {
       setRecieved(produce((msgs) => msgs.push(msg)));
     });
   };
   const send = async () => {
     const resp = await sendR();
-    handleRrespWithNotifySuccess(resp);
+    handleRespWithNotifySuccess(resp);
   };
   const getInterval = setInterval(get, 1000);
   onCleanup(() => clearInterval(getInterval));

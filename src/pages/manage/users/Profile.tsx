@@ -20,7 +20,7 @@ import { LinkWithBase } from "~/components";
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks";
 import { setUser, user } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 
 const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
   return (
@@ -105,7 +105,7 @@ const Profile = () => {
             loading={loading()}
             onClick={async () => {
               const resp = await save();
-              handleRresp(resp, () => {
+              handleResp(resp, () => {
                 setUser({ ...user(), username: username() });
                 notify.success(t("users.update_profile_success"));
                 to(`/@login?redirect=${encodeURIComponent(location.pathname)}`);

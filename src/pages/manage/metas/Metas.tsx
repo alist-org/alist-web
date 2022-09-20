@@ -18,7 +18,7 @@ import {
   useRouter,
   useT,
 } from "~/hooks";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 import { Meta, PageResp } from "~/types";
 import { DeletePopover } from "../common/DeletePopover";
 import { Wether } from "~/components";
@@ -31,7 +31,7 @@ const Metas = () => {
   const [metas, setMetas] = createSignal<Meta[]>([]);
   const refresh = async () => {
     const resp: PageResp<Meta> = await getMetas();
-    handleRresp(resp, (data) => setMetas(data.content));
+    handleResp(resp, (data) => setMetas(data.content));
   };
   refresh();
 
@@ -90,7 +90,7 @@ const Metas = () => {
                         loading={deleting() === meta.id}
                         onClick={async () => {
                           const resp = await deleteMeta(meta.id);
-                          handleRresp(resp, () => {
+                          handleResp(resp, () => {
                             notify.success(t("global.delete_success"));
                             refresh();
                           });

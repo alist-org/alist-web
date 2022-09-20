@@ -4,7 +4,7 @@ import { MaybeLoading } from "~/components";
 import { useRouter, useFetch, useT } from "~/hooks";
 import { setUser, user } from "~/store";
 import { Resp } from "~/types";
-import { handleRresp, handleRrespWithNotifySuccess, notify, r } from "~/utils";
+import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils";
 
 interface Generate2FA {
   qr: string;
@@ -25,7 +25,7 @@ const TwoFA = () => {
       return;
     }
     const resp: Resp<Generate2FA> = await generate();
-    handleRresp(resp, setOtpData);
+    handleResp(resp, setOtpData);
   };
   const [code, setCode] = createSignal("");
   init();
@@ -37,7 +37,7 @@ const TwoFA = () => {
   );
   const verify2FA = async () => {
     const resp = await verify();
-    handleRrespWithNotifySuccess(resp, () => {
+    handleRespWithNotifySuccess(resp, () => {
       setUser({ ...user(), otp: true });
       back();
     });

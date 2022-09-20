@@ -5,7 +5,7 @@ import { MonacoEditorLoader } from "~/components/MonacoEditor";
 import { useFetch, useFetchText, useRouter, useT } from "~/hooks";
 import { objStore, userCan } from "~/store";
 import { EmptyResp } from "~/types";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 
 const TextEditor = () => {
   const [content] = useFetchText();
@@ -45,7 +45,7 @@ const TextEditor = () => {
                 return;
               }
               const resp = await save();
-              handleRresp(resp, () => {
+              handleResp(resp, () => {
                 notify.success(t("global.save_success"));
               });
             }}

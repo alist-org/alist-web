@@ -13,7 +13,7 @@ import {
 } from "@hope-ui/solid";
 import { MaybeLoading, FolderChooseInput } from "~/components";
 import { useFetch, useRouter, useT } from "~/hooks";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 import { Resp, Meta, EmptyResp } from "~/types";
 import { createStore } from "solid-js/store";
 import { For, Show } from "solid-js";
@@ -103,7 +103,7 @@ const AddOrEdit = () => {
 
   const initEdit = async () => {
     const resp = await loadMeta();
-    handleRresp(resp, setMeta);
+    handleResp(resp, setMeta);
   };
   if (id) {
     initEdit();
@@ -168,7 +168,7 @@ const AddOrEdit = () => {
           onClick={async () => {
             const resp = await ok();
             // TODO mybe can use handleRrespWithNotifySuccess
-            handleRresp(resp, () => {
+            handleResp(resp, () => {
               notify.success(t("global.save_success"));
               back();
             });

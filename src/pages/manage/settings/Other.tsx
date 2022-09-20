@@ -3,7 +3,7 @@ import { createSignal } from "solid-js";
 import { MaybeLoading } from "~/components";
 import { useFetch, useManageTitle, useT, useUtil } from "~/hooks";
 import { Resp, Group, SettingItem } from "~/types";
-import { handleRresp, notify, r } from "~/utils";
+import { handleResp, notify, r } from "~/utils";
 import { Item } from "./SettingItem";
 
 const OtherSettings = () => {
@@ -21,7 +21,7 @@ const OtherSettings = () => {
   );
   const refresh = async () => {
     const resp: Resp<SettingItem[]> = await settingsData();
-    handleRresp(resp, (data) => {
+    handleResp(resp, (data) => {
       setUri(data.find((i) => i.key === "aria2_uri")?.value || "");
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "");
       setToken(data.find((i) => i.key === "token")?.value || "");
@@ -53,7 +53,7 @@ const OtherSettings = () => {
         loading={setAria2Loading()}
         onClick={async () => {
           const resp: Resp<string> = await setAria2();
-          handleRresp(resp, (data) => {
+          handleResp(resp, (data) => {
             notify.success(`${t("settings_other.aria2_version")} ${data}`);
           });
         }}
@@ -75,7 +75,7 @@ const OtherSettings = () => {
           loading={resetTokenLoading()}
           onClick={async () => {
             const resp: Resp<string> = await resetToken();
-            handleRresp(resp, (data) => {
+            handleResp(resp, (data) => {
               notify.success(t("settings_other.reset_token_success"));
               setToken(data);
             });
