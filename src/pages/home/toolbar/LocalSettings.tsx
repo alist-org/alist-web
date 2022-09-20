@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@hope-ui/solid";
 import { For, onCleanup } from "solid-js";
-import { SwitchLnaguageWhite, SwitchColorMode } from "~/components";
+import { SwitchLanguageWhite, SwitchColorMode } from "~/components";
 import { useT } from "~/hooks";
 import { initialLocalSettings, local, setLocal } from "~/store";
 import { bus } from "~/utils";
@@ -62,7 +62,7 @@ export const LocalSettings = () => {
           </VStack>
           <Center mt="$4">
             <HStack spacing="$4" p="$2" color="$neutral11">
-              <SwitchLnaguageWhite />
+              <SwitchLanguageWhite />
               <SwitchColorMode />
             </HStack>
           </Center>

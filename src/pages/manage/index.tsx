@@ -2,7 +2,7 @@ import { Box, Center, Flex, HStack, useColorModeValue } from "@hope-ui/solid";
 import {
   FullLoading,
   SwitchColorMode,
-  SwitchLnaguageWhite,
+  SwitchLanguageWhite,
 } from "~/components";
 import { useT, useTitle } from "~/hooks";
 import { Header } from "./Header";
@@ -36,7 +36,7 @@ const Manage = () => {
           <SideMenu items={side_menu_items} />
           <Center>
             <HStack spacing="$4" p="$2" color="$neutral11">
-              <SwitchLnaguageWhite />
+              <SwitchLanguageWhite />
               <SwitchColorMode />
             </HStack>
           </Center>
