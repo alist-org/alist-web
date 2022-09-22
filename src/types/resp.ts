@@ -16,6 +16,7 @@ export type FsListResp = Resp<{
   total: number;
   readme: string;
   write: boolean;
+  provider: string;
 }>;
 
 export type FsGetResp = Resp<

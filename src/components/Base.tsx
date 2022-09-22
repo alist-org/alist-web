@@ -15,24 +15,24 @@ import {
   SelectTrigger,
   SelectValue,
   Icon,
-} from "@hope-ui/solid";
-import { SwitchColorMode } from "./SwitchColorMode";
-import { createMemo, For, mergeProps, Show, splitProps } from "solid-js";
-import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai";
-import { hoverColor } from "~/utils";
+} from "@hope-ui/solid"
+import { SwitchColorMode } from "./SwitchColorMode"
+import { createMemo, For, mergeProps, Show, splitProps } from "solid-js"
+import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai"
+import { hoverColor } from "~/utils"
 
 export const Error = (props: {
-  msg: string;
-  disableColor?: boolean;
-  h?: string;
+  msg: string
+  disableColor?: boolean
+  h?: string
 }) => {
   const merged = mergeProps(
     {
       h: "$full",
     },
     props
-  );
-  console.log(merged.h);
+  )
+  console.log(merged.h)
   return (
     <Center h={merged.h} p="$2" flexDirection="column">
       <Box
@@ -55,11 +55,11 @@ export const Error = (props: {
         </Show>
       </Box>
     </Center>
-  );
-};
+  )
+}
 
 export const BoxWithFullScreen = (props: Parameters<typeof Box>[0]) => {
-  const { isOpen, onToggle } = createDisclosure();
+  const { isOpen, onToggle } = createDisclosure()
   return (
     <Box
       pos={isOpen() ? "fixed" : "relative"}
@@ -88,20 +88,21 @@ export const BoxWithFullScreen = (props: Parameters<typeof Box>[0]) => {
         boxSize="$7"
       />
     </Box>
-  );
-};
+  )
+}
 
 export const SelectWrapper = (props: {
-  value: string;
-  onChange: (value: string) => void;
+  value: string
+  onChange: (value: string) => void
   options: {
-    value: string;
-    label?: string;
-  }[];
-  alwaysShowBorder?: boolean;
+    value: string
+    label?: string
+  }[]
+  alwaysShowBorder?: boolean
+  size?: "xs" | "sm" | "md" | "lg"
 }) => {
   return (
-    <Select value={props.value} onChange={props.onChange}>
+    <Select size={props.size} value={props.value} onChange={props.onChange}>
       <SelectTrigger
         borderColor={props.alwaysShowBorder ? "$info5" : undefined}
       >
@@ -121,5 +122,5 @@ export const SelectWrapper = (props: {
         </SelectListbox>
       </SelectContent>
     </Select>
-  );
-};
+  )
+}

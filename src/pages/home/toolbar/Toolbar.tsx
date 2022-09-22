@@ -11,7 +11,7 @@ import { PackageDownloadModal } from "./Download";
 import { lazy } from "solid-js";
 import { ModalWrapper } from "./ModalWrapper";
 import { LocalSettings } from "./LocalSettings";
-const Upload = lazy(() => import("./Upload"));
+const Upload = lazy(() => import("../uploads/Upload"));
 
 export const Modal = () => {
   return (

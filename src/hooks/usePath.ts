@@ -132,6 +132,7 @@ export const usePath = () => {
         }
         ObjStore.setReadme(data.readme)
         ObjStore.setWrite(data.write)
+        ObjStore.setProvider(data.provider)
         ObjStore.setState(State.Folder)
       },
       handleErr
