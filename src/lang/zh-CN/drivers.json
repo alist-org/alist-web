@@ -26,7 +26,7 @@
     "Teambition": "Teambition网盘",
     "Lanzou": "蓝奏云",
     "Aliyundrive": "阿里云盘",
-    "AliyundriveShare": "AliyundriveShare",
+    "AliyundriveShare": "阿里云盘分享",
     "Thunder": "迅雷",
     "123Pan": "123云盘",
     "PikPak": "PikPak",
@@ -51,8 +51,8 @@
       "DESC": "降序"
     },
     "refresh_token": "刷新令牌",
-    "share_id": "Share id",
-    "share_pwd": "Share pwd",
+    "share_id": "分享ID",
+    "share_pwd": "分享密码",
     "root_folder_id": "根文件夹ID",
     "order_by": "排序",
     "order_bys": {
@@ -112,7 +112,7 @@
     "cookie-tips": "大概15天有效",
     "root_folder_id": "根文件夹ID",
     "share_password": "分享密码",
-    "baseUrl": "BaseUrl",
+    "baseUrl": "基本URL",
     "shareUrl": "分享链接",
     "type": "类型",
     "types": {
@@ -264,7 +264,7 @@
     "root_folder_id": "根文件夹ID",
     "order_by": "排序",
     "order_bys": {
-      "none": "None",
+      "none": "无",
       "file_type": "文件类型",
       "file_name": "文件名称",
       "updated_at": "修改时间"
