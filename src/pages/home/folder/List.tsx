@@ -1,6 +1,6 @@
-import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid";
-import { batch, createEffect, createSignal, For, Show } from "solid-js";
-import { useT } from "~/hooks";
+import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid"
+import { batch, createEffect, createSignal, For, Show } from "solid-js"
+import { useT } from "~/hooks"
 import {
   allChecked,
   checkboxOpen,
@@ -8,19 +8,19 @@ import {
   objStore,
   selectAll,
   sortObjs,
-} from "~/store";
-import { OrderBy } from "~/store";
-import { Col, cols, ListItem } from "./ListItem";
+} from "~/store"
+import { OrderBy } from "~/store"
+import { Col, cols, ListItem } from "./ListItem"
 
 const ListLayout = () => {
-  const t = useT();
-  const [orderBy, setOrderBy] = createSignal<OrderBy>();
-  const [reverse, setReverse] = createSignal(false);
+  const t = useT()
+  const [orderBy, setOrderBy] = createSignal<OrderBy>()
+  const [reverse, setReverse] = createSignal(false)
   createEffect(() => {
     if (orderBy()) {
-      sortObjs(orderBy()!, reverse());
+      sortObjs(orderBy()!, reverse())
     }
-  });
+  })
   const itemProps = (col: Col) => {
     return {
       fontWeight: "bold",
@@ -30,16 +30,16 @@ const ListLayout = () => {
       cursor: "pointer",
       onClick: () => {
         if (col.name === orderBy()) {
-          setReverse(!reverse());
+          setReverse(!reverse())
         } else {
           batch(() => {
-            setOrderBy(col.name as OrderBy);
-            setReverse(false);
-          });
+            setOrderBy(col.name as OrderBy)
+            setReverse(false)
+          })
         }
       },
-    };
-  };
+    }
+  }
   return (
     <VStack class="list" w="$full" spacing="$1">
       <HStack class="title" w="$full" p="$2">
@@ -49,7 +49,7 @@ const ListLayout = () => {
               checked={allChecked()}
               indeterminate={isIndeterminate()}
               onChange={(e: any) => {
-                selectAll(e.target.checked as boolean);
+                selectAll(e.target.checked as boolean)
               }}
             />
           </Show>
@@ -60,7 +60,7 @@ const ListLayout = () => {
         </Text>
         <Text
           w={cols[2].w}
-          {...itemProps(cols[1])}
+          {...itemProps(cols[2])}
           display={{ "@initial": "none", "@md": "inline" }}
         >
           {t(`home.obj.${cols[2].name}`)}
@@ -68,11 +68,11 @@ const ListLayout = () => {
       </HStack>
       <For each={objStore.objs}>
         {(obj, i) => {
-          return <ListItem obj={obj} index={i()} />;
+          return <ListItem obj={obj} index={i()} />
         }}
       </For>
     </VStack>
-  );
-};
+  )
+}
 
-export default ListLayout;
+export default ListLayout
