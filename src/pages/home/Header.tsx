@@ -13,7 +13,7 @@ import { CenterLoading } from "~/components";
 import { Container } from "./Container";
 
 export const Header = () => {
-  const logos = getSetting("logo").split(",");
+  const logos = getSetting("logo").split("\n");
   const logo = useColorModeValue(logos[0], logos.pop());
   return (
     <Center
