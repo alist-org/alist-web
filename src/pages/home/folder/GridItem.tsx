@@ -1,34 +1,28 @@
-import { Center, VStack, Icon, Text, Tooltip, Checkbox } from "@hope-ui/solid";
-import { Motion } from "@motionone/solid";
-import { useContextMenu } from "solid-contextmenu";
-import { batch, createMemo, createSignal, Show } from "solid-js";
-import { CenterLoding, LinkWithPush, ImageWithError } from "~/components";
-import { usePath, useUtil } from "~/hooks";
-import {
-  checkboxOpen,
-  getMainColor,
-  selectAll,
-  selectIndex,
-  toggleCheckbox,
-} from "~/store";
-import { ObjType, StoreObj } from "~/types";
-import { bus, hoverColor } from "~/utils";
-import { getIconByObj } from "~/utils/icon";
+import { Center, VStack, Icon, Text, Checkbox } from "@hope-ui/solid"
+import { Motion } from "@motionone/solid"
+import { useContextMenu } from "solid-contextmenu"
+import { batch, createMemo, createSignal, Show } from "solid-js"
+import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
+import { usePath, useUtil } from "~/hooks"
+import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
+import { ObjType, StoreObj } from "~/types"
+import { bus, hoverColor } from "~/utils"
+import { getIconByObj } from "~/utils/icon"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
-  const { isHide } = useUtil();
+  const { isHide } = useUtil()
   if (isHide(props.obj)) {
-    return null;
+    return null
   }
-  const { setPathAs } = usePath();
+  const { setPathAs } = usePath()
   const objIcon = (
     <Icon color={getMainColor()} boxSize="$12" as={getIconByObj(props.obj)} />
-  );
-  const [hover, setHover] = createSignal(false);
+  )
+  const [hover, setHover] = createSignal(false)
   const showCheckbox = createMemo(
     () => checkboxOpen() && (hover() || props.obj.selected)
-  );
-  const { show } = useContextMenu({ id: 1 });
+  )
+  const { show } = useContextMenu({ id: 1 })
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -44,29 +38,29 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         p="$1"
         spacing="$1"
         rounded="$lg"
+        transition="all 0.3s"
         _hover={{
           transform: "scale(1.06)",
           bgColor: hoverColor(),
-          transition: "all 0.3s",
         }}
         as={LinkWithPush}
         href={props.obj.name}
         onMouseEnter={() => {
-          setHover(true);
-          setPathAs(props.obj.name, props.obj.is_dir, true);
+          setHover(true)
+          setPathAs(props.obj.name, props.obj.is_dir, true)
         }}
         onMouseLeave={() => {
-          setHover(false);
+          setHover(false)
         }}
         onContextMenu={(e: MouseEvent) => {
           batch(() => {
             // if (!checkboxOpen()) {
             //   toggleCheckbox();
             // }
-            selectAll(false);
-            selectIndex(props.index, true, true);
-          });
-          show(e, { props: props.obj });
+            selectAll(false)
+            selectIndex(props.index, true, true)
+          })
+          show(e, { props: props.obj })
         }}
       >
         <Center
@@ -76,9 +70,9 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           // @ts-ignore
           on:click={(e) => {
             if (props.obj.type === ObjType.IMAGE) {
-              e.stopPropagation();
-              e.preventDefault();
-              bus.emit("gallery", props.obj.name);
+              e.stopPropagation()
+              e.preventDefault()
+              bus.emit("gallery", props.obj.name)
             }
           }}
           pos="relative"
@@ -91,11 +85,11 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               // colorScheme="neutral"
               // @ts-ignore
               on:click={(e) => {
-                e.stopPropagation();
+                e.stopPropagation()
               }}
               checked={props.obj.selected}
               onChange={(e: any) => {
-                selectIndex(props.index, e.target.checked);
+                selectIndex(props.index, e.target.checked)
               }}
             />
           </Show>
@@ -105,28 +99,27 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               maxW="$full"
               rounded="$lg"
               shadow="$md"
-              fallback={<CenterLoding size="lg" />}
+              fallback={<CenterLoading size="lg" />}
               fallbackErr={objIcon}
               src={props.obj.thumb}
               loading="lazy"
             />
           </Show>
         </Center>
-        <Tooltip label={props.obj.name}>
-          <Text
-            css={{
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-            w="$full"
-            overflow="hidden"
-            textAlign="center"
-            fontSize="$sm"
-          >
-            {props.obj.name}
-          </Text>
-        </Tooltip>
+        <Text
+          css={{
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+          }}
+          w="$full"
+          overflow="hidden"
+          textAlign="center"
+          fontSize="$sm"
+          title={props.obj.name}
+        >
+          {props.obj.name}
+        </Text>
       </VStack>
     </Motion.div>
-  );
-};
+  )
+}

@@ -9,7 +9,7 @@ import { Show } from "solid-js";
 import { getSetting, layout, objStore, setLayout, State } from "~/store";
 import { BsGridFill } from "solid-icons/bs";
 import { FaSolidListUl } from "solid-icons/fa";
-import { CenterLoding } from "~/components";
+import { CenterLoading } from "~/components";
 import { Container } from "./Container";
 
 export const Header = () => {
@@ -28,7 +28,7 @@ export const Header = () => {
               src={logo()!}
               h="$full"
               w="auto"
-              fallback={<CenterLoding />}
+              fallback={<CenterLoading />}
             />
           </HStack>
           <HStack class="header-right" spacing="$2">

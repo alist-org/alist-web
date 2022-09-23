@@ -1,40 +1,39 @@
-import { Checkbox, HStack, Icon, Text, Tooltip } from "@hope-ui/solid";
-import { Motion } from "@motionone/solid";
-import { useContextMenu } from "solid-contextmenu";
-import { batch, Show } from "solid-js";
-import { LinkWithPush } from "~/components";
-import { usePath, useUtil } from "~/hooks";
+import { Checkbox, HStack, Icon, Text } from "@hope-ui/solid"
+import { Motion } from "@motionone/solid"
+import { useContextMenu } from "solid-contextmenu"
+import { batch, Show } from "solid-js"
+import { LinkWithPush } from "~/components"
+import { usePath, useUtil } from "~/hooks"
 import {
   checkboxOpen,
   getMainColor,
   OrderBy,
   selectAll,
   selectIndex,
-  toggleCheckbox,
-} from "~/store";
-import { ObjType, StoreObj } from "~/types";
-import { bus, formatDate, getFileSize, hoverColor } from "~/utils";
-import { getIconByObj } from "~/utils/icon";
+} from "~/store"
+import { ObjType, StoreObj } from "~/types"
+import { bus, formatDate, getFileSize, hoverColor } from "~/utils"
+import { getIconByObj } from "~/utils/icon"
 
 export interface Col {
-  name: OrderBy;
-  textAlign: "left" | "right";
-  w: any;
+  name: OrderBy
+  textAlign: "left" | "right"
+  w: any
 }
 
 export const cols: Col[] = [
   { name: "name", textAlign: "left", w: { "@initial": "76%", "@md": "50%" } },
   { name: "size", textAlign: "right", w: { "@initial": "24%", "@md": "17%" } },
   { name: "modified", textAlign: "right", w: { "@initial": 0, "@md": "33%" } },
-];
+]
 
 export const ListItem = (props: { obj: StoreObj; index: number }) => {
-  const { isHide } = useUtil();
+  const { isHide } = useUtil()
   if (isHide(props.obj)) {
-    return null;
+    return null
   }
-  const { setPathAs } = usePath();
-  const { show } = useContextMenu({ id: 1 });
+  const { setPathAs } = usePath()
+  const { show } = useContextMenu({ id: 1 })
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -49,25 +48,25 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         w="$full"
         p="$2"
         rounded="$lg"
+        transition="all 0.3s"
         _hover={{
           transform: "scale(1.01)",
           bgColor: hoverColor(),
-          transition: "all 0.3s",
         }}
         as={LinkWithPush}
         href={props.obj.name}
         onMouseEnter={() => {
-          setPathAs(props.obj.name, props.obj.is_dir, true);
+          setPathAs(props.obj.name, props.obj.is_dir, true)
         }}
         onContextMenu={(e: MouseEvent) => {
           batch(() => {
             // if (!checkboxOpen()) {
             //   toggleCheckbox();
             // }
-            selectAll(false);
-            selectIndex(props.index, true, true);
-          });
-          show(e, { props: props.obj });
+            selectAll(false)
+            selectIndex(props.index, true, true)
+          })
+          show(e, { props: props.obj })
         }}
       >
         <HStack class="name-box" spacing="$1" w={cols[0].w}>
@@ -76,11 +75,11 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
               // colorScheme="neutral"
               // @ts-ignore
               on:click={(e) => {
-                e.stopPropagation();
+                e.stopPropagation()
               }}
               checked={props.obj.selected}
               onChange={(e: any) => {
-                selectIndex(props.index, e.target.checked);
+                selectIndex(props.index, e.target.checked)
               }}
             />
           </Show>
@@ -93,24 +92,23 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             // @ts-ignore
             on:click={(e) => {
               if (props.obj.type === ObjType.IMAGE) {
-                e.stopPropagation();
-                e.preventDefault();
-                bus.emit("gallery", props.obj.name);
+                e.stopPropagation()
+                e.preventDefault()
+                bus.emit("gallery", props.obj.name)
               }
             }}
           />
-          <Tooltip label={props.obj.name}>
-            <Text
-              class="name"
-              css={{
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {props.obj.name}
-            </Text>
-          </Tooltip>
+          <Text
+            class="name"
+            css={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+            title={props.obj.name}
+          >
+            {props.obj.name}
+          </Text>
         </HStack>
         <Text class="size" w={cols[1].w} textAlign={cols[1].textAlign as any}>
           {getFileSize(props.obj.size)}
@@ -125,5 +123,5 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         </Text>
       </HStack>
     </Motion.div>
-  );
-};
+  )
+}

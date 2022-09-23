@@ -53,7 +53,7 @@ export const MaybeLoading = (props: {
   );
 };
 
-export const CenterLoding = <C extends ElementType = "div">(
+export const CenterLoading = <C extends ElementType = "div">(
   props: SpinnerProps<C>
 ) => {
   return (
