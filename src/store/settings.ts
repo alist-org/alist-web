@@ -1,39 +1,39 @@
-import { type } from "os";
-import { ext, recordToArray, strToRegExp } from "~/utils";
+import { type } from "os"
+import { ext, recordToArray, strToRegExp } from "~/utils"
 
-const settings: Record<string, string> = {};
+const settings: Record<string, string> = {}
 
 export const setSettings = (items: Record<string, string>) => {
   Object.keys(items).forEach((key) => {
-    settings[key] = items[key];
-  });
-  const version = settings["version"] || "Unknown";
+    settings[key] = items[key]
+  })
+  const version = settings["version"] || "Unknown"
   console.log(
     `%c AList %c ${version} %c https://github.com/Xhofe/alist`,
     "color: #fff; background: #5f5f5f",
     "color: #fff; background: #70c6be",
     ""
-  );
-};
+  )
+}
 
-export const getSetting = (key: string) => settings[key] ?? "";
+export const getSetting = (key: string) => settings[key] ?? ""
 export const getSettingBool = (key: string) => {
-  const value = getSetting(key);
-  return value === "true" || value === "1";
-};
+  const value = getSetting(key)
+  return value === "true" || value === "1"
+}
 export const getSettingNumber = (key: string, defaultV?: number) => {
-  const value = getSetting(key);
+  const value = getSetting(key)
   if (value) {
-    return Number(value);
+    return Number(value)
   }
-  return defaultV ?? 0;
-};
+  return defaultV ?? 0
+}
 export const getMainColor = (): string => {
   if (window.ALIST.main_color) {
-    return window.ALIST.main_color;
+    return window.ALIST.main_color
   }
-  return getSetting("main_color") || "#1890ff";
-};
+  return getSetting("main_color") || "#1890ff"
+}
 
 /**
  * like this:
@@ -45,54 +45,54 @@ export const getMainColor = (): string => {
 }
  */
 
-type Previews = Record<string, Record<string, string>>;
-let previewsRecord: Record<string, Previews> = {};
-type PreviewsType = "external_previews" | "iframe_previews";
+type Previews = Record<string, Record<string, string>>
+let previewsRecord: Record<string, Previews> = {}
+type PreviewsType = "external_previews" | "iframe_previews"
 
 const getPreviews = (type: PreviewsType): Previews => {
   if (!previewsRecord[type]) {
     try {
-      previewsRecord[type] = JSON.parse(getSetting(type));
+      previewsRecord[type] = JSON.parse(getSetting(type))
     } catch (e) {
-      console.error(`failed parse ${type}, use default`, e);
-      previewsRecord[type] = {};
+      console.error(`failed parse ${type}, use default`, e)
+      previewsRecord[type] = {}
     }
   }
-  return previewsRecord[type];
-};
+  return previewsRecord[type]
+}
 
 const getPreviewsByName = (name: string, type: PreviewsType) => {
-  const extension = ext(name);
-  const res: { key: string; value: string }[] = [];
+  const extension = ext(name).toLowerCase()
+  const res: { key: string; value: string }[] = []
   for (const key in getPreviews(type)) {
     if (key.startsWith("/")) {
-      const reg = strToRegExp(key);
+      const reg = strToRegExp(key)
       if (reg.test(extension)) {
-        res.push(...recordToArray(getPreviews(type)[key]));
+        res.push(...recordToArray(getPreviews(type)[key]))
       }
     } else if (key.split(",").includes(extension)) {
-      res.push(...recordToArray(getPreviews(type)[key]));
+      res.push(...recordToArray(getPreviews(type)[key]))
     }
   }
-  return res;
-};
+  return res
+}
 
 export const getExternalPreviews = (name: string) =>
-  getPreviewsByName(name, "external_previews");
+  getPreviewsByName(name, "external_previews")
 export const getIframePreviews = (name: string) =>
-  getPreviewsByName(name, "iframe_previews");
+  getPreviewsByName(name, "iframe_previews")
 
 export const getPagination = (): {
-  size: number;
-  type: "all" | "pagination" | "load_more" | "auto_load_more";
+  size: number
+  type: "all" | "pagination" | "load_more" | "auto_load_more"
 } => {
   return {
     type: (getSetting("pagination_type") || "all") as any,
     size: getSettingNumber("default_page_size", 30),
-  };
-};
+  }
+}
 
-let hideFiles: RegExp[];
+let hideFiles: RegExp[]
 
 export const getHideFiles = () => {
   if (!hideFiles) {
@@ -100,11 +100,11 @@ export const getHideFiles = () => {
       .split(/\n/g)
       .filter((item) => !!item.trim())
       .map((item) => {
-        item = item.trim();
-        let str = item.replace(/^\/(.*)\/([a-z]*)$/, "$1");
-        let args = item.replace(/^\/(.*)\/([a-z]*)$/, "$2");
-        return new RegExp(str, args);
-      });
+        item = item.trim()
+        let str = item.replace(/^\/(.*)\/([a-z]*)$/, "$1")
+        let args = item.replace(/^\/(.*)\/([a-z]*)$/, "$2")
+        return new RegExp(str, args)
+      })
   }
-  return hideFiles;
-};
+  return hideFiles
+}
