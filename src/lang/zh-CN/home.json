@@ -16,6 +16,7 @@
   "input_password": "请输入密码",
   "toolbar": {
     "more": "更多",
+    "refresh": "刷新",
     "toggle_theme": "切换主题",
     "switch_lang": "切换语言",
     "toggle_checkbox": "开关复选框",
