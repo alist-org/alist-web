@@ -16,6 +16,7 @@
   "input_password": "Please input password",
   "toolbar": {
     "more": "More",
+    "refresh": "Refresh",
     "toggle_theme": "Toggle Theme",
     "switch_lang": "Switch Language",
     "toggle_checkbox": "Toggle Checkbox",
