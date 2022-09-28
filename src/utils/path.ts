@@ -1,41 +1,41 @@
-import { base_path } from ".";
+import { base_path } from "."
 
 export const standardizePath = (path: string, noRootSlash?: boolean) => {
   if (path.endsWith("/")) {
-    path = path.slice(0, -1);
+    path = path.slice(0, -1)
   }
   if (!path.startsWith("/")) {
-    path = "/" + path;
+    path = "/" + path
   }
   if (noRootSlash && path === "/") {
-    return "";
+    return ""
   }
-  return path;
-};
+  return path
+}
 
 export const pathJoin = (...paths: string[]) => {
-  return paths.join("/").replace(/\/{2,}/g, "/");
-};
+  return paths.join("/").replace(/\/{2,}/g, "/")
+}
 
 export const joinBase = (...paths: string[]) => {
-  return pathJoin(base_path, ...paths);
-};
+  return pathJoin(base_path, ...paths)
+}
 
 export const trimBase = (path: string) => {
-  const res = path.replace(base_path, "");
+  const res = path.replace(base_path, "")
   if (res.startsWith("/")) {
-    return res;
+    return res
   }
-  return "/" + res;
-};
+  return "/" + res
+}
 
 export const pathBase = (path: string) => {
-  return path.split("/").pop();
-};
+  return path.split("/").pop()
+}
 
 export const pathDir = (path: string) => {
-  return path.split("/").slice(0, -1).join("/");
-};
+  return path.split("/").slice(0, -1).join("/")
+}
 
 export const encodePath = (path: string, all?: boolean) => {
   return path
@@ -44,15 +44,19 @@ export const encodePath = (path: string, all?: boolean) => {
       // ["#", "?", "%"].some((c) => p.includes(c)) ? encodeURIComponent(p) : p
       all
         ? encodeURIComponent(p)
-        : p.replaceAll("%", "%25").replaceAll("?", "%3F").replaceAll("#", "%23")
+        : p
+            .replaceAll("%", "%25")
+            .replaceAll("?", "%3F")
+            .replaceAll("#", "%23")
+            .replaceAll(" ", "%20")
     )
-    .join("/");
-};
+    .join("/")
+}
 
 export const ext = (path: string): string => {
-  return path.split(".").pop() ?? "";
-};
+  return path.split(".").pop() ?? ""
+}
 
 export const baseName = (fullName: string) => {
-  return fullName.split(".").slice(0, -1).join(".");
-};
+  return fullName.split(".").slice(0, -1).join(".")
+}
