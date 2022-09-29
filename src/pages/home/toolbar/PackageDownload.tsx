@@ -1,9 +1,9 @@
-import "~/utils/zip-stream.js";
-import streamSaver from "streamsaver";
-import { getLinkByDirAndObj, useRouter, useT } from "~/hooks";
-import { fsList, pathBase, pathJoin } from "~/utils";
-import { password, selectedObjs as _selectedObjs } from "~/store";
-import { createSignal, For, Show } from "solid-js";
+import "~/utils/zip-stream.js"
+import streamSaver from "streamsaver"
+import { getLinkByDirAndObj, useRouter, useT } from "~/hooks"
+import { fsList, pathBase, pathJoin } from "~/utils"
+import { password, selectedObjs as _selectedObjs } from "~/store"
+import { createSignal, For, Show } from "solid-js"
 import {
   Button,
   Heading,
@@ -11,31 +11,31 @@ import {
   ModalFooter,
   Text,
   VStack,
-} from "@hope-ui/solid";
-import { Obj } from "~/types";
+} from "@hope-ui/solid"
+import { Obj } from "~/types"
 
-streamSaver.mitm = "/streamer/mitm.html";
+streamSaver.mitm = "/streamer/mitm.html"
 const trimSlash = (str: string) => {
-  return str.replace(/^\/+|\/+$/g, "");
-};
+  return str.replace(/^\/+|\/+$/g, "")
+}
 
-let totalSize = 0;
+let totalSize = 0
 interface File {
-  path: string;
-  url: string;
+  path: string
+  url: string
 }
 
 const PackageDownload = (props: { onClose: () => void }) => {
-  const t = useT();
-  const [cur, setCur] = createSignal(t("home.package_download.initializing"));
+  const t = useT()
+  const [cur, setCur] = createSignal(t("home.package_download.initializing"))
   // 0: init
   // 1: error
   // 2: fetching structure
   // 3: fetching files
   // 4: success
-  const [status, setStatus] = createSignal(0);
-  const { pathname } = useRouter();
-  const selectedObjs = _selectedObjs();
+  const [status, setStatus] = createSignal(0)
+  const { pathname } = useRouter()
+  const selectedObjs = _selectedObjs()
   // if (!selectedObjs.length) {
   //   notify.warning(t("home.toolbar.no_selected"));
   // }
@@ -44,7 +44,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
     obj: Obj
   ): Promise<File[] | string> => {
     if (!obj.is_dir) {
-      totalSize += obj.size;
+      totalSize += obj.size
       return [
         {
           path: pathJoin(pre, obj.name),
@@ -55,91 +55,88 @@ const PackageDownload = (props: { onClose: () => void }) => {
             true
           ),
         },
-      ];
+      ]
     } else {
-      const resp = await fsList(
-        pathJoin(pathname(), pre, obj.name),
-        password()
-      );
+      const resp = await fsList(pathJoin(pathname(), pre, obj.name), password())
       if (resp.code !== 200) {
-        return resp.message;
+        return resp.message
       }
-      const res: File[] = [];
+      const res: File[] = []
       for (const _obj of resp.data.content ?? []) {
-        const _res = await fetchFolderStructure(pathJoin(pre, obj.name), _obj);
+        const _res = await fetchFolderStructure(pathJoin(pre, obj.name), _obj)
         if (typeof _res === "string") {
-          return _res;
+          return _res
         } else {
-          res.push(..._res);
+          res.push(..._res)
         }
       }
-      return res;
+      return res
     }
-  };
-  const [fetchings, setFetchings] = createSignal<string[]>([]);
+  }
+  const [fetchings, setFetchings] = createSignal<string[]>([])
   const run = async () => {
-    let saveName = pathBase(pathname());
+    let saveName = pathBase(pathname())
     if (selectedObjs.length === 1) {
-      saveName = selectedObjs[0].name;
+      saveName = selectedObjs[0].name
     }
     if (!saveName) {
-      saveName = t("manage.sidemenu.home");
+      saveName = t("manage.sidemenu.home")
     }
     let fileStream = streamSaver.createWriteStream(`${saveName}.zip`, {
       size: totalSize,
-    });
-    setCur(t("home.package_download.fetching_struct"));
-    setStatus(2);
-    const downFiles: File[] = [];
+    })
+    setCur(t("home.package_download.fetching_struct"))
+    setStatus(2)
+    const downFiles: File[] = []
     for (const obj of selectedObjs) {
-      const res = await fetchFolderStructure("", obj);
+      const res = await fetchFolderStructure("", obj)
       if (typeof res === "string") {
-        setCur(`${t("home.package_download.fetching_struct_failed")}: ${res}`);
-        setStatus(1);
-        return res;
+        setCur(`${t("home.package_download.fetching_struct_failed")}: ${res}`)
+        setStatus(1)
+        return res
       } else {
-        downFiles.push(...res);
+        downFiles.push(...res)
       }
     }
-    setCur(t("home.package_download.downloading"));
-    setStatus(3);
-    let fileArr = downFiles.values();
+    setCur(t("home.package_download.downloading"))
+    setStatus(3)
+    let fileArr = downFiles.values()
     let readableZipStream = new (window as any).ZIP({
       pull(ctrl: any) {
-        const it = fileArr.next();
+        const it = fileArr.next()
         if (it.done) {
-          ctrl.close();
+          ctrl.close()
         } else {
-          let name = trimSlash(it.value.path);
+          let name = trimSlash(it.value.path)
           if (selectedObjs.length === 1) {
-            name = name.replace(`${saveName}/`, "");
+            name = name.replace(`${saveName}/`, "")
           }
-          const url = it.value.url;
+          const url = it.value.url
           // console.log(name, url);
           return fetch(url).then((res) => {
-            setFetchings((prev) => [...prev, name]);
+            setFetchings((prev) => [...prev, name])
             ctrl.enqueue({
               name,
               stream: res.body,
-            });
-          });
+            })
+          })
         }
       },
-    });
+    })
     if (window.WritableStream && readableZipStream.pipeTo) {
       return readableZipStream
         .pipeTo(fileStream)
         .then(() => {
-          setCur(`${t("home.package_download.success")}`);
-          setStatus(4);
+          setCur(`${t("home.package_download.success")}`)
+          setStatus(4)
         })
         .catch((err: any) => {
-          setCur(`${t("home.package_download.failed")}: ${err}`);
-          setStatus(1);
-        });
+          setCur(`${t("home.package_download.failed")}: ${err}`)
+          setStatus(1)
+        })
     }
-  };
-  run();
+  }
+  run()
 
   return (
     <>
@@ -169,7 +166,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
         </ModalFooter>
       </Show>
     </>
-  );
-};
+  )
+}
 
-export default PackageDownload;
+export default PackageDownload
