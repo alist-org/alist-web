@@ -2,7 +2,7 @@
   "permissions": {
     "see_hides": "可以看到隱藏",
     "access_without_password": "無密碼訪問",
-    "add_aria2": "添加 aria2 任務",
+    "offline_download": "Add offline download tasks",
     "write": "創建目錄或上傳",
     "rename": "重命名",
     "move": "移動",
