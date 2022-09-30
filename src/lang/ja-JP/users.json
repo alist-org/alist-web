@@ -2,7 +2,7 @@
   "permissions": {
     "see_hides": "Can see hides",
     "access_without_password": "Access without password",
-    "add_aria2": "Add aria2 tasks",
+    "offline_download": "Add offline download tasks",
     "write": "Make dir or upload",
     "rename": "Rename",
     "move": "Move",
