@@ -10,7 +10,7 @@ export const Aria2 = () => {
   const [loading, ok] = useFetch(addAria2);
   const { pathname } = useRouter();
   const handler = (name: string) => {
-    if (name === "add_aria2") {
+    if (name === "offline_download") {
       onOpen();
     }
   };
@@ -20,12 +20,12 @@ export const Aria2 = () => {
   });
   return (
     <ModalInput
-      title="home.toolbar.add_aria2"
+      title="home.toolbar.offline_download"
       type="text"
       opened={isOpen()}
       onClose={onClose}
       loading={loading()}
-      tips={t("home.toolbar.add_aria2-tips")}
+      tips={t("home.toolbar.offline_download-tips")}
       onSubmit={async (urls) => {
         const resp = await ok(pathname(), urls.split("\n"));
         handleRespWithNotifySuccess(resp, () => {

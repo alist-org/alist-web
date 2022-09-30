@@ -17,7 +17,7 @@ export interface User {
 export const UserPermissions = [
   "see_hides",
   "access_without_password",
-  "add_aria2",
+  "offline_download",
   "write",
   "rename",
   "move",
@@ -37,7 +37,7 @@ export const UserMethods = {
   //   UserMethods.is_admin(user) || (user.permission & 1) == 1,
   // can_access_without_password: (user: User) =>
   //   UserMethods.is_admin(user) || ((user.permission >> 1) & 1) == 1,
-  // can_add_aria2_tasks: (user: User) =>
+  // can_offline_download_tasks: (user: User) =>
   //   UserMethods.is_admin(user) || ((user.permission >> 2) & 1) == 1,
   // can_write: (user: User) =>
   //   UserMethods.is_admin(user) || ((user.permission >> 3) & 1) == 1,

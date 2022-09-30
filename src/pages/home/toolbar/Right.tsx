@@ -93,13 +93,13 @@ export const Right = () => {
                 }}
               />
             </Show>
-            <Show when={isFolder() && userCan("add_aria2")}>
+            <Show when={isFolder() && userCan("offline_download")}>
               <RightIcon
                 as={IoMagnetOutline}
                 pl="0"
-                tips="add_aria2"
+                tips="offline_download"
                 onClick={() => {
-                  bus.emit("tool", "add_aria2");
+                  bus.emit("tool", "offline_download");
                 }}
               />
             </Show>
