@@ -2,7 +2,7 @@
   "permissions": {
     "see_hides": "可以看到隐藏",
     "access_without_password": "无需密码访问",
-    "offline_download": "Add offline download tasks",
+    "offline_download": "添加离线下载任务",
     "write": "创建目录或上传",
     "rename": "重命名",
     "move": "移动",
