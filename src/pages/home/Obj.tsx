@@ -1,25 +1,30 @@
-import { useColorModeValue, VStack } from "@hope-ui/solid";
-import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js";
-import { FullLoading, Error } from "~/components";
-import { useObjTitle, usePath, useRouter } from "~/hooks";
-import { objStore, /*layout,*/ State } from "~/store";
+import { useColorModeValue, VStack } from "@hope-ui/solid"
+import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js"
+import { FullLoading, Error } from "~/components"
+import { resetGlobalPage, useObjTitle, usePath, useRouter } from "~/hooks"
+import { objStore, /*layout,*/ State } from "~/store"
 
-const Folder = lazy(() => import("./folder/Folder"));
-const File = lazy(() => import("./file/File"));
-const Password = lazy(() => import("./Password"));
+const Folder = lazy(() => import("./folder/Folder"))
+const File = lazy(() => import("./file/File"))
+const Password = lazy(() => import("./Password"))
 // const ListSkeleton = lazy(() => import("./Folder/ListSkeleton"));
 // const GridSkeleton = lazy(() => import("./Folder/GridSkeleton"));
 
+let first = true
 export const Obj = () => {
-  const cardBg = useColorModeValue("white", "$neutral3");
-  const { pathname } = useRouter();
-  const { handlePathChange } = usePath();
+  const cardBg = useColorModeValue("white", "$neutral3")
+  const { pathname } = useRouter()
+  const { handlePathChange } = usePath()
   createEffect(
     on(pathname, (pathname) => {
-      useObjTitle();
-      handlePathChange(pathname);
+      useObjTitle()
+      if (!first) {
+        resetGlobalPage()
+      }
+      first = false
+      handlePathChange(pathname)
     })
-  );
+  )
   return (
     <VStack
       class="obj-box"
@@ -59,5 +64,5 @@ export const Obj = () => {
         </Switch>
       </Suspense>
     </VStack>
-  );
-};
+  )
+}

@@ -19,14 +19,66 @@ import { useFetch } from "./useFetch"
 import { useRouter } from "./useRouter"
 
 let cancelList: Canceler
+export function addOrUpdateQuery(
+  key: string,
+  value: any,
+  type = "replaceState"
+) {
+  let url = type === "location" ? location.href : location.hash
+
+  if (!url.includes("?")) {
+    url = `${url}?${key}=${value}`
+  } else {
+    if (!url.includes(key)) {
+      url = `${url}&${key}=${value}`
+    } else {
+      const re = `(\\?|&|\#)${key}([^&|^#]*)(&|$|#)`
+      url = url.replace(new RegExp(re), "$1" + key + "=" + value + "$3")
+    }
+  }
+
+  if (type === "location") {
+    location.href = url
+  }
+
+  if (type === "pushState") {
+    history.pushState({}, "", url)
+  }
+
+  if (type === "replaceState") {
+    history.replaceState({}, "", url)
+  }
+}
+function getQueryVariable(name: string): string {
+  var query = window.location.search.substring(1)
+  var vars = query.split("&")
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split("=")
+    if (pair[0] == name) {
+      return pair[1]
+    }
+  }
+  return ""
+}
 const IsDirRecord: Record<string, boolean> = {}
 let globalPage = 1
+export const getGlobalPage = () => {
+  return globalPage
+}
+export const resetGlobalPage = () => {
+  const pagination = getPagination()
+  globalPage = 1
+  if (pagination.type === "pagination") {
+    addOrUpdateQuery("page", 1)
+  }
+  console.log('resetGlobalPage', globalPage)
+}
 export const usePath = () => {
-  const { pathname, searchParams } = useRouter()
+  const { pathname } = useRouter()
   const [, getObj] = useFetch((path: string) => fsGet(path, password()))
   const pagination = getPagination()
-  if (pagination.type === "pagination" && searchParams.page) {
-    globalPage = parseInt(searchParams.page)
+  if (pagination.type === "pagination" && getQueryVariable("page")) {
+    globalPage = parseInt(getQueryVariable("page"))
   }
   const [, getObjs] = useFetch(
     (arg?: {
@@ -153,13 +205,12 @@ export const usePath = () => {
     handleFolder(pathname(), index, size, append)
   }
   return {
-    handlePathChange,
+    handlePathChange: handlePathChange,
     setPathAs: setPathAs,
     refresh: (retry_pass?: boolean, force?: boolean) => {
       handlePathChange(pathname(), retry_pass, force)
     },
     pageChange: pageChange,
-    page: globalPage,
     loadMore: () => {
       pageChange(globalPage + 1, undefined, true)
     },
