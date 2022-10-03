@@ -1,4 +1,3 @@
-import { type } from "os"
 import { ext, recordToArray, strToRegExp } from "~/utils"
 
 const settings: Record<string, string> = {}
