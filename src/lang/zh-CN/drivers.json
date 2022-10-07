@@ -345,7 +345,7 @@
   "BaiduPhoto": {
     "show_type": "展示类型",
     "show_types": {
-      "root": "根目录",
+      "root": "根",
       "root_only_album": "仅根目录下相簿",
       "root_only_file": "仅根目录下文件"
     },
