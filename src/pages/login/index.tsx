@@ -11,17 +11,23 @@ import {
   VStack,
   Checkbox,
 } from "@hope-ui/solid"
-import { createSignal, Show } from "solid-js"
+import { createMemo, createSignal, Show } from "solid-js"
 import { SwitchColorMode, SwitchLanguageWhite } from "~/components"
 import { useFetch, useT, useTitle, useRouter } from "~/hooks"
 import { changeToken, r, notify, handleRespWithoutNotify } from "~/utils"
 import { Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
+import { getSetting } from "~/store"
 
 const Login = () => {
+  const logos = getSetting("logo").split("\n")
+  const logo = useColorModeValue(logos[0], logos.pop())
   const t = useT()
-  useTitle(() => t("login.title"))
+  const title = createMemo(() => {
+    return `${t("login.login_to")} ${getSetting("site_title")}`
+  })
+  useTitle(title)
   const bgColor = useColorModeValue("white", "$neutral1")
   const [username, setUsername] = createSignal(
     localStorage.getItem("username") || ""
@@ -80,12 +86,9 @@ const Login = () => {
         spacing="$4"
       >
         <Flex alignItems="center" justifyContent="space-around">
-          <Image
-            boxSize="$12"
-            src="https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg"
-          />
+          <Image mr="$2" boxSize="$12" src={logo()} />
           <Heading color="$info9" fontSize="$2xl">
-            {t("login.title")}
+            {title()}
           </Heading>
         </Flex>
         <Show
