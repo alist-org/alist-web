@@ -142,7 +142,7 @@
     "YandexDisk": "Yandex网盘",
     "Quark": "夸克",
     "139Yun": "中国移动云盘",
-    "Mega_nz": "Mega nz",
+    "Mega_nz": "MEGA网盘",
     "Aliyundrive": "阿里云盘",
     "GoogleDrive": "谷歌云盘",
     "WebDav": "WebDav",
@@ -204,7 +204,7 @@
   },
   "Onedrive": {
     "refresh_token": "刷新令牌",
-    "chunk_size": "Chunk size",
+    "chunk_size": "区块大小",
     "is_sharepoint": "是否Sharepoint",
     "client_id": "客户端ID",
     "client_secret": "客户端密钥",
@@ -272,7 +272,7 @@
     "root_folder_id": "根文件夹ID"
   },
   "Mega_nz": {
-    "email": "Email",
+    "email": "邮箱",
     "password": "密码"
   },
   "123Pan": {
