@@ -14,7 +14,13 @@ import {
 import { createMemo, createSignal, Show } from "solid-js"
 import { SwitchColorMode, SwitchLanguageWhite } from "~/components"
 import { useFetch, useT, useTitle, useRouter } from "~/hooks"
-import { changeToken, r, notify, handleRespWithoutNotify } from "~/utils"
+import {
+  changeToken,
+  r,
+  notify,
+  handleRespWithoutNotify,
+  base_path,
+} from "~/utils"
 import { Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
@@ -60,7 +66,7 @@ const Login = () => {
       (data) => {
         notify.success(t("login.success"))
         changeToken(data.token)
-        to(decodeURIComponent(searchParams.redirect || "/"), true)
+        to(decodeURIComponent(searchParams.redirect || base_path || "/"), true)
       },
       (msg, code) => {
         if (!needOpt() && code === 402) {
@@ -171,7 +177,10 @@ const Login = () => {
           colorScheme="accent"
           onClick={() => {
             changeToken()
-            to(decodeURIComponent(searchParams.redirect || "/"), true)
+            to(
+              decodeURIComponent(searchParams.redirect || base_path || "/"),
+              true
+            )
           }}
         >
           {t("login.use_guest")}
