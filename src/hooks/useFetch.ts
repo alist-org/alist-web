@@ -36,7 +36,7 @@ export const useFetch = <T>(
   return useLoading(p, true, loading);
 };
 
-const useListLoading = <T, K, D>(
+const useListLoading = <T, K>(
   p: (key: K, ...arg: any[]) => Promise<T>,
   fetch?: boolean,
   initial?: K
@@ -55,7 +55,7 @@ const useListLoading = <T, K, D>(
   ];
 };
 
-export const useListFetch = <T, K, D>(
+export const useListFetch = <T, K>(
   p: (key: K, ...arg: any[]) => Promise<Resp<T>>,
   initial?: K
 ): [Accessor<K | undefined>, (key: K, ...arg: any[]) => Promise<any>] => {

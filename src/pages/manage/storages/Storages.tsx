@@ -1,54 +1,43 @@
-import {
-  Box,
-  Button,
-  HStack,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  VStack,
-} from "@hope-ui/solid";
-import { createSignal, For } from "solid-js";
+import { Button, Grid, HStack, VStack } from "@hope-ui/solid"
+import { createSignal, For } from "solid-js"
 import {
   useFetch,
   useListFetch,
   useManageTitle,
   useRouter,
   useT,
-} from "~/hooks";
-import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils";
-import { PageResp, Storage } from "~/types";
-import { DeletePopover } from "../common/DeletePopover";
+} from "~/hooks"
+import { handleResp, r } from "~/utils"
+import { EmptyResp, PageResp, Storage } from "~/types"
+import { StorageC } from "./Storage"
 
 const Storages = () => {
-  const t = useT();
-  useManageTitle("manage.sidemenu.storages");
-  const { to } = useRouter();
-  const [getStoragesLoading, getStorages] = useFetch(() =>
-    r.get("/admin/storage/list")
-  );
-  const [storages, setStorages] = createSignal<Storage[]>([]);
+  const t = useT()
+  useManageTitle("manage.sidemenu.storages")
+  const { to } = useRouter()
+  const [getStoragesLoading, getStorages] = useFetch(
+    (): Promise<PageResp<Storage>> => r.get("/admin/storage/list")
+  )
+  const [storages, setStorages] = createSignal<Storage[]>([])
   const refresh = async () => {
-    const resp: PageResp<Storage> = await getStorages();
-    handleResp(resp, (data) => setStorages(data.content));
-  };
-  refresh();
+    const resp = await getStorages()
+    handleResp(resp, (data) => setStorages(data.content))
+  }
+  refresh()
 
-  const [deleting, deleteStorage] = useListFetch((id: number) =>
-    r.post(`/admin/storage/delete?id=${id}`)
-  );
-  const [enableOrDisableLoading, enableOrDisable] = useListFetch(
-    (id: number, storage?: Storage) =>
-      r.post(
-        `/admin/storage/${storage?.disabled ? "enable" : "disable"}?id=${
-          storage?.id
-        }`
-      )
-  );
+  // const [deleting, deleteStorage] = useListFetch(
+  //   (id: number): Promise<EmptyResp> => r.post(`/admin/storage/delete?id=${id}`)
+  // )
+  // const [enableOrDisableLoading, enableOrDisable] = useListFetch(
+  //   (id: number, storage?: Storage): Promise<EmptyResp> =>
+  //     r.post(
+  //       `/admin/storage/${storage?.disabled ? "enable" : "disable"}?id=${
+  //         storage?.id
+  //       }`
+  //     )
+  // )
   return (
-    <VStack spacing="$2" alignItems="start" w="$full">
+    <VStack spacing="$3" alignItems="start" w="$full">
       <HStack spacing="$2">
         <Button
           colorScheme="accent"
@@ -59,13 +48,25 @@ const Storages = () => {
         </Button>
         <Button
           onClick={() => {
-            to("/@manage/storages/add");
+            to("/@manage/storages/add")
           }}
         >
           {t("global.add")}
         </Button>
       </HStack>
-      <Box w="$full" overflowX="auto">
+      <Grid
+        w="$full"
+        gap="$2_5"
+        templateColumns={{
+          "@initial": "1fr",
+          "@lg": "repeat(auto-fill, minmax(324px, 1fr))",
+        }}
+      >
+        <For each={storages()}>
+          {(storage) => <StorageC storage={storage} refresh={refresh} />}
+        </For>
+      </Grid>
+      {/* <Box w="$full" overflowX="auto">
         <Table highlightOnHover dense>
           <Thead>
             <Tr>
@@ -88,7 +89,7 @@ const Storages = () => {
                     <HStack spacing="$2">
                       <Button
                         onClick={() => {
-                          to(`/@manage/storages/edit/${storage.id}`);
+                          to(`/@manage/storages/edit/${storage.id}`)
                         }}
                       >
                         {t("global.edit")}
@@ -100,10 +101,10 @@ const Storages = () => {
                           const resp = await enableOrDisable(
                             storage.id,
                             storage
-                          );
+                          )
                           handleRespWithNotifySuccess(resp, () => {
-                            refresh();
-                          });
+                            refresh()
+                          })
                         }}
                       >
                         {t(`global.${storage.disabled ? "enable" : "disable"}`)}
@@ -112,11 +113,11 @@ const Storages = () => {
                         name={storage.mount_path}
                         loading={deleting() === storage.id}
                         onClick={async () => {
-                          const resp = await deleteStorage(storage.id);
+                          const resp = await deleteStorage(storage.id)
                           handleResp(resp, () => {
-                            notify.success(t("global.delete_success"));
-                            refresh();
-                          });
+                            notify.success(t("global.delete_success"))
+                            refresh()
+                          })
                         }}
                       />
                     </HStack>
@@ -126,9 +127,9 @@ const Storages = () => {
             </For>
           </Tbody>
         </Table>
-      </Box>
+      </Box> */}
     </VStack>
-  );
-};
+  )
+}
 
-export default Storages;
+export default Storages
