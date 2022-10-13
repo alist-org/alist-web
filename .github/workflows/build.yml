@@ -48,7 +48,7 @@ jobs:
         run: |
           cd alist-web
           pnpm install
-          pnpm i18n
+          pnpm i18n:build
           pnpm build
           cd ..
         env:

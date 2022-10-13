@@ -19,8 +19,11 @@
   ],
   "homepage": "https://alist.nn.ci",
   "scripts": {
-    "crowdin": "crowdin download",
-    "i18n": "pnpm crowdin -b main --verbose && node ./scripts/i18n.mjs",
+    "crowdin:upload": "crowdin upload sources --auto-update",
+    "crowdin:download": "crowdin download --verbose",
+    "crowdin": "pnpm crowdin:upload && pnpm crowdin:download",
+    "i18n:build": "pnpm crowdin && node ./scripts/i18n.mjs",
+    "i18n:release": "pnpm run crowdin:download && node ./scripts/i18n.mjs",
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
