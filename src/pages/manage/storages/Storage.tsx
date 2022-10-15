@@ -46,15 +46,22 @@ export const StorageC = (props: StorageProps) => {
       }}
     >
       <HStack spacing="$2">
-        <Text fontWeight="$medium">{props.storage.mount_path}</Text>
+        <Text
+          fontWeight="$medium"
+          css={{
+            wordBreak: "break-all",
+          }}
+        >
+          {props.storage.mount_path}
+        </Text>
         <Badge colorScheme="info">
           {t(`drivers.drivers.${props.storage.driver}`)}
         </Badge>
       </HStack>
-      <Text>
+      <Text css={{ wordBreak: "break-all" }}>
         {t("storages.common.status")}: {props.storage.status}
       </Text>
-      <Text>{props.storage.remark}</Text>
+      <Text css={{ wordBreak: "break-all" }}>{props.storage.remark}</Text>
       <HStack spacing="$2">
         <Button
           onClick={() => {
