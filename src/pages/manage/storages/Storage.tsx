@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   Button,
   HStack,
   Text,
@@ -58,9 +59,14 @@ export const StorageC = (props: StorageProps) => {
           {t(`drivers.drivers.${props.storage.driver}`)}
         </Badge>
       </HStack>
-      <Text css={{ wordBreak: "break-all" }}>
-        {t("storages.common.status")}: {props.storage.status}
-      </Text>
+      <HStack>
+        <Text>{t("storages.common.status")}:&nbsp;</Text>
+        <Box
+          css={{ wordBreak: "break-all" }}
+          overflowX="auto"
+          innerHTML={props.storage.status}
+        />
+      </HStack>
       <Text css={{ wordBreak: "break-all" }}>{props.storage.remark}</Text>
       <HStack spacing="$2">
         <Button
