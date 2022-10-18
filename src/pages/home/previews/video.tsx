@@ -181,7 +181,7 @@ const Preview = () => {
                   objStore.obj.name
                 )}
               >
-                <Image boxSize="$8" src={`/images/${item.icon}.webp`} />
+                <Image boxSize="$8" src={`${window.__dynamic_base__}/images/${item.icon}.webp`} />
               </Anchor>
             );
           }}
