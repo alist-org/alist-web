@@ -1,224 +1,104 @@
 {
-  "S3": {
-    "secret_access_key": "Secret access key",
-    "sign_url_expire": "Sign url expire",
-    "placeholder": "Placeholder",
-    "root_folder_path": "Root folder path",
-    "bucket": "Bucket",
-    "access_key_id": "Access key id",
-    "custom_host": "Custom host",
-    "force_path_style": "Force path style",
-    "list_object_version": "List object version",
-    "list_object_versions": {
-      "v1": "V1",
-      "v2": "V2"
-    },
-    "endpoint": "Endpoint",
-    "region": "Region"
-  },
-  "Thunder": {
-    "root_folder_id": "Root folder id",
-    "username": "Username",
-    "password": "Password",
-    "captcha_token": "Captcha token"
-  },
-  "SFTP": {
-    "address": "Address",
-    "username": "Username",
-    "private_key": "Private key",
-    "password": "Password",
-    "root_folder_path": "Root folder path"
-  },
-  "Teambition": {
-    "region": "Region",
-    "regions": {
-      "china": "China",
-      "international": "International"
-    },
-    "project_id": "Project id",
-    "root_folder_id": "Root folder id",
-    "order_by": "Order by",
-    "order_direction": "Order direction",
-    "order_directions": {
-      "Asc": "Asc",
-      "Desc": "Desc"
-    },
-    "cookie": "Cookie",
-    "order_bys": {
-      "updated": "Updated",
-      "created": "Created",
-      "fileName": "FileName",
-      "fileSize": "FileSize"
-    }
-  },
-  "Virtual": {
-    "root_folder_path": "Root folder path",
-    "num_file": "Num file",
-    "num_folder": "Num folder",
-    "max_file_size": "Max file size",
-    "min_file_size": "Min file size"
-  },
-  "GooglePhoto": {
-    "client_secret": "Client secret",
-    "show_archive": "Show archive",
-    "root_folder_id": "Root folder id",
+  "BaiduPhoto": {
     "refresh_token": "Refresh token",
-    "client_id": "Client id"
-  },
-  "BaiduNetdisk": {
+    "show_type": "Show type",
+    "show_types": {
+      "root": "Root",
+      "root_only_album": "Root only album",
+      "root_only_file": "Root only file"
+    },
+    "album_id": "Album id",
     "client_id": "Client id",
-    "client_secret": "Client secret",
-    "refresh_token": "Refresh token",
+    "client_secret": "Client secret"
+  },
+  "189CloudPC": {
+    "family_id": "Family id",
+    "rapid_upload": "Rapid upload",
+    "password": "Password",
     "order_by": "Order by",
-    "order_direction": "Order direction",
+    "order_bys": {
+      "lastOpTime": "LastOpTime",
+      "filename": "Filename",
+      "filesize": "Filesize"
+    },
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
     },
-    "root_folder_path": "Root folder path",
-    "order_bys": {
-      "size": "Size",
-      "name": "Name",
-      "time": "Time"
-    },
-    "download_api": "Download api",
-    "download_apis": {
-      "official": "Official",
-      "crack": "Crack"
-    }
-  },
-  "YandexDisk": {
-    "order_bys": {
-      "path": "Path",
-      "created": "Created",
-      "modified": "Modified",
-      "size": "Size",
-      "name": "Name"
-    },
+    "type": "Type",
+    "nonuse_orc": "Nonuse orc",
+    "username": "Username",
+    "validate_code": "Validate code",
+    "root_folder_id": "Root folder id",
     "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
-    "root_folder_path": "Root folder path",
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "refresh_token": "Refresh token",
-    "order_by": "Order by"
+    "types": {
+      "family": "Family",
+      "personal": "Personal"
+    }
   },
   "Onedrive": {
-    "region": "Region",
-    "client_secret": "Client secret",
-    "redirect_uri": "Redirect uri",
-    "site_id": "Site id",
-    "root_folder_path": "Root folder path",
     "regions": {
-      "cn": "Cn",
-      "us": "Us",
       "de": "De",
-      "global": "Global"
+      "global": "Global",
+      "cn": "Cn",
+      "us": "Us"
     },
     "is_sharepoint": "Is sharepoint",
     "client_id": "Client id",
+    "redirect_uri": "Redirect uri",
     "refresh_token": "Refresh token",
+    "root_folder_path": "Root folder path",
+    "region": "Region",
+    "client_secret": "Client secret",
+    "site_id": "Site id",
     "chunk_size": "Chunk size"
+  },
+  "189Cloud": {
+    "root_folder_id": "Root folder id",
+    "username": "Username",
+    "password": "Password"
   },
   "PikPak": {
     "root_folder_id": "Root folder id",
     "username": "Username",
     "password": "Password"
   },
-  "drivers": {
-    "Teambition": "Teambition",
-    "AliyundriveShare": "AliyundriveShare",
-    "PikPak": "PikPak",
-    "Quark": "Quark",
-    "Lanzou": "Lanzou",
-    "GooglePhoto": "GooglePhoto",
-    "MediaTrack": "MediaTrack",
-    "Virtual": "Virtual",
-    "Thunder": "Thunder",
-    "139Yun": "139Yun",
-    "Onedrive": "Onedrive",
-    "ThunderExpert": "ThunderExpert",
-    "FTP": "FTP",
-    "BaiduNetdisk": "BaiduNetdisk",
-    "Local": "Local",
-    "189Cloud": "189Cloud",
-    "S3": "S3",
-    "YandexDisk": "YandexDisk",
-    "123Pan": "123Pan",
-    "Aliyundrive": "Aliyundrive",
-    "GoogleDrive": "GoogleDrive",
-    "SFTP": "SFTP",
-    "189CloudPC": "189CloudPC",
-    "USS": "USS",
-    "Mega_nz": "Mega nz",
-    "BaiduPhoto": "BaiduPhoto",
-    "WebDav": "WebDav"
-  },
-  "189Cloud": {
-    "password": "Password",
-    "root_folder_id": "Root folder id",
-    "username": "Username"
-  },
-  "Lanzou": {
-    "baseUrl": "BaseUrl",
-    "shareUrl": "ShareUrl",
-    "type": "Type",
-    "types": {
-      "cookie": "Cookie",
-      "url": "Url"
-    },
-    "cookie": "Cookie",
-    "cookie-tips": "about 15 days valid",
-    "root_folder_id": "Root folder id",
-    "share_password": "Share password"
-  },
-  "139Yun": {
-    "root_folder_id": "Root folder id",
-    "type": "Type",
-    "types": {
-      "personal": "Personal",
-      "family": "Family"
-    },
-    "cloud_id": "Cloud id",
-    "account": "Account",
-    "cookie": "Cookie"
-  },
-  "Local": {
-    "thumbnail-tips": "enable thumbnail",
-    "show_hidden": "Show hidden",
-    "show_hidden-tips": "show hidden directories and files",
-    "root_folder_path": "Root folder path",
-    "thumbnail": "Thumbnail"
-  },
-  "189CloudPC": {
-    "root_folder_id": "Root folder id",
-    "order_by": "Order by",
+  "Quark": {
     "order_bys": {
-      "filename": "Filename",
-      "filesize": "Filesize",
-      "lastOpTime": "LastOpTime"
+      "updated_at": "Updated at",
+      "none": "None",
+      "file_type": "File type",
+      "file_name": "File name"
     },
-    "types": {
-      "personal": "Personal",
-      "family": "Family"
-    },
-    "family_id": "Family id",
-    "username": "Username",
-    "password": "Password",
-    "validate_code": "Validate code",
-    "rapid_upload": "Rapid upload",
-    "nonuse_orc": "Nonuse orc",
     "order_direction": "Order direction",
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
     },
-    "type": "Type"
+    "cookie": "Cookie",
+    "root_folder_id": "Root folder id",
+    "order_by": "Order by"
+  },
+  "123Pan": {
+    "stream_upload": "Stream upload",
+    "username": "Username",
+    "password": "Password",
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "fileId": "FileId",
+      "updateAt": "UpdateAt",
+      "createAt": "CreateAt"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id"
   },
   "Aliyundrive": {
+    "root_folder_id": "Root folder id",
     "refresh_token": "Refresh token",
     "order_by": "Order by",
     "order_bys": {
@@ -232,86 +112,140 @@
       "ASC": "ASC",
       "DESC": "DESC"
     },
-    "rapid_upload": "Rapid upload",
-    "root_folder_id": "Root folder id"
+    "rapid_upload": "Rapid upload"
   },
-  "Quark": {
+  "Lanzou": {
+    "shareUrl": "ShareUrl",
+    "type": "Type",
+    "types": {
+      "cookie": "Cookie",
+      "url": "Url"
+    },
+    "cookie": "Cookie",
+    "cookie-tips": "about 15 days valid",
+    "root_folder_id": "Root folder id",
+    "share_password": "Share password",
+    "baseUrl": "BaseUrl"
+  },
+  "WebDav": {
+    "username": "Username",
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "vendor": "Vendor",
+    "vendors": {
+      "sharepoint": "Sharepoint",
+      "other": "Other"
+    },
+    "address": "Address"
+  },
+  "AliyundriveShare": {
+    "share_id": "Share id",
+    "share_pwd": "Share pwd",
     "root_folder_id": "Root folder id",
     "order_by": "Order by",
     "order_bys": {
-      "file_type": "File type",
-      "file_name": "File name",
-      "updated_at": "Updated at",
-      "none": "None"
+      "created_at": "Created at",
+      "name": "Name",
+      "size": "Size",
+      "updated_at": "Updated at"
     },
     "order_direction": "Order direction",
     "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
+      "ASC": "ASC",
+      "DESC": "DESC"
     },
-    "cookie": "Cookie"
+    "refresh_token": "Refresh token"
+  },
+  "MediaTrack": {
+    "order_bys": {
+      "size": "Size",
+      "updated_at": "Updated at",
+      "title": "Title"
+    },
+    "order_desc": "Order desc",
+    "access_token": "Access token",
+    "project_id": "Project id",
+    "root_folder_id": "Root folder id",
+    "order_by": "Order by"
+  },
+  "Teambition": {
+    "order_by": "Order by",
+    "order_bys": {
+      "fileName": "FileName",
+      "fileSize": "FileSize",
+      "updated": "Updated",
+      "created": "Created"
+    },
+    "region": "Region",
+    "regions": {
+      "china": "China",
+      "international": "International"
+    },
+    "cookie": "Cookie",
+    "project_id": "Project id",
+    "root_folder_id": "Root folder id",
+    "order_direction": "Order direction",
+    "order_directions": {
+      "Asc": "Asc",
+      "Desc": "Desc"
+    }
   },
   "ThunderExpert": {
-    "sign_types": {
-      "algorithms": "Algorithms",
-      "captcha_sign": "Captcha sign"
-    },
-    "algorithms": "Algorithms",
-    "timestamp-tips": "sign type is captcha_sign,this is required",
+    "client_id": "Client id",
     "client_secret": "Client secret",
     "package_name": "Package name",
     "login_type": "Login type",
-    "username-tips": "login type is user,this is required",
-    "password": "Password",
-    "password-tips": "login type is user,this is required",
-    "refresh_token-tips": "login type is refresh_token,this is required",
-    "captcha_sign-tips": "sign type is captcha_sign,this is required",
-    "download_user_agent": "Download user agent",
-    "client_id": "Client id",
-    "username": "Username",
-    "refresh_token": "Refresh token",
-    "algorithms-tips": "sign type is algorithms,this is required",
-    "captcha_sign": "Captcha sign",
-    "timestamp": "Timestamp",
-    "captcha_token": "Captcha token",
-    "device_id": "Device id",
-    "user_agent": "User agent",
-    "use_video_url": "Use video url",
-    "root_folder_id": "Root folder id",
     "login_types": {
       "user": "User",
       "refresh_token": "Refresh token"
     },
+    "refresh_token": "Refresh token",
+    "refresh_token-tips": "login type is refresh_token,this is required",
+    "timestamp-tips": "sign type is captcha_sign,this is required",
+    "use_video_url": "Use video url",
+    "timestamp": "Timestamp",
+    "user_agent": "User agent",
+    "root_folder_id": "Root folder id",
+    "sign_types": {
+      "algorithms": "Algorithms",
+      "captcha_sign": "Captcha sign"
+    },
+    "username-tips": "login type is user,this is required",
+    "captcha_sign": "Captcha sign",
+    "captcha_sign-tips": "sign type is captcha_sign,this is required",
+    "username": "Username",
+    "password-tips": "login type is user,this is required",
+    "captcha_token": "Captcha token",
+    "device_id": "Device id",
+    "client_version": "Client version",
     "sign_type": "Sign type",
-    "client_version": "Client version"
+    "password": "Password",
+    "algorithms": "Algorithms",
+    "algorithms-tips": "sign type is algorithms,this is required",
+    "download_user_agent": "Download user agent"
   },
-  "FTP": {
+  "SMB": {
+    "root_folder_path": "Root folder path",
     "address": "Address",
     "username": "Username",
     "password": "Password",
+    "share_name": "Share name"
+  },
+  "Local": {
+    "show_hidden": "Show hidden",
+    "show_hidden-tips": "show hidden directories and files",
+    "root_folder_path": "Root folder path",
+    "thumbnail": "Thumbnail",
+    "thumbnail-tips": "enable thumbnail"
+  },
+  "SFTP": {
+    "address": "Address",
+    "username": "Username",
+    "private_key": "Private key",
+    "password": "Password",
     "root_folder_path": "Root folder path"
   },
-  "123Pan": {
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
-    "root_folder_id": "Root folder id",
-    "stream_upload": "Stream upload",
-    "username": "Username",
-    "password": "Password",
-    "order_by": "Order by",
-    "order_bys": {
-      "name": "Name",
-      "fileId": "FileId",
-      "updateAt": "UpdateAt",
-      "createAt": "CreateAt"
-    }
-  },
   "GoogleDrive": {
-    "client_id": "Client id",
-    "client_secret": "Client secret",
     "root_folder_id": "Root folder id",
     "refresh_token": "Refresh token",
     "order_by": "Order by",
@@ -320,72 +254,146 @@
     "order_directions": {
       "asc": "Asc",
       "desc": "Desc"
-    }
+    },
+    "client_id": "Client id",
+    "client_secret": "Client secret"
   },
-  "AliyundriveShare": {
-    "root_folder_id": "Root folder id",
+  "YandexDisk": {
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "refresh_token": "Refresh token",
     "order_by": "Order by",
     "order_bys": {
-      "name": "Name",
+      "created": "Created",
+      "modified": "Modified",
       "size": "Size",
-      "updated_at": "Updated at",
-      "created_at": "Created at"
+      "name": "Name",
+      "path": "Path"
     },
     "order_direction": "Order direction",
     "order_directions": {
-      "ASC": "ASC",
-      "DESC": "DESC"
+      "asc": "Asc",
+      "desc": "Desc"
     },
-    "refresh_token": "Refresh token",
-    "share_id": "Share id",
-    "share_pwd": "Share pwd"
-  },
-  "WebDav": {
-    "vendor": "Vendor",
-    "vendors": {
-      "sharepoint": "Sharepoint",
-      "other": "Other"
-    },
-    "address": "Address",
-    "username": "Username",
-    "password": "Password",
     "root_folder_path": "Root folder path"
   },
-  "MediaTrack": {
-    "access_token": "Access token",
-    "project_id": "Project id",
+  "Virtual": {
+    "num_file": "Num file",
+    "num_folder": "Num folder",
+    "max_file_size": "Max file size",
+    "min_file_size": "Min file size",
+    "root_folder_path": "Root folder path"
+  },
+  "139Yun": {
+    "cloud_id": "Cloud id",
+    "account": "Account",
+    "cookie": "Cookie",
     "root_folder_id": "Root folder id",
-    "order_by": "Order by",
-    "order_bys": {
-      "updated_at": "Updated at",
-      "title": "Title",
-      "size": "Size"
-    },
-    "order_desc": "Order desc"
+    "type": "Type",
+    "types": {
+      "personal": "Personal",
+      "family": "Family"
+    }
   },
   "USS": {
+    "bucket": "Bucket",
     "endpoint": "Endpoint",
     "operator_name": "Operator name",
     "operator_password": "Operator password",
     "custom_host": "Custom host",
     "sign_url_expire": "Sign url expire",
+    "root_folder_path": "Root folder path"
+  },
+  "BaiduNetdisk": {
     "root_folder_path": "Root folder path",
-    "bucket": "Bucket"
+    "order_bys": {
+      "name": "Name",
+      "time": "Time",
+      "size": "Size"
+    },
+    "download_apis": {
+      "official": "Official",
+      "crack": "Crack"
+    },
+    "client_id": "Client id",
+    "refresh_token": "Refresh token",
+    "order_by": "Order by",
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "download_api": "Download api",
+    "client_secret": "Client secret"
+  },
+  "S3": {
+    "placeholder": "Placeholder",
+    "bucket": "Bucket",
+    "secret_access_key": "Secret access key",
+    "custom_host": "Custom host",
+    "access_key_id": "Access key id",
+    "sign_url_expire": "Sign url expire",
+    "force_path_style": "Force path style",
+    "list_object_version": "List object version",
+    "list_object_versions": {
+      "v1": "V1",
+      "v2": "V2"
+    },
+    "root_folder_path": "Root folder path",
+    "endpoint": "Endpoint",
+    "region": "Region"
+  },
+  "FTP": {
+    "address": "Address",
+    "username": "Username",
+    "password": "Password",
+    "root_folder_path": "Root folder path"
   },
   "Mega_nz": {
     "email": "Email",
     "password": "Password"
   },
-  "BaiduPhoto": {
+  "drivers": {
+    "GooglePhoto": "GooglePhoto",
+    "Local": "Local",
+    "WebDav": "WebDav",
+    "Virtual": "Virtual",
+    "SFTP": "SFTP",
+    "YandexDisk": "YandexDisk",
+    "139Yun": "139Yun",
+    "USS": "USS",
+    "123Pan": "123Pan",
+    "BaiduPhoto": "BaiduPhoto",
+    "ThunderExpert": "ThunderExpert",
+    "BaiduNetdisk": "BaiduNetdisk",
+    "SMB": "SMB",
+    "S3": "S3",
+    "Teambition": "Teambition",
+    "Thunder": "Thunder",
+    "Lanzou": "Lanzou",
+    "AliyundriveShare": "AliyundriveShare",
+    "189Cloud": "189Cloud",
+    "FTP": "FTP",
+    "Mega_nz": "Mega nz",
+    "PikPak": "PikPak",
+    "Quark": "Quark",
+    "189CloudPC": "189CloudPC",
+    "Onedrive": "Onedrive",
+    "Aliyundrive": "Aliyundrive",
+    "MediaTrack": "MediaTrack",
+    "GoogleDrive": "GoogleDrive"
+  },
+  "Thunder": {
+    "root_folder_id": "Root folder id",
+    "username": "Username",
+    "password": "Password",
+    "captcha_token": "Captcha token"
+  },
+  "GooglePhoto": {
+    "client_secret": "Client secret",
+    "show_archive": "Show archive",
+    "root_folder_id": "Root folder id",
     "refresh_token": "Refresh token",
-    "show_type": "Show type",
-    "show_types": {
-      "root_only_file": "Root only file",
-      "root": "Root",
-      "root_only_album": "Root only album"
-    },
-    "album_id": "Album id",
-    "client_id": "Client id",
-    "client_secret": "Client secret"
+    "client_id": "Client id"
   }
 }
