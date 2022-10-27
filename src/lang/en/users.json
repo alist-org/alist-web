@@ -12,7 +12,7 @@
     "webdav_manage": "Webdav manage"
   },
   "username": "Username",
-  "password": "Pssword",
+  "password": "Password",
   "base_path": "Base path",
   "role": "Role",
   "permission": "Permission",

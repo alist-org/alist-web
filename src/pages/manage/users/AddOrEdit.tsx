@@ -129,7 +129,7 @@ const AddOrEdit = () => {
           loading={okLoading()}
           onClick={async () => {
             const resp: Resp<{}> = await ok();
-            // TODO mybe can use handleRrespWithNotifySuccess
+            // TODO maybe can use handleRrespWithNotifySuccess
             handleResp(resp, () => {
               notify.success(t("global.save_success"));
               back();

@@ -32,11 +32,11 @@ export const Messenger = () => {
       message: toSend(),
     })
   );
-  const [recieved, setRecieved] = createStore<Message[]>([]);
+  const [received, setReceived] = createStore<Message[]>([]);
   const get = async () => {
     const resp: Resp<Message> = await getR();
     handleRespWithoutNotify(resp, (msg) => {
-      setRecieved(produce((msgs) => msgs.push(msg)));
+      setReceived(produce((msgs) => msgs.push(msg)));
     });
   };
   const send = async () => {
@@ -55,8 +55,8 @@ export const Messenger = () => {
         rounded="$lg"
         border="1px solid var(--hope-colors-neutral6)"
       >
-        <Heading size="xl">{t("manage.recieved_msgs")}</Heading>
-        <For each={recieved}>
+        <Heading size="xl">{t("manage.received_msgs")}</Heading>
+        <For each={received}>
           {(item) => <Dynamic component={Shower[item.type]} {...item} />}
         </For>
       </VStack>
@@ -67,7 +67,7 @@ export const Messenger = () => {
       />
       <HStack spacing="$2">
         <Button colorScheme="accent" loading={getLoading()} onClick={get}>
-          {t("manage.recieve")}
+          {t("manage.receive")}
         </Button>
         <Button loading={sendLoading()} onClick={send}>
           {t("manage.send")}
