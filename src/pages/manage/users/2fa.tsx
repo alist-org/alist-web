@@ -13,7 +13,7 @@ interface Generate2FA {
 
 const TwoFA = () => {
   const { back } = useRouter();
-  const [generateLoding, generate] = useFetch(() =>
+  const [generateLoading, generate] = useFetch(() =>
     r.post("/auth/2fa/generate")
   );
   const t = useT();
@@ -43,7 +43,7 @@ const TwoFA = () => {
     });
   };
   return (
-    <MaybeLoading loading={generateLoding()}>
+    <MaybeLoading loading={generateLoading()}>
       <Show when={otpData()}>
         <VStack spacing="$2" alignItems="start">
           <Heading>{t("users.scan_qr")}</Heading>
