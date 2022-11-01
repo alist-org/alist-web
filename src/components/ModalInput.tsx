@@ -32,6 +32,7 @@ export const ModalInput = (props: ModalInputProps) => {
       return;
     }
     props.onSubmit?.(value());
+    setValue("");
   };
   return (
     <Modal
