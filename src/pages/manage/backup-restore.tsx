@@ -1,4 +1,4 @@
-import { Box, Button, notificationService, HopeProvider, NotificationsProvider } from "@hope-ui/solid";
+import { Box, Button, notificationService } from "@hope-ui/solid";
 import {r} from "~/utils";
 
 const BackupRestore = () => {
@@ -6,14 +6,14 @@ const BackupRestore = () => {
     <Box>
       <Button
         onClick={async () => {
-          const resp = await backup();
+          await backup();
         }}
       >
         Backup
       </Button>
       <Button
         onClick={async () => {
-          const resp = await restore();
+          await restore();
         }}
       >
         Restore
@@ -36,10 +36,10 @@ function download(filename: string, data: any) {
 }
 
 const backup = async() => {
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var dates = date.getDate();
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const dates = date.getDate();
 
   const todaysdate = year + "-" + month + "-" + dates;
   const data = r.get("/admin/setting/list");
