@@ -18,6 +18,7 @@ import { OcWorkflow2 } from "solid-icons/oc";
 import { IoCopy, IoHome } from "solid-icons/io";
 import { Component, lazy } from "solid-js";
 import { Group, UserRole } from "~/types";
+import { FaSolidDatabase } from 'solid-icons/fa'
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component;
@@ -121,6 +122,12 @@ export const side_menu_items: SideMenuItem[] = [
     component: lazy(() => import("./metas/Metas")),
   },
   {
+    title: "manage.sidemenu.backup-restore",
+    to: "/@manage/backup-restore",
+    icon: FaSolidDatabase,
+    component: lazy(() => import("./backup-restore")),
+  },
+  {
     title: "manage.sidemenu.about",
     icon: BsFront,
     to: "/@manage/about",
@@ -133,5 +140,5 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/",
     role: UserRole.GUEST,
     external: true,
-  },
+  }
 ];

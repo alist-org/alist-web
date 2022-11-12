@@ -16,6 +16,7 @@
     "aria2": "Aria2",
     "upload": "Upload",
     "copy": "Copy",
+    "backup-restore": "Backup & Restore",
     "home": "Home"
   },
   "title": "AList Manage",
