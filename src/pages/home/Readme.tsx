@@ -1,13 +1,14 @@
-import { Box, useColorModeValue } from "@hope-ui/solid";
-import { createMemo, Show, createResource, on } from "solid-js";
-import { Markdown, MaybeLoading } from "~/components";
-import { useLink } from "~/hooks";
-import { objStore, State } from "~/store";
-import { fetchText } from "~/utils";
+import { Box, useColorModeValue } from "@hope-ui/solid"
+import { createMemo, Show, createResource, on } from "solid-js"
+import { Markdown, MaybeLoading } from "~/components"
+import { useLink, useRouter } from "~/hooks"
+import { objStore, recoverScroll, State } from "~/store"
+import { fetchText } from "~/utils"
 
 export const Readme = () => {
-  const cardBg = useColorModeValue("white", "$neutral3");
-  const { proxyLink } = useLink();
+  const cardBg = useColorModeValue("white", "$neutral3")
+  const { proxyLink } = useLink()
+  const { pathname } = useRouter()
   const readme = createMemo(
     on(
       () => objStore.state,
@@ -17,32 +18,36 @@ export const Readme = () => {
             objStore.state
           )
         ) {
-          return "";
+          return ""
         }
         if (objStore.readme) {
-          return objStore.readme;
+          return objStore.readme
         }
         if ([State.FetchingMore, State.Folder].includes(objStore.state)) {
           const obj = objStore.objs.find(
             (item) => item.name.toLowerCase() === "readme.md"
-          );
+          )
           if (obj) {
-            return proxyLink(obj, true);
+            return proxyLink(obj, true)
           }
         }
-        return "";
+        return ""
       }
     )
-  );
+  )
   const fetchContent = async (readme: string) => {
-    if (/^https?:\/\//g.test(readme)) {
-      return await fetchText(readme);
-    }
-    return {
+    let res = {
       content: readme,
-    };
-  };
-  const [content] = createResource(readme, fetchContent);
+    }
+    if (/^https?:\/\//g.test(readme)) {
+      res = await fetchText(readme)
+    }
+    setTimeout(() => {
+      recoverScroll(pathname())
+    })
+    return res
+  }
+  const [content] = createResource(readme, fetchContent)
   return (
     <Show when={readme()}>
       <Box w="$full" rounded="$xl" p="$4" bgColor={cardBg()} shadow="$lg">
@@ -51,5 +56,5 @@ export const Readme = () => {
         </MaybeLoading>
       </Box>
     </Show>
-  );
-};
+  )
+}

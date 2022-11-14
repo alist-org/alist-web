@@ -2,7 +2,7 @@ import { useColorModeValue, VStack } from "@hope-ui/solid"
 import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js"
 import { FullLoading, Error } from "~/components"
 import { resetGlobalPage, useObjTitle, usePath, useRouter } from "~/hooks"
-import { objStore, /*layout,*/ State } from "~/store"
+import { objStore, recordScroll, /*layout,*/ State } from "~/store"
 
 const Folder = lazy(() => import("./folder/Folder"))
 const File = lazy(() => import("./file/File"))
@@ -15,6 +15,7 @@ export const Obj = () => {
   const cardBg = useColorModeValue("white", "$neutral3")
   const { pathname } = useRouter()
   const { handlePathChange } = usePath()
+  let lastPathname = pathname()
   createEffect(
     on(pathname, (pathname) => {
       useObjTitle()
@@ -22,7 +23,9 @@ export const Obj = () => {
         resetGlobalPage()
       }
       first = false
+      recordScroll(lastPathname, window.scrollY)
       handlePathChange(pathname)
+      lastPathname = pathname
     })
   )
   return (
