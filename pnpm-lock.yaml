@@ -26,7 +26,7 @@ specifiers:
   solid-icons: ^1.0.1
   solid-js: ^1.4.8
   solid-markdown: ^1.2.0
-  solid-transition-group: ^0.0.10
+  solid-transition-group: ^0.0.12
   streamsaver: ^2.0.6
   terser: ^5.14.2
   typescript: ^4.7.4
@@ -35,7 +35,7 @@ specifiers:
   vite-plugin-solid: ^2.3.0
 
 dependencies:
-  '@hope-ui/solid': 0.6.7_sszzskbueur5rfztas6oehtsky
+  '@hope-ui/solid': 0.6.7_guuf5jfxq4pwf7m7qe35ti6w3e
   '@monaco-editor/loader': 1.3.2
   '@motionone/solid': 10.14.1_solid-js@1.4.8
   '@solid-primitives/i18n': 1.1.0_solid-js@1.4.8
@@ -52,11 +52,11 @@ dependencies:
   mitt: 3.0.0
   rehype-raw: 6.1.1
   remark-gfm: 3.0.1
-  solid-contextmenu: 0.0.2_oi63lgsnxcwqfqbns5ipxbewxm
+  solid-contextmenu: 0.0.2_rnl47u7u6zvhbuxaxd7nlmadmy
   solid-icons: 1.0.1_solid-js@1.4.8
   solid-js: 1.4.8
   solid-markdown: 1.2.0_solid-js@1.4.8
-  solid-transition-group: 0.0.10_solid-js@1.4.8
+  solid-transition-group: 0.0.12_solid-js@1.4.8
   streamsaver: 2.0.6
 
 devDependencies:
@@ -419,7 +419,7 @@ packages:
       '@floating-ui/core': 0.6.2
     dev: false
 
-  /@hope-ui/solid/0.6.7_sszzskbueur5rfztas6oehtsky:
+  /@hope-ui/solid/0.6.7_guuf5jfxq4pwf7m7qe35ti6w3e:
     resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==}
     peerDependencies:
       '@stitches/core': ^1.2.8
@@ -433,7 +433,7 @@ packages:
       lodash.merge: 4.6.2
       scroll-lock: 2.1.5
       solid-js: 1.4.8
-      solid-transition-group: 0.0.10_solid-js@1.4.8
+      solid-transition-group: 0.0.12_solid-js@1.4.8
     dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
@@ -2066,7 +2066,7 @@ packages:
     resolution: {integrity: sha512-sggQ3U2Un38b3+q/j1P4Y4fCboCtoUIaBYoge+Lb6Xg1H8RTIif/hugVr+ErMtIDpvBbhQfTjtiTeYAfbw1ZGQ==}
     dev: false
 
-  /solid-contextmenu/0.0.2_oi63lgsnxcwqfqbns5ipxbewxm:
+  /solid-contextmenu/0.0.2_rnl47u7u6zvhbuxaxd7nlmadmy:
     resolution: {integrity: sha512-TmOhIvVpZmQdoiydSP07d9rT0xu/wvRSH6TJqbGPd+2XZz0wOualbm5CvLiHbOGnOU5tBrbe4q0cU/EMvG7u+w==}
     peerDependencies:
       solid-js: ^1.4.8
@@ -2075,7 +2075,7 @@ packages:
       clsx: 1.2.1
       mitt: 3.0.0
       solid-js: 1.4.8
-      solid-transition-group: 0.0.10_solid-js@1.4.8
+      solid-transition-group: 0.0.12_solid-js@1.4.8
     dev: false
 
   /solid-icons/1.0.1_solid-js@1.4.8:
@@ -2121,8 +2121,8 @@ packages:
       solid-js: 1.4.8
     dev: true
 
-  /solid-transition-group/0.0.10_solid-js@1.4.8:
-    resolution: {integrity: sha512-b3O9z6BUP60CG1WnTdqFuvHms0reDNYwQF+eAEEaSaoDEmiOu9+Lu7zQgWGySJjaAdSAClhmFCmx/eAjQgfIoA==}
+  /solid-transition-group/0.0.12_solid-js@1.4.8:
+    resolution: {integrity: sha512-Eu4MfNZSSxM67C+4EXaoDiWr4BFbDLg3j30JQJgQEIH9UDOfgNPfZlsFDhT/PxwJqhe6sn85W+dbmYJzBmjpAA==}
     peerDependencies:
       solid-js: ^1.0.0
     dependencies:

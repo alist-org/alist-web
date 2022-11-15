@@ -63,7 +63,7 @@
     "solid-icons": "^1.0.1",
     "solid-js": "^1.4.8",
     "solid-markdown": "^1.2.0",
-    "solid-transition-group": "^0.0.10",
+    "solid-transition-group": "^0.0.12",
     "streamsaver": "^2.0.6"
   }
 }
