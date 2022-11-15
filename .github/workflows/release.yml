@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       
@@ -30,12 +30,12 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "16"
           registry-url: "https://registry.npmjs.org"
 
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v2.2.4
         name: Install pnpm
         id: pnpm-install
         with:
@@ -43,7 +43,7 @@ jobs:
           run_install: false
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: main
           path: alist-web
@@ -52,7 +52,7 @@ jobs:
           submodules: recursive
 
       - name: Checkout dist repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: alist-org/web-dist
           ref: main
