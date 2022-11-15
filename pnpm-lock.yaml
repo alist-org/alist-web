@@ -22,7 +22,7 @@ specifiers:
   mitt: ^3.0.0
   rehype-raw: ^6.1.1
   remark-gfm: ^3.0.1
-  solid-contextmenu: 0.0.1-alpha.1
+  solid-contextmenu: 0.0.2
   solid-icons: ^1.0.1
   solid-js: ^1.4.8
   solid-markdown: ^1.2.0
@@ -52,7 +52,7 @@ dependencies:
   mitt: 3.0.0
   rehype-raw: 6.1.1
   remark-gfm: 3.0.1
-  solid-contextmenu: 0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm
+  solid-contextmenu: 0.0.2_oi63lgsnxcwqfqbns5ipxbewxm
   solid-icons: 1.0.1_solid-js@1.4.8
   solid-js: 1.4.8
   solid-markdown: 1.2.0_solid-js@1.4.8
@@ -2066,8 +2066,8 @@ packages:
     resolution: {integrity: sha512-sggQ3U2Un38b3+q/j1P4Y4fCboCtoUIaBYoge+Lb6Xg1H8RTIif/hugVr+ErMtIDpvBbhQfTjtiTeYAfbw1ZGQ==}
     dev: false
 
-  /solid-contextmenu/0.0.1-alpha.1_oi63lgsnxcwqfqbns5ipxbewxm:
-    resolution: {integrity: sha512-OAt9IxDJdqPYQ//hzqtuiClVdAFIsttKrS3al80KAOSeTU1j5uWstSXAZNS3Hl/fuEFL4IfLTwILvrykMkPe8Q==}
+  /solid-contextmenu/0.0.2_oi63lgsnxcwqfqbns5ipxbewxm:
+    resolution: {integrity: sha512-TmOhIvVpZmQdoiydSP07d9rT0xu/wvRSH6TJqbGPd+2XZz0wOualbm5CvLiHbOGnOU5tBrbe4q0cU/EMvG7u+w==}
     peerDependencies:
       solid-js: ^1.4.8
       solid-transition-group: ^0.0.10
