@@ -42,7 +42,7 @@
     "vite-plugin-solid": "^2.3.0"
   },
   "dependencies": {
-    "@hope-ui/solid": "0.6.2",
+    "@hope-ui/solid": "0.6.7",
     "@monaco-editor/loader": "^1.3.2",
     "@motionone/solid": "^10.14.1",
     "@solid-primitives/i18n": "^1.1.0",
