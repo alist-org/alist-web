@@ -1,26 +1,264 @@
-import { Box, Button, notificationService } from "@hope-ui/solid"
-import { r, handleResp } from "~/utils"
-import { useFetch } from "~/hooks"
-import { Meta, PageResp, Storage, SettingItem, User } from "~/types"
+import { HStack, Button, VStack, Text } from "@hope-ui/solid"
+import { r, handleRespWithoutNotify, notify } from "~/utils"
+import { useFetch, useT } from "~/hooks"
+import {
+  Meta,
+  Storage,
+  SettingItem,
+  User,
+  PResp,
+  Resp,
+  PEmptyResp,
+  PPageResp,
+} from "~/types"
+import { createSignal, For } from "solid-js"
+
+interface Data {
+  settings: SettingItem[]
+  users: User[]
+  storages: Storage[]
+  metas: Meta[]
+}
+type LogType = "success" | "error" | "info"
+const LogMap = {
+  success: {
+    icon: "✅",
+    color: "green",
+  },
+  error: {
+    icon: "❌",
+    color: "red",
+  },
+  info: {
+    icon: "ℹ️",
+    color: "blue",
+  },
+}
+const Log = (props: { msg: string; type: LogType }) => {
+  return (
+    <HStack w="$full" spacing="$1">
+      <Text>{LogMap[props.type].icon}</Text>
+      <Text color={LogMap[props.type].color}>{props.msg}</Text>
+    </HStack>
+  )
+}
 
 const BackupRestore = () => {
+  const t = useT()
+  let logRef: HTMLDivElement
+  const [log, setLog] = createSignal<
+    {
+      type: LogType
+      msg: string
+    }[]
+  >([])
+  const appendLog = (msg: string, type: LogType) => {
+    setLog((prev) => [...prev, { type, msg }])
+    logRef.scrollTop = logRef.scrollHeight
+  }
+  const [getSettingsLoading, getSettings] = useFetch(
+    (): PResp<any> => r.get("/admin/setting/list")
+  )
+  const [getUsersLoading, getUsers] = useFetch(
+    (): PPageResp<User> => r.get("/admin/user/list")
+  )
+  const [getMetasLoading, getMetas] = useFetch(
+    (): PPageResp<Meta> => r.get("/admin/meta/list")
+  )
+  const [getStoragesLoading, getStorages] = useFetch(
+    (): PPageResp<Storage> => r.get("/admin/storage/list")
+  )
+  const backupLoading = () => {
+    return (
+      getSettingsLoading() ||
+      getUsersLoading() ||
+      getMetasLoading() ||
+      getStoragesLoading()
+    )
+  }
+  const backup = async () => {
+    appendLog(t("br.start_backup"), "info")
+    const allData: Data = {
+      settings: [],
+      users: [],
+      storages: [],
+      metas: [],
+    }
+    for (const item of [
+      { name: "settings", fn: getSettings, page: false },
+      { name: "users", fn: getUsers, page: true },
+      { name: "storages", fn: getStorages, page: true },
+      { name: "metas", fn: getMetas, page: true },
+    ] as const) {
+      const resp = await item.fn()
+      handleRespWithoutNotify(
+        resp as Resp<any>,
+        (data) => {
+          appendLog(
+            t("br.success_backup_item", {
+              item: t(`manage.sidemenu.${item.name}`),
+            }),
+            "success"
+          )
+          if (item.page) {
+            allData[item.name] = data.content
+          } else {
+            allData[item.name] = data
+          }
+        },
+        (msg) => {
+          appendLog(
+            t("br.failed_backup_item", {
+              item: t(`manage.sidemenu.${item.name}`),
+            }) +
+              ":" +
+              msg,
+            "error"
+          )
+        }
+      )
+    }
+    download("alist_backup_" + new Date().toLocaleString() + ".json", allData)
+    appendLog(t("br.finish_backup"), "info")
+  }
+  const [addSettingsLoading, addSettings] = useFetch(
+    (data: SettingItem[]): PEmptyResp => r.post("/admin/setting/save", data)
+  )
+  const [addUserLoading, addUser] = useFetch((user: User): PEmptyResp => {
+    return r.post(`/admin/user/create`, user)
+  })
+  const [addStorageLoading, addStorage] = useFetch(
+    (storage: Storage): PEmptyResp => {
+      return r.post(`/admin/storage/create`, storage)
+    }
+  )
+  const [addMetaLoading, addMeta] = useFetch((meta: Meta): PEmptyResp => {
+    return r.post(`/admin/meta/create`, meta)
+  })
+  const restoreLoading = () => {
+    return (
+      addSettingsLoading() ||
+      addUserLoading() ||
+      addStorageLoading() ||
+      addMetaLoading()
+    )
+  }
+  const restore = async () => {
+    appendLog(t("br.start_restore"), "info")
+    const file = document.createElement("input")
+    file.type = "file"
+    file.accept = "application/json"
+    file.onchange = async (e) => {
+      const files = (e.target as HTMLInputElement).files
+      if (!files || files.length === 0) {
+        notify.warning(t("br.no_file"))
+        return
+      }
+      const file = files[0]
+      const reader = new FileReader()
+      reader.onload = async () => {
+        const data: Data = JSON.parse(reader.result as string)
+        handleRespWithoutNotify(
+          await addSettings(data.settings.filter((s) => s.key !== "version")),
+          () => {
+            appendLog(
+              t("br.success_restore_item", {
+                item: t("manage.sidemenu.settings"),
+              }),
+              "success"
+            )
+          },
+          (msg) => {
+            appendLog(
+              t("br.failed_restore_item", {
+                item: t("manage.sidemenu.settings"),
+              }) +
+                ":" +
+                msg,
+              "error"
+            )
+          }
+        )
+        for (const item of [
+          { name: "users", fn: addUser, data: data.users, key: "username" },
+          {
+            name: "storages",
+            fn: addStorage,
+            data: data.storages,
+            key: "mount_path",
+          },
+          { name: "metas", fn: addMeta, data: data.metas, key: "path" },
+        ] as const) {
+          for (const itemData of item.data) {
+            itemData.id = 0
+            handleRespWithoutNotify(
+              await item.fn(itemData),
+              () => {
+                appendLog(
+                  t("br.success_restore_item", {
+                    item: t(`manage.sidemenu.${item.name}`),
+                  }) +
+                    "-" +
+                    `[${(itemData as any)[item.key]}]`,
+                  "success"
+                )
+              },
+              (msg) => {
+                appendLog(
+                  t("br.failed_restore_item", {
+                    item: t(`manage.sidemenu.${item.name}`),
+                  }) +
+                    "-" +
+                    `[${(itemData as any)[item.key]}]` +
+                    ":" +
+                    msg,
+                  "error"
+                )
+              }
+            )
+          }
+        }
+        appendLog(t("br.finish_restore"), "info")
+      }
+      reader.readAsText(file)
+    }
+    file.click()
+  }
   return (
-    <Box>
-      <Button
-        onClick={async () => {
-          await backup()
-        }}
+    <VStack spacing="$2" w="$full">
+      <HStack spacing="$2" alignItems="start" w="$full">
+        <Button
+          loading={backupLoading()}
+          onClick={() => {
+            backup()
+          }}
+        >
+          {t("br.backup")}
+        </Button>
+        <Button
+          loading={restoreLoading()}
+          onClick={() => {
+            restore()
+          }}
+          colorScheme="accent"
+        >
+          {t("br.restore")}
+        </Button>
+      </HStack>
+      <VStack
+        p="$2"
+        ref={logRef!}
+        w="$full"
+        alignItems="start"
+        rounded="$md"
+        h="70vh"
+        bg="$neutral3"
+        overflowY="auto"
+        spacing="$1"
       >
-        Backup
-      </Button>
-      <Button
-        onClick={async () => {
-          await restore()
-        }}
-      >
-        Restore
-      </Button>
-    </Box>
+        <For each={log()}>{(item) => <Log {...item} />}</For>
+      </VStack>
+    </VStack>
   )
 }
 
@@ -34,385 +272,6 @@ function download(filename: string, data: any) {
   a.download = filename
   a.click()
   URL.revokeObjectURL(url)
-}
-
-const backup = async () => {
-  const data = {
-    setting: [],
-    users: [],
-    storages: [],
-    metas: [],
-  }
-  const date = new Date()
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const dates = date.getDate()
-  const todaysdate = year + "-" + month + "-" + dates
-  var all_success = 1
-
-  const [, getSettings] = useFetch(() => r.get("/admin/setting/list"))
-  const setSettings = async () => {
-    const resp: PageResp<SettingItem> = await getSettings()
-    handleResp(resp, () => {
-      if (resp.code == 200) {
-        notificationService.show({
-          title: "Settings Backup Succeeded~",
-          description: "Settings Backup Succeeded~",
-          status: "success",
-        })
-        data.setting = resp.data
-      } else {
-        notificationService.show({
-          title: "Settings Backup Failed~",
-          description: resp.message,
-          status: "danger",
-        })
-        all_success = 0
-      }
-    })
-  }
-  await setSettings()
-
-  const [, getUsers] = useFetch(() => r.get("/admin/user/list"))
-  const setUsers = async () => {
-    const resp: PageResp<User> = await getUsers()
-    handleResp(resp, () => {
-      if (resp.code == 200) {
-        notificationService.show({
-          title: "Users Backup Succeeded~",
-          description: "Users Backup Succeeded~",
-          status: "success",
-        })
-        data.users = resp.data.content
-      } else {
-        notificationService.show({
-          title: "Users Backup Failed~",
-          description: resp.message,
-          status: "danger",
-        })
-        all_success = 0
-      }
-    })
-  }
-  await setUsers()
-
-  const [, getMetas] = useFetch(() => r.get("/admin/meta/list"))
-  const setmetas = async () => {
-    const resp: PageResp<Meta> = await getMetas()
-    handleResp(resp, () => {
-      if (resp.code == 200) {
-        notificationService.show({
-          title: "Metas Backup Succeeded~",
-          description: "Metas Backup Succeeded~",
-          status: "success",
-        })
-        data.metas = resp.data.content
-      } else {
-        notificationService.show({
-          title: "Metas Backup Failed~",
-          description: resp.message,
-          status: "danger",
-        })
-        all_success = 0
-      }
-    })
-  }
-  await setmetas()
-
-  const [, getStorages] = useFetch(() => r.get("/admin/storage/list"))
-  const setStorages = async () => {
-    const resp: PageResp<Storage> = await getStorages()
-    handleResp(resp, () => {
-      if (resp.code == 200) {
-        notificationService.show({
-          title: "Storages Backup Succeeded~",
-          description: "Storages Backup Succeeded~",
-          status: "success",
-        })
-        data.storages = resp.data.content
-      } else {
-        notificationService.show({
-          title: "Storages Backup Failed~",
-          description: resp.message,
-          status: "danger",
-        })
-        all_success = 0
-      }
-    })
-  }
-  await setStorages()
-
-  if (all_success == 1) {
-    download("alist_backup_" + todaysdate + ".json", data)
-    notificationService.show({
-      title: "Backup Downloaded Successfully~",
-      description: "Backup Downloaded Successfully~",
-      status: "success",
-    })
-  } else {
-    notificationService.show({
-      title: "Failed to Backup~",
-      description: "Failed to Backup~",
-      status: "danger",
-    })
-  }
-}
-
-const restore = async () => {
-  var all_success = 1
-  var success_all = 1
-  const file = document.createElement("input")
-  file.type = "file"
-  file.accept = "application/json"
-  file.onchange = async (e) => {
-    const file = (e.target as HTMLInputElement).files[0]
-    const reader = new FileReader()
-    reader.onload = async () => {
-      const data = JSON.parse(reader.result as string)
-
-      const [, setSettings] = useFetch(() =>
-        r.post("/admin/setting/save", data.setting)
-      )
-      const setSettings1 = async () => {
-        const resp: PageResp<SettingItem> = await setSettings()
-        handleResp(resp, () => {
-          if (resp.code == 200) {
-            notificationService.show({
-              title: "Settings Restore Succeeded~",
-              description: "Settings Restore Succeeded~",
-              status: "success",
-            })
-          } else {
-            notificationService.show({
-              title: "Settings Restore Failed~",
-              description: resp.message,
-              status: "danger",
-            })
-            all_success = 0
-          }
-        })
-      }
-      await setSettings1()
-
-      success_all = 1
-      const [, getUsers] = useFetch(() => r.get("/admin/user/list"))
-      const restoreusers = async () => {
-        const resp: PageResp<User> = await getUsers()
-        handleResp(resp, async () => {
-          if (resp.code == 200) {
-            for (let index in data.users) {
-              var method = "add"
-              for (let index1 in resp.data.content) {
-                if (
-                  data.users[index].username ==
-                  resp.data.content[index1].username
-                ) {
-                  method = "save"
-                }
-              }
-              if (method == "save") {
-                const [, setUsers] = useFetch(() =>
-                  r.post("/admin/user/update", data.users[index])
-                )
-                const setUsers1 = async () => {
-                  const resp: PageResp<User> = await setUsers()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setUsers1()
-              } else if (
-                data.users[index].username == "admin" ||
-                data.users[index].username == "guest"
-              ) {
-              } else {
-                const [, setUsers] = useFetch(() =>
-                  r.post("/admin/user/create", data.users[index])
-                )
-                const setUsers1 = async () => {
-                  const resp: PageResp<User> = await setUsers()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setUsers1()
-              }
-            }
-          } else {
-            success_all = 0
-          }
-        })
-      }
-      await restoreusers()
-      if (success_all == 1) {
-        notificationService.show({
-          title: "Users Restore Succeeded~",
-          description: "Users Restore Succeeded~",
-          status: "success",
-        })
-      } else {
-        notificationService.show({
-          title: "Users Restore Failed~",
-          description: "Users Restore Failed~",
-          status: "danger",
-        })
-        all_success = 0
-      }
-
-      success_all = 1
-      const [, getMetas] = useFetch(() => r.get("/admin/meta/list"))
-      const restoremetas = async () => {
-        const resp: PageResp<Meta> = await getMetas()
-        handleResp(resp, async () => {
-          if (resp.code == 200) {
-            for (let index in data.metas) {
-              var method = "add"
-              for (let index1 in resp.data.content) {
-                if (data.metas[index].path == resp.data.content[index1].path) {
-                  method = "save"
-                }
-              }
-              if (method == "save") {
-                const [, setMetas] = useFetch(() =>
-                  r.post("/admin/meta/update", data.metas[index])
-                )
-                const setMetas1 = async () => {
-                  const resp: PageResp<Meta> = await setMetas()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setMetas1()
-              } else {
-                const [, setMetas] = useFetch(() =>
-                  r.post("/admin/meta/create", data.metas[index])
-                )
-                const setMetas1 = async () => {
-                  const resp: PageResp<Meta> = await setMetas()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setMetas1()
-              }
-            }
-          } else {
-            success_all = 0
-          }
-        })
-      }
-      await restoremetas()
-      if (success_all == 1) {
-        notificationService.show({
-          title: "Metas Restore Succeeded~",
-          description: "Metas Restore Succeeded~",
-          status: "success",
-        })
-      } else {
-        notificationService.show({
-          title: "Metas Restore Failed~",
-          description: "Metas Restore Failed~",
-          status: "danger",
-        })
-        all_success = 0
-      }
-
-      success_all = 1
-      const [, getStorages] = useFetch(() => r.get("/admin/storage/list"))
-      const restorestorages = async () => {
-        const resp: PageResp<Storage> = await getStorages()
-        handleResp(resp, async () => {
-          if (resp.code == 200) {
-            for (let index in data.storages) {
-              var method = "add"
-              for (let index1 in resp.data.content) {
-                if (
-                  data.storages[index].mount_path ==
-                  resp.data.content[index1].mount_path
-                ) {
-                  method = "save"
-                }
-              }
-              if (method == "save") {
-                const [, setStorages] = useFetch(() =>
-                  r.post("/admin/storage/update", data.storages[index])
-                )
-                const setStorages1 = async () => {
-                  const resp: PageResp<Storage> = await setStorages()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setStorages1()
-              } else {
-                const [, setStorages] = useFetch(() =>
-                  r.post("/admin/storage/create", data.storages[index])
-                )
-                const setStorages1 = async () => {
-                  const resp: PageResp<Storage> = await setStorages()
-                  handleResp(resp, () => {
-                    if (resp.code == 200) {
-                    } else {
-                      success_all = 0
-                    }
-                  })
-                }
-                await setStorages1()
-              }
-            }
-          } else {
-            success_all = 0
-          }
-        })
-      }
-      await restorestorages()
-      if (success_all == 1) {
-        notificationService.show({
-          title: "Storages Restore Succeeded~",
-          description: "Storages Restore Succeeded~",
-          status: "success",
-        })
-      } else {
-        notificationService.show({
-          title: "Storages Restore Failed~",
-          description: "Storages Restore Failed~",
-          status: "danger",
-        })
-        all_success = 0
-      }
-
-      if (all_success == 1) {
-        notificationService.show({
-          title: "Restore Succeeded~",
-          description: "Restore Succeeded~",
-          status: "success",
-        })
-      } else {
-        notificationService.show({
-          title: "Restore Failed~",
-          description: "Restore Failed~",
-          status: "danger",
-        })
-      }
-    }
-    reader.readAsText(file)
-  }
-  file.click()
 }
 
 export default BackupRestore
