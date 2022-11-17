@@ -1,50 +1,53 @@
-import { Button, Heading, HStack, Input, VStack } from "@hope-ui/solid";
-import { Component, createSignal, For, onCleanup } from "solid-js";
-import { createStore, produce } from "solid-js/store";
-import { Dynamic } from "solid-js/web";
-import { useFetch, useT } from "~/hooks";
-import { Resp } from "~/types";
+import { Button, Heading, HStack, Input, VStack } from "@hope-ui/solid"
+import { Component, createSignal, For, onCleanup } from "solid-js"
+import { createStore, produce } from "solid-js/store"
+import { Dynamic } from "solid-js/web"
+import { useFetch, useT } from "~/hooks"
+import { PEmptyResp, PResp } from "~/types"
 import {
   handleRespWithNotifySuccess,
   handleRespWithoutNotify,
   notify,
   r,
-} from "~/utils";
-import { StringShow, ImageShow } from "./Show";
+} from "~/utils"
+import { StringShow, ImageShow } from "./Show"
 
 export interface Message {
-  type: string;
-  content: any;
+  type: string
+  content: any
 }
 
 export const Shower: Record<string, Component<Message>> = {
   string: StringShow,
   image: ImageShow,
-};
+}
 
 export const Messenger = () => {
-  const t = useT();
-  notify.info(t("manage.messenger-tips"));
-  const [toSend, setToSend] = createSignal("");
-  const [getLoading, getR] = useFetch(() => r.post("/admin/message/get"));
-  const [sendLoading, sendR] = useFetch(() =>
-    r.post("/admin/message/send", {
-      message: toSend(),
-    })
-  );
-  const [received, setReceived] = createStore<Message[]>([]);
+  const t = useT()
+  notify.info(t("manage.messenger-tips"))
+  const [toSend, setToSend] = createSignal("")
+  const [getLoading, getR] = useFetch(
+    (): PResp<Message> => r.post("/admin/message/get")
+  )
+  const [sendLoading, sendR] = useFetch(
+    (): PEmptyResp =>
+      r.post("/admin/message/send", {
+        message: toSend(),
+      })
+  )
+  const [received, setReceived] = createStore<Message[]>([])
   const get = async () => {
-    const resp: Resp<Message> = await getR();
+    const resp = await getR()
     handleRespWithoutNotify(resp, (msg) => {
-      setReceived(produce((msgs) => msgs.push(msg)));
-    });
-  };
+      setReceived(produce((msgs) => msgs.push(msg)))
+    })
+  }
   const send = async () => {
-    const resp = await sendR();
-    handleRespWithNotifySuccess(resp);
-  };
-  const getInterval = setInterval(get, 1000);
-  onCleanup(() => clearInterval(getInterval));
+    const resp = await sendR()
+    handleRespWithNotifySuccess(resp)
+  }
+  const getInterval = setInterval(get, 1000)
+  onCleanup(() => clearInterval(getInterval))
   return (
     <VStack spacing="$2" h="$full" alignItems="start">
       <VStack
@@ -74,7 +77,7 @@ export const Messenger = () => {
         </Button>
       </HStack>
     </VStack>
-  );
-};
+  )
+}
 
-export default Messenger;
+export default Messenger

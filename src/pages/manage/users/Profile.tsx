@@ -14,38 +14,39 @@ import {
   SimpleGrid,
   VStack,
   Text,
-} from "@hope-ui/solid";
-import { createSignal, For, JSXElement, Show } from "solid-js";
-import { LinkWithBase } from "~/components";
-import { useFetch, useManageTitle, useRouter, useT } from "~/hooks";
-import { setUser, user } from "~/store";
-import { UserMethods, UserPermissions } from "~/types";
-import { handleResp, notify, r } from "~/utils";
+} from "@hope-ui/solid"
+import { createSignal, For, JSXElement, Show } from "solid-js"
+import { LinkWithBase } from "~/components"
+import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
+import { setMe, me } from "~/store"
+import { PEmptyResp, UserMethods, UserPermissions } from "~/types"
+import { handleResp, notify, r } from "~/utils"
 
 const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
   return (
     <Badge colorScheme={props.can ? "success" : "danger"}>
       {props.children}
     </Badge>
-  );
-};
+  )
+}
 
 const Profile = () => {
-  const t = useT();
-  useManageTitle("manage.sidemenu.profile");
-  const { to } = useRouter();
-  const [username, setUsername] = createSignal(user().username);
-  const [password, setPassword] = createSignal("");
-  const [loading, save] = useFetch(() =>
-    r.post("/me/update", {
-      username: username(),
-      password: password(),
-    })
-  );
+  const t = useT()
+  useManageTitle("manage.sidemenu.profile")
+  const { to } = useRouter()
+  const [username, setUsername] = createSignal(me().username)
+  const [password, setPassword] = createSignal("")
+  const [loading, save] = useFetch(
+    (): PEmptyResp =>
+      r.post("/me/update", {
+        username: username(),
+        password: password(),
+      })
+  )
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
-        when={!UserMethods.is_guest(user())}
+        when={!UserMethods.is_guest(me())}
         fallback={
           <>
             <Alert
@@ -82,7 +83,7 @@ const Profile = () => {
               id="username"
               value={username()}
               onInput={(e) => {
-                setUsername(e.currentTarget.value);
+                setUsername(e.currentTarget.value)
               }}
             />
           </FormControl>
@@ -94,7 +95,7 @@ const Profile = () => {
               placeholder="********"
               value={password()}
               onInput={(e) => {
-                setPassword(e.currentTarget.value);
+                setPassword(e.currentTarget.value)
               }}
             />
             <FormHelperText>{t("users.change_password-tips")}</FormHelperText>
@@ -104,21 +105,21 @@ const Profile = () => {
           <Button
             loading={loading()}
             onClick={async () => {
-              const resp = await save();
+              const resp = await save()
               handleResp(resp, () => {
-                setUser({ ...user(), username: username() });
-                notify.success(t("users.update_profile_success"));
-                to(`/@login?redirect=${encodeURIComponent(location.pathname)}`);
-              });
+                setMe({ ...me(), username: username() })
+                notify.success(t("users.update_profile_success"))
+                to(`/@login?redirect=${encodeURIComponent(location.pathname)}`)
+              })
             }}
           >
             {t("global.save")}
           </Button>
-          <Show when={!user().otp}>
+          <Show when={!me().otp}>
             <Button
               colorScheme="accent"
               onClick={() => {
-                to("/@manage/2fa");
+                to("/@manage/2fa")
               }}
             >
               {t("users.enable_2fa")}
@@ -129,14 +130,14 @@ const Profile = () => {
       <HStack wrap="wrap" gap="$2" mt="$2">
         <For each={UserPermissions}>
           {(item, i) => (
-            <PermissionBadge can={UserMethods.can(user(), i())}>
+            <PermissionBadge can={UserMethods.can(me(), i())}>
               {t(`users.permissions.${item}`)}
             </PermissionBadge>
           )}
         </For>
       </HStack>
     </VStack>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

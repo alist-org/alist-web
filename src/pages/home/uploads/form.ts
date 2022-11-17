@@ -1,4 +1,4 @@
-import { Resp } from "~/types"
+import { EmptyResp } from "~/types"
 import { r } from "~/utils"
 import { SetUpload, Upload } from "./types"
 export const FormUpload: Upload = async (
@@ -11,14 +11,14 @@ export const FormUpload: Upload = async (
   let oldLoaded = 0
   const form = new FormData()
   form.append("file", file)
-  const resp: Resp<{}> = await r.put("/fs/form", form, {
+  const resp: EmptyResp = await r.put("/fs/form", form, {
     headers: {
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": "multipart/form-data",
     },
     onUploadProgress: (progressEvent) => {
-      if (progressEvent.lengthComputable) {
+      if (progressEvent.total) {
         const complete =
           ((progressEvent.loaded / progressEvent.total) * 100) | 0
         setUpload("progress", complete)

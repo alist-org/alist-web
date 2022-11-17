@@ -1,7 +1,7 @@
 import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
 import { IconTypes } from "solid-icons";
 import { useT } from "~/hooks";
-import { getMainColor, user } from "~/store";
+import { getMainColor, me } from "~/store";
 import { UserMethods, UserPermissions } from "~/types";
 import { hoverColor } from "~/utils";
 import { operations } from "./operations";
@@ -12,7 +12,7 @@ export const CenterIcon = <C extends ElementType = "svg">(
   }
 ) => {
   const index = UserPermissions.findIndex((p) => p === props.name);
-  if (index !== -1 && !UserMethods.can(user(), index)) return null;
+  if (index !== -1 && !UserMethods.can(me(), index)) return null;
   const t = useT();
   return (
     <Tooltip placement="top" withArrow label={t(`home.toolbar.${props.name}`)}>

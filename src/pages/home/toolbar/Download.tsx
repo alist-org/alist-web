@@ -15,7 +15,7 @@ import {
 import { createSignal, lazy, onCleanup, Show, Suspense } from "solid-js";
 import { FullLoading } from "~/components";
 import { useT, useDownload } from "~/hooks";
-import { getSettingBool, user } from "~/store";
+import { getSettingBool, me } from "~/store";
 import { UserMethods } from "~/types";
 import { bus } from "~/utils";
 import { CenterIcon } from "./Icon";
@@ -33,7 +33,7 @@ export const Download = () => {
         </MenuItem>
         <Show
           when={
-            UserMethods.is_admin(user()) || getSettingBool("package_download")
+            UserMethods.is_admin(me()) || getSettingBool("package_download")
           }
         >
           <MenuItem

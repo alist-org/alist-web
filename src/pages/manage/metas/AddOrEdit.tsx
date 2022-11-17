@@ -10,26 +10,26 @@ import {
   Flex,
   Textarea,
   FormHelperText,
-} from "@hope-ui/solid";
-import { MaybeLoading, FolderChooseInput } from "~/components";
-import { useFetch, useRouter, useT } from "~/hooks";
-import { handleResp, notify, r } from "~/utils";
-import { Resp, Meta, EmptyResp } from "~/types";
-import { createStore } from "solid-js/store";
-import { For, Show } from "solid-js";
+} from "@hope-ui/solid"
+import { MaybeLoading, FolderChooseInput } from "~/components"
+import { useFetch, useRouter, useT } from "~/hooks"
+import { handleResp, notify, r } from "~/utils"
+import { Meta, PEmptyResp, PResp } from "~/types"
+import { createStore } from "solid-js/store"
+import { For, Show } from "solid-js"
 
 type ItemProps = {
-  name: string;
-  sub?: boolean;
-  onSub: (val: boolean) => void;
-  help?: boolean;
+  name: string
+  sub?: boolean
+  onSub: (val: boolean) => void
+  help?: boolean
 } & (
   | { type: "string"; value: string; onChange: (val: string) => void }
   | { type: "text"; value: string; onChange: (val: string) => void }
   | { type: "bool"; value: boolean; onChange: (val: boolean) => void }
-);
+)
 const Item = (props: ItemProps) => {
-  const t = useT();
+  const t = useT()
   return (
     <FormControl w="$full" display="flex" flexDirection="column">
       <FormLabel for={props.name} display="flex" alignItems="center">
@@ -78,13 +78,13 @@ const Item = (props: ItemProps) => {
         <FormHelperText>{t(`metas.${props.name}_help`)}</FormHelperText>
       </Show>
     </FormControl>
-  );
-};
+  )
+}
 
 const AddOrEdit = () => {
-  const t = useT();
-  const { params, back } = useRouter();
-  const { id } = params;
+  const t = useT()
+  const { params, back } = useRouter()
+  const { id } = params
   const [meta, setMeta] = createStore<Meta>({
     id: 0,
     path: "",
@@ -96,21 +96,21 @@ const AddOrEdit = () => {
     h_sub: false,
     readme: "",
     r_sub: false,
-  });
+  })
   const [metaLoading, loadMeta] = useFetch(
-    (): Promise<Resp<Meta>> => r.get(`/admin/meta/get?id=${id}`)
-  );
+    (): PResp<Meta> => r.get(`/admin/meta/get?id=${id}`)
+  )
 
   const initEdit = async () => {
-    const resp = await loadMeta();
-    handleResp(resp, setMeta);
-  };
-  if (id) {
-    initEdit();
+    const resp = await loadMeta()
+    handleResp(resp, setMeta)
   }
-  const [okLoading, ok] = useFetch((): Promise<EmptyResp> => {
-    return r.post(`/admin/meta/${id ? "update" : "create"}`, meta);
-  });
+  if (id) {
+    initEdit()
+  }
+  const [okLoading, ok] = useFetch((): PEmptyResp => {
+    return r.post(`/admin/meta/${id ? "update" : "create"}`, meta)
+  })
   return (
     <MaybeLoading loading={metaLoading()}>
       <VStack w="$full" alignItems="start" spacing="$2">
@@ -160,25 +160,25 @@ const AddOrEdit = () => {
                 }
                 help={item.help}
               />
-            );
+            )
           }}
         </For>
         <Button
           loading={okLoading()}
           onClick={async () => {
-            const resp = await ok();
+            const resp = await ok()
             // TODO maybe can use handleRrespWithNotifySuccess
             handleResp(resp, () => {
-              notify.success(t("global.save_success"));
-              back();
-            });
+              notify.success(t("global.save_success"))
+              back()
+            })
           }}
         >
           {t(`global.${id ? "save" : "add"}`)}
         </Button>
       </VStack>
     </MaybeLoading>
-  );
-};
+  )
+}
 
-export default AddOrEdit;
+export default AddOrEdit

@@ -7,20 +7,26 @@ import {
   Heading,
   Input,
   VStack,
-} from "@hope-ui/solid";
-import { MaybeLoading, FolderChooseInput } from "~/components";
-import { useFetch, useRouter, useT } from "~/hooks";
-import { handleResp, notify, r } from "~/utils";
-import { Resp, User, UserMethods, UserPermissions } from "~/types";
-import { createStore } from "solid-js/store";
-import { For } from "solid-js";
+} from "@hope-ui/solid"
+import { MaybeLoading, FolderChooseInput } from "~/components"
+import { useFetch, useRouter, useT } from "~/hooks"
+import { handleResp, notify, r } from "~/utils"
+import {
+  PEmptyResp,
+  PResp,
+  User,
+  UserMethods,
+  UserPermissions,
+} from "~/types"
+import { createStore } from "solid-js/store"
+import { For } from "solid-js"
 
 const Permission = (props: {
-  can: boolean;
-  onChange: (val: boolean) => void;
-  name: string;
+  can: boolean
+  onChange: (val: boolean) => void
+  name: string
 }) => {
-  const t = useT();
+  const t = useT()
   return (
     <FormControl
       display="inline-flex"
@@ -38,13 +44,13 @@ const Permission = (props: {
         onChange={() => props.onChange(!props.can)}
       />
     </FormControl>
-  );
-};
+  )
+}
 
 const AddOrEdit = () => {
-  const t = useT();
-  const { params, back } = useRouter();
-  const { id } = params;
+  const t = useT()
+  const { params, back } = useRouter()
+  const { id } = params
   const [user, setUser] = createStore<User>({
     id: 0,
     username: "",
@@ -52,21 +58,21 @@ const AddOrEdit = () => {
     base_path: "",
     role: 0,
     permission: 0,
-  });
-  const [userLoading, loadUser] = useFetch(() =>
-    r.get(`/admin/user/get?id=${id}`)
-  );
+  })
+  const [userLoading, loadUser] = useFetch(
+    (): PResp<User> => r.get(`/admin/user/get?id=${id}`)
+  )
 
   const initEdit = async () => {
-    const resp: Resp<User> = await loadUser();
-    handleResp(resp, setUser);
-  };
-  if (id) {
-    initEdit();
+    const resp = await loadUser()
+    handleResp(resp, setUser)
   }
-  const [okLoading, ok] = useFetch(() => {
-    return r.post(`/admin/user/${id ? "update" : "create"}`, user);
-  });
+  if (id) {
+    initEdit()
+  }
+  const [okLoading, ok] = useFetch((): PEmptyResp => {
+    return r.post(`/admin/user/${id ? "update" : "create"}`, user)
+  })
   return (
     <MaybeLoading loading={userLoading()}>
       <VStack w="$full" alignItems="start" spacing="$2">
@@ -115,9 +121,9 @@ const AddOrEdit = () => {
                   can={UserMethods.can(user, i())}
                   onChange={(val) => {
                     if (val) {
-                      setUser("permission", (user.permission |= 1 << i()));
+                      setUser("permission", (user.permission |= 1 << i()))
                     } else {
-                      setUser("permission", (user.permission &= ~(1 << i())));
+                      setUser("permission", (user.permission &= ~(1 << i())))
                     }
                   }}
                 />
@@ -128,19 +134,19 @@ const AddOrEdit = () => {
         <Button
           loading={okLoading()}
           onClick={async () => {
-            const resp: Resp<{}> = await ok();
+            const resp = await ok()
             // TODO maybe can use handleRrespWithNotifySuccess
             handleResp(resp, () => {
-              notify.success(t("global.save_success"));
-              back();
-            });
+              notify.success(t("global.save_success"))
+              back()
+            })
           }}
         >
           {t(`global.${id ? "save" : "add"}`)}
         </Button>
       </VStack>
     </MaybeLoading>
-  );
-};
+  )
+}
 
-export default AddOrEdit;
+export default AddOrEdit

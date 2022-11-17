@@ -1,17 +1,17 @@
-import { Center } from "@hope-ui/solid";
-import { createSignal, JSXElement, Match, Switch } from "solid-js";
-import { Error, FullLoading, FullScreenLoading } from "~/components";
-import { useFetch } from "~/hooks";
-import { setUser } from "~/store";
-import { r, handleResp } from "~/utils";
+import { createSignal, JSXElement, Match, Switch } from "solid-js"
+import { Error, FullScreenLoading } from "~/components"
+import { useFetch } from "~/hooks"
+import { Me, setMe } from "~/store"
+import { PResp } from "~/types"
+import { r, handleResp } from "~/utils"
 
 const MustUser = (props: { children: JSXElement }) => {
-  const [loading, data] = useFetch(() => r.get("/me"));
-  const [err, setErr] = createSignal<string>();
-  (async () => {
+  const [loading, data] = useFetch((): PResp<Me> => r.get("/me"))
+  const [err, setErr] = createSignal<string>()
+  ;(async () => {
     // const resp: Resp<User> = await data();
-    handleResp(await data(), setUser, setErr);
-  })();
+    handleResp(await data(), setMe, setErr)
+  })()
   return (
     <Switch fallback={props.children}>
       <Match when={loading()}>
@@ -21,7 +21,7 @@ const MustUser = (props: { children: JSXElement }) => {
         <Error msg={`failed get current user: ${err()}`} />
       </Match>
     </Switch>
-  );
-};
+  )
+}
 
-export { MustUser };
+export { MustUser }

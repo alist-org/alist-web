@@ -4,7 +4,7 @@ import { useRouter, useT } from "~/hooks";
 import { BiSolidRightArrow } from "solid-icons/bi";
 import { onClose } from "./Header";
 import { UserMethods, UserRole } from "~/types";
-import { user } from "~/store";
+import { me } from "~/store";
 import { AnchorWithBase } from "~/components";
 import { Link } from "@solidjs/router";
 import { hoverColor } from "~/utils";
@@ -21,11 +21,11 @@ export interface SideMenuItemProps {
 
 const SideMenuItem = (props: SideMenuItemProps) => {
   const ifShow = createMemo(() => {
-    if (!UserMethods.is_admin(user())) {
+    if (!UserMethods.is_admin(me())) {
       if (props.role === undefined) return false;
       else if (
         props.role === UserRole.GENERAL &&
-        !UserMethods.is_general(user())
+        !UserMethods.is_general(me())
       )
         return false;
     }

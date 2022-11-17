@@ -1,4 +1,4 @@
-import { objStore, selectedObjs, State, user } from "~/store";
+import { objStore, selectedObjs, State, me } from "~/store";
 import { Obj } from "~/types";
 import {
   api,
@@ -18,7 +18,7 @@ export const getLinkByDirAndObj = (
   type: URLType = "direct",
   encodeAll?: boolean
 ) => {
-  dir = standardizePath(pathJoin(user().base_path, dir), true);
+  dir = standardizePath(pathJoin(me().base_path, dir), true);
   let path = `${dir}/${obj.name}`;
   path = encodePath(path, encodeAll);
   let host = api;

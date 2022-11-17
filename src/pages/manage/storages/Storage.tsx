@@ -9,7 +9,7 @@ import {
 } from "@hope-ui/solid"
 import { useFetch, useRouter, useT } from "~/hooks"
 import { getMainColor } from "~/store"
-import { EmptyResp, Storage } from "~/types"
+import { PEmptyResp, Storage } from "~/types"
 import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils"
 import { DeletePopover } from "../common/DeletePopover"
 
@@ -22,11 +22,10 @@ export const StorageC = (props: StorageProps) => {
   const t = useT()
   const { to } = useRouter()
   const [deleteLoading, deleteStorage] = useFetch(
-    (): Promise<EmptyResp> =>
-      r.post(`/admin/storage/delete?id=${props.storage.id}`)
+    (): PEmptyResp => r.post(`/admin/storage/delete?id=${props.storage.id}`)
   )
   const [enableOrDisableLoading, enableOrDisable] = useFetch(
-    (): Promise<EmptyResp> =>
+    (): PEmptyResp =>
       r.post(
         `/admin/storage/${props.storage.disabled ? "enable" : "disable"}?id=${
           props.storage.id

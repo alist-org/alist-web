@@ -6,7 +6,7 @@ import { operations } from "../toolbar/operations";
 import { For } from "solid-js";
 import { bus, notify } from "~/utils";
 import { UserMethods, UserPermissions } from "~/types";
-import { getSettingBool, user } from "~/store";
+import { getSettingBool, me } from "~/store";
 
 const ItemContent = (props: { name: string }) => {
   const t = useT();
@@ -29,7 +29,7 @@ export const ContextMenu = () => {
   const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink();
   const { batchDownloadSelected } = useDownload();
   const canPackageDownload = () => {
-    return UserMethods.is_admin(user()) || getSettingBool("package_download");
+    return UserMethods.is_admin(me()) || getSettingBool("package_download");
   };
   return (
     <Menu
@@ -42,7 +42,7 @@ export const ContextMenu = () => {
           <Item
             hidden={() => {
               const index = UserPermissions.findIndex((item) => item === name);
-              return !UserMethods.can(user(), index);
+              return !UserMethods.can(me(), index);
             }}
             onClick={() => {
               bus.emit("tool", name);

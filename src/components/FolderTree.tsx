@@ -15,8 +15,8 @@ import {
   Spinner,
   Text,
   VStack,
-} from "@hope-ui/solid";
-import { BiSolidRightArrow } from "solid-icons/bi";
+} from "@hope-ui/solid"
+import { BiSolidRightArrow } from "solid-icons/bi"
 import {
   Accessor,
   createContext,
@@ -24,31 +24,31 @@ import {
   useContext,
   Show,
   For,
-} from "solid-js";
-import { useFetch, useT } from "~/hooks";
-import { getMainColor, password } from "~/store";
-import { Obj, Resp } from "~/types";
-import { pathBase, handleResp, hoverColor, pathJoin, fsDirs } from "~/utils";
+} from "solid-js"
+import { useFetch, useT } from "~/hooks"
+import { getMainColor, password } from "~/store"
+import { Obj } from "~/types"
+import { pathBase, handleResp, hoverColor, pathJoin, fsDirs } from "~/utils"
 
 export interface FolderTreeProps {
-  onChange: (path: string) => void;
-  forceRoot?: boolean;
+  onChange: (path: string) => void
+  forceRoot?: boolean
 }
 const context = createContext<{
-  value: Accessor<string>;
-  onChange: (val: string) => void;
-  forceRoot: boolean;
-}>();
+  value: Accessor<string>
+  onChange: (val: string) => void
+  forceRoot: boolean
+}>()
 export const FolderTree = (props: FolderTreeProps) => {
-  const [path, setPath] = createSignal("/");
+  const [path, setPath] = createSignal("/")
   return (
     <Box class="folder-tree-box" w="$full" overflowX="auto">
       <context.Provider
         value={{
           value: path,
           onChange: (val) => {
-            setPath(val);
-            props.onChange(val);
+            setPath(val)
+            props.onChange(val)
           },
           forceRoot: props.forceRoot ?? false,
         }}
@@ -56,22 +56,22 @@ export const FolderTree = (props: FolderTreeProps) => {
         <FolderTreeNode path="/" />
       </context.Provider>
     </Box>
-  );
-};
+  )
+}
 
 const FolderTreeNode = (props: { path: string }) => {
-  const [children, setChildren] = createSignal<Obj[]>([]);
-  const { value, onChange, forceRoot } = useContext(context)!;
+  const [children, setChildren] = createSignal<Obj[]>([])
+  const { value, onChange, forceRoot } = useContext(context)!
   const [loading, fetchDirs] = useFetch(() =>
     fsDirs(props.path, password(), forceRoot)
-  );
+  )
   const load = async () => {
-    if (children().length > 0) return;
-    const resp: Resp<Obj[]> = await fetchDirs();
-    handleResp(resp, setChildren);
-  };
-  const { isOpen, onToggle } = createDisclosure();
-  const active = () => value() === props.path;
+    if (children().length > 0) return
+    const resp = await fetchDirs()
+    handleResp(resp, setChildren)
+  }
+  const { isOpen, onToggle } = createDisclosure()
+  const active = () => value() === props.path
   return (
     <Box>
       <HStack spacing="$2">
@@ -86,9 +86,9 @@ const FolderTreeNode = (props: { path: string }) => {
             transition="transform 0.2s"
             cursor="pointer"
             onClick={() => {
-              onToggle();
+              onToggle()
               if (isOpen()) {
-                load();
+                load()
               }
             }}
           />
@@ -108,7 +108,7 @@ const FolderTreeNode = (props: { path: string }) => {
             bgColor: active() ? "$info8" : hoverColor(),
           }}
           onClick={() => {
-            onChange(props.path);
+            onChange(props.path)
           }}
         >
           {props.path === "/" ? "root" : pathBase(props.path)}
@@ -124,20 +124,20 @@ const FolderTreeNode = (props: { path: string }) => {
         </VStack>
       </Show>
     </Box>
-  );
-};
+  )
+}
 
 export type ModalFolderChooseProps = {
-  opened: boolean;
-  onClose: () => void;
-  onSubmit?: (text: string) => void;
-  type?: string;
-  defaultValue?: string;
-  loading?: boolean;
-};
+  opened: boolean
+  onClose: () => void
+  onSubmit?: (text: string) => void
+  type?: string
+  defaultValue?: string
+  loading?: boolean
+}
 export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
-  const t = useT();
-  const [value, setValue] = createSignal(props.defaultValue ?? "");
+  const t = useT()
+  const [value, setValue] = createSignal(props.defaultValue ?? "")
   return (
     <Modal
       size="xl"
@@ -165,17 +165,17 @@ export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
 export const FolderChooseInput = (props: {
-  value: string;
-  onChange: (path: string) => void;
-  id?: string;
-  onlyFolder?: boolean;
+  value: string
+  onChange: (path: string) => void
+  id?: string
+  onlyFolder?: boolean
 }) => {
-  const { isOpen, onOpen, onClose } = createDisclosure();
-  const t = useT();
+  const { isOpen, onOpen, onClose } = createDisclosure()
+  const t = useT()
   return (
     <>
       <HStack w="$full" spacing="$2">
@@ -209,5 +209,5 @@ export const FolderChooseInput = (props: {
         </ModalContent>
       </Modal>
     </>
-  );
-};
+  )
+}
