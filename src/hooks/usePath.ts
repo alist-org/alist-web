@@ -6,6 +6,7 @@ import {
   State,
   getPagination,
   objStore,
+  recoverScroll,
 } from "~/store"
 import {
   fsGet,
@@ -71,7 +72,7 @@ export const resetGlobalPage = () => {
   if (pagination.type === "pagination") {
     addOrUpdateQuery("page", 1)
   }
-  console.log('resetGlobalPage', globalPage)
+  console.log("resetGlobalPage", globalPage)
 }
 export const usePath = () => {
   const { pathname } = useRouter()
@@ -186,6 +187,7 @@ export const usePath = () => {
         ObjStore.setWrite(data.write)
         ObjStore.setProvider(data.provider)
         ObjStore.setState(State.Folder)
+        recoverScroll(path)
       },
       handleErr
     )
