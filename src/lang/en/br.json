@@ -1,0 +1,13 @@
+{
+  "backup": "Backup",
+  "restore": "Restore",
+  "start_backup": "Start backup",
+  "finish_backup": "Finish backup",
+  "success_backup_item": "[ {{item}} ] Backup was successful",
+  "failed_backup_item": "[ {{item}} ] Backup failed",
+  "no_file": "No file selected",
+  "start_restore": "Start restore",
+  "finish_restore": "Finish restore",
+  "success_restore_item": "[ {{item}} ] Restore was successful",
+  "failed_restore_item": "[ {{item}} ] Restore of failed"
+}
