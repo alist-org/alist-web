@@ -2,7 +2,6 @@ import { objStore, selectedObjs, State, user } from "~/store";
 import { Obj } from "~/types";
 import {
   api,
-  base_path,
   encodePath,
   pathDir,
   pathJoin,
@@ -25,7 +24,7 @@ export const getLinkByDirAndObj = (
   let host = api;
   let prefix = type === "direct" ? "/d" : "/p";
   if (type === "preview") {
-    host = location.origin + base_path;
+    host = location.origin;
     prefix = "";
   }
   let ans = `${host}${prefix}${path}`;
