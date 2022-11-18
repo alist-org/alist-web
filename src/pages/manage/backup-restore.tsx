@@ -208,8 +208,7 @@ const BackupRestore = () => {
                   t("br.failed_restore_item", {
                     item: t(`manage.sidemenu.${item.name}`),
                   }) +
-                    "-" +
-                    `[${(itemData as any)[item.key]}]` +
+                    ` [ ${(itemData as any)[item.key]} ] ` +
                     ":" +
                     msg,
                   "error"
