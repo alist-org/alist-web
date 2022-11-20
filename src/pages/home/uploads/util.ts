@@ -20,12 +20,18 @@ export const traverseFileTree = async (entry: FileSystemEntry) => {
         }, errorCallback)
       } else if (entry.isDirectory) {
         const dirReader = (entry as FileSystemDirectoryEntry).createReader()
-        dirReader.readEntries(async (entries) => {
-          for (let i = 0; i < entries.length; i++) {
-            await internalProcess(entries[i], path + entry.name + "/")
-          }
-          resolve({})
-        }, errorCallback)
+        const readEntries = () => {
+          dirReader.readEntries(async (entries) => {
+            if (entries.length === 0) {
+              resolve({})
+            }
+            for (let i = 0; i < entries.length; i++) {
+              await internalProcess(entries[i], path + entry.name + "/")
+            }
+            readEntries()
+          }, errorCallback)
+        }
+        readEntries()
       }
     })
     await promise
