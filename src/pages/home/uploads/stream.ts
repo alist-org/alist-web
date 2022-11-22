@@ -1,3 +1,4 @@
+import { password } from "~/store"
 import { EmptyResp } from "~/types"
 import { r } from "~/utils"
 import { SetUpload, Upload } from "./types"
@@ -14,6 +15,7 @@ export const StreamUpload: Upload = async (
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": file.type || "application/octet-stream",
+      Password: password(),
     },
     onUploadProgress: (progressEvent) => {
       if (progressEvent.total) {

@@ -2,6 +2,7 @@ import { createDisclosure } from "@hope-ui/solid";
 import { onCleanup } from "solid-js";
 import { ModalInput } from "~/components";
 import { useFetch, usePath, useRouter } from "~/hooks";
+import { password } from "~/store";
 import {
   bus,
   fsNewFile,
@@ -30,7 +31,7 @@ export const NewFile = () => {
       onClose={onClose}
       loading={loading()}
       onSubmit={async (name) => {
-        const resp = await ok(pathJoin(pathname(), name));
+        const resp = await ok(pathJoin(pathname(), name), password());
         handleRespWithNotifySuccess(resp, () => {
           refresh();
           onClose();

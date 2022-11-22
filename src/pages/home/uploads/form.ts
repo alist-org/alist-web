@@ -1,3 +1,4 @@
+import { password } from "~/store"
 import { EmptyResp } from "~/types"
 import { r } from "~/utils"
 import { SetUpload, Upload } from "./types"
@@ -16,6 +17,7 @@ export const FormUpload: Upload = async (
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": "multipart/form-data",
+      Password: password(),
     },
     onUploadProgress: (progressEvent) => {
       if (progressEvent.total) {

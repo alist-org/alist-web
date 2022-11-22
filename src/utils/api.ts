@@ -70,10 +70,11 @@ export const fsRemove = (dir: string, names: string[]): PEmptyResp => {
   return r.post("/fs/remove", { dir, names })
 }
 
-export const fsNewFile = (path: string): PEmptyResp => {
+export const fsNewFile = (path: string, password: string): PEmptyResp => {
   return r.put("/fs/put", undefined, {
     headers: {
       "File-Path": encodeURIComponent(path),
+      Password: password,
     },
   })
 }
