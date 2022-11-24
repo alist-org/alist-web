@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Image, Anchor } from "@hope-ui/solid";
+import { Box, Flex, VStack, Image, Text, Anchor } from "@hope-ui/solid";
 import { For, onCleanup, onMount } from "solid-js";
 import { useRouter, useLink } from "~/hooks";
 import { getSettingBool, objStore } from "~/store";
@@ -12,18 +12,20 @@ import { currentLang } from "~/app/i18n";
 import { SelectWrapper } from "~/components";
 import { isMobile } from "~/utils/compatibility";
 
-const players: { icon: string; scheme: string }[] = [
-  { icon: "iina", scheme: "iina://weblink?url=$url" },
-  { icon: "potplayer", scheme: "potplayer://$e_url" },
-  { icon: "vlc", scheme: "vlc://$url" },
-  { icon: "nplayer", scheme: "nplayer-$url" },
+const players: { icon: string; name: string; scheme: string }[] = [
+  { icon: "iina", name: 'IINA', scheme: "iina://weblink?url=$url" },
+  { icon: "potplayer", name: 'PotPlayer',  scheme: "potplayer://$e_url" },
+  { icon: "vlc", name: 'VLC',  scheme: "vlc://$url" },
+  { icon: "nplayer", name: 'nPlayer',  scheme: "nplayer-$url" },
   {
     icon: "mxplayer",
+    name: 'MX Player', 
     scheme:
       "intent:$url#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
   },
   {
     icon: "mxplayer-pro",
+    name: 'MX Player Pro', 
     scheme:
       "intent:$url#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
   },
@@ -181,7 +183,8 @@ const Preview = () => {
                   objStore.obj.name
                 )}
               >
-                <Image boxSize="$8" src={`${window.__dynamic_base__}/images/${item.icon}.webp`} />
+                <Image m="0 auto" boxSize="$8" src={`${window.__dynamic_base__}/images/${item.icon}.webp`} />
+                <Text size="xs" textAlign="center">{item.name}</Text>
               </Anchor>
             );
           }}
