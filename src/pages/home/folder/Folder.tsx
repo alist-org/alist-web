@@ -14,6 +14,7 @@ import lgAutoplay from "lightgallery/plugins/autoplay";
 import lgFullscreen from "lightgallery/plugins/fullscreen";
 import "lightgallery/css/lightgallery-bundle.css";
 import { LightGallery } from "lightgallery/lightgallery";
+import { Search } from "./Search";
 
 const ListLayout = lazy(() => import("./List"));
 const GridLayout = lazy(() => import("./Grid"));
@@ -55,6 +56,7 @@ const Folder = () => {
         <ListLayout />
       </Show>
       <Pager />
+      <Search />
       <ContextMenu />
     </>
   );

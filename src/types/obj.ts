@@ -16,6 +16,7 @@ export interface Obj {
   sign?: string;
   thumb: string;
   type: ObjType;
+  path: string
 }
 
 export type StoreObj = Obj & {

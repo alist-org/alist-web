@@ -19,6 +19,8 @@ export type FsListResp = Resp<{
   provider: string
 }>
 
+export type FsSearchResp = Resp<Obj[]>
+
 export type FsGetResp = Resp<
   Obj & {
     raw_url: string

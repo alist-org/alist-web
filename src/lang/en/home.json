@@ -84,5 +84,9 @@
   "footer": {
     "powered_by": "Powered by AList",
     "manage": "Manage"
+  },
+  "search": {
+    "search": "Search",
+    "no_result": "No result yet"
   }
 }
