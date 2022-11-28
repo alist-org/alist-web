@@ -112,14 +112,14 @@ const Indexes = () => {
               </Badge>
             </Text>
             <Text>
-              {t("indexes.obj_count")}:
+              {t("indexes.last_done_time")}:
               <Badge colorScheme="accent" ml="$2">
                 {formatDate(progress()!.last_done_time)}
               </Badge>
             </Text>
             <Show when={progress()?.error}>
               <Text css={{ wordBreak: "break-all" }}>
-                {t("indexes.obj_count")}:
+                {t("indexes.error")}:
                 <Badge colorScheme="danger" ml="$2">
                   {progress()!.error}
                 </Badge>
