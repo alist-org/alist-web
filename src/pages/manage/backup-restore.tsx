@@ -231,6 +231,7 @@ const BackupRestore = () => {
           onClick={() => {
             backup()
           }}
+          colorScheme="accent"
         >
           {t("br.backup")}
         </Button>
@@ -239,7 +240,6 @@ const BackupRestore = () => {
           onClick={() => {
             restore()
           }}
-          colorScheme="accent"
         >
           {t("br.restore")}
         </Button>

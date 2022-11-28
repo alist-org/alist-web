@@ -1,5 +1,12 @@
 import axios, { CancelToken } from "axios"
-import { PEmptyResp, FsGetResp, FsListResp, Obj, PResp, FsSearchResp } from "~/types"
+import {
+  PEmptyResp,
+  FsGetResp,
+  FsListResp,
+  Obj,
+  PResp,
+  FsSearchResp,
+} from "~/types"
 import { r } from "."
 
 export const fsGet = (
@@ -113,11 +120,27 @@ export const fetchText = async (
 }
 
 export const fsSearch = async (
-  path: string,
-  keywords: string
+  parent: string,
+  keywords: string,
+  page = 1,
+  per_page = 100
 ): Promise<FsSearchResp> => {
   return r.post("/fs/search", {
-    path,
+    parent,
     keywords,
+    page,
+    per_page,
+  })
+}
+
+export const buildIndex = async (
+  paths = ["/"],
+  max_depth = -1,
+  ignore_paths = []
+): PEmptyResp => {
+  return r.post("/admin/index/build", {
+    paths,
+    max_depth,
+    ignore_paths,
   })
 }

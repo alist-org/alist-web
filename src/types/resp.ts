@@ -19,7 +19,16 @@ export type FsListResp = Resp<{
   provider: string
 }>
 
-export type FsSearchResp = Resp<Obj[]>
+export type SearchNode = {
+  parent: string
+  name: string
+  is_dir: boolean
+  size: number
+  path: string
+  type: number
+}
+
+export type FsSearchResp = PageResp<SearchNode>
 
 export type FsGetResp = Resp<
   Obj & {

@@ -17,38 +17,42 @@ import {
   SelectValue,
   Switch as HopeSwitch,
   Textarea,
-} from "@hope-ui/solid";
-import { For, Match, Show, Switch } from "solid-js";
-import { useT } from "~/hooks";
-import { Flag, SettingItem, Type } from "~/types";
-import { TiDelete } from "solid-icons/ti";
+} from "@hope-ui/solid"
+import { For, Match, Show, Switch } from "solid-js"
+import { useT } from "~/hooks"
+import { Flag, SettingItem, Type } from "~/types"
+import { TiDelete } from "solid-icons/ti"
 
 export type ItemProps = SettingItem & {
-  onChange?: (value: string) => void;
-  onDelete?: () => void;
+  onChange?: (value: string) => void
+  onDelete?: () => void
   // value: () => string;
-};
+  hideLabel?: boolean
+  w?: string
+}
 
 const Item = (props: ItemProps) => {
-  const t = useT();
+  const t = useT()
   return (
-    <FormControl w="$full" display="flex" flexDirection="column">
-      <FormLabel for={props.key} display="flex" alignItems="center">
-        {t(`settings.${props.key}`)}
-        <Show when={props.flag === Flag.DEPRECATED}>
-          <Icon
-            ml="$2"
-            as={TiDelete}
-            boxSize="$5"
-            color="$danger9"
-            verticalAlign="middle"
-            cursor="pointer"
-            onClick={() => {
-              props.onDelete?.();
-            }}
-          />
-        </Show>
-      </FormLabel>
+    <FormControl w={props.w ?? "100%"} display="flex" flexDirection="column">
+      <Show when={!props.hideLabel}>
+        <FormLabel for={props.key} display="flex" alignItems="center">
+          {t(`settings.${props.key}`)}
+          <Show when={props.flag === Flag.DEPRECATED}>
+            <Icon
+              ml="$2"
+              as={TiDelete}
+              boxSize="$5"
+              color="$danger9"
+              verticalAlign="middle"
+              cursor="pointer"
+              onClick={() => {
+                props.onDelete?.()
+              }}
+            />
+          </Show>
+        </FormLabel>
+      </Show>
       <Switch fallback={<Center>{t("settings_other.unknown_type")}</Center>}>
         <Match when={[Type.String, Type.Number].includes(props.type)}>
           <Input
@@ -115,7 +119,7 @@ const Item = (props: ItemProps) => {
         {props.help ? t(`settings.${props.key}-tips`) : ""}
       </FormHelperText>
     </FormControl>
-  );
-};
+  )
+}
 
-export { Item };
+export { Item }
