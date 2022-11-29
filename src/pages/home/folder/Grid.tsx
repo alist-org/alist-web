@@ -1,8 +1,8 @@
-import { Grid } from "@hope-ui/solid";
-import { For } from "solid-js";
-import { GridItem } from "./GridItem";
-import "lightgallery/css/lightgallery-bundle.css";
-import { objStore } from "~/store";
+import { Grid } from "@hope-ui/solid"
+import { For } from "solid-js"
+import { GridItem } from "./GridItem"
+import "lightgallery/css/lightgallery-bundle.css"
+import { objStore } from "~/store"
 
 const GridLayout = () => {
   return (
@@ -13,11 +13,11 @@ const GridLayout = () => {
     >
       <For each={objStore.objs}>
         {(obj, i) => {
-          return <GridItem obj={obj} index={i()} />;
+          return <GridItem obj={obj} index={i()} />
         }}
       </For>
     </Grid>
-  );
-};
+  )
+}
 
-export default GridLayout;
+export default GridLayout

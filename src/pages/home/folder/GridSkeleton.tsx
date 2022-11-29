@@ -1,5 +1,5 @@
-import { Grid, Skeleton } from "@hope-ui/solid";
-import { For } from "solid-js";
+import { Grid, Skeleton } from "@hope-ui/solid"
+import { For } from "solid-js"
 
 const GridSkeleton = () => {
   return (
@@ -12,7 +12,7 @@ const GridSkeleton = () => {
         {() => <Skeleton w="$full" h="$28" rounded="$lg" />}
       </For>
     </Grid>
-  );
-};
+  )
+}
 
-export default GridSkeleton;
+export default GridSkeleton

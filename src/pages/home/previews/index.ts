@@ -1,18 +1,18 @@
-import { Component, lazy } from "solid-js";
-import { getIframePreviews } from "~/store";
-import { Obj, ObjType } from "~/types";
-import { ext } from "~/utils";
-import { generateIframePreview } from "./iframe";
+import { Component, lazy } from "solid-js"
+import { getIframePreviews } from "~/store"
+import { Obj, ObjType } from "~/types"
+import { ext } from "~/utils"
+import { generateIframePreview } from "./iframe"
 
 export interface Preview {
-  name: string;
-  type?: ObjType;
-  exts?: string[] | "*";
-  provider?: RegExp;
-  component: Component;
+  name: string
+  type?: ObjType
+  exts?: string[] | "*"
+  provider?: RegExp
+  component: Component
 }
 
-export type PreviewComponent = Pick<Preview, "name" | "component">;
+export type PreviewComponent = Pick<Preview, "name" | "component">
 
 const previews: Preview[] = [
   {
@@ -61,37 +61,37 @@ const previews: Preview[] = [
     provider: /Aliyundrive/,
     component: lazy(() => import("./aliyun_office")),
   },
-];
+]
 
 export const getPreviews = (
   file: Obj & { provider: string }
 ): PreviewComponent[] => {
-  const res: PreviewComponent[] = [];
+  const res: PreviewComponent[] = []
   // internal previews
   previews.forEach((preview) => {
     if (preview.provider && !preview.provider.test(file.provider)) {
-      return;
+      return
     }
     if (
       preview.type === file.type ||
       preview.exts === "*" ||
       preview.exts?.includes(ext(file.name).toLowerCase())
     ) {
-      res.push({ name: preview.name, component: preview.component });
+      res.push({ name: preview.name, component: preview.component })
     }
-  });
+  })
   // iframe previews
-  const iframePreviews = getIframePreviews(file.name);
+  const iframePreviews = getIframePreviews(file.name)
   iframePreviews.forEach((preview) => {
     res.push({
       name: preview.key,
       component: generateIframePreview(preview.value),
-    });
-  });
+    })
+  })
   // download page
   res.push({
     name: "Download",
     component: lazy(() => import("./download")),
-  });
-  return res;
-};
+  })
+  return res
+}

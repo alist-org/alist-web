@@ -1,17 +1,17 @@
-import { HStack, VStack } from "@hope-ui/solid";
-import { createMemo, createSignal, Show, Suspense } from "solid-js";
-import { Dynamic } from "solid-js/web";
-import { FullLoading, SelectWrapper } from "~/components";
-import { objStore } from "~/store";
-import { Download } from "../previews/download";
-import { OpenWith } from "./open-with";
-import { getPreviews } from "../previews";
+import { HStack, VStack } from "@hope-ui/solid"
+import { createMemo, createSignal, Show, Suspense } from "solid-js"
+import { Dynamic } from "solid-js/web"
+import { FullLoading, SelectWrapper } from "~/components"
+import { objStore } from "~/store"
+import { Download } from "../previews/download"
+import { OpenWith } from "./open-with"
+import { getPreviews } from "../previews"
 
 const File = () => {
   const previews = createMemo(() => {
-    return getPreviews({ ...objStore.obj, provider: objStore.provider });
-  });
-  const [cur, setCur] = createSignal(previews()[0]);
+    return getPreviews({ ...objStore.obj, provider: objStore.provider })
+  })
+  const [cur, setCur] = createSignal(previews()[0])
   return (
     <Show when={previews().length > 1} fallback={<Download openWith />}>
       <VStack w="$full" spacing="$2">
@@ -20,7 +20,7 @@ const File = () => {
             alwaysShowBorder
             value={cur().name}
             onChange={(name) => {
-              setCur(previews().find((p) => p.name === name)!);
+              setCur(previews().find((p) => p.name === name)!)
             }}
             options={previews().map((item) => ({ value: item.name }))}
           />
@@ -31,7 +31,7 @@ const File = () => {
         </Suspense>
       </VStack>
     </Show>
-  );
-};
+  )
+}
 
-export default File;
+export default File

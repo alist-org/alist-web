@@ -1,8 +1,8 @@
-import { BoxWithFullScreen } from "~/components";
-import { objStore } from "~/store";
-import { hope } from "@hope-ui/solid";
-import { convertURL } from "~/utils";
-import { Component } from "solid-js";
+import { BoxWithFullScreen } from "~/components"
+import { objStore } from "~/store"
+import { hope } from "@hope-ui/solid"
+import { convertURL } from "~/utils"
+import { Component } from "solid-js"
 
 const IframePreview = (props: { scheme: string }) => {
   return (
@@ -13,11 +13,11 @@ const IframePreview = (props: { scheme: string }) => {
         src={convertURL(props.scheme, objStore.raw_url, objStore.obj.name)}
       />
     </BoxWithFullScreen>
-  );
-};
+  )
+}
 
 export const generateIframePreview = (scheme: string): Component => {
   return () => {
-    return <IframePreview scheme={scheme} />;
-  };
-};
+    return <IframePreview scheme={scheme} />
+  }
+}

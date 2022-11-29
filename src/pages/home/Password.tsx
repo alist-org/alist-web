@@ -7,15 +7,15 @@ import {
   Text,
   useColorModeValue,
   VStack,
-} from "@hope-ui/solid";
-import { LinkWithBase } from "~/components";
-import { usePath, useRouter, useT } from "~/hooks";
-import { password, setPassword } from "~/store";
+} from "@hope-ui/solid"
+import { LinkWithBase } from "~/components"
+import { usePath, useRouter, useT } from "~/hooks"
+import { password, setPassword } from "~/store"
 
 const Password = () => {
-  const t = useT();
-  const { refresh } = usePath();
-  const { back } = useRouter();
+  const t = useT()
+  const { refresh } = usePath()
+  const { back } = useRouter()
   return (
     <VStack
       w={{
@@ -33,7 +33,7 @@ const Password = () => {
         background={useColorModeValue("$neutral3", "$neutral2")()}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            refresh(true);
+            refresh(true)
           }
         }}
         onInput={(e) => setPassword(e.currentTarget.value)}
@@ -62,6 +62,6 @@ const Password = () => {
         </HStack>
       </HStack>
     </VStack>
-  );
-};
-export default Password;
+  )
+}
+export default Password

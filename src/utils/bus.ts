@@ -1,9 +1,9 @@
-import mitt from "mitt";
+import mitt from "mitt"
 
 type Events = {
-  to: string;
-  gallery: string;
-  tool: string;
-};
+  to: string
+  gallery: string
+  tool: string
+}
 
-export const bus = mitt<Events>();
+export const bus = mitt<Events>()

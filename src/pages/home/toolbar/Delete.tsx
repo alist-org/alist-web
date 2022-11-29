@@ -7,27 +7,27 @@ import {
   ModalFooter,
   Button,
   createDisclosure,
-} from "@hope-ui/solid";
-import { onCleanup } from "solid-js";
-import { useFetch, usePath, useRouter, useT } from "~/hooks";
-import { selectedObjs } from "~/store";
-import { bus, fsRemove, handleRespWithNotifySuccess } from "~/utils";
+} from "@hope-ui/solid"
+import { onCleanup } from "solid-js"
+import { useFetch, usePath, useRouter, useT } from "~/hooks"
+import { selectedObjs } from "~/store"
+import { bus, fsRemove, handleRespWithNotifySuccess } from "~/utils"
 
 export const Delete = () => {
-  const t = useT();
-  const { isOpen, onOpen, onClose } = createDisclosure();
-  const [loading, ok] = useFetch(fsRemove);
-  const { refresh } = usePath();
-  const { pathname } = useRouter();
+  const t = useT()
+  const { isOpen, onOpen, onClose } = createDisclosure()
+  const [loading, ok] = useFetch(fsRemove)
+  const { refresh } = usePath()
+  const { pathname } = useRouter()
   const handler = (name: string) => {
     if (name === "delete") {
-      onOpen();
+      onOpen()
     }
-  };
-  bus.on("tool", handler);
+  }
+  bus.on("tool", handler)
   onCleanup(() => {
-    bus.off("tool", handler);
-  });
+    bus.off("tool", handler)
+  })
   return (
     <Modal
       blockScrollOnMount={false}
@@ -55,11 +55,11 @@ export const Delete = () => {
               const resp = await ok(
                 pathname(),
                 selectedObjs().map((obj) => obj.name)
-              );
+              )
               handleRespWithNotifySuccess(resp, () => {
-                refresh();
-                onClose();
-              });
+                refresh()
+                onClose()
+              })
             }}
           >
             {t("global.confirm")}
@@ -67,5 +67,5 @@ export const Delete = () => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

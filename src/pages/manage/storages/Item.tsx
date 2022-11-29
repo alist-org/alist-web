@@ -16,36 +16,36 @@ import {
   SelectValue,
   Switch as HopeSwitch,
   Textarea,
-} from "@hope-ui/solid";
-import { For, Match, Show, Switch } from "solid-js";
-import { useT } from "~/hooks";
-import { DriverItem, Type } from "~/types";
+} from "@hope-ui/solid"
+import { For, Match, Show, Switch } from "solid-js"
+import { useT } from "~/hooks"
+import { DriverItem, Type } from "~/types"
 
 export type ItemProps = DriverItem & {
-  readonly?: boolean;
-  full_name_path?: string;
-  options_prefix?: string;
-  driver?: string;
+  readonly?: boolean
+  full_name_path?: string
+  options_prefix?: string
+  driver?: string
 } & (
     | {
-        type: Type.Bool;
-        onChange?: (value: boolean) => void;
-        value: boolean;
+        type: Type.Bool
+        onChange?: (value: boolean) => void
+        value: boolean
       }
     | {
-        type: Type.Number;
-        onChange?: (value: number) => void;
-        value: number;
+        type: Type.Number
+        onChange?: (value: number) => void
+        value: number
       }
     | {
-        type: Type.String | Type.Text | Type.Select;
-        onChange?: (value: string) => void;
-        value: string;
+        type: Type.String | Type.Text | Type.Select
+        onChange?: (value: string) => void
+        value: string
       }
-  );
+  )
 
 const Item = (props: ItemProps) => {
-  const t = useT();
+  const t = useT()
   return (
     <FormControl
       w="$full"
@@ -159,7 +159,7 @@ const Item = (props: ItemProps) => {
         </FormHelperText>
       </Show>
     </FormControl>
-  );
-};
+  )
+}
 
-export { Item };
+export { Item }

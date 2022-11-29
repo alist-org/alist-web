@@ -1,19 +1,19 @@
-import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid";
-import { IconTypes } from "solid-icons";
-import { useT } from "~/hooks";
-import { getMainColor, me } from "~/store";
-import { UserMethods, UserPermissions } from "~/types";
-import { hoverColor } from "~/utils";
-import { operations } from "./operations";
+import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid"
+import { IconTypes } from "solid-icons"
+import { useT } from "~/hooks"
+import { getMainColor, me } from "~/store"
+import { UserMethods, UserPermissions } from "~/types"
+import { hoverColor } from "~/utils"
+import { operations } from "./operations"
 
 export const CenterIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
-    name: string;
+    name: string
   }
 ) => {
-  const index = UserPermissions.findIndex((p) => p === props.name);
-  if (index !== -1 && !UserMethods.can(me(), index)) return null;
-  const t = useT();
+  const index = UserPermissions.findIndex((p) => p === props.name)
+  if (index !== -1 && !UserMethods.can(me(), index)) return null
+  const t = useT()
   return (
     <Tooltip placement="top" withArrow label={t(`home.toolbar.${props.name}`)}>
       <Icon
@@ -37,16 +37,16 @@ export const CenterIcon = <C extends ElementType = "svg">(
         {...props}
       />
     </Tooltip>
-  );
-};
+  )
+}
 
 export const RightIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
-    tips?: string;
-    icon?: IconTypes;
+    tips?: string
+    icon?: IconTypes
   }
 ) => {
-  const t = useT();
+  const t = useT()
   return (
     <Tooltip
       disabled={!props.tips}
@@ -76,8 +76,8 @@ export const RightIcon = <C extends ElementType = "svg">(
         {...props}
       />
     </Tooltip>
-  );
-};
+  )
+}
 
 // export const ToolIcon = <C extends ElementType = "button">(
 //   props: IconButtonProps<C>

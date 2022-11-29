@@ -1,5 +1,5 @@
-import { Skeleton, VStack } from "@hope-ui/solid";
-import { For } from "solid-js";
+import { Skeleton, VStack } from "@hope-ui/solid"
+import { For } from "solid-js"
 
 const ListSkeleton = () => {
   return (
@@ -8,7 +8,7 @@ const ListSkeleton = () => {
         {() => <Skeleton rounded="$lg" w="$full" h="$8" />}
       </For>
     </VStack>
-  );
-};
+  )
+}
 
-export default ListSkeleton;
+export default ListSkeleton

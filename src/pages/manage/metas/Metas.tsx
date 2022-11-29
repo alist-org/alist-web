@@ -9,35 +9,35 @@ import {
   Thead,
   Tr,
   VStack,
-} from "@hope-ui/solid";
-import { createSignal, For } from "solid-js";
+} from "@hope-ui/solid"
+import { createSignal, For } from "solid-js"
 import {
   useFetch,
   useListFetch,
   useManageTitle,
   useRouter,
   useT,
-} from "~/hooks";
-import { handleResp, notify, r } from "~/utils";
-import { Meta, PageResp } from "~/types";
-import { DeletePopover } from "../common/DeletePopover";
-import { Wether } from "~/components";
+} from "~/hooks"
+import { handleResp, notify, r } from "~/utils"
+import { Meta, PageResp } from "~/types"
+import { DeletePopover } from "../common/DeletePopover"
+import { Wether } from "~/components"
 
 const Metas = () => {
-  const t = useT();
-  useManageTitle("manage.sidemenu.metas");
-  const { to } = useRouter();
-  const [getMetasLoading, getMetas] = useFetch(() => r.get("/admin/meta/list"));
-  const [metas, setMetas] = createSignal<Meta[]>([]);
+  const t = useT()
+  useManageTitle("manage.sidemenu.metas")
+  const { to } = useRouter()
+  const [getMetasLoading, getMetas] = useFetch(() => r.get("/admin/meta/list"))
+  const [metas, setMetas] = createSignal<Meta[]>([])
   const refresh = async () => {
-    const resp: PageResp<Meta> = await getMetas();
-    handleResp(resp, (data) => setMetas(data.content));
-  };
-  refresh();
+    const resp: PageResp<Meta> = await getMetas()
+    handleResp(resp, (data) => setMetas(data.content))
+  }
+  refresh()
 
   const [deleting, deleteMeta] = useListFetch((id: number) =>
     r.post(`/admin/meta/delete?id=${id}`)
-  );
+  )
   return (
     <VStack spacing="$2" alignItems="start" w="$full">
       <HStack spacing="$2">
@@ -50,7 +50,7 @@ const Metas = () => {
         </Button>
         <Button
           onClick={() => {
-            to("/@manage/metas/add");
+            to("/@manage/metas/add")
           }}
         >
           {t("global.add")}
@@ -80,7 +80,7 @@ const Metas = () => {
                     <HStack spacing="$2">
                       <Button
                         onClick={() => {
-                          to(`/@manage/metas/edit/${meta.id}`);
+                          to(`/@manage/metas/edit/${meta.id}`)
                         }}
                       >
                         {t("global.edit")}
@@ -89,11 +89,11 @@ const Metas = () => {
                         name={meta.path}
                         loading={deleting() === meta.id}
                         onClick={async () => {
-                          const resp = await deleteMeta(meta.id);
+                          const resp = await deleteMeta(meta.id)
                           handleResp(resp, () => {
-                            notify.success(t("global.delete_success"));
-                            refresh();
-                          });
+                            notify.success(t("global.delete_success"))
+                            refresh()
+                          })
                         }}
                       />
                     </HStack>
@@ -105,7 +105,7 @@ const Metas = () => {
         </Table>
       </Box>
     </VStack>
-  );
-};
+  )
+}
 
-export default Metas;
+export default Metas

@@ -1,15 +1,15 @@
-import { Menu, Item } from "solid-contextmenu";
-import { useCopyLink, useDownload, useT } from "~/hooks";
-import "solid-contextmenu/dist/style.css";
-import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid";
-import { operations } from "../toolbar/operations";
-import { For } from "solid-js";
-import { bus, notify } from "~/utils";
-import { UserMethods, UserPermissions } from "~/types";
-import { getSettingBool, me } from "~/store";
+import { Menu, Item } from "solid-contextmenu"
+import { useCopyLink, useDownload, useT } from "~/hooks"
+import "solid-contextmenu/dist/style.css"
+import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid"
+import { operations } from "../toolbar/operations"
+import { For } from "solid-js"
+import { bus, notify } from "~/utils"
+import { UserMethods, UserPermissions } from "~/types"
+import { getSettingBool, me } from "~/store"
 
 const ItemContent = (props: { name: string }) => {
-  const t = useT();
+  const t = useT()
   return (
     <HStack spacing="$2">
       <Icon
@@ -20,17 +20,17 @@ const ItemContent = (props: { name: string }) => {
       />
       <Text>{t(`home.toolbar.${props.name}`)}</Text>
     </HStack>
-  );
-};
+  )
+}
 
 export const ContextMenu = () => {
-  const t = useT();
-  const { colorMode } = useColorMode();
-  const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink();
-  const { batchDownloadSelected } = useDownload();
+  const t = useT()
+  const { colorMode } = useColorMode()
+  const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink()
+  const { batchDownloadSelected } = useDownload()
   const canPackageDownload = () => {
-    return UserMethods.is_admin(me()) || getSettingBool("package_download");
-  };
+    return UserMethods.is_admin(me()) || getSettingBool("package_download")
+  }
   return (
     <Menu
       id={1}
@@ -41,11 +41,11 @@ export const ContextMenu = () => {
         {(name) => (
           <Item
             hidden={() => {
-              const index = UserPermissions.findIndex((item) => item === name);
-              return !UserMethods.can(me(), index);
+              const index = UserPermissions.findIndex((item) => item === name)
+              return !UserMethods.can(me(), index)
             }}
             onClick={() => {
-              bus.emit("tool", name);
+              bus.emit("tool", name)
             }}
           >
             <ItemContent name={name} />
@@ -55,9 +55,9 @@ export const ContextMenu = () => {
       <Item
         onClick={({ props }) => {
           if (props.is_dir) {
-            copySelectedPreviewPage();
+            copySelectedPreviewPage()
           } else {
-            copySelectedRawLink(true);
+            copySelectedRawLink(true)
           }
         }}
       >
@@ -67,17 +67,17 @@ export const ContextMenu = () => {
         onClick={({ props }) => {
           if (props.is_dir) {
             if (!canPackageDownload()) {
-              notify.warning(t("home.toolbar.package_download_disabled"));
-              return;
+              notify.warning(t("home.toolbar.package_download_disabled"))
+              return
             }
-            bus.emit("tool", "package_download");
+            bus.emit("tool", "package_download")
           } else {
-            batchDownloadSelected();
+            batchDownloadSelected()
           }
         }}
       >
         <ItemContent name="download" />
       </Item>
     </Menu>
-  );
-};
+  )
+}

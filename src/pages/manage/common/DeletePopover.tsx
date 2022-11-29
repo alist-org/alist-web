@@ -7,16 +7,16 @@ import {
   PopoverHeader,
   PopoverBody,
   HStack,
-} from "@hope-ui/solid";
-import { useT } from "~/hooks";
+} from "@hope-ui/solid"
+import { useT } from "~/hooks"
 
 export interface DeletePopoverProps {
-  name: string;
-  loading: boolean;
-  onClick: () => void;
+  name: string
+  loading: boolean
+  onClick: () => void
 }
 export const DeletePopover = (props: DeletePopoverProps) => {
-  const t = useT();
+  const t = useT()
   return (
     <Popover>
       {({ onClose }) => (
@@ -49,5 +49,5 @@ export const DeletePopover = (props: DeletePopoverProps) => {
         </>
       )}
     </Popover>
-  );
-};
+  )
+}

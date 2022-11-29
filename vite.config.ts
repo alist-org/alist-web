@@ -1,8 +1,8 @@
-import path from "path";
-import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
-import legacy from "@vitejs/plugin-legacy";
-import { dynamicBase } from "vite-plugin-dynamic-base";
+import path from "path"
+import { defineConfig } from "vite"
+import solidPlugin from "vite-plugin-solid"
+import legacy from "@vitejs/plugin-legacy"
+import { dynamicBase } from "vite-plugin-dynamic-base"
 
 export default defineConfig({
   resolve: {
@@ -37,4 +37,4 @@ export default defineConfig({
   //     return { relative: true };
   //   },
   // },
-});
+})

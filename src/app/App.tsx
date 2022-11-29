@@ -1,5 +1,5 @@
-import { Progress, ProgressIndicator } from "@hope-ui/solid";
-import { Route, Routes, useIsRouting } from "@solidjs/router";
+import { Progress, ProgressIndicator } from "@hope-ui/solid"
+import { Route, Routes, useIsRouting } from "@solidjs/router"
 import {
   Component,
   createSignal,
@@ -7,54 +7,54 @@ import {
   Match,
   onCleanup,
   Switch,
-} from "solid-js";
-import { Portal } from "solid-js/web";
-import { useLoading, useRouter } from "~/hooks";
-import { globalStyles } from "./theme";
-import { bus, r, handleRespWithoutAuthAndNotify, base_path } from "~/utils";
-import { setSettings } from "~/store";
-import { Error, FullScreenLoading } from "~/components";
-import { MustUser } from "./MustUser";
-import "./index.css";
-import { useI18n } from "@solid-primitives/i18n";
-import { initialLang, langMap, loadedLangs } from "./i18n";
-import { Resp } from "~/types";
+} from "solid-js"
+import { Portal } from "solid-js/web"
+import { useLoading, useRouter } from "~/hooks"
+import { globalStyles } from "./theme"
+import { bus, r, handleRespWithoutAuthAndNotify, base_path } from "~/utils"
+import { setSettings } from "~/store"
+import { Error, FullScreenLoading } from "~/components"
+import { MustUser } from "./MustUser"
+import "./index.css"
+import { useI18n } from "@solid-primitives/i18n"
+import { initialLang, langMap, loadedLangs } from "./i18n"
+import { Resp } from "~/types"
 
-const Home = lazy(() => import("~/pages/home/Layout"));
-const Manage = lazy(() => import("~/pages/manage"));
-const Login = lazy(() => import("~/pages/login"));
-const Test = lazy(() => import("~/pages/test"));
+const Home = lazy(() => import("~/pages/home/Layout"))
+const Manage = lazy(() => import("~/pages/manage"))
+const Login = lazy(() => import("~/pages/login"))
+const Test = lazy(() => import("~/pages/test"))
 
 const App: Component = () => {
-  globalStyles();
-  const [, { add }] = useI18n();
-  const isRouting = useIsRouting();
-  const { to } = useRouter();
+  globalStyles()
+  const [, { add }] = useI18n()
+  const isRouting = useIsRouting()
+  const { to } = useRouter()
   const onTo = (path: string) => {
-    to(path);
-  };
-  bus.on("to", onTo);
+    to(path)
+  }
+  bus.on("to", onTo)
   onCleanup(() => {
-    bus.off("to", onTo);
-  });
+    bus.off("to", onTo)
+  })
 
-  const [err, setErr] = createSignal<string>();
+  const [err, setErr] = createSignal<string>()
   const [loading, data] = useLoading(() =>
     Promise.all([
       (async () => {
-        add(initialLang, (await langMap[initialLang]()).default);
-        loadedLangs.add(initialLang);
+        add(initialLang, (await langMap[initialLang]()).default)
+        loadedLangs.add(initialLang)
       })(),
       (async () => {
         handleRespWithoutAuthAndNotify(
           (await r.get("/public/settings")) as Resp<Record<string, string>>,
           setSettings,
           setErr
-        );
+        )
       })(),
     ])
-  );
-  data();
+  )
+  data()
   return (
     <>
       <Portal>
@@ -103,7 +103,7 @@ const App: Component = () => {
         </Match>
       </Switch>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

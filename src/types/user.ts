@@ -5,12 +5,12 @@ export enum UserRole {
 }
 
 export interface User {
-  id: number;
-  username: string;
-  password: string;
-  base_path: string;
-  role: UserRole;
-  permission: number;
+  id: number
+  username: string
+  password: string
+  base_path: string
+  role: UserRole
+  permission: number
   // otp: boolean;
 }
 
@@ -25,7 +25,7 @@ export const UserPermissions = [
   "delete",
   "webdav_read",
   "webdav_manage",
-] as const;
+] as const
 
 export const UserMethods = {
   is_guest: (user: User) => user.role === UserRole.GUEST,
@@ -53,4 +53,4 @@ export const UserMethods = {
   //   UserMethods.is_admin(user) || ((user.permission >> 8) & 1) == 1,
   // can_webdav_manage: (user: User) =>
   //   UserMethods.is_admin(user) || ((user.permission >> 9) & 1) == 1,
-};
+}

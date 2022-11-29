@@ -1,9 +1,9 @@
-import { useManageTitle } from "~/hooks";
-import { TypeTasks } from "./Tasks";
+import { useManageTitle } from "~/hooks"
+import { TypeTasks } from "./Tasks"
 
 const Copy = () => {
-  useManageTitle("manage.sidemenu.copy");
-  return <TypeTasks type="copy" />;
-};
+  useManageTitle("manage.sidemenu.copy")
+  return <TypeTasks type="copy" />
+}
 
-export default Copy;
+export default Copy

@@ -1,5 +1,5 @@
-import axios from "axios";
-import { api, log } from ".";
+import axios from "axios"
+import { api, log } from "."
 
 const instance = axios.create({
   baseURL: api + "/api",
@@ -9,25 +9,25 @@ const instance = axios.create({
     // 'Authorization': localStorage.getItem("admin-token") || "",
   },
   withCredentials: false,
-});
+})
 
 instance.interceptors.request.use(
   (config) => {
     // do something before request is sent
-    return config;
+    return config
   },
   (error) => {
     // do something with request error
-    console.log("Error: " + error.message); // for debug
-    return Promise.reject(error);
+    console.log("Error: " + error.message) // for debug
+    return Promise.reject(error)
   }
-);
+)
 
 // response interceptor
 instance.interceptors.response.use(
   (response) => {
-    const resp = response.data;
-    log(resp);
+    const resp = response.data
+    log(resp)
     // if (resp.code === 401) {
     //   notify.error(resp.message);
     //   bus.emit(
@@ -35,11 +35,11 @@ instance.interceptors.response.use(
     //     `/@login?redirect=${encodeURIComponent(window.location.pathname)}`
     //   );
     // }
-    return resp;
+    return resp
   },
   (error) => {
     // response error
-    console.error(error); // for debug
+    console.error(error) // for debug
     // notificationService.show({
     //   status: "danger",
     //   title: error.code,
@@ -48,16 +48,16 @@ instance.interceptors.response.use(
     return {
       code: error.response.status,
       message: error.message,
-    };
+    }
   }
-);
+)
 
 instance.defaults.headers.common["Authorization"] =
-  localStorage.getItem("token") || "";
+  localStorage.getItem("token") || ""
 
 export const changeToken = (token?: string) => {
-  instance.defaults.headers.common["Authorization"] = token ?? "";
-  localStorage.setItem("token", token ?? "");
-};
+  instance.defaults.headers.common["Authorization"] = token ?? ""
+  localStorage.setItem("token", token ?? "")
+}
 
-export { instance as r };
+export { instance as r }

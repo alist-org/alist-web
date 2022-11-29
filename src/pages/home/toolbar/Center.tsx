@@ -1,17 +1,11 @@
-import { Box, HStack, useColorModeValue } from "@hope-ui/solid";
-import { createMemo, For, Show } from "solid-js";
-import {
-  checkboxOpen,
-  haveSelected,
-  objStore,
-  selectAll,
-  State,
-} from "~/store";
-import { CopyLink } from "./CopyLink";
-import { CenterIcon } from "./Icon";
-import { bus } from "~/utils";
-import { Download } from "./Download";
-import { Motion, Presence } from "@motionone/solid";
+import { Box, HStack, useColorModeValue } from "@hope-ui/solid"
+import { createMemo, For, Show } from "solid-js"
+import { checkboxOpen, haveSelected, objStore, selectAll, State } from "~/store"
+import { CopyLink } from "./CopyLink"
+import { CenterIcon } from "./Icon"
+import { bus } from "~/utils"
+import { Download } from "./Download"
+import { Motion, Presence } from "@motionone/solid"
 
 export const Center = () => {
   const show = createMemo(
@@ -19,7 +13,7 @@ export const Center = () => {
       [State.Folder, State.FetchingMore].includes(objStore.state) &&
       checkboxOpen() &&
       haveSelected()
-  );
+  )
   return (
     <Presence exitBeforeEnter>
       <Show when={show()}>
@@ -53,10 +47,10 @@ export const Center = () => {
                   <CenterIcon
                     name={name}
                     onClick={() => {
-                      bus.emit("tool", name);
+                      bus.emit("tool", name)
                     }}
                   />
-                );
+                )
               }}
             </For>
             <CopyLink />
@@ -64,12 +58,12 @@ export const Center = () => {
             <CenterIcon
               name="cancel_select"
               onClick={() => {
-                selectAll(false);
+                selectAll(false)
               }}
             />
           </HStack>
         </Box>
       </Show>
     </Presence>
-  );
-};
+  )
+}

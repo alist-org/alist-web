@@ -1,13 +1,13 @@
-import { Button, HStack } from "@hope-ui/solid";
-import { useCopyLink, useT } from "~/hooks";
-import { objStore } from "~/store";
-import { FileInfo } from "./info";
-import { OpenWith } from "../file/open-with";
-import { Show } from "solid-js";
+import { Button, HStack } from "@hope-ui/solid"
+import { useCopyLink, useT } from "~/hooks"
+import { objStore } from "~/store"
+import { FileInfo } from "./info"
+import { OpenWith } from "../file/open-with"
+import { Show } from "solid-js"
 
 export const Download = (props: { openWith?: boolean }) => {
-  const t = useT();
-  const { copyCurrentRawLink } = useCopyLink();
+  const t = useT()
+  const { copyCurrentRawLink } = useCopyLink()
   return (
     <FileInfo>
       <HStack spacing="$2">
@@ -22,7 +22,7 @@ export const Download = (props: { openWith?: boolean }) => {
         <OpenWith />
       </Show>
     </FileInfo>
-  );
-};
+  )
+}
 
-export default Download;
+export default Download

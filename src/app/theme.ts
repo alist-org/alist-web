@@ -1,5 +1,5 @@
-import { globalCss, HopeThemeConfig } from "@hope-ui/solid";
-import { hoverColor } from "~/utils";
+import { globalCss, HopeThemeConfig } from "@hope-ui/solid"
+import { hoverColor } from "~/utils"
 
 const theme: HopeThemeConfig = {
   initialColorMode: "system",
@@ -157,7 +157,7 @@ const theme: HopeThemeConfig = {
       },
     },
   },
-};
+}
 
 export const globalStyles = globalCss({
   "*": {
@@ -176,6 +176,6 @@ export const globalStyles = globalCss({
     flexWrap: "wrap",
     rowGap: "0 !important",
   },
-});
+})
 
-export { theme };
+export { theme }
