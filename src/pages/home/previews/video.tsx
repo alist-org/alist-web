@@ -1,4 +1,4 @@
-import { Box, Flex, VStack, Image, Text, Anchor, Tooltip } from "@hope-ui/solid"
+import { Box, Flex, VStack, Image, Anchor, Tooltip } from "@hope-ui/solid"
 import { For, onCleanup, onMount } from "solid-js"
 import { useRouter, useLink } from "~/hooks"
 import { getSettingBool, objStore } from "~/store"
@@ -89,7 +89,7 @@ const Preview = () => {
         flvPlayer.load()
       },
       m3u8: function (video: HTMLMediaElement, url: string) {
-        var hls = new Hls()
+        const hls = new Hls()
         hls.loadSource(url)
         hls.attachMedia(video)
       },
