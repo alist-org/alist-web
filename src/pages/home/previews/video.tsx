@@ -1,42 +1,44 @@
-import { Box, Flex, VStack, Image, Anchor } from "@hope-ui/solid";
-import { For, onCleanup, onMount } from "solid-js";
-import { useRouter, useLink } from "~/hooks";
-import { getSettingBool, objStore } from "~/store";
-import { ObjType } from "~/types";
-import { convertURL, ext } from "~/utils";
-import Artplayer from "artplayer";
-import artplayerPluginDanmuku from "artplayer-plugin-danmuku";
-import flvjs from "flv.js";
-import Hls from "hls.js";
-import { currentLang } from "~/app/i18n";
-import { SelectWrapper } from "~/components";
-import { isMobile } from "~/utils/compatibility";
+import { Box, Flex, VStack, Image, Anchor, Tooltip } from "@hope-ui/solid"
+import { For, onCleanup, onMount } from "solid-js"
+import { useRouter, useLink } from "~/hooks"
+import { getSettingBool, objStore } from "~/store"
+import { ObjType } from "~/types"
+import { convertURL, ext } from "~/utils"
+import Artplayer from "artplayer"
+import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
+import flvjs from "flv.js"
+import Hls from "hls.js"
+import { currentLang } from "~/app/i18n"
+import { SelectWrapper } from "~/components"
+import { isMobile } from "~/utils/compatibility"
 
-const players: { icon: string; scheme: string }[] = [
-  { icon: "iina", scheme: "iina://weblink?url=$url" },
-  { icon: "potplayer", scheme: "potplayer://$e_url" },
-  { icon: "vlc", scheme: "vlc://$url" },
-  { icon: "nplayer", scheme: "nplayer-$url" },
+const players: { icon: string; name: string; scheme: string }[] = [
+  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$url" },
+  { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$e_url" },
+  { icon: "vlc", name: "VLC", scheme: "vlc://$url" },
+  { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$url" },
   {
     icon: "mxplayer",
+    name: "MX Player",
     scheme:
       "intent:$url#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
   },
   {
     icon: "mxplayer-pro",
+    name: "MX Player Pro",
     scheme:
       "intent:$url#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
   },
-];
+]
 
 const Preview = () => {
-  const { replace } = useRouter();
-  const { proxyLink, rawLink } = useLink();
-  let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO);
+  const { replace } = useRouter()
+  const { proxyLink, rawLink } = useLink()
+  let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
-    videos = [objStore.obj];
+    videos = [objStore.obj]
   }
-  let player: Artplayer;
+  let player: Artplayer
   let option: any = {
     id: "player",
     container: "#video-player",
@@ -82,14 +84,14 @@ const Preview = () => {
             url: url,
           },
           { referrerPolicy: "same-origin" }
-        );
-        flvPlayer.attachMediaElement(video);
-        flvPlayer.load();
+        )
+        flvPlayer.attachMediaElement(video)
+        flvPlayer.load()
       },
       m3u8: function (video: HTMLMediaElement, url: string) {
-        var hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
+        const hls = new Hls()
+        hls.loadSource(url)
+        hls.attachMedia(video)
       },
     },
     lang: ["en", "zh-cn", "zh-tw"].includes(currentLang().toLowerCase())
@@ -100,31 +102,31 @@ const Preview = () => {
     autoPlayback: true,
     autoOrientation: true,
     airplay: true,
-  };
+  }
   if (isMobile) {
-    option.moreVideoAttr.controls = true;
+    option.moreVideoAttr.controls = true
   }
   const subtitle = objStore.related.find((obj) => {
     for (const ext of [".srt", ".ass", ".vtt"]) {
       if (obj.name.endsWith(ext)) {
-        return true;
+        return true
       }
     }
-    return false;
-  });
+    return false
+  })
   const danmu = objStore.related.find((obj) => {
     for (const ext of [".xml"]) {
       if (obj.name.endsWith(ext)) {
-        return true;
+        return true
       }
     }
-    return false;
-  });
+    return false
+  })
   if (subtitle) {
     option.subtitle = {
       url: proxyLink(subtitle, true),
       type: ext(subtitle.name) as any,
-    };
+    }
   }
   if (danmu) {
     option.plugins = [
@@ -145,26 +147,26 @@ const Preview = () => {
         maxWidth: 400,
         theme: "dark",
       }),
-    ];
+    ]
   }
   onMount(() => {
-    player = new Artplayer(option);
+    player = new Artplayer(option)
     player.on("video:ended", () => {
-      const index = videos.findIndex((f) => f.name === objStore.obj.name);
+      const index = videos.findIndex((f) => f.name === objStore.obj.name)
       if (index < videos.length - 1) {
-        replace(videos[index + 1].name);
+        replace(videos[index + 1].name)
       }
-    });
-  });
+    })
+  })
   onCleanup(() => {
-    player?.destroy();
-  });
+    player?.destroy()
+  })
   return (
     <VStack w="$full" spacing="$2">
       <Box w="$full" h="60vh" id="video-player" />
       <SelectWrapper
         onChange={(name: string) => {
-          replace(name);
+          replace(name)
         }}
         value={objStore.obj.name}
         options={videos.map((obj) => ({ value: obj.name }))}
@@ -173,22 +175,28 @@ const Preview = () => {
         <For each={players}>
           {(item) => {
             return (
-              <Anchor
-                // external
-                href={convertURL(
-                  item.scheme,
-                  rawLink(objStore.obj, true),
-                  objStore.obj.name
-                )}
-              >
-                <Image boxSize="$8" src={`${window.__dynamic_base__}/images/${item.icon}.webp`} />
-              </Anchor>
-            );
+              <Tooltip placement="top" withArrow label={item.name}>
+                <Anchor
+                  // external
+                  href={convertURL(
+                    item.scheme,
+                    rawLink(objStore.obj, true),
+                    objStore.obj.name
+                  )}
+                >
+                  <Image
+                    m="0 auto"
+                    boxSize="$8"
+                    src={`${window.__dynamic_base__}/images/${item.icon}.webp`}
+                  />
+                </Anchor>
+              </Tooltip>
+            )
           }}
         </For>
       </Flex>
     </VStack>
-  );
-};
+  )
+}
 
-export default Preview;
+export default Preview
