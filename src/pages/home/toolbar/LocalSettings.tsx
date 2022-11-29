@@ -12,40 +12,40 @@ import {
   HStack,
   Input,
   VStack,
-} from "@hope-ui/solid";
-import { For, onCleanup } from "solid-js";
-import { SwitchLanguageWhite, SwitchColorMode } from "~/components";
-import { useT } from "~/hooks";
-import { initialLocalSettings, local, setLocal } from "~/store";
-import { bus } from "~/utils";
+} from "@hope-ui/solid"
+import { For, onCleanup } from "solid-js"
+import { SwitchLanguageWhite, SwitchColorMode } from "~/components"
+import { useT } from "~/hooks"
+import { initialLocalSettings, local, setLocal } from "~/store"
+import { bus } from "~/utils"
 
 const LocalSettingsInput = (props: { name: string }) => {
-  const t = useT();
+  const t = useT()
   return (
     <FormControl>
       <FormLabel>{t(`home.local_settings.${props.name}`)}</FormLabel>
       <Input
         value={local[props.name]}
         onInput={(e) => {
-          setLocal(props.name, e.currentTarget.value);
+          setLocal(props.name, e.currentTarget.value)
         }}
       />
     </FormControl>
-  );
-};
+  )
+}
 
 export const LocalSettings = () => {
-  const { isOpen, onOpen, onClose } = createDisclosure();
-  const t = useT();
+  const { isOpen, onOpen, onClose } = createDisclosure()
+  const t = useT()
   const handler = (name: string) => {
     if (name === "local_settings") {
-      onOpen();
+      onOpen()
     }
-  };
-  bus.on("tool", handler);
+  }
+  bus.on("tool", handler)
   onCleanup(() => {
-    bus.off("tool", handler);
-  });
+    bus.off("tool", handler)
+  })
   return (
     <Drawer opened={isOpen()} placement="right" onClose={onClose}>
       <DrawerOverlay />
@@ -69,5 +69,5 @@ export const LocalSettings = () => {
         </DrawerBody>
       </DrawerContent>
     </Drawer>
-  );
-};
+  )
+}

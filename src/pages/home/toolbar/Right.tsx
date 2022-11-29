@@ -3,29 +3,29 @@ import {
   createDisclosure,
   useColorModeValue,
   VStack,
-} from "@hope-ui/solid";
-import { createMemo, Show } from "solid-js";
-import { RightIcon } from "./Icon";
-import { CgMoreO } from "solid-icons/cg";
-import { TbCheckbox } from "solid-icons/tb";
-import { objStore, State, toggleCheckbox, userCan } from "~/store";
-import { bus } from "~/utils";
-import { operations } from "./operations";
-import { IoMagnetOutline } from "solid-icons/io";
-import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai";
-import { RiSystemRefreshLine } from "solid-icons/ri";
-import { usePath } from "~/hooks";
-import { Motion } from "@motionone/solid";
+} from "@hope-ui/solid"
+import { createMemo, Show } from "solid-js"
+import { RightIcon } from "./Icon"
+import { CgMoreO } from "solid-icons/cg"
+import { TbCheckbox } from "solid-icons/tb"
+import { objStore, State, toggleCheckbox, userCan } from "~/store"
+import { bus } from "~/utils"
+import { operations } from "./operations"
+import { IoMagnetOutline } from "solid-icons/io"
+import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai"
+import { RiSystemRefreshLine } from "solid-icons/ri"
+import { usePath } from "~/hooks"
+import { Motion } from "@motionone/solid"
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
     defaultIsOpen: localStorage.getItem("more-open") === "true",
     onClose: () => localStorage.setItem("more-open", "false"),
     onOpen: () => localStorage.setItem("more-open", "true"),
-  });
-  const margin = createMemo(() => (isOpen() ? "$4" : "$5"));
-  const isFolder = createMemo(() => objStore.state === State.Folder);
-  const { refresh } = usePath();
+  })
+  const margin = createMemo(() => (isOpen() ? "$4" : "$5"))
+  const isFolder = createMemo(() => objStore.state === State.Folder)
+  const { refresh } = usePath()
   return (
     <Box
       class="left-toolbar-box"
@@ -40,7 +40,7 @@ export const Right = () => {
             class="toolbar-toggle"
             as={CgMoreO}
             onClick={() => {
-              onToggle();
+              onToggle()
             }}
           />
         }
@@ -67,14 +67,14 @@ export const Right = () => {
                 as={RiSystemRefreshLine}
                 tips="refresh"
                 onClick={() => {
-                  refresh(undefined, true);
+                  refresh(undefined, true)
                 }}
               />
               <RightIcon
                 as={operations.new_file.icon}
                 tips="new_file"
                 onClick={() => {
-                  bus.emit("tool", "new_file");
+                  bus.emit("tool", "new_file")
                 }}
               />
               <RightIcon
@@ -82,14 +82,14 @@ export const Right = () => {
                 p="$1_5"
                 tips="mkdir"
                 onClick={() => {
-                  bus.emit("tool", "mkdir");
+                  bus.emit("tool", "mkdir")
                 }}
               />
               <RightIcon
                 as={AiOutlineCloudUpload}
                 tips="upload"
                 onClick={() => {
-                  bus.emit("tool", "upload");
+                  bus.emit("tool", "upload")
                 }}
               />
             </Show>
@@ -99,7 +99,7 @@ export const Right = () => {
                 pl="0"
                 tips="offline_download"
                 onClick={() => {
-                  bus.emit("tool", "offline_download");
+                  bus.emit("tool", "offline_download")
                 }}
               />
             </Show>
@@ -112,7 +112,7 @@ export const Right = () => {
               as={AiOutlineSetting}
               tips="local_settings"
               onClick={() => {
-                bus.emit("tool", "local_settings");
+                bus.emit("tool", "local_settings")
               }}
             />
           </VStack>
@@ -120,5 +120,5 @@ export const Right = () => {
         </VStack>
       </Show>
     </Box>
-  );
-};
+  )
+}

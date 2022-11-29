@@ -1,10 +1,10 @@
-import { mergeProps } from "solid-js";
+import { mergeProps } from "solid-js"
 
 interface Props {
   /** 过渡的开始颜色 */
-  startColor?: string;
+  startColor?: string
   /** 过渡的结束颜色 */
-  endColor?: string;
+  endColor?: string
 }
 
 const CornerTop = (props: Props) => {
@@ -14,7 +14,7 @@ const CornerTop = (props: Props) => {
       endColor: "#120fc4",
     },
     props
-  );
+  )
   return (
     <svg height="1337" width="1337">
       <defs>
@@ -43,7 +43,7 @@ const CornerTop = (props: Props) => {
         />
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default CornerTop;
+export default CornerTop

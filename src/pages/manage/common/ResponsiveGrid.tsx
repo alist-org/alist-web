@@ -1,5 +1,5 @@
-import { Grid } from "@hope-ui/solid";
-import { JSXElement } from "solid-js";
+import { Grid } from "@hope-ui/solid"
+import { JSXElement } from "solid-js"
 
 export const ResponsiveGrid = (props: { children: JSXElement }) => {
   return (
@@ -13,5 +13,5 @@ export const ResponsiveGrid = (props: { children: JSXElement }) => {
     >
       {props.children}
     </Grid>
-  );
-};
+  )
+}

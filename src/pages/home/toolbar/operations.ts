@@ -1,18 +1,18 @@
-import { IconTypes } from "solid-icons";
-import { TiDeleteOutline } from "solid-icons/ti";
-import { CgRename } from "solid-icons/cg";
-import { TbFileArrowRight } from "solid-icons/tb";
-import { TbCopy, TbLink } from "solid-icons/tb";
-import { AiTwotoneDelete } from "solid-icons/ai";
-import { CgFileAdd, CgFolderAdd } from "solid-icons/cg";
-import { AiOutlineCloudDownload } from "solid-icons/ai";
+import { IconTypes } from "solid-icons"
+import { TiDeleteOutline } from "solid-icons/ti"
+import { CgRename } from "solid-icons/cg"
+import { TbFileArrowRight } from "solid-icons/tb"
+import { TbCopy, TbLink } from "solid-icons/tb"
+import { AiTwotoneDelete } from "solid-icons/ai"
+import { CgFileAdd, CgFolderAdd } from "solid-icons/cg"
+import { AiOutlineCloudDownload } from "solid-icons/ai"
 
 interface Operations {
   [key: string]: {
-    icon: IconTypes;
-    color?: string;
-    p?: boolean;
-  };
+    icon: IconTypes
+    color?: string
+    p?: boolean
+  }
 }
 export const operations: Operations = {
   rename: { icon: CgRename, color: "$accent9" },
@@ -24,7 +24,7 @@ export const operations: Operations = {
   new_file: { icon: CgFileAdd, p: true },
   cancel_select: { icon: TiDeleteOutline },
   download: { icon: AiOutlineCloudDownload, color: "$primary9" },
-};
+}
 // interface Operation {
 //   label: string;
 //   icon: IconTypes;

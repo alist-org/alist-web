@@ -1,5 +1,5 @@
-import { Box, VStack } from "@hope-ui/solid";
-import Upload from "~/pages/home/uploads/Upload";
+import { Box, VStack } from "@hope-ui/solid"
+import Upload from "~/pages/home/uploads/Upload"
 
 const Index = () => {
   return (
@@ -8,7 +8,7 @@ const Index = () => {
         <Upload />
       </Box>
     </VStack>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

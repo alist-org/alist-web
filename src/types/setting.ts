@@ -1,4 +1,4 @@
-import { Type } from ".";
+import { Type } from "."
 
 export enum Group {
   SITE,
@@ -16,11 +16,11 @@ export enum Flag {
 }
 
 export interface SettingItem {
-  key: string;
-  value: string;
-  type: Type;
-  help: string;
-  options?: string;
-  group: Group;
-  flag: Flag;
+  key: string
+  value: string
+  type: Type
+  help: string
+  options?: string
+  group: Group
+  flag: Flag
 }

@@ -24,20 +24,20 @@ export enum WebdavPolicy {
 }
 
 export interface Storage {
-  id: number;
-  mount_path: string;
-  order: number;
-  driver: string;
-  status: string;
-  addition: string;
-  remark: string;
-  modified: string;
-  order_by: OrderBy;
-  order_direction: OrderDirection;
-  extract_folder: ExtractFolder;
-  web_proxy: boolean;
-  webdav_policy: WebdavPolicy;
-  disabled: boolean;
+  id: number
+  mount_path: string
+  order: number
+  driver: string
+  status: string
+  addition: string
+  remark: string
+  modified: string
+  order_by: OrderBy
+  order_direction: OrderDirection
+  extract_folder: ExtractFolder
+  web_proxy: boolean
+  webdav_policy: WebdavPolicy
+  disabled: boolean
 }
 
-export type Addition = Record<string, string | boolean | number>;
+export type Addition = Record<string, string | boolean | number>

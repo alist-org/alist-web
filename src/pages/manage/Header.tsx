@@ -13,19 +13,19 @@ import {
   HStack,
   IconButton,
   useColorModeValue,
-} from "@hope-ui/solid";
-import { TiThMenu } from "solid-icons/ti";
-import { IoExit } from "solid-icons/io";
-import { SwitchColorMode, SwitchLanguageWhite } from "~/components";
-import { useRouter, useT } from "~/hooks";
-import { SideMenu } from "./SideMenu";
-import { side_menu_items } from "./sidemenu_items";
-import { changeToken, notify } from "~/utils";
-const { isOpen, onOpen, onClose } = createDisclosure();
+} from "@hope-ui/solid"
+import { TiThMenu } from "solid-icons/ti"
+import { IoExit } from "solid-icons/io"
+import { SwitchColorMode, SwitchLanguageWhite } from "~/components"
+import { useRouter, useT } from "~/hooks"
+import { SideMenu } from "./SideMenu"
+import { side_menu_items } from "./sidemenu_items"
+import { changeToken, notify } from "~/utils"
+const { isOpen, onOpen, onClose } = createDisclosure()
 
 const Header = () => {
-  const t = useT();
-  const { to } = useRouter();
+  const t = useT()
+  const { to } = useRouter()
   return (
     <Box
       as="header"
@@ -54,7 +54,7 @@ const Header = () => {
             color="$info9"
             cursor="pointer"
             onClick={() => {
-              to("/@manage");
+              to("/@manage")
             }}
           >
             {t("manage.title")}
@@ -65,9 +65,9 @@ const Header = () => {
             aria-label="logout"
             icon={<IoExit />}
             onClick={() => {
-              changeToken();
-              notify.success(t("manage.logout_success"));
-              to(`/@login?redirect=${encodeURIComponent(location.pathname)}`);
+              changeToken()
+              notify.success(t("manage.logout_success"))
+              to(`/@login?redirect=${encodeURIComponent(location.pathname)}`)
             }}
             size="sm"
           />
@@ -90,7 +90,7 @@ const Header = () => {
         </DrawerContent>
       </Drawer>
     </Box>
-  );
-};
+  )
+}
 
-export { Header, onClose };
+export { Header, onClose }

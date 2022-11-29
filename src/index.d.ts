@@ -1,7 +1,7 @@
-declare module "aplayer";
+declare module "aplayer"
 declare namespace aliyun {
   class Config {
-    setToken(token: { token: string }): any;
+    setToken(token: { token: string }): any
   }
-  function config(options: { mount: Element; url: string }): Config;
+  function config(options: { mount: Element; url: string }): Config
 }

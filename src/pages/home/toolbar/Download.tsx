@@ -11,19 +11,19 @@ import {
   ModalHeader,
   ModalOverlay,
   createDisclosure,
-} from "@hope-ui/solid";
-import { createSignal, lazy, onCleanup, Show, Suspense } from "solid-js";
-import { FullLoading } from "~/components";
-import { useT, useDownload } from "~/hooks";
-import { getSettingBool, me } from "~/store";
-import { UserMethods } from "~/types";
-import { bus } from "~/utils";
-import { CenterIcon } from "./Icon";
+} from "@hope-ui/solid"
+import { createSignal, lazy, onCleanup, Show, Suspense } from "solid-js"
+import { FullLoading } from "~/components"
+import { useT, useDownload } from "~/hooks"
+import { getSettingBool, me } from "~/store"
+import { UserMethods } from "~/types"
+import { bus } from "~/utils"
+import { CenterIcon } from "./Icon"
 
 export const Download = () => {
-  const t = useT();
-  const colorScheme = "neutral";
-  const { batchDownloadSelected, sendToAria2 } = useDownload();
+  const t = useT()
+  const colorScheme = "neutral"
+  const { batchDownloadSelected, sendToAria2 } = useDownload()
   return (
     <Menu placement="top" offset={10}>
       <MenuTrigger as={CenterIcon} name="download" />
@@ -39,7 +39,7 @@ export const Download = () => {
           <MenuItem
             colorScheme={colorScheme}
             onSelect={() => {
-              bus.emit("tool", "package_download");
+              bus.emit("tool", "package_download")
             }}
           >
             {t("home.toolbar.package_download")}
@@ -50,24 +50,24 @@ export const Download = () => {
         </MenuItem>
       </MenuContent>
     </Menu>
-  );
-};
+  )
+}
 
-const PackageDownload = lazy(() => import("./PackageDownload"));
+const PackageDownload = lazy(() => import("./PackageDownload"))
 
 export const PackageDownloadModal = () => {
-  const t = useT();
+  const t = useT()
   const handler = (name: string) => {
     if (name === "package_download") {
-      onOpen();
+      onOpen()
     }
-  };
-  bus.on("tool", handler);
+  }
+  bus.on("tool", handler)
   onCleanup(() => {
-    bus.off("tool", handler);
-  });
-  const { isOpen, onOpen, onClose } = createDisclosure();
-  const [show, setShow] = createSignal("pre_tips");
+    bus.off("tool", handler)
+  })
+  const { isOpen, onOpen, onClose } = createDisclosure()
+  const [show, setShow] = createSignal("pre_tips")
   return (
     <Modal
       blockScrollOnMount={false}
@@ -98,7 +98,7 @@ export const PackageDownloadModal = () => {
               <Button
                 colorScheme="info"
                 onClick={() => {
-                  setShow("package_download");
+                  setShow("package_download")
                 }}
               >
                 {t("global.confirm")}
@@ -108,5 +108,5 @@ export const PackageDownloadModal = () => {
         </Suspense>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

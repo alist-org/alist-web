@@ -11,13 +11,7 @@ import {
 import { MaybeLoading, FolderChooseInput } from "~/components"
 import { useFetch, useRouter, useT } from "~/hooks"
 import { handleResp, notify, r } from "~/utils"
-import {
-  PEmptyResp,
-  PResp,
-  User,
-  UserMethods,
-  UserPermissions,
-} from "~/types"
+import { PEmptyResp, PResp, User, UserMethods, UserPermissions } from "~/types"
 import { createStore } from "solid-js/store"
 import { For } from "solid-js"
 

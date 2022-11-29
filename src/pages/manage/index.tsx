@@ -1,20 +1,16 @@
-import { Box, Center, Flex, HStack, useColorModeValue } from "@hope-ui/solid";
-import {
-  FullLoading,
-  SwitchColorMode,
-  SwitchLanguageWhite,
-} from "~/components";
-import { useT, useTitle } from "~/hooks";
-import { Header } from "./Header";
-import { SideMenu } from "./SideMenu";
-import { side_menu_items } from "./sidemenu_items";
-import { Route, Routes } from "@solidjs/router";
-import { For, Suspense } from "solid-js";
-import { routes } from "./routes";
+import { Box, Center, Flex, HStack, useColorModeValue } from "@hope-ui/solid"
+import { FullLoading, SwitchColorMode, SwitchLanguageWhite } from "~/components"
+import { useT, useTitle } from "~/hooks"
+import { Header } from "./Header"
+import { SideMenu } from "./SideMenu"
+import { side_menu_items } from "./sidemenu_items"
+import { Route, Routes } from "@solidjs/router"
+import { For, Suspense } from "solid-js"
+import { routes } from "./routes"
 
 const Manage = () => {
-  const t = useT();
-  useTitle(() => t("manage.title"));
+  const t = useT()
+  useTitle(() => t("manage.title"))
   return (
     <Box
       css={{
@@ -52,14 +48,14 @@ const Manage = () => {
           <Routes>
             <For each={routes}>
               {(route) => {
-                return <Route path={route.to!} component={route.component} />;
+                return <Route path={route.to!} component={route.component} />
               }}
             </For>
           </Routes>
         </Box>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default Manage;
+export default Manage

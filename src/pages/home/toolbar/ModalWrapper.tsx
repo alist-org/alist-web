@@ -6,29 +6,29 @@ import {
   ModalOverlay,
   createDisclosure,
   ModalCloseButton,
-} from "@hope-ui/solid";
-import { JSXElement, onCleanup, Show, Suspense } from "solid-js";
-import { FullLoading } from "~/components";
-import { useT } from "~/hooks";
-import { bus } from "~/utils";
+} from "@hope-ui/solid"
+import { JSXElement, onCleanup, Show, Suspense } from "solid-js"
+import { FullLoading } from "~/components"
+import { useT } from "~/hooks"
+import { bus } from "~/utils"
 
 export const ModalWrapper = (props: {
-  children: JSXElement;
-  name: string;
-  title: string;
-  blockScrollOnMount?: boolean;
+  children: JSXElement
+  name: string
+  title: string
+  blockScrollOnMount?: boolean
 }) => {
-  const t = useT();
+  const t = useT()
   const handler = (name: string) => {
     if (name === props.name) {
-      onOpen();
+      onOpen()
     }
-  };
-  bus.on("tool", handler);
+  }
+  bus.on("tool", handler)
   onCleanup(() => {
-    bus.off("tool", handler);
-  });
-  const { isOpen, onOpen, onClose } = createDisclosure();
+    bus.off("tool", handler)
+  })
+  const { isOpen, onOpen, onClose } = createDisclosure()
   return (
     <Modal
       blockScrollOnMount={props.blockScrollOnMount}
@@ -55,5 +55,5 @@ export const ModalWrapper = (props: {
         </ModalBody>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

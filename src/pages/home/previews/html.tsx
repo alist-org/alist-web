@@ -1,9 +1,9 @@
-import { hope } from "@hope-ui/solid";
-import { BoxWithFullScreen, MaybeLoading } from "~/components";
-import { useFetchText } from "~/hooks";
+import { hope } from "@hope-ui/solid"
+import { BoxWithFullScreen, MaybeLoading } from "~/components"
+import { useFetchText } from "~/hooks"
 
 const HtmlPreview = () => {
-  const [content] = useFetchText();
+  const [content] = useFetchText()
   return (
     <MaybeLoading loading={content.loading}>
       <BoxWithFullScreen w="$full" h="70vh">
@@ -16,7 +16,7 @@ const HtmlPreview = () => {
         />
       </BoxWithFullScreen>
     </MaybeLoading>
-  );
-};
+  )
+}
 
-export default HtmlPreview;
+export default HtmlPreview

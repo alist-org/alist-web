@@ -1,57 +1,60 @@
 class Crc32 {
-  constructor () {
+  constructor() {
     this.crc = -1
   }
 
-  append (data) {
-    var crc = this.crc | 0; var table = this.table
+  append(data) {
+    var crc = this.crc | 0
+    var table = this.table
     for (var offset = 0, len = data.length | 0; offset < len; offset++) {
-      crc = (crc >>> 8) ^ table[(crc ^ data[offset]) & 0xFF]
+      crc = (crc >>> 8) ^ table[(crc ^ data[offset]) & 0xff]
     }
     this.crc = crc
   }
 
-  get () {
+  get() {
     return ~this.crc
   }
 }
 Crc32.prototype.table = (() => {
-  var i; var j; var t; var table = []
+  var i
+  var j
+  var t
+  var table = []
   for (i = 0; i < 256; i++) {
     t = i
     for (j = 0; j < 8; j++) {
-      t = (t & 1)
-        ? (t >>> 1) ^ 0xEDB88320
-        : t >>> 1
+      t = t & 1 ? (t >>> 1) ^ 0xedb88320 : t >>> 1
     }
     table[i] = t
   }
   return table
 })()
 
-const getDataHelper = byteLength => {
+const getDataHelper = (byteLength) => {
   var uint8 = new Uint8Array(byteLength)
   return {
     array: uint8,
-    view: new DataView(uint8.buffer)
+    view: new DataView(uint8.buffer),
   }
 }
 
-const pump = zipObj => zipObj.reader.read().then(chunk => {
-  if (chunk.done) return zipObj.writeFooter()
-  const outputData = chunk.value
-  zipObj.crc.append(outputData)
-  zipObj.uncompressedLength += outputData.length
-  zipObj.compressedLength += outputData.length
-  zipObj.ctrl.enqueue(outputData)
-})
+const pump = (zipObj) =>
+  zipObj.reader.read().then((chunk) => {
+    if (chunk.done) return zipObj.writeFooter()
+    const outputData = chunk.value
+    zipObj.crc.append(outputData)
+    zipObj.uncompressedLength += outputData.length
+    zipObj.compressedLength += outputData.length
+    zipObj.ctrl.enqueue(outputData)
+  })
 
 /**
  * [createWriter description]
  * @param  {Object} underlyingSource [description]
  * @return {Boolean}                  [description]
  */
-function createWriter (underlyingSource) {
+function createWriter(underlyingSource) {
   const files = Object.create(null)
   const filenames = []
   const encoder = new TextEncoder()
@@ -60,7 +63,7 @@ function createWriter (underlyingSource) {
   let ctrl
   let activeZipObject, closed
 
-  function next () {
+  function next() {
     activeZipIndex++
     activeZipObject = files[filenames[activeZipIndex]]
     if (activeZipObject) processNextChunk()
@@ -68,27 +71,34 @@ function createWriter (underlyingSource) {
   }
 
   var zipWriter = {
-    enqueue (fileLike) {
-      if (closed) throw new TypeError('Cannot enqueue a chunk into a readable stream that is closed or has been requested to be closed')
+    enqueue(fileLike) {
+      if (closed)
+        throw new TypeError(
+          "Cannot enqueue a chunk into a readable stream that is closed or has been requested to be closed"
+        )
 
       let name = fileLike.name.trim()
-      const date = new Date(typeof fileLike.lastModified === 'undefined' ? Date.now() : fileLike.lastModified)
+      const date = new Date(
+        typeof fileLike.lastModified === "undefined"
+          ? Date.now()
+          : fileLike.lastModified
+      )
 
-      if (fileLike.directory && !name.endsWith('/')) name += '/'
-      if (files[name]) throw new Error('File already exists.')
+      if (fileLike.directory && !name.endsWith("/")) name += "/"
+      if (files[name]) throw new Error("File already exists.")
 
       const nameBuf = encoder.encode(name)
       filenames.push(name)
 
-      const zipObject = files[name] = {
+      const zipObject = (files[name] = {
         level: 0,
         ctrl,
         directory: !!fileLike.directory,
         nameBuf,
-        comment: encoder.encode(fileLike.comment || ''),
+        comment: encoder.encode(fileLike.comment || ""),
         compressedLength: 0,
         uncompressedLength: 0,
-        writeHeader () {
+        writeHeader() {
           var header = getDataHelper(26)
           var data = getDataHelper(30 + nameBuf.length)
 
@@ -98,8 +108,19 @@ function createWriter (underlyingSource) {
             header.view.setUint16(4, 0x0800)
           }
           header.view.setUint32(0, 0x14000808)
-          header.view.setUint16(6, (((date.getHours() << 6) | date.getMinutes()) << 5) | date.getSeconds() / 2, true)
-          header.view.setUint16(8, ((((date.getFullYear() - 1980) << 4) | (date.getMonth() + 1)) << 5) | date.getDate(), true)
+          header.view.setUint16(
+            6,
+            (((date.getHours() << 6) | date.getMinutes()) << 5) |
+              (date.getSeconds() / 2),
+            true
+          )
+          header.view.setUint16(
+            8,
+            ((((date.getFullYear() - 1980) << 4) | (date.getMonth() + 1)) <<
+              5) |
+              date.getDate(),
+            true
+          )
           header.view.setUint16(22, nameBuf.length, true)
           data.view.setUint32(0, 0x504b0304)
           data.array.set(header.array, 4)
@@ -107,14 +128,22 @@ function createWriter (underlyingSource) {
           offset += data.array.length
           ctrl.enqueue(data.array)
         },
-        writeFooter () {
+        writeFooter() {
           var footer = getDataHelper(16)
           footer.view.setUint32(0, 0x504b0708)
 
           if (zipObject.crc) {
             zipObject.header.view.setUint32(10, zipObject.crc.get(), true)
-            zipObject.header.view.setUint32(14, zipObject.compressedLength, true)
-            zipObject.header.view.setUint32(18, zipObject.uncompressedLength, true)
+            zipObject.header.view.setUint32(
+              14,
+              zipObject.compressedLength,
+              true
+            )
+            zipObject.header.view.setUint32(
+              18,
+              zipObject.uncompressedLength,
+              true
+            )
             footer.view.setUint32(4, zipObject.crc.get(), true)
             footer.view.setUint32(8, zipObject.compressedLength, true)
             footer.view.setUint32(12, zipObject.uncompressedLength, true)
@@ -124,22 +153,25 @@ function createWriter (underlyingSource) {
           offset += zipObject.compressedLength + 16
           next()
         },
-        fileLike
-      }
+        fileLike,
+      })
 
       if (!activeZipObject) {
         activeZipObject = zipObject
         processNextChunk()
       }
     },
-    close () {
-      if (closed) throw new TypeError('Cannot close a readable stream that has already been requested to be closed')
+    close() {
+      if (closed)
+        throw new TypeError(
+          "Cannot close a readable stream that has already been requested to be closed"
+        )
       if (!activeZipObject) closeZip()
       closed = true
-    }
+    },
   }
 
-  function closeZip () {
+  function closeZip() {
     var length = 0
     var index = 0
     var indexFilename, file
@@ -171,9 +203,10 @@ function createWriter (underlyingSource) {
     ctrl.close()
   }
 
-  function processNextChunk () {
+  function processNextChunk() {
     if (!activeZipObject) return
-    if (activeZipObject.directory) return activeZipObject.writeFooter(activeZipObject.writeHeader())
+    if (activeZipObject.directory)
+      return activeZipObject.writeFooter(activeZipObject.writeHeader())
     if (activeZipObject.reader) return pump(activeZipObject)
     if (activeZipObject.fileLike.stream) {
       activeZipObject.crc = new Crc32()
@@ -182,16 +215,18 @@ function createWriter (underlyingSource) {
     } else next()
   }
   return new ReadableStream({
-    start: c => {
+    start: (c) => {
       ctrl = c
-      underlyingSource.start && Promise.resolve(underlyingSource.start(zipWriter))
+      underlyingSource.start &&
+        Promise.resolve(underlyingSource.start(zipWriter))
     },
-    pull () {
-      return processNextChunk() || (
-        underlyingSource.pull &&
-        Promise.resolve(underlyingSource.pull(zipWriter))
+    pull() {
+      return (
+        processNextChunk() ||
+        (underlyingSource.pull &&
+          Promise.resolve(underlyingSource.pull(zipWriter)))
       )
-    }
+    },
   })
 }
 

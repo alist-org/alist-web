@@ -1,7 +1,7 @@
-import { Button, HStack, IconButton } from "@hope-ui/solid";
-import { createMemo, For, mergeProps, Show } from "solid-js";
-import { createStore } from "solid-js/store";
-import { FaSolidAngleLeft, FaSolidAngleRight } from "solid-icons/fa";
+import { Button, HStack, IconButton } from "@hope-ui/solid"
+import { createMemo, For, mergeProps, Show } from "solid-js"
+import { createStore } from "solid-js/store"
+import { FaSolidAngleLeft, FaSolidAngleRight } from "solid-icons/fa"
 
 export interface PaginatorProps {
   colorScheme?:
@@ -11,14 +11,14 @@ export interface PaginatorProps {
     | "success"
     | "info"
     | "warning"
-    | "danger";
+    | "danger"
   // size?: "xs" | "sm" | "lg" | "xl" | "md";
-  defaultCurrent?: number;
-  onChange?: (current: number) => void;
-  hideOnSinglePage?: boolean;
-  total: number;
-  defaultPageSize?: number;
-  maxShowPage?: number;
+  defaultCurrent?: number
+  onChange?: (current: number) => void
+  hideOnSinglePage?: boolean
+  total: number
+  defaultPageSize?: number
+  maxShowPage?: number
 }
 export const Paginator = (props: PaginatorProps) => {
   const merged = mergeProps(
@@ -29,35 +29,35 @@ export const Paginator = (props: PaginatorProps) => {
       hideOnSinglePage: true,
     },
     props
-  );
+  )
   const [store, setStore] = createStore({
     pageSize: merged.defaultPageSize,
     current: merged.defaultCurrent,
-  });
+  })
   const pages = createMemo(() => {
-    return Math.ceil(merged.total / store.pageSize);
-  });
+    return Math.ceil(merged.total / store.pageSize)
+  })
   const leftPages = createMemo(() => {
-    const current = store.current;
-    const min = Math.max(2, current - Math.floor(merged.maxShowPage / 2));
-    return Array.from({ length: current - min }, (_, i) => min + i);
-  });
+    const current = store.current
+    const min = Math.max(2, current - Math.floor(merged.maxShowPage / 2))
+    return Array.from({ length: current - min }, (_, i) => min + i)
+  })
   const rightPages = createMemo(() => {
-    const current = store.current;
+    const current = store.current
     const max = Math.min(
       pages() - 1,
       current + Math.floor(merged.maxShowPage / 2)
-    );
-    return Array.from({ length: max - current }, (_, i) => current + 1 + i);
-  });
+    )
+    return Array.from({ length: max - current }, (_, i) => current + 1 + i)
+  })
   const size = {
     "@initial": "sm",
     "@md": "md",
-  } as const;
+  } as const
   const onPageChange = (page: number) => {
-    setStore("current", page);
-    merged.onChange?.(page);
-  };
+    setStore("current", page)
+    merged.onChange?.(page)
+  }
   return (
     <Show when={!merged.hideOnSinglePage || pages() > 1}>
       <HStack spacing="$1">
@@ -66,7 +66,7 @@ export const Paginator = (props: PaginatorProps) => {
             size={size}
             colorScheme={merged.colorScheme}
             onClick={() => {
-              onPageChange(1);
+              onPageChange(1)
             }}
             px="$3"
           >
@@ -78,7 +78,7 @@ export const Paginator = (props: PaginatorProps) => {
             aria-label="Previous"
             colorScheme={merged.colorScheme}
             onClick={() => {
-              onPageChange(store.current - 1);
+              onPageChange(store.current - 1)
             }}
             w="2rem !important"
           />
@@ -89,7 +89,7 @@ export const Paginator = (props: PaginatorProps) => {
               size={size}
               colorScheme={merged.colorScheme}
               onClick={() => {
-                onPageChange(page);
+                onPageChange(page)
               }}
               px={page > 10 ? "$2_5" : "$3"}
             >
@@ -111,7 +111,7 @@ export const Paginator = (props: PaginatorProps) => {
               size={size}
               colorScheme={merged.colorScheme}
               onClick={() => {
-                onPageChange(page);
+                onPageChange(page)
               }}
               px={page > 10 ? "$2_5" : "$3"}
             >
@@ -126,7 +126,7 @@ export const Paginator = (props: PaginatorProps) => {
             aria-label="Next"
             colorScheme={merged.colorScheme}
             onClick={() => {
-              onPageChange(store.current + 1);
+              onPageChange(store.current + 1)
             }}
             w="2rem !important"
           />
@@ -134,7 +134,7 @@ export const Paginator = (props: PaginatorProps) => {
             size={size}
             colorScheme={merged.colorScheme}
             onClick={() => {
-              onPageChange(pages());
+              onPageChange(pages())
             }}
             px={pages() > 10 ? "$2_5" : "$3"}
           >
@@ -143,5 +143,5 @@ export const Paginator = (props: PaginatorProps) => {
         </Show>
       </HStack>
     </Show>
-  );
-};
+  )
+}

@@ -5,18 +5,18 @@ import {
   MenuContent,
   MenuItem,
   MenuTrigger,
-} from "@hope-ui/solid";
-import { createMemo, For, Show } from "solid-js";
-import { useT } from "~/hooks";
-import { getExternalPreviews, objStore } from "~/store";
-import { FaSolidAngleDown } from "solid-icons/fa";
-import { convertURL } from "~/utils";
+} from "@hope-ui/solid"
+import { createMemo, For, Show } from "solid-js"
+import { useT } from "~/hooks"
+import { getExternalPreviews, objStore } from "~/store"
+import { FaSolidAngleDown } from "solid-icons/fa"
+import { convertURL } from "~/utils"
 
 export const OpenWith = () => {
-  const t = useT();
+  const t = useT()
   const previews = createMemo(() => {
-    return getExternalPreviews(objStore.obj.name);
-  });
+    return getExternalPreviews(objStore.obj.name)
+  })
   return (
     <Show when={previews().length}>
       <Menu>
@@ -46,5 +46,5 @@ export const OpenWith = () => {
         </MenuContent>
       </Menu>
     </Show>
-  );
-};
+  )
+}

@@ -9,31 +9,31 @@ import {
   Input,
   Textarea,
   FormHelperText,
-} from "@hope-ui/solid";
-import { createSignal, Show } from "solid-js";
-import { useT } from "~/hooks";
-import { notify } from "~/utils";
+} from "@hope-ui/solid"
+import { createSignal, Show } from "solid-js"
+import { useT } from "~/hooks"
+import { notify } from "~/utils"
 export type ModalInputProps = {
-  opened: boolean;
-  onClose: () => void;
-  title: string;
-  onSubmit?: (text: string) => void;
-  type?: string;
-  defaultValue?: string;
-  loading?: boolean;
-  tips?: string;
-};
+  opened: boolean
+  onClose: () => void
+  title: string
+  onSubmit?: (text: string) => void
+  type?: string
+  defaultValue?: string
+  loading?: boolean
+  tips?: string
+}
 export const ModalInput = (props: ModalInputProps) => {
-  const [value, setValue] = createSignal(props.defaultValue ?? "");
-  const t = useT();
+  const [value, setValue] = createSignal(props.defaultValue ?? "")
+  const t = useT()
   const submit = () => {
     if (!value()) {
-      notify.warning(t("global.empty_input"));
-      return;
+      notify.warning(t("global.empty_input"))
+      return
     }
-    props.onSubmit?.(value());
-    setValue("");
-  };
+    props.onSubmit?.(value())
+    setValue("")
+  }
   return (
     <Modal
       blockScrollOnMount={false}
@@ -54,11 +54,11 @@ export const ModalInput = (props: ModalInputProps) => {
                 type={props.type}
                 value={value()}
                 onInput={(e) => {
-                  setValue(e.currentTarget.value);
+                  setValue(e.currentTarget.value)
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    submit();
+                    submit()
                   }
                 }}
               />
@@ -68,7 +68,7 @@ export const ModalInput = (props: ModalInputProps) => {
               id="modal-input"
               value={value()}
               onInput={(e) => {
-                setValue(e.currentTarget.value);
+                setValue(e.currentTarget.value)
               }}
             />
           </Show>
@@ -86,5 +86,5 @@ export const ModalInput = (props: ModalInputProps) => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}

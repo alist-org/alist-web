@@ -1,8 +1,8 @@
-import { Heading, Icon, Text, VStack } from "@hope-ui/solid";
-import { JSXElement } from "solid-js";
-import { getMainColor, objStore } from "~/store";
-import { formatDate, getFileSize } from "~/utils";
-import { getIconByObj } from "~/utils/icon";
+import { Heading, Icon, Text, VStack } from "@hope-ui/solid"
+import { JSXElement } from "solid-js"
+import { getMainColor, objStore } from "~/store"
+import { formatDate, getFileSize } from "~/utils"
+import { getIconByObj } from "~/utils/icon"
 
 export const FileInfo = (props: { children: JSXElement }) => {
   return (
@@ -27,5 +27,5 @@ export const FileInfo = (props: { children: JSXElement }) => {
       </VStack>
       <VStack spacing="$2">{props.children}</VStack>
     </VStack>
-  );
-};
+  )
+}

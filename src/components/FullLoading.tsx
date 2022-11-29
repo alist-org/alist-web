@@ -1,6 +1,6 @@
-import { Center, ElementType, Spinner, SpinnerProps } from "@hope-ui/solid";
-import { JSXElement, mergeProps, Show } from "solid-js";
-import { getMainColor } from "~/store";
+import { Center, ElementType, Spinner, SpinnerProps } from "@hope-ui/solid"
+import { JSXElement, mergeProps, Show } from "solid-js"
+import { getMainColor } from "~/store"
 export const FullScreenLoading = () => {
   return (
     <Center h="100vh">
@@ -12,14 +12,14 @@ export const FullScreenLoading = () => {
         size="xl"
       />
     </Center>
-  );
-};
+  )
+}
 
 export const FullLoading = (props: {
-  py?: string;
-  size?: string;
-  thickness?: number;
-  ref?: any;
+  py?: string
+  size?: string
+  thickness?: number
+  ref?: any
 }) => {
   const merged = mergeProps(
     {
@@ -28,7 +28,7 @@ export const FullLoading = (props: {
       thickness: 4,
     },
     props
-  );
+  )
   return (
     <Center ref={props.ref} h="$full" w="$full" py={merged.py}>
       <Spinner
@@ -39,19 +39,19 @@ export const FullLoading = (props: {
         size={merged.size as any}
       />
     </Center>
-  );
-};
+  )
+}
 
 export const MaybeLoading = (props: {
-  children?: JSXElement;
-  loading: boolean;
+  children?: JSXElement
+  loading: boolean
 }) => {
   return (
     <Show when={!props.loading} fallback={<FullLoading />}>
       {props.children}
     </Show>
-  );
-};
+  )
+}
 
 export const CenterLoading = <C extends ElementType = "div">(
   props: SpinnerProps<C>
@@ -60,5 +60,5 @@ export const CenterLoading = <C extends ElementType = "div">(
     <Center w="$full" h="$full">
       <Spinner color={getMainColor()} {...props} />
     </Center>
-  );
-};
+  )
+}

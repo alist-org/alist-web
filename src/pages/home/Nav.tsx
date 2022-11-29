@@ -3,33 +3,30 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
-} from "@hope-ui/solid";
-import { Link } from "@solidjs/router";
-import { createMemo, For, Show } from "solid-js";
-import { usePath, useRouter, useT } from "~/hooks";
-import { getSetting } from "~/store";
-import { encodePath, hoverColor, joinBase } from "~/utils";
+} from "@hope-ui/solid"
+import { Link } from "@solidjs/router"
+import { createMemo, For, Show } from "solid-js"
+import { usePath, useRouter, useT } from "~/hooks"
+import { getSetting } from "~/store"
+import { encodePath, hoverColor, joinBase } from "~/utils"
 
 export const Nav = () => {
-  const { pathname } = useRouter();
-  const paths = createMemo(() => [
-    "",
-    ...pathname().split("/").filter(Boolean),
-  ]);
-  const t = useT();
-  const { setPathAs } = usePath();
+  const { pathname } = useRouter()
+  const paths = createMemo(() => ["", ...pathname().split("/").filter(Boolean)])
+  const t = useT()
+  const { setPathAs } = usePath()
   return (
     <Breadcrumb class="nav" w="$full">
       <For each={paths()}>
         {(name, i) => {
-          const isLast = createMemo(() => i() === paths().length - 1);
+          const isLast = createMemo(() => i() === paths().length - 1)
           const path = paths()
             .slice(0, i() + 1)
-            .join("/");
-          const href = encodePath(path);
-          let text = () => name;
+            .join("/")
+          const href = encodePath(path)
+          let text = () => name
           if (text() === "") {
-            text = () => getSetting("home_icon") + t("manage.sidemenu.home");
+            text = () => getSetting("home_icon") + t("manage.sidemenu.home")
           }
           return (
             <BreadcrumbItem class="nav-item">
@@ -55,9 +52,9 @@ export const Nav = () => {
                 <BreadcrumbSeparator class="nav-separator" />
               </Show>
             </BreadcrumbItem>
-          );
+          )
         }}
       </For>
     </Breadcrumb>
-  );
-};
+  )
+}

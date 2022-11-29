@@ -1,13 +1,13 @@
-import { Button } from "@hope-ui/solid";
-import { createSignal } from "solid-js";
-import { useT } from "~/hooks";
-import { objStore } from "~/store";
-import { api, baseName, safeBtoa } from "~/utils";
-import { FileInfo } from "./info";
+import { Button } from "@hope-ui/solid"
+import { createSignal } from "solid-js"
+import { useT } from "~/hooks"
+import { objStore } from "~/store"
+import { api, baseName, safeBtoa } from "~/utils"
+import { FileInfo } from "./info"
 
 const Ipa = () => {
-  const t = useT();
-  const [installing, setInstalling] = createSignal(false);
+  const t = useT()
+  const [installing, setInstalling] = createSignal(false)
   return (
     <FileInfo>
       <Button
@@ -21,13 +21,13 @@ const Ipa = () => {
           )}.plist`
         }
         onClick={() => {
-          setInstalling(true);
+          setInstalling(true)
         }}
       >
         {t(`home.preview.${installing() ? "installing" : "install"}`)}
       </Button>
     </FileInfo>
-  );
-};
+  )
+}
 
-export default Ipa;
+export default Ipa

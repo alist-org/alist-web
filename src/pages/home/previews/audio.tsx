@@ -1,27 +1,27 @@
-import "aplayer/dist/APlayer.min.css";
-import "./audio.css";
-import APlayer from "aplayer";
-import { Box } from "@hope-ui/solid";
-import { onCleanup, onMount } from "solid-js";
-import { useLink } from "~/hooks";
-import { getSetting, getSettingBool, objStore } from "~/store";
-import { ObjType, StoreObj } from "~/types";
-import { baseName } from "~/utils";
+import "aplayer/dist/APlayer.min.css"
+import "./audio.css"
+import APlayer from "aplayer"
+import { Box } from "@hope-ui/solid"
+import { onCleanup, onMount } from "solid-js"
+import { useLink } from "~/hooks"
+import { getSetting, getSettingBool, objStore } from "~/store"
+import { ObjType, StoreObj } from "~/types"
+import { baseName } from "~/utils"
 
 const Preview = () => {
-  const { proxyLink, rawLink } = useLink();
-  let audios = objStore.objs.filter((obj) => obj.type === ObjType.AUDIO);
+  const { proxyLink, rawLink } = useLink()
+  let audios = objStore.objs.filter((obj) => obj.type === ObjType.AUDIO)
   if (audios.length === 0) {
-    audios = [objStore.obj];
+    audios = [objStore.obj]
   }
-  let ap: any;
+  let ap: any
   const objToAudio = (obj: StoreObj) => {
-    let lrc = undefined;
+    let lrc = undefined
     const lrcObj = objStore.objs.find((o) => {
-      return baseName(o.name) === baseName(obj.name) && o.name.endsWith(".lrc");
-    });
+      return baseName(o.name) === baseName(obj.name) && o.name.endsWith(".lrc")
+    })
     if (lrcObj) {
-      lrc = proxyLink(lrcObj, true);
+      lrc = proxyLink(lrcObj, true)
     }
     return {
       name: obj.name,
@@ -31,8 +31,8 @@ const Preview = () => {
         getSetting("audio_cover") ||
         "https://jsd.nn.ci/gh/alist-org/logo@main/logo.svg",
       lrc: lrc,
-    };
-  };
+    }
+  }
   onMount(() => {
     ap = new APlayer({
       container: document.querySelector("#audio-player"),
@@ -46,16 +46,16 @@ const Preview = () => {
       listFolded: false,
       lrcType: 3,
       audio: audios.map(objToAudio),
-    });
-    const curIndex = audios.findIndex((obj) => obj.name === objStore.obj.name);
+    })
+    const curIndex = audios.findIndex((obj) => obj.name === objStore.obj.name)
     if (curIndex !== -1) {
-      ap.list.switch(curIndex);
+      ap.list.switch(curIndex)
     }
-  });
+  })
   onCleanup(() => {
-    ap?.destroy();
-  });
-  return <Box w="$full" id="audio-player" />;
-};
+    ap?.destroy()
+  })
+  return <Box w="$full" id="audio-player" />
+}
 
-export default Preview;
+export default Preview

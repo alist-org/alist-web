@@ -1,10 +1,10 @@
-import { Icon, useColorMode, useColorModeValue } from "@hope-ui/solid";
+import { Icon, useColorMode, useColorModeValue } from "@hope-ui/solid"
 // import { IoMoonOutline as Moon } from "solid-icons/io";
-import { FiSun as Sun } from "solid-icons/fi";
-import { FiMoon as Moon } from "solid-icons/fi";
+import { FiSun as Sun } from "solid-icons/fi"
+import { FiMoon as Moon } from "solid-icons/fi"
 
 const SwitchColorMode = () => {
-  const { toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode()
   const icon = useColorModeValue(
     {
       size: "$8",
@@ -16,7 +16,7 @@ const SwitchColorMode = () => {
       component: Sun,
       p: "$0_5",
     }
-  );
+  )
   return (
     <Icon
       cursor="pointer"
@@ -25,6 +25,6 @@ const SwitchColorMode = () => {
       onClick={toggleColorMode}
       p={icon().p}
     />
-  );
-};
-export { SwitchColorMode };
+  )
+}
+export { SwitchColorMode }

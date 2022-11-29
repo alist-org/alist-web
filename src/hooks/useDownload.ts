@@ -1,25 +1,25 @@
-import axios from "axios";
-import { local, selectedObjs } from "~/store";
-import { notify } from "~/utils";
-import { useSelectedLink, useLink, useT } from ".";
+import axios from "axios"
+import { local, selectedObjs } from "~/store"
+import { notify } from "~/utils"
+import { useSelectedLink, useLink, useT } from "."
 
 export const useDownload = () => {
-  const { rawLinks } = useSelectedLink();
-  const { rawLink } = useLink();
-  const t = useT();
+  const { rawLinks } = useSelectedLink()
+  const { rawLink } = useLink()
+  const t = useT()
   return {
     batchDownloadSelected: () => {
-      const urls = rawLinks(true);
+      const urls = rawLinks(true)
       urls.forEach((url) => {
-        window.open(url, "_blank");
-      });
+        window.open(url, "_blank")
+      })
     },
     sendToAria2: async () => {
-      const selectedFiles = selectedObjs().filter((obj) => !obj.is_dir);
-      const { aria2_rpc_url, aria2_rpc_secret, aria2_dir } = local;
+      const selectedFiles = selectedObjs().filter((obj) => !obj.is_dir)
+      const { aria2_rpc_url, aria2_rpc_secret, aria2_dir } = local
       if (!aria2_rpc_url) {
-        notify.warning(t("home.toolbar.aria2_not_set"));
-        return;
+        notify.warning(t("home.toolbar.aria2_not_set"))
+        return
       }
       try {
         for (const file of selectedFiles) {
@@ -36,14 +36,14 @@ export const useDownload = () => {
                 "check-certificate": "false",
               },
             ],
-          });
-          console.log(resp);
+          })
+          console.log(resp)
         }
-        notify.success(t("home.toolbar.send_aria2_success"));
+        notify.success(t("home.toolbar.send_aria2_success"))
       } catch (e) {
-        console.error(e);
-        notify.error(`failed to send to aria2: ${e}`);
+        console.error(e)
+        notify.error(`failed to send to aria2: ${e}`)
       }
     },
-  };
-};
+  }
+}

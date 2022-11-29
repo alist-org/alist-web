@@ -1,9 +1,9 @@
-import { Error, FullLoading, ImageWithError } from "~/components";
-import { useT } from "~/hooks";
-import { objStore } from "~/store";
+import { Error, FullLoading, ImageWithError } from "~/components"
+import { useT } from "~/hooks"
+import { objStore } from "~/store"
 
 const Preview = () => {
-  const t = useT();
+  const t = useT()
   return (
     <ImageWithError
       maxH="75vh"
@@ -12,7 +12,7 @@ const Preview = () => {
       fallback={<FullLoading />}
       fallbackErr={<Error msg={t("home.preview.failed_load_img")} />}
     />
-  );
-};
+  )
+}
 
-export default Preview;
+export default Preview

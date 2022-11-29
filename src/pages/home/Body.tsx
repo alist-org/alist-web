@@ -1,8 +1,8 @@
-import { VStack } from "@hope-ui/solid";
-import { Nav } from "./Nav";
-import { Obj } from "./Obj";
-import { Readme } from "./Readme";
-import { Container } from "./Container";
+import { VStack } from "@hope-ui/solid"
+import { Nav } from "./Nav"
+import { Obj } from "./Obj"
+import { Readme } from "./Readme"
+import { Container } from "./Container"
 
 export const Body = () => {
   return (
@@ -21,5 +21,5 @@ export const Body = () => {
         <Readme />
       </VStack>
     </Container>
-  );
-};
+  )
+}

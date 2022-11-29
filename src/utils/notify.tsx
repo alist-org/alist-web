@@ -7,9 +7,9 @@ import {
   // AlertTitle,
   // CloseButton,
   notificationService,
-} from "@hope-ui/solid";
-import { JSXElement } from "solid-js";
-import { alphaBgColor, firstUpperCase } from ".";
+} from "@hope-ui/solid"
+import { JSXElement } from "solid-js"
+import { alphaBgColor, firstUpperCase } from "."
 
 const notify = {
   render: (element: JSXElement) => {
@@ -34,9 +34,9 @@ const notify = {
             />
             {element}
           </Box>
-        );
+        )
       },
-    });
+    })
   },
   success: (message: string) => {
     notificationService.show({
@@ -49,7 +49,7 @@ const notify = {
       //     <CloseButton size="sm" onClick={props.close} />
       //   </Alert>
       // ),
-    });
+    })
   },
   error: (message: string) => {
     notificationService.show({
@@ -62,7 +62,7 @@ const notify = {
       //     <CloseButton size="sm" onClick={props.close} />
       //   </Alert>
       // ),
-    });
+    })
   },
   info: (message: string) => {
     notificationService.show({
@@ -75,7 +75,7 @@ const notify = {
       //     <CloseButton size="sm" onClick={props.close} />
       //   </Alert>
       // ),
-    });
+    })
   },
   warning: (message: string) => {
     notificationService.show({
@@ -88,8 +88,8 @@ const notify = {
       //     <CloseButton size="sm" onClick={props.close} />
       //   </Alert>
       // ),
-    });
+    })
   },
-};
+}
 
-export { notify };
+export { notify }
