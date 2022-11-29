@@ -1,4 +1,4 @@
-import { SideMenuItemProps } from "./SideMenu";
+import { SideMenuItemProps } from "./SideMenu"
 import {
   BsGearFill,
   BsPaletteFill,
@@ -11,21 +11,22 @@ import {
   BsFront,
   BsCloudArrowDownFill,
   BsCloudUploadFill,
-} from "solid-icons/bs";
-import { SiMetabase } from "solid-icons/si";
-import { CgDatabase } from "solid-icons/cg";
-import { OcWorkflow2 } from "solid-icons/oc";
-import { IoCopy, IoHome } from "solid-icons/io";
-import { Component, lazy } from "solid-js";
-import { Group, UserRole } from "~/types";
-import { FaSolidDatabase } from 'solid-icons/fa'
+  BsSearch,
+} from "solid-icons/bs"
+import { SiMetabase } from "solid-icons/si"
+import { CgDatabase } from "solid-icons/cg"
+import { OcWorkflow2 } from "solid-icons/oc"
+import { IoCopy, IoHome } from "solid-icons/io"
+import { Component, lazy } from "solid-js"
+import { Group, UserRole } from "~/types"
+import { FaSolidDatabase } from "solid-icons/fa"
 
 export type SideMenuItem = SideMenuItemProps & {
-  component?: Component;
-  children?: SideMenuItem[];
-};
+  component?: Component
+  children?: SideMenuItem[]
+}
 
-const CommonSettings = lazy(() => import("./settings/Common"));
+const CommonSettings = lazy(() => import("./settings/Common"))
 
 export const side_menu_items: SideMenuItem[] = [
   // {
@@ -122,6 +123,12 @@ export const side_menu_items: SideMenuItem[] = [
     component: lazy(() => import("./metas/Metas")),
   },
   {
+    title: "manage.sidemenu.indexes",
+    icon: BsSearch,
+    to: "/@manage/indexes",
+    component: lazy(() => import("./indexes/indexes")),
+  },
+  {
     title: "manage.sidemenu.backup-restore",
     to: "/@manage/backup-restore",
     icon: FaSolidDatabase,
@@ -140,5 +147,5 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/",
     role: UserRole.GUEST,
     external: true,
-  }
-];
+  },
+]

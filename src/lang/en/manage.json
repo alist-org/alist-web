@@ -17,7 +17,8 @@
     "upload": "Upload",
     "copy": "Copy",
     "backup-restore": "Backup & Restore",
-    "home": "Home"
+    "home": "Home",
+    "indexes": "Indexes"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",

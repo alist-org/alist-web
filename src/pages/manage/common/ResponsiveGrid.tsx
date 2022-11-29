@@ -8,7 +8,7 @@ export const ResponsiveGrid = (props: { children: JSXElement }) => {
       gap="$2"
       templateColumns={{
         "@initial": "1fr",
-        "@lg": "repeat(auto-fit, minmax(424px, 1fr))",
+        "@lg": "repeat(auto-fill, minmax(424px, 1fr))",
       }}
     >
       {props.children}

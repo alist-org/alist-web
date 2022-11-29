@@ -15,15 +15,22 @@ import {
   VStack,
 } from "@hope-ui/solid"
 import { BsSearch } from "solid-icons/bs"
-import { createSignal, For, onCleanup, Show } from "solid-js"
-import { LinkWithBase } from "~/components"
+import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
+import { FullLoading, LinkWithBase } from "~/components"
 import { useFetch, useRouter, useT } from "~/hooks"
 import { getMainColor, me } from "~/store"
-import { Obj } from "~/types"
-import { bus, fsSearch, getFileSize, handleResp, hoverColor } from "~/utils"
+import { SearchNode } from "~/types"
+import {
+  bus,
+  fsSearch,
+  getFileSize,
+  handleResp,
+  hoverColor,
+  pathJoin,
+} from "~/utils"
 import { getIconByObj } from "~/utils/icon"
 
-const SearchResult = (props: Obj) => {
+const SearchResult = (props: SearchNode) => {
   return (
     <HStack
       w="$full"
@@ -51,20 +58,20 @@ const SearchResult = (props: Obj) => {
           }}
         >
           {props.name}
-          <Show when={!props.is_dir}>
+          <Show when={props.size > 0 || !props.is_dir}>
             <Badge colorScheme="info" ml="$2">
               {getFileSize(props.size)}
             </Badge>
           </Show>
         </Text>
         <Text
-          color="$neutral9"
+          color="$neutral10"
           size="xs"
           css={{
             wordBreak: "break-all",
           }}
         >
-          {props.path}
+          {props.parent}
         </Text>
       </VStack>
     </HStack>
@@ -94,17 +101,20 @@ const Search = () => {
   const [keywords, setKeywords] = createSignal("")
   const { pathname } = useRouter()
   const [loading, searchReq] = useFetch(fsSearch)
-  const [data, setData] = createSignal<Obj[]>([])
+  const [data, setData] = createSignal<SearchNode[]>([])
   const search = async () => {
+    if (loading()) return
+    setData([])
     const resp = await searchReq(pathname(), keywords())
     handleResp(resp, (data) => {
-      if (!data) {
+      const content = data.content
+      if (!content) {
         return
       }
-      data.forEach((obj) => {
-        obj.path = obj.path.replace(me().base_path, "")
+      content.forEach((node) => {
+        node.path = pathJoin(node.parent, node.name).replace(me().base_path, "")
       })
-      setData(data)
+      setData(content)
     })
   }
   return (
@@ -147,11 +157,16 @@ const Search = () => {
                 loading={loading()}
               />
             </HStack>
-            <Show when={data().length === 0}>
-              <Text size="2xl" my="$8">
-                {t("home.search.no_result")}
-              </Text>
-            </Show>
+            <Switch>
+              <Match when={loading()}>
+                <FullLoading />
+              </Match>
+              <Match when={data().length === 0}>
+                <Text size="2xl" my="$8">
+                  {t("home.search.no_result")}
+                </Text>
+              </Match>
+            </Switch>
             <VStack w="$full">
               <For each={data()}>{(item) => <SearchResult {...item} />}</For>
             </VStack>

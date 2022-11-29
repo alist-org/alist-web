@@ -6,7 +6,7 @@ import { useManageTitle } from "~/hooks";
 
 type Route = Pick<SideMenuItem, "to" | "component">;
 
-const ignore_routes: Route[] = [
+const hide_routes: Route[] = [
   {
     to: "/storages/add",
     component: lazy(() => import("./storages/AddOrEdit")),
@@ -66,5 +66,5 @@ const get_routes = (items: SideMenuItem[], acc: Route[] = []) => {
   return acc;
 };
 
-const routes = get_routes(side_menu_items).concat(ignore_routes);
+const routes = get_routes(side_menu_items).concat(hide_routes);
 export { routes };

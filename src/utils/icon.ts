@@ -12,16 +12,16 @@ import {
   BsWindows,
   BsFileEarmarkZipFill,
   BsMarkdownFill,
-} from "solid-icons/bs";
+} from "solid-icons/bs"
 import {
   FaSolidDatabase,
   FaSolidBook,
   FaSolidCompactDisc,
-} from "solid-icons/fa";
-import { IoFolder } from "solid-icons/io";
-import { ImAndroid } from "solid-icons/im";
-import { Obj, ObjType } from "~/types";
-import { ext } from "./path";
+} from "solid-icons/fa"
+import { IoFolder } from "solid-icons/io"
+import { ImAndroid } from "solid-icons/im"
+import { Obj, ObjType } from "~/types"
+import { ext } from "./path"
 
 const iconMap = {
   "dmg,ipa,plist": BsApple,
@@ -37,19 +37,19 @@ const iconMap = {
   "xls,xlsx": BsFileEarmarkExcelFill,
   "ppt,pptx": BsFileEarmarkPptFill,
   pdf: BsFileEarmarkPdfFill,
-};
+}
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {
   if (type !== ObjType.FOLDER) {
     for (const [extensions, icon] of Object.entries(iconMap)) {
       if (extensions.split(",").includes(ext.toLowerCase())) {
-        return icon;
+        return icon
       }
     }
   }
   switch (type) {
     case ObjType.FOLDER:
-      return IoFolder;
+      return IoFolder
     // case ObjType.OFFICE: {
     //   if (ext === "doc" || ext === "docx") {
     //     return BsFileEarmarkWordFill;
@@ -64,18 +64,18 @@ export const getIconByTypeAndExt = (type: number, ext: string) => {
     //   }
     // }
     case ObjType.VIDEO:
-      return BsFileEarmarkPlayFill;
+      return BsFileEarmarkPlayFill
     case ObjType.AUDIO:
-      return BsFileEarmarkMusicFill;
+      return BsFileEarmarkMusicFill
     case ObjType.TEXT:
-      return BsFileEarmarkFontFill;
+      return BsFileEarmarkFontFill
     case ObjType.IMAGE:
-      return BsFileEarmarkImageFill;
+      return BsFileEarmarkImageFill
     default:
-      return BsFileEarmarkMinusFill;
+      return BsFileEarmarkMinusFill
   }
-};
+}
 
-export const getIconByObj = (obj: Obj) => {
-  return getIconByTypeAndExt(obj.type, ext(obj.name));
-};
+export const getIconByObj = (obj: Pick<Obj, "type" | "name">) => {
+  return getIconByTypeAndExt(obj.type, ext(obj.name))
+}

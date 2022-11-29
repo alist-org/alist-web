@@ -1,0 +1,9 @@
+{
+  "search_index": "Search index",
+  "current": "Current indexes",
+  "build": "Build indexes",
+  "rebuild": "Rebuild indexes",
+  "obj_count": "Object count",
+  "last_done_time": "Last done time",
+  "error": "Error"
+}
