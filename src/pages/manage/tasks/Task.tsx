@@ -79,6 +79,9 @@ export const Task = (props: TaskInfo & TasksProps) => {
           >
             {props.status}
           </Text>
+          <Show when={props.error}>
+            <Text color="$danger9" css={{ wordBreak: "break-all" }}>{props.error}</Text>
+          </Show>
           <Progress
             w="$full"
             trackColor="$info3"
