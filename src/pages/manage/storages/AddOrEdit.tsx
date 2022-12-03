@@ -46,7 +46,7 @@ type Drivers = Record<string, DriverInfo>
 
 const AddOrEdit = () => {
   const t = useT()
-  const { params, back } = useRouter()
+  const { params, back, to } = useRouter()
   const { id } = params
   const [driversLoading, loadDrivers] = useFetch(
     (): PResp<Drivers> => r.get("/admin/driver/list"),
@@ -85,7 +85,7 @@ const AddOrEdit = () => {
   }
   const [storage, setStorage] = createStore<Storage>({} as Storage)
   const [addition, setAddition] = createStore<Addition>({})
-  const [okLoading, ok] = useFetch((): PEmptyResp => {
+  const [okLoading, ok] = useFetch((): PResp<{id: number}> => {
     setStorage("addition", JSON.stringify(addition))
     return r.post(`/admin/storage/${id ? "update" : "create"}`, storage)
   })
@@ -170,6 +170,10 @@ const AddOrEdit = () => {
           handleResp(resp, () => {
             notify.success(t("global.save_success"))
             back()
+          },(msg,code)=>{
+            if(resp.data.id){
+              to(`/@manage/storages/edit/${resp.data.id}`)
+            }
           })
         }}
       >
