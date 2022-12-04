@@ -69,6 +69,15 @@ const Indexes = () => {
   const rebuild = async () => {
     const resp = await rebuildReq()
     handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
+  const [stopBuildLoading, stopBuildReq] = useFetch(
+    (): PResp<Progress> => r.post("/admin/index/stop")
+  )
+  const stopBuild = async () => {
+    const resp = await stopBuildReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
   }
   return (
     <VStack spacing="$2" w="$full" alignItems="start">
@@ -114,7 +123,7 @@ const Indexes = () => {
             <Text>
               {t("indexes.last_done_time")}:
               <Badge colorScheme="accent" ml="$2">
-                {formatDate(progress()!.last_done_time)}
+                {progress()!.last_done_time ? formatDate(progress()!.last_done_time) : t("indexes.unknown")}
               </Badge>
             </Text>
             <Show when={progress()?.error}>
@@ -135,6 +144,13 @@ const Indexes = () => {
           loading={progressLoading()}
         >
           {t("global.refresh")}
+        </Button>
+        <Button
+          colorScheme="warning"
+          onClick={[stopBuild, undefined]}
+          loading={stopBuildLoading()}
+        >
+          {t("indexes.stop")}
         </Button>
         <Button onClick={[rebuild, undefined]} loading={reBuildLoading()}>
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
