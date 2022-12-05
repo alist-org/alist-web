@@ -11,7 +11,7 @@ import {
 import { createSignal, For, Show } from "solid-js"
 import { createStore } from "solid-js/store"
 import { useFetch, useT } from "~/hooks"
-import { PEmptyResp, PResp, SettingItem } from "~/types"
+import { Group, PEmptyResp, PResp, SettingItem } from "~/types"
 import {
   buildIndex,
   formatDate,
@@ -20,6 +20,7 @@ import {
   handleRespWithNotifySuccess,
   r,
 } from "~/utils"
+import CommonSettings from "../settings/Common"
 import { Item } from "../settings/SettingItem"
 import { LineMdConfirmCircleTwotone, LineMdLoadingTwotoneLoop } from "./icons"
 
@@ -32,28 +33,6 @@ type Progress = {
 
 const Indexes = () => {
   const t = useT()
-  const [searchIndex, setSearchIndex] = createStore<SettingItem>(
-    {} as SettingItem
-  )
-  const [searchIndexLoading, searchIndexDataReq] = useFetch(
-    (): PResp<SettingItem> => r.get("/admin/setting/get?key=search_index")
-  )
-  const refreshSearchIndex = async () => {
-    const resp = await searchIndexDataReq()
-    handleResp(resp, (data) => {
-      setSearchIndex(data)
-    })
-  }
-  refreshSearchIndex()
-  const [saveSearchIndexLoading, saveSearchIndexReq] = useFetch(
-    (): PEmptyResp => r.post("/admin/setting/save", [getTarget(searchIndex)])
-  )
-  const saveSearchIndex = async () => {
-    const resp = await saveSearchIndexReq()
-    handleRespWithNotifySuccess(resp, () => {
-      refreshProgress()
-    })
-  }
   const [progress, setProgress] = createSignal<Progress>()
   const [progressLoading, getProgressReq] = useFetch(
     (): PResp<Progress> => r.get("/admin/index/progress")
@@ -81,19 +60,8 @@ const Indexes = () => {
   }
   return (
     <VStack spacing="$2" w="$full" alignItems="start">
-      <Heading>{t("indexes.search_index")}</Heading>
-      <Item
-        hideLabel
-        w="min($sm, 100%)"
-        {...searchIndex}
-        onChange={(str) => setSearchIndex("value", str)}
-      />
-      <Button
-        onClick={[saveSearchIndex, undefined]}
-        loading={saveSearchIndexLoading()}
-      >
-        {t("global.save")}
-      </Button>
+      <Heading>{t("manage.sidemenu.settings")}</Heading>
+      <CommonSettings group={Group.INDEX} />
       <Heading>{t("indexes.current")}</Heading>
       <Show when={progress()}>
         <HStack
@@ -107,6 +75,7 @@ const Indexes = () => {
           <Icon
             boxSize="$28"
             color="$accent9"
+            p="$2"
             as={
               progress()?.is_done
                 ? LineMdConfirmCircleTwotone

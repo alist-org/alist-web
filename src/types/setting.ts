@@ -1,12 +1,13 @@
 import { Type } from "."
 
 export enum Group {
+  SINGLE,
   SITE,
   STYLE,
   PREVIEW,
   GLOBAL,
-  SINGLE,
   ARIA2,
+  INDEX,
 }
 export enum Flag {
   PUBLIC,
