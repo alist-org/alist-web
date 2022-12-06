@@ -112,7 +112,9 @@ const Search = () => {
         return
       }
       content.forEach((node) => {
-        node.parent = node.parent.replace(me().base_path, "") || "/"
+        if (me().base_path) {
+          node.parent = node.parent.replace(me().base_path, "") || "/"
+        }
         node.path = pathJoin(node.parent, node.name)
       })
       setData(content)
