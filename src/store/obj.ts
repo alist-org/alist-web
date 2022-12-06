@@ -1,3 +1,4 @@
+import naturalSort from "typescript-natural-sort"
 import { cookieStorage, createStorageSignal } from "@solid-primitives/storage"
 import { createSignal } from "solid-js"
 import { createStore, produce } from "solid-js/store"
@@ -94,9 +95,7 @@ export const sortObjs = (orderBy: OrderBy, reverse?: boolean) => {
     "objs",
     produce((objs) =>
       objs.sort((a, b) => {
-        if (a[orderBy] < b[orderBy]) return reverse ? 1 : -1
-        if (a[orderBy] > b[orderBy]) return reverse ? -1 : 1
-        return 0
+        return (reverse ? -1 : 1) * naturalSort(a[orderBy], b[orderBy])
       })
     )
   )
