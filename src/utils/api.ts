@@ -122,6 +122,7 @@ export const fetchText = async (
 export const fsSearch = async (
   parent: string,
   keywords: string,
+  password = "",
   page = 1,
   per_page = 100
 ): Promise<FsSearchResp> => {
