@@ -7,6 +7,7 @@ export enum Group {
   GLOBAL,
   SINGLE,
   ARIA2,
+  GITHUB,
 }
 export enum Flag {
   PUBLIC,

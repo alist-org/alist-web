@@ -125,6 +125,14 @@ const Profile = () => {
               {t("users.enable_2fa")}
             </Button>
           </Show>
+          <Button
+            colorScheme="accent"
+            onClick={() => {
+              to("/@manage/GithubLogin")
+            }}
+          >
+            Configure Github Signin
+          </Button>
         </HStack>
       </Show>
       <HStack wrap="wrap" gap="$2" mt="$2">

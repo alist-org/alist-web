@@ -11,6 +11,7 @@ export interface User {
   base_path: string
   role: UserRole
   permission: number
+  github_id: number
   // otp: boolean;
 }
 

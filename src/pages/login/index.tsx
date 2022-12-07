@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from "@hope-ui/solid"
 import { createMemo, createSignal, Show } from "solid-js"
-import { SwitchColorMode, SwitchLanguageWhite } from "~/components"
+import { SwitchColorMode, SwitchLanguageWhite, GithubLogin } from "~/components"
 import { useFetch, useT, useTitle, useRouter } from "~/hooks"
 import {
   changeToken,
@@ -194,6 +194,15 @@ const Login = () => {
         >
           <SwitchLanguageWhite />
           <SwitchColorMode />
+        </Flex>
+        <Flex
+          mt="$2"
+          justifyContent="space-evenly"
+          alignItems="center"
+          color="$neutral10"
+          w="$full"
+        >
+          <GithubLogin />
         </Flex>
       </VStack>
       <LoginBg />
