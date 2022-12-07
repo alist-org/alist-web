@@ -14,6 +14,7 @@ import { useFetch, useT } from "~/hooks"
 import { Group, PEmptyResp, PResp, SettingItem } from "~/types"
 import {
   buildIndex,
+  updateIndex,
   formatDate,
   getTarget,
   handleResp,
@@ -44,9 +45,23 @@ const Indexes = () => {
     })
   }
   refreshProgress()
-  const [reBuildLoading, rebuildReq] = useFetch(buildIndex)
+  const [rebuildLoading, rebuildReq] = useFetch(buildIndex)
   const rebuild = async () => {
     const resp = await rebuildReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
+  const [updateLoading, updateReq] = useFetch(updateIndex)
+  const update = async () => {
+    const resp = await updateReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
+  const [clearIndexLoading, clearIndexReq] = useFetch(
+    (): PResp<Progress> => r.post("/admin/index/clear")
+  )
+  const clearIndex = async () => {
+    const resp = await clearIndexReq()
     handleRespWithNotifySuccess(resp)
     refreshProgress()
   }
@@ -92,7 +107,9 @@ const Indexes = () => {
             <Text>
               {t("indexes.last_done_time")}:
               <Badge colorScheme="accent" ml="$2">
-                {progress()!.last_done_time ? formatDate(progress()!.last_done_time) : t("indexes.unknown")}
+                {progress()!.last_done_time
+                  ? formatDate(progress()!.last_done_time)
+                  : t("indexes.unknown")}
               </Badge>
             </Text>
             <Show when={progress()?.error}>
@@ -115,14 +132,24 @@ const Indexes = () => {
           {t("global.refresh")}
         </Button>
         <Button
+          colorScheme="danger"
+          onClick={[clearIndex, undefined]}
+          loading={clearIndexLoading()}
+        >
+          {t("indexes.clear")}
+        </Button>
+        <Button
           colorScheme="warning"
           onClick={[stopBuild, undefined]}
           loading={stopBuildLoading()}
         >
           {t("indexes.stop")}
         </Button>
-        <Button onClick={[rebuild, undefined]} loading={reBuildLoading()}>
+        <Button onClick={[rebuild, undefined]} loading={rebuildLoading()}>
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
+        </Button>
+        <Button onClick={[update, undefined]} loading={updateLoading()}>
+          {t(`indexes.update`)}
         </Button>
       </HStack>
     </VStack>
