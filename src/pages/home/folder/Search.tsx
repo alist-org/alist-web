@@ -18,7 +18,7 @@ import { BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import { FullLoading, LinkWithBase } from "~/components"
 import { useFetch, useRouter, useT } from "~/hooks"
-import { getMainColor, me } from "~/store"
+import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
 import {
   bus,
@@ -105,14 +105,16 @@ const Search = () => {
   const search = async () => {
     if (loading()) return
     setData([])
-    const resp = await searchReq(pathname(), keywords())
+    const resp = await searchReq(pathname(), keywords(), password())
     handleResp(resp, (data) => {
       const content = data.content
       if (!content) {
         return
       }
       content.forEach((node) => {
-        node.parent = node.parent.replace(me().base_path, "") || "/"
+        if (me().base_path) {
+          node.parent = node.parent.replace(me().base_path, "") || "/"
+        }
         node.path = pathJoin(node.parent, node.name)
       })
       setData(content)
