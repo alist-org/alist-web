@@ -104,12 +104,9 @@ const Upload = () => {
   const uploaders = getUploads()
   const [curUploader, setCurUploader] = createSignal(uploaders[0])
   const handleFile = async (file: File) => {
-    const path =
-      file.webkitRelativePath === "" ? file.name : file.webkitRelativePath
+    const path = file.webkitRelativePath ? file.webkitRelativePath : file.name
     setUpload(path, "status", "uploading")
     const uploadPath = pathJoin(pathname(), path)
-    let oldTimestamp = new Date().valueOf()
-    let oldLoaded = 0
     try {
       const err = await curUploader().upload(
         uploadPath,
