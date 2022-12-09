@@ -2,7 +2,7 @@ import { Button, Input } from "@hope-ui/solid"
 import { createSignal } from "solid-js"
 import { useFetch } from "~/hooks"
 import { handleResp, notify, r } from "~/utils"
-import { PEmptyResp, PResp } from "~/types"
+import { PEmptyResp } from "~/types"
 import { useRouter } from "~/hooks"
 import { me } from "~/store"
 
