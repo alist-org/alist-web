@@ -8,20 +8,18 @@ import {
   useColorModeValue,
   VStack,
 } from "@hope-ui/solid"
-import { createSignal, For, Show } from "solid-js"
-import { createStore } from "solid-js/store"
+import { createSignal, Show } from "solid-js"
 import { useFetch, useT } from "~/hooks"
-import { Group, PEmptyResp, PResp, SettingItem } from "~/types"
+import { Group, PEmptyResp, PResp } from "~/types"
 import {
   buildIndex,
+  updateIndex,
   formatDate,
-  getTarget,
   handleResp,
   handleRespWithNotifySuccess,
   r,
 } from "~/utils"
 import CommonSettings from "../settings/Common"
-import { Item } from "../settings/SettingItem"
 import { LineMdConfirmCircleTwotone, LineMdLoadingTwotoneLoop } from "./icons"
 
 type Progress = {
@@ -44,14 +42,28 @@ const Indexes = () => {
     })
   }
   refreshProgress()
-  const [reBuildLoading, rebuildReq] = useFetch(buildIndex)
+  const [rebuildLoading, rebuildReq] = useFetch(buildIndex)
   const rebuild = async () => {
     const resp = await rebuildReq()
     handleRespWithNotifySuccess(resp)
     refreshProgress()
   }
+  const [updateLoading, updateReq] = useFetch(updateIndex)
+  const update = async () => {
+    const resp = await updateReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
+  const [clearIndexLoading, clearIndexReq] = useFetch(
+    (): PEmptyResp => r.post("/admin/index/clear")
+  )
+  const clearIndex = async () => {
+    const resp = await clearIndexReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
   const [stopBuildLoading, stopBuildReq] = useFetch(
-    (): PResp<Progress> => r.post("/admin/index/stop")
+    (): PEmptyResp => r.post("/admin/index/stop")
   )
   const stopBuild = async () => {
     const resp = await stopBuildReq()
@@ -92,7 +104,9 @@ const Indexes = () => {
             <Text>
               {t("indexes.last_done_time")}:
               <Badge colorScheme="accent" ml="$2">
-                {progress()!.last_done_time ? formatDate(progress()!.last_done_time) : t("indexes.unknown")}
+                {progress()!.last_done_time
+                  ? formatDate(progress()!.last_done_time)
+                  : t("indexes.unknown")}
               </Badge>
             </Text>
             <Show when={progress()?.error}>
@@ -115,14 +129,24 @@ const Indexes = () => {
           {t("global.refresh")}
         </Button>
         <Button
+          colorScheme="danger"
+          onClick={[clearIndex, undefined]}
+          loading={clearIndexLoading()}
+        >
+          {t("indexes.clear")}
+        </Button>
+        <Button
           colorScheme="warning"
           onClick={[stopBuild, undefined]}
           loading={stopBuildLoading()}
         >
           {t("indexes.stop")}
         </Button>
-        <Button onClick={[rebuild, undefined]} loading={reBuildLoading()}>
+        <Button onClick={[rebuild, undefined]} loading={rebuildLoading()}>
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
+        </Button>
+        <Button onClick={[update, undefined]} loading={updateLoading()}>
+          {t(`indexes.update`)}
         </Button>
       </HStack>
     </VStack>
