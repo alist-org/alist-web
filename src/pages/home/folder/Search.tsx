@@ -148,7 +148,7 @@ const Search = () => {
                   setKeywords(e.currentTarget.value)
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === "Enter" && keywords().length !== 0) {
                     search()
                   }
                 }}
@@ -158,6 +158,7 @@ const Search = () => {
                 icon={<BsSearch />}
                 onClick={[search, undefined]}
                 loading={loading()}
+                disabled={keywords().length === 0}
               />
             </HStack>
             <Switch>
