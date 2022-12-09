@@ -8,21 +8,18 @@ import {
   useColorModeValue,
   VStack,
 } from "@hope-ui/solid"
-import { createSignal, For, Show } from "solid-js"
-import { createStore } from "solid-js/store"
+import { createSignal, Show } from "solid-js"
 import { useFetch, useT } from "~/hooks"
-import { Group, PEmptyResp, PResp, SettingItem } from "~/types"
+import { Group, PEmptyResp, PResp } from "~/types"
 import {
   buildIndex,
   updateIndex,
   formatDate,
-  getTarget,
   handleResp,
   handleRespWithNotifySuccess,
   r,
 } from "~/utils"
 import CommonSettings from "../settings/Common"
-import { Item } from "../settings/SettingItem"
 import { LineMdConfirmCircleTwotone, LineMdLoadingTwotoneLoop } from "./icons"
 
 type Progress = {
@@ -58,7 +55,7 @@ const Indexes = () => {
     refreshProgress()
   }
   const [clearIndexLoading, clearIndexReq] = useFetch(
-    (): PResp<Progress> => r.post("/admin/index/clear")
+    (): PEmptyResp => r.post("/admin/index/clear")
   )
   const clearIndex = async () => {
     const resp = await clearIndexReq()
@@ -66,7 +63,7 @@ const Indexes = () => {
     refreshProgress()
   }
   const [stopBuildLoading, stopBuildReq] = useFetch(
-    (): PResp<Progress> => r.post("/admin/index/stop")
+    (): PEmptyResp => r.post("/admin/index/stop")
   )
   const stopBuild = async () => {
     const resp = await stopBuildReq()
