@@ -43,7 +43,7 @@ export const traverseFileTree = async (entry: FileSystemEntry) => {
 export const File2Upload = (file: File): UploadFileProps => {
   return {
     name: file.name,
-    path: file.webkitRelativePath === "" ? file.name : file.webkitRelativePath,
+    path: file.webkitRelativePath ? file.webkitRelativePath : file.name,
     size: file.size,
     progress: 0,
     speed: 0,

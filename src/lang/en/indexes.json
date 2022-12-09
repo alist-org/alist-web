@@ -3,9 +3,11 @@
   "current": "Current indexes",
   "build": "Build indexes",
   "rebuild": "Rebuild indexes",
+  "update": "Update indexes",
   "obj_count": "Object count",
   "last_done_time": "Last done time",
   "unknown": "Unknown",
   "stop": "Stop",
+  "clear": "Clear",
   "error": "Error"
 }
