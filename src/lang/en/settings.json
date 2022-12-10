@@ -1,4 +1,5 @@
 {
+  "allow_indexed": "Allow indexed",
   "announcement": "Announcement",
   "aria2_secret": "Aria2 secret",
   "aria2_uri": "Aria2 uri",
