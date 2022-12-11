@@ -64,6 +64,7 @@ const Item = (props: ItemProps) => {
         <Match when={props.type === Type.String}>
           <Input
             id={props.name}
+            type={props.name == "password" ? "password" : "text"}
             readOnly={props.readonly}
             value={props.value as string}
             onInput={
