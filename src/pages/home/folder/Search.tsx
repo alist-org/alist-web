@@ -112,8 +112,12 @@ const Search = () => {
         return
       }
       content.forEach((node) => {
-        if (me().base_path) {
-          node.parent = node.parent.replace(me().base_path, "") || "/"
+        if (me().base_path && node.parent.startsWith(me().base_path)) {
+          const pattern = new RegExp("^" + me().base_path)
+          node.parent = node.parent.replace(pattern, "") || "/"
+          if (!node.parent.startsWith("/")) {
+            node.parent = "/" + node.parent
+          }
         }
         node.path = pathJoin(node.parent, node.name)
       })
