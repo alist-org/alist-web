@@ -8,7 +8,7 @@ import {
   useColorModeValue,
   VStack,
 } from "@hope-ui/solid"
-import { createSignal, Show } from "solid-js"
+import { createSignal, onCleanup, Show } from "solid-js"
 import { useFetch, useT } from "~/hooks"
 import { Group, PEmptyResp, PResp } from "~/types"
 import {
@@ -41,6 +41,9 @@ const Indexes = () => {
       setProgress(data)
     })
   }
+  const intervalId = setInterval(refreshProgress, 5000)
+  const clear = () => clearInterval(intervalId)
+  onCleanup(clear)
   refreshProgress()
   const [rebuildLoading, rebuildReq] = useFetch(buildIndex)
   const rebuild = async () => {
