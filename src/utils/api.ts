@@ -135,7 +135,7 @@ export const fsSearch = async (
 }
 
 export const buildIndex = async (
-  paths = ["/"],
+  paths = [],
   max_depth = -1,
   ignore_paths = []
 ): PEmptyResp => {
@@ -148,7 +148,7 @@ export const buildIndex = async (
 }
 
 export const updateIndex = async (
-  paths = ["/"],
+  paths = [],
   max_depth = -1,
   ignore_paths = []
 ): PEmptyResp => {
