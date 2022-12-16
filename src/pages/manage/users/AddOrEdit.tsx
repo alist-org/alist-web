@@ -87,6 +87,7 @@ const AddOrEdit = () => {
           </FormLabel>
           <Input
             id="password"
+            type="password"
             placeholder="********"
             value={user.password}
             onInput={(e) => setUser("password", e.currentTarget.value)}
