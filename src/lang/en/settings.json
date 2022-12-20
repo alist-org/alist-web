@@ -47,6 +47,11 @@
     "database": "Database",
     "none": "None"
   },
+  "settings_layout": "Settings layout",
+  "settings_layouts": {
+    "list": "List",
+    "responsive": "Responsive"
+  },
   "sign_all": "Sign all",
   "site_title": "Site title",
   "text_types": "Text types",
