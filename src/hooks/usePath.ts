@@ -187,7 +187,9 @@ export const usePath = () => {
         ObjStore.setWrite(data.write)
         ObjStore.setProvider(data.provider)
         ObjStore.setState(State.Folder)
-        recoverScroll(path)
+        if (!(append && (index ?? 1) > 1)) {
+          recoverScroll(path)
+        }
       },
       handleErr
     )
