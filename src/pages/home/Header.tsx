@@ -8,12 +8,20 @@ import {
   Kbd,
 } from "@hope-ui/solid"
 import { Show } from "solid-js"
-import { getSetting, layout, objStore, setLayout, State } from "~/store"
+import {
+  getMainColor,
+  getSetting,
+  layout,
+  objStore,
+  setLayout,
+  State,
+} from "~/store"
 import { BsGridFill, BsSearch } from "solid-icons/bs"
 import { FaSolidListUl } from "solid-icons/fa"
 import { CenterLoading } from "~/components"
 import { Container } from "./Container"
 import { bus } from "~/utils"
+import { changeColor } from "seemly"
 
 export const Header = () => {
   const logos = getSetting("logo").split("\n")
@@ -63,6 +71,11 @@ export const Header = () => {
                 </HStack>
               </HStack>
               <IconButton
+                color={getMainColor()}
+                bgColor={changeColor(getMainColor(), { alpha: 0.15 })}
+                _hover={{
+                  bgColor: changeColor(getMainColor(), { alpha: 0.2 }),
+                }}
                 aria-label="switch layout"
                 compact
                 size="lg"

@@ -56,9 +56,9 @@ export const RightIcon = <C extends ElementType = "svg">(
     >
       <Icon
         // bgColor="$info4"
-        color="$info9"
+        color={getMainColor()}
         _hover={{
-          bgColor: "$info9",
+          bgColor: getMainColor(),
           color: "white",
         }}
         _focus={{
