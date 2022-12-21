@@ -1,5 +1,7 @@
 {
   "common": {
+    "start_load_success": "Start loading",
+    "load_all": "Reload All",
     "mount_path": "Mount Path",
     "driver": "Driver",
     "order": "Order",
