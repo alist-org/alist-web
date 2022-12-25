@@ -49,13 +49,32 @@ export function formatDate(dateStr: string) {
   )
 }
 
-export const convertURL = (scheme: string, url: string, name: string) => {
+export type ConvertURLArgs = {
+  raw_url: string
+  name: string
+  d_url: string
+}
+
+export const convertURL = (scheme: string, args: ConvertURLArgs) => {
   let ans = scheme
-  ans = ans.replace("$name", name)
-  const regex = /\$[eb_]*url/g
-  ans = ans.replace(regex, (old) => {
-    const op = old.match(/e|b/g)
-    let u = url
+  ans = ans.replace("$name", args.name)
+  ans = ans.replace(/\$[eb_]*url/, (old) => {
+    const op = old.match(/e|b/)
+    let u = args.raw_url
+    if (op) {
+      for (const o of op.reverse()) {
+        if (o === "e") {
+          u = encodeURIComponent(u)
+        } else if (o === "b") {
+          u = window.btoa(u)
+        }
+      }
+    }
+    return u
+  })
+  ans = ans.replace(/\$[eb_]*durl/, (old) => {
+    const op = old.match(/e|b/)
+    let u = args.d_url
     if (op) {
       for (const o of op.reverse()) {
         if (o === "e") {
