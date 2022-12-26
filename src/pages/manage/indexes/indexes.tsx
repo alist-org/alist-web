@@ -156,7 +156,7 @@ const Indexes = () => {
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
         </Button>
       </HStack>
-      <Heading>{t("indexes.update_paths")}</Heading>
+      <Heading>{t("indexes.paths_to_update")}</Heading>
       <Textarea ref={updatePathsRef!}></Textarea>
       <Button onClick={[update, undefined]} loading={updateLoading()}>
         {t(`indexes.update`)}
