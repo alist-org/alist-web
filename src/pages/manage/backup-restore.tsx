@@ -158,27 +158,28 @@ const BackupRestore = () => {
       const reader = new FileReader()
       reader.onload = async () => {
         const data: Data = JSON.parse(reader.result as string)
-        handleRespWithoutNotify(
-          await addSettings(data.settings.filter((s) => s.key !== "version")),
-          () => {
-            appendLog(
-              t("br.success_restore_item", {
-                item: t("manage.sidemenu.settings"),
-              }),
-              "success"
-            )
-          },
-          (msg) => {
-            appendLog(
-              t("br.failed_restore_item", {
-                item: t("manage.sidemenu.settings"),
-              }) +
-                ":" +
-                msg,
-              "error"
-            )
-          }
-        )
+        data.settings &&
+          handleRespWithoutNotify(
+            await addSettings(data.settings.filter((s) => s.key !== "version")),
+            () => {
+              appendLog(
+                t("br.success_restore_item", {
+                  item: t("manage.sidemenu.settings"),
+                }),
+                "success"
+              )
+            },
+            (msg) => {
+              appendLog(
+                t("br.failed_restore_item", {
+                  item: t("manage.sidemenu.settings"),
+                }) +
+                  ":" +
+                  msg,
+                "error"
+              )
+            }
+          )
         for (const item of [
           { name: "users", fn: addUser, data: data.users, key: "username" },
           {
@@ -189,7 +190,7 @@ const BackupRestore = () => {
           },
           { name: "metas", fn: addMeta, data: data.metas, key: "path" },
         ] as const) {
-          for (const itemData of item.data) {
+          for (const itemData of item.data || []) {
             itemData.id = 0
             handleRespWithoutNotify(
               await item.fn(itemData),

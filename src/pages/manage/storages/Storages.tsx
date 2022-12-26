@@ -1,8 +1,8 @@
 import { Button, Grid, HStack, VStack } from "@hope-ui/solid"
 import { createSignal, For } from "solid-js"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
-import { handleResp, r } from "~/utils"
-import { PageResp, Storage } from "~/types"
+import { handleResp, notify, r } from "~/utils"
+import { EmptyResp, PageResp, Storage } from "~/types"
 import { StorageC } from "./Storage"
 
 const Storages = () => {
@@ -18,6 +18,12 @@ const Storages = () => {
     handleResp(resp, (data) => setStorages(data.content))
   }
   refresh()
+  const loadAll = async () => {
+    const resp: EmptyResp = await r.post("/admin/storage/load_all")
+    handleResp(resp, () => {
+      notify.success(t("storages.common.start_load_success"))
+    })
+  }
 
   // const [deleting, deleteStorage] = useListFetch(
   //   (id: number): Promise<EmptyResp> => r.post(`/admin/storage/delete?id=${id}`)
@@ -46,6 +52,13 @@ const Storages = () => {
           }}
         >
           {t("global.add")}
+        </Button>
+        <Button
+          colorScheme="warning"
+          loading={getStoragesLoading()}
+          onClick={loadAll}
+        >
+          {t("storages.common.load_all")}
         </Button>
       </HStack>
       <Grid

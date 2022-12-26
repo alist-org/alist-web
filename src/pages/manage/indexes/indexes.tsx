@@ -5,10 +5,11 @@ import {
   HStack,
   Icon,
   Text,
+  Textarea,
   useColorModeValue,
   VStack,
 } from "@hope-ui/solid"
-import { createSignal, Show } from "solid-js"
+import { createSignal, onCleanup, Show } from "solid-js"
 import { useFetch, useT } from "~/hooks"
 import { Group, PEmptyResp, PResp } from "~/types"
 import {
@@ -41,16 +42,13 @@ const Indexes = () => {
       setProgress(data)
     })
   }
+  const intervalId = setInterval(refreshProgress, 5000)
+  const clear = () => clearInterval(intervalId)
+  onCleanup(clear)
   refreshProgress()
   const [rebuildLoading, rebuildReq] = useFetch(buildIndex)
   const rebuild = async () => {
     const resp = await rebuildReq()
-    handleRespWithNotifySuccess(resp)
-    refreshProgress()
-  }
-  const [updateLoading, updateReq] = useFetch(updateIndex)
-  const update = async () => {
-    const resp = await updateReq()
     handleRespWithNotifySuccess(resp)
     refreshProgress()
   }
@@ -67,6 +65,18 @@ const Indexes = () => {
   )
   const stopBuild = async () => {
     const resp = await stopBuildReq()
+    handleRespWithNotifySuccess(resp)
+    refreshProgress()
+  }
+
+  let updatePathsRef: HTMLTextAreaElement
+  const [updateLoading, updateReq] = useFetch(updateIndex)
+  const update = async () => {
+    let updatePaths: string[] = []
+    if (updatePathsRef.value) {
+      updatePaths = updatePathsRef.value.split("\n")
+    }
+    const resp = await updateReq(updatePaths)
     handleRespWithNotifySuccess(resp)
     refreshProgress()
   }
@@ -145,10 +155,12 @@ const Indexes = () => {
         <Button onClick={[rebuild, undefined]} loading={rebuildLoading()}>
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
         </Button>
-        <Button onClick={[update, undefined]} loading={updateLoading()}>
-          {t(`indexes.update`)}
-        </Button>
       </HStack>
+      <Heading>{t("indexes.update_paths")}</Heading>
+      <Textarea ref={updatePathsRef!}></Textarea>
+      <Button onClick={[update, undefined]} loading={updateLoading()}>
+        {t(`indexes.update`)}
+      </Button>
     </VStack>
   )
 }

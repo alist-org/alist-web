@@ -7,7 +7,7 @@ import {
   MenuTrigger,
 } from "@hope-ui/solid"
 import { createMemo, For, Show } from "solid-js"
-import { useT } from "~/hooks"
+import { useLink, useT } from "~/hooks"
 import { getExternalPreviews, objStore } from "~/store"
 import { FaSolidAngleDown } from "solid-icons/fa"
 import { convertURL } from "~/utils"
@@ -17,6 +17,7 @@ export const OpenWith = () => {
   const previews = createMemo(() => {
     return getExternalPreviews(objStore.obj.name)
   })
+  const { currentObjLink } = useLink()
   return (
     <Show when={previews().length}>
       <Menu>
@@ -33,11 +34,11 @@ export const OpenWith = () => {
               <MenuItem
                 as="a"
                 target="_blank"
-                href={convertURL(
-                  preview.value,
-                  objStore.raw_url,
-                  objStore.obj.name
-                )}
+                href={convertURL(preview.value, {
+                  raw_url: objStore.raw_url,
+                  name: objStore.obj.name,
+                  d_url: currentObjLink(true),
+                })}
               >
                 {preview.key}
               </MenuItem>

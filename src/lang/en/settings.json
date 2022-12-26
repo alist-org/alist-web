@@ -23,8 +23,6 @@
   "ignore_paths": "Ignore paths",
   "ignore_paths-tips": "one path per line",
   "image_types": "Image types",
-  "index_paths": "Index paths",
-  "index_paths-tips": "one path per line",
   "index_progress": "Index progress",
   "link_expiration": "Link expiration",
   "logo": "Logo",
@@ -39,12 +37,18 @@
     "pagination": "Pagination"
   },
   "privacy_regs": "Privacy regs",
+  "proxy_ignore_headers": "Proxy ignore headers",
   "proxy_types": "Proxy types",
   "search_index": "Search index",
   "search_indexs": {
     "bleve": "Bleve",
     "database": "Database",
     "none": "None"
+  },
+  "settings_layout": "Settings layout",
+  "settings_layouts": {
+    "list": "List",
+    "responsive": "Responsive"
   },
   "sign_all": "Sign all",
   "site_title": "Site title",

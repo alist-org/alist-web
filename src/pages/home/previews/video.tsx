@@ -13,27 +13,27 @@ import { SelectWrapper } from "~/components"
 import { isMobile } from "~/utils/compatibility"
 
 const players: { icon: string; name: string; scheme: string }[] = [
-  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$url" },
-  { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$e_url" },
-  { icon: "vlc", name: "VLC", scheme: "vlc://$url" },
-  { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$url" },
+  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$durl" },
+  { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$durl" },
+  { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
+  { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
   {
     icon: "mxplayer",
     name: "MX Player",
     scheme:
-      "intent:$url#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
+      "intent:$durl#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
   },
   {
     icon: "mxplayer-pro",
     name: "MX Player Pro",
     scheme:
-      "intent:$url#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
+      "intent:$durl#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
   },
 ]
 
 const Preview = () => {
   const { replace } = useRouter()
-  const { proxyLink, rawLink } = useLink()
+  const { proxyLink, currentObjLink } = useLink()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
     videos = [objStore.obj]
@@ -178,11 +178,11 @@ const Preview = () => {
               <Tooltip placement="top" withArrow label={item.name}>
                 <Anchor
                   // external
-                  href={convertURL(
-                    item.scheme,
-                    rawLink(objStore.obj, true),
-                    objStore.obj.name
-                  )}
+                  href={convertURL(item.scheme, {
+                    raw_url: objStore.raw_url,
+                    name: objStore.obj.name,
+                    d_url: currentObjLink(true),
+                  })}
                 >
                   <Image
                     m="0 auto"

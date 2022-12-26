@@ -134,28 +134,16 @@ export const fsSearch = async (
   })
 }
 
-export const buildIndex = async (
-  paths = ["/"],
-  max_depth = -1,
-  ignore_paths = []
-): PEmptyResp => {
+export const buildIndex = async (paths = ["/"], max_depth = -1): PEmptyResp => {
   return r.post("/admin/index/build", {
     paths,
     max_depth,
-    ignore_paths,
-    clear: true,
   })
 }
 
-export const updateIndex = async (
-  paths = ["/"],
-  max_depth = -1,
-  ignore_paths = []
-): PEmptyResp => {
-  return r.post("/admin/index/build", {
+export const updateIndex = async (paths = [], max_depth = -1): PEmptyResp => {
+  return r.post("/admin/index/update", {
     paths,
     max_depth,
-    ignore_paths,
-    clear: false,
   })
 }
