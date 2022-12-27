@@ -18,7 +18,7 @@ import {
 import { createSignal, For, JSXElement, Show } from "solid-js"
 import { LinkWithBase } from "~/components"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
-import { setMe, me } from "~/store"
+import { setMe, me, getSettingBool } from "~/store"
 import { PEmptyResp, UserMethods, UserPermissions } from "~/types"
 import { handleResp, notify, r } from "~/utils"
 
@@ -33,16 +33,34 @@ const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
 const Profile = () => {
   const t = useT()
   useManageTitle("manage.sidemenu.profile")
-  const { to } = useRouter()
+  const { to, searchParams } = useRouter()
   const [username, setUsername] = createSignal(me().username)
   const [password, setPassword] = createSignal("")
   const [loading, save] = useFetch(
-    (): PEmptyResp =>
+    (githubID?: boolean): PEmptyResp =>
       r.post("/me/update", {
-        username: username(),
-        password: password(),
+        username: githubID ? me().username : username(),
+        password: githubID ? "" : password(),
+        github_id: me().github_id,
       })
   )
+  const saveMe = async (githubID?: boolean) => {
+    const resp = await save(githubID)
+    handleResp(resp, () => {
+      setMe({ ...me(), username: username() })
+      if (!githubID) {
+        notify.success(t("users.update_profile_success"))
+        to(`/@login?redirect=${encodeURIComponent(location.pathname)}`)
+      } else {
+        to("")
+      }
+    })
+  }
+  const githubID = searchParams["githubID"]
+  if (githubID) {
+    setMe({ ...me(), github_id: Number(githubID) })
+    saveMe(true)
+  }
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
@@ -102,17 +120,7 @@ const Profile = () => {
           </FormControl>
         </SimpleGrid>
         <HStack spacing="$2">
-          <Button
-            loading={loading()}
-            onClick={async () => {
-              const resp = await save()
-              handleResp(resp, () => {
-                setMe({ ...me(), username: username() })
-                notify.success(t("users.update_profile_success"))
-                to(`/@login?redirect=${encodeURIComponent(location.pathname)}`)
-              })
-            }}
-          >
+          <Button loading={loading()} onClick={[saveMe, undefined]}>
             {t("global.save")}
           </Button>
           <Show when={!me().otp}>
@@ -125,14 +133,38 @@ const Profile = () => {
               {t("users.enable_2fa")}
             </Button>
           </Show>
-          <Button
-            colorScheme="accent"
-            onClick={() => {
-              to("/@manage/GithubLogin")
-            }}
+        </HStack>
+      </Show>
+      <Show when={getSettingBool("github_login_enabled")}>
+        <Heading>{t("users.github_login")}</Heading>
+        <HStack spacing="$2">
+          <Show
+            when={me().github_id}
+            fallback={
+              <Button
+                onClick={() => {
+                  window.location.href =
+                    r.getUri() +
+                    "/auth/github?callback_url=" +
+                    window.location.href +
+                    "&method=get_github_id"
+                }}
+              >
+                {t("users.connect_github")}
+              </Button>
+            }
           >
-            Configure Github Signin
-          </Button>
+            <Button
+              colorScheme="danger"
+              loading={loading()}
+              onClick={() => {
+                setMe({ ...me(), github_id: 0 })
+                saveMe(true)
+              }}
+            >
+              {t("users.disconnect_github")}
+            </Button>
+          </Show>
         </HStack>
       </Show>
       <HStack wrap="wrap" gap="$2" mt="$2">

@@ -1,18 +1,18 @@
 import { Icon } from "@hope-ui/solid"
 import { FiGithub } from "solid-icons/fi"
 import { base_path, changeToken, r } from "~/utils"
-import { getSetting } from "~/store"
+import { getSetting, getSettingBool } from "~/store"
 import { useRouter } from "~/hooks"
 
 const GithubLogin = () => {
-  const githubsignenabled = getSetting("github_login_enabled")
+  const githubSignEnabled = getSettingBool("github_login_enabled")
   const { searchParams, to } = useRouter()
   const token = searchParams["token"]
   if (token != undefined && token != "") {
     changeToken(token)
     to(decodeURIComponent(searchParams.redirect || base_path || "/"), true)
   }
-  if (githubsignenabled === "true") {
+  if (githubSignEnabled) {
     return (
       <Icon
         cursor="pointer"

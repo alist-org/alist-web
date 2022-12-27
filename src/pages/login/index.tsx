@@ -12,7 +12,7 @@ import {
   Checkbox,
 } from "@hope-ui/solid"
 import { createMemo, createSignal, Show } from "solid-js"
-import { SwitchColorMode, SwitchLanguageWhite, GithubLogin } from "~/components"
+import { SwitchColorMode, SwitchLanguageWhite } from "~/components"
 import { useFetch, useT, useTitle, useRouter } from "~/hooks"
 import {
   changeToken,
@@ -25,6 +25,7 @@ import { Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { getSetting } from "~/store"
+import { GithubLogin } from "./GithubLogin"
 
 const Login = () => {
   const logos = getSetting("logo").split("\n")

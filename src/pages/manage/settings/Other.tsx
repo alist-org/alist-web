@@ -12,23 +12,14 @@ const OtherSettings = () => {
   const [uri, setUri] = createSignal("")
   const [secret, setSecret] = createSignal("")
   const [token, setToken] = createSignal("")
-  const [github_client_id, setgithubClientId] = createSignal("")
-  const [github_client_secret, setgithubClientSecret] = createSignal("")
-  const [github_login_enabled, setgithubloginenabled] = createSignal("")
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
     (): PResp<SettingItem[]> =>
-      r.get(
-        `/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE},${Group.GITHUB}`
-      )
+      r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`)
   )
   const [setAria2Loading, setAria2] = useFetch(
     (): PResp<string> =>
       r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
-  )
-
-  const [setGithubloginLoading, setGithublogin] = useFetch(
-    (a, b, c): PResp<string> => r.post("/admin/setting/save", [a, b, c])
   )
   const refresh = async () => {
     const resp = await settingsData()
@@ -36,15 +27,6 @@ const OtherSettings = () => {
       setUri(data.find((i) => i.key === "aria2_uri")?.value || "")
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "")
       setToken(data.find((i) => i.key === "token")?.value || "")
-      setgithubClientId(
-        data.find((i) => i.key === "github_client_id")?.value || ""
-      )
-      setgithubClientSecret(
-        data.find((i) => i.key === "github_client_secret")?.value || ""
-      )
-      setgithubloginenabled(
-        data.find((i) => i.key === "github_login_enabled")?.value || ""
-      )
       setSettings(data)
     })
   }
@@ -104,50 +86,6 @@ const OtherSettings = () => {
           {t("settings_other.reset_token")}
         </Button>
       </HStack>
-      <Heading mb="$2">Github Login</Heading>
-      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
-        <Item
-          {...settings().find((i) => i.key === "github_client_id")!}
-          value={github_client_id()}
-          onChange={(str) => setgithubClientId(str)}
-        />
-        <Item
-          {...settings().find((i) => i.key === "github_client_secrets")!}
-          value={github_client_secret()}
-          onChange={(str) => setgithubClientSecret(str)}
-        />
-        <Item
-          {...settings().find((i) => i.key === "github_login_enabled")!}
-          value={github_login_enabled()}
-          onChange={(str) => setgithubloginenabled(str)}
-        />
-      </SimpleGrid>
-      <Button
-        my="$2"
-        loading={setGithubloginLoading()}
-        onClick={async () => {
-          const clientid = settings().find((s) => s.key === "github_client_id")
-          clientid.value = github_client_id()
-          const clientsecrets = settings().find(
-            (s) => s.key === "github_client_secrets"
-          )
-          clientsecrets.value = github_client_secret()
-          const loginenabled = settings().find(
-            (s) => s.key === "github_login_enabled"
-          )
-          loginenabled.value = github_login_enabled()
-          const resp = await setGithublogin(
-            clientid,
-            clientsecrets,
-            loginenabled
-          )
-          handleResp(resp, () => {
-            notify.success("Github login settings updated")
-          })
-        }}
-      >
-        Set Github Login
-      </Button>
     </MaybeLoading>
   )
 }

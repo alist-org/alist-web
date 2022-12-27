@@ -27,5 +27,8 @@
   "input_code": "Input the code of your 2FA app",
   "verify": "Verify",
   "guest-tips": "You are currently visiting as a guest.",
-  "modify_nothing": "So you cannot modify anything in the manage page."
+  "modify_nothing": "So you cannot modify anything in the manage page.",
+  "github_login": "Github Login",
+  "connect_github": "Connect Github",
+  "disconnect_github": "Disconnect Github"
 }
