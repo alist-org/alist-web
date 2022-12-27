@@ -1,7 +1,7 @@
 import { Icon } from "@hope-ui/solid"
 import { FiGithub } from "solid-icons/fi"
 import { base_path, changeToken, r } from "~/utils"
-import { getSetting, getSettingBool } from "~/store"
+import { getSettingBool } from "~/store"
 import { useRouter } from "~/hooks"
 
 const GithubLogin = () => {
