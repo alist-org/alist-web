@@ -12,6 +12,7 @@ import {
   BsCloudArrowDownFill,
   BsCloudUploadFill,
   BsSearch,
+  BsGithub,
 } from "solid-icons/bs"
 import { SiMetabase } from "solid-icons/si"
 import { CgDatabase } from "solid-icons/cg"
@@ -29,12 +30,6 @@ export type SideMenuItem = SideMenuItemProps & {
 const CommonSettings = lazy(() => import("./settings/Common"))
 
 export const side_menu_items: SideMenuItem[] = [
-  // {
-  //   title: "manage.sidemenu.dashboard",
-  //   icon: BiSolidDashboard,
-  //   to: "/@manage",
-  //   component: lazy(() => import("./Dashboard")),
-  // },
   {
     title: "manage.sidemenu.profile",
     icon: BsFingerprint,
@@ -70,6 +65,12 @@ export const side_menu_items: SideMenuItem[] = [
         icon: BsJoystick,
         to: "/@manage/settings/global",
         component: () => <CommonSettings group={Group.GLOBAL} />,
+      },
+      {
+        title: "manage.sidemenu.github",
+        icon: BsGithub,
+        to: "/@manage/settings/github",
+        component: () => <CommonSettings group={Group.GITHUB} />,
       },
       {
         title: "manage.sidemenu.other",

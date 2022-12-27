@@ -25,6 +25,7 @@ import { Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { getSetting } from "~/store"
+import { GithubLogin } from "./GithubLogin"
 
 const Login = () => {
   const logos = getSetting("logo").split("\n")
@@ -194,6 +195,15 @@ const Login = () => {
         >
           <SwitchLanguageWhite />
           <SwitchColorMode />
+        </Flex>
+        <Flex
+          mt="$2"
+          justifyContent="space-evenly"
+          alignItems="center"
+          color="$neutral10"
+          w="$full"
+        >
+          <GithubLogin />
         </Flex>
       </VStack>
       <LoginBg />
