@@ -32,8 +32,7 @@ export const getLinkByDirAndObj = (
 export const useLink = () => {
   const { pathname } = useRouter()
   const getLinkByObj = (obj: Obj, type?: URLType, encodeAll?: boolean) => {
-    const dir =
-      objStore.state === State.Folder ? pathname() : pathDir(pathname())
+    const dir = objStore.state !== State.File ? pathname() : pathDir(pathname())
     return getLinkByDirAndObj(dir, obj, type, encodeAll)
   }
   const rawLink = (obj: Obj, encodeAll?: boolean) => {

@@ -11,6 +11,12 @@
     "install": "Install",
     "installing": "Installing"
   },
+  "layouts": {
+    "list": "List View",
+    "grid": "Grid View",
+    "image": "Image View"
+  },
+  "no_images": "No images in the current folder",
   "load_more": "Load more",
   "no_more": "No more",
   "input_password": "Please input password",

@@ -2,26 +2,17 @@ import {
   HStack,
   useColorModeValue,
   Image,
-  IconButton,
   Center,
   Icon,
   Kbd,
 } from "@hope-ui/solid"
 import { Show } from "solid-js"
-import {
-  getMainColor,
-  getSetting,
-  layout,
-  objStore,
-  setLayout,
-  State,
-} from "~/store"
-import { BsGridFill, BsSearch } from "solid-icons/bs"
-import { FaSolidListUl } from "solid-icons/fa"
+import { getSetting, objStore, State } from "~/store"
+import { BsSearch } from "solid-icons/bs"
 import { CenterLoading } from "~/components"
-import { Container } from "./Container"
+import { Container } from "../Container"
 import { bus } from "~/utils"
-import { changeColor } from "seemly"
+import { Layout } from "./layout"
 
 export const Header = () => {
   const logos = getSetting("logo").split("\n")
@@ -70,24 +61,7 @@ export const Header = () => {
                   <Kbd>K</Kbd>
                 </HStack>
               </HStack>
-              <IconButton
-                color={getMainColor()}
-                bgColor={changeColor(getMainColor(), { alpha: 0.15 })}
-                _hover={{
-                  bgColor: changeColor(getMainColor(), { alpha: 0.2 }),
-                }}
-                aria-label="switch layout"
-                compact
-                size="lg"
-                icon={
-                  <Show when={layout() === "list"} fallback={<FaSolidListUl />}>
-                    <BsGridFill />
-                  </Show>
-                }
-                onClick={() => {
-                  setLayout(layout() === "list" ? "grid" : "list")
-                }}
-              />
+              <Layout />
             </Show>
           </HStack>
         </HStack>

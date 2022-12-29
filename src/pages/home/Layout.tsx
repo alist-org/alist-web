@@ -4,7 +4,7 @@ import { getSetting } from "~/store"
 import { notify } from "~/utils"
 import { Body } from "./Body"
 import { Footer } from "./Footer"
-import { Header } from "./Header"
+import { Header } from "./header/Header"
 import { Toolbar } from "./toolbar/Toolbar"
 
 const Index = () => {

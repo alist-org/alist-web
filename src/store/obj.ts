@@ -173,8 +173,8 @@ export const isIndeterminate = () => {
   return selectedNum() > 0 && selectedNum() < objStore.objs.length
 }
 
-export type Layout = "list" | "grid"
-const [layout, setLayout] = createStorageSignal<Layout>("layout", "list")
+export type LayoutType = "list" | "grid" | "image"
+const [layout, setLayout] = createStorageSignal<LayoutType>("layout", "list")
 
 const [_checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",

@@ -1,8 +1,16 @@
-import { lazy, Show, createEffect, createMemo, onCleanup } from "solid-js"
+import {
+  lazy,
+  Show,
+  createEffect,
+  createMemo,
+  onCleanup,
+  Switch,
+  Match,
+} from "solid-js"
 import { layout } from "~/store"
 import { ContextMenu } from "./context-menu"
 import { Pager } from "./Pager"
-import { useLink } from "~/hooks"
+import { useLink, useT } from "~/hooks"
 import { objStore } from "~/store"
 import { ObjType } from "~/types"
 import { bus } from "~/utils"
@@ -15,9 +23,11 @@ import lgFullscreen from "lightgallery/plugins/fullscreen"
 import "lightgallery/css/lightgallery-bundle.css"
 import { LightGallery } from "lightgallery/lightgallery"
 import { Search } from "./Search"
+import { Heading } from "@hope-ui/solid"
 
 const ListLayout = lazy(() => import("./List"))
 const GridLayout = lazy(() => import("./Grid"))
+const ImageLayout = lazy(() => import("./Images"))
 
 const Folder = () => {
   const { rawLink } = useLink()
@@ -50,11 +60,25 @@ const Folder = () => {
     bus.off("gallery")
     dynamicGallery?.destroy()
   })
+  const t = useT()
   return (
     <>
-      <Show when={layout() === "list"} fallback={<GridLayout />}>
-        <ListLayout />
-      </Show>
+      <Switch>
+        <Match when={layout() === "list"}>
+          <ListLayout />
+        </Match>
+        <Match when={layout() === "grid"}>
+          <GridLayout />
+        </Match>
+        <Match when={layout() === "image"}>
+          <Show
+            when={images().length > 0}
+            fallback={<Heading m="$2">{t("home.no_images")}</Heading>}
+          >
+            <ImageLayout />
+          </Show>
+        </Match>
+      </Switch>
       <Pager />
       <Search />
       <ContextMenu />
