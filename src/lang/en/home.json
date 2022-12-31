@@ -94,5 +94,8 @@
   "search": {
     "search": "Search",
     "no_result": "No result yet"
-  }
+  },
+  "fetching_settings_failed": "Failed fetching settings: ",
+  "get_current_user_failed": "Failed get current user: ",
+  "Loading storage, please wait": "Loading storage, please wait"
 }

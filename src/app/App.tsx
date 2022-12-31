@@ -9,7 +9,7 @@ import {
   Switch,
 } from "solid-js"
 import { Portal } from "solid-js/web"
-import { useLoading, useRouter } from "~/hooks"
+import { useLoading, useRouter, useT } from "~/hooks"
 import { globalStyles } from "./theme"
 import { bus, r, handleRespWithoutAuthAndNotify, base_path } from "~/utils"
 import { setSettings } from "~/store"
@@ -26,6 +26,7 @@ const Login = lazy(() => import("~/pages/login"))
 const Test = lazy(() => import("~/pages/test"))
 
 const App: Component = () => {
+  const t = useT()
   globalStyles()
   const [, { add }] = useI18n()
   const isRouting = useIsRouting()
@@ -96,7 +97,12 @@ const App: Component = () => {
         }
       >
         <Match when={err() !== undefined}>
-          <Error h="100vh" msg={`Failed fetching settings: ${err()}`} />
+          <Error
+            h="100vh"
+            msg={
+              t("home.fetching_settings_failed") + t("home." + (err() || ""))
+            }
+          />
         </Match>
         <Match when={loading()}>
           <FullScreenLoading />
