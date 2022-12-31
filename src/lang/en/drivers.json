@@ -305,6 +305,26 @@
     },
     "root_folder_id": "Root folder id"
   },
+  "Terabox": {
+    "cookie": "Cookie",
+    "download_api": "Download api",
+    "download_apis": {
+      "crack": "Crack",
+      "official": "Official"
+    },
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "size": "Size",
+      "time": "Time"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_path": "Root folder path"
+  },
   "Thunder": {
     "captcha_token": "Captcha token",
     "password": "Password",
@@ -418,6 +438,7 @@
     "SFTP": "SFTP",
     "SMB": "SMB",
     "Teambition": "Teambition",
+    "Terabox": "Terabox",
     "Thunder": "Thunder",
     "ThunderExpert": "ThunderExpert",
     "USS": "USS",
