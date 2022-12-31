@@ -1,11 +1,12 @@
 import { createSignal, JSXElement, Match, Switch } from "solid-js"
 import { Error, FullScreenLoading } from "~/components"
-import { useFetch } from "~/hooks"
+import { useFetch, useT } from "~/hooks"
 import { Me, setMe } from "~/store"
 import { PResp } from "~/types"
 import { r, handleResp } from "~/utils"
 
 const MustUser = (props: { children: JSXElement }) => {
+  const t = useT()
   const [loading, data] = useFetch((): PResp<Me> => r.get("/me"))
   const [err, setErr] = createSignal<string>()
   ;(async () => {
@@ -18,7 +19,7 @@ const MustUser = (props: { children: JSXElement }) => {
         <FullScreenLoading />
       </Match>
       <Match when={err() !== undefined}>
-        <Error msg={`failed get current user: ${err()}`} />
+        <Error msg={t("home.get_current_user_failed") + err()} />
       </Match>
     </Switch>
   )
