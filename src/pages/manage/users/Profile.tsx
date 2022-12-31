@@ -120,7 +120,7 @@ const Profile = () => {
           </FormControl>
         </SimpleGrid>
         <HStack spacing="$2">
-          <Button loading={loading()} onClick={[saveMe, undefined]}>
+          <Button loading={loading()} onClick={[saveMe, false]}>
             {t("global.save")}
           </Button>
           <Show when={!me().otp}>
