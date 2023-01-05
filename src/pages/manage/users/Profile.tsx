@@ -135,7 +135,11 @@ const Profile = () => {
           </Show>
         </HStack>
       </Show>
-      <Show when={getSettingBool("github_login_enabled")}>
+      <Show
+        when={
+          getSettingBool("github_login_enabled") && !UserMethods.is_guest(me())
+        }
+      >
         <Heading>{t("users.github_login")}</Heading>
         <HStack spacing="$2">
           <Show
