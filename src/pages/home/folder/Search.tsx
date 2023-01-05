@@ -43,6 +43,7 @@ const SearchResult = (props: SearchNode) => {
       px="$2"
       as={LinkWithBase}
       href={props.path}
+      encode
     >
       <Icon
         class="icon"
@@ -119,8 +120,7 @@ const Search = () => {
             node.parent = "/" + node.parent
           }
         }
-        const fragment = pathJoin(node.parent, node.name).split("/")
-        node.path = fragment.map((item) => encodeURIComponent(item)).join("/")
+        node.path = pathJoin(node.parent, node.name)
       })
       setData(content)
     })
