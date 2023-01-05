@@ -119,7 +119,8 @@ const Search = () => {
             node.parent = "/" + node.parent
           }
         }
-        node.path = pathJoin(node.parent, node.name)
+        let fragment = pathJoin(node.parent, node.name).split("/")
+        node.path = fragment.map((item) => encodeURIComponent(item)).join("/")
       })
       setData(content)
     })
