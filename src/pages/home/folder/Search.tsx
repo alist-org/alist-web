@@ -43,6 +43,7 @@ const SearchResult = (props: SearchNode) => {
       px="$2"
       as={LinkWithBase}
       href={props.path}
+      encode
     >
       <Icon
         class="icon"
