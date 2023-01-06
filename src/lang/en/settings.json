@@ -47,6 +47,7 @@
   "search_indexs": {
     "bleve": "Bleve",
     "database": "Database",
+    "database_non_full_text": "Database non full text",
     "none": "None"
   },
   "settings_layout": "Settings layout",
