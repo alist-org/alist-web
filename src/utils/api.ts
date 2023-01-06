@@ -131,6 +131,7 @@ export const fsSearch = async (
     keywords,
     page,
     per_page,
+    password,
   })
 }
 
