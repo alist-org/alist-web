@@ -371,7 +371,6 @@
   },
   "USS": {
     "bucket": "Bucket",
-    "custom_host": "Custom host",
     "endpoint": "Endpoint",
     "operator_name": "Operator name",
     "operator_password": "Operator password",
