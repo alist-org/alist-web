@@ -173,10 +173,14 @@
   },
   "Lanzou": {
     "baseUrl": "BaseUrl",
+    "baseUrl-tips": "basic URL for file operation",
     "cookie": "Cookie",
-    "cookie-tips": "about 15 days valid",
+    "cookie-tips": "about 15 days valid, ignore if shareUrl is used",
+    "repair_file_info": "Repair file info",
+    "repair_file_info-tips": "To use webdav, you need to enable it",
     "root_folder_id": "Root folder id",
     "shareUrl": "ShareUrl",
+    "shareUrl-tips": "used to get the sharing page",
     "share_password": "Share password",
     "type": "Type",
     "types": {
