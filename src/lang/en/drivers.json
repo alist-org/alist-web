@@ -287,6 +287,13 @@
     "share_name": "Share name",
     "username": "Username"
   },
+  "Seafile": {
+    "address": "Address",
+    "password": "Password",
+    "repoId": "RepoId",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "Teambition": {
     "cookie": "Cookie",
     "order_by": "Order by",
@@ -440,6 +447,7 @@
     "S3": "S3",
     "SFTP": "SFTP",
     "SMB": "SMB",
+    "Seafile": "Seafile",
     "Teambition": "Teambition",
     "Terabox": "Terabox",
     "Thunder": "Thunder",
