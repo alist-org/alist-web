@@ -143,6 +143,12 @@
       "root_only_file": "Root only file"
     }
   },
+  "Cloudreve": {
+    "address": "Address",
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "FTP": {
     "address": "Address",
     "password": "Password",
@@ -433,6 +439,7 @@
     "AliyundriveShare": "AliyundriveShare",
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
+    "Cloudreve": "Cloudreve",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
