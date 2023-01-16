@@ -92,6 +92,9 @@ const Preview = () => {
         const hls = new Hls()
         hls.loadSource(url)
         hls.attachMedia(video)
+        if (!video.src) {
+          video.src = url
+        }
       },
     },
     lang: ["en", "zh-cn", "zh-tw"].includes(currentLang().toLowerCase())
