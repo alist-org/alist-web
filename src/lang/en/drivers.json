@@ -143,6 +143,12 @@
       "root_only_file": "Root only file"
     }
   },
+  "Cloudreve": {
+    "address": "Address",
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "FTP": {
     "address": "Address",
     "password": "Password",
@@ -173,10 +179,14 @@
   },
   "Lanzou": {
     "baseUrl": "BaseUrl",
+    "baseUrl-tips": "basic URL for file operation",
     "cookie": "Cookie",
-    "cookie-tips": "about 15 days valid",
+    "cookie-tips": "about 15 days valid, ignore if shareUrl is used",
+    "repair_file_info": "Repair file info",
+    "repair_file_info-tips": "To use webdav, you need to enable it",
     "root_folder_id": "Root folder id",
     "shareUrl": "ShareUrl",
+    "shareUrl-tips": "used to get the sharing page",
     "share_password": "Share password",
     "type": "Type",
     "types": {
@@ -283,6 +293,13 @@
     "share_name": "Share name",
     "username": "Username"
   },
+  "Seafile": {
+    "address": "Address",
+    "password": "Password",
+    "repoId": "RepoId",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "Teambition": {
     "cookie": "Cookie",
     "order_by": "Order by",
@@ -367,7 +384,6 @@
   },
   "USS": {
     "bucket": "Bucket",
-    "custom_host": "Custom host",
     "endpoint": "Endpoint",
     "operator_name": "Operator name",
     "operator_password": "Operator password",
@@ -423,6 +439,7 @@
     "AliyundriveShare": "AliyundriveShare",
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
+    "Cloudreve": "Cloudreve",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
@@ -437,6 +454,7 @@
     "S3": "S3",
     "SFTP": "SFTP",
     "SMB": "SMB",
+    "Seafile": "Seafile",
     "Teambition": "Teambition",
     "Terabox": "Terabox",
     "Thunder": "Thunder",
