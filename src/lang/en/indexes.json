@@ -4,6 +4,7 @@
   "build": "Build indexes",
   "rebuild": "Rebuild indexes",
   "paths_to_update": "Paths to update",
+  "max_depth": "Max depth",
   "update": "Update indexes",
   "obj_count": "Object count",
   "last_done_time": "Last done time",
