@@ -31,6 +31,8 @@
   "link_expiration": "Link expiration",
   "logo": "Logo",
   "main_color": "Main color",
+  "max_index_depth": "Max index depth",
+  "max_index_depth-tips": "max depth of index",
   "ocr_api": "Ocr api",
   "package_download": "Package download",
   "pagination_type": "Pagination type",
