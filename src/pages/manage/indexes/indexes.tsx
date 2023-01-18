@@ -1,9 +1,18 @@
 import {
   Badge,
   Button,
+  createDisclosure,
   Heading,
   HStack,
   Icon,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Text,
   Textarea,
   useColorModeValue,
@@ -70,16 +79,22 @@ const Indexes = () => {
   }
 
   let updatePathsRef: HTMLTextAreaElement
+  let updateMaxDepthRef: HTMLInputElement
   const [updateLoading, updateReq] = useFetch(updateIndex)
   const update = async () => {
     let updatePaths: string[] = []
     if (updatePathsRef.value) {
       updatePaths = updatePathsRef.value.split("\n")
     }
-    const resp = await updateReq(updatePaths)
+    let updateMaxDepth = 20
+    if (updateMaxDepthRef.value) {
+      updateMaxDepth = parseInt(updateMaxDepthRef.value)
+    }
+    const resp = await updateReq(updatePaths, updateMaxDepth)
     handleRespWithNotifySuccess(resp)
     refreshProgress()
   }
+  const { isOpen, onOpen, onClose } = createDisclosure()
   return (
     <VStack spacing="$2" w="$full" alignItems="start">
       <Heading>{t("manage.sidemenu.settings")}</Heading>
@@ -156,11 +171,25 @@ const Indexes = () => {
           {t(`indexes.${progress()?.is_done ? "rebuild" : "build"}`)}
         </Button>
       </HStack>
-      <Heading>{t("indexes.paths_to_update")}</Heading>
-      <Textarea ref={updatePathsRef!}></Textarea>
-      <Button onClick={[update, undefined]} loading={updateLoading()}>
-        {t(`indexes.update`)}
-      </Button>
+      <Button onClick={onOpen}>{t(`indexes.update`)}</Button>
+      <Modal opened={isOpen()} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalCloseButton />
+          <ModalHeader>{t(`indexes.update`)}</ModalHeader>
+          <ModalBody>
+            <Heading>{t("indexes.paths_to_update")}</Heading>
+            <Textarea ref={updatePathsRef!}></Textarea>
+            <Heading>{t("indexes.max_depth")}</Heading>
+            <Input value={20} type="number" ref={updateMaxDepthRef!} />
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={[update, undefined]} loading={updateLoading()}>
+              {t(`indexes.update`)}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </VStack>
   )
 }
