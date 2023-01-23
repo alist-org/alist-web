@@ -17,6 +17,7 @@ const players: { icon: string; name: string; scheme: string }[] = [
   { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$durl" },
   { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
   { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
+  { icon: "infuse", name: "Infuse", scheme: "infuse://x-callback-url/play?url=$durl" },
   {
     icon: "mxplayer",
     name: "MX Player",
