@@ -162,7 +162,7 @@ const BackupRestore = () => {
           handleRespWithoutNotify(
             await addSettings(
               data.settings.filter(
-                (s) => s.key !== "version" && s.key !== "index_progress"
+                (s) => !["version", "index_progress"].includes(s.key) 
               )
             ),
             () => {
