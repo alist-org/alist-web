@@ -160,7 +160,11 @@ const BackupRestore = () => {
         const data: Data = JSON.parse(reader.result as string)
         data.settings &&
           handleRespWithoutNotify(
-            await addSettings(data.settings.filter((s) => s.key !== "version")),
+            await addSettings(
+              data.settings.filter(
+                (s) => !["version", "index_progress"].includes(s.key) 
+              )
+            ),
             () => {
               appendLog(
                 t("br.success_restore_item", {
