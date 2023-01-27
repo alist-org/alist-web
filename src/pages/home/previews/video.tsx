@@ -175,7 +175,7 @@ const Preview = () => {
         value={objStore.obj.name}
         options={videos.map((obj) => ({ value: obj.name }))}
       />
-      <Flex wrap="wrap" gap="$2" justifyContent="center">
+      <Flex wrap="wrap" gap="$1" justifyContent="center">
         <For each={players}>
           {(item) => {
             return (
