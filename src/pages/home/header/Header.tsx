@@ -13,6 +13,7 @@ import { CenterLoading } from "~/components"
 import { Container } from "../Container"
 import { bus } from "~/utils"
 import { Layout } from "./layout"
+import { isMac } from "~/utils/compatibility"
 
 export const Header = () => {
   const logos = getSetting("logo").split("\n")
@@ -58,7 +59,7 @@ export const Header = () => {
                 >
                   <Icon as={BsSearch} />
                   <HStack>
-                    <Kbd>Ctrl</Kbd>
+                    {isMac ? <Kbd>Cmd</Kbd> : <Kbd>Ctrl</Kbd>}
                     <Kbd>K</Kbd>
                   </HStack>
                 </HStack>

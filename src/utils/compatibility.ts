@@ -7,3 +7,4 @@ export const isMobile =
 export const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent)
 export const isWechat = /MicroMessenger/i.test(userAgent)
 export const isIE = /MSIE|Trident/i.test(userAgent)
+export const isMac = (window?.navigator?.platform ?? "")?.includes("Mac")
