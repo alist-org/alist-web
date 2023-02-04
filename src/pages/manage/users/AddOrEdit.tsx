@@ -52,6 +52,8 @@ const AddOrEdit = () => {
     base_path: "",
     role: 0,
     permission: 0,
+    disabled: false,
+    github_id: 0,
   })
   const [userLoading, loadUser] = useFetch(
     (): PResp<User> => r.get(`/admin/user/get?id=${id}`)
@@ -125,6 +127,18 @@ const AddOrEdit = () => {
               )}
             </For>
           </Flex>
+        </FormControl>
+        <FormControl w="fit-content" display="flex">
+          <Checkbox
+            css={{ whiteSpace: "nowrap" }}
+            id="disabled"
+            onChange={(e: any) => setUser("disabled", e.currentTarget.checked)}
+            color="$neutral10"
+            fontSize="$sm"
+            checked={user.disabled}
+          >
+            {t(`users.disabled`)}
+          </Checkbox>
         </FormControl>
         <Button
           loading={okLoading()}

@@ -12,6 +12,7 @@ export interface User {
   role: UserRole
   permission: number
   github_id: number
+  disabled: boolean
   // otp: boolean;
 }
 

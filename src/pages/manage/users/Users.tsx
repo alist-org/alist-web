@@ -29,6 +29,7 @@ import {
   PEmptyResp,
 } from "~/types"
 import { DeletePopover } from "../common/DeletePopover"
+import { Wether } from "~/components"
 
 const Role = (props: { role: number }) => {
   const roles = [
@@ -102,7 +103,15 @@ const Users = () => {
         <Table highlightOnHover dense>
           <Thead>
             <Tr>
-              <For each={["username", "base_path", "role", "permission"]}>
+              <For
+                each={[
+                  "username",
+                  "base_path",
+                  "role",
+                  "permission",
+                  "available",
+                ]}
+              >
                 {(title) => <Th>{t(`users.${title}`)}</Th>}
               </For>
               <Th>{t("global.operations")}</Th>
@@ -119,6 +128,9 @@ const Users = () => {
                   </Td>
                   <Td>
                     <Permissions user={user} />
+                  </Td>
+                  <Td>
+                    <Wether yes={!user.disabled} />
                   </Td>
                   <Td>
                     <HStack spacing="$2">

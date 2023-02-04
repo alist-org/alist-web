@@ -16,6 +16,8 @@
   "base_path": "Base path",
   "role": "Role",
   "permission": "Permission",
+  "disabled": "Disabled",
+  "available": "Available",
   "update_profile": "Update Profile",
   "update_profile_success": "Update profile successfully, please re-login.",
   "change_username": "Change Username",
