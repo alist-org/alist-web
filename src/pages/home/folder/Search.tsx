@@ -28,6 +28,7 @@ import {
   hoverColor,
   pathJoin,
 } from "~/utils"
+import { isMac } from "~/utils/compatibility"
 import { getIconByObj } from "~/utils/icon"
 
 const SearchResult = (props: SearchNode) => {
@@ -89,7 +90,7 @@ const Search = () => {
   }
   bus.on("tool", handler)
   const searchEvent = (e: KeyboardEvent) => {
-    if (e.ctrlKey && e.key.toLowerCase() === "k") {
+    if ((e.ctrlKey || (isMac && e.metaKey)) && e.key.toLowerCase() === "k") {
       e.preventDefault()
       onToggle()
     }
