@@ -13,6 +13,7 @@
   "external_previews": "External previews",
   "favicon": "Favicon",
   "filename_char_mapping": "Filename char mapping",
+  "forward_direct_link_params": "Forward direct link params",
   "github_client_id": "Github client id",
   "github_client_secrets": "Github client secrets",
   "github_login_enabled": "Github login enabled",
