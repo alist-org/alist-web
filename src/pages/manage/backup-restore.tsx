@@ -1,6 +1,6 @@
 import { HStack, Button, VStack, Text } from "@hope-ui/solid"
 import { r, handleRespWithoutNotify, notify } from "~/utils"
-import { useFetch, useT } from "~/hooks"
+import { useFetch, useManageTitle, useT } from "~/hooks"
 import {
   Meta,
   Storage,
@@ -45,6 +45,7 @@ const Log = (props: { msg: string; type: LogType }) => {
 
 const BackupRestore = () => {
   const t = useT()
+  useManageTitle("manage.sidemenu.backup-restore")
   let logRef: HTMLDivElement
   const [log, setLog] = createSignal<
     {
@@ -162,7 +163,7 @@ const BackupRestore = () => {
           handleRespWithoutNotify(
             await addSettings(
               data.settings.filter(
-                (s) => !["version", "index_progress"].includes(s.key) 
+                (s) => !["version", "index_progress"].includes(s.key)
               )
             ),
             () => {
