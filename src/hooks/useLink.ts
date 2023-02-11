@@ -12,7 +12,10 @@ export const getLinkByDirAndObj = (
   type: URLType = "direct",
   encodeAll?: boolean
 ) => {
-  dir = standardizePath(pathJoin(me().base_path, dir), true)
+  if (type !== "preview") {
+    dir = pathJoin(me().base_path, dir)
+  }
+  dir = standardizePath(dir, true)
   let path = `${dir}/${obj.name}`
   path = encodePath(path, encodeAll)
   let host = api
