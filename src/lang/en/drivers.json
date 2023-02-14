@@ -75,7 +75,6 @@
     "url": "Url"
   },
   "Aliyundrive": {
-    "device_id": "Device id",
     "internal_upload": "Internal upload",
     "order_by": "Order by",
     "order_bys": {
