@@ -19,7 +19,8 @@
     "backup-restore": "Backup & Restore",
     "home": "Home",
     "indexes": "Indexes",
-    "github": "Github"
+    "github": "Github",
+    "qbit": "qBittorrent"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",

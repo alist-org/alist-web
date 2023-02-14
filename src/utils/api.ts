@@ -86,8 +86,12 @@ export const fsNewFile = (path: string, password: string): PEmptyResp => {
   })
 }
 
-export const addAria2 = (path: string, urls: string[]): PEmptyResp => {
-  return r.post("/fs/add_aria2", { path, urls })
+export const offlineDownload = (
+  path: string,
+  urls: string[],
+  type: string
+): PEmptyResp => {
+  return r.post(`/fs/add_${type}`, { path, urls })
 }
 
 export const fetchText = async (

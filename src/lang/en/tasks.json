@@ -1,6 +1,8 @@
 {
-  "down": "Download file to local machine",
-  "transfer": "Transfer downloaded file to corresponding storage",
+  "aria2_down": "Download file to local machine",
+  "aria2_transfer": "Transfer downloaded file to corresponding storage",
+  "qbit_down": "Download file to local machine",
+  "qbit_transfer": "Transfer downloaded file to corresponding storage",
   "upload": "Upload file to corresponding storage",
   "copy": "Copy file from a storage to another storage",
   "done": "Completed",

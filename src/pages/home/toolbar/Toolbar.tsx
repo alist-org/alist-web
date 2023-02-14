@@ -6,7 +6,7 @@ import { Delete } from "./Delete"
 import { Rename } from "./Rename"
 import { NewFile } from "./NewFile"
 import { Mkdir } from "./Mkdir"
-import { Aria2 } from "./Aria2"
+import { OfflineDownload } from "./OfflineDownload"
 import { PackageDownloadModal } from "./Download"
 import { lazy } from "solid-js"
 import { ModalWrapper } from "./ModalWrapper"
@@ -22,7 +22,7 @@ export const Modal = () => {
       <Delete />
       <NewFile />
       <Mkdir />
-      <Aria2 />
+      <OfflineDownload />
       <PackageDownloadModal />
       <ModalWrapper name="upload" title="home.toolbar.upload">
         <Upload />

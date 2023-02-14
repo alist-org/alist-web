@@ -10,7 +10,7 @@ import {
   Textarea,
   FormHelperText,
 } from "@hope-ui/solid"
-import { createSignal, Show } from "solid-js"
+import { createSignal, JSXElement, Show } from "solid-js"
 import { useT } from "~/hooks"
 import { notify } from "~/utils"
 export type ModalInputProps = {
@@ -22,6 +22,7 @@ export type ModalInputProps = {
   defaultValue?: string
   loading?: boolean
   tips?: string
+  topSlot?: JSXElement
 }
 export const ModalInput = (props: ModalInputProps) => {
   const [value, setValue] = createSignal(props.defaultValue ?? "")
@@ -46,6 +47,7 @@ export const ModalInput = (props: ModalInputProps) => {
         {/* <ModalCloseButton /> */}
         <ModalHeader>{t(props.title)}</ModalHeader>
         <ModalBody>
+          <Show when={props.topSlot}>{props.topSlot}</Show>
           <Show
             when={props.type === "text"}
             fallback={
