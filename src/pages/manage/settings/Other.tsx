@@ -11,6 +11,7 @@ const OtherSettings = () => {
   useManageTitle("manage.sidemenu.other")
   const [uri, setUri] = createSignal("")
   const [secret, setSecret] = createSignal("")
+  const [qbitUrl, setQbitUrl] = createSignal("")
   const [token, setToken] = createSignal("")
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
@@ -21,12 +22,16 @@ const OtherSettings = () => {
     (): PResp<string> =>
       r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   )
+  const [setQbitLoading, setQbit] = useFetch(
+    (): PResp<string> => r.post("/admin/setting/set_qbit", { url: qbitUrl() })
+  )
   const refresh = async () => {
     const resp = await settingsData()
     handleResp(resp, (data) => {
       setUri(data.find((i) => i.key === "aria2_uri")?.value || "")
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "")
       setToken(data.find((i) => i.key === "token")?.value || "")
+      setQbitUrl(data.find((i) => i.key === "qbittorrent_url")?.value || "")
       setSettings(data)
     })
   }
@@ -35,6 +40,7 @@ const OtherSettings = () => {
     (): PResp<string> => r.post("/admin/setting/reset_token")
   )
   const { copy } = useUtil()
+
   return (
     <MaybeLoading loading={settingsLoading()}>
       <Heading mb="$2">{t("settings_other.aria2")}</Heading>
@@ -61,6 +67,25 @@ const OtherSettings = () => {
         }}
       >
         {t("settings_other.set_aria2")}
+      </Button>
+      <Heading my="$2">{t("settings.qbittorrent_url")}</Heading>
+      <Input
+        value={qbitUrl()}
+        onInput={(e) => {
+          setQbitUrl(e.currentTarget.value)
+        }}
+      />
+      <Button
+        my="$2"
+        loading={setQbitLoading()}
+        onClick={async () => {
+          const resp = await setQbit()
+          handleResp(resp, (data) => {
+            notify.success(data)
+          })
+        }}
+      >
+        {t("settings_other.set_qbit")}
       </Button>
       <Heading my="$2">{t("settings.token")}</Heading>
       <Input value={token()} readOnly />
