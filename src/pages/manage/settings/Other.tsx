@@ -11,21 +11,29 @@ const OtherSettings = () => {
   useManageTitle("manage.sidemenu.other")
   const [uri, setUri] = createSignal("")
   const [secret, setSecret] = createSignal("")
+  const [qbitUrl, setQbitUrl] = createSignal("")
   const [token, setToken] = createSignal("")
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
     (): PResp<SettingItem[]> =>
-      r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`)
+      r.get(
+        `/admin/setting/list?groups=${Group.ARIA2},${Group.QBITTORRENT},${Group.SINGLE}`
+      )
   )
   const [setAria2Loading, setAria2] = useFetch(
     (): PResp<string> =>
       r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
+  )
+  const [setQbitLoading, setQbit] = useFetch(
+    (): PResp<string> =>
+      r.post("/admin/setting/set_qbittorrent", { url: qbitUrl() })
   )
   const refresh = async () => {
     const resp = await settingsData()
     handleResp(resp, (data) => {
       setUri(data.find((i) => i.key === "aria2_uri")?.value || "")
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "")
+      setQbitUrl(data.find((i) => i.key === "qbittorrent_url")?.value || "")
       setToken(data.find((i) => i.key === "token")?.value || "")
       setSettings(data)
     })
@@ -61,6 +69,25 @@ const OtherSettings = () => {
         }}
       >
         {t("settings_other.set_aria2")}
+      </Button>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
+        <Item
+          {...settings().find((i) => i.key === "qbittorrent_url")!}
+          value={qbitUrl()}
+          onChange={(str) => setQbitUrl(str)}
+        />
+      </SimpleGrid>
+      <Button
+        my="$2"
+        loading={setQbitLoading()}
+        onClick={async () => {
+          const resp = await setQbit()
+          handleResp(resp, () => {
+            notify.success(t("settings_other.set_qbittorrent_success"))
+          })
+        }}
+      >
+        {t("settings_other.set_qbittorrent")}
       </Button>
       <Heading my="$2">{t("settings.token")}</Heading>
       <Input value={token()} readOnly />

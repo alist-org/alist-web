@@ -9,6 +9,7 @@ export enum Group {
   ARIA2,
   INDEX,
   GITHUB,
+  QBITTORRENT,
 }
 export enum Flag {
   PUBLIC,
