@@ -18,4 +18,5 @@ export interface DriverConfig {
   no_upload: boolean
   need_ms: boolean
   default_root: string
+  alert?: string
 }

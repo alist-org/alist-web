@@ -1,5 +1,5 @@
-import { Button, Heading } from "@hope-ui/solid"
-import { createSignal, For, Show } from "solid-js"
+import { Alert, AlertIcon, Button, Heading, VStack } from "@hope-ui/solid"
+import { createMemo, createSignal, For, Show } from "solid-js"
 import { MaybeLoading } from "~/components"
 import { useFetch, useRouter, useT } from "~/hooks"
 import { handleResp, joinBase, notify, r } from "~/utils"
@@ -7,7 +7,6 @@ import {
   Addition,
   DriverConfig,
   DriverItem,
-  PEmptyResp,
   PResp,
   Storage,
   Type,
@@ -85,16 +84,23 @@ const AddOrEdit = () => {
   }
   const [storage, setStorage] = createStore<Storage>({} as Storage)
   const [addition, setAddition] = createStore<Addition>({})
-  const [okLoading, ok] = useFetch((): PResp<{id: number}> => {
+  const [okLoading, ok] = useFetch((): PResp<{ id: number }> => {
     setStorage("addition", JSON.stringify(addition))
     return r.post(`/admin/storage/${id ? "update" : "create"}`, storage)
+  })
+  const alert = createMemo(() => {
+    const i = drivers()[storage.driver]?.config.alert
+    console.log(i)
+    if (i) {
+      return i.split("|")[0]
+    }
   })
   return (
     <MaybeLoading
       loading={id ? storageLoading() || driverLoading() : driversLoading()}
     >
       <Heading mb="$2">{t(`global.${id ? "edit" : "add"}`)}</Heading>
-      <ResponsiveGrid>
+      <VStack mb="$2" spacing="$2">
         <Item
           name="driver"
           default=""
@@ -130,6 +136,14 @@ const AddOrEdit = () => {
             setStorage("driver", value)
           }}
         />
+        <Show when={alert()}>
+          <Alert status={alert() as any} w="$full">
+            <AlertIcon />
+            {t(`drivers.${storage.driver}.config.alert`)}
+          </Alert>
+        </Show>
+      </VStack>
+      <ResponsiveGrid>
         <Show when={drivers()[storage.driver]}>
           <For each={drivers()[storage.driver].common}>
             {(item) => (
@@ -167,14 +181,18 @@ const AddOrEdit = () => {
           }
           const resp = await ok()
           // TODO maybe can use handleRrespWithNotifySuccess
-          handleResp(resp, () => {
-            notify.success(t("global.save_success"))
-            back()
-          },(msg,code)=>{
-            if(resp.data.id){
-              to(`/@manage/storages/edit/${resp.data.id}`)
+          handleResp(
+            resp,
+            () => {
+              notify.success(t("global.save_success"))
+              back()
+            },
+            (msg, code) => {
+              if (resp.data.id) {
+                to(`/@manage/storages/edit/${resp.data.id}`)
+              }
             }
-          })
+          )
         }}
       >
         {t(`global.${id ? "save" : "add"}`)}
