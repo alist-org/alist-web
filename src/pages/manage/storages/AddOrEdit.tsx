@@ -139,7 +139,7 @@ const AddOrEdit = () => {
         <Show when={alert()}>
           <Alert status={alert() as any} w="$full">
             <AlertIcon />
-            {t(`drivers.${storage.driver}.config.alert`)}
+            {t(`drivers.config.${storage.driver}.alert`)}
           </Alert>
         </Show>
       </VStack>
