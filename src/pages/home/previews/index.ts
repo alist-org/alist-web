@@ -16,6 +16,12 @@ export type PreviewComponent = Pick<Preview, "name" | "component">
 
 const previews: Preview[] = [
   {
+    name: "Aliyun Video Previewer",
+    type: ObjType.VIDEO,
+    provider: /Aliyundrive/,
+    component: lazy(() => import("./aliyun_video")),
+  },
+  {
     name: "Markdown",
     type: ObjType.TEXT,
     component: lazy(() => import("./markdown")),
