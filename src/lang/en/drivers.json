@@ -92,6 +92,25 @@
     "refresh_token": "Refresh token",
     "root_folder_id": "Root folder id"
   },
+  "AliyundriveOpen": {
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "oauth_token_url": "Oauth token url",
+    "order_by": "Order by",
+    "order_bys": {
+      "created_at": "Created at",
+      "name": "Name",
+      "size": "Size",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "ASC": "ASC",
+      "DESC": "DESC"
+    },
+    "refresh_token": "Refresh token",
+    "root_folder_id": "Root folder id"
+  },
   "AliyundriveShare": {
     "order_by": "Order by",
     "order_bys": {
@@ -438,6 +457,7 @@
     "AList V2": "AList V2",
     "AList V3": "AList V3",
     "Aliyundrive": "Aliyundrive",
+    "AliyundriveOpen": "AliyundriveOpen",
     "AliyundriveShare": "AliyundriveShare",
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
