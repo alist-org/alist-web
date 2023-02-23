@@ -20,7 +20,8 @@
     "home": "Home",
     "indexes": "Indexes",
     "github": "Github",
-    "qbit": "qBittorrent"
+    "qbit": "qBittorrent",
+    "docs": "Documentation"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",

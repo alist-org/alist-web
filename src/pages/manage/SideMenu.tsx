@@ -44,6 +44,7 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
   const isActive = () => pathname() === props.to
   return (
     <AnchorWithBase
+      cancelBase={props.to.startsWith("http")}
       display="flex"
       as={Link}
       href={props.to}

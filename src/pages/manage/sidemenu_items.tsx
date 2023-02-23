@@ -20,7 +20,7 @@ import { OcWorkflow2 } from "solid-icons/oc"
 import { IoCopy, IoHome } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
-import { FaBrandsQuinscape, FaSolidDatabase } from "solid-icons/fa"
+import { FaBrandsQuinscape, FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component
@@ -147,6 +147,13 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/@manage/about",
     role: UserRole.GUEST,
     component: lazy(() => import("./About")),
+  },
+  {
+    title: "manage.sidemenu.docs",
+    icon: FaSolidBook,
+    to: "https://alist.nn.ci",
+    role: UserRole.GUEST,
+    external: true,
   },
   {
     title: "manage.sidemenu.home",
