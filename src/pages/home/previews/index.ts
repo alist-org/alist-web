@@ -18,7 +18,7 @@ const previews: Preview[] = [
   {
     name: "Aliyun Video Previewer",
     type: ObjType.VIDEO,
-    provider: /Aliyundrive/,
+    provider: /^Aliyundrive(Open)?$/,
     component: lazy(() => import("./aliyun_video")),
   },
   {

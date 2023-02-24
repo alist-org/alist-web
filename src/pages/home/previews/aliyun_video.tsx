@@ -154,7 +154,10 @@ const Preview = () => {
   onMount(async () => {
     const resp = await post()
     handleResp(resp, (data) => {
-      const list = data.video_preview_play_info.live_transcoding_task_list
+      const list =
+        data.video_preview_play_info.live_transcoding_task_list.filter(
+          (l) => l.url
+        )
       if (list.length === 0) {
         notify.error("No transcoding video found")
         return
