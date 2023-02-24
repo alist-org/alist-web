@@ -3,3 +3,4 @@ dist
 /src/lang/*
 !/src/lang/en/
 .DS_Store
+.idea
