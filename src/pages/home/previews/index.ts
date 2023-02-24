@@ -22,6 +22,11 @@ const previews: Preview[] = [
     component: lazy(() => import("./aliyun_video")),
   },
   {
+    name: "Plaintext",
+    type: ObjType.TEXT,
+    component: lazy(() => import("./plaintext")),
+  },
+  {
     name: "Markdown",
     type: ObjType.TEXT,
     component: lazy(() => import("./markdown")),
