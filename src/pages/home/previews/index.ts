@@ -64,7 +64,7 @@ const previews: Preview[] = [
   {
     name: "Aliyun Office Previewer",
     exts: ["doc", "docx", "ppt", "pptx", "xls", "xlsx", "pdf"],
-    provider: /Aliyundrive/,
+    provider: /^Aliyundrive(Share)?$/,
     component: lazy(() => import("./aliyun_office")),
   },
 ]
