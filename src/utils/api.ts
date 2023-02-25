@@ -53,8 +53,8 @@ export const fsMkdir = (path: string): PEmptyResp => {
   return r.post("/fs/mkdir", { path })
 }
 
-export const fsRename = (path: string, name: string): PEmptyResp => {
-  return r.post("/fs/rename", { path, name })
+export const fsRename = (paths: string, names: string): PEmptyResp => {
+  return r.post("/fs/rename", { paths, names })
 }
 
 export const fsMove = (

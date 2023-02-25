@@ -19,10 +19,6 @@ export const Rename = () => {
   const { refresh } = usePath()
   const handler = (name: string) => {
     if (name === "rename") {
-      if (!oneChecked()) {
-        notify.warning(t("home.toolbar.only_one-tips"))
-        return
-      }
       onOpen()
     }
   }
@@ -33,15 +29,19 @@ export const Rename = () => {
   return (
     <Show when={isOpen()}>
       <ModalInput
-        title="home.toolbar.input_new_name"
+        title={
+          oneChecked()
+            ? "home.toolbar.input_new_name"
+            : "home.toolbar.add_prefix"
+        }
         opened={isOpen()}
         onClose={onClose}
-        defaultValue={selectedObjs()[0]?.name ?? ""}
+        defaultValue={oneChecked() ? selectedObjs()[0]?.name ?? "" : ""}
         loading={loading()}
         onSubmit={async (name) => {
           const resp = await ok(
-            pathJoin(pathname(), selectedObjs()[0].name),
-            name
+            selectedObjs().map((obj) => pathJoin(pathname(), obj.name)),
+            selectedObjs().map((obj) => (oneChecked() ? name : name + obj.name))
           )
           handleRespWithNotifySuccess(resp, () => {
             refresh()

@@ -28,6 +28,7 @@
     "toggle_checkbox": "Toggle Checkbox",
     "rename": "Rename",
     "input_new_name": "Input new name",
+    "add_prefix": "Add prefix",
     "only_one-tips": "Only one object can be selected to rename",
     "move": "Move",
     "copy": "Copy",
