@@ -22,14 +22,14 @@ const previews: Preview[] = [
     component: lazy(() => import("./aliyun_video")),
   },
   {
-    name: "Plaintext",
-    type: ObjType.TEXT,
-    component: lazy(() => import("./plaintext")),
-  },
-  {
     name: "Markdown",
     type: ObjType.TEXT,
     component: lazy(() => import("./markdown")),
+  },
+  {
+    name: "Markdown with word wrap",
+    type: ObjType.TEXT,
+    component: lazy(() => import("./markdown_with_word_wrap")),
   },
   {
     name: "Text Editor",
