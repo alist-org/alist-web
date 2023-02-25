@@ -1269,3 +1269,9 @@
 .hljs-strong {
   font-weight: 700;
 }
+
+/* markdown with word wrap */
+.markdown-body.word-wrap code {
+  white-space: break-spaces;
+  word-break: break-all;
+}
