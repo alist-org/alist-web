@@ -459,7 +459,7 @@
     "AList V2": {},
     "AList V3": {},
     "Aliyundrive": {
-      "alert": "Deprecated, no longer maintained and will be removed in a future version.\nWe recommend using the official driver AliyundriveOpen."
+      "alert": "There may be an infinite loop bug in this driver.\nDeprecated, no longer maintained and will be removed in a future version.\nWe recommend using the official driver AliyundriveOpen."
     },
     "AliyundriveOpen": {},
     "AliyundriveShare": {},
