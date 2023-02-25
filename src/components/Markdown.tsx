@@ -5,14 +5,15 @@ import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
 import "./markdown.css"
 import { onMount } from "solid-js"
+import { clsx } from "clsx"
 
-export const Markdown = (props: { children?: string }) => {
+export const Markdown = (props: { children?: string; class?: string }) => {
   onMount(() => {
     hljs.highlightAll()
   })
   return (
     <SolidMarkdown
-      class="markdown-body"
+      class={clsx("markdown-body", props.class)}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
       children={props.children}
