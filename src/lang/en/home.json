@@ -62,7 +62,6 @@
     "upload-tips": "Drag files here to upload, or click:",
     "release": "Release to upload",
     "no_files_drag": "No files were dragged in.",
-    "only_files_or_one_folder": "Only files or one folder can be dragged at a time.",
     "upload_files": "Choose Files",
     "upload_folder": "Choose Folder",
     "pending": "Pending",
