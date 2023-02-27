@@ -12,8 +12,8 @@ import {
   BsCloudArrowDownFill,
   BsCloudUploadFill,
   BsSearch,
-  BsGithub,
 } from "solid-icons/bs"
+import { FiLogIn } from "solid-icons/fi"
 import { SiMetabase } from "solid-icons/si"
 import { CgDatabase } from "solid-icons/cg"
 import { OcWorkflow2 } from "solid-icons/oc"
@@ -67,10 +67,10 @@ export const side_menu_items: SideMenuItem[] = [
         component: () => <CommonSettings group={Group.GLOBAL} />,
       },
       {
-        title: "manage.sidemenu.github",
-        icon: BsGithub,
-        to: "/@manage/settings/github",
-        component: () => <CommonSettings group={Group.GITHUB} />,
+        title: "manage.sidemenu.sso",
+        icon: FiLogIn,
+        to: "/@manage/settings/sso",
+        component: () => <CommonSettings group={Group.SSO} />,
       },
       {
         title: "manage.sidemenu.other",

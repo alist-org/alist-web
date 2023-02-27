@@ -19,7 +19,7 @@
     "backup-restore": "Backup & Restore",
     "home": "Home",
     "indexes": "Indexes",
-    "github": "Github",
+    "sso": "Single Sign-on",
     "qbit": "qBittorrent",
     "docs": "Documentation"
   },
