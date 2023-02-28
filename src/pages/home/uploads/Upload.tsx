@@ -206,26 +206,20 @@ const Upload = () => {
             const res: File[] = []
             const items = Array.from(e.dataTransfer?.items ?? [])
             const files = Array.from(e.dataTransfer?.files ?? [])
-            let foldersCount = 0
             let itemLength = items.length
+            const folderEntries = []
             for (let i = 0; i < itemLength; i++) {
-              if (foldersCount > 0) {
-                notify.warning(t("home.upload.only_files_or_one_folder"))
-                return
-              }
               const item = items[i]
               const entry = item.webkitGetAsEntry()
-              console.log(entry)
               if (entry?.isFile) {
                 res.push(files[i])
               } else if (entry?.isDirectory) {
-                res.push(...(await traverseFileTree(entry)))
-                foldersCount++
+                folderEntries.push(entry)
               }
             }
-            if (foldersCount > 0 && itemLength > 1) {
-              notify.warning(t("home.upload.only_files_or_one_folder"))
-              return
+            for (const entry of folderEntries) {
+              const innerFiles = await traverseFileTree(entry)
+              res.push(...innerFiles)
             }
             if (res.length === 0) {
               notify.warning(t("home.upload.no_files_drag"))

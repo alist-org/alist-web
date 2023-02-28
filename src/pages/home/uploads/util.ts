@@ -1,5 +1,4 @@
-import { StreamUpload } from "./stream"
-import { Upload, UploadFileProps } from "./types"
+import { UploadFileProps } from "./types"
 
 export const traverseFileTree = async (entry: FileSystemEntry) => {
   let res: File[] = []
