@@ -72,15 +72,22 @@ export const convertURL = (scheme: string, args: ConvertURLArgs) => {
     }
     return u
   })
-  ans = ans.replace(/\$[eb_]*durl/, (old) => {
-    const op = old.match(/e|b/)
+  ans = ans.replace(/\$[ebm_]*durl/, (old) => {
+    const op = old.match(/e|b|m/)
     let u = args.d_url
+    let name = args.name
     if (op) {
       for (const o of op.reverse()) {
         if (o === "e") {
           u = encodeURIComponent(u)
         } else if (o === "b") {
           u = window.btoa(u)
+        } else if (o === "m") {
+          let info = JSON.stringify({
+            "url": u,
+            "title": name,
+          });
+          u = encodeURIComponent(info);
         }
       }
     }

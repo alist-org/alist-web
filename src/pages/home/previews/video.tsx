@@ -13,23 +13,12 @@ import { SelectWrapper } from "~/components"
 import { isMobile } from "~/utils/compatibility"
 
 const players: { icon: string; name: string; scheme: string }[] = [
-  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$durl" },
-  { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$durl" },
-  { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
   { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
+  { icon: "oplayer", name: "OPlayer", scheme: "oplayer://$durl" },
+  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$durl" },
+  { icon: "movist", name: "MovistPro", scheme: "movistpro:$mdurl" },
+  { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
   { icon: "infuse", name: "Infuse", scheme: "infuse://x-callback-url/play?url=$durl" },
-  {
-    icon: "mxplayer",
-    name: "MX Player",
-    scheme:
-      "intent:$durl#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
-  },
-  {
-    icon: "mxplayer-pro",
-    name: "MX Player Pro",
-    scheme:
-      "intent:$durl#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
-  },
 ]
 
 const Preview = () => {
