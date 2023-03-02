@@ -14,16 +14,6 @@
   "favicon": "Favicon",
   "filename_char_mapping": "Filename char mapping",
   "forward_direct_link_params": "Forward direct link params",
-  "sso_client_id": "Single sign-on client id",
-  "sso_client_secrets": "Single sign-on client secrets",
-  "sso_login_enabled": "Single sign-on enabled",
-  "sso_login_platform": "Single sign-on login Platform",
-  "sso_login_platforms": {
-    "Github": "GitHub",
-    "Microsoft": "Microsoft",
-    "Google": "Google",
-    "Dingtalk": "Dingtalk"
-  },
   "hide_files": "Hide files",
   "home_container": "Home container",
   "home_containers": {
@@ -68,6 +58,16 @@
   },
   "sign_all": "Sign all",
   "site_title": "Site title",
+  "sso_client_id": "Sso client id",
+  "sso_client_secret": "Sso client secret",
+  "sso_login_enabled": "Sso login enabled",
+  "sso_login_platform": "Sso login platform",
+  "sso_login_platforms": {
+    "Dingtalk": "Dingtalk",
+    "Github": "Github",
+    "Google": "Google",
+    "Microsoft": "Microsoft"
+  },
   "text_types": "Text types",
   "token": "Token",
   "version": "Version",
