@@ -15,7 +15,7 @@ import {
   VStack,
   Text,
 } from "@hope-ui/solid"
-import { createSignal, For, JSXElement, Show } from "solid-js"
+import { createSignal, For, JSXElement, onCleanup, Show } from "solid-js"
 import { LinkWithBase } from "~/components"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
 import { setMe, me, getSettingBool } from "~/store"
@@ -56,6 +56,17 @@ const Profile = () => {
       }
     })
   }
+  function messageEvent(event: MessageEvent) {
+    const data = event.data
+    if (data.sso_id) {
+      setMe({ ...me(), sso_id: data.sso_id })
+      saveMe(true)
+    }
+  }
+  window.addEventListener("message", messageEvent)
+  onCleanup(() => {
+    window.removeEventListener("message", messageEvent)
+  })
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
@@ -148,10 +159,6 @@ const Profile = () => {
                     "authPopup",
                     "width=500,height=600"
                   )
-                  window.addEventListener("message", function (event) {
-                    setMe({ ...me(), sso_id: event.data })
-                    saveMe(true)
-                  })
                 }}
               >
                 {t("users.connect_sso")}
