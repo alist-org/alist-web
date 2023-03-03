@@ -195,6 +195,7 @@ const Login = () => {
         >
           <SwitchLanguageWhite />
           <SwitchColorMode />
+		  <SSOLogin />
         </Flex>
         <Flex
           mt="$2"
@@ -203,7 +204,6 @@ const Login = () => {
           color="$neutral10"
           w="$full"
         >
-          <SSOLogin />
         </Flex>
       </VStack>
       <LoginBg />
