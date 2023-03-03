@@ -195,7 +195,7 @@ const Login = () => {
         >
           <SwitchLanguageWhite />
           <SwitchColorMode />
-		  <SSOLogin />
+          <SSOLogin />
         </Flex>
         <Flex
           mt="$2"
