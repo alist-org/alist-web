@@ -25,7 +25,7 @@ import { Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { getSetting } from "~/store"
-import { GithubLogin } from "./GithubLogin"
+import { SSOLogin } from "./SSOLogin"
 
 const Login = () => {
   const logos = getSetting("logo").split("\n")
@@ -203,7 +203,7 @@ const Login = () => {
           color="$neutral10"
           w="$full"
         >
-          <GithubLogin />
+          <SSOLogin />
         </Flex>
       </VStack>
       <LoginBg />

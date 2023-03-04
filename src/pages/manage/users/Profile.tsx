@@ -15,7 +15,7 @@ import {
   VStack,
   Text,
 } from "@hope-ui/solid"
-import { createSignal, For, JSXElement, Show } from "solid-js"
+import { createSignal, For, JSXElement, onCleanup, Show } from "solid-js"
 import { LinkWithBase } from "~/components"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
 import { setMe, me, getSettingBool } from "~/store"
@@ -37,18 +37,18 @@ const Profile = () => {
   const [username, setUsername] = createSignal(me().username)
   const [password, setPassword] = createSignal("")
   const [loading, save] = useFetch(
-    (githubID?: boolean): PEmptyResp =>
+    (ssoID?: boolean): PEmptyResp =>
       r.post("/me/update", {
-        username: githubID ? me().username : username(),
-        password: githubID ? "" : password(),
-        github_id: me().github_id,
+        username: ssoID ? me().username : username(),
+        password: ssoID ? "" : password(),
+        sso_id: me().sso_id,
       })
   )
-  const saveMe = async (githubID?: boolean) => {
-    const resp = await save(githubID)
+  const saveMe = async (ssoID?: boolean) => {
+    const resp = await save(ssoID)
     handleResp(resp, () => {
       setMe({ ...me(), username: username() })
-      if (!githubID) {
+      if (!ssoID) {
         notify.success(t("users.update_profile_success"))
         to(`/@login?redirect=${encodeURIComponent(location.pathname)}`)
       } else {
@@ -56,11 +56,17 @@ const Profile = () => {
       }
     })
   }
-  const githubID = searchParams["githubID"]
-  if (githubID) {
-    setMe({ ...me(), github_id: Number(githubID) })
-    saveMe(true)
+  function messageEvent(event: MessageEvent) {
+    const data = event.data
+    if (data.sso_id) {
+      setMe({ ...me(), sso_id: data.sso_id })
+      saveMe(true)
+    }
   }
+  window.addEventListener("message", messageEvent)
+  onCleanup(() => {
+    window.removeEventListener("message", messageEvent)
+  })
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
@@ -137,24 +143,25 @@ const Profile = () => {
       </Show>
       <Show
         when={
-          getSettingBool("github_login_enabled") && !UserMethods.is_guest(me())
+          getSettingBool("sso_login_enabled") && !UserMethods.is_guest(me())
         }
       >
-        <Heading>{t("users.github_login")}</Heading>
+        <Heading>{t("users.sso_login")}</Heading>
         <HStack spacing="$2">
           <Show
-            when={me().github_id}
+            when={me().sso_id}
             fallback={
               <Button
                 onClick={() => {
-                  window.location.href =
-                    r.getUri() +
-                    "/auth/github?callback_url=" +
-                    window.location.href +
-                    "&method=get_github_id"
+                  const url = r.getUri() + "/auth/sso?method=get_sso_id"
+                  const popup = window.open(
+                    url,
+                    "authPopup",
+                    "width=500,height=600"
+                  )
                 }}
               >
-                {t("users.connect_github")}
+                {t("users.connect_sso")}
               </Button>
             }
           >
@@ -162,11 +169,11 @@ const Profile = () => {
               colorScheme="danger"
               loading={loading()}
               onClick={() => {
-                setMe({ ...me(), github_id: 0 })
+                setMe({ ...me(), sso_id: "" })
                 saveMe(true)
               }}
             >
-              {t("users.disconnect_github")}
+              {t("users.disconnect_sso")}
             </Button>
           </Show>
         </HStack>
