@@ -17,7 +17,7 @@ import {
 import { BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import { FullLoading, LinkWithBase } from "~/components"
-import { useFetch, useRouter, useT } from "~/hooks"
+import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
 import {
@@ -32,6 +32,7 @@ import { isMac } from "~/utils/compatibility"
 import { getIconByObj } from "~/utils/icon"
 
 const SearchResult = (props: SearchNode) => {
+  const { setPathAs } = usePath()
   return (
     <HStack
       w="$full"
@@ -45,6 +46,9 @@ const SearchResult = (props: SearchNode) => {
       as={LinkWithBase}
       href={props.path}
       encode
+      onMouseEnter={() => {
+        setPathAs(props.path, props.is_dir)
+      }}
     >
       <Icon
         class="icon"
