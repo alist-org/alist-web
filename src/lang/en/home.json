@@ -1,100 +1,102 @@
 {
-  "obj": {
-    "name": "Name",
-    "size": "Size",
-    "modified": "Modified"
-  },
-  "preview": {
-    "download": "Download",
-    "failed_load_img": "Failed to load image",
-    "open_with": "Open with ...",
-    "install": "Install",
-    "installing": "Installing"
-  },
-  "layouts": {
-    "list": "List View",
-    "grid": "Grid View",
-    "image": "Image View"
-  },
-  "no_images": "No images in the current folder",
-  "load_more": "Load more",
-  "no_more": "No more",
-  "input_password": "Please input password",
-  "toolbar": {
-    "more": "More",
-    "refresh": "Refresh",
-    "toggle_theme": "Toggle Theme",
-    "switch_lang": "Switch Language",
-    "toggle_checkbox": "Toggle Checkbox",
-    "rename": "Rename",
-    "input_new_name": "Input new name",
-    "only_one-tips": "Only one object can be selected to rename",
-    "move": "Move",
-    "copy": "Copy",
-    "choose_dst_folder": "Select destination folder",
-    "delete": "Delete",
-    "delete-tips": "Are you sure to delete the selected object?",
-    "copy_link": "Copy link",
-    "preview_page": "Preview page",
-    "down_link": "Download link",
-    "encode_down_link": "Encode download link",
-    "mkdir": "New Folder",
-    "input_dir_name": "Input folder name",
-    "new_file": "New File",
-    "input_filename": "Input filename",
-    "cancel_select": "Cancel Select",
-    "offline_download": "Offline download",
-    "offline_download-tips": "One URL per line",
-    "download": "Download",
-    "batch_download": "Batch Download",
-    "package_download": "Package Download",
-    "package_download_disabled": "Package download is disabled",
-    "send_aria2": "Send to Aria2",
-    "aria2_not_set": "Please set aria2 rpc url",
-    "send_aria2_success": "Send to aria2 successfully",
-    "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
-    "package_download-tips": "Downloading, please wait don't close the page",
-    "upload": "Upload",
-    "local_settings": "Local Settings"
-  },
-  "upload": {
-    "add_as_task": "Add as task",
-    "upload-tips": "Drag files here to upload, or click:",
-    "release": "Release to upload",
-    "no_files_drag": "No files were dragged in.",
-    "upload_files": "Choose Files",
-    "upload_folder": "Choose Folder",
-    "pending": "Pending",
-    "uploading": "Uploading",
-    "backending": "Uploading in the backend",
-    "success": "Success",
-    "error": "Error",
-    "back": "Back to Upload",
-    "clear_done": "Clear Done"
-  },
-  "local_settings": {
-    "aria2_rpc_url": "Aria2 RPC URL",
-    "aria2_rpc_secret": "Aria2 RPC secret",
-    "aria2_dir": "Aria2 download directory"
-  },
-  "package_download": {
-    "current_status": "Current Status",
-    "initializing": "Initializing",
-    "fetching_struct": "Fetching folder structure",
-    "fetching_struct_failed": "Failed to fetch folder structure",
-    "downloading": "Downloading files, don't close or refresh the page",
-    "failed": "Failed to package download",
-    "success": "Download completed"
-  },
-  "footer": {
-    "powered_by": "Powered by AList",
-    "manage": "Manage"
-  },
-  "search": {
-    "search": "Search",
-    "no_result": "No result yet"
-  },
-  "fetching_settings_failed": "Failed fetching settings: ",
-  "get_current_user_failed": "Failed get current user: ",
-  "Loading storage, please wait": "Loading storage, please wait"
+    "obj": {
+        "name": "Name",
+        "size": "Size",
+        "modified": "Modified"
+    },
+    "preview": {
+        "download": "Download",
+        "failed_load_img": "Failed to load image",
+        "open_with": "Open with ...",
+        "install": "Install",
+        "installing": "Installing"
+        "tr-install": "TrollStore",
+        "tr-installing": "TrollStore Installing"
+    },
+    "layouts": {
+        "list": "List View",
+        "grid": "Grid View",
+        "image": "Image View"
+    },
+    "no_images": "No images in the current folder",
+    "load_more": "Load more",
+    "no_more": "No more",
+    "input_password": "Please input password",
+    "toolbar": {
+        "more": "More",
+        "refresh": "Refresh",
+        "toggle_theme": "Toggle Theme",
+        "switch_lang": "Switch Language",
+        "toggle_checkbox": "Toggle Checkbox",
+        "rename": "Rename",
+        "input_new_name": "Input new name",
+        "only_one-tips": "Only one object can be selected to rename",
+        "move": "Move",
+        "copy": "Copy",
+        "choose_dst_folder": "Select destination folder",
+        "delete": "Delete",
+        "delete-tips": "Are you sure to delete the selected object?",
+        "copy_link": "Copy link",
+        "preview_page": "Preview page",
+        "down_link": "Download link",
+        "encode_down_link": "Encode download link",
+        "mkdir": "New Folder",
+        "input_dir_name": "Input folder name",
+        "new_file": "New File",
+        "input_filename": "Input filename",
+        "cancel_select": "Cancel Select",
+        "offline_download": "Offline download",
+        "offline_download-tips": "One URL per line",
+        "download": "Download",
+        "batch_download": "Batch Download",
+        "package_download": "Package Download",
+        "package_download_disabled": "Package download is disabled",
+        "send_aria2": "Send to Aria2",
+        "aria2_not_set": "Please set aria2 rpc url",
+        "send_aria2_success": "Send to aria2 successfully",
+        "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
+        "package_download-tips": "Downloading, please wait don't close the page",
+        "upload": "Upload",
+        "local_settings": "Local Settings"
+    },
+    "upload": {
+        "add_as_task": "Add as task",
+        "upload-tips": "Drag files here to upload, or click:",
+        "release": "Release to upload",
+        "no_files_drag": "No files were dragged in.",
+        "upload_files": "Choose Files",
+        "upload_folder": "Choose Folder",
+        "pending": "Pending",
+        "uploading": "Uploading",
+        "backending": "Uploading in the backend",
+        "success": "Success",
+        "error": "Error",
+        "back": "Back to Upload",
+        "clear_done": "Clear Done"
+    },
+    "local_settings": {
+        "aria2_rpc_url": "Aria2 RPC URL",
+        "aria2_rpc_secret": "Aria2 RPC secret",
+        "aria2_dir": "Aria2 download directory"
+    },
+    "package_download": {
+        "current_status": "Current Status",
+        "initializing": "Initializing",
+        "fetching_struct": "Fetching folder structure",
+        "fetching_struct_failed": "Failed to fetch folder structure",
+        "downloading": "Downloading files, don't close or refresh the page",
+        "failed": "Failed to package download",
+        "success": "Download completed"
+    },
+    "footer": {
+        "powered_by": "Powered by AList",
+        "manage": "Manage"
+    },
+    "search": {
+        "search": "Search",
+        "no_result": "No result yet"
+    },
+    "fetching_settings_failed": "Failed fetching settings: ",
+    "get_current_user_failed": "Failed get current user: ",
+    "Loading storage, please wait": "Loading storage, please wait"
 }

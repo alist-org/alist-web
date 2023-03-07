@@ -27,6 +27,19 @@ const Ipa = () => {
         {t(`home.preview.${installing() ? "installing" : "install"}`)}
       </Button>
     </FileInfo>
+          <Button
+          as="a"
+          colorScheme="primary"
+          href={
+            "apple-magnifier://install?url=" + encodeURIComponent(useLink().rawLink(objStore.obj, true))
+          }
+          onClick={() => {
+            setInstalling(true)
+          }}
+        >
+          {t(`home.preview.${installing() ? "tr-installing" : "tr-install"}`)}
+        </Button>
+      </FileInfo>
   )
 }
 
