@@ -16,8 +16,8 @@ const Ipa = () => {
           "itms-services://?action=download-manifest&url=" +
           `${api}/i/${safeBtoa(
             encodeURIComponent(objStore.raw_url) +
-              "/" +
-              baseName(encodeURIComponent(objStore.obj.name))
+            "/" +
+            baseName(encodeURIComponent(objStore.obj.name))
           )}.plist`
         }
         onClick={() => {
@@ -26,20 +26,19 @@ const Ipa = () => {
       >
         {t(`home.preview.${installing() ? "installing" : "install"}`)}
       </Button>
+      <Button
+        as="a"
+        colorScheme="primary"
+        href={
+          "apple-magnifier://install?url=" + encodeURIComponent(useLink().rawLink(objStore.obj, true))
+        }
+        onClick={() => {
+          setInstalling(true)
+        }}
+      >
+        {t(`home.preview.${installing() ? "tr-installing" : "tr-install"}`)}
+      </Button>
     </FileInfo>
-          <Button
-          as="a"
-          colorScheme="primary"
-          href={
-            "apple-magnifier://install?url=" + encodeURIComponent(useLink().rawLink(objStore.obj, true))
-          }
-          onClick={() => {
-            setInstalling(true)
-          }}
-        >
-          {t(`home.preview.${installing() ? "tr-installing" : "tr-install"}`)}
-        </Button>
-      </FileInfo>
   )
 }
 
