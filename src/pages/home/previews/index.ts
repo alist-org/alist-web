@@ -58,7 +58,7 @@ const previews: Preview[] = [
   },
   {
     name: "Ipa",
-    exts: ["ipa"],
+    exts: ["ipa", "tipa"],
     component: lazy(() => import("./ipa")),
   },
   {

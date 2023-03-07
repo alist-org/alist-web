@@ -195,14 +195,6 @@ const Login = () => {
         >
           <SwitchLanguageWhite />
           <SwitchColorMode />
-        </Flex>
-        <Flex
-          mt="$2"
-          justifyContent="space-evenly"
-          alignItems="center"
-          color="$neutral10"
-          w="$full"
-        >
           <SSOLogin />
         </Flex>
       </VStack>
