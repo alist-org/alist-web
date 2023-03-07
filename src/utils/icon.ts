@@ -24,7 +24,7 @@ import { Obj, ObjType } from "~/types"
 import { ext } from "./path"
 
 const iconMap = {
-  "dmg,ipa,plist": BsApple,
+  "dmg,ipa,plist,tipa": BsApple,
   "exe,msi": BsWindows,
   "zip,gz,rar,7z,tar,jar,xz": BsFileEarmarkZipFill,
   apk: ImAndroid,
