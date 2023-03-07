@@ -1,4 +1,4 @@
-import { Button } from "@hope-ui/solid"
+import { Button,HStack } from "@hope-ui/solid"
 import { createSignal } from "solid-js"
 import { useT } from "~/hooks"
 import { objStore } from "~/store"
