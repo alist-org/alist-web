@@ -9,7 +9,9 @@
     "failed_load_img": "Failed to load image",
     "open_with": "Open with ...",
     "install": "Install",
-    "installing": "Installing"
+    "installing": "Installing",
+    "tr-install": "TrollStore",
+    "tr-installing": "TrollStore Installing"
   },
   "layouts": {
     "list": "List View",

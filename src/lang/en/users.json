@@ -30,7 +30,7 @@
   "verify": "Verify",
   "guest-tips": "You are currently visiting as a guest.",
   "modify_nothing": "So you cannot modify anything in the manage page.",
-  "github_login": "Github Login",
-  "connect_github": "Connect Github",
-  "disconnect_github": "Disconnect Github"
+  "sso_login": "Single sign-on Login",
+  "connect_sso": "Connect Single sign-on Platform",
+  "disconnect_sso": "Disconnect Single sign-on Platform"
 }
