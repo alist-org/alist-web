@@ -1,6 +1,6 @@
-import { Button,HStack } from "@hope-ui/solid"
+import { Button, HStack } from "@hope-ui/solid"
 import { createSignal } from "solid-js"
-import { useT } from "~/hooks"
+import { useT, useLink } from "~/hooks"
 import { objStore } from "~/store"
 import { api, baseName, safeBtoa } from "~/utils"
 import { FileInfo } from "./info"
@@ -8,7 +8,8 @@ import { FileInfo } from "./info"
 const Ipa = () => {
   const t = useT()
   const [installing, setInstalling] = createSignal(false)
-  const [trinstalling, settrInstalling] = createSignal(false)
+  const [trInstalling, setTrInstalling] = createSignal(false)
+  const { currentObjLink } = useLink()
   return (
     <FileInfo>
       <HStack spacing="$2">
@@ -18,8 +19,8 @@ const Ipa = () => {
             "itms-services://?action=download-manifest&url=" +
             `${api}/i/${safeBtoa(
               encodeURIComponent(objStore.raw_url) +
-              "/" +
-              baseName(encodeURIComponent(objStore.obj.name))
+                "/" +
+                baseName(encodeURIComponent(objStore.obj.name))
             )}.plist`
           }
           onClick={() => {
@@ -32,13 +33,14 @@ const Ipa = () => {
           as="a"
           colorScheme="primary"
           href={
-            "apple-magnifier://install?url=" + encodeURIComponent(useLink().rawLink(objStore.obj, true))
+            "apple-magnifier://install?url=" +
+            encodeURIComponent(currentObjLink(true))
           }
           onClick={() => {
-            settrInstalling(true)
+            setTrInstalling(true)
           }}
         >
-          {t(`home.preview.${trinstalling() ? "tr-installing" : "tr-install"}`)}
+          {t(`home.preview.${trInstalling() ? "tr-installing" : "tr-install"}`)}
         </Button>
       </HStack>
     </FileInfo>
