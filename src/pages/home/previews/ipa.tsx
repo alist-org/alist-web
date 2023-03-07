@@ -8,6 +8,7 @@ import { FileInfo } from "./info"
 const Ipa = () => {
   const t = useT()
   const [installing, setInstalling] = createSignal(false)
+  const [trinstalling, settrInstalling] = createSignal(false)
   return (
     <FileInfo>
       <HStack spacing="$2">
@@ -34,10 +35,10 @@ const Ipa = () => {
             "apple-magnifier://install?url=" + encodeURIComponent(useLink().rawLink(objStore.obj, true))
           }
           onClick={() => {
-            setInstalling(true)
+            settrInstalling(true)
           }}
         >
-          {t(`home.preview.${installing() ? "tr-installing" : "tr-install"}`)}
+          {t(`home.preview.${trinstalling() ? "tr-installing" : "tr-install"}`)}
         </Button>
       </HStack>
     </FileInfo>
