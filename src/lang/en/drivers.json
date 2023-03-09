@@ -97,6 +97,8 @@
     "client_id-tips": "Keep it empty if you don't have one",
     "client_secret": "Client secret",
     "client_secret-tips": "Keep it empty if you don't have one",
+    "internal_upload": "Internal upload",
+    "internal_upload-tips": "If you are using Aliyun ECS in Beijing, you can turn it on to boost the upload speed",
     "oauth_token_url": "Oauth token url",
     "order_by": "Order by",
     "order_bys": {
