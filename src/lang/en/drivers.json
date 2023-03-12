@@ -418,6 +418,11 @@
     "username": "Username",
     "username-tips": "login type is user,this is required"
   },
+  "Trainbit": {
+    "AUSHELLPORTAL": "AUSHELLPORTAL",
+    "apikey": "Apikey",
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "bucket": "Bucket",
     "endpoint": "Endpoint",
@@ -499,6 +504,7 @@
     "Terabox": {},
     "Thunder": {},
     "ThunderExpert": {},
+    "Trainbit": {},
     "USS": {},
     "Virtual": {},
     "WebDav": {},
@@ -538,6 +544,7 @@
     "Terabox": "Terabox",
     "Thunder": "Thunder",
     "ThunderExpert": "ThunderExpert",
+    "Trainbit": "Trainbit",
     "USS": "USS",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
