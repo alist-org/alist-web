@@ -172,6 +172,12 @@
       "root_only_file": "Root only file"
     }
   },
+  "BaiduShare": {
+    "BDUSS": "BDUSS",
+    "pwd": "Pwd",
+    "root_folder_path": "Root folder path",
+    "surl": "Surl"
+  },
   "Cloudreve": {
     "address": "Address",
     "password": "Password",
@@ -472,6 +478,7 @@
     "AliyundriveShare": {},
     "BaiduNetdisk": {},
     "BaiduPhoto": {},
+    "BaiduShare": {},
     "Cloudreve": {},
     "FTP": {},
     "GoogleDrive": {},
@@ -510,6 +517,7 @@
     "AliyundriveShare": "AliyundriveShare",
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
+    "BaiduShare": "BaiduShare",
     "Cloudreve": "Cloudreve",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
