@@ -74,6 +74,9 @@
     "root_folder_path": "Root folder path",
     "url": "Url"
   },
+  "Alias": {
+    "paths": "Paths"
+  },
   "Aliyundrive": {
     "internal_upload": "Internal upload",
     "order_by": "Order by",
@@ -476,6 +479,7 @@
     "189CloudPC": {},
     "AList V2": {},
     "AList V3": {},
+    "Alias": {},
     "Aliyundrive": {
       "alert": "There may be an infinite loop bug in this driver.\nDeprecated, no longer maintained and will be removed in a future version.\nWe recommend using the official driver AliyundriveOpen."
     },
@@ -518,6 +522,7 @@
     "189CloudPC": "189CloudPC",
     "AList V2": "AList V2",
     "AList V3": "AList V3",
+    "Alias": "Alias",
     "Aliyundrive": "Aliyundrive",
     "AliyundriveOpen": "AliyundriveOpen",
     "AliyundriveShare": "AliyundriveShare",
