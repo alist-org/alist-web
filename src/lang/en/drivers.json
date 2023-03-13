@@ -1,7 +1,11 @@
 {
   "115 Cloud": {
     "cookie": "Cookie",
+    "cookie-tips": "one of QR code token and cookie required",
+    "page_size": "Page size",
+    "page_size-tips": "list api per page size of 115 driver",
     "qrcode_token": "Qrcode token",
+    "qrcode_token-tips": "one of QR code token and cookie required",
     "root_folder_id": "Root folder id"
   },
   "123Pan": {
