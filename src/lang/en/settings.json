@@ -43,6 +43,7 @@
   "privacy_regs": "Privacy regs",
   "proxy_ignore_headers": "Proxy ignore headers",
   "proxy_types": "Proxy types",
+  "qbittorrent_seedtime": "Qbittorrent seedtime",
   "qbittorrent_url": "Qbittorrent url",
   "search_index": "Search index",
   "search_indexs": {
