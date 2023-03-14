@@ -12,6 +12,7 @@ const OtherSettings = () => {
   const [uri, setUri] = createSignal("")
   const [secret, setSecret] = createSignal("")
   const [qbitUrl, setQbitUrl] = createSignal("")
+  const [qbitTime, setQbitTime] = createSignal("")
   const [token, setToken] = createSignal("")
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
@@ -23,7 +24,7 @@ const OtherSettings = () => {
       r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   )
   const [setQbitLoading, setQbit] = useFetch(
-    (): PResp<string> => r.post("/admin/setting/set_qbit", { url: qbitUrl() })
+    (): PResp<string> => r.post("/admin/setting/set_qbit", { url: qbitUrl(), seedtime: qbitTime() })
   )
   const refresh = async () => {
     const resp = await settingsData()
@@ -32,6 +33,7 @@ const OtherSettings = () => {
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "")
       setToken(data.find((i) => i.key === "token")?.value || "")
       setQbitUrl(data.find((i) => i.key === "qbittorrent_url")?.value || "")
+      setQbitTime(data.find((i) => i.key === "qbittorrent_seedtime")?.value || "")
       setSettings(data)
     })
   }
@@ -73,6 +75,13 @@ const OtherSettings = () => {
         value={qbitUrl()}
         onInput={(e) => {
           setQbitUrl(e.currentTarget.value)
+        }}
+      />
+      <Heading my="$2">{t("settings.qbittorrent_seedtime")}</Heading>
+      <Input
+        value={qbitTime()}
+        onInput={(e) => {
+          setQbitTime(e.currentTarget.value)
         }}
       />
       <Button

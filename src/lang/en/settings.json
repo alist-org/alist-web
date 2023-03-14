@@ -44,6 +44,7 @@
   "proxy_ignore_headers": "Proxy ignore headers",
   "proxy_types": "Proxy types",
   "qbittorrent_url": "Qbittorrent url",
+  "qbittorrent_seedtime": "Qbittorrent Seed time",
   "search_index": "Search index",
   "search_indexs": {
     "bleve": "Bleve",
