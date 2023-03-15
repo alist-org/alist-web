@@ -6,7 +6,7 @@ const Qbit = () => {
   useManageTitle("manage.sidemenu.aria2")
   return (
     <VStack w="$full" alignItems="start" spacing="$4">
-      <TypeTasks type="qbit_down" />
+      <TypeTasks type="qbit_down" canRetry />
       <TypeTasks type="qbit_transfer" />
     </VStack>
   )

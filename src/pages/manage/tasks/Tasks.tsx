@@ -8,6 +8,7 @@ import { Task } from "./Task"
 export interface TasksProps {
   type: string
   done: string
+  canRetry?: boolean
 }
 export const Tasks = (props: TasksProps) => {
   const t = useT()
@@ -74,14 +75,16 @@ export const Tasks = (props: TasksProps) => {
   )
 }
 
-export const TypeTasks = (props: { type: string }) => {
+export const TypeTasks = (props: { type: string; canRetry?: boolean }) => {
   const t = useT()
   return (
     <VStack w="$full" alignItems="start" spacing="$4">
       <Heading size="xl">{t(`tasks.${props.type}`)}</Heading>
       <VStack w="$full" spacing="$2">
         <For each={["undone", "done"]}>
-          {(done) => <Tasks type={props.type} done={done} />}
+          {(done) => (
+            <Tasks type={props.type} done={done} canRetry={props.canRetry} />
+          )}
         </For>
       </VStack>
     </VStack>
