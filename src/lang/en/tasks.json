@@ -12,5 +12,7 @@
   "canceling": "Canceling",
   "succeeded": "Succeeded",
   "canceled": "Canceled",
-  "errored": "Errored"
+  "errored": "Errored",
+  "clear_succeeded": "Clear Succeeded",
+  "retry": "Retry"
 }

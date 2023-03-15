@@ -45,9 +45,14 @@ const UNDONE = ["pending", "running", "canceling"]
 export const Task = (props: TaskInfo & TasksProps) => {
   const t = useT()
   const operateName = props.done === "undone" ? "cancel" : "delete"
+  const retryable = props.done === "done" && props.state === "errored"
   const [operateLoading, operate] = useFetch(
     (): PEmptyResp =>
       r.post(`/admin/task/${props.type}/${operateName}?tid=${props.id}`)
+  )
+  const [retryLoading, retry] = useFetch(
+    (): PEmptyResp =>
+      r.post(`/admin/task/${props.type}/retry?tid=${props.id}`)
   )
   const [deleted, setDeleted] = createSignal(false)
   return (
@@ -99,6 +104,21 @@ export const Task = (props: TaskInfo & TasksProps) => {
           justifyContent={{ "@xl": "center" }}
           spacing="$1"
         >
+          <Button
+            disabled={!retryable}
+            display={retryable ? "block" : "none"}
+            colorScheme="danger"
+            loading={retryLoading()}
+            onClick={async () => {
+              const resp = await retry()
+              handleResp(resp, () => {
+                notify.info(t("tasks.retry"))
+                setDeleted(true)
+              })
+            }}
+          >
+            {t(`tasks.retry`)}
+          </Button>
           <Button
             colorScheme="danger"
             loading={operateLoading()}

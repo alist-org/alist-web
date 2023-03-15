@@ -33,8 +33,11 @@ export const Tasks = (props: TasksProps) => {
     const interval = setInterval(refresh, 2000)
     onCleanup(() => clearInterval(interval))
   }
-  const [clearLoading, clear] = useFetch(
+  const [clearDoneLoading, clearDone] = useFetch(
     (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_done`)
+  )
+  const [clearSucceededLoading, clearSucceeded] = useFetch(
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_succeeded`)
   )
   return (
     <VStack w="$full" alignItems="start" spacing="$2">
@@ -45,13 +48,22 @@ export const Tasks = (props: TasksProps) => {
             {t(`global.refresh`)}
           </Button>
           <Button
-            loading={clearLoading()}
+            loading={clearDoneLoading()}
             onClick={async () => {
-              const resp = await clear()
+              const resp = await clearDone()
               handleResp(resp, () => refresh())
             }}
           >
             {t(`global.clear`)}
+          </Button>
+          <Button
+            loading={clearSucceededLoading()}
+            onClick={async () => {
+              const resp = await clearSucceeded()
+              handleResp(resp, () => refresh())
+            }}
+          >
+            {t(`tasks.clear_succeeded`)}
           </Button>
         </HStack>
       </Show>
