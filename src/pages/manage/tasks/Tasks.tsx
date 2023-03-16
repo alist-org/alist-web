@@ -1,5 +1,6 @@
 import { Button, Heading, HStack, VStack } from "@hope-ui/solid"
-import { createSignal, For, onCleanup, Show } from "solid-js"
+import { createMemo, createSignal, For, onCleanup, Show } from "solid-js"
+import { Paginator } from "~/components"
 import { useFetch, useT } from "~/hooks"
 import { PEmptyResp, PResp, TaskInfo } from "~/types"
 import { handleResp, r } from "~/utils"
@@ -40,6 +41,13 @@ export const Tasks = (props: TasksProps) => {
   const [clearSucceededLoading, clearSucceeded] = useFetch(
     (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_succeeded`)
   )
+  const [page, setPage] = createSignal(1)
+  const pageSize = 20
+  const curTasks = createMemo(() => {
+    const start = (page() - 1) * pageSize
+    const end = start + pageSize
+    return tasks().slice(start, end)
+  })
   return (
     <VStack w="$full" alignItems="start" spacing="$2">
       <Heading size="lg">{t(`tasks.${props.done}`)}</Heading>
@@ -69,8 +77,15 @@ export const Tasks = (props: TasksProps) => {
         </HStack>
       </Show>
       <VStack w="$full" spacing="$2">
-        <For each={tasks()}>{(task) => <Task {...task} {...props} />}</For>
+        <For each={curTasks()}>{(task) => <Task {...task} {...props} />}</For>
       </VStack>
+      <Paginator
+        total={tasks().length}
+        defaultPageSize={pageSize}
+        onChange={(p) => {
+          setPage(p)
+        }}
+      />
     </VStack>
   )
 }
