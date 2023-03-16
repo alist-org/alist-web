@@ -66,6 +66,7 @@ export const Tasks = (props: TasksProps) => {
             {t(`global.clear`)}
           </Button>
           <Button
+            colorScheme="success"
             loading={clearSucceededLoading()}
             onClick={async () => {
               const resp = await clearSucceeded()
