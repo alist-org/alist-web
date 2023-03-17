@@ -1,4 +1,4 @@
-import { ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid"
+import { Box, ElementType, Icon, IconProps, Tooltip } from "@hope-ui/solid"
 import { IconTypes } from "solid-icons"
 import { useT } from "~/hooks"
 import { getMainColor, me } from "~/store"
@@ -16,26 +16,28 @@ export const CenterIcon = <C extends ElementType = "svg">(
   const t = useT()
   return (
     <Tooltip placement="top" withArrow label={t(`home.toolbar.${props.name}`)}>
-      <Icon
-        class={`toolbar-${props.name}`}
-        _hover={{
-          bgColor: hoverColor(),
-        }}
-        _focus={{
-          outline: "none",
-        }}
-        cursor="pointer"
-        boxSize="$7"
-        rounded="$md"
-        p={operations[props.name]?.p ? "$1_5" : "$1"}
-        _active={{
-          transform: "scale(.94)",
-          transition: "0.2s",
-        }}
-        as={operations[props.name]?.icon}
-        color={operations[props.name]?.color}
-        {...props}
-      />
+      <Box color={operations[props.name]?.color}>
+        <Icon
+          class={`toolbar-${props.name}`}
+          _hover={{
+            bgColor: hoverColor(),
+          }}
+          _focus={{
+            outline: "none",
+          }}
+          cursor="pointer"
+          boxSize="$7"
+          rounded="$md"
+          p={operations[props.name]?.p ? "$1_5" : "$1"}
+          _active={{
+            transform: "scale(.94)",
+            transition: "0.2s",
+          }}
+          as={operations[props.name]?.icon}
+          color={operations[props.name]?.color}
+          {...props}
+        />
+      </Box>
     </Tooltip>
   )
 }
@@ -54,27 +56,29 @@ export const RightIcon = <C extends ElementType = "svg">(
       withArrow
       label={t(`home.toolbar.${props.tips}`)}
     >
-      <Icon
-        // bgColor="$info4"
-        color={getMainColor()}
-        _hover={{
-          bgColor: getMainColor(),
-          color: "white",
-        }}
-        _focus={{
-          outline: "none",
-        }}
-        cursor="pointer"
-        boxSize="$8"
-        rounded="$lg"
-        p="$1"
-        _active={{
-          transform: "scale(.94)",
-          transition: "0.2s",
-        }}
-        as={props.icon}
-        {...props}
-      />
+      <Box color={getMainColor()}>
+        <Icon
+          // bgColor="$info4"
+          color={getMainColor()}
+          _hover={{
+            bgColor: getMainColor(),
+            color: "white",
+          }}
+          _focus={{
+            outline: "none",
+          }}
+          cursor="pointer"
+          boxSize="$8"
+          rounded="$lg"
+          p="$1"
+          _active={{
+            transform: "scale(.94)",
+            transition: "0.2s",
+          }}
+          as={props.icon}
+          {...props}
+        />
+      </Box>
     </Tooltip>
   )
 }

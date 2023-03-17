@@ -1,4 +1,4 @@
-import { Checkbox, HStack, Icon, Text } from "@hope-ui/solid"
+import { Box, Checkbox, HStack, Icon, Text } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, Show } from "solid-js"
@@ -83,21 +83,23 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
               }}
             />
           </Show>
-          <Icon
-            class="icon"
-            boxSize="$6"
-            color={getMainColor()}
-            as={getIconByObj(props.obj)}
-            mr="$1"
-            // @ts-ignore
-            on:click={(e) => {
-              if (props.obj.type === ObjType.IMAGE) {
-                e.stopPropagation()
-                e.preventDefault()
-                bus.emit("gallery", props.obj.name)
-              }
-            }}
-          />
+          <Box color={getMainColor()}>
+            <Icon
+              class="icon"
+              boxSize="$6"
+              color={getMainColor()}
+              as={getIconByObj(props.obj)}
+              mr="$1"
+              // @ts-ignore
+              on:click={(e) => {
+                if (props.obj.type === ObjType.IMAGE) {
+                  e.stopPropagation()
+                  e.preventDefault()
+                  bus.emit("gallery", props.obj.name)
+                }
+              }}
+            />
+          </Box>
           <Text
             class="name"
             css={{

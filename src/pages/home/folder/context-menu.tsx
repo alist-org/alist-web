@@ -1,7 +1,7 @@
 import { Menu, Item } from "solid-contextmenu"
 import { useCopyLink, useDownload, useT } from "~/hooks"
 import "solid-contextmenu/dist/style.css"
-import { HStack, Icon, Text, useColorMode } from "@hope-ui/solid"
+import { Box, HStack, Icon, Text, useColorMode } from "@hope-ui/solid"
 import { operations } from "../toolbar/operations"
 import { For } from "solid-js"
 import { bus, notify } from "~/utils"
@@ -12,12 +12,14 @@ const ItemContent = (props: { name: string }) => {
   const t = useT()
   return (
     <HStack spacing="$2">
-      <Icon
-        p={operations[props.name].p ? "$1" : undefined}
-        as={operations[props.name].icon}
-        boxSize="$7"
-        color={operations[props.name].color}
-      />
+      <Box color={operations[props.name].color}>
+        <Icon
+          p={operations[props.name].p ? "$1" : undefined}
+          as={operations[props.name].icon}
+          boxSize="$7"
+          color={operations[props.name].color}
+        />
+      </Box>
       <Text>{t(`home.toolbar.${props.name}`)}</Text>
     </HStack>
   )
