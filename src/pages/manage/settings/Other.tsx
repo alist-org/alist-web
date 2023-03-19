@@ -12,6 +12,7 @@ const OtherSettings = () => {
   const [uri, setUri] = createSignal("")
   const [secret, setSecret] = createSignal("")
   const [qbitUrl, setQbitUrl] = createSignal("")
+  const [qbitSeedTime, setQbitSeedTime] = createSignal("")
   const [token, setToken] = createSignal("")
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
@@ -23,7 +24,11 @@ const OtherSettings = () => {
       r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
   )
   const [setQbitLoading, setQbit] = useFetch(
-    (): PResp<string> => r.post("/admin/setting/set_qbit", { url: qbitUrl() })
+    (): PResp<string> =>
+      r.post("/admin/setting/set_qbit", {
+        url: qbitUrl(),
+        seedtime: qbitSeedTime(),
+      })
   )
   const refresh = async () => {
     const resp = await settingsData()
@@ -32,6 +37,9 @@ const OtherSettings = () => {
       setSecret(data.find((i) => i.key === "aria2_secret")?.value || "")
       setToken(data.find((i) => i.key === "token")?.value || "")
       setQbitUrl(data.find((i) => i.key === "qbittorrent_url")?.value || "")
+      setQbitSeedTime(
+        data.find((i) => i.key === "qbittorrent_seedtime")?.value || ""
+      )
       setSettings(data)
     })
   }
@@ -68,13 +76,19 @@ const OtherSettings = () => {
       >
         {t("settings_other.set_aria2")}
       </Button>
-      <Heading my="$2">{t("settings.qbittorrent_url")}</Heading>
-      <Input
-        value={qbitUrl()}
-        onInput={(e) => {
-          setQbitUrl(e.currentTarget.value)
-        }}
-      />
+      <Heading my="$2">{t("settings_other.qbittorrent")}</Heading>
+      <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
+        <Item
+          {...settings().find((i) => i.key === "qbittorrent_url")!}
+          value={qbitUrl()}
+          onChange={(str) => setQbitUrl(str)}
+        />
+        <Item
+          {...settings().find((i) => i.key === "qbittorrent_seedtime")!}
+          value={qbitSeedTime()}
+          onChange={(str) => setQbitSeedTime(str)}
+        />
+      </SimpleGrid>
       <Button
         my="$2"
         loading={setQbitLoading()}

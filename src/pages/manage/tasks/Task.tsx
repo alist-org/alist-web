@@ -45,9 +45,13 @@ const UNDONE = ["pending", "running", "canceling"]
 export const Task = (props: TaskInfo & TasksProps) => {
   const t = useT()
   const operateName = props.done === "undone" ? "cancel" : "delete"
+  const canRetry = props.done === "done" && props.state === "errored"
   const [operateLoading, operate] = useFetch(
     (): PEmptyResp =>
       r.post(`/admin/task/${props.type}/${operateName}?tid=${props.id}`)
+  )
+  const [retryLoading, retry] = useFetch(
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/retry?tid=${props.id}`)
   )
   const [deleted, setDeleted] = createSignal(false)
   return (
@@ -80,7 +84,9 @@ export const Task = (props: TaskInfo & TasksProps) => {
             {props.status}
           </Text>
           <Show when={props.error}>
-            <Text color="$danger9" css={{ wordBreak: "break-all" }}>{props.error}</Text>
+            <Text color="$danger9" css={{ wordBreak: "break-all" }}>
+              {props.error}
+            </Text>
           </Show>
           <Progress
             w="$full"
@@ -99,6 +105,22 @@ export const Task = (props: TaskInfo & TasksProps) => {
           justifyContent={{ "@xl": "center" }}
           spacing="$1"
         >
+          <Show when={props.canRetry}>
+            <Button
+              disabled={!canRetry}
+              display={canRetry ? "block" : "none"}
+              loading={retryLoading()}
+              onClick={async () => {
+                const resp = await retry()
+                handleResp(resp, () => {
+                  notify.info(t("tasks.retry"))
+                  setDeleted(true)
+                })
+              }}
+            >
+              {t(`tasks.retry`)}
+            </Button>
+          </Show>
           <Button
             colorScheme="danger"
             loading={operateLoading()}

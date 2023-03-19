@@ -6,7 +6,7 @@ const Aria2 = () => {
   useManageTitle("manage.sidemenu.aria2")
   return (
     <VStack w="$full" alignItems="start" spacing="$4">
-      <TypeTasks type="aria2_down" />
+      <TypeTasks type="aria2_down" canRetry />
       <TypeTasks type="aria2_transfer" />
     </VStack>
   )
