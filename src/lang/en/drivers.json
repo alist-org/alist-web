@@ -242,9 +242,7 @@
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
     "thumbnail": "Thumbnail",
-    "thumbnail-tips": "enable thumbnail",
-    "sign": "Sign",
-    "sign-tips": "Sign the download link"
+    "thumbnail-tips": "enable thumbnail"
   },
   "MediaTrack": {
     "access_token": "Access token",
