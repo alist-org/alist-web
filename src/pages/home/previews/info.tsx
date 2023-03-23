@@ -1,4 +1,4 @@
-import { Heading, Icon, Text, VStack } from "@hope-ui/solid"
+import { Heading, Icon, Image, Text, VStack } from "@hope-ui/solid"
 import { JSXElement } from "solid-js"
 import { getMainColor, objStore } from "~/store"
 import { formatDate, getFileSize } from "~/utils"
@@ -7,10 +7,14 @@ import { getIconByObj } from "~/utils/icon"
 export const FileInfo = (props: { children: JSXElement }) => {
   return (
     <VStack class="fileinfo" py="$6" spacing="$6">
-      <Icon
-        color={getMainColor()}
+      <Image
         boxSize="$20"
-        as={getIconByObj(objStore.obj)}
+        fallback={<Icon
+          color={getMainColor()}
+          boxSize="$20"
+          as={getIconByObj(objStore.obj)}
+        />}
+        src={objStore.obj.thumb}
       />
       <VStack spacing="$2">
         <Heading
