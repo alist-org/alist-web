@@ -277,6 +277,21 @@
     "root_folder_path": "Root folder path",
     "site_id": "Site id"
   },
+  "OnedriveAPP": {
+    "chunk_size": "Chunk size",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "email": "Email",
+    "region": "Region",
+    "regions": {
+      "cn": "Cn",
+      "de": "De",
+      "global": "Global",
+      "us": "Us"
+    },
+    "root_folder_path": "Root folder path",
+    "tenant_id": "Tenant id"
+  },
   "PikPak": {
     "password": "Password",
     "root_folder_id": "Root folder id",
@@ -501,6 +516,7 @@
     "MediaTrack": {},
     "Mega_nz": {},
     "Onedrive": {},
+    "OnedriveAPP": {},
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
@@ -542,6 +558,7 @@
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
     "Onedrive": "Onedrive",
+    "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
