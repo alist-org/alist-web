@@ -453,6 +453,12 @@
     "root_folder_path": "Root folder path",
     "sign_url_expire": "Sign url expire"
   },
+  "UrlTree": {
+    "head_size": "Head size",
+    "head_size-tips": "Use head method to get file size, but it may be failed.",
+    "url_structure": "Url structure",
+    "url_structure-tips": "structure:FolderName:\n  [FileName:][FileSize:][Modified:]Url"
+  },
   "Virtual": {
     "max_file_size": "Max file size",
     "min_file_size": "Min file size",
@@ -530,6 +536,7 @@
     "ThunderExpert": {},
     "Trainbit": {},
     "USS": {},
+    "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
     "YandexDisk": {}
@@ -572,6 +579,7 @@
     "ThunderExpert": "ThunderExpert",
     "Trainbit": "Trainbit",
     "USS": "USS",
+    "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
     "YandexDisk": "YandexDisk"
