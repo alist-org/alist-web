@@ -1,5 +1,6 @@
 import {
   Badge,
+  Box,
   createDisclosure,
   HStack,
   Icon,
@@ -50,13 +51,15 @@ const SearchResult = (props: SearchNode) => {
         setPathAs(props.path, props.is_dir)
       }}
     >
-      <Icon
-        class="icon"
-        boxSize="$6"
-        color={getMainColor()}
-        as={getIconByObj(props)}
-        mr="$1"
-      />
+      <Box color={getMainColor()}>
+        <Icon
+          class="icon"
+          boxSize="$6"
+          color={getMainColor()}
+          as={getIconByObj(props)}
+          mr="$1"
+        />
+      </Box>
       <VStack flex={1} p="$1" spacing="$1" w="$full" alignItems="start">
         <Text
           css={{

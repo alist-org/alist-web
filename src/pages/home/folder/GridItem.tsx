@@ -1,4 +1,4 @@
-import { Center, VStack, Icon, Text, Checkbox } from "@hope-ui/solid"
+import { Center, VStack, Icon, Text, Checkbox, Box } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
@@ -16,7 +16,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   }
   const { setPathAs } = usePath()
   const objIcon = (
-    <Icon color={getMainColor()} boxSize="$12" as={getIconByObj(props.obj)} />
+    <Box color={getMainColor()}><Icon color={getMainColor()} boxSize="$12" as={getIconByObj(props.obj)} /></Box>
   )
   const [hover, setHover] = createSignal(false)
   const showCheckbox = createMemo(
