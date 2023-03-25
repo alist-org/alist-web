@@ -24,6 +24,8 @@
   "change_password": "Change Password",
   "change_password-tips": "Keep the password empty if you don't want to change it",
   "enable_2fa": "Enable 2FA",
+  "cancel_2fa": "Cancel 2FA",
+  "cancel_2fa_success": "Cancel 2FA successfully",
   "2fa_already_enabled": "2FA is already enabled",
   "scan_qr": "Scan the QR code to save the secret key",
   "input_code": "Input the code of your 2FA app",
