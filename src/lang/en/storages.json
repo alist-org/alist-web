@@ -33,6 +33,7 @@
     "extract_folders": {
       "front": "Extract to front",
       "back": "Extract to back"
-    }
+    },
+    "enable_sign": "Enable sign"
   }
 }
