@@ -1,8 +1,23 @@
-import { Button, Grid, HStack, VStack } from "@hope-ui/solid"
-import { createSignal, For } from "solid-js"
+import {
+  Button,
+  Grid,
+  HStack,
+  Select,
+  SelectContent,
+  SelectIcon,
+  SelectListbox,
+  SelectOption,
+  SelectOptionIndicator,
+  SelectOptionText,
+  SelectPlaceholder,
+  SelectTrigger,
+  SelectValue,
+  VStack,
+} from "@hope-ui/solid"
+import { createMemo, createSignal, For, Show } from "solid-js"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
 import { handleResp, notify, r } from "~/utils"
-import { EmptyResp, PageResp, Storage } from "~/types"
+import { EmptyResp, PageResp, Resp, Storage } from "~/types"
 import { StorageC } from "./Storage"
 
 const Storages = () => {
@@ -17,13 +32,28 @@ const Storages = () => {
     const resp = await getStorages()
     handleResp(resp, (data) => setStorages(data.content))
   }
+  const [drivers, setDrivers] = createSignal<string[]>([])
+  const [selectedDrivers, setSelectedDrivers] = createSignal<string[]>([])
+  const getDrivers = async () => {
+    const resp: Resp<string[]> = await r.get("/admin/driver/names")
+    handleResp(resp, (data) => setDrivers(data))
+  }
+  getDrivers()
   refresh()
   const loadAll = async () => {
     const resp: EmptyResp = await r.post("/admin/storage/load_all")
     handleResp(resp, () => {
-      notify.success(t("storages.common.start_load_success"))
+      notify.success(t("storages.other.start_load_success"))
     })
   }
+  const shownStorages = createMemo(() => {
+    return storages().filter((storage) => {
+      if (selectedDrivers().length === 0) {
+        return true
+      }
+      return selectedDrivers().includes(storage.driver)
+    })
+  })
 
   // const [deleting, deleteStorage] = useListFetch(
   //   (id: number): Promise<EmptyResp> => r.post(`/admin/storage/delete?id=${id}`)
@@ -38,7 +68,15 @@ const Storages = () => {
   // )
   return (
     <VStack spacing="$3" alignItems="start" w="$full">
-      <HStack spacing="$2">
+      <HStack
+        spacing="$2"
+        gap="$2"
+        w="$full"
+        wrap={{
+          "@initial": "wrap",
+          "@md": "unset",
+        }}
+      >
         <Button
           colorScheme="accent"
           loading={getStoragesLoading()}
@@ -58,8 +96,38 @@ const Storages = () => {
           loading={getStoragesLoading()}
           onClick={loadAll}
         >
-          {t("storages.common.load_all")}
+          {t("storages.other.load_all")}
         </Button>
+        <Show when={drivers().length > 0}>
+          <Select
+            multiple
+            value={selectedDrivers()}
+            onChange={setSelectedDrivers}
+            // variant="outline"
+          >
+            <SelectTrigger>
+              <SelectPlaceholder>
+                {t("storages.other.filter_by_driver")}
+              </SelectPlaceholder>
+              <SelectValue />
+              <SelectIcon />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectListbox>
+                <For each={drivers()}>
+                  {(item) => (
+                    <SelectOption value={item}>
+                      <SelectOptionText>
+                        {t(`drivers.drivers.${item}`)}
+                      </SelectOptionText>
+                      <SelectOptionIndicator />
+                    </SelectOption>
+                  )}
+                </For>
+              </SelectListbox>
+            </SelectContent>
+          </Select>
+        </Show>
       </HStack>
       <Grid
         w="$full"
@@ -69,7 +137,7 @@ const Storages = () => {
           "@lg": "repeat(auto-fill, minmax(324px, 1fr))",
         }}
       >
-        <For each={storages()}>
+        <For each={shownStorages()}>
           {(storage) => <StorageC storage={storage} refresh={refresh} />}
         </For>
       </Grid>
