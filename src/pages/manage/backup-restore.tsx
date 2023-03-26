@@ -275,6 +275,45 @@ const BackupRestore = () => {
             "path",
             "manage.sidemenu.metas"
           )
+        } else {
+          for (const item of [
+            { name: "users", fn: addUser, data: data.users, key: "username" },
+            {
+              name: "storages",
+              fn: addStorage,
+              data: data.storages,
+              key: "mount_path",
+            },
+            { name: "metas", fn: addMeta, data: data.metas, key: "path" },
+          ] as const) {
+            for (const itemData of item.data || []) {
+              itemData.id = 0
+              handleRespWithoutNotify(
+                await item.fn(itemData),
+                () => {
+                  appendLog(
+                    t("br.success_restore_item", {
+                      item: t(`manage.sidemenu.${item.name}`),
+                    }) +
+                      "-" +
+                      `[${(itemData as any)[item.key]}]`,
+                    "success"
+                  )
+                },
+                (msg) => {
+                  appendLog(
+                    t("br.failed_restore_item", {
+                      item: t(`manage.sidemenu.${item.name}`),
+                    }) +
+                      ` [ ${(itemData as any)[item.key]} ] ` +
+                      ":" +
+                      msg,
+                    "error"
+                  )
+                }
+              )
+            }
+          }
         }
         appendLog(t("br.finish_restore"), "info")
       }
