@@ -143,7 +143,7 @@ const BackupRestore = () => {
   const [addMetaLoading, addMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/create`, meta)
   })
-  const [updateuserLoading, updateuser] = useFetch((user: User): PEmptyResp => {
+  const [updateUserLoading, updateUser] = useFetch((user: User): PEmptyResp => {
     return r.post(`/admin/user/update`, user)
   })
   const [updateStorageLoading, updateStorage] = useFetch(
@@ -154,13 +154,17 @@ const BackupRestore = () => {
   const [updateMetaLoading, updateMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/update`, meta)
   })
-  async function handleOvrData(
-    dataArray,
-    getDataFunc,
-    addDataFunc,
-    updateDataFunc,
-    idFieldName,
-    itemName
+  async function handleOvrData<T>(
+    dataArray: T[],
+    getDataFunc: { (): PResp<{ content: T[]; total: number }> },
+    addDataFunc: {
+      (t: T): PEmptyResp
+    },
+    updateDataFunc: {
+      (t: T): PEmptyResp
+    },
+    idFieldName: keyof T,
+    itemName: string
   ) {
     const currentData = (await getDataFunc()).data.content
     for (let i in dataArray) {
@@ -203,7 +207,10 @@ const BackupRestore = () => {
       addSettingsLoading() ||
       addUserLoading() ||
       addStorageLoading() ||
-      addMetaLoading()
+      addMetaLoading() ||
+      updateUserLoading() ||
+      updateStorageLoading() ||
+      updateMetaLoading()
     )
   }
   const restore = async () => {
@@ -255,7 +262,7 @@ const BackupRestore = () => {
             data.users,
             getUsers,
             addUser,
-            updateuser,
+            updateUser,
             "username",
             "manage.sidemenu.users"
           )
@@ -323,7 +330,7 @@ const BackupRestore = () => {
   }
   return (
     <VStack spacing="$2" w="$full">
-      <HStack spacing="$2" alignItems="start" w="$full">
+      <HStack spacing="$2" w="$full">
         <Button
           loading={backupLoading()}
           onClick={() => {
