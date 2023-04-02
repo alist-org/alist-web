@@ -50,7 +50,7 @@ const Log = (props: { msg: string; type: LogType }) => {
 }
 
 const BackupRestore = () => {
-  const [override, setoverride] = createSignal(false)
+  const [override, setOverride] = createSignal(false)
   const t = useT()
   useManageTitle("manage.sidemenu.backup-restore")
   let logRef: HTMLDivElement
@@ -167,7 +167,7 @@ const BackupRestore = () => {
     itemName: string
   ) {
     const currentData = (await getDataFunc()).data.content
-    for (let i in dataArray) {
+    for (const i in dataArray) {
       const currentItem = dataArray[i]
       const currentIdValue = currentItem[idFieldName]
       const currentDataItem = currentData.find(
@@ -351,7 +351,9 @@ const BackupRestore = () => {
         <HopeSwitch
           id="restore-override"
           checked={override()}
-          onChange={(e: any) => setoverride(e.target.checked)}
+          onChange={(e: { currentTarget: HTMLInputElement }) =>
+            setOverride(e.currentTarget.checked)
+          }
         >
           {t("br.override")}
         </HopeSwitch>
