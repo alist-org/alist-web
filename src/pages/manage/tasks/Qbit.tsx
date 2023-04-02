@@ -3,7 +3,7 @@ import { useManageTitle } from "~/hooks"
 import { TypeTasks } from "./Tasks"
 
 const Qbit = () => {
-  useManageTitle("manage.sidemenu.aria2")
+  useManageTitle("manage.sidemenu.qbit")
   return (
     <VStack w="$full" alignItems="start" spacing="$4">
       <TypeTasks type="qbit_down" canRetry />
