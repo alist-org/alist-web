@@ -1,7 +1,11 @@
 {
   "115 Cloud": {
     "cookie": "Cookie",
+    "cookie-tips": "one of QR code token and cookie required",
+    "page_size": "Page size",
+    "page_size-tips": "list api per page size of 115 driver",
     "qrcode_token": "Qrcode token",
+    "qrcode_token-tips": "one of QR code token and cookie required",
     "root_folder_id": "Root folder id"
   },
   "123Pan": {
@@ -74,6 +78,9 @@
     "root_folder_path": "Root folder path",
     "url": "Url"
   },
+  "Alias": {
+    "paths": "Paths"
+  },
   "Aliyundrive": {
     "internal_upload": "Internal upload",
     "order_by": "Order by",
@@ -97,6 +104,8 @@
     "client_id-tips": "Keep it empty if you don't have one",
     "client_secret": "Client secret",
     "client_secret-tips": "Keep it empty if you don't have one",
+    "internal_upload": "Internal upload",
+    "internal_upload-tips": "If you are using Aliyun ECS is located in Beijing, you can turn it on to boost the upload speed",
     "oauth_token_url": "Oauth token url",
     "order_by": "Order by",
     "order_bys": {
@@ -111,6 +120,11 @@
       "DESC": "DESC"
     },
     "refresh_token": "Refresh token",
+    "remove_way": "Remove way",
+    "remove_ways": {
+      "delete": "Delete",
+      "trash": "Trash"
+    },
     "root_folder_id": "Root folder id"
   },
   "AliyundriveShare": {
@@ -164,6 +178,12 @@
       "root_only_album": "Root only album",
       "root_only_file": "Root only file"
     }
+  },
+  "BaiduShare": {
+    "BDUSS": "BDUSS",
+    "pwd": "Pwd",
+    "root_folder_path": "Root folder path",
+    "surl": "Surl"
   },
   "Cloudreve": {
     "address": "Address",
@@ -256,6 +276,21 @@
     },
     "root_folder_path": "Root folder path",
     "site_id": "Site id"
+  },
+  "OnedriveAPP": {
+    "chunk_size": "Chunk size",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "email": "Email",
+    "region": "Region",
+    "regions": {
+      "cn": "Cn",
+      "de": "De",
+      "global": "Global",
+      "us": "Us"
+    },
+    "root_folder_path": "Root folder path",
+    "tenant_id": "Tenant id"
   },
   "PikPak": {
     "password": "Password",
@@ -405,6 +440,11 @@
     "username": "Username",
     "username-tips": "login type is user,this is required"
   },
+  "Trainbit": {
+    "AUSHELLPORTAL": "AUSHELLPORTAL",
+    "apikey": "Apikey",
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "bucket": "Bucket",
     "endpoint": "Endpoint",
@@ -412,6 +452,12 @@
     "operator_password": "Operator password",
     "root_folder_path": "Root folder path",
     "sign_url_expire": "Sign url expire"
+  },
+  "UrlTree": {
+    "head_size": "Head size",
+    "head_size-tips": "Use head method to get file size, but it may be failed.",
+    "url_structure": "Url structure",
+    "url_structure-tips": "structure:FolderName:\n  [FileName:][FileSize:][Modified:]Url"
   },
   "Virtual": {
     "max_file_size": "Max file size",
@@ -458,6 +504,7 @@
     "189CloudPC": {},
     "AList V2": {},
     "AList V3": {},
+    "Alias": {},
     "Aliyundrive": {
       "alert": "There may be an infinite loop bug in this driver.\nDeprecated, no longer maintained and will be removed in a future version.\nWe recommend using the official driver AliyundriveOpen."
     },
@@ -465,6 +512,7 @@
     "AliyundriveShare": {},
     "BaiduNetdisk": {},
     "BaiduPhoto": {},
+    "BaiduShare": {},
     "Cloudreve": {},
     "FTP": {},
     "GoogleDrive": {},
@@ -474,6 +522,7 @@
     "MediaTrack": {},
     "Mega_nz": {},
     "Onedrive": {},
+    "OnedriveAPP": {},
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
@@ -485,7 +534,9 @@
     "Terabox": {},
     "Thunder": {},
     "ThunderExpert": {},
+    "Trainbit": {},
     "USS": {},
+    "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
     "YandexDisk": {}
@@ -498,11 +549,13 @@
     "189CloudPC": "189CloudPC",
     "AList V2": "AList V2",
     "AList V3": "AList V3",
+    "Alias": "Alias",
     "Aliyundrive": "Aliyundrive",
     "AliyundriveOpen": "AliyundriveOpen",
     "AliyundriveShare": "AliyundriveShare",
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
+    "BaiduShare": "BaiduShare",
     "Cloudreve": "Cloudreve",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
@@ -512,6 +565,7 @@
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
     "Onedrive": "Onedrive",
+    "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
@@ -523,7 +577,9 @@
     "Terabox": "Terabox",
     "Thunder": "Thunder",
     "ThunderExpert": "ThunderExpert",
+    "Trainbit": "Trainbit",
     "USS": "USS",
+    "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
     "YandexDisk": "YandexDisk"

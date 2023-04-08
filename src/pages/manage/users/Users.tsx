@@ -81,6 +81,9 @@ const Users = () => {
   const [deleting, deleteUser] = useListFetch(
     (id: number): PEmptyResp => r.post(`/admin/user/delete?id=${id}`)
   )
+  const [cancel_2faId, cancel_2fa] = useListFetch(
+    (id: number): PEmptyResp => r.post(`/admin/user/cancel_2fa?id=${id}`)
+  )
   return (
     <VStack spacing="$2" alignItems="start" w="$full">
       <HStack spacing="$2">
@@ -152,6 +155,19 @@ const Users = () => {
                           })
                         }}
                       />
+                      <Button
+                        colorScheme="accent"
+                        loading={cancel_2faId() === user.id}
+                        onClick={async () => {
+                          const resp = await cancel_2fa(user.id)
+                          handleResp(resp, () => {
+                            notify.success(t("users.cancel_2fa_success"))
+                            refresh()
+                          })
+                        }}
+                      >
+                        {t("users.cancel_2fa")}
+                      </Button>
                     </HStack>
                   </Td>
                 </Tr>

@@ -1,7 +1,5 @@
 {
   "common": {
-    "start_load_success": "Start loading",
-    "load_all": "Reload All",
     "mount_path": "Mount Path",
     "driver": "Driver",
     "order": "Order",
@@ -33,6 +31,12 @@
     "extract_folders": {
       "front": "Extract to front",
       "back": "Extract to back"
-    }
+    },
+    "enable_sign": "Enable sign"
+  },
+  "other": {
+    "start_load_success": "Start loading",
+    "load_all": "Reload All",
+    "filter_by_driver": "Filter by driver"
   }
 }

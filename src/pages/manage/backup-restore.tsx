@@ -1,4 +1,10 @@
-import { HStack, Button, VStack, Text } from "@hope-ui/solid"
+import {
+  HStack,
+  Button,
+  VStack,
+  Text,
+  Switch as HopeSwitch,
+} from "@hope-ui/solid"
 import { r, handleRespWithoutNotify, notify } from "~/utils"
 import { useFetch, useManageTitle, useT } from "~/hooks"
 import {
@@ -44,6 +50,7 @@ const Log = (props: { msg: string; type: LogType }) => {
 }
 
 const BackupRestore = () => {
+  const [override, setOverride] = createSignal(false)
   const t = useT()
   useManageTitle("manage.sidemenu.backup-restore")
   let logRef: HTMLDivElement
@@ -136,12 +143,74 @@ const BackupRestore = () => {
   const [addMetaLoading, addMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/create`, meta)
   })
+  const [updateUserLoading, updateUser] = useFetch((user: User): PEmptyResp => {
+    return r.post(`/admin/user/update`, user)
+  })
+  const [updateStorageLoading, updateStorage] = useFetch(
+    (storage: Storage): PEmptyResp => {
+      return r.post(`/admin/storage/update`, storage)
+    }
+  )
+  const [updateMetaLoading, updateMeta] = useFetch((meta: Meta): PEmptyResp => {
+    return r.post(`/admin/meta/update`, meta)
+  })
+  async function handleOvrData<T>(
+    dataArray: T[],
+    getDataFunc: { (): PResp<{ content: T[]; total: number }> },
+    addDataFunc: {
+      (t: T): PEmptyResp
+    },
+    updateDataFunc: {
+      (t: T): PEmptyResp
+    },
+    idFieldName: keyof T,
+    itemName: string
+  ) {
+    const currentData = (await getDataFunc()).data.content
+    for (const i in dataArray) {
+      const currentItem = dataArray[i]
+      const currentIdValue = currentItem[idFieldName]
+      const currentDataItem = currentData.find(
+        (d) => d[idFieldName] === currentIdValue
+      )
+      const method = currentDataItem ? "update" : "add"
+      const handleDataFunc = method === "add" ? addDataFunc : updateDataFunc
+      await handleRespWithoutNotify(
+        await handleDataFunc(currentItem),
+        () => {
+          appendLog(
+            t("br.success_restore_item", {
+              item: t(itemName),
+            }) +
+              "-" +
+              `[${currentIdValue}]`,
+            "success"
+          )
+        },
+        (msg) => {
+          appendLog(
+            t("br.failed_restore_item", {
+              item: t(itemName),
+            }) +
+              "-" +
+              `[${currentIdValue}]` +
+              ":" +
+              msg,
+            "error"
+          )
+        }
+      )
+    }
+  }
   const restoreLoading = () => {
     return (
       addSettingsLoading() ||
       addUserLoading() ||
       addStorageLoading() ||
-      addMetaLoading()
+      addMetaLoading() ||
+      updateUserLoading() ||
+      updateStorageLoading() ||
+      updateMetaLoading()
     )
   }
   const restore = async () => {
@@ -159,6 +228,9 @@ const BackupRestore = () => {
       const reader = new FileReader()
       reader.onload = async () => {
         const data: Data = JSON.parse(reader.result as string)
+        if (override()) {
+          await backup()
+        }
         data.settings &&
           handleRespWithoutNotify(
             await addSettings(
@@ -185,42 +257,69 @@ const BackupRestore = () => {
               )
             }
           )
-        for (const item of [
-          { name: "users", fn: addUser, data: data.users, key: "username" },
-          {
-            name: "storages",
-            fn: addStorage,
-            data: data.storages,
-            key: "mount_path",
-          },
-          { name: "metas", fn: addMeta, data: data.metas, key: "path" },
-        ] as const) {
-          for (const itemData of item.data || []) {
-            itemData.id = 0
-            handleRespWithoutNotify(
-              await item.fn(itemData),
-              () => {
-                appendLog(
-                  t("br.success_restore_item", {
-                    item: t(`manage.sidemenu.${item.name}`),
-                  }) +
-                    "-" +
-                    `[${(itemData as any)[item.key]}]`,
-                  "success"
-                )
-              },
-              (msg) => {
-                appendLog(
-                  t("br.failed_restore_item", {
-                    item: t(`manage.sidemenu.${item.name}`),
-                  }) +
-                    ` [ ${(itemData as any)[item.key]} ] ` +
-                    ":" +
-                    msg,
-                  "error"
-                )
-              }
-            )
+        if (override()) {
+          await handleOvrData(
+            data.users,
+            getUsers,
+            addUser,
+            updateUser,
+            "username",
+            "manage.sidemenu.users"
+          )
+          await handleOvrData(
+            data.storages,
+            getStorages,
+            addStorage,
+            updateStorage,
+            "mount_path",
+            "manage.sidemenu.storages"
+          )
+          await handleOvrData(
+            data.metas,
+            getMetas,
+            addMeta,
+            updateMeta,
+            "path",
+            "manage.sidemenu.metas"
+          )
+        } else {
+          for (const item of [
+            { name: "users", fn: addUser, data: data.users, key: "username" },
+            {
+              name: "storages",
+              fn: addStorage,
+              data: data.storages,
+              key: "mount_path",
+            },
+            { name: "metas", fn: addMeta, data: data.metas, key: "path" },
+          ] as const) {
+            for (const itemData of item.data || []) {
+              itemData.id = 0
+              handleRespWithoutNotify(
+                await item.fn(itemData),
+                () => {
+                  appendLog(
+                    t("br.success_restore_item", {
+                      item: t(`manage.sidemenu.${item.name}`),
+                    }) +
+                      "-" +
+                      `[${(itemData as any)[item.key]}]`,
+                    "success"
+                  )
+                },
+                (msg) => {
+                  appendLog(
+                    t("br.failed_restore_item", {
+                      item: t(`manage.sidemenu.${item.name}`),
+                    }) +
+                      ` [ ${(itemData as any)[item.key]} ] ` +
+                      ":" +
+                      msg,
+                    "error"
+                  )
+                }
+              )
+            }
           }
         }
         appendLog(t("br.finish_restore"), "info")
@@ -231,7 +330,7 @@ const BackupRestore = () => {
   }
   return (
     <VStack spacing="$2" w="$full">
-      <HStack spacing="$2" alignItems="start" w="$full">
+      <HStack spacing="$2" w="$full">
         <Button
           loading={backupLoading()}
           onClick={() => {
@@ -249,6 +348,15 @@ const BackupRestore = () => {
         >
           {t("br.restore")}
         </Button>
+        <HopeSwitch
+          id="restore-override"
+          checked={override()}
+          onChange={(e: { currentTarget: HTMLInputElement }) =>
+            setOverride(e.currentTarget.checked)
+          }
+        >
+          {t("br.override")}
+        </HopeSwitch>
       </HStack>
       <VStack
         p="$2"
