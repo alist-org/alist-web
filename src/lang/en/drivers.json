@@ -333,6 +333,8 @@
     },
     "placeholder": "Placeholder",
     "region": "Region",
+    "remove_bucket": "Remove bucket",
+    "remove_bucket-tips": "Remove bucket name from path when using custom host.",
     "root_folder_path": "Root folder path",
     "secret_access_key": "Secret access key",
     "sign_url_expire": "Sign url expire"
