@@ -6,6 +6,7 @@ import {
   onCleanup,
   Switch,
   Match,
+  on,
 } from "solid-js"
 import { layout } from "~/store"
 import { ContextMenu } from "./context-menu"
@@ -34,26 +35,31 @@ const Folder = () => {
   const images = createMemo(() =>
     objStore.objs.filter((obj) => obj.type === ObjType.IMAGE)
   )
+  const initGallery = () => {
+    dynamicGallery = lightGallery(document.createElement("div"), {
+      dynamic: true,
+      thumbnail: true,
+      plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
+      dynamicEl: images().map((obj) => {
+        const raw = rawLink(obj, true)
+        return {
+          src: raw,
+          thumb: obj.thumb === "" ? raw : obj.thumb,
+          subHtml: `<h4>${obj.name}</h4>`,
+        }
+      }),
+    })
+  }
   let dynamicGallery: LightGallery | undefined
-  createEffect(() => {
-    dynamicGallery?.destroy()
-    if (images().length > 0) {
-      dynamicGallery = lightGallery(document.createElement("div"), {
-        dynamic: true,
-        thumbnail: true,
-        plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
-        dynamicEl: images().map((obj) => {
-          const raw = rawLink(obj, true)
-          return {
-            src: raw,
-            thumb: obj.thumb === "" ? raw : obj.thumb,
-            subHtml: `<h4>${obj.name}</h4>`,
-          }
-        }),
-      })
-    }
-  })
+  createEffect(
+    on(images, () => {
+      dynamicGallery?.destroy()
+    })
+  )
   bus.on("gallery", (name) => {
+    if (!dynamicGallery) {
+      initGallery()
+    }
     dynamicGallery?.openGallery(images().findIndex((obj) => obj.name === name))
   })
   onCleanup(() => {

@@ -53,7 +53,7 @@ const AddOrEdit = () => {
     role: 0,
     permission: 0,
     disabled: false,
-    github_id: 0,
+    sso_id: "",
   })
   const [userLoading, loadUser] = useFetch(
     (): PResp<User> => r.get(`/admin/user/get?id=${id}`)
@@ -147,7 +147,7 @@ const AddOrEdit = () => {
           loading={okLoading()}
           onClick={async () => {
             const resp = await ok()
-            // TODO maybe can use handleRrespWithNotifySuccess
+            // TODO maybe can use handleRespWithNotifySuccess
             handleResp(resp, () => {
               notify.success(t("global.save_success"))
               back()

@@ -5,12 +5,12 @@ import { getSettingBool, objStore } from "~/store"
 import { ObjType } from "~/types"
 import { convertURL, ext } from "~/utils"
 import Artplayer from "artplayer"
+import { type Option } from "artplayer/types/option"
 import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import flvjs from "flv.js"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
 import { SelectWrapper } from "~/components"
-import { isMobile } from "~/utils/compatibility"
 
 const players: { icon: string; name: string; scheme: string }[] = [
   { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
@@ -18,7 +18,29 @@ const players: { icon: string; name: string; scheme: string }[] = [
   { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$durl" },
   { icon: "movist", name: "MovistPro", scheme: "movistpro:$mdurl" },
   { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
-  { icon: "infuse", name: "Infuse", scheme: "infuse://x-callback-url/play?url=$durl" },
+  {
+    icon: "infuse",
+    name: "Infuse",
+    scheme: "infuse://x-callback-url/play?url=$durl",
+  },
+  { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
+  {
+    icon: "infuse",
+    name: "Infuse",
+    scheme: "infuse://x-callback-url/play?url=$durl",
+  },
+  {
+    icon: "mxplayer",
+    name: "MX Player",
+    scheme:
+      "intent:$durl#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
+  },
+  {
+    icon: "mxplayer-pro",
+    name: "MX Player Pro",
+    scheme:
+      "intent:$durl#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
+  },
 ]
 
 const Preview = () => {
@@ -29,7 +51,7 @@ const Preview = () => {
     videos = [objStore.obj]
   }
   let player: Artplayer
-  let option: any = {
+  let option: Option = {
     id: "player",
     container: "#video-player",
     url: objStore.raw_url,
@@ -95,9 +117,6 @@ const Preview = () => {
     autoPlayback: true,
     autoOrientation: true,
     airplay: true,
-  }
-  if (isMobile) {
-    option.moreVideoAttr.controls = true
   }
   const subtitle = objStore.related.find((obj) => {
     for (const ext of [".srt", ".ass", ".vtt"]) {
