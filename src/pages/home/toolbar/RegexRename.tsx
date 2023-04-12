@@ -1,5 +1,5 @@
 import { createDisclosure } from "@hope-ui/solid"
-import { ModalInput } from "~/components"
+import { ModalTwoInput } from "~/components"
 import { useFetch, usePath, useRouter } from "~/hooks"
 import { bus, fsRegexRename, handleRespWithNotifySuccess } from "~/utils"
 import { onCleanup } from "solid-js"
@@ -19,14 +19,13 @@ export const RegexRename = () => {
     bus.off("tool", handler)
   })
   return (
-    <ModalInput
+    <ModalTwoInput
       title="正则重命名文件"
       opened={isOpen()}
       onClose={onClose}
       loading={loading()}
-      onSubmit={async (name) => {
-        const newName = name.split(" ")
-        const resp = await ok(pathname(), newName[0], newName[1])
+      onSubmit={async (srcName, newName) => {
+        const resp = await ok(pathname(), srcName, newName)
         handleRespWithNotifySuccess(resp, () => {
           refresh()
           onClose()
