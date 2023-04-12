@@ -86,6 +86,20 @@ export const Right = () => {
                 }}
               />
               <RightIcon
+                as={operations.recursive_move.icon}
+                tips="recursive_move"
+                onClick={() => {
+                  bus.emit("tool", "recursiveMove")
+                }}
+              />
+              <RightIcon
+                as={operations.regex_rename.icon}
+                tips="regex_rename"
+                onClick={() => {
+                  bus.emit("tool", "regexRename")
+                }}
+              />
+              <RightIcon
                 as={AiOutlineCloudUpload}
                 tips="upload"
                 onClick={() => {
