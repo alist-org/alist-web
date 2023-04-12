@@ -7,6 +7,7 @@ import { Rename } from "./Rename"
 import { NewFile } from "./NewFile"
 import { Mkdir } from "./Mkdir"
 import { RecursiveMove } from "./RecursiveMove"
+import { RemoveEmptyDirectory } from "./RemoveEmptyDirectory"
 import { RegexRename } from "./RegexRename"
 import { OfflineDownload } from "./OfflineDownload"
 import { PackageDownloadModal } from "./Download"
@@ -25,6 +26,7 @@ export const Modal = () => {
       <NewFile />
       <Mkdir />
       <RecursiveMove />
+      <RemoveEmptyDirectory />
       <RegexRename />
       <OfflineDownload />
       <PackageDownloadModal />

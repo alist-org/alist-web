@@ -93,6 +93,13 @@ export const Right = () => {
                 }}
               />
               <RightIcon
+                as={operations.remove_empty_directory.icon}
+                tips="remove_empty_directory"
+                onClick={() => {
+                  bus.emit("tool", "removeEmptyDirectory")
+                }}
+              />
+              <RightIcon
                 as={operations.regex_rename.icon}
                 tips="regex_rename"
                 onClick={() => {

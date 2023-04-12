@@ -92,6 +92,10 @@ export const fsRemove = (dir: string, names: string[]): PEmptyResp => {
   return r.post("/fs/remove", { dir, names })
 }
 
+export const fsRemoveEmptyDirectory = (src_dir: string): PEmptyResp => {
+  return r.post("/fs/remove_empty_directory", { src_dir })
+}
+
 export const fsNewFile = (path: string, password: string): PEmptyResp => {
   return r.put("/fs/put", undefined, {
     headers: {
