@@ -20,7 +20,7 @@ export const RegexRename = () => {
   })
   return (
     <ModalTwoInput
-      title="正则重命名文件"
+      title="home.toolbar.regular_rename"
       opened={isOpen()}
       onClose={onClose}
       loading={loading()}
