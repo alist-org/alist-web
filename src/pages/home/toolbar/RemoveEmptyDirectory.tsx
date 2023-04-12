@@ -1,6 +1,6 @@
 import { createDisclosure } from "@hope-ui/solid"
 import { ModalFolderChoose } from "~/components"
-import { useFetch, usePath, useRouter } from "~/hooks"
+import { useFetch, usePath } from "~/hooks"
 import {
   bus,
   fsRemoveEmptyDirectory,
@@ -11,7 +11,6 @@ import { onCleanup } from "solid-js"
 export const RemoveEmptyDirectory = () => {
   const { isOpen, onOpen, onClose } = createDisclosure()
   const [loading, ok] = useFetch(fsRemoveEmptyDirectory)
-  const { pathname } = useRouter()
   const { refresh } = usePath()
   const handler = (name: string) => {
     if (name === "removeEmptyDirectory") {
