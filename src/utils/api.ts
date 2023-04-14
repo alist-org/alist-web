@@ -57,12 +57,27 @@ export const fsRename = (path: string, name: string): PEmptyResp => {
   return r.post("/fs/rename", { path, name })
 }
 
+export const fsRegexRename = (
+  src_dir: string,
+  src_name_regex: string,
+  new_name_regex: string
+): PEmptyResp => {
+  return r.post("/fs/regex_rename", { src_dir, src_name_regex, new_name_regex })
+}
+
 export const fsMove = (
   src_dir: string,
   dst_dir: string,
   names: string[]
 ): PEmptyResp => {
   return r.post("/fs/move", { src_dir, dst_dir, names })
+}
+
+export const fsRecursiveMove = (
+  src_dir: string,
+  dst_dir: string
+): PEmptyResp => {
+  return r.post("/fs/recursive_move", { src_dir, dst_dir })
 }
 
 export const fsCopy = (
@@ -75,6 +90,10 @@ export const fsCopy = (
 
 export const fsRemove = (dir: string, names: string[]): PEmptyResp => {
   return r.post("/fs/remove", { dir, names })
+}
+
+export const fsRemoveEmptyDirectory = (src_dir: string): PEmptyResp => {
+  return r.post("/fs/remove_empty_directory", { src_dir })
 }
 
 export const fsNewFile = (path: string, password: string): PEmptyResp => {
