@@ -60,6 +60,7 @@
     "local_settings": "Local Settings",
     "recursive_move": "Recursive Move",
     "remove_empty_directory": "Remove Empty Folder",
+    "remove_empty_directory-tips": "Are you sure to delete all its empty subfolders?",
     "regex_rename": "Regex Rename",
     "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line."
   },

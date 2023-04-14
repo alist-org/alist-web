@@ -9,6 +9,7 @@ import {
   Input,
   Textarea,
   FormHelperText,
+  VStack,
 } from "@hope-ui/solid"
 import { createSignal, JSXElement, Show } from "solid-js"
 import { useT } from "~/hooks"
@@ -55,7 +56,7 @@ export const ModalTwoInput = (props: ModalTwoInputProps) => {
           <Show
             when={props.type === "text"}
             fallback={
-              <div>
+              <VStack spacing="$2">
                 <Input
                   id="modal-input1" // Update id to "modal-input1" for first input
                   type={props.type}
@@ -82,7 +83,7 @@ export const ModalTwoInput = (props: ModalTwoInputProps) => {
                     }
                   }}
                 />
-              </div>
+              </VStack>
             }
           >
             <div>

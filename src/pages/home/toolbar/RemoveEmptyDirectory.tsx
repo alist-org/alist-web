@@ -1,15 +1,26 @@
-import { createDisclosure } from "@hope-ui/solid"
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  createDisclosure,
+} from "@hope-ui/solid"
 import { ModalFolderChoose } from "~/components"
-import { useFetch, usePath } from "~/hooks"
+import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import {
   bus,
   fsRemoveEmptyDirectory,
   handleRespWithNotifySuccess,
 } from "~/utils"
 import { onCleanup } from "solid-js"
+import { selectedObjs } from "~/store"
 
 export const RemoveEmptyDirectory = () => {
   const { isOpen, onOpen, onClose } = createDisclosure()
+  const { pathname } = useRouter()
   const [loading, ok] = useFetch(fsRemoveEmptyDirectory)
   const { refresh } = usePath()
   const handler = (name: string) => {
@@ -21,18 +32,42 @@ export const RemoveEmptyDirectory = () => {
   onCleanup(() => {
     bus.off("tool", handler)
   })
+  const t = useT()
   return (
-    <ModalFolderChoose
+    <Modal
+      blockScrollOnMount={false}
       opened={isOpen()}
       onClose={onClose}
-      loading={loading()}
-      onSubmit={async (dst) => {
-        const resp = await ok(dst)
-        handleRespWithNotifySuccess(resp, () => {
-          refresh()
-          onClose()
-        })
+      size={{
+        "@initial": "xs",
+        "@md": "md",
       }}
-    />
+    >
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{t("home.toolbar.remove_empty_directory")}</ModalHeader>
+        <ModalBody>
+          <p>{t("home.toolbar.remove_empty_directory-tips")}</p>
+        </ModalBody>
+        <ModalFooter display="flex" gap="$2">
+          <Button onClick={onClose} colorScheme="neutral">
+            {t("global.cancel")}
+          </Button>
+          <Button
+            colorScheme="danger"
+            loading={loading()}
+            onClick={async () => {
+              const resp = await ok(pathname())
+              handleRespWithNotifySuccess(resp, () => {
+                refresh()
+                onClose()
+              })
+            }}
+          >
+            {t("global.confirm")}
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
