@@ -8,7 +8,6 @@ import {
   ModalOverlay,
   createDisclosure,
 } from "@hope-ui/solid"
-import { ModalFolderChoose } from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import {
   bus,
@@ -16,7 +15,6 @@ import {
   handleRespWithNotifySuccess,
 } from "~/utils"
 import { onCleanup } from "solid-js"
-import { selectedObjs } from "~/store"
 
 export const RemoveEmptyDirectory = () => {
   const { isOpen, onOpen, onClose } = createDisclosure()
