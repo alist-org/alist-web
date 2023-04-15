@@ -105,7 +105,7 @@
     "client_secret": "Client secret",
     "client_secret-tips": "Keep it empty if you don't have one",
     "internal_upload": "Internal upload",
-    "internal_upload-tips": "If you are using Aliyun ECS in Beijing, you can turn it on to boost the upload speed",
+    "internal_upload-tips": "If you are using Aliyun ECS is located in Beijing, you can turn it on to boost the upload speed",
     "oauth_token_url": "Oauth token url",
     "order_by": "Order by",
     "order_bys": {
@@ -277,6 +277,21 @@
     "root_folder_path": "Root folder path",
     "site_id": "Site id"
   },
+  "OnedriveAPP": {
+    "chunk_size": "Chunk size",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "email": "Email",
+    "region": "Region",
+    "regions": {
+      "cn": "Cn",
+      "de": "De",
+      "global": "Global",
+      "us": "Us"
+    },
+    "root_folder_path": "Root folder path",
+    "tenant_id": "Tenant id"
+  },
   "PikPak": {
     "password": "Password",
     "root_folder_id": "Root folder id",
@@ -318,6 +333,8 @@
     },
     "placeholder": "Placeholder",
     "region": "Region",
+    "remove_bucket": "Remove bucket",
+    "remove_bucket-tips": "Remove bucket name from path when using custom host.",
     "root_folder_path": "Root folder path",
     "secret_access_key": "Secret access key",
     "sign_url_expire": "Sign url expire"
@@ -438,6 +455,12 @@
     "root_folder_path": "Root folder path",
     "sign_url_expire": "Sign url expire"
   },
+  "UrlTree": {
+    "head_size": "Head size",
+    "head_size-tips": "Use head method to get file size, but it may be failed.",
+    "url_structure": "Url structure",
+    "url_structure-tips": "structure:FolderName:\n  [FileName:][FileSize:][Modified:]Url"
+  },
   "Virtual": {
     "max_file_size": "Max file size",
     "min_file_size": "Min file size",
@@ -501,6 +524,7 @@
     "MediaTrack": {},
     "Mega_nz": {},
     "Onedrive": {},
+    "OnedriveAPP": {},
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
@@ -514,6 +538,7 @@
     "ThunderExpert": {},
     "Trainbit": {},
     "USS": {},
+    "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
     "YandexDisk": {}
@@ -542,6 +567,7 @@
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
     "Onedrive": "Onedrive",
+    "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
@@ -555,6 +581,7 @@
     "ThunderExpert": "ThunderExpert",
     "Trainbit": "Trainbit",
     "USS": "USS",
+    "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
     "YandexDisk": "YandexDisk"

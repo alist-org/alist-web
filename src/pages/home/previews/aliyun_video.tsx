@@ -9,7 +9,7 @@ import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
 import { MaybeLoading, SelectWrapper } from "~/components"
-import { isMobile } from "~/utils/compatibility"
+
 
 export interface Data {
   drive_id: string
@@ -96,9 +96,7 @@ const Preview = () => {
     autoOrientation: true,
     airplay: true,
   }
-  if (isMobile) {
-    option.moreVideoAttr.controls = true
-  }
+
   const subtitle = objStore.related.find((obj) => {
     for (const ext of [".srt", ".ass", ".vtt"]) {
       if (obj.name.endsWith(ext)) {
