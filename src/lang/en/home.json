@@ -59,6 +59,7 @@
     "upload": "Upload",
     "local_settings": "Local Settings",
     "recursive_move": "Recursive Move",
+    "recursive_move_directory-tips": "Are you sure you want to move all files in the current folder and its subfolders to the specified folder?",
     "remove_empty_directory": "Remove Empty Folder",
     "remove_empty_directory-tips": "Are you sure to delete all its empty subfolders?",
     "regex_rename": "Regex Rename",
