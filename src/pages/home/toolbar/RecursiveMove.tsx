@@ -11,17 +11,21 @@ import {
 import { ModalFolderChoose } from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import { bus, fsRecursiveMove, handleRespWithNotifySuccess } from "~/utils"
-import { onCleanup, createSignal } from "solid-js"
+import { onCleanup } from "solid-js"
 
 export const RecursiveMove = () => {
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = createSignal(false)
+  const {
+    isOpen: isConfirmModalOpen,
+    onOpen: openConfirmModal,
+    onClose: closeConfirmModal,
+  } = createDisclosure()
   const { isOpen, onOpen, onClose } = createDisclosure()
   const [loading, ok] = useFetch(fsRecursiveMove)
   const { pathname } = useRouter()
   const { refresh } = usePath()
   const handler = (name: string) => {
     if (name === "recursiveMove") {
-      setIsConfirmModalOpen(true)
+      openConfirmModal()
     }
   }
   bus.on("tool", handler)
@@ -31,57 +35,50 @@ export const RecursiveMove = () => {
   const t = useT()
   return (
     <>
-      {isConfirmModalOpen() && (
-        <Modal
-          blockScrollOnMount={false}
-          opened={isConfirmModalOpen()}
-          onClose={() => setIsConfirmModalOpen(false)}
-          size={{
-            "@initial": "xs",
-            "@md": "md",
-          }}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>{t("home.toolbar.recursive_move")}</ModalHeader>
-            <ModalBody>
-              <p>{t("home.toolbar.recursive_move_directory-tips")}</p>
-            </ModalBody>
-            <ModalFooter display="flex" gap="$2">
-              <Button
-                onClick={() => setIsConfirmModalOpen(false)}
-                colorScheme="neutral"
-              >
-                {t("global.cancel")}
-              </Button>
-              <Button
-                onClick={() => {
-                  setIsConfirmModalOpen(false)
-                  onOpen()
-                }}
-                colorScheme="danger"
-              >
-                {t("global.confirm")}
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      )}
+      <Modal
+        blockScrollOnMount={false}
+        opened={isConfirmModalOpen()}
+        onClose={() => closeConfirmModal()}
+        size={{
+          "@initial": "xs",
+          "@md": "md",
+        }}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{t("home.toolbar.recursive_move")}</ModalHeader>
+          <ModalBody>
+            <p>{t("home.toolbar.recursive_move_directory-tips")}</p>
+          </ModalBody>
+          <ModalFooter display="flex" gap="$2">
+            <Button onClick={() => closeConfirmModal()} colorScheme="neutral">
+              {t("global.cancel")}
+            </Button>
+            <Button
+              onClick={() => {
+                closeConfirmModal()
+                onOpen()
+              }}
+              colorScheme="danger"
+            >
+              {t("global.confirm")}
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
 
-      {!isConfirmModalOpen() && (
-        <ModalFolderChoose
-          opened={isOpen()}
-          onClose={onClose}
-          loading={loading()}
-          onSubmit={async (dst) => {
-            const resp = await ok(pathname(), dst)
-            handleRespWithNotifySuccess(resp, () => {
-              refresh()
-              onClose()
-            })
-          }}
-        />
-      )}
+      <ModalFolderChoose
+        opened={isOpen()}
+        onClose={onClose}
+        loading={loading()}
+        onSubmit={async (dst) => {
+          const resp = await ok(pathname(), dst)
+          handleRespWithNotifySuccess(resp, () => {
+            refresh()
+            onClose()
+          })
+        }}
+      />
     </>
   )
 }
