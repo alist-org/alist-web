@@ -141,6 +141,7 @@ export const RegexRename = () => {
               {t("global.back")}
             </Button>
             <Button
+              loading={loading()}
               onClick={async () => {
                 const resp = await ok(pathname(), srcName(), newName())
                 handleRespWithNotifySuccess(resp, () => {
