@@ -74,12 +74,12 @@ export const RegexRename = () => {
           defaultValue1={srcName()}
           defaultValue2={newName()}
           onSubmit={async (srcName, newName) => {
-            let replaceRegexp = new RegExp(srcName, "g")
+            const replaceRegexp = new RegExp(srcName, "g")
 
-            let matchNames = objStore.objs
+            const matchNames = objStore.objs
               .filter((obj) => obj.name.match(srcName))
               .map((obj) => {
-                let renameObj: RenameObj = {
+                const renameObj: RenameObj = {
                   oldName: obj.name,
                   newName: obj.name.replace(replaceRegexp, newName),
                 }
