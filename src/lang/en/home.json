@@ -63,6 +63,9 @@
     "remove_empty_directory": "Remove Empty Folder",
     "remove_empty_directory-tips": "Are you sure to delete all its empty subfolders?",
     "regex_rename": "Regex Rename",
+    "regex_rename_preview": "Changed Files",
+    "regex_rename_preview_old_name": "Old Name",
+    "regex_rename_preview_new_name": "New Name",
     "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line."
   },
   "upload": {
