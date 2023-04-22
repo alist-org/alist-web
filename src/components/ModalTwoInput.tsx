@@ -37,8 +37,6 @@ export const ModalTwoInput = (props: ModalTwoInputProps) => {
       return
     }
     props.onSubmit?.(value1(), value2()) // Update onSubmit to pass both input values
-    setValue1("")
-    setValue2("")
   }
   return (
     <Modal
