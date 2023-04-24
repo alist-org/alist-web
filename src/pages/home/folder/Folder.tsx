@@ -35,6 +35,8 @@ const Folder = () => {
   const images = createMemo(() =>
     objStore.objs.filter((obj) => obj.type === ObjType.IMAGE)
   )
+
+  let dynamicGallery: LightGallery | undefined
   const initGallery = () => {
     dynamicGallery = lightGallery(document.createElement("div"), {
       dynamic: true,
@@ -50,10 +52,10 @@ const Folder = () => {
       }),
     })
   }
-  let dynamicGallery: LightGallery | undefined
   createEffect(
     on(images, () => {
       dynamicGallery?.destroy()
+      dynamicGallery = undefined
     })
   )
   bus.on("gallery", (name) => {

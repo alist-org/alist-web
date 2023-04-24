@@ -73,10 +73,12 @@
     "url": "Url"
   },
   "AList V3": {
-    "access_token": "Access token",
+    "meta_password": "Meta password",
     "password": "Password",
     "root_folder_path": "Root folder path",
-    "url": "Url"
+    "token": "Token",
+    "url": "Url",
+    "username": "Username"
   },
   "Alias": {
     "paths": "Paths"

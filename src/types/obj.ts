@@ -22,3 +22,8 @@ export interface Obj {
 export type StoreObj = Obj & {
   selected?: boolean
 }
+
+export type RenameObj = {
+  oldName: string
+  newName: string
+}
