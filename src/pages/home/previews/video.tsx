@@ -1,44 +1,20 @@
-import { Box, Flex, VStack, Image, Anchor, Tooltip } from "@hope-ui/solid"
-import { For, onCleanup, onMount } from "solid-js"
+import { Box } from "@hope-ui/solid"
+import { onCleanup, onMount } from "solid-js"
 import { useRouter, useLink } from "~/hooks"
 import { getSettingBool, objStore } from "~/store"
 import { ObjType } from "~/types"
-import { convertURL, ext } from "~/utils"
+import { ext } from "~/utils"
 import Artplayer from "artplayer"
 import { type Option } from "artplayer/types/option"
 import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import flvjs from "flv.js"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
-import { SelectWrapper } from "~/components"
-
-const players: { icon: string; name: string; scheme: string }[] = [
-  { icon: "iina", name: "IINA", scheme: "iina://weblink?url=$durl" },
-  { icon: "potplayer", name: "PotPlayer", scheme: "potplayer://$durl" },
-  { icon: "vlc", name: "VLC", scheme: "vlc://$durl" },
-  { icon: "nplayer", name: "nPlayer", scheme: "nplayer-$durl" },
-  {
-    icon: "infuse",
-    name: "Infuse",
-    scheme: "infuse://x-callback-url/play?url=$durl",
-  },
-  {
-    icon: "mxplayer",
-    name: "MX Player",
-    scheme:
-      "intent:$durl#Intent;package=com.mxtech.videoplayer.ad;S.title=$name;end",
-  },
-  {
-    icon: "mxplayer-pro",
-    name: "MX Player Pro",
-    scheme:
-      "intent:$durl#Intent;package=com.mxtech.videoplayer.pro;S.title=$name;end",
-  },
-]
+import { VideoBox } from "./video_box"
 
 const Preview = () => {
   const { replace } = useRouter()
-  const { proxyLink, currentObjLink } = useLink()
+  const { proxyLink } = useLink()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
     videos = [objStore.obj]
@@ -167,40 +143,9 @@ const Preview = () => {
     player?.destroy()
   })
   return (
-    <VStack w="$full" spacing="$2">
+    <VideoBox>
       <Box w="$full" h="60vh" id="video-player" />
-      <SelectWrapper
-        onChange={(name: string) => {
-          replace(name)
-        }}
-        value={objStore.obj.name}
-        options={videos.map((obj) => ({ value: obj.name }))}
-      />
-      <Flex wrap="wrap" gap="$1" justifyContent="center">
-        <For each={players}>
-          {(item) => {
-            return (
-              <Tooltip placement="top" withArrow label={item.name}>
-                <Anchor
-                  // external
-                  href={convertURL(item.scheme, {
-                    raw_url: objStore.raw_url,
-                    name: objStore.obj.name,
-                    d_url: currentObjLink(true),
-                  })}
-                >
-                  <Image
-                    m="0 auto"
-                    boxSize="$8"
-                    src={`${window.__dynamic_base__}/images/${item.icon}.webp`}
-                  />
-                </Anchor>
-              </Tooltip>
-            )
-          }}
-        </For>
-      </Flex>
-    </VStack>
+    </VideoBox>
   )
 }
 

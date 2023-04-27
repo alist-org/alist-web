@@ -8,8 +8,7 @@ import Artplayer from "artplayer"
 import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
-import { MaybeLoading, SelectWrapper } from "~/components"
-
+import { VideoBox } from "./video_box"
 
 export interface Data {
   drive_id: string
@@ -181,18 +180,9 @@ const Preview = () => {
     player?.destroy()
   })
   return (
-    <MaybeLoading loading={loading()}>
-      <VStack w="$full" spacing="$2">
-        <Box w="$full" h="60vh" id="video-player" />
-        <SelectWrapper
-          onChange={(name: string) => {
-            replace(name)
-          }}
-          value={objStore.obj.name}
-          options={videos.map((obj) => ({ value: obj.name }))}
-        />
-      </VStack>
-    </MaybeLoading>
+    <VideoBox>
+      <Box w="$full" h="60vh" id="video-player" />
+    </VideoBox>
   )
 }
 
