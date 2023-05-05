@@ -221,6 +221,11 @@
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
   },
+  "IPFS API": {
+    "endpoint": "Endpoint",
+    "gateway": "Gateway",
+    "root_folder_path": "Root folder path"
+  },
   "Lanzou": {
     "baseUrl": "BaseUrl",
     "baseUrl-tips": "basic URL for file operation",
@@ -521,6 +526,7 @@
     "FTP": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "IPFS API": {},
     "Lanzou": {},
     "Local": {},
     "MediaTrack": {},
@@ -564,6 +570,7 @@
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Local": "Local",
     "MediaTrack": "MediaTrack",
