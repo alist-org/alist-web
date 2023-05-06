@@ -191,7 +191,8 @@
     "address": "Address",
     "password": "Password",
     "root_folder_path": "Root folder path",
-    "username": "Username"
+    "username": "Username",
+    "cookie":"Cookie"
   },
   "FTP": {
     "address": "Address",
