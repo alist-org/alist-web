@@ -189,6 +189,7 @@
   },
   "Cloudreve": {
     "address": "Address",
+    "cookie": "Cookie",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"
