@@ -1,10 +1,10 @@
 {
   "common": {
     "mount_path": "Mount Path",
+    "mount_path-tips":"The path you want to mount to, it is unique and cannot be repeated",
     "driver": "Driver",
     "order": "Order",
     "order-tips": "Use to sort",
-    "mount_path-tips":"The name displayed externally on the front end,Do not fill in the same name repeatedly",
     "status": "Status",
     "remark": "Remark",
     "cache_expiration": "Cache Expiration",
