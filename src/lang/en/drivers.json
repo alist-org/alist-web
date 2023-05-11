@@ -249,6 +249,7 @@
     "root_folder_path": "Root folder path",
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
+    "thumb_cache_folder": "Thumb cache folder",
     "thumbnail": "Thumbnail",
     "thumbnail-tips": "enable thumbnail"
   },
