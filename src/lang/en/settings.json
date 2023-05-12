@@ -46,6 +46,7 @@
   "proxy_types": "Proxy types",
   "qbittorrent_seedtime": "Qbittorrent seedtime",
   "qbittorrent_url": "Qbittorrent url",
+  "robots_txt": "Robots txt",
   "search_index": "Search index",
   "search_indexs": {
     "bleve": "Bleve",
