@@ -37,6 +37,8 @@
     }
   },
   "189Cloud": {
+    "cookie": "Cookie",
+    "cookie-tips": "Fill in the cookie if need captcha",
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
@@ -511,7 +513,9 @@
     "115 Cloud": {},
     "123Pan": {},
     "139Yun": {},
-    "189Cloud": {},
+    "189Cloud": {
+      "alert": "You can try to use 189PC driver if this driver does not work."
+    },
     "189CloudPC": {},
     "AList V2": {},
     "AList V3": {},
