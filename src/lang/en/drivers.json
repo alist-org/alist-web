@@ -391,7 +391,8 @@
       "china": "China",
       "international": "International"
     },
-    "root_folder_id": "Root folder id"
+    "root_folder_id": "Root folder id",
+    "use_s3_upload_method": "Use s3 upload method"
   },
   "Terabox": {
     "cookie": "Cookie",
