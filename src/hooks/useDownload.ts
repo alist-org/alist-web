@@ -125,21 +125,21 @@ export const useDownload = () => {
                 )
                 continue
               }
-              // const resp = await axios.post(aria2_rpc_url, {
-              //   id: Math.random().toString(),
-              //   jsonrpc: "2.0",
-              //   method: "aria2.addUri",
-              //   params: [
-              //     "token:" + aria2_rpc_secret ?? "",
-              //     [res[key].url],
-              //     {
-              //       out: res[key].name,
-              //       dir: aria2_dir + res[key].dir,
-              //       "check-certificate": "false",
-              //     },
-              //   ],
-              // })
-              // console.log(resp)
+              const resp = await axios.post(aria2_rpc_url, {
+                id: Math.random().toString(),
+                jsonrpc: "2.0",
+                method: "aria2.addUri",
+                params: [
+                  "token:" + aria2_rpc_secret ?? "",
+                  [res[key].url],
+                  {
+                    out: res[key].name,
+                    dir: aria2_dir + res[key].dir,
+                    "check-certificate": "false",
+                  },
+                ],
+              })
+              console.log(resp)
             }
           }
         }
