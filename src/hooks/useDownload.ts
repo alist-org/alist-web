@@ -1,17 +1,10 @@
 import axios from "axios"
-import {
-  local,
-  password,
-  selectedObjs as _selectedObjs,
-  selectedObjs,
-} from "~/store"
+import { local, password, selectedObjs as _selectedObjs } from "~/store"
 import { fsList, notify, pathJoin } from "~/utils"
 import { getLinkByDirAndObj, useRouter, useT } from "~/hooks"
 import { useSelectedLink } from "~/hooks"
 import { Obj } from "~/types"
-import { createSignal, For, Show } from "solid-js"
 
-let totalSize = 0
 interface File {
   path: string
   dir: string
@@ -19,6 +12,42 @@ interface File {
   name: string
 }
 
+function isEmpty(value: string | object): boolean {
+  return value === undefined || value === null || value === ""
+}
+function isNullOrUndefined(value: string | object): boolean {
+  return value === undefined || value === null
+}
+
+function getSaveDir(rpc_url: string, rpc_secret: string): string {
+  let save_dir: string = "/downloads/alist"
+
+  const xhr = new XMLHttpRequest()
+  xhr.open("POST", rpc_url, false) // 第三个参数为 false 表示同步请求
+  xhr.setRequestHeader("Content-Type", "application/json")
+  xhr.send(
+    JSON.stringify({
+      id: Math.random().toString(),
+      jsonrpc: "2.0",
+      method: "aria2.getGlobalOption",
+      params: ["token:" + rpc_secret ?? ""],
+    })
+  )
+  if (xhr.status === 200) {
+    const resp = JSON.parse(xhr.responseText)
+    if (isEmpty(resp.result)) {
+      // notify.error(`Failed to get Aria2 configuration information.`)
+      return save_dir
+    }
+    if (!isEmpty(resp.result.dir)) {
+      save_dir = resp.result.dir
+    }
+    save_dir = save_dir.endsWith("/") ? save_dir.slice(0, -1) : save_dir
+    return save_dir
+  } else {
+    return save_dir
+  }
+}
 export const useDownload = () => {
   const { rawLinks } = useSelectedLink()
   const t = useT()
@@ -32,21 +61,11 @@ export const useDownload = () => {
     },
     sendToAria2: async () => {
       const selectedObjs = _selectedObjs()
-      const [cur, setCur] = createSignal(
-        t("home.package_download.initializing")
-      )
-      // 0: init
-      // 1: error
-      // 2: fetching structure
-      // 3: fetching files
-      // 4: success
-      const [status, setStatus] = createSignal(0)
       const fetchFolderStructure = async (
         pre: string,
         obj: Obj
       ): Promise<File[] | string> => {
         if (!obj.is_dir) {
-          totalSize += obj.size
           return [
             {
               path: pathJoin(pre, obj.name),
@@ -83,27 +102,17 @@ export const useDownload = () => {
           return res
         }
       }
-      const { aria2_rpc_url, aria2_rpc_secret, aria2_dir } = local
+      const { aria2_rpc_url, aria2_rpc_secret } = local
       if (!aria2_rpc_url) {
         notify.warning(t("home.toolbar.aria2_not_set"))
         return
       }
       try {
-        function isEmpty(value: any) {
-          return value === undefined || value === null || value === ""
-        }
-        function isNullOrUndefined(value: any) {
-          return value === undefined || value === null
-        }
+        let save_dir = getSaveDir(aria2_rpc_url, aria2_rpc_secret)
+        let isStartAria2Mission = false
+        notify.info(`${t("home.package_download.fetching_struct")}`)
         for (const obj of selectedObjs) {
-          setCur(t("home.package_download.fetching_struct"))
-          setStatus(2)
           const res = await fetchFolderStructure("", obj)
-          let save_dir: string =
-            aria2_dir === undefined || aria2_dir === null || aria2_dir === ""
-              ? "/downloads/alist"
-              : aria2_dir
-          save_dir = save_dir.endsWith("/") ? save_dir.slice(0, -1) : save_dir
 
           if (typeof res !== "object" || res.length === undefined) {
             notify.error(
@@ -125,6 +134,10 @@ export const useDownload = () => {
                 )
                 continue
               }
+              if (!isStartAria2Mission) {
+                isStartAria2Mission = true
+                notify.info(`${t("home.package_download.downloading")}`)
+              }
               const resp = await axios.post(aria2_rpc_url, {
                 id: Math.random().toString(),
                 jsonrpc: "2.0",
@@ -134,7 +147,7 @@ export const useDownload = () => {
                   [res[key].url],
                   {
                     out: res[key].name,
-                    dir: aria2_dir + res[key].dir,
+                    dir: save_dir + res[key].dir,
                     "check-certificate": "false",
                   },
                 ],
