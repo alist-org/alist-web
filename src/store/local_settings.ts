@@ -11,7 +11,7 @@ export function isValidKey(
 export const initialLocalSettings = {
   aria2_rpc_url: "http://localhost:6800/jsonrpc",
   aria2_rpc_secret: "",
-  // aria2_dir: "alist",
+  // aria2_dir: "/downloads/alist",
 }
 for (const key in initialLocalSettings) {
   if (!local[key] && isValidKey(key, initialLocalSettings)) {
