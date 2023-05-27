@@ -58,12 +58,17 @@
       "desc": "Desc"
     },
     "password": "Password",
-    "rapid_upload": "Rapid upload",
     "root_folder_id": "Root folder id",
     "type": "Type",
     "types": {
       "family": "Family",
       "personal": "Personal"
+    },
+    "upload_method": "Upload method",
+    "upload_methods": {
+      "old": "Old",
+      "rapid": "Rapid",
+      "stream": "Stream"
     },
     "username": "Username",
     "validate_code": "Validate code"
@@ -459,6 +464,22 @@
     "apikey": "Apikey",
     "root_folder_id": "Root folder id"
   },
+  "UC": {
+    "cookie": "Cookie",
+    "order_by": "Order by",
+    "order_bys": {
+      "file_name": "File name",
+      "file_type": "File type",
+      "none": "None",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "bucket": "Bucket",
     "endpoint": "Endpoint",
@@ -552,6 +573,7 @@
     "Thunder": {},
     "ThunderExpert": {},
     "Trainbit": {},
+    "UC": {},
     "USS": {},
     "UrlTree": {},
     "Virtual": {},
@@ -596,6 +618,7 @@
     "Thunder": "Thunder",
     "ThunderExpert": "ThunderExpert",
     "Trainbit": "Trainbit",
+    "UC": "UC",
     "USS": "USS",
     "UrlTree": "UrlTree",
     "Virtual": "Virtual",
