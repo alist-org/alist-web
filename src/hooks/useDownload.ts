@@ -19,34 +19,23 @@ function isNullOrUndefined(value: string | object): boolean {
   return value === undefined || value === null
 }
 
-function getSaveDir(rpc_url: string, rpc_secret: string): string {
+async function getSaveDir(rpc_url: string, rpc_secret: string) {
   let save_dir: string = "/downloads/alist"
 
-  const xhr = new XMLHttpRequest()
-  xhr.open("POST", rpc_url, false) // 第三个参数为 false 表示同步请求
-  xhr.setRequestHeader("Content-Type", "application/json")
-  xhr.send(
-    JSON.stringify({
-      id: Math.random().toString(),
-      jsonrpc: "2.0",
-      method: "aria2.getGlobalOption",
-      params: ["token:" + rpc_secret ?? ""],
-    })
-  )
-  if (xhr.status === 200) {
-    const resp = JSON.parse(xhr.responseText)
-    if (isEmpty(resp.result)) {
-      // notify.error(`Failed to get Aria2 configuration information.`)
-      return save_dir
-    }
-    if (!isEmpty(resp.result.dir)) {
-      save_dir = resp.result.dir
+  const resp = await axios.post(rpc_url, {
+    id: Math.random().toString(),
+    jsonrpc: "2.0",
+    method: "aria2.getGlobalOption",
+    params: ["token:" + rpc_secret ?? ""],
+  })
+  console.log(resp)
+  if (resp.status === 200) {
+    if (!isEmpty(resp.data.result.dir)) {
+      save_dir = resp.data.result.dir
     }
     save_dir = save_dir.endsWith("/") ? save_dir.slice(0, -1) : save_dir
-    return save_dir
-  } else {
-    return save_dir
   }
+  return save_dir
 }
 export const useDownload = () => {
   const { rawLinks } = useSelectedLink()
@@ -108,7 +97,15 @@ export const useDownload = () => {
         return
       }
       try {
-        let save_dir = getSaveDir(aria2_rpc_url, aria2_rpc_secret)
+        let save_dir = "/downloads/alist"
+        // TODO: select dir, but it seems there is no way to get the full path
+        // if (window.showDirectoryPicker) {
+        //   const dirHandle = await window.showDirectoryPicker()
+        //   save_dir = dirHandle.name
+        //   console.log(dirHandle)
+        //   return
+        // }
+        save_dir = await getSaveDir(aria2_rpc_url, aria2_rpc_secret)
         let isStartAria2Mission = false
         notify.info(`${t("home.package_download.fetching_struct")}`)
         for (const obj of selectedObjs) {
