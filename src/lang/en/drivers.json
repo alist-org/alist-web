@@ -37,6 +37,8 @@
     }
   },
   "189Cloud": {
+    "cookie": "Cookie",
+    "cookie-tips": "Fill in the cookie if need captcha",
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
@@ -56,12 +58,17 @@
       "desc": "Desc"
     },
     "password": "Password",
-    "rapid_upload": "Rapid upload",
     "root_folder_id": "Root folder id",
     "type": "Type",
     "types": {
       "family": "Family",
       "personal": "Personal"
+    },
+    "upload_method": "Upload method",
+    "upload_methods": {
+      "old": "Old",
+      "rapid": "Rapid",
+      "stream": "Stream"
     },
     "username": "Username",
     "validate_code": "Validate code"
@@ -189,6 +196,7 @@
   },
   "Cloudreve": {
     "address": "Address",
+    "cookie": "Cookie",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"
@@ -221,6 +229,11 @@
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
   },
+  "IPFS API": {
+    "endpoint": "Endpoint",
+    "gateway": "Gateway",
+    "root_folder_path": "Root folder path"
+  },
   "Lanzou": {
     "baseUrl": "BaseUrl",
     "baseUrl-tips": "basic URL for file operation",
@@ -243,6 +256,7 @@
     "root_folder_path": "Root folder path",
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
+    "thumb_cache_folder": "Thumb cache folder",
     "thumbnail": "Thumbnail",
     "thumbnail-tips": "enable thumbnail"
   },
@@ -382,7 +396,8 @@
       "china": "China",
       "international": "International"
     },
-    "root_folder_id": "Root folder id"
+    "root_folder_id": "Root folder id",
+    "use_s3_upload_method": "Use s3 upload method"
   },
   "Terabox": {
     "cookie": "Cookie",
@@ -449,6 +464,22 @@
     "apikey": "Apikey",
     "root_folder_id": "Root folder id"
   },
+  "UC": {
+    "cookie": "Cookie",
+    "order_by": "Order by",
+    "order_bys": {
+      "file_name": "File name",
+      "file_type": "File type",
+      "none": "None",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "bucket": "Bucket",
     "endpoint": "Endpoint",
@@ -504,7 +535,9 @@
     "115 Cloud": {},
     "123Pan": {},
     "139Yun": {},
-    "189Cloud": {},
+    "189Cloud": {
+      "alert": "You can try to use 189PC driver if this driver does not work."
+    },
     "189CloudPC": {},
     "AList V2": {},
     "AList V3": {},
@@ -521,6 +554,7 @@
     "FTP": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "IPFS API": {},
     "Lanzou": {},
     "Local": {},
     "MediaTrack": {},
@@ -539,6 +573,7 @@
     "Thunder": {},
     "ThunderExpert": {},
     "Trainbit": {},
+    "UC": {},
     "USS": {},
     "UrlTree": {},
     "Virtual": {},
@@ -564,6 +599,7 @@
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Local": "Local",
     "MediaTrack": "MediaTrack",
@@ -582,6 +618,7 @@
     "Thunder": "Thunder",
     "ThunderExpert": "ThunderExpert",
     "Trainbit": "Trainbit",
+    "UC": "UC",
     "USS": "USS",
     "UrlTree": "UrlTree",
     "Virtual": "Virtual",

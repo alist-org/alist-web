@@ -174,6 +174,12 @@ const Preview = () => {
           replace(videos[index + 1].name)
         }
       })
+      // Fixed subtitle loss when switching videos with different resolutions
+      if (subtitle) {
+        player.on("video:play", (_url) => {
+          player.subtitle.url = proxyLink(subtitle, true)
+        })
+      }
     })
   })
   onCleanup(() => {
