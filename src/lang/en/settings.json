@@ -73,7 +73,8 @@
     "Dingtalk": "Dingtalk",
     "Github": "Github",
     "Google": "Google",
-    "Microsoft": "Microsoft"
+    "Microsoft": "Microsoft",
+    "OIDC": "OIDC"
   },
   "sso_organization_name": "Sso organization name",
   "text_types": "Text types",
