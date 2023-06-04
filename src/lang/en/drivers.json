@@ -157,6 +157,7 @@
   "BaiduNetdisk": {
     "client_id": "Client id",
     "client_secret": "Client secret",
+    "custom_crack_ua": "Custom crack ua",
     "download_api": "Download api",
     "download_apis": {
       "crack": "Crack",
