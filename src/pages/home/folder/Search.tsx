@@ -16,7 +16,7 @@ import {
 } from "@hope-ui/solid"
 import { BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
-import { FullLoading, LinkWithBase } from "~/components"
+import { FullLoading, LinkWithBase, Paginator } from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
@@ -107,11 +107,18 @@ const Search = () => {
   const [keywords, setKeywords] = createSignal("")
   const { pathname } = useRouter()
   const [loading, searchReq] = useFetch(fsSearch)
-  const [data, setData] = createSignal<SearchNode[]>([])
-  const search = async () => {
+  const [data, setData] = createSignal({
+    content: [] as SearchNode[],
+    total: 0,
+  })
+
+  const search = async (page = 1) => {
     if (loading()) return
-    setData([])
-    const resp = await searchReq(pathname(), keywords(), password())
+    setData({
+      content: [],
+      total: 0,
+    })
+    const resp = await searchReq(pathname(), keywords(), password(), page)
     handleResp(resp, (data) => {
       const content = data.content
       if (!content) {
@@ -127,7 +134,7 @@ const Search = () => {
         }
         node.path = pathJoin(node.parent, node.name)
       })
-      setData(content)
+      setData(data)
     })
   }
   return (
@@ -166,7 +173,7 @@ const Search = () => {
               <IconButton
                 aria-label="search"
                 icon={<BsSearch />}
-                onClick={[search, undefined]}
+                onClick={() => search()}
                 loading={loading()}
                 disabled={keywords().length === 0}
               />
@@ -175,15 +182,26 @@ const Search = () => {
               <Match when={loading()}>
                 <FullLoading />
               </Match>
-              <Match when={data().length === 0}>
+              <Match when={data().content.length === 0}>
                 <Text size="2xl" my="$8">
                   {t("home.search.no_result")}
                 </Text>
               </Match>
             </Switch>
             <VStack w="$full">
-              <For each={data()}>{(item) => <SearchResult {...item} />}</For>
+              <For each={data().content}>
+                {(item) => <SearchResult {...item} />}
+              </For>
             </VStack>
+            <Show when={data().total > 0}>
+              <Paginator
+                total={data().total}
+                defaultPageSize={100}
+                onChange={(page) => {
+                  search(page)
+                }}
+              />
+            </Show>
           </VStack>
         </ModalBody>
       </ModalContent>
