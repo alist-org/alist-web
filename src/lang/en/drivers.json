@@ -27,8 +27,8 @@
   },
   "139Yun": {
     "account": "Account",
+    "authorization": "Authorization",
     "cloud_id": "Cloud id",
-    "cookie": "Cookie",
     "root_folder_id": "Root folder id",
     "type": "Type",
     "types": {
