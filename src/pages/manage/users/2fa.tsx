@@ -1,8 +1,8 @@
-import { Button, Heading, Image, Input, VStack } from "@hope-ui/solid"
+import { Button, Heading, Image, Input, Text, VStack } from "@hope-ui/solid"
 import { createSignal, Show } from "solid-js"
 import { MaybeLoading } from "~/components"
 import { useRouter, useFetch, useT } from "~/hooks"
-import { setMe, me } from "~/store"
+import { setMe, me, getMainColor } from "~/store"
 import { PEmptyResp, PResp } from "~/types"
 import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils"
 
@@ -49,6 +49,10 @@ const TwoFA = () => {
         <VStack spacing="$2" alignItems="start">
           <Heading>{t("users.scan_qr")}</Heading>
           <Image boxSize="$xs" rounded="$lg" src={otpData()?.qr} />
+          <Heading>
+            {t("users.or_manual")}:{" "}
+            <Text color={getMainColor()}>{otpData()?.secret}</Text>
+          </Heading>
           <Input
             maxW="$xs"
             placeholder={t("users.input_code")}
