@@ -514,6 +514,22 @@
       "sharepoint": "Sharepoint"
     }
   },
+  "WoPan": {
+    "access_token": "Access token",
+    "family_id": "Family id",
+    "family_id-tips": "Keep it empty if you want to use your personal drive",
+    "refresh_token": "Refresh token",
+    "root_folder_id": "Root folder id",
+    "sort_rule": "Sort rule",
+    "sort_rules": {
+      "name_asc": "Name asc",
+      "name_desc": "Name desc",
+      "size_asc": "Size asc",
+      "size_desc": "Size desc",
+      "time_asc": "Time asc",
+      "time_desc": "Time desc"
+    }
+  },
   "YandexDisk": {
     "client_id": "Client id",
     "client_secret": "Client secret",
@@ -580,6 +596,7 @@
     "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
+    "WoPan": {},
     "YandexDisk": {}
   },
   "drivers": {
@@ -625,6 +642,7 @@
     "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
+    "WoPan": "WoPan",
     "YandexDisk": "YandexDisk"
   }
 }
