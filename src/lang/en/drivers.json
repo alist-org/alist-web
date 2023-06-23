@@ -201,6 +201,15 @@
     "root_folder_path": "Root folder path",
     "username": "Username"
   },
+  "Dropbox": {
+    "client_id": "Client id",
+    "client_id-tips": "Keep it empty if you don't have one",
+    "client_secret": "Client secret",
+    "client_secret-tips": "Keep it empty if you don't have one",
+    "oauth_token_url": "Oauth token url",
+    "refresh_token": "Refresh token",
+    "root_folder_path": "Root folder path"
+  },
   "FTP": {
     "address": "Address",
     "password": "Password",
@@ -569,6 +578,7 @@
     "BaiduPhoto": {},
     "BaiduShare": {},
     "Cloudreve": {},
+    "Dropbox": {},
     "FTP": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
@@ -615,6 +625,7 @@
     "BaiduPhoto": "BaiduPhoto",
     "BaiduShare": "BaiduShare",
     "Cloudreve": "Cloudreve",
+    "Dropbox": "Dropbox",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
