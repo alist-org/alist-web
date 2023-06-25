@@ -40,7 +40,7 @@ export const BatchRename = () => {
   const [srcName, setSrcName] = createSignal("")
   const [newName, setNewName] = createSignal("")
   const [newNameType, setNewNameType] = createSignal("string")
-  let [matchNames, setMatchNames] = createSignal<RenameObj[]>([])
+  const [matchNames, setMatchNames] = createSignal<RenameObj[]>([])
   const t = useT()
 
   const itemProps = () => {
