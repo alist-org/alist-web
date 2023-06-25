@@ -100,10 +100,10 @@ export const Right = () => {
                 }}
               />
               <RightIcon
-                as={operations.regex_rename.icon}
-                tips="regex_rename"
+                as={operations.batch_rename.icon}
+                tips="batch_rename"
                 onClick={() => {
-                  bus.emit("tool", "regexRename")
+                  bus.emit("tool", "batchRename")
                 }}
               />
               <RightIcon

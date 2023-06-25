@@ -62,11 +62,14 @@
     "recursive_move_directory-tips": "Are you sure you want to move all files in the current folder and its subfolders to the specified folder?",
     "remove_empty_directory": "Remove Empty Folder",
     "remove_empty_directory-tips": "Are you sure to delete all its empty subfolders?",
+    "batch_rename": "Batch Rename",
     "regex_rename": "Regex Rename",
+    "sequential_renaming": "Sequential Rename",
     "regex_rename_preview": "Changed Files",
     "regex_rename_preview_old_name": "Old Name",
     "regex_rename_preview_new_name": "New Name",
-    "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line."
+    "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line.",
+    "sequential_renaming_desc": "The new file name will have a numerical starting value appended to it, and it will be displayed sequentially by adding 1 to the starting value. Enter the new file name on the first line and the starting value on the second line."
   },
   "upload": {
     "add_as_task": "Add as task",
