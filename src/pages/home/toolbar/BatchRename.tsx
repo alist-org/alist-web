@@ -179,9 +179,6 @@ export const BatchRename = () => {
           <ModalFooter display="flex" gap="$2">
             <Button
               onClick={() => {
-                setMatchNames([])
-                setSrcName("")
-                setNewName("")
                 setType("1")
                 setNewNameType("string")
                 onClose()
@@ -229,6 +226,8 @@ export const BatchRename = () => {
             <Button
               onClick={() => {
                 setMatchNames([])
+                setType("1")
+                setNewNameType("string")
                 closePreviewModal()
                 onClose()
               }}
