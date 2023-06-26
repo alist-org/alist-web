@@ -6,6 +6,7 @@ import {
   Obj,
   PResp,
   FsSearchResp,
+  RenameObj,
 } from "~/types"
 import { r } from "."
 
@@ -57,12 +58,11 @@ export const fsRename = (path: string, name: string): PEmptyResp => {
   return r.post("/fs/rename", { path, name })
 }
 
-export const fsRegexRename = (
+export const fsBatchRename = (
   src_dir: string,
-  src_name_regex: string,
-  new_name_regex: string
+  rename_objects: RenameObj[]
 ): PEmptyResp => {
-  return r.post("/fs/regex_rename", { src_dir, src_name_regex, new_name_regex })
+  return r.post("/fs/batch_rename", { src_dir, rename_objects })
 }
 
 export const fsMove = (
