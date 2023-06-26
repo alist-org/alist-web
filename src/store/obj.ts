@@ -3,7 +3,7 @@ import { cookieStorage, createStorageSignal } from "@solid-primitives/storage"
 import { createSignal } from "solid-js"
 import { createStore, produce } from "solid-js/store"
 import { Obj, StoreObj } from "~/types"
-import { log } from "~/utils"
+import { bus, log } from "~/utils"
 import { keyPressed } from "./key-event"
 
 export enum State {
@@ -174,7 +174,29 @@ export const isIndeterminate = () => {
 }
 
 export type LayoutType = "list" | "grid" | "image"
-const [layout, setLayout] = createStorageSignal<LayoutType>("layout", "list")
+const [pathname, setPathname] = createSignal<string>(location.pathname)
+const layoutRecord: Record<string, LayoutType> = (() => {
+  try {
+    return JSON.parse(localStorage.getItem("layoutRecord") || "{}")
+  } catch (e) {
+    return {}
+  }
+})()
+
+bus.on("pathname", (p) => setPathname(p))
+const [_layout, _setLayout] = createSignal<LayoutType>(
+  layoutRecord[pathname()] || "list"
+)
+export const layout = () => {
+  const layout = layoutRecord[pathname()]
+  _setLayout(layout || "list")
+  return _layout()
+}
+export const setLayout = (layout: LayoutType) => {
+  layoutRecord[pathname()] = layout
+  localStorage.setItem("layoutRecord", JSON.stringify(layoutRecord))
+  _setLayout(layout)
+}
 
 const [_checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",
@@ -186,7 +208,7 @@ export const toggleCheckbox = () => {
   setCheckboxOpen(checkboxOpen() ? "false" : "true")
 }
 
-export { objStore, layout, setLayout }
+export { objStore }
 // browser password
 const [_password, _setPassword] = createSignal<string>(
   cookieStorage.getItem("browser-password") || ""

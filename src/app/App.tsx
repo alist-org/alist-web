@@ -2,6 +2,7 @@ import { Progress, ProgressIndicator } from "@hope-ui/solid"
 import { Route, Routes, useIsRouting } from "@solidjs/router"
 import {
   Component,
+  createEffect,
   createSignal,
   lazy,
   Match,
@@ -30,13 +31,17 @@ const App: Component = () => {
   globalStyles()
   const [, { add }] = useI18n()
   const isRouting = useIsRouting()
-  const { to } = useRouter()
+  const { to, pathname } = useRouter()
   const onTo = (path: string) => {
     to(path)
   }
   bus.on("to", onTo)
   onCleanup(() => {
     bus.off("to", onTo)
+  })
+
+  createEffect(() => {
+    bus.emit("pathname", pathname())
   })
 
   const [err, setErr] = createSignal<string>()
