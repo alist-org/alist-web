@@ -21,7 +21,7 @@ export const getLinkByDirAndObj = (
   let host = api
   let prefix = type === "direct" ? "/d" : "/p"
   if (type === "preview") {
-    host = location.origin
+    if (!api.startsWith(location.origin)) host = location.origin
     prefix = ""
   }
   let ans = `${host}${prefix}${path}`
