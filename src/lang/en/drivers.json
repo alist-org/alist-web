@@ -285,6 +285,25 @@
     "email": "Email",
     "password": "Password"
   },
+  "MoPan": {
+    "cloud_id": "Cloud id",
+    "device_info": "Device info",
+    "order_by": "Order by",
+    "order_bys": {
+      "filename": "Filename",
+      "filesize": "Filesize",
+      "lastOpTime": "LastOpTime"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "password": "Password",
+    "phone": "Phone",
+    "root_folder_id": "Root folder id",
+    "root_folder_id-tips": "be careful when using the -11 value, some operations may cause system errors"
+  },
   "Onedrive": {
     "chunk_size": "Chunk size",
     "client_id": "Client id",
@@ -587,6 +606,9 @@
     "Local": {},
     "MediaTrack": {},
     "Mega_nz": {},
+    "MoPan": {
+      "alert": "This network disk may store your password in clear text. Please set your password carefully"
+    },
     "Onedrive": {},
     "OnedriveAPP": {},
     "PikPak": {},
@@ -634,6 +656,7 @@
     "Local": "Local",
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
+    "MoPan": "MoPan",
     "Onedrive": "Onedrive",
     "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
