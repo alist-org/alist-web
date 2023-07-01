@@ -1,4 +1,4 @@
-import { Box, VStack } from "@hope-ui/solid"
+import { Box } from "@hope-ui/solid"
 import { onCleanup, onMount } from "solid-js"
 import { useRouter, useLink, useFetch } from "~/hooks"
 import { getSettingBool, objStore, password } from "~/store"
@@ -39,7 +39,7 @@ export interface Meta {
 }
 
 const Preview = () => {
-  const { replace } = useRouter()
+  const { replace, pathname } = useRouter()
   const { proxyLink } = useLink()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
@@ -47,7 +47,7 @@ const Preview = () => {
   }
   let player: Artplayer
   let option: any = {
-    id: "player",
+    id: pathname(),
     container: "#video-player",
     title: objStore.obj.name,
     volume: 0.5,
@@ -139,7 +139,6 @@ const Preview = () => {
       }),
     ]
   }
-  const { pathname } = useRouter()
   const [loading, post] = useFetch(
     (): PResp<Data> =>
       r.post("/fs/other", {

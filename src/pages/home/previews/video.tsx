@@ -13,7 +13,7 @@ import { currentLang } from "~/app/i18n"
 import { VideoBox } from "./video_box"
 
 const Preview = () => {
-  const { replace } = useRouter()
+  const { replace, pathname } = useRouter()
   const { proxyLink } = useLink()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
@@ -21,7 +21,7 @@ const Preview = () => {
   }
   let player: Artplayer
   let option: Option = {
-    id: "player",
+    id: pathname(),
     container: "#video-player",
     url: objStore.raw_url,
     title: objStore.obj.name,
