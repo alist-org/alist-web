@@ -17,6 +17,7 @@ export interface Obj {
   thumb: string
   type: ObjType
   path: string
+  link2: string
 }
 
 export type StoreObj = Obj & {

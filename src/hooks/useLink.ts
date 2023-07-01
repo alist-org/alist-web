@@ -57,6 +57,43 @@ export const useLink = () => {
 }
 
 export const useSelectedLink = () => {
+  const ridUrlParam = (url:any,aParam:any)=>{
+    //var url= nurl.replace(/\&amp;/g,"&");
+      aParam.forEach((item:any) => {
+        const fromindex = url.indexOf(`${item}=`) //必须加=号，避免参数值中包含item字符串
+        if (fromindex !== -1) {
+          // 通过url特殊符号，计算出=号后面的的字符数，用于生成replace正则
+          const startIndex = url.indexOf('=', fromindex)
+          const endIndex = url.indexOf('&', fromindex)
+          const hashIndex = url.indexOf('#', fromindex)
+          
+          let reg;
+          if (endIndex !== -1) { // 后面还有search参数的情况
+            const num = endIndex - startIndex
+            reg = new RegExp(`${item}=.{${num}}`)
+            url = url.replace(reg, '')
+          } else if (hashIndex !== -1) { // 有hash参数的情况
+            const num = hashIndex - startIndex - 1
+            reg = new RegExp(`&?${item}=.{${num}}`)
+            url = url.replace(reg, '')
+          } else { // search参数在最后或只有一个参数的情况
+            reg = new RegExp(`&?${item}=.+`)
+            url = url.replace(reg, '')
+          }
+        }
+      });
+      const noSearchParam = url.indexOf('=') 
+      if( noSearchParam === -1 ){
+        url = url.replace(/\?/, '') // 如果已经没有参数，删除？号
+      }
+      return url    
+  }
+  const timeLink2 = (obj: Obj) => {
+    if(obj.link2.indexOf('exp=')){
+      return  ridUrlParam(obj.link2,['time','exp'])
+    }
+    return obj.link2
+  }
   const { previewPage, rawLink: rawUrl } = useLink()
   const rawLinks = (encodeAll?: boolean) => {
     return selectedObjs()
@@ -73,12 +110,17 @@ export const useSelectedLink = () => {
     rawLinksText: (encodeAll?: boolean) => {
       return rawLinks(encodeAll).join("\n")
     },
+    link2Text: () => {
+      return selectedObjs()
+      .map((obj) => timeLink2(obj))
+      .join("\n")
+    },
   }
 }
 
 export const useCopyLink = () => {
   const { copy } = useUtil()
-  const { previewPagesText, rawLinksText } = useSelectedLink()
+  const { previewPagesText, rawLinksText ,link2Text} = useSelectedLink()
   const { currentObjLink } = useLink()
   return {
     copySelectedPreviewPage: () => {
@@ -86,6 +128,9 @@ export const useCopyLink = () => {
     },
     copySelectedRawLink: (encodeAll?: boolean) => {
       copy(rawLinksText(encodeAll))
+    },
+    copySelectedLink2: () => {
+      copy(link2Text())
     },
     copyCurrentRawLink: (encodeAll?: boolean) => {
       copy(currentObjLink(encodeAll))
