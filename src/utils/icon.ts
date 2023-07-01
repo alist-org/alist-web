@@ -22,6 +22,10 @@ import { IoFolder } from "solid-icons/io"
 import { ImAndroid } from "solid-icons/im"
 import { Obj, ObjType } from "~/types"
 import { ext } from "./path"
+import {
+  VscodeIconsFileTypeAi2,
+  VscodeIconsFileTypePhotoshop2,
+} from "~/components"
 
 const iconMap = {
   "dmg,ipa,plist,tipa": BsApple,
@@ -37,6 +41,8 @@ const iconMap = {
   "xls,xlsx": BsFileEarmarkExcelFill,
   "ppt,pptx": BsFileEarmarkPptFill,
   pdf: BsFileEarmarkPdfFill,
+  psd: VscodeIconsFileTypePhotoshop2,
+  ai: VscodeIconsFileTypeAi2,
 }
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {
