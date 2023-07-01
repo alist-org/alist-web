@@ -1,15 +1,15 @@
 {
-  "search_index": "Search index",
-  "current": "Current indexes",
-  "build": "Build indexes",
-  "rebuild": "Rebuild indexes",
-  "paths_to_update": "Paths to update",
-  "max_depth": "Max depth",
-  "update": "Update indexes",
-  "obj_count": "Object count",
-  "last_done_time": "Last done time",
-  "unknown": "Unknown",
-  "stop": "Stop",
-  "clear": "Clear",
-  "error": "Error"
+  "search_index": "搜索索引",
+  "current": "当前索引",
+  "build": "构建索引",
+  "rebuild": "重建索引",
+  "paths_to_update": "要更新索引的路径",
+  "max_depth": "最大深度",
+  "update": "更新索引",
+  "obj_count": "对象计数",
+  "last_done_time": "上次完成时间",
+  "unknown": "未知",
+  "stop": "停止",
+  "clear": "清除",
+  "error": "错误"
 }

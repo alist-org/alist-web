@@ -1,14 +1,14 @@
 {
-  "backup": "Backup",
-  "restore": "Restore",
-  "start_backup": "Start backup",
-  "finish_backup": "Finish backup",
-  "success_backup_item": "[ {{item}} ] Backup was successful",
-  "failed_backup_item": "[ {{item}} ] Backup failed",
-  "no_file": "No file selected",
-  "start_restore": "Start restore",
-  "finish_restore": "Finish restore",
-  "success_restore_item": "[ {{item}} ] Restore was successful",
-  "failed_restore_item": "[ {{item}} ] Restore failed",
-  "override": "Override"
+  "backup": "备份",
+  "restore": "恢复",
+  "start_backup": "开始备份",
+  "finish_backup": "备份完成",
+  "success_backup_item": "[ {{item}} ] 备份成功",
+  "failed_backup_item": "[ {{item}} ] 备份失败",
+  "no_file": "未选择文件",
+  "start_restore": "开始恢复",
+  "finish_restore": "恢复完成",
+  "success_restore_item": "[ {{item}} ] 恢复成功",
+  "failed_restore_item": "[ {{item}} ] 恢复失败",
+  "override": "覆盖"
 }
