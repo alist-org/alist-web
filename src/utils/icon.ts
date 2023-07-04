@@ -12,6 +12,7 @@ import {
   BsWindows,
   BsFileEarmarkZipFill,
   BsMarkdownFill,
+  BsLink45deg,
 } from "solid-icons/bs"
 import {
   FaSolidDatabase,
@@ -43,6 +44,7 @@ const iconMap = {
   pdf: BsFileEarmarkPdfFill,
   psd: VscodeIconsFileTypePhotoshop2,
   ai: VscodeIconsFileTypeAi2,
+  url: BsLink45deg,
 }
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {

@@ -32,8 +32,14 @@ const previews: Preview[] = [
     component: lazy(() => import("./markdown_with_word_wrap")),
   },
   {
+    name: "Url Open",
+    exts: ["url"],
+    component: lazy(() => import("./url")),
+  },
+  {
     name: "Text Editor",
     type: ObjType.TEXT,
+    exts: ["url"],
     component: lazy(() => import("./text-editor")),
   },
   {

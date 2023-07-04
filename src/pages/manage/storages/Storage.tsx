@@ -77,7 +77,7 @@ export const StorageC = (props: StorageProps) => {
         </Button>
         <Button
           loading={enableOrDisableLoading()}
-          colorScheme="warning"
+          colorScheme={props.storage.disabled ? "success" : "warning"}
           onClick={async () => {
             const resp = await enableOrDisable()
             handleRespWithNotifySuccess(resp, () => {
