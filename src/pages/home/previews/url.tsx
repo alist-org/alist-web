@@ -2,7 +2,6 @@ import { MaybeLoading } from "~/components"
 import { FileInfo } from "./info"
 import { useFetchText, useT } from "~/hooks"
 import { createEffect } from "solid-js"
-import { url } from "inspector"
 import { Button } from "@hope-ui/solid"
 
 export default function () {
