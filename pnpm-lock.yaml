@@ -23,7 +23,7 @@ specifiers:
   lightgallery: ^2.5.0
   lint-staged: ^13.0.4
   mitt: ^3.0.0
-  prettier: 2.8.7
+  prettier: 2.8.8
   rehype-katex: ^6.0.3
   rehype-raw: ^6.1.1
   remark-gfm: ^3.0.1
@@ -79,7 +79,7 @@ devDependencies:
   '@vitejs/plugin-legacy': 2.0.1_terser@5.14.2+vite@3.0.8
   husky: 8.0.2
   lint-staged: 13.0.4
-  prettier: 2.8.7
+  prettier: 2.8.8
   terser: 5.14.2
   typescript: 4.7.4
   vite: 3.0.8_terser@5.14.2
@@ -2380,8 +2380,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier/2.8.7:
-    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
+  /prettier/2.8.8:
+    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
