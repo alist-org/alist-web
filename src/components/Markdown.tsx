@@ -13,6 +13,7 @@ import { clsx } from "clsx"
 export const Markdown = (props: { children?: string; class?: string }) => {
   onMount(() => {
     hljs.highlightAll()
+    window.onMDRender && window.onMDRender()
   })
   return (
     <SolidMarkdown
