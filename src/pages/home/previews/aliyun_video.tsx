@@ -1,5 +1,5 @@
 import { Box } from "@hope-ui/solid"
-import { onCleanup, onMount } from "solid-js"
+import { createSignal, onCleanup, onMount } from "solid-js"
 import { useRouter, useLink, useFetch } from "~/hooks"
 import { getSettingBool, objStore, password } from "~/store"
 import { ObjType, PResp } from "~/types"
@@ -168,6 +168,7 @@ const Preview = () => {
       })
       player = new Artplayer(option)
       player.on("video:ended", () => {
+        if (!autoNext()) return
         const index = videos.findIndex((f) => f.name === objStore.obj.name)
         if (index < videos.length - 1) {
           replace(videos[index + 1].name)
@@ -184,8 +185,9 @@ const Preview = () => {
   onCleanup(() => {
     player?.destroy()
   })
+  const [autoNext, setAutoNext] = createSignal()
   return (
-    <VideoBox>
+    <VideoBox onAutoNextChange={setAutoNext}>
       <Box w="$full" h="60vh" id="video-player" />
     </VideoBox>
   )

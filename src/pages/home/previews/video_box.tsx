@@ -1,6 +1,14 @@
-import { Flex, VStack, Image, Anchor, Tooltip } from "@hope-ui/solid"
+import {
+  Flex,
+  VStack,
+  Image,
+  Anchor,
+  Tooltip,
+  HStack,
+  Switch,
+} from "@hope-ui/solid"
 import { For, JSXElement } from "solid-js"
-import { useRouter, useLink } from "~/hooks"
+import { useRouter, useLink, useT } from "~/hooks"
 import { objStore } from "~/store"
 import { ObjType } from "~/types"
 import { convertURL } from "~/utils"
@@ -33,24 +41,49 @@ const players: { icon: string; name: string; scheme: string }[] = [
   },
 ]
 
-export const VideoBox = (props: { children: JSXElement }) => {
+export const VideoBox = (props: {
+  children: JSXElement
+  onAutoNextChange: (v: boolean) => void
+}) => {
   const { replace } = useRouter()
   const { currentObjLink } = useLink()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
     videos = [objStore.obj]
   }
-
+  const t = useT()
+  let autoNext = localStorage.getItem("video_auto_next")
+  if (!autoNext) {
+    autoNext = "true"
+  }
+  props.onAutoNextChange(autoNext === "true")
   return (
     <VStack w="$full" spacing="$2">
       {props.children}
-      <SelectWrapper
-        onChange={(name: string) => {
-          replace(name)
-        }}
-        value={objStore.obj.name}
-        options={videos.map((obj) => ({ value: obj.name }))}
-      />
+      <HStack spacing="$2" w="$full">
+        <SelectWrapper
+          onChange={(name: string) => {
+            replace(name)
+          }}
+          value={objStore.obj.name}
+          options={videos.map((obj) => ({ value: obj.name }))}
+        />
+        <Switch
+          css={{
+            whiteSpace: "nowrap",
+          }}
+          defaultChecked={autoNext === "true"}
+          onChange={(e) => {
+            props.onAutoNextChange(e.currentTarget.checked)
+            localStorage.setItem(
+              "video_auto_next",
+              e.currentTarget.checked.toString()
+            )
+          }}
+        >
+          {t("home.preview.auto_next")}
+        </Switch>
+      </HStack>
       <Flex wrap="wrap" gap="$1" justifyContent="center">
         <For each={players}>
           {(item) => {

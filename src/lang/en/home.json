@@ -12,7 +12,8 @@
     "installing": "Installing",
     "tr-install": "TrollStore",
     "tr-installing": "TrollStore Installing",
-    "open_in_new_window": "Open in new window"
+    "open_in_new_window": "Open in new window",
+    "auto_next": "Auto next"
   },
   "layouts": {
     "list": "List View",
