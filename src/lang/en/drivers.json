@@ -337,6 +337,7 @@
     "tenant_id": "Tenant id"
   },
   "PikPak": {
+    "disable_media_link": "Disable media link",
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
