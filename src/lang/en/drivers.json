@@ -126,6 +126,8 @@
       "ASC": "ASC",
       "DESC": "DESC"
     },
+    "rapid_upload": "Rapid upload",
+    "rapid_upload-tips": "If you enable this option, the file will be uploaded to the server first, so the progress will be incorrect",
     "refresh_token": "Refresh token",
     "remove_way": "Remove way",
     "remove_ways": {
