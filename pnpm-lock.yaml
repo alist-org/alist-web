@@ -15,7 +15,7 @@ specifiers:
   artplayer: ^4.6.2
   artplayer-plugin-danmuku: ^4.4.11
   axios: ^1.0.0
-  clsx: ^1.2.1
+  clsx: ^2.0.0
   copy-to-clipboard: ^3.3.2
   flv.js: ^1.6.2
   hls.js: ^1.2.1
@@ -53,7 +53,7 @@ dependencies:
   artplayer: 4.6.2
   artplayer-plugin-danmuku: 4.4.11
   axios: 1.1.3
-  clsx: 1.2.1
+  clsx: 2.0.0
   copy-to-clipboard: 3.3.2
   flv.js: 1.6.2
   hls.js: 1.2.1
@@ -879,6 +879,11 @@ packages:
 
   /clsx/1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /clsx/2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
     dev: false
 
