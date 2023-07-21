@@ -17,6 +17,7 @@ export interface SideMenuItemProps {
   children?: SideMenuItemProps[]
   role?: number
   external?: true
+  refresh?: true
 }
 
 const SideMenuItem = (props: SideMenuItemProps) => {
@@ -48,9 +49,13 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       display="flex"
       as={Link}
       href={props.to}
-      onClick={() => {
+      onClick={(e: any) => {
         // to(props.to!);
         onClose()
+        if (props.refresh) {
+          e.stopPropagation?.()
+          window.open(props.to, "_self")
+        }
       }}
       w="$full"
       alignItems="center"
