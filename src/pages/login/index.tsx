@@ -106,7 +106,7 @@ const Login = () => {
               name="otp"
               placeholder={t("login.otp-tips")}
               value={opt()}
-              onChange={(e) => setOpt(e.currentTarget.value)}
+              onInput={(e) => setOpt(e.currentTarget.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   Login()
