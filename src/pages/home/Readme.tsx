@@ -20,9 +20,6 @@ export const Readme = () => {
         ) {
           return ""
         }
-        if (objStore.readme) {
-          return objStore.readme
-        }
         if ([State.FetchingMore, State.Folder].includes(objStore.state)) {
           const obj = objStore.objs.find(
             (item) => item.name.toLowerCase() === "readme.md"
@@ -30,6 +27,9 @@ export const Readme = () => {
           if (obj) {
             return proxyLink(obj, true)
           }
+        }
+        if (objStore.readme) {
+          return objStore.readme
         }
         return ""
       }
