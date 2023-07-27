@@ -5,6 +5,7 @@ import { createStore, produce } from "solid-js/store"
 import { Obj, StoreObj } from "~/types"
 import { bus, log } from "~/utils"
 import { keyPressed } from "./key-event"
+import { local } from "./local_settings"
 
 export enum State {
   Initial, // Initial state
@@ -185,11 +186,11 @@ const layoutRecord: Record<string, LayoutType> = (() => {
 
 bus.on("pathname", (p) => setPathname(p))
 const [_layout, _setLayout] = createSignal<LayoutType>(
-  layoutRecord[pathname()] || "list"
+  layoutRecord[pathname()] || local["global_default_layout"]
 )
 export const layout = () => {
   const layout = layoutRecord[pathname()]
-  _setLayout(layout || "list")
+  _setLayout(layout || local["global_default_layout"])
   return _layout()
 }
 export const setLayout = (layout: LayoutType) => {

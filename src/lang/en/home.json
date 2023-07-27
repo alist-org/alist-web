@@ -97,6 +97,12 @@
       "top": "Top",
       "bottom": "Bottom",
       "none": "None"
+    },
+    "global_default_layout": "Global default layout",
+    "global_default_layout_options": {
+      "list": "List View",
+      "grid": "Grid View",
+      "image": "Image View"
     }
   },
   "package_download": {

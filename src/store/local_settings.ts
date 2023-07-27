@@ -18,6 +18,12 @@ export const initialLocalSettings = [
     default: "",
   },
   {
+    key: "global_default_layout",
+    default: "list",
+    type: "select",
+    options: ["list", "grid", "image"],
+  },
+  {
     key: "show_folder_in_image_view",
     default: "top",
     type: "select",
