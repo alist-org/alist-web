@@ -30,8 +30,8 @@ dependencies:
     specifier: ^4.6.2
     version: 4.6.2
   artplayer-plugin-danmuku:
-    specifier: ^4.4.11
-    version: 4.4.11
+    specifier: ^5.0.0
+    version: 5.0.0
   axios:
     specifier: ^1.0.0
     version: 1.1.3
@@ -768,8 +768,8 @@ packages:
       smoothscroll: 0.4.0
     dev: false
 
-  /artplayer-plugin-danmuku@4.4.11:
-    resolution: {integrity: sha512-/4F8IyB29Bdr1LV1RM3FM7CdiAMsVNOOJ/HY4jaJCXnMAKThQiGa++0PhCJ07nhyGvDcZGRL2/UWJRz9zZJFNw==}
+  /artplayer-plugin-danmuku@5.0.0:
+    resolution: {integrity: sha512-swnnTIHnwyAft4Pbh7uQtzjNNhqoiMffuEvZ3eUkMfFGWOEjoZ23TQ7rqXXY08iGJTIWt4Rn7iqUS5DdKsHy9g==}
     dev: false
 
   /artplayer@4.6.2:
