@@ -181,6 +181,7 @@
     "album_id": "Album id",
     "client_id": "Client id",
     "client_secret": "Client secret",
+    "delete_origin": "Delete origin",
     "refresh_token": "Refresh token",
     "show_type": "Show type",
     "show_types": {
