@@ -246,10 +246,12 @@
     "root_folder_path": "Root folder path"
   },
   "Lanzou": {
+    "account": "Account",
     "baseUrl": "BaseUrl",
     "baseUrl-tips": "basic URL for file operation",
     "cookie": "Cookie",
     "cookie-tips": "about 15 days valid, ignore if shareUrl is used",
+    "password": "Password",
     "repair_file_info": "Repair file info",
     "repair_file_info-tips": "To use webdav, you need to enable it",
     "root_folder_id": "Root folder id",
@@ -258,6 +260,7 @@
     "share_password": "Share password",
     "type": "Type",
     "types": {
+      "account": "Account",
       "cookie": "Cookie",
       "url": "Url"
     }
