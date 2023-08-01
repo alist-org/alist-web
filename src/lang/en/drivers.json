@@ -113,6 +113,11 @@
     "client_secret-tips": "Keep it empty if you don't have one",
     "internal_upload": "Internal upload",
     "internal_upload-tips": "If you are using Aliyun ECS is located in Beijing, you can turn it on to boost the upload speed",
+    "livp_download_format": "Livp download format",
+    "livp_download_formats": {
+      "jpeg": "Jpeg",
+      "mov": "Mov"
+    },
     "oauth_token_url": "Oauth token url",
     "order_by": "Order by",
     "order_bys": {
