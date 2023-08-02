@@ -208,6 +208,27 @@
     "root_folder_path": "Root folder path",
     "username": "Username"
   },
+  "Crypt": {
+    "directory_name_encryption": "Directory name encryption",
+    "directory_name_encryptions": {
+      "false": "False",
+      "true": "True"
+    },
+    "encrypted_suffix": "Encrypted suffix",
+    "encrypted_suffix-tips": "encrypted files will have this suffix",
+    "filename_encryption": "Filename encryption",
+    "filename_encryptions": {
+      "obfuscate": "Obfuscate",
+      "off": "Off",
+      "standard": "Standard"
+    },
+    "password": "Password",
+    "password-tips": "the main password",
+    "remote_path": "Remote path",
+    "remote_path-tips": "This is where the encrypted data stores",
+    "salt": "Salt",
+    "salt-tips": "If you don't know what is salt, treat it as a second password'. Optional but recommended"
+  },
   "Dropbox": {
     "client_id": "Client id",
     "client_id-tips": "Keep it empty if you don't have one",
@@ -609,6 +630,7 @@
     "BaiduPhoto": {},
     "BaiduShare": {},
     "Cloudreve": {},
+    "Crypt": {},
     "Dropbox": {},
     "FTP": {},
     "GoogleDrive": {},
@@ -659,6 +681,7 @@
     "BaiduPhoto": "BaiduPhoto",
     "BaiduShare": "BaiduShare",
     "Cloudreve": "Cloudreve",
+    "Crypt": "Crypt",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
