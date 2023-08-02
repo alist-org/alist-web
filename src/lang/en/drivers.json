@@ -581,6 +581,21 @@
       "sharepoint": "Sharepoint"
     }
   },
+  "WeiYun": {
+    "cookies": "Cookies",
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "size": "Size",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id"
+  },
   "WoPan": {
     "access_token": "Access token",
     "family_id": "Family id",
@@ -668,6 +683,7 @@
     "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
+    "WeiYun": {},
     "WoPan": {},
     "YandexDisk": {}
   },
@@ -717,6 +733,7 @@
     "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
+    "WeiYun": "WeiYun",
     "WoPan": "WoPan",
     "YandexDisk": "YandexDisk"
   }
