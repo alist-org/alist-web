@@ -1,7 +1,6 @@
 import {
   Box,
   CloseButton,
-  Flex,
   // Alert,
   // AlertDescription,
   // AlertIcon,
@@ -11,8 +10,6 @@ import {
 } from "@hope-ui/solid"
 import { JSXElement } from "solid-js"
 import { alphaBgColor, firstUpperCase } from "."
-import { marginPropNames } from "@hope-ui/solid/dist/styled-system/props/margin"
-import { BsDisplay } from "solid-icons/bs"
 
 const notify = {
   render: (element: JSXElement) => {
