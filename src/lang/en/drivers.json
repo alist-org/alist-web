@@ -24,6 +24,22 @@
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
+  "123PanShare": {
+    "order_by": "Order by",
+    "order_bys": {
+      "file_name": "File name",
+      "size": "Size",
+      "update_at": "Update at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id",
+    "sharekey": "Sharekey",
+    "sharepassword": "Sharepassword"
+  },
   "139Yun": {
     "authorization": "Authorization",
     "cloud_id": "Cloud id",
@@ -634,6 +650,7 @@
   "config": {
     "115 Cloud": {},
     "123Pan": {},
+    "123PanShare": {},
     "139Yun": {},
     "189Cloud": {
       "alert": "You can try to use 189PC driver if this driver does not work."
@@ -690,6 +707,7 @@
   "drivers": {
     "115 Cloud": "115 Cloud",
     "123Pan": "123Pan",
+    "123PanShare": "123PanShare",
     "139Yun": "139Yun",
     "189Cloud": "189Cloud",
     "189CloudPC": "189CloudPC",
