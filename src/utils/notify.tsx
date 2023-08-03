@@ -1,6 +1,7 @@
 import {
   Box,
   CloseButton,
+  Flex,
   // Alert,
   // AlertDescription,
   // AlertIcon,
@@ -10,6 +11,8 @@ import {
 } from "@hope-ui/solid"
 import { JSXElement } from "solid-js"
 import { alphaBgColor, firstUpperCase } from "."
+import { marginPropNames } from "@hope-ui/solid/dist/styled-system/props/margin"
+import { BsDisplay } from "solid-icons/bs"
 
 const notify = {
   render: (element: JSXElement) => {
@@ -17,22 +20,26 @@ const notify = {
       render: (props) => {
         return (
           <Box
-            class="notify-render"
             css={{
+              display: "flex",
               backdropFilter: "blur(8px)",
+              backgroundColor: alphaBgColor(),
+              boxShadow: "$md",
+              borderRadius: "$lg",
+              padding: "$3",
             }}
-            bgColor={alphaBgColor()}
-            shadow="$md"
-            rounded="$lg"
-            p="$3"
           >
-            <CloseButton
-              pos="absolute"
-              right="$2"
-              top="$2"
-              onClick={props.close}
-            />
-            {element}
+            <div style={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+              <div style={{ margin: "auto" }}>{element}</div>
+            </div>
+            <div style={{ display: "inline-block", padding: "5px" }}>
+              <CloseButton
+                style={{ float: "right" }}
+                right="$2"
+                top="$2"
+                onClick={props.close}
+              />
+            </div>
           </Box>
         )
       },
