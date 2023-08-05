@@ -81,7 +81,7 @@ const previews: Preview[] = [
 ]
 
 export const getPreviews = (
-  file: Obj & { provider: string }
+  file: Obj & { provider: string },
 ): PreviewComponent[] => {
   const res: PreviewComponent[] = []
   // internal previews

@@ -20,7 +20,7 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   )
   const [hover, setHover] = createSignal(false)
   const showCheckbox = createMemo(
-    () => checkboxOpen() && (hover() || props.obj.selected)
+    () => checkboxOpen() && (hover() || props.obj.selected),
   )
   const { show } = useContextMenu({ id: 1 })
   const { rawLink } = useLink()

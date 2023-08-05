@@ -15,14 +15,14 @@ export const Readme = () => {
       () => {
         if (
           ![State.FetchingMore, State.Folder, State.File].includes(
-            objStore.state
+            objStore.state,
           )
         ) {
           return ""
         }
         if ([State.FetchingMore, State.Folder].includes(objStore.state)) {
           const obj = objStore.objs.find(
-            (item) => item.name.toLowerCase() === "readme.md"
+            (item) => item.name.toLowerCase() === "readme.md",
           )
           if (obj) {
             return proxyLink(obj, true)
@@ -32,8 +32,8 @@ export const Readme = () => {
           return objStore.readme
         }
         return ""
-      }
-    )
+      },
+    ),
   )
   const fetchContent = async (readme: string) => {
     let res = {

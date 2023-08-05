@@ -43,7 +43,7 @@ const AutoLoadMore = () => {
     },
     {
       threshold: 0.1,
-    }
+    },
   )
   let el: HTMLDivElement
   onMount(() => {

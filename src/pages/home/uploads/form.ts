@@ -6,7 +6,7 @@ export const FormUpload: Upload = async (
   uploadPath: string,
   file: File,
   setUpload: SetUpload,
-  asTask = false
+  asTask = false,
 ): Promise<Error | undefined> => {
   let oldTimestamp = new Date().valueOf()
   let oldLoaded = 0

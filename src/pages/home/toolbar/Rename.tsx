@@ -41,7 +41,7 @@ export const Rename = () => {
         onSubmit={async (name) => {
           const resp = await ok(
             pathJoin(pathname(), selectedObjs()[0].name),
-            name
+            name,
           )
           handleRespWithNotifySuccess(resp, () => {
             refresh()

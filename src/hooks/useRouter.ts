@@ -20,7 +20,7 @@ const useRouter = () => {
     to: (
       path: string,
       ignore_root?: boolean,
-      options?: Partial<NavigateOptions>
+      options?: Partial<NavigateOptions>,
     ) => {
       if (!ignore_root && path.startsWith("/")) {
         path = joinBase(path)

@@ -36,7 +36,7 @@ const Metas = () => {
   refresh()
 
   const [deleting, deleteMeta] = useListFetch((id: number) =>
-    r.post(`/admin/meta/delete?id=${id}`)
+    r.post(`/admin/meta/delete?id=${id}`),
   )
   return (
     <VStack spacing="$2" alignItems="start" w="$full">

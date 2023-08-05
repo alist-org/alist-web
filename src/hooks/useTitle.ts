@@ -43,7 +43,7 @@ export const useObjTitle = () => {
     () =>
       `${
         pathname() === "/" ? t("manage.sidemenu.home") : pathBase(pathname())
-      } | ${getSetting("site_title")}`
+      } | ${getSetting("site_title")}`,
   )
 }
 

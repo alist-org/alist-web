@@ -82,7 +82,7 @@ const Upload = () => {
   })
   const allDone = () => {
     return uploadFiles.uploads.every(({ status }) =>
-      ["success", "error"].includes(status)
+      ["success", "error"].includes(status),
     )
   }
   let fileInput: HTMLInputElement
@@ -114,7 +114,7 @@ const Upload = () => {
         (key, value) => {
           setUpload(path, key, value)
         },
-        asTask()
+        asTask(),
       )
       if (!err) {
         setUpload(path, "status", "success")
@@ -141,8 +141,8 @@ const Upload = () => {
                 onClick={() => {
                   setUploadFiles("uploads", (_uploads) =>
                     _uploads.filter(
-                      ({ status }) => !["success", "error"].includes(status)
-                    )
+                      ({ status }) => !["success", "error"].includes(status),
+                    ),
                   )
                   console.log(uploadFiles.uploads)
                 }}
@@ -240,7 +240,7 @@ const Upload = () => {
                 value={curUploader().name}
                 onChange={(name) => {
                   setCurUploader(
-                    uploaders.find((uploader) => uploader.name === name)!
+                    uploaders.find((uploader) => uploader.name === name)!,
                   )
                 }}
                 options={uploaders.map((uploader) => {

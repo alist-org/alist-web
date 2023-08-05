@@ -9,11 +9,13 @@ export const FileInfo = (props: { children: JSXElement }) => {
     <VStack class="fileinfo" py="$6" spacing="$6">
       <Image
         boxSize="$20"
-        fallback={<Icon
-          color={getMainColor()}
-          boxSize="$20"
-          as={getIconByObj(objStore.obj)}
-        />}
+        fallback={
+          <Icon
+            color={getMainColor()}
+            boxSize="$20"
+            as={getIconByObj(objStore.obj)}
+          />
+        }
         src={objStore.obj.thumb}
       />
       <VStack spacing="$2">

@@ -20,7 +20,7 @@ const Ipa = () => {
             `${api}/i/${safeBtoa(
               encodeURIComponent(objStore.raw_url) +
                 "/" +
-                baseName(encodeURIComponent(objStore.obj.name))
+                baseName(encodeURIComponent(objStore.obj.name)),
             )}.plist`
           }
           onClick={() => {

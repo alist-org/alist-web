@@ -30,7 +30,7 @@ export const Error = (props: {
     {
       h: "$full",
     },
-    props
+    props,
   )
   console.log(merged.h)
   return (

@@ -55,10 +55,10 @@ const App: Component = () => {
         handleRespWithoutAuthAndNotify(
           (await r.get("/public/settings")) as Resp<Record<string, string>>,
           setSettings,
-          setErr
+          setErr,
         )
       })(),
-    ])
+    ]),
   )
   data()
   return (

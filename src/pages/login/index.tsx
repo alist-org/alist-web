@@ -37,10 +37,10 @@ const Login = () => {
   useTitle(title)
   const bgColor = useColorModeValue("white", "$neutral1")
   const [username, setUsername] = createSignal(
-    localStorage.getItem("username") || ""
+    localStorage.getItem("username") || "",
   )
   const [password, setPassword] = createSignal(
-    localStorage.getItem("password") || ""
+    localStorage.getItem("password") || "",
   )
   const [opt, setOpt] = createSignal("")
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false")
@@ -50,7 +50,7 @@ const Login = () => {
         username: username(),
         password: password(),
         otp_code: opt(),
-      })
+      }),
   )
   const { searchParams, to } = useRouter()
   const Login = async () => {
@@ -75,7 +75,7 @@ const Login = () => {
         } else {
           notify.error(msg)
         }
-      }
+      },
     )
   }
   const [needOpt, setNeedOpt] = createSignal(false)
@@ -180,7 +180,7 @@ const Login = () => {
             changeToken()
             to(
               decodeURIComponent(searchParams.redirect || base_path || "/"),
-              true
+              true,
             )
           }}
         >

@@ -20,12 +20,12 @@ for (const path in langs) {
 }
 const defaultLang =
   languages.find(
-    (lang) => lang.code.toLowerCase() === navigator.language.toLowerCase()
+    (lang) => lang.code.toLowerCase() === navigator.language.toLowerCase(),
   )?.code ||
   languages.find(
     (lang) =>
       lang.code.toLowerCase().split("_")[0] ===
-      navigator.language.toLowerCase().split("_")[0]
+      navigator.language.toLowerCase().split("_")[0],
   )?.code ||
   "en"
 

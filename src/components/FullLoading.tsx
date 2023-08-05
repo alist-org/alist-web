@@ -27,7 +27,7 @@ export const FullLoading = (props: {
       size: "xl",
       thickness: 4,
     },
-    props
+    props,
   )
   return (
     <Center ref={props.ref} h="$full" w="$full" py={merged.py}>
@@ -54,7 +54,7 @@ export const MaybeLoading = (props: {
 }
 
 export const CenterLoading = <C extends ElementType = "div">(
-  props: SpinnerProps<C>
+  props: SpinnerProps<C>,
 ) => {
   return (
     <Center w="$full" h="$full">

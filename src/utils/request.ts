@@ -20,7 +20,7 @@ instance.interceptors.request.use(
     // do something with request error
     console.log("Error: " + error.message) // for debug
     return Promise.reject(error)
-  }
+  },
 )
 
 // response interceptor
@@ -49,7 +49,7 @@ instance.interceptors.response.use(
       code: error.response.status,
       message: error.message,
     }
-  }
+  },
 )
 
 instance.defaults.headers.common["Authorization"] =

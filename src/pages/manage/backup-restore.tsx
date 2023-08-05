@@ -65,16 +65,16 @@ const BackupRestore = () => {
     logRef.scrollTop = logRef.scrollHeight
   }
   const [getSettingsLoading, getSettings] = useFetch(
-    (): PResp<any> => r.get("/admin/setting/list")
+    (): PResp<any> => r.get("/admin/setting/list"),
   )
   const [getUsersLoading, getUsers] = useFetch(
-    (): PPageResp<User> => r.get("/admin/user/list")
+    (): PPageResp<User> => r.get("/admin/user/list"),
   )
   const [getMetasLoading, getMetas] = useFetch(
-    (): PPageResp<Meta> => r.get("/admin/meta/list")
+    (): PPageResp<Meta> => r.get("/admin/meta/list"),
   )
   const [getStoragesLoading, getStorages] = useFetch(
-    (): PPageResp<Storage> => r.get("/admin/storage/list")
+    (): PPageResp<Storage> => r.get("/admin/storage/list"),
   )
   const backupLoading = () => {
     return (
@@ -106,7 +106,7 @@ const BackupRestore = () => {
             t("br.success_backup_item", {
               item: t(`manage.sidemenu.${item.name}`),
             }),
-            "success"
+            "success",
           )
           if (item.page) {
             allData[item.name] = data.content
@@ -121,16 +121,16 @@ const BackupRestore = () => {
             }) +
               ":" +
               msg,
-            "error"
+            "error",
           )
-        }
+        },
       )
     }
     download("alist_backup_" + new Date().toLocaleString() + ".json", allData)
     appendLog(t("br.finish_backup"), "info")
   }
   const [addSettingsLoading, addSettings] = useFetch(
-    (data: SettingItem[]): PEmptyResp => r.post("/admin/setting/save", data)
+    (data: SettingItem[]): PEmptyResp => r.post("/admin/setting/save", data),
   )
   const [addUserLoading, addUser] = useFetch((user: User): PEmptyResp => {
     return r.post(`/admin/user/create`, user)
@@ -138,7 +138,7 @@ const BackupRestore = () => {
   const [addStorageLoading, addStorage] = useFetch(
     (storage: Storage): PEmptyResp => {
       return r.post(`/admin/storage/create`, storage)
-    }
+    },
   )
   const [addMetaLoading, addMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/create`, meta)
@@ -149,7 +149,7 @@ const BackupRestore = () => {
   const [updateStorageLoading, updateStorage] = useFetch(
     (storage: Storage): PEmptyResp => {
       return r.post(`/admin/storage/update`, storage)
-    }
+    },
   )
   const [updateMetaLoading, updateMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/update`, meta)
@@ -164,14 +164,14 @@ const BackupRestore = () => {
       (t: T): PEmptyResp
     },
     idFieldName: keyof T,
-    itemName: string
+    itemName: string,
   ) {
     const currentData = (await getDataFunc()).data.content
     for (const i in dataArray) {
       const currentItem = dataArray[i]
       const currentIdValue = currentItem[idFieldName]
       const currentDataItem = currentData.find(
-        (d) => d[idFieldName] === currentIdValue
+        (d) => d[idFieldName] === currentIdValue,
       )
       const method = currentDataItem ? "update" : "add"
       const handleDataFunc = method === "add" ? addDataFunc : updateDataFunc
@@ -184,7 +184,7 @@ const BackupRestore = () => {
             }) +
               "-" +
               `[${currentIdValue}]`,
-            "success"
+            "success",
           )
         },
         (msg) => {
@@ -196,9 +196,9 @@ const BackupRestore = () => {
               `[${currentIdValue}]` +
               ":" +
               msg,
-            "error"
+            "error",
           )
-        }
+        },
       )
     }
   }
@@ -235,15 +235,15 @@ const BackupRestore = () => {
           handleRespWithoutNotify(
             await addSettings(
               data.settings.filter(
-                (s) => !["version", "index_progress"].includes(s.key)
-              )
+                (s) => !["version", "index_progress"].includes(s.key),
+              ),
             ),
             () => {
               appendLog(
                 t("br.success_restore_item", {
                   item: t("manage.sidemenu.settings"),
                 }),
-                "success"
+                "success",
               )
             },
             (msg) => {
@@ -253,9 +253,9 @@ const BackupRestore = () => {
                 }) +
                   ":" +
                   msg,
-                "error"
+                "error",
               )
-            }
+            },
           )
         if (override()) {
           await handleOvrData(
@@ -264,7 +264,7 @@ const BackupRestore = () => {
             addUser,
             updateUser,
             "username",
-            "manage.sidemenu.users"
+            "manage.sidemenu.users",
           )
           await handleOvrData(
             data.storages,
@@ -272,7 +272,7 @@ const BackupRestore = () => {
             addStorage,
             updateStorage,
             "mount_path",
-            "manage.sidemenu.storages"
+            "manage.sidemenu.storages",
           )
           await handleOvrData(
             data.metas,
@@ -280,7 +280,7 @@ const BackupRestore = () => {
             addMeta,
             updateMeta,
             "path",
-            "manage.sidemenu.metas"
+            "manage.sidemenu.metas",
           )
         } else {
           for (const item of [
@@ -304,7 +304,7 @@ const BackupRestore = () => {
                     }) +
                       "-" +
                       `[${(itemData as any)[item.key]}]`,
-                    "success"
+                    "success",
                   )
                 },
                 (msg) => {
@@ -315,9 +315,9 @@ const BackupRestore = () => {
                       ` [ ${(itemData as any)[item.key]} ] ` +
                       ":" +
                       msg,
-                    "error"
+                    "error",
                   )
-                }
+                },
               )
             }
           }

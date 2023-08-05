@@ -26,7 +26,7 @@ export const Obj = () => {
       recordScroll(lastPathname, window.scrollY)
       handlePathChange(pathname)
       lastPathname = pathname
-    })
+    }),
   )
   return (
     <VStack
@@ -45,7 +45,7 @@ export const Obj = () => {
           </Match>
           <Match
             when={[State.FetchingObj, State.FetchingObjs].includes(
-              objStore.state
+              objStore.state,
             )}
           >
             <FullLoading />

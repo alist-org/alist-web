@@ -23,7 +23,7 @@ let cancelList: Canceler
 export function addOrUpdateQuery(
   key: string,
   value: any,
-  type = "replaceState"
+  type = "replaceState",
 ) {
   let url = type === "location" ? location.href : location.hash
 
@@ -101,9 +101,9 @@ export const usePath = () => {
         arg?.force,
         new axios.CancelToken(function executor(c) {
           cancelList = c
-        })
+        }),
       )
-    }
+    },
   )
   // set a path must be a dir
   const setPathAs = (path: string, dir = true, push = false) => {
@@ -153,7 +153,7 @@ export const usePath = () => {
           ObjStore.setState(State.File)
         }
       },
-      handleErr
+      handleErr,
     )
   }
 
@@ -163,7 +163,7 @@ export const usePath = () => {
     index?: number,
     size?: number,
     append = false,
-    force?: boolean
+    force?: boolean,
   ) => {
     if (!size) {
       size = pagination.size
@@ -191,7 +191,7 @@ export const usePath = () => {
           recoverScroll(path)
         }
       },
-      handleErr
+      handleErr,
     )
   }
 

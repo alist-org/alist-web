@@ -12,7 +12,7 @@ export const Center = () => {
     () =>
       [State.Folder, State.FetchingMore].includes(objStore.state) &&
       checkboxOpen() &&
-      haveSelected()
+      haveSelected(),
   )
   return (
     <Presence exitBeforeEnter>

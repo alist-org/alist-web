@@ -13,7 +13,7 @@ const CornerBottom = (props: Props) => {
       startColor: "#28aff0",
       endColor: "#120fc4",
     },
-    props
+    props,
   )
   return (
     <svg

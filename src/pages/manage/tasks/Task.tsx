@@ -48,10 +48,10 @@ export const Task = (props: TaskInfo & TasksProps) => {
   const canRetry = props.done === "done" && props.state === "errored"
   const [operateLoading, operate] = useFetch(
     (): PEmptyResp =>
-      r.post(`/admin/task/${props.type}/${operateName}?tid=${props.id}`)
+      r.post(`/admin/task/${props.type}/${operateName}?tid=${props.id}`),
   )
   const [retryLoading, retry] = useFetch(
-    (): PEmptyResp => r.post(`/admin/task/${props.type}/retry?tid=${props.id}`)
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/retry?tid=${props.id}`),
   )
   const [deleted, setDeleted] = createSignal(false)
   return (

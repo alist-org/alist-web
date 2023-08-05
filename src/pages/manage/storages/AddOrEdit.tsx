@@ -49,7 +49,7 @@ const AddOrEdit = () => {
   const { id } = params
   const [driversLoading, loadDrivers] = useFetch(
     (): PResp<Drivers> => r.get("/admin/driver/list"),
-    true
+    true,
   )
   const [drivers, setDrivers] = createSignal<Drivers>({})
   const initAdd = async () => {
@@ -59,12 +59,12 @@ const AddOrEdit = () => {
 
   const [storageLoading, loadStorage] = useFetch(
     (): PResp<Storage> => r.get(`/admin/storage/get?id=${id}`),
-    true
+    true,
   )
   const [driverLoading, loadDriver] = useFetch(
     (): PResp<DriverInfo> =>
       r.get(`/admin/driver/info?driver=${storage.driver}`),
-    true
+    true,
   )
   const initEdit = async () => {
     const storageResp = await loadStorage()
@@ -73,7 +73,7 @@ const AddOrEdit = () => {
       setAddition(JSON.parse(storageData.addition))
       const driverResp = await loadDriver()
       handleResp(driverResp, (driverData) =>
-        setDrivers({ [storage.driver]: driverData })
+        setDrivers({ [storage.driver]: driverData }),
       )
     })
   }
@@ -116,7 +116,7 @@ const AddOrEdit = () => {
             for (const item of drivers()[value].common) {
               setStorage(
                 item.name as keyof Storage,
-                GetDefaultValue(item.type, item.default) as any
+                GetDefaultValue(item.type, item.default) as any,
               )
             }
             // clear addition first
@@ -125,12 +125,12 @@ const AddOrEdit = () => {
                 for (const key in addition) {
                   delete addition[key]
                 }
-              })
+              }),
             )
             for (const item of drivers()[value].additional) {
               setAddition(
                 item.name,
-                GetDefaultValue(item.type, item.default) as any
+                GetDefaultValue(item.type, item.default) as any,
               )
             }
             setStorage("driver", value)
@@ -191,7 +191,7 @@ const AddOrEdit = () => {
               if (resp.data.id) {
                 to(`/@manage/storages/edit/${resp.data.id}`)
               }
-            }
+            },
           )
         }}
       >
