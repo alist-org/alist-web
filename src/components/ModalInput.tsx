@@ -10,7 +10,13 @@ import {
   Textarea,
   FormHelperText,
 } from "@hope-ui/solid"
-import { createSignal, JSXElement, Show, createEffect, onCleanup } from "solid-js"
+import {
+  createSignal,
+  JSXElement,
+  Show,
+  createEffect,
+  onCleanup,
+} from "solid-js"
 import { useT } from "~/hooks"
 import { notify } from "~/utils"
 export type ModalInputProps = {
@@ -26,49 +32,49 @@ export type ModalInputProps = {
   topSlot?: JSXElement
 }
 export const ModalInput = (props: ModalInputProps) => {
-  const [value, setValue] = createSignal(props.defaultValue ?? "");
-  const t = useT();
+  const [value, setValue] = createSignal(props.defaultValue ?? "")
+  const t = useT()
 
-  let inputRef: HTMLInputElement | HTMLTextAreaElement;
+  let inputRef: HTMLInputElement | HTMLTextAreaElement
 
   const handleFocus = () => {
     // Find the position of the first dot (".") in the value
-    const dotIndex = value().lastIndexOf(".");
+    const dotIndex = value().lastIndexOf(".")
 
     setTimeout(() => {
       // If a dot exists and it is not the first character, select from start to dotIndex
       // And it must be a file, not a folder
       if (dotIndex > 0 && props.isRenamingFile) {
-        inputRef.setSelectionRange(0, dotIndex);
+        inputRef.setSelectionRange(0, dotIndex)
       } else {
         // If there's no dot or it's the first character, select the entire value
-        inputRef.select();
+        inputRef.select()
       }
-    }, 10); // To prevent default select behavior from interfering
-  };
+    }, 10) // To prevent default select behavior from interfering
+  }
 
   createEffect(() => {
     if (inputRef) {
-      inputRef.focus();
-      handleFocus();
+      inputRef.focus()
+      handleFocus()
     }
 
     // Cleanup function to clear the selection range before unmounting
     onCleanup(() => {
       if (inputRef) {
-        inputRef.setSelectionRange(0, 0);
+        inputRef.setSelectionRange(0, 0)
       }
-    });
-  });
+    })
+  })
 
   const submit = () => {
     if (!value()) {
-      notify.warning(t("global.empty_input"));
-      return;
+      notify.warning(t("global.empty_input"))
+      return
     }
-    props.onSubmit?.(value());
-    setValue("");
-  };
+    props.onSubmit?.(value())
+    setValue("")
+  }
 
   return (
     <Modal
@@ -92,12 +98,12 @@ export const ModalInput = (props: ModalInputProps) => {
                 value={value()}
                 ref={(el) => (inputRef = el)}
                 onInput={(e) => {
-                  setValue(e.currentTarget.value);
+                  setValue(e.currentTarget.value)
                 }}
                 onFocus={handleFocus}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    submit();
+                    submit()
                   }
                 }}
               />
@@ -108,7 +114,7 @@ export const ModalInput = (props: ModalInputProps) => {
               value={value()}
               ref={(el) => (inputRef = el)}
               onInput={(e) => {
-                setValue(e.currentTarget.value);
+                setValue(e.currentTarget.value)
               }}
               onFocus={handleFocus}
             />
@@ -127,5 +133,5 @@ export const ModalInput = (props: ModalInputProps) => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
