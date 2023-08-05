@@ -14,7 +14,7 @@ import {
   Text,
   VStack,
 } from "@hope-ui/solid"
-import { BsSearch } from "solid-icons/bs"
+import { BsFileEarmarkMedical, BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import { FullLoading, LinkWithBase, Paginator } from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
@@ -30,6 +30,8 @@ import {
 } from "~/utils"
 import { isMac } from "~/utils/compatibility"
 import { getIconByObj } from "~/utils/icon"
+import { IoFolder } from "solid-icons/io"
+import { BiRegularSquareRounded } from "solid-icons/bi"
 
 const SearchResult = (props: SearchNode) => {
   const { setPathAs } = usePath()
@@ -111,6 +113,12 @@ const Search = () => {
     content: [] as SearchNode[],
     total: 0,
   })
+  const [isDir, setIsDir] = createSignal(1)
+  const isDirIcons = [
+    <BsFileEarmarkMedical />,
+    <BiRegularSquareRounded />,
+    <IoFolder />,
+  ]
 
   const search = async (page = 1) => {
     if (loading()) return
@@ -118,7 +126,13 @@ const Search = () => {
       content: [],
       total: 0,
     })
-    const resp = await searchReq(pathname(), keywords(), password(), page)
+    const resp = await searchReq(
+      pathname(),
+      keywords(),
+      password(),
+      isDir() - 1,
+      page,
+    )
     handleResp(resp, (data) => {
       const content = data.content
       if (!content) {
@@ -169,6 +183,16 @@ const Search = () => {
                     search()
                   }
                 }}
+              />
+              <IconButton
+                aria-label="is_dir"
+                icon={isDirIcons[isDir()]}
+                onClick={() => {
+                  var idx = isDir()
+                  idx = (idx + 1) % isDirIcons.length
+                  setIsDir(idx)
+                }}
+                // @ts-ignore
               />
               <IconButton
                 aria-label="search"
