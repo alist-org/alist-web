@@ -188,11 +188,10 @@ const Search = () => {
                 aria-label="is_dir"
                 icon={isDirIcons[isDir()]}
                 onClick={() => {
-                  var idx = isDir()
+                  let idx = isDir()
                   idx = (idx + 1) % isDirIcons.length
                   setIsDir(idx)
                 }}
-                // @ts-ignore
               />
               <IconButton
                 aria-label="search"
