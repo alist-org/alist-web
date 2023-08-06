@@ -50,6 +50,9 @@ dependencies:
   lightgallery:
     specifier: ^2.5.0
     version: 2.5.0
+  mark.js:
+    specifier: ^8.11.1
+    version: 8.11.1
   mitt:
     specifier: ^3.0.0
     version: 3.0.0
@@ -94,6 +97,9 @@ devDependencies:
   '@crowdin/cli':
     specifier: ^3.7.10
     version: 3.7.10
+  '@types/mark.js':
+    specifier: ^8.11.8
+    version: 8.11.8
   '@types/node':
     specifier: ^18.7.5
     version: 18.7.5
@@ -656,6 +662,12 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
+  /@types/jquery@3.5.16:
+    resolution: {integrity: sha512-bsI7y4ZgeMkmpG9OM710RRzDFp+w4P1RGiIt30C1mSBT+ExCleeh4HObwgArnDFELmRrOpXgSYN9VF1hj+f1lw==}
+    dependencies:
+      '@types/sizzle': 2.3.3
+    dev: true
+
   /@types/katex@0.14.0:
     resolution: {integrity: sha512-+2FW2CcT0K3P+JMR8YG846bmDwplKUTsWgT2ENwdQ1UdVfRk3GQrh6Mi4sTopy30gI8Uau5CEqHTDZ6YvWIUPA==}
     dev: false
@@ -663,6 +675,12 @@ packages:
   /@types/katex@0.16.0:
     resolution: {integrity: sha512-hz+S3nV6Mym5xPbT9fnO8dDhBFQguMYpY0Ipxv06JMi1ORgnEM4M1ymWDUhUNer3ElLmT583opRo4RzxKmh9jw==}
     dev: false
+
+  /@types/mark.js@8.11.8:
+    resolution: {integrity: sha512-BoWCd9ydi1hZxDfu/lF0v1hHMsNUjuxZEDJsdHlmm6GlKk4qxlLya7D3FS81QmabwFbYPpoDOh9603JESUkHbA==}
+    dependencies:
+      '@types/jquery': 3.5.16
+    dev: true
 
   /@types/mdast@3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
@@ -685,6 +703,10 @@ packages:
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: false
+
+  /@types/sizzle@2.3.3:
+    resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
+    dev: true
 
   /@types/streamsaver@2.0.1:
     resolution: {integrity: sha512-I49NtT8w6syBI3Zg3ixCyygTHoTVMY0z2TMRcTgccdIsVd2MwlKk7ITLHLsJtgchUHcOd7QEARG9h0ifcA6l2Q==}
@@ -1791,6 +1813,10 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
+
+  /mark.js@8.11.1:
+    resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
+    dev: false
 
   /markdown-table@3.0.2:
     resolution: {integrity: sha512-y8j3a5/DkJCmS5x4dMCQL+OR0+2EAq3DOtio1COSHsmW2BGXnNCK3v12hJt1LrUz5iZH5g0LmuYOjDdI+czghA==}
