@@ -17,14 +17,7 @@ import {
   Icon,
 } from "@hope-ui/solid"
 import { SwitchColorMode } from "./SwitchColorMode"
-import {
-  ComponentProps,
-  createMemo,
-  For,
-  mergeProps,
-  Show,
-  splitProps,
-} from "solid-js"
+import { ComponentProps, For, mergeProps, Show } from "solid-js"
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai"
 import { hoverColor } from "~/utils"
 

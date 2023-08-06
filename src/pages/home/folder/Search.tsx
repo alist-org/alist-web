@@ -14,7 +14,7 @@ import {
   Text,
   VStack,
 } from "@hope-ui/solid"
-import { BsFileEarmarkMedical, BsSearch } from "solid-icons/bs"
+import { BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
 import {
   FullLoading,
@@ -35,8 +35,6 @@ import {
 } from "~/utils"
 import { isMac } from "~/utils/compatibility"
 import { getIconByObj } from "~/utils/icon"
-import { IoFolder } from "solid-icons/io"
-import { BiRegularSquareRounded } from "solid-icons/bi"
 
 const SearchResult = (props: SearchNode) => {
   const { setPathAs } = usePath()
