@@ -16,7 +16,12 @@ import {
 } from "@hope-ui/solid"
 import { BsFileEarmarkMedical, BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
-import { FullLoading, LinkWithBase, Paginator } from "~/components"
+import {
+  FullLoading,
+  LinkWithBase,
+  Paginator,
+  SelectWrapper,
+} from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
@@ -113,12 +118,8 @@ const Search = () => {
     content: [] as SearchNode[],
     total: 0,
   })
-  const [isDir, setIsDir] = createSignal(1)
-  const isDirIcons = [
-    <BsFileEarmarkMedical />,
-    <BiRegularSquareRounded />,
-    <IoFolder />,
-  ]
+  const [scope, setScope] = createSignal(0)
+  const scopes = ["all", "folder", "file"]
 
   const search = async (page = 1) => {
     if (loading()) return
@@ -130,7 +131,7 @@ const Search = () => {
       pathname(),
       keywords(),
       password(),
-      isDir() - 1,
+      scope(),
       page,
     )
     handleResp(resp, (data) => {
@@ -172,6 +173,15 @@ const Search = () => {
         <ModalBody>
           <VStack w="$full" spacing="$2">
             <HStack w="$full" spacing="$2">
+              <SelectWrapper
+                w="$32"
+                value={scope()}
+                onChange={(v) => setScope(v)}
+                options={scopes.map((v, i) => ({
+                  value: i,
+                  label: t(`home.search.scopes.${v}`),
+                }))}
+              />
               <Input
                 id="search-input"
                 value={keywords()}
@@ -185,15 +195,7 @@ const Search = () => {
                 }}
               />
               <IconButton
-                aria-label="is_dir"
-                icon={isDirIcons[isDir()]}
-                onClick={() => {
-                  let idx = isDir()
-                  idx = (idx + 1) % isDirIcons.length
-                  setIsDir(idx)
-                }}
-              />
-              <IconButton
+                flexShrink={0}
                 aria-label="search"
                 icon={<BsSearch />}
                 onClick={() => search()}

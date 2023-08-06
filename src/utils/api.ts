@@ -146,14 +146,14 @@ export const fsSearch = async (
   parent: string,
   keywords: string,
   password = "",
-  is_dir = 0,
+  scope = 0,
   page = 1,
   per_page = 100,
 ): Promise<FsSearchResp> => {
   return r.post("/fs/search", {
     parent,
     keywords,
-    is_dir,
+    scope,
     page,
     per_page,
     password,
