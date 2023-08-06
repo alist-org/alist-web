@@ -120,7 +120,12 @@
   },
   "search": {
     "search": "Search",
-    "no_result": "No result yet"
+    "no_result": "No result yet",
+    "scopes": {
+      "all": "All",
+      "folder": "Folder",
+      "file": "File"
+    }
   },
   "fetching_settings_failed": "Failed fetching settings: ",
   "get_current_user_failed": "Failed get current user: ",

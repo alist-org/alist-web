@@ -16,7 +16,12 @@ import {
 } from "@hope-ui/solid"
 import { BsSearch } from "solid-icons/bs"
 import { createSignal, For, Match, onCleanup, Show, Switch } from "solid-js"
-import { FullLoading, LinkWithBase, Paginator } from "~/components"
+import {
+  FullLoading,
+  LinkWithBase,
+  Paginator,
+  SelectWrapper,
+} from "~/components"
 import { useFetch, usePath, useRouter, useT } from "~/hooks"
 import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
@@ -111,6 +116,8 @@ const Search = () => {
     content: [] as SearchNode[],
     total: 0,
   })
+  const [scope, setScope] = createSignal(0)
+  const scopes = ["all", "folder", "file"]
 
   const search = async (page = 1) => {
     if (loading()) return
@@ -118,7 +125,13 @@ const Search = () => {
       content: [],
       total: 0,
     })
-    const resp = await searchReq(pathname(), keywords(), password(), page)
+    const resp = await searchReq(
+      pathname(),
+      keywords(),
+      password(),
+      scope(),
+      page,
+    )
     handleResp(resp, (data) => {
       const content = data.content
       if (!content) {
@@ -158,6 +171,15 @@ const Search = () => {
         <ModalBody>
           <VStack w="$full" spacing="$2">
             <HStack w="$full" spacing="$2">
+              <SelectWrapper
+                w="$32"
+                value={scope()}
+                onChange={(v) => setScope(v)}
+                options={scopes.map((v, i) => ({
+                  value: i,
+                  label: t(`home.search.scopes.${v}`),
+                }))}
+              />
               <Input
                 id="search-input"
                 value={keywords()}
@@ -171,6 +193,7 @@ const Search = () => {
                 }}
               />
               <IconButton
+                flexShrink={0}
                 aria-label="search"
                 icon={<BsSearch />}
                 onClick={() => search()}
