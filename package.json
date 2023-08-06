@@ -71,6 +71,7 @@
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "seemly": "^0.3.6",
+    "sha-anything": "^0.0.4",
     "solid-contextmenu": "0.0.2",
     "solid-icons": "^1.0.1",
     "solid-js": "^1.4.8",
