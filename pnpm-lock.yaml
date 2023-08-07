@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@github/webauthn-json':
-    specifier: ^2.1.1
-    version: 2.1.1
   '@hope-ui/solid':
     specifier: 0.6.7
     version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)
@@ -53,6 +50,9 @@ dependencies:
   lightgallery:
     specifier: ^2.5.0
     version: 2.5.0
+  mark.js:
+    specifier: ^8.11.1
+    version: 8.11.1
   mitt:
     specifier: ^3.0.0
     version: 3.0.0
@@ -71,6 +71,9 @@ dependencies:
   seemly:
     specifier: ^0.3.6
     version: 0.3.6
+  sha-anything:
+    specifier: ^0.0.4
+    version: 0.0.4
   solid-contextmenu:
     specifier: 0.0.2
     version: 0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12)
@@ -97,6 +100,9 @@ devDependencies:
   '@crowdin/cli':
     specifier: ^3.7.10
     version: 3.7.10
+  '@types/mark.js':
+    specifier: ^8.11.8
+    version: 8.11.8
   '@types/node':
     specifier: ^18.7.5
     version: 18.7.5
@@ -480,11 +486,6 @@ packages:
       '@floating-ui/core': 0.6.2
     dev: false
 
-  /@github/webauthn-json@2.1.1:
-    resolution: {integrity: sha512-XrftRn4z75SnaJOmZQbt7Mk+IIjqVHw+glDGOxuHwXkZBZh/MBoRS7MHjSZMDaLhT4RjN2VqiEU7EOYleuJWSQ==}
-    hasBin: true
-    dev: false
-
   /@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12):
     resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==}
     peerDependencies:
@@ -664,6 +665,12 @@ packages:
       '@types/unist': 2.0.6
     dev: false
 
+  /@types/jquery@3.5.16:
+    resolution: {integrity: sha512-bsI7y4ZgeMkmpG9OM710RRzDFp+w4P1RGiIt30C1mSBT+ExCleeh4HObwgArnDFELmRrOpXgSYN9VF1hj+f1lw==}
+    dependencies:
+      '@types/sizzle': 2.3.3
+    dev: true
+
   /@types/katex@0.14.0:
     resolution: {integrity: sha512-+2FW2CcT0K3P+JMR8YG846bmDwplKUTsWgT2ENwdQ1UdVfRk3GQrh6Mi4sTopy30gI8Uau5CEqHTDZ6YvWIUPA==}
     dev: false
@@ -671,6 +678,12 @@ packages:
   /@types/katex@0.16.0:
     resolution: {integrity: sha512-hz+S3nV6Mym5xPbT9fnO8dDhBFQguMYpY0Ipxv06JMi1ORgnEM4M1ymWDUhUNer3ElLmT583opRo4RzxKmh9jw==}
     dev: false
+
+  /@types/mark.js@8.11.8:
+    resolution: {integrity: sha512-BoWCd9ydi1hZxDfu/lF0v1hHMsNUjuxZEDJsdHlmm6GlKk4qxlLya7D3FS81QmabwFbYPpoDOh9603JESUkHbA==}
+    dependencies:
+      '@types/jquery': 3.5.16
+    dev: true
 
   /@types/mdast@3.0.10:
     resolution: {integrity: sha512-W864tg/Osz1+9f4lrGTZpCSO5/z4608eUp19tbozkq2HJK6i3z1kT0H9tlADXuYIb1YYOBByU4Jsqkk75q48qA==}
@@ -693,6 +706,10 @@ packages:
   /@types/parse5@6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: false
+
+  /@types/sizzle@2.3.3:
+    resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
+    dev: true
 
   /@types/streamsaver@2.0.1:
     resolution: {integrity: sha512-I49NtT8w6syBI3Zg3ixCyygTHoTVMY0z2TMRcTgccdIsVd2MwlKk7ITLHLsJtgchUHcOd7QEARG9h0ifcA6l2Q==}
@@ -1022,6 +1039,11 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-hash@2.0.1:
+    resolution: {integrity: sha512-t4mkp7Vh6MuCZRBf0XLzBOfhkH3nW6YEAotMDSjshVQ1GffCMGdPLSr7pKH0rdXY02jTjAZ7QW2apD0buaZXcQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: false
 
   /css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
@@ -1373,6 +1395,10 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
     dev: false
 
+  /fast-sort@3.4.0:
+    resolution: {integrity: sha512-c/cMBGA5mH3OYjaXedtLIM3hQjv+KuZuiD2QEH5GofNOZeQVDIYIN7Okc2AW1KPhk44g5PTZnXp8t2lOMl8qhQ==}
+    dev: false
+
   /fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
     dependencies:
@@ -1681,6 +1707,11 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: true
 
+  /is-what@4.1.15:
+    resolution: {integrity: sha512-uKua1wfy3Yt+YqsD6mTUEa2zSi3G1oPlqTflgaPJ7z63vUGN5pxFpnQfeSLMFnJDEsdvOtkp1rUWkYjB4YfhgA==}
+    engines: {node: '>=12.13'}
+    dev: false
+
   /is-what@4.1.7:
     resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
     engines: {node: '>=12.13'}
@@ -1799,6 +1830,10 @@ packages:
     dependencies:
       sourcemap-codec: 1.4.8
     dev: true
+
+  /mark.js@8.11.1:
+    resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
+    dev: false
 
   /markdown-table@3.0.2:
     resolution: {integrity: sha512-y8j3a5/DkJCmS5x4dMCQL+OR0+2EAq3DOtio1COSHsmW2BGXnNCK3v12hJt1LrUz5iZH5g0LmuYOjDdI+czghA==}
@@ -2589,6 +2624,15 @@ packages:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
     dev: true
+
+  /sha-anything@0.0.4:
+    resolution: {integrity: sha512-g7KCmHJ016M+QHjHeXR6Sx1E6fzAr17zz1oWt1eCxztqTj4MiQz3I7vrSz6hTsJp80ZRAZVDqaFbA/hmEyVYtg==}
+    engines: {node: '>=12.13'}
+    dependencies:
+      crypto-hash: 2.0.1
+      fast-sort: 3.4.0
+      is-what: 4.1.15
+    dev: false
 
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==, tarball: https://registry.npm.taobao.org/shebang-command/-/shebang-command-2.0.0.tgz}

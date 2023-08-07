@@ -43,7 +43,7 @@ export const MonacoEditor = (props: MonacoEditorProps) => {
     model = monaco.editor.createModel(
       props.value,
       props.language,
-      props.path ? monaco.Uri.parse(props.path) : undefined
+      props.path ? monaco.Uri.parse(props.path) : undefined,
     )
     monacoEditor.setModel(model)
     monacoEditor.onDidChangeModelContent(() => {

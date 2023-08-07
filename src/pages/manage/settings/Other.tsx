@@ -17,18 +17,18 @@ const OtherSettings = () => {
   const [settings, setSettings] = createSignal<SettingItem[]>([])
   const [settingsLoading, settingsData] = useFetch(
     (): PResp<SettingItem[]> =>
-      r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`)
+      r.get(`/admin/setting/list?groups=${Group.ARIA2},${Group.SINGLE}`),
   )
   const [setAria2Loading, setAria2] = useFetch(
     (): PResp<string> =>
-      r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() })
+      r.post("/admin/setting/set_aria2", { uri: uri(), secret: secret() }),
   )
   const [setQbitLoading, setQbit] = useFetch(
     (): PResp<string> =>
       r.post("/admin/setting/set_qbit", {
         url: qbitUrl(),
         seedtime: qbitSeedTime(),
-      })
+      }),
   )
   const refresh = async () => {
     const resp = await settingsData()
@@ -38,14 +38,14 @@ const OtherSettings = () => {
       setToken(data.find((i) => i.key === "token")?.value || "")
       setQbitUrl(data.find((i) => i.key === "qbittorrent_url")?.value || "")
       setQbitSeedTime(
-        data.find((i) => i.key === "qbittorrent_seedtime")?.value || ""
+        data.find((i) => i.key === "qbittorrent_seedtime")?.value || "",
       )
       setSettings(data)
     })
   }
   refresh()
   const [resetTokenLoading, resetToken] = useFetch(
-    (): PResp<string> => r.post("/admin/setting/reset_token")
+    (): PResp<string> => r.post("/admin/setting/reset_token"),
   )
   const { copy } = useUtil()
 

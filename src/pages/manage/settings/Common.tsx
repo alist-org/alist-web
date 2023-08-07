@@ -16,7 +16,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
   useManageTitle(`manage.sidemenu.${pathname().split("/").pop()}`)
   const [settingsLoading, getSettings] = useFetch(
     (): PResp<SettingItem[]> =>
-      r.get(`/admin/setting/list?group=${props.group}`)
+      r.get(`/admin/setting/list?group=${props.group}`),
   )
   const [settings, setSettings] = createStore<SettingItem[]>([])
   const refresh = async () => {
@@ -25,7 +25,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
   }
   refresh()
   const [saveLoading, saveSettings] = useFetch(
-    (): PEmptyResp => r.post("/admin/setting/save", getTarget(settings))
+    (): PEmptyResp => r.post("/admin/setting/save", getTarget(settings)),
   )
   const [loading, setLoading] = createSignal(false)
   return (
@@ -41,7 +41,7 @@ const CommonSettings = (props: CommonSettingsProps) => {
               onDelete={async () => {
                 setLoading(true)
                 const resp: EmptyResp = await r.post(
-                  `/admin/setting/delete?key=${item().key}`
+                  `/admin/setting/delete?key=${item().key}`,
                 )
                 setLoading(false)
                 handleResp(resp, () => {

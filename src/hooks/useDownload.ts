@@ -52,7 +52,7 @@ export const useDownload = () => {
       const selectedObjs = _selectedObjs()
       const fetchFolderStructure = async (
         pre: string,
-        obj: Obj
+        obj: Obj,
       ): Promise<File[] | string> => {
         if (!obj.is_dir) {
           return [
@@ -63,7 +63,7 @@ export const useDownload = () => {
                 pathJoin(pathname(), pre),
                 obj,
                 "direct",
-                true
+                true,
               ),
               name: obj.name,
             },
@@ -71,7 +71,7 @@ export const useDownload = () => {
         } else {
           const resp = await fsList(
             pathJoin(pathname(), pre, obj.name),
-            password()
+            password(),
           )
           if (resp.code !== 200) {
             return resp.message
@@ -80,7 +80,7 @@ export const useDownload = () => {
           for (const _obj of resp.data.content ?? []) {
             const _res = await fetchFolderStructure(
               pathJoin(pre, obj.name),
-              _obj
+              _obj,
             )
             if (typeof _res === "string") {
               return _res
@@ -113,7 +113,7 @@ export const useDownload = () => {
 
           if (typeof res !== "object" || res.length === undefined) {
             notify.error(
-              `${t("home.package_download.fetching_struct_failed")}: ${res}`
+              `${t("home.package_download.fetching_struct_failed")}: ${res}`,
             )
             return res
           } else {
@@ -126,8 +126,8 @@ export const useDownload = () => {
               ) {
                 notify.error(
                   `${t(
-                    "home.package_download.fetching_struct_failed"
-                  )}: ${JSON.stringify(res[key])}`
+                    "home.package_download.fetching_struct_failed",
+                  )}: ${JSON.stringify(res[key])}`,
                 )
                 continue
               }

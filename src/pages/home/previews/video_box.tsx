@@ -77,7 +77,7 @@ export const VideoBox = (props: {
             props.onAutoNextChange(e.currentTarget.checked)
             localStorage.setItem(
               "video_auto_next",
-              e.currentTarget.checked.toString()
+              e.currentTarget.checked.toString(),
             )
           }}
         >

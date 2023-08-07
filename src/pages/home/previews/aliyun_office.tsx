@@ -13,7 +13,7 @@ const AliDocPreview = () => {
         path: pathname(),
         password: password(),
         method: "doc_preview",
-      })
+      }),
   )
   const init = async () => {
     const resp = await post()

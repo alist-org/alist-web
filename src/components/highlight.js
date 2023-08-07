@@ -269,7 +269,7 @@ var hljs = (function () {
         "on",
         /[A-Za-z]+['](d|ve|re|ll|t|s|n)/,
         /[A-Za-z]+[-][a-z]+/,
-        /[A-Za-z][a-z]{2,}/
+        /[A-Za-z][a-z]{2,}/,
       )
       return (
         a.contains.push({
@@ -305,7 +305,7 @@ var hljs = (function () {
               0 !== e.index && n.ignoreMatch()
             },
           },
-          e
+          e,
         )
       )
     },
@@ -473,7 +473,7 @@ var hljs = (function () {
           if (e.skip || e.excludeBegin || e.returnBegin)
             throw (
               (K(
-                "skip, excludeBegin, returnBegin not compatible with beginScope: {}"
+                "skip, excludeBegin, returnBegin not compatible with beginScope: {}",
               ),
               Z)
             )
@@ -488,7 +488,7 @@ var hljs = (function () {
           if (e.skip || e.excludeEnd || e.returnEnd)
             throw (
               (K(
-                "skip, excludeEnd, returnEnd not compatible with endScope: {}"
+                "skip, excludeEnd, returnEnd not compatible with endScope: {}",
               ),
               Z)
             )
@@ -505,7 +505,7 @@ var hljs = (function () {
         "m" +
           (e.case_insensitive ? "i" : "") +
           (e.unicodeRegex ? "u" : "") +
-          (t ? "g" : "")
+          (t ? "g" : ""),
       )
     }
     class t {
@@ -585,7 +585,7 @@ var hljs = (function () {
       e.contains && e.contains.includes("self"))
     )
       throw Error(
-        "ERR: contains `self` is not supported at the top-level of a language.  See documentation."
+        "ERR: contains `self` is not supported at the top-level of a language.  See documentation.",
       )
     return (
       (e.classNameAliases = r(e.classNameAliases || {})),
@@ -629,8 +629,8 @@ var hljs = (function () {
                       {
                         variants: null,
                       },
-                      n
-                    )
+                      n,
+                    ),
                   )),
                 e.cachedVariants
                   ? e.cachedVariants
@@ -641,8 +641,8 @@ var hljs = (function () {
                   : Object.isFrozen(e)
                   ? r(e)
                   : e
-              ))("self" === e ? i : e)
-            )
+              ))("self" === e ? i : e),
+            ),
           )),
           i.contains.forEach((e) => {
             t(e, o)
@@ -652,7 +652,7 @@ var hljs = (function () {
             const n = new a()
             return (
               e.contains.forEach((e) =>
-                n.addRule(e.begin, { rule: e, type: "begin" })
+                n.addRule(e.begin, { rule: e, type: "begin" }),
               ),
               e.terminatorEnd && n.addRule(e.terminatorEnd, { type: "end" }),
               e.illegal && n.addRule(e.illegal, { type: "illegal" }),
@@ -708,7 +708,7 @@ var hljs = (function () {
         : (H("10.7.0", "highlight(lang, code, ...args) has been deprecated."),
           H(
             "10.7.0",
-            "Please use highlight(code, options) instead.\nhttps://github.com/highlightjs/highlight.js/issues/2277"
+            "Please use highlight(code, options) instead.\nhttps://github.com/highlightjs/highlight.js/issues/2277",
           ),
           (i = e),
           (a = n)),
@@ -787,7 +787,7 @@ var hljs = (function () {
             (e.beginScope._wrap
               ? (k.addKeyword(
                   S,
-                  N.classNameAliases[e.beginScope._wrap] || e.beginScope._wrap
+                  N.classNameAliases[e.beginScope._wrap] || e.beginScope._wrap,
                 ),
                 (S = ""))
               : e.beginScope._multi && (u(e.beginScope, n), (S = ""))),
@@ -880,7 +880,7 @@ var hljs = (function () {
               o +
               '" for mode "' +
               (x.scope || "<unnamed>") +
-              '"'
+              '"',
           )
           throw ((e.mode = x), e)
         }
@@ -891,7 +891,7 @@ var hljs = (function () {
         if ("illegal" === r.type && "" === o) return 1
         if (T > 1e5 && T > 3 * r.index)
           throw Error(
-            "potential infinite loop, way more iterations than matches"
+            "potential infinite loop, way more iterations than matches",
           )
         return (S += o), o.length
       }
@@ -1016,10 +1016,10 @@ var hljs = (function () {
         e.children.length > 0 &&
           (d.ignoreUnescapedHTML ||
             (console.warn(
-              "One of your code blocks includes unescaped HTML. This is a potentially serious security risk."
+              "One of your code blocks includes unescaped HTML. This is a potentially serious security risk.",
             ),
             console.warn(
-              "https://github.com/highlightjs/highlight.js/wiki/security"
+              "https://github.com/highlightjs/highlight.js/wiki/security",
             ),
             console.warn("The element with unescaped HTML:"),
             console.warn(e)),
@@ -1027,7 +1027,7 @@ var hljs = (function () {
       )
         throw new V(
           "One of your code blocks includes unescaped HTML.",
-          e.innerHTML
+          e.innerHTML,
         )
       n = e
       const a = n.textContent,
@@ -1081,7 +1081,7 @@ var hljs = (function () {
         () => {
           N && w()
         },
-        !1
+        !1,
       ),
       Object.assign(e, {
         highlight: h,
@@ -1100,14 +1100,14 @@ var hljs = (function () {
           w(),
             H(
               "10.6.0",
-              "initHighlighting() deprecated.  Use highlightAll() now."
+              "initHighlighting() deprecated.  Use highlightAll() now.",
             )
         },
         initHighlightingOnLoad: () => {
           w(),
             H(
               "10.6.0",
-              "initHighlightingOnLoad() deprecated.  Use highlightAll() now."
+              "initHighlightingOnLoad() deprecated.  Use highlightAll() now.",
             )
         },
         registerLanguage: (t, a) => {
@@ -1119,8 +1119,8 @@ var hljs = (function () {
               (K(
                 "Language definition for '{}' could not be registered.".replace(
                   "{}",
-                  t
-                )
+                  t,
+                ),
               ),
               !s)
             )
@@ -2028,7 +2028,7 @@ var hljs = (function () {
           /\bJSON/,
           /\b[A-Z][a-z]+([A-Z][a-z]*|\d)*/,
           /\b[A-Z]{2,}([A-Z][a-z]+|\d)+([A-Z][a-z]*)*/,
-          /\b[A-Z]{2,}[a-z]+([A-Z][a-z]+|\d)*([A-Z][a-z]*)*/
+          /\b[A-Z]{2,}[a-z]+([A-Z][a-z]+|\d)*([A-Z][a-z]*)*/,
         ),
         className: "title.class",
         keywords: { _: [..._e, ...he] },
@@ -2050,7 +2050,7 @@ var hljs = (function () {
           /\b/,
           ((N = [...fe, "super"]), n.concat("(?!", N.join("|"), ")")),
           t,
-          n.lookahead(/\(/)
+          n.lookahead(/\(/),
         ),
         className: "title.function",
         relevance: 0,
@@ -2383,7 +2383,7 @@ var hljs = (function () {
       /[\u2E00-\u2E7F]/,
       /[\u3001-\u3003]/,
       /[\u3008-\u3020]/,
-      /[\u3030]/
+      /[\u3030]/,
     ),
     Re = p(
       Te,
@@ -2391,7 +2391,7 @@ var hljs = (function () {
       /[\u1DC0-\u1DFF]/,
       /[\u20D0-\u20FF]/,
       /[\uFE00-\uFE0F]/,
-      /[\uFE20-\uFE2F]/
+      /[\uFE20-\uFE2F]/,
     ),
     De = m(Te, Re, "*"),
     Ie = p(
@@ -2405,7 +2405,7 @@ var hljs = (function () {
       /[\u2C00-\u2DFF\u2E80-\u2FFF]/,
       /[\u3004-\u3007\u3021-\u302F\u3031-\u303F\u3040-\uD7FF]/,
       /[\uF900-\uFD3D\uFD40-\uFDCF\uFDF0-\uFE1F\uFE30-\uFE44]/,
-      /[\uFE47-\uFEFE\uFF00-\uFFFD]/
+      /[\uFE47-\uFEFE\uFF00-\uFFFD]/,
     ),
     Le = p(Ie, /\d/, /[\u0300-\u036F\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F]/),
     Be = m(Ie, Le, "*"),
@@ -3373,7 +3373,7 @@ var hljs = (function () {
             /(?!switch)/,
             /(?!while)/,
             e.IDENT_RE,
-            n.lookahead(/(<[^<>]+>|)\s*\(/)
+            n.lookahead(/(<[^<>]+>|)\s*\(/),
           ),
         },
         b = [u, l, r, t, e.C_BLOCK_COMMENT_MODE, o, s],
@@ -3912,7 +3912,7 @@ var hljs = (function () {
             match: n.either(
               /^@@ +-\d+,\d+ +\+\d+,\d+ +@@/,
               /^\*\*\* +\d+,\d+ +\*\*\*\*$/,
-              /^--- +\d+,\d+ +----$/
+              /^--- +\d+,\d+ +----$/,
             ),
           },
           {
@@ -3926,7 +3926,7 @@ var hljs = (function () {
                   /^-{3}/,
                   /^\*{3} /,
                   /^\+{3}/,
-                  /^diff --git/
+                  /^diff --git/,
                 ),
                 end: /$/,
               },
@@ -4120,7 +4120,7 @@ var hljs = (function () {
               "(\\s*\\.\\s*",
               l,
               ")*",
-              n.lookahead(/\s*=\s*[^#\s]/)
+              n.lookahead(/\s*=\s*[^#\s]/),
             ),
             className: "attr",
             starts: { end: /$/, contains: [a, o, r, i, s, t] },
@@ -4528,7 +4528,7 @@ var hljs = (function () {
           returnBegin: !0,
           excludeEnd: !0,
         },
-        n.IMPORTANT
+        n.IMPORTANT,
       )
       const d = r.concat({ begin: /\{/, end: /\}/, contains: i }),
         g = {
@@ -4873,7 +4873,7 @@ var hljs = (function () {
             className: "tag",
             begin: n.concat(
               /</,
-              n.lookahead(n.concat(t, n.either(/\/>/, />/, /\s/)))
+              n.lookahead(n.concat(t, n.either(/\/>/, />/, /\s/))),
             ),
             end: /\/?>/,
             contains: [
@@ -4914,7 +4914,7 @@ var hljs = (function () {
               begin: e.regex.concat(
                 /\[.+?\]\(/,
                 /[A-Za-z][A-Za-z0-9+.-]*/,
-                /:\/\/.*?\)/
+                /:\/\/.*?\)/,
               ),
               relevance: 2,
             },
@@ -5283,7 +5283,7 @@ var hljs = (function () {
             {
               begin: n.concat(
                 /[$%@](\^\w\b|#\w+(::\w+)*|\{\w+\}|\w+(::\w*)*)/,
-                "(?![A-Za-z])(?![@$%])"
+                "(?![A-Za-z])(?![@$%])",
               ),
             },
             { begin: /[$%@][^\s\w{]/, relevance: 0 },
@@ -5300,7 +5300,7 @@ var hljs = (function () {
             r,
             /(?:\\.|[^\\\/])*?/,
             i,
-            t
+            t,
           )
         },
         d = (e, a, i) =>
@@ -5686,7 +5686,7 @@ var hljs = (function () {
               m(g).join("\\b|"),
               "|",
               m(u).join("\\b|"),
-              "\\b)"
+              "\\b)",
             ),
             a,
             n.concat(l, "*"),
@@ -6161,7 +6161,7 @@ var hljs = (function () {
         a = n.either(
           /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*[pP][+-]?\d+i?/,
           /0[xX][0-9a-fA-F]+(?:[pP][+-]?\d+)?[Li]?/,
-          /(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[Li]?/
+          /(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?[Li]?/,
         ),
         i = /[=!<>:]=|\|\||&&|:::?|<-|<<-|->>|->|\|>|[-+*\/?!$&|:<=>@^~]|\*\*/,
         r = n.either(/[()]/, /[{}]/, /\[\[/, /[[\]]/, /\\/, /,/)
@@ -6183,7 +6183,7 @@ var hljs = (function () {
                 match: /@examples/,
                 starts: {
                   end: n.lookahead(
-                    n.either(/\n^#'\s*(?=@[a-zA-Z]+)/, /\n^(?!#')/)
+                    n.either(/\n^#'\s*(?=@[a-zA-Z]+)/, /\n^(?!#')/),
                   ),
                   endsParent: !0,
                 },
@@ -6311,7 +6311,7 @@ var hljs = (function () {
             {
               begin: n.concat(
                 /<<[-~]?'?/,
-                n.lookahead(/(\w+)(?=\W)[^\n]*\n(?:[^\n]*\n)*?\s*\1\b/)
+                n.lookahead(/(\w+)(?=\W)[^\n]*\n(?:[^\n]*\n)*?\s*\1\b/),
               ),
               contains: [
                 e.END_SAME_AS_BEGIN({
@@ -7313,7 +7313,7 @@ var hljs = (function () {
             return (
               (n = n || []),
               e.map((e) =>
-                e.match(/\|\d+$/) || n.includes(e) ? e : a(e) ? e + "|0" : e
+                e.match(/\|\d+$/) || n.includes(e) ? e : a(e) ? e + "|0" : e,
               )
             )
           })(l, { when: (e) => e.length < 3 }),
@@ -7354,7 +7354,7 @@ var hljs = (function () {
               "double precision",
               "large object",
               "with timezone",
-              "without timezone"
+              "without timezone",
             ),
           },
           c,
@@ -7406,7 +7406,7 @@ var hljs = (function () {
                 ...Me.filter((e) => "string" != typeof e)
                   .concat(xe)
                   .map(we),
-                ...Oe
+                ...Oe,
               ),
             },
           ],
@@ -7534,7 +7534,7 @@ var hljs = (function () {
               match: m(
                 /(AV|CA|CF|CG|CI|CL|CM|CN|CT|MK|MP|MTK|MTL|NS|SCN|SK|UI|WK|XC)/,
                 Le,
-                "+"
+                "+",
               ),
             },
             { className: "type", match: $e, relevance: 0 },
@@ -7764,7 +7764,7 @@ var hljs = (function () {
                 n.either(a, t),
                 / +/,
                 n.either(i, r),
-                / *#/
+                / *#/,
               ),
             },
           ],

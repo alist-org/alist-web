@@ -64,7 +64,7 @@ const Preview = () => {
             type: "flv",
             url: url,
           },
-          { referrerPolicy: "same-origin" }
+          { referrerPolicy: "same-origin" },
         )
         flvPlayer.attachMediaElement(video)
         flvPlayer.load()

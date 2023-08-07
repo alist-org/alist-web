@@ -69,7 +69,7 @@ const Users = () => {
   useManageTitle("manage.sidemenu.users")
   const { to } = useRouter()
   const [getUsersLoading, getUsers] = useFetch(
-    (): PPageResp<User> => r.get("/admin/user/list")
+    (): PPageResp<User> => r.get("/admin/user/list"),
   )
   const [users, setUsers] = createSignal<User[]>([])
   const refresh = async () => {
@@ -79,10 +79,10 @@ const Users = () => {
   refresh()
 
   const [deleting, deleteUser] = useListFetch(
-    (id: number): PEmptyResp => r.post(`/admin/user/delete?id=${id}`)
+    (id: number): PEmptyResp => r.post(`/admin/user/delete?id=${id}`),
   )
   const [cancel_2faId, cancel_2fa] = useListFetch(
-    (id: number): PEmptyResp => r.post(`/admin/user/cancel_2fa?id=${id}`)
+    (id: number): PEmptyResp => r.post(`/admin/user/cancel_2fa?id=${id}`),
   )
   return (
     <VStack spacing="$2" alignItems="start" w="$full">

@@ -17,7 +17,7 @@ import {
   Icon,
 } from "@hope-ui/solid"
 import { SwitchColorMode } from "./SwitchColorMode"
-import { createMemo, For, mergeProps, Show, splitProps } from "solid-js"
+import { ComponentProps, For, mergeProps, Show } from "solid-js"
 import { AiOutlineFullscreen, AiOutlineFullscreenExit } from "solid-icons/ai"
 import { hoverColor } from "~/utils"
 
@@ -30,7 +30,7 @@ export const Error = (props: {
     {
       h: "$full",
     },
-    props
+    props,
   )
   console.log(merged.h)
   return (
@@ -91,20 +91,22 @@ export const BoxWithFullScreen = (props: Parameters<typeof Box>[0]) => {
   )
 }
 
-export const SelectWrapper = (props: {
-  value: string
-  onChange: (value: string) => void
+export function SelectWrapper<T extends string | number>(props: {
+  value: T
+  onChange: (v: T) => void
   options: {
-    value: string
+    value: T
     label?: string
   }[]
   alwaysShowBorder?: boolean
   size?: "xs" | "sm" | "md" | "lg"
-}) => {
+  w?: ComponentProps<typeof SelectTrigger>["w"]
+}) {
   return (
     <Select size={props.size} value={props.value} onChange={props.onChange}>
       <SelectTrigger
         borderColor={props.alwaysShowBorder ? "$info5" : undefined}
+        w={props.w}
       >
         <SelectValue />
         <SelectIcon />

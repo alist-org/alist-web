@@ -57,7 +57,7 @@ const Item = (props: ItemProps) => {
         {t(
           props.full_name_path ?? props.driver === "common"
             ? `storages.common.${props.name}`
-            : `drivers.${props.driver}.${props.name}`
+            : `drivers.${props.driver}.${props.name}`,
         )}
       </FormLabel>
       <Switch fallback={<Center>{t("settings.unknown_type")}</Center>}>
@@ -138,7 +138,7 @@ const Item = (props: ItemProps) => {
                             (props.driver === "common"
                               ? `storages.common.${props.name}s`
                               : `drivers.${props.driver}.${props.name}s`)) +
-                            `.${item}`
+                            `.${item}`,
                         )}
                       </SelectOptionText>
                       <SelectOptionIndicator />
@@ -155,7 +155,7 @@ const Item = (props: ItemProps) => {
           {t(
             props.driver === "common"
               ? `storages.common.${props.name}-tips`
-              : `drivers.${props.driver}.${props.name}-tips`
+              : `drivers.${props.driver}.${props.name}-tips`,
           )}
         </FormHelperText>
       </Show>

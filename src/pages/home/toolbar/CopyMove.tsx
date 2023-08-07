@@ -28,7 +28,7 @@ export const Copy = () => {
         const resp = await ok(
           pathname(),
           dst,
-          selectedObjs().map((obj) => obj.name)
+          selectedObjs().map((obj) => obj.name),
         )
         handleRespWithNotifySuccess(resp, () => {
           refresh()
@@ -62,7 +62,7 @@ export const Move = () => {
         const resp = await ok(
           pathname(),
           dst,
-          selectedObjs().map((obj) => obj.name)
+          selectedObjs().map((obj) => obj.name),
         )
         handleRespWithNotifySuccess(resp, () => {
           refresh()

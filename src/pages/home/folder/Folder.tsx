@@ -33,7 +33,7 @@ const ImageLayout = lazy(() => import("./Images"))
 const Folder = () => {
   const { rawLink } = useLink()
   const images = createMemo(() =>
-    objStore.objs.filter((obj) => obj.type === ObjType.IMAGE)
+    objStore.objs.filter((obj) => obj.type === ObjType.IMAGE),
   )
 
   let dynamicGallery: LightGallery | undefined
@@ -56,7 +56,7 @@ const Folder = () => {
     on(images, () => {
       dynamicGallery?.destroy()
       dynamicGallery = undefined
-    })
+    }),
   )
   bus.on("gallery", (name) => {
     if (!dynamicGallery) {
@@ -79,12 +79,7 @@ const Folder = () => {
           <GridLayout />
         </Match>
         <Match when={layout() === "image"}>
-          <Show
-            when={images().length > 0}
-            fallback={<Heading m="$2">{t("home.no_images")}</Heading>}
-          >
-            <ImageLayout />
-          </Show>
+          <ImageLayout images={images()} />
         </Match>
       </Switch>
       <Pager />

@@ -23,7 +23,7 @@ const TextEditor = () => {
           "File-Path": encodeURIComponent(pathname()),
           "Content-Type": content()?.contentType || "text/plain",
         },
-      })
+      }),
   )
   return (
     <MaybeLoading loading={content.loading}>

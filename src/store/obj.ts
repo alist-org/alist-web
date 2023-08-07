@@ -5,6 +5,7 @@ import { createStore, produce } from "solid-js/store"
 import { Obj, StoreObj } from "~/types"
 import { bus, log } from "~/utils"
 import { keyPressed } from "./key-event"
+import { local } from "./local_settings"
 
 export enum State {
   Initial, // Initial state
@@ -96,15 +97,15 @@ export const sortObjs = (orderBy: OrderBy, reverse?: boolean) => {
     produce((objs) =>
       objs.sort((a, b) => {
         return (reverse ? -1 : 1) * naturalSort(a[orderBy], b[orderBy])
-      })
-    )
+      }),
+    ),
   )
 }
 
 export const appendObjs = (objs: Obj[]) => {
   setObjStore(
     "objs",
-    produce((prev) => prev.push(...objs))
+    produce((prev) => prev.push(...objs)),
   )
 }
 
@@ -141,7 +142,7 @@ export const selectIndex = (index: number, checked: boolean, one?: boolean) => {
           setSelectedNum(checked ? selectedNum() + 1 : selectedNum() - 1)
         }
         obj.selected = checked
-      })
+      }),
     )
   }
   lastChecked = { index, selected: checked }
@@ -185,11 +186,11 @@ const layoutRecord: Record<string, LayoutType> = (() => {
 
 bus.on("pathname", (p) => setPathname(p))
 const [_layout, _setLayout] = createSignal<LayoutType>(
-  layoutRecord[pathname()] || "list"
+  layoutRecord[pathname()] || local["global_default_layout"],
 )
 export const layout = () => {
   const layout = layoutRecord[pathname()]
-  _setLayout(layout || "list")
+  _setLayout(layout || local["global_default_layout"])
   return _layout()
 }
 export const setLayout = (layout: LayoutType) => {
@@ -200,7 +201,7 @@ export const setLayout = (layout: LayoutType) => {
 
 const [_checkboxOpen, setCheckboxOpen] = createStorageSignal<string>(
   "checkbox-open",
-  "false"
+  "false",
 )
 export const checkboxOpen = () => _checkboxOpen() === "true"
 
@@ -211,7 +212,7 @@ export const toggleCheckbox = () => {
 export { objStore }
 // browser password
 const [_password, _setPassword] = createSignal<string>(
-  cookieStorage.getItem("browser-password") || ""
+  cookieStorage.getItem("browser-password") || "",
 )
 export { _password as password }
 export const setPassword = (password: string) => {

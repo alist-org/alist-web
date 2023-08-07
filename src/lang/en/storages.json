@@ -1,7 +1,7 @@
 {
   "common": {
     "mount_path": "Mount Path",
-    "mount_path-tips":"The path you want to mount to, it is unique and cannot be repeated",
+    "mount_path-tips": "The path you want to mount to, it is unique and cannot be repeated",
     "driver": "Driver",
     "order": "Order",
     "order-tips": "Use to sort",

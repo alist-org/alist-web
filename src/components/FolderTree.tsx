@@ -63,7 +63,7 @@ const FolderTreeNode = (props: { path: string }) => {
   const [children, setChildren] = createSignal<Obj[]>([])
   const { value, onChange, forceRoot } = useContext(context)!
   const [loading, fetchDirs] = useFetch(() =>
-    fsDirs(props.path, password(), forceRoot)
+    fsDirs(props.path, password(), forceRoot),
   )
   const load = async () => {
     if (children().length > 0) return
@@ -188,7 +188,7 @@ export const FolderChooseInput = (props: {
           placeholder={t(
             `global.${
               props.onlyFolder ? "choose_folder" : "choose_or_input_path"
-            }`
+            }`,
           )}
         />
         <Show when={!props.onlyFolder}>

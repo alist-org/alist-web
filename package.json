@@ -7,6 +7,7 @@
     "url": "https://www.nn.ci"
   },
   "description": "The front end of Alist V3",
+  "packageManager": "pnpm@8.6.10",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alist-org/alist-web.git"
@@ -28,11 +29,13 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\""
   },
   "license": "MIT",
   "devDependencies": {
     "@crowdin/cli": "^3.7.10",
+    "@types/mark.js": "^8.11.8",
     "@types/node": "^18.7.5",
     "@types/streamsaver": "^2.0.1",
     "@vitejs/plugin-legacy": "^2.0.1",
@@ -62,12 +65,14 @@
     "flv.js": "^1.6.2",
     "hls.js": "^1.2.1",
     "lightgallery": "^2.5.0",
+    "mark.js": "^8.11.1",
     "mitt": "^3.0.0",
     "rehype-katex": "^6.0.3",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "seemly": "^0.3.6",
+    "sha-anything": "^0.0.4",
     "solid-contextmenu": "0.0.2",
     "solid-icons": "^1.0.1",
     "solid-js": "^1.4.8",

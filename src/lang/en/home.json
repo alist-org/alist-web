@@ -91,7 +91,19 @@
   "local_settings": {
     "aria2_rpc_url": "Aria2 RPC URL",
     "aria2_rpc_secret": "Aria2 RPC secret",
-    "aria2_dir": "Aria2 download directory"
+    "aria2_dir": "Aria2 download directory",
+    "show_folder_in_image_view": "Show folder in image view",
+    "show_folder_in_image_view_options": {
+      "top": "Top",
+      "bottom": "Bottom",
+      "none": "None"
+    },
+    "global_default_layout": "Global default layout",
+    "global_default_layout_options": {
+      "list": "List View",
+      "grid": "Grid View",
+      "image": "Image View"
+    }
   },
   "package_download": {
     "current_status": "Current Status",
@@ -108,7 +120,12 @@
   },
   "search": {
     "search": "Search",
-    "no_result": "No result yet"
+    "no_result": "No result yet",
+    "scopes": {
+      "all": "All",
+      "folder": "Folder",
+      "file": "File"
+    }
   },
   "fetching_settings_failed": "Failed fetching settings: ",
   "get_current_user_failed": "Failed get current user: ",

@@ -25,7 +25,7 @@ const Storages = () => {
   useManageTitle("manage.sidemenu.storages")
   const { to } = useRouter()
   const [getStoragesLoading, getStorages] = useFetch(
-    (): Promise<PageResp<Storage>> => r.get("/admin/storage/list")
+    (): Promise<PageResp<Storage>> => r.get("/admin/storage/list"),
   )
   const [storages, setStorages] = createSignal<Storage[]>([])
   const refresh = async () => {

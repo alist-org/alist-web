@@ -9,7 +9,7 @@ import { operations } from "./operations"
 export const CenterIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
     name: string
-  }
+  },
 ) => {
   const index = UserPermissions.findIndex((p) => p === props.name)
   if (index !== -1 && !UserMethods.can(me(), index)) return null
@@ -44,7 +44,7 @@ export const RightIcon = <C extends ElementType = "svg">(
   props: IconProps<C> & {
     tips?: string
     icon?: IconTypes
-  }
+  },
 ) => {
   const t = useT()
   return (

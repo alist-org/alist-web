@@ -22,6 +22,7 @@ import {
   handleRespWithoutNotify,
   base_path,
   handleResp,
+  hashPwd,
 } from "~/utils"
 import { PEmptyResp, PResp, Resp } from "~/types"
 import LoginBg from "./LoginBg"
@@ -56,10 +57,10 @@ const Login = () => {
   const [useauthn, setuseauthn] = createSignal(false)
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false")
   const [loading, data] = useFetch(
-    (): Promise<Resp<{ token: string }>> =>
-      r.post("/auth/login", {
+    async (): Promise<Resp<{ token: string }>> =>
+      r.post("/auth/login/hash", {
         username: username(),
-        password: password(),
+        password: await hashPwd(password()),
         otp_code: opt(),
       }),
   )

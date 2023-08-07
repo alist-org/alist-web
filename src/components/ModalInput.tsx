@@ -10,13 +10,20 @@ import {
   Textarea,
   FormHelperText,
 } from "@hope-ui/solid"
-import { createSignal, JSXElement, Show } from "solid-js"
+import {
+  createSignal,
+  JSXElement,
+  Show,
+  createEffect,
+  onCleanup,
+} from "solid-js"
 import { useT } from "~/hooks"
 import { notify } from "~/utils"
 export type ModalInputProps = {
   opened: boolean
   onClose: () => void
   title: string
+  isRenamingFile?: boolean
   onSubmit?: (text: string) => void
   type?: string
   defaultValue?: string
@@ -27,6 +34,39 @@ export type ModalInputProps = {
 export const ModalInput = (props: ModalInputProps) => {
   const [value, setValue] = createSignal(props.defaultValue ?? "")
   const t = useT()
+
+  let inputRef: HTMLInputElement | HTMLTextAreaElement
+
+  const handleFocus = () => {
+    // Find the position of the first dot (".") in the value
+    const dotIndex = value().lastIndexOf(".")
+
+    setTimeout(() => {
+      // If a dot exists and it is not the first character, select from start to dotIndex
+      // And it must be a file, not a folder
+      if (dotIndex > 0 && props.isRenamingFile) {
+        inputRef.setSelectionRange(0, dotIndex)
+      } else {
+        // If there's no dot or it's the first character, select the entire value
+        inputRef.select()
+      }
+    }, 10) // To prevent default select behavior from interfering
+  }
+
+  createEffect(() => {
+    if (inputRef) {
+      inputRef.focus()
+      handleFocus()
+    }
+
+    // Cleanup function to clear the selection range before unmounting
+    onCleanup(() => {
+      if (inputRef) {
+        inputRef.setSelectionRange(0, 0)
+      }
+    })
+  })
+
   const submit = () => {
     if (!value()) {
       notify.warning(t("global.empty_input"))
@@ -35,6 +75,7 @@ export const ModalInput = (props: ModalInputProps) => {
     props.onSubmit?.(value())
     setValue("")
   }
+
   return (
     <Modal
       blockScrollOnMount={false}
@@ -55,9 +96,11 @@ export const ModalInput = (props: ModalInputProps) => {
                 id="modal-input"
                 type={props.type}
                 value={value()}
+                ref={(el) => (inputRef = el)}
                 onInput={(e) => {
                   setValue(e.currentTarget.value)
                 }}
+                onFocus={handleFocus}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     submit()
@@ -69,9 +112,11 @@ export const ModalInput = (props: ModalInputProps) => {
             <Textarea
               id="modal-input"
               value={value()}
+              ref={(el) => (inputRef = el)}
               onInput={(e) => {
                 setValue(e.currentTarget.value)
               }}
+              onFocus={handleFocus}
             />
           </Show>
           <Show when={props.tips}>

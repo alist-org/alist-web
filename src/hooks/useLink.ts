@@ -10,7 +10,7 @@ export const getLinkByDirAndObj = (
   dir: string,
   obj: Obj,
   type: URLType = "direct",
-  encodeAll?: boolean
+  encodeAll?: boolean,
 ) => {
   if (type !== "preview") {
     dir = pathJoin(me().base_path, dir)

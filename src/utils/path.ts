@@ -48,7 +48,7 @@ export const encodePath = (path: string, all?: boolean) => {
             .replaceAll("%", "%25")
             .replaceAll("?", "%3F")
             .replaceAll("#", "%23")
-            .replaceAll(" ", "%20")
+            .replaceAll(" ", "%20"),
     )
     .join("/")
 }

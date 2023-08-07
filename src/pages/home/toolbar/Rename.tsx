@@ -34,6 +34,7 @@ export const Rename = () => {
     <Show when={isOpen()}>
       <ModalInput
         title="home.toolbar.input_new_name"
+        isRenamingFile={!selectedObjs()[0].is_dir}
         opened={isOpen()}
         onClose={onClose}
         defaultValue={selectedObjs()[0]?.name ?? ""}
@@ -41,7 +42,7 @@ export const Rename = () => {
         onSubmit={async (name) => {
           const resp = await ok(
             pathJoin(pathname(), selectedObjs()[0].name),
-            name
+            name,
           )
           handleRespWithNotifySuccess(resp, () => {
             refresh()

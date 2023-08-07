@@ -24,6 +24,22 @@
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
+  "123PanShare": {
+    "order_by": "Order by",
+    "order_bys": {
+      "file_name": "File name",
+      "size": "Size",
+      "update_at": "Update at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id",
+    "sharekey": "Sharekey",
+    "sharepassword": "Sharepassword"
+  },
   "139Yun": {
     "authorization": "Authorization",
     "cloud_id": "Cloud id",
@@ -111,8 +127,19 @@
     "client_id-tips": "Keep it empty if you don't have one",
     "client_secret": "Client secret",
     "client_secret-tips": "Keep it empty if you don't have one",
+    "drive_type": "Drive type",
+    "drive_types": {
+      "backup": "Backup",
+      "default": "Default",
+      "resource": "Resource"
+    },
     "internal_upload": "Internal upload",
     "internal_upload-tips": "If you are using Aliyun ECS is located in Beijing, you can turn it on to boost the upload speed",
+    "livp_download_format": "Livp download format",
+    "livp_download_formats": {
+      "jpeg": "Jpeg",
+      "mov": "Mov"
+    },
     "oauth_token_url": "Oauth token url",
     "order_by": "Order by",
     "order_bys": {
@@ -181,6 +208,7 @@
     "album_id": "Album id",
     "client_id": "Client id",
     "client_secret": "Client secret",
+    "delete_origin": "Delete origin",
     "refresh_token": "Refresh token",
     "show_type": "Show type",
     "show_types": {
@@ -201,6 +229,27 @@
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"
+  },
+  "Crypt": {
+    "directory_name_encryption": "Directory name encryption",
+    "directory_name_encryptions": {
+      "false": "False",
+      "true": "True"
+    },
+    "encrypted_suffix": "Encrypted suffix",
+    "encrypted_suffix-tips": "encrypted files will have this suffix",
+    "filename_encryption": "Filename encryption",
+    "filename_encryptions": {
+      "obfuscate": "Obfuscate",
+      "off": "Off",
+      "standard": "Standard"
+    },
+    "password": "Password",
+    "password-tips": "the main password",
+    "remote_path": "Remote path",
+    "remote_path-tips": "This is where the encrypted data stores",
+    "salt": "Salt",
+    "salt-tips": "If you don't know what is salt, treat it as a second password'. Optional but recommended"
   },
   "Dropbox": {
     "client_id": "Client id",
@@ -245,10 +294,12 @@
     "root_folder_path": "Root folder path"
   },
   "Lanzou": {
+    "account": "Account",
     "baseUrl": "BaseUrl",
     "baseUrl-tips": "basic URL for file operation",
     "cookie": "Cookie",
     "cookie-tips": "about 15 days valid, ignore if shareUrl is used",
+    "password": "Password",
     "repair_file_info": "Repair file info",
     "repair_file_info-tips": "To use webdav, you need to enable it",
     "root_folder_id": "Root folder id",
@@ -257,6 +308,7 @@
     "share_password": "Share password",
     "type": "Type",
     "types": {
+      "account": "Account",
       "cookie": "Cookie",
       "url": "Url"
     }
@@ -545,6 +597,21 @@
       "sharepoint": "Sharepoint"
     }
   },
+  "WeiYun": {
+    "cookies": "Cookies",
+    "order_by": "Order by",
+    "order_bys": {
+      "name": "Name",
+      "size": "Size",
+      "updated_at": "Updated at"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "asc": "Asc",
+      "desc": "Desc"
+    },
+    "root_folder_id": "Root folder id"
+  },
   "WoPan": {
     "access_token": "Access token",
     "family_id": "Family id",
@@ -583,6 +650,7 @@
   "config": {
     "115 Cloud": {},
     "123Pan": {},
+    "123PanShare": {},
     "139Yun": {},
     "189Cloud": {
       "alert": "You can try to use 189PC driver if this driver does not work."
@@ -600,6 +668,7 @@
     "BaiduPhoto": {},
     "BaiduShare": {},
     "Cloudreve": {},
+    "Crypt": {},
     "Dropbox": {},
     "FTP": {},
     "GoogleDrive": {},
@@ -631,12 +700,14 @@
     "UrlTree": {},
     "Virtual": {},
     "WebDav": {},
+    "WeiYun": {},
     "WoPan": {},
     "YandexDisk": {}
   },
   "drivers": {
     "115 Cloud": "115 Cloud",
     "123Pan": "123Pan",
+    "123PanShare": "123PanShare",
     "139Yun": "139Yun",
     "189Cloud": "189Cloud",
     "189CloudPC": "189CloudPC",
@@ -650,6 +721,7 @@
     "BaiduPhoto": "BaiduPhoto",
     "BaiduShare": "BaiduShare",
     "Cloudreve": "Cloudreve",
+    "Crypt": "Crypt",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
@@ -679,6 +751,7 @@
     "UrlTree": "UrlTree",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
+    "WeiYun": "WeiYun",
     "WoPan": "WoPan",
     "YandexDisk": "YandexDisk"
   }
