@@ -1,7 +1,7 @@
-import { sha256 } from "sha-anything"
+import sha256 from "sha256"
 
 const hash_salt = "https://github.com/alist-org/alist"
 
-export async function hashPwd(pwd: string) {
-  return await sha256(`${pwd}-${hash_salt}`)
+export function hashPwd(pwd: string) {
+  return sha256(`${pwd}-${hash_salt}`)
 }
