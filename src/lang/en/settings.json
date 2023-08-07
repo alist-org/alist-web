@@ -84,5 +84,6 @@
   "token": "Token",
   "version": "Version",
   "video_autoplay": "Video autoplay",
-  "video_types": "Video types"
+  "video_types": "Video types",
+  "webauthn_login_enabled": "Webauthn login enabled"
 }
