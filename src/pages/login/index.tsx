@@ -60,7 +60,7 @@ const Login = () => {
     async (): Promise<Resp<{ token: string }>> =>
       r.post("/auth/login/hash", {
         username: username(),
-        password: await hashPwd(password()),
+        password: hashPwd(password()),
         otp_code: opt(),
       }),
   )
