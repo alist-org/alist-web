@@ -176,6 +176,11 @@ const Profile = () => {
               <Button
                 onClick={() => {
                   const url = r.getUri() + "/auth/sso?method=get_sso_id"
+                  const popup = window.open(
+                    url,
+                    "authPopup",
+                    "width=500,height=600"
+                  )
                 }}
               >
                 {t("users.connect_sso")}
