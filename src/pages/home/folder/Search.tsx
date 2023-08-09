@@ -206,8 +206,10 @@ const Search = () => {
   })
   const [scope, setScope] = createSignal(0)
   const scopes = ["all", "folder", "file"]
+  const [count, setcount] = createSignal(0)
 
   const search = async (page = 1) => {
+    if (page == 1) setcount(0)
     if (loading()) return
     setData({
       content: [],
@@ -221,6 +223,7 @@ const Search = () => {
       page,
     )
     handleResp(resp, (data) => {
+      setcount(data.total)
       const content = data.content
       if (!content) {
         return
@@ -304,7 +307,7 @@ const Search = () => {
                 {(item) => <SearchResult node={item} keywords={keywords()} />}
               </For>
             </VStack>
-            <Show when={data().total > 0}>
+            <Show when={count() > 0}>
               <Paginator
                 total={data().total}
                 defaultPageSize={100}
