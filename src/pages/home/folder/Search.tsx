@@ -178,6 +178,7 @@ const SearchResult = (props: { node: SearchNode; keywords: string }) => {
 }
 
 const Search = () => {
+  const pageSize = 100
   const { isOpen, onOpen, onClose, onToggle } = createDisclosure()
   const t = useT()
   const handler = (name: string) => {
@@ -206,10 +207,8 @@ const Search = () => {
   })
   const [scope, setScope] = createSignal(0)
   const scopes = ["all", "folder", "file"]
-  const [count, setcount] = createSignal(0)
 
   const search = async (page = 1) => {
-    if (page == 1) setcount(0)
     if (loading()) return
     setData({
       content: [],
@@ -221,9 +220,9 @@ const Search = () => {
       password(),
       scope(),
       page,
+      pageSize,
     )
     handleResp(resp, (data) => {
-      setcount(data.total)
       const content = data.content
       if (!content) {
         return
@@ -307,15 +306,13 @@ const Search = () => {
                 {(item) => <SearchResult node={item} keywords={keywords()} />}
               </For>
             </VStack>
-            <Show when={count() > 0}>
-              <Paginator
-                total={data().total}
-                defaultPageSize={100}
-                onChange={(page) => {
-                  search(page)
-                }}
-              />
-            </Show>
+            <Paginator
+              total={data().total}
+              defaultPageSize={pageSize}
+              onChange={(page) => {
+                search(page)
+              }}
+            />
           </VStack>
         </ModalBody>
       </ModalContent>
