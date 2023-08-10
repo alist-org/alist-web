@@ -117,6 +117,10 @@ const Login = () => {
         },
       )
     } else {
+      if (!supported()) {
+        notify.error(t("users.webauthn_not_supported"))
+        return
+      }
       if (remember() === "true") {
         localStorage.setItem("username", username())
       } else {
@@ -260,7 +264,7 @@ const Login = () => {
           <SwitchLanguageWhite />
           <SwitchColorMode />
           <SSOLogin />
-          <Show when={AuthnSignEnabled && supported()}>
+          <Show when={AuthnSignEnabled}>
             <Icon
               cursor="pointer"
               boxSize="$8"

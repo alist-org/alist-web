@@ -254,7 +254,6 @@ const Profile = () => {
       </Show>
       <Show
         when={
-          navigator.credentials &&
           !UserMethods.is_guest(me()) &&
           getSettingBool("webauthn_login_enabled")
         }
@@ -272,13 +271,22 @@ const Profile = () => {
         <Button
           loading={postregistrationloading()}
           onClick={async () => {
+            if (!supported()) {
+              notify.error(t("users.webauthn_not_supported"))
+              return
+            }
             let resp = await getauthntemp()
             handleRespWithoutNotify(resp, async (data) => {
               const options = parseCreationOptionsFromJSON(data.options)
               const session = data.session
               try {
                 const browserresponse = await create(options)
-                handleResp(await postregistration(session, browserresponse))
+                handleResp(
+                  await postregistration(session, browserresponse),
+                  () => {
+                    notify.success(t("users.add_webauthn_success"))
+                  },
+                )
               } catch (error: any) {
                 notify.error(error.message)
               }
