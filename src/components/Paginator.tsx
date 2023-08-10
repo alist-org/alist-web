@@ -19,6 +19,7 @@ export interface PaginatorProps {
   total: number
   defaultPageSize?: number
   maxShowPage?: number
+  setResetCallback?: (callback: () => void) => void
 }
 export const Paginator = (props: PaginatorProps) => {
   const merged = mergeProps(
@@ -33,6 +34,9 @@ export const Paginator = (props: PaginatorProps) => {
   const [store, setStore] = createStore({
     pageSize: merged.defaultPageSize,
     current: merged.defaultCurrent,
+  })
+  merged.setResetCallback?.(() => {
+    setStore("current", merged.defaultCurrent)
   })
   const pages = createMemo(() => {
     return Math.ceil(merged.total / store.pageSize)

@@ -84,6 +84,8 @@
       "rapid": "Rapid",
       "stream": "Stream"
     },
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "1\u003c=thread\u003c=32",
     "username": "Username",
     "validate_code": "Validate code"
   },
@@ -202,7 +204,9 @@
       "desc": "Desc"
     },
     "refresh_token": "Refresh token",
-    "root_folder_path": "Root folder path"
+    "root_folder_path": "Root folder path",
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "1\u003c=thread\u003c=32"
   },
   "BaiduPhoto": {
     "album_id": "Album id",
@@ -215,7 +219,9 @@
       "root": "Root",
       "root_only_album": "Root only album",
       "root_only_file": "Root only file"
-    }
+    },
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "1\u003c=thread\u003c=32"
   },
   "BaiduShare": {
     "BDUSS": "BDUSS",
@@ -355,7 +361,9 @@
     "password": "Password",
     "phone": "Phone",
     "root_folder_id": "Root folder id",
-    "root_folder_id-tips": "be careful when using the -11 value, some operations may cause system errors"
+    "root_folder_id-tips": "be careful when using the -11 value, some operations may cause system errors",
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "1\u003c=thread\u003c=32"
   },
   "Onedrive": {
     "chunk_size": "Chunk size",
@@ -610,7 +618,9 @@
       "asc": "Asc",
       "desc": "Desc"
     },
-    "root_folder_id": "Root folder id"
+    "root_folder_id": "Root folder id",
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "4\u003c=thread\u003c=32"
   },
   "WoPan": {
     "access_token": "Access token",
