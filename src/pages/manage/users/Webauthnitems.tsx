@@ -4,22 +4,6 @@ import { useT, useFetch } from "~/hooks"
 import { PEmptyResp } from "~/types"
 import { handleResp, notify, r } from "~/utils"
 
-const StateMap: Record<
-  string,
-  | "primary"
-  | "accent"
-  | "neutral"
-  | "success"
-  | "info"
-  | "warning"
-  | "danger"
-  | undefined
-> = {
-  errored: "danger",
-  succeeded: "success",
-  canceled: "neutral",
-}
-
 interface WebauthnItemProps {
   id: string
   fingerprint: string

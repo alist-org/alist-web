@@ -24,7 +24,7 @@ import {
   handleResp,
   hashPwd,
 } from "~/utils"
-import { PEmptyResp, PResp, Resp } from "~/types"
+import { PResp, Resp } from "~/types"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { getSetting, getSettingBool } from "~/store"

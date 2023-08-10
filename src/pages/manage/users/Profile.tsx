@@ -262,7 +262,7 @@ const Profile = () => {
         <HStack wrap="wrap" gap="$2" mt="$2">
           <MaybeLoading loading={getauthncredentialsloading()}>
             <For each={credentials()}>
-              {(item, i) => (
+              {(item) => (
                 <WebauthnItem id={item.id} fingerprint={item.fingerprint} />
               )}
             </For>
@@ -275,7 +275,7 @@ const Profile = () => {
               notify.error(t("users.webauthn_not_supported"))
               return
             }
-            let resp = await getauthntemp()
+            const resp = await getauthntemp()
             handleRespWithoutNotify(resp, async (data) => {
               const options = parseCreationOptionsFromJSON(data.options)
               const session = data.session
@@ -287,8 +287,8 @@ const Profile = () => {
                     notify.success(t("users.add_webauthn_success"))
                   },
                 )
-              } catch (error: any) {
-                notify.error(error.message)
+              } catch (error: unknown) {
+                if (error instanceof Error) notify.error(error.message)
               }
             })
           }}
