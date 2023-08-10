@@ -207,8 +207,9 @@ const Search = () => {
   })
   const [scope, setScope] = createSignal(0)
   const scopes = ["all", "folder", "file"]
-
+  let resetPaginator: () => void
   const search = async (page = 1) => {
+    page === 1 && resetPaginator?.()
     if (loading()) return
     setData({
       content: [],
@@ -312,6 +313,7 @@ const Search = () => {
               onChange={(page) => {
                 search(page)
               }}
+              setResetCallback={(reset) => (resetPaginator = reset)}
             />
           </VStack>
         </ModalBody>
