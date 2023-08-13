@@ -68,12 +68,17 @@ const Login = () => {
     (
       session: string,
       credentials: AuthenticationPublicKeyCredential,
+      username: string,
     ): Promise<Resp<{ token: string }>> =>
-      r.post("/authn/webauthn_finish_login", JSON.stringify(credentials), {
-        headers: {
-          session: session,
+      r.post(
+        "/authn/webauthn_finish_login?username=" + username,
+        JSON.stringify(credentials),
+        {
+          headers: {
+            session: session,
+          },
         },
-      }),
+      ),
   )
   interface Webauthntemp {
     session: string
@@ -130,7 +135,7 @@ const Login = () => {
       handleResp(resp, async (data) => {
         const options = parseRequestOptionsFromJSON(data.options)
         const credentials = await get(options)
-        const resp = await postauthnlogin(data.session, credentials)
+        const resp = await postauthnlogin(data.session, credentials, username())
         handleRespWithoutNotify(resp, (data) => {
           notify.success(t("login.success"))
           changeToken(data.token)
