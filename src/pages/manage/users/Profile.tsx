@@ -16,11 +16,19 @@ import {
   Text,
 } from "@hope-ui/solid"
 import { createSignal, For, JSXElement, onCleanup, Show } from "solid-js"
-import { LinkWithBase } from "~/components"
+import { LinkWithBase, MaybeLoading } from "~/components"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
 import { setMe, me, getSettingBool } from "~/store"
-import { PEmptyResp, UserMethods, UserPermissions } from "~/types"
-import { handleResp, notify, r } from "~/utils"
+import { PEmptyResp, UserMethods, UserPermissions, PResp } from "~/types"
+import { handleResp, handleRespWithoutNotify, notify, r } from "~/utils"
+import { WebauthnItem } from "./Webauthnitems"
+import {
+  RegistrationPublicKeyCredential,
+  create,
+  parseCreationOptionsFromJSON,
+  supported,
+  CredentialCreationOptionsJSON,
+} from "@github/webauthn-json/browser-ponyfill"
 
 const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
   return (
@@ -44,6 +52,38 @@ const Profile = () => {
         password: ssoID ? "" : password(),
         sso_id: me().sso_id,
       }),
+  )
+
+  interface WebauthnItem {
+    fingerprint: string
+    id: string
+  }
+
+  interface Webauthntemp {
+    session: string
+    options: CredentialCreationOptionsJSON
+  }
+
+  const [getauthncredentialsloading, getauthncredentials] = useFetch(
+    (): PResp<WebauthnItem[]> => r.get("/authn/getcredentials"),
+  )
+  const [, getauthntemp] = useFetch(
+    (): PResp<Webauthntemp> => r.get("/authn/webauthn_begin_registration"),
+  )
+  const [postregistrationloading, postregistration] = useFetch(
+    (
+      session: string,
+      credentials: RegistrationPublicKeyCredential,
+    ): PEmptyResp =>
+      r.post(
+        "/authn/webauthn_finish_registration",
+        JSON.stringify(credentials),
+        {
+          headers: {
+            session: session,
+          },
+        },
+      ),
   )
   const saveMe = async (ssoID?: boolean) => {
     if (password() && password() !== confirmPassword()) {
@@ -72,6 +112,18 @@ const Profile = () => {
   onCleanup(() => {
     window.removeEventListener("message", messageEvent)
   })
+  const [credentials, setcredentials] = createSignal<WebauthnItem[]>([])
+  const initauthnEdit = async () => {
+    const resp = await getauthncredentials()
+    handleRespWithoutNotify(resp, setcredentials)
+  }
+  if (
+    supported() &&
+    !UserMethods.is_guest(me()) &&
+    getSettingBool("webauthn_login_enabled")
+  ) {
+    initauthnEdit()
+  }
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
@@ -199,6 +251,50 @@ const Profile = () => {
             </Button>
           </Show>
         </HStack>
+      </Show>
+      <Show
+        when={
+          !UserMethods.is_guest(me()) &&
+          getSettingBool("webauthn_login_enabled")
+        }
+      >
+        <Heading>{t("users.webauthn")}</Heading>
+        <HStack wrap="wrap" gap="$2" mt="$2">
+          <MaybeLoading loading={getauthncredentialsloading()}>
+            <For each={credentials()}>
+              {(item) => (
+                <WebauthnItem id={item.id} fingerprint={item.fingerprint} />
+              )}
+            </For>
+          </MaybeLoading>
+        </HStack>
+        <Button
+          loading={postregistrationloading()}
+          onClick={async () => {
+            if (!supported()) {
+              notify.error(t("users.webauthn_not_supported"))
+              return
+            }
+            const resp = await getauthntemp()
+            handleRespWithoutNotify(resp, async (data) => {
+              const options = parseCreationOptionsFromJSON(data.options)
+              const session = data.session
+              try {
+                const browserresponse = await create(options)
+                handleResp(
+                  await postregistration(session, browserresponse),
+                  () => {
+                    notify.success(t("users.add_webauthn_success"))
+                  },
+                )
+              } catch (error: unknown) {
+                if (error instanceof Error) notify.error(error.message)
+              }
+            })
+          }}
+        >
+          {t("users.add_webauthn")}
+        </Button>
       </Show>
       <HStack wrap="wrap" gap="$2" mt="$2">
         <For each={UserPermissions}>

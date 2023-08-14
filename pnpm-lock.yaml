@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@github/webauthn-json':
+    specifier: ^2.1.1
+    version: 2.1.1
   '@hope-ui/solid':
     specifier: 0.6.7
     version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)
@@ -487,6 +490,11 @@ packages:
     resolution: {integrity: sha512-0Ulu3B/dqQplUUSqnTx0foSrlYuMN+GTtlJWvNJwt6Fr7/PqmlR/Y08o6/+bxDWr6p3roBJRaQ51MDZsNmEhhw==}
     dependencies:
       '@floating-ui/core': 0.6.2
+    dev: false
+
+  /@github/webauthn-json@2.1.1:
+    resolution: {integrity: sha512-XrftRn4z75SnaJOmZQbt7Mk+IIjqVHw+glDGOxuHwXkZBZh/MBoRS7MHjSZMDaLhT4RjN2VqiEU7EOYleuJWSQ==}
+    hasBin: true
     dev: false
 
   /@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12):

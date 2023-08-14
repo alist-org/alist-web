@@ -38,5 +38,9 @@
   "modify_nothing": "So you cannot modify anything in the manage page.",
   "sso_login": "Single sign-on Login",
   "connect_sso": "Connect Single sign-on Platform",
-  "disconnect_sso": "Disconnect Single sign-on Platform"
+  "disconnect_sso": "Disconnect Single sign-on Platform",
+  "webauthn": "WebAuthn",
+  "add_webauthn": "Add a Webauthn credential",
+  "add_webauthn_success": "Webauthn credential successfully added!",
+  "webauthn_not_supported": "Webauthn is not supported in your browser or you are in an unsafe origin"
 }
