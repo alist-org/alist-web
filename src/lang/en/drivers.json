@@ -233,6 +233,7 @@
   "Cloudreve": {
     "address": "Address",
     "cookie": "Cookie",
+    "custom_ua": "Custom ua",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"
