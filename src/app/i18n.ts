@@ -24,8 +24,8 @@ const defaultLang =
   )?.code ||
   languages.find(
     (lang) =>
-      lang.code.toLowerCase().split("_")[0] ===
-      navigator.language.toLowerCase().split("_")[0],
+      lang.code.toLowerCase().split("-")[0] ===
+      navigator.language.toLowerCase().split("-")[0],
   )?.code ||
   "en"
 
