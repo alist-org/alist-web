@@ -7,6 +7,7 @@ import { objStore, userCan } from "~/store"
 import { PEmptyResp } from "~/types"
 import { handleResp, notify, r } from "~/utils"
 
+// TODO add encoding select
 const TextEditor = () => {
   const [content] = useFetchText()
   const { colorMode } = useColorMode()

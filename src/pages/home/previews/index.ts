@@ -32,11 +32,6 @@ const previews: Preview[] = [
     component: lazy(() => import("./markdown")),
   },
   {
-    name: "Markdown_GB2312",
-    type: ObjType.TEXT,
-    component: lazy(() => import("./Markdown_GB2312")),
-  },
-  {
     name: "Markdown with word wrap",
     type: ObjType.TEXT,
     component: lazy(() => import("./markdown_with_word_wrap")),

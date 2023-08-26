@@ -8,7 +8,6 @@ import {
   FsSearchResp,
   RenameObj,
 } from "~/types"
-import { helper } from "~/utils"
 import { r } from "."
 
 export const fsGet = (
@@ -117,9 +116,8 @@ export const offlineDownload = (
 export const fetchText = async (
   url: string,
   ts = true,
-  needGb2312Decoding: boolean,
 ): Promise<{
-  content: string
+  content: ArrayBuffer | string
   contentType?: string
 }> => {
   try {
@@ -127,25 +125,20 @@ export const fetchText = async (
       responseType: "blob",
       params: ts
         ? {
-          ts: new Date().getTime(),
-        }
+            ts: new Date().getTime(),
+          }
         : undefined,
     })
-    let content
-    if (needGb2312Decoding) {
-      content = await helper(url)
-    } else {
-      content = await resp.data.text()
-    }
+    const content = await resp.data.arrayBuffer()
     const contentType = resp.headers["content-type"]
     return { content, contentType }
   } catch (e) {
     return ts
-      ? await fetchText(url, false, needGb2312Decoding)
+      ? await fetchText(url, false)
       : {
-        content: `Failed to fetch ${url}: ${e}`,
-        contentType: "",
-      }
+          content: `Failed to fetch ${url}: ${e}`,
+          contentType: "",
+        }
   }
 }
 
