@@ -8,6 +8,7 @@ import {
   FsSearchResp,
   RenameObj,
 } from "~/types"
+import { helper } from "~/utils"
 import { r } from "."
 
 export const fsGet = (
@@ -113,28 +114,10 @@ export const offlineDownload = (
   return r.post(`/fs/add_${type}`, { path, urls })
 }
 
-export const helper = async (url: string) =>{
-  try {
-    const resp = await axios.get(url, {
-      responseType: 'arraybuffer', // 使用 arraybuffer 获取二进制数据
-    })
-
-    const gb2312ContentBuffer = resp.data
-    const gb2312Decoder = new TextDecoder('gb2312') // 创建 GB2312 编码的 TextDecoder 实例
-
-    const gb2312Text = gb2312Decoder.decode(gb2312ContentBuffer) // 解码为 GB2312 编码的文本
-    return gb2312Text // 返回 GB2312 编码的文本
-
-  } catch (e) {
-    console.error(e)
-    return ''
-  }
-}
-
 export const fetchText = async (
   url: string,
   ts = true,
-  flag: boolean,
+  needGb2312Decoding: boolean,
 ): Promise<{
   content: string
   contentType?: string
@@ -149,7 +132,7 @@ export const fetchText = async (
         : undefined,
     })
     let content
-    if (flag) {
+    if (needGb2312Decoding) {
       content = await helper(url)
     } else {
       content = await resp.data.text()
@@ -158,7 +141,7 @@ export const fetchText = async (
     return { content, contentType }
   } catch (e) {
     return ts
-      ? await fetchText(url, false, flag)
+      ? await fetchText(url, false, needGb2312Decoding)
       : {
         content: `Failed to fetch ${url}: ${e}`,
         contentType: "",

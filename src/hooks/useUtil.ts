@@ -25,10 +25,10 @@ export const useUtil = () => {
   }
 }
 
-export const useFetchText = (flag = false) => {
+export const useFetchText = (needGb2312Decoding = false) => {
   const { proxyLink } = useLink()
   const fetchContent = async () => {
-    return fetchText(proxyLink(objStore.obj, true), true, flag)
+    return fetchText(proxyLink(objStore.obj, true), true, needGb2312Decoding)
   }
   return createResource("", fetchContent)
 }

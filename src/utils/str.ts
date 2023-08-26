@@ -1,3 +1,4 @@
+import axios, { CancelToken } from "axios"
 export const firstUpperCase = (str: string) => {
   if (!str || str.length === 0) {
     return ""
@@ -114,4 +115,22 @@ export const safeBase64 = (base64: string) => {
 
 export const safeBtoa = (str: string) => {
   return safeBase64(window.btoa(str))
+}
+
+export const helper = async (url: string) => {
+  try {
+    const resp = await axios.get(url, {
+      responseType: 'arraybuffer', // 使用 arraybuffer 获取二进制数据
+    })
+
+    const gb2312ContentBuffer = resp.data
+    const gb2312Decoder = new TextDecoder('gb2312') // 创建 GB2312 编码的 TextDecoder 实例
+
+    const gb2312Text = gb2312Decoder.decode(gb2312ContentBuffer) // 解码为 GB2312 编码的文本
+    return gb2312Text // 返回 GB2312 编码的文本
+
+  } catch (e) {
+    console.error(e)
+    return ''
+  }
 }

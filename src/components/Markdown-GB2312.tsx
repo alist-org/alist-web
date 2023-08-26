@@ -1,4 +1,3 @@
-// @ts-ignore
 import { hljs } from "./highlight.js"
 import SolidMarkdown from "solid-markdown"
 import remarkGfm from "remark-gfm"
