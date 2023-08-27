@@ -33,10 +33,10 @@ export const Markdown = (props: {
   const [show, setShow] = createSignal(true)
   const { isString, text } = useParseText(props.children)
   const convertToMd = (content: string) => {
-    if (!props.ext || props.ext === "md") {
-      return "```" + props.ext + "\n" + content + "\n```"
+    if (!props.ext || props.ext.toLocaleLowerCase() === "md") {
+      return content
     }
-    return content
+    return "```" + props.ext + "\n" + content + "\n```"
   }
   const md = createMemo(() => convertToMd(text(encoding())))
   createEffect(
