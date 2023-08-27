@@ -15,6 +15,7 @@ export const StreamUpload: Upload = async (
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": file.type || "application/octet-stream",
+      "Last-Modified": file.lastModified,
       Password: password(),
     },
     onUploadProgress: (progressEvent) => {

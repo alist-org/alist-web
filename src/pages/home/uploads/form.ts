@@ -17,6 +17,7 @@ export const FormUpload: Upload = async (
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": "multipart/form-data",
+      "Last-Modified": file.lastModified,
       Password: password(),
     },
     onUploadProgress: (progressEvent) => {
