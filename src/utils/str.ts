@@ -1,4 +1,3 @@
-import axios from "axios"
 export const firstUpperCase = (str: string) => {
   if (!str || str.length === 0) {
     return ""
