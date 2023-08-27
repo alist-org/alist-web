@@ -1,5 +1,5 @@
 import copy from "copy-to-clipboard"
-import { createMemo, createResource } from "solid-js"
+import { createResource } from "solid-js"
 import { getHideFiles, objStore } from "~/store"
 import { Obj } from "~/types"
 import { decodeText, fetchText, notify, pathJoin } from "~/utils"
