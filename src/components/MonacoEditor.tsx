@@ -50,6 +50,9 @@ export const MonacoEditor = (props: MonacoEditorProps) => {
       props.onChange?.(monacoEditor.getValue())
     })
   })
+  createEffect(() => {
+    monacoEditor.setValue(props.value)
+  })
 
   createEffect(() => {
     monaco.editor.setTheme(props.theme)

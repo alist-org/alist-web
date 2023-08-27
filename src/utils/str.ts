@@ -115,3 +115,15 @@ export const safeBase64 = (base64: string) => {
 export const safeBtoa = (str: string) => {
   return safeBase64(window.btoa(str))
 }
+
+export const decodeText = (data: BufferSource, encoding?: string) => {
+  const textDecoder = new TextDecoder(encoding)
+  const text = textDecoder.decode(data)
+  return text
+}
+
+// export function encodeText(text: string) {
+//   const textEncoder = new TextEncoder()
+//   const data = textEncoder.encode(text)
+//   return data
+// }

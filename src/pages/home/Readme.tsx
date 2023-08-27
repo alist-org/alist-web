@@ -37,7 +37,7 @@ export const Readme = () => {
   )
   const fetchContent = async (readme: string) => {
     let res = {
-      content: readme,
+      content: readme as string | ArrayBuffer,
     }
     if (/^https?:\/\//g.test(readme)) {
       res = await fetchText(readme)

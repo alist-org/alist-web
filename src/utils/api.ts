@@ -117,7 +117,7 @@ export const fetchText = async (
   url: string,
   ts = true,
 ): Promise<{
-  content: string
+  content: ArrayBuffer | string
   contentType?: string
 }> => {
   try {
@@ -129,7 +129,7 @@ export const fetchText = async (
           }
         : undefined,
     })
-    const content = await resp.data.text()
+    const content = await resp.data.arrayBuffer()
     const contentType = resp.headers["content-type"]
     return { content, contentType }
   } catch (e) {

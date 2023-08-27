@@ -2,7 +2,7 @@ import copy from "copy-to-clipboard"
 import { createResource } from "solid-js"
 import { getHideFiles, objStore } from "~/store"
 import { Obj } from "~/types"
-import { fetchText, notify, pathJoin } from "~/utils"
+import { decodeText, fetchText, notify, pathJoin } from "~/utils"
 import { useT, useLink, useRouter } from "."
 
 export const useUtil = () => {
@@ -25,10 +25,27 @@ export const useUtil = () => {
   }
 }
 
-export const useFetchText = () => {
+export function useFetchText() {
   const { proxyLink } = useLink()
   const fetchContent = async () => {
     return fetchText(proxyLink(objStore.obj, true))
   }
   return createResource("", fetchContent)
+}
+
+export function useParseText(data?: string | ArrayBuffer) {
+  const isString = typeof data === "string"
+  const text = (encoding = "utf-8") => {
+    if (!data) {
+      return ""
+    }
+    if (isString) {
+      return data as string
+    }
+    return decodeText(data as ArrayBuffer, encoding)
+  }
+  return {
+    isString,
+    text,
+  }
 }
