@@ -7,7 +7,7 @@ import { UserMethods, UserRole } from "~/types"
 import { me } from "~/store"
 import { AnchorWithBase } from "~/components"
 import { Link } from "@solidjs/router"
-import { hoverColor } from "~/utils"
+import { hoverColor, joinBase } from "~/utils"
 import { IconTypes } from "solid-icons"
 
 export interface SideMenuItemProps {
@@ -54,7 +54,11 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
         onClose()
         if (props.refresh) {
           e.stopPropagation?.()
-          window.open(props.to, "_self")
+          let to = props.to
+          if (!to.startsWith("http")) {
+            to = joinBase(to)
+          }
+          window.open(to, "_self")
         }
       }}
       w="$full"
