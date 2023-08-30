@@ -575,6 +575,7 @@
     "root_folder_id": "Root folder id"
   },
   "USS": {
+    "anti_theft_chain_token": "Anti theft chain token",
     "bucket": "Bucket",
     "endpoint": "Endpoint",
     "operator_name": "Operator name",
