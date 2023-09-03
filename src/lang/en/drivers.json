@@ -245,7 +245,14 @@
       "true": "True"
     },
     "encrypted_suffix": "Encrypted suffix",
-    "encrypted_suffix-tips": "encrypted files will have this suffix",
+    "encrypted_suffix-tips": "for advanced user only! encrypted files will have this suffix",
+    "filename_encoding": "Filename encoding",
+    "filename_encoding-tips": "for advanced user only!",
+    "filename_encodings": {
+      "base32": "Base32",
+      "base32768": "Base32768",
+      "base64": "Base64"
+    },
     "filename_encryption": "Filename encryption",
     "filename_encryptions": {
       "obfuscate": "Obfuscate",
@@ -257,7 +264,7 @@
     "remote_path": "Remote path",
     "remote_path-tips": "This is where the encrypted data stores",
     "salt": "Salt",
-    "salt-tips": "If you don't know what is salt, treat it as a second password'. Optional but recommended"
+    "salt-tips": "If you don't know what is salt, treat it as a second password. Optional but recommended"
   },
   "Dropbox": {
     "client_id": "Client id",
