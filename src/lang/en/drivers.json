@@ -72,6 +72,7 @@
       "desc": "Desc"
     },
     "password": "Password",
+    "rapid_upload": "Rapid upload",
     "root_folder_id": "Root folder id",
     "type": "Type",
     "types": {
