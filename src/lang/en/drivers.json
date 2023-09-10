@@ -24,6 +24,14 @@
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
+  "123PanLink": {
+    "origin_urls": "Origin urls",
+    "origin_urls-tips": "structure:FolderName:\n  [FileSize:][Modified:]Url",
+    "private_key": "Private key",
+    "uid": "Uid",
+    "valid_duration": "Valid duration",
+    "valid_duration-tips": "minutes"
+  },
   "123PanShare": {
     "order_by": "Order by",
     "order_bys": {
@@ -671,6 +679,7 @@
   "config": {
     "115 Cloud": {},
     "123Pan": {},
+    "123PanLink": {},
     "123PanShare": {},
     "139Yun": {},
     "189Cloud": {
@@ -728,6 +737,7 @@
   "drivers": {
     "115 Cloud": "115 Cloud",
     "123Pan": "123Pan",
+    "123PanLink": "123PanLink",
     "123PanShare": "123PanShare",
     "139Yun": "139Yun",
     "189Cloud": "189Cloud",
