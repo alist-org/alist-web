@@ -3,7 +3,9 @@ import {
   Box,
   Button,
   HStack,
+  Td,
   Text,
+  Tr,
   useColorModeValue,
   VStack,
 } from "@hope-ui/solid"
@@ -18,7 +20,7 @@ interface StorageProps {
   refresh: () => void
 }
 
-export const StorageC = (props: StorageProps) => {
+function StorageOp(props: StorageProps) {
   const t = useT()
   const { to } = useRouter()
   const [deleteLoading, deleteStorage] = useFetch(
@@ -32,6 +34,44 @@ export const StorageC = (props: StorageProps) => {
         }`,
       ),
   )
+  return (
+    <>
+      <Button
+        onClick={() => {
+          to(`/@manage/storages/edit/${props.storage.id}`)
+        }}
+      >
+        {t("global.edit")}
+      </Button>
+      <Button
+        loading={enableOrDisableLoading()}
+        colorScheme={props.storage.disabled ? "success" : "warning"}
+        onClick={async () => {
+          const resp = await enableOrDisable()
+          handleRespWithNotifySuccess(resp, () => {
+            props.refresh()
+          })
+        }}
+      >
+        {t(`global.${props.storage.disabled ? "enable" : "disable"}`)}
+      </Button>
+      <DeletePopover
+        name={props.storage.mount_path}
+        loading={deleteLoading()}
+        onClick={async () => {
+          const resp = await deleteStorage()
+          handleResp(resp, () => {
+            notify.success(t("global.delete_success"))
+            props.refresh()
+          })
+        }}
+      />
+    </>
+  )
+}
+
+export function StorageGridItem(props: StorageProps) {
+  const t = useT()
   return (
     <VStack
       w="$full"
@@ -68,37 +108,26 @@ export const StorageC = (props: StorageProps) => {
       </HStack>
       <Text css={{ wordBreak: "break-all" }}>{props.storage.remark}</Text>
       <HStack spacing="$2">
-        <Button
-          onClick={() => {
-            to(`/@manage/storages/edit/${props.storage.id}`)
-          }}
-        >
-          {t("global.edit")}
-        </Button>
-        <Button
-          loading={enableOrDisableLoading()}
-          colorScheme={props.storage.disabled ? "success" : "warning"}
-          onClick={async () => {
-            const resp = await enableOrDisable()
-            handleRespWithNotifySuccess(resp, () => {
-              props.refresh()
-            })
-          }}
-        >
-          {t(`global.${props.storage.disabled ? "enable" : "disable"}`)}
-        </Button>
-        <DeletePopover
-          name={props.storage.mount_path}
-          loading={deleteLoading()}
-          onClick={async () => {
-            const resp = await deleteStorage()
-            handleResp(resp, () => {
-              notify.success(t("global.delete_success"))
-              props.refresh()
-            })
-          }}
-        />
+        <StorageOp {...props} />
       </HStack>
     </VStack>
+  )
+}
+
+export function StorageListItem(props: StorageProps) {
+  const t = useT()
+  return (
+    <Tr>
+      <Td>{props.storage.mount_path}</Td>
+      <Td>{t(`drivers.drivers.${props.storage.driver}`)}</Td>
+      <Td>{props.storage.order}</Td>
+      <Td>{props.storage.status}</Td>
+      <Td>{props.storage.remark}</Td>
+      <Td>
+        <HStack spacing="$2">
+          <StorageOp {...props} />
+        </HStack>
+      </Td>
+    </Tr>
   )
 }

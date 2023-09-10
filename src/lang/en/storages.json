@@ -38,6 +38,7 @@
   "other": {
     "start_load_success": "Start loading",
     "load_all": "Reload All",
-    "filter_by_driver": "Filter by driver"
+    "filter_by_driver": "Filter by driver",
+    "table_layout": "Table layout"
   }
 }
