@@ -7,14 +7,7 @@ import reMarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import "./markdown.css"
 import "./katex.css"
-import {
-  Show,
-  createEffect,
-  createMemo,
-  createSignal,
-  on,
-  onMount,
-} from "solid-js"
+import { Show, createEffect, createMemo, createSignal, on } from "solid-js"
 import { clsx } from "clsx"
 import { Box } from "@hope-ui/solid"
 import { useParseText } from "~/hooks"
@@ -25,10 +18,6 @@ export const Markdown = (props: {
   class?: string
   ext?: string
 }) => {
-  onMount(() => {
-    hljs.highlightAll()
-    window.onMDRender && window.onMDRender()
-  })
   const [encoding, setEncoding] = createSignal<string>("utf-8")
   const [show, setShow] = createSignal(true)
   const { isString, text } = useParseText(props.children)
@@ -44,6 +33,8 @@ export const Markdown = (props: {
       setShow(false)
       setTimeout(() => {
         setShow(true)
+        hljs.highlightAll()
+        window.onMDRender && window.onMDRender()
       })
     }),
   )
