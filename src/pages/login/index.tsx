@@ -126,6 +126,7 @@ const Login = () => {
         notify.error(t("users.webauthn_not_supported"))
         return
       }
+      changeToken()
       if (remember() === "true") {
         localStorage.setItem("username", username())
       } else {
