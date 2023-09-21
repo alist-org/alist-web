@@ -10,7 +10,13 @@ import { onCleanup } from "solid-js"
 const SSOLogin = () => {
   const ssoSignEnabled = getSettingBool("sso_login_enabled")
   const loginPlatform = getSetting("sso_login_platform")
+  const usecompatibility = getSettingBool("sso_compatibility_mode")
   const { searchParams, to } = useRouter()
+  const token = searchParams["token"]
+  if (token != undefined && token != "") {
+    changeToken(token)
+    to(decodeURIComponent(searchParams.redirect || base_path || "/"), true)
+  }
   function messageEvent(event: MessageEvent) {
     const data = event.data
     if (data.token) {
@@ -25,7 +31,11 @@ const SSOLogin = () => {
   if (ssoSignEnabled) {
     const login = () => {
       const url = r.getUri() + "/auth/sso?method=sso_get_token"
-      const popup = window.open(url, "authPopup", "width=500,height=600")
+      if (usecompatibility) {
+        window.location.href = url
+        return
+      }
+      window.open(url, "authPopup", "width=500,height=600")
     }
     let icon
     switch (loginPlatform) {

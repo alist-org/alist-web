@@ -80,6 +80,7 @@
     "OIDC": "OIDC"
   },
   "sso_organization_name": "Sso organization name",
+  "sso_compatibility_mode": "Sso compatibility mode (Use redirect instead of popup to support certain services)",
   "text_types": "Text types",
   "token": "Token",
   "version": "Version",
