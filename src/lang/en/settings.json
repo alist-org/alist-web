@@ -65,6 +65,7 @@
   "sso_auto_register": "Sso auto register",
   "sso_client_id": "Sso client id",
   "sso_client_secret": "Sso client secret",
+  "sso_compatibility_mode": "Sso compatibility mode",
   "sso_default_dir": "Sso default dir",
   "sso_default_permission": "Sso default permission",
   "sso_endpoint_name": "Sso endpoint name",
@@ -80,7 +81,6 @@
     "OIDC": "OIDC"
   },
   "sso_organization_name": "Sso organization name",
-  "sso_compatibility_mode": "Sso compatibility mode (Use redirect instead of popup to support certain services)",
   "text_types": "Text types",
   "token": "Token",
   "version": "Version",
