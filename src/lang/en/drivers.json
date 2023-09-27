@@ -273,7 +273,9 @@
     "remote_path": "Remote path",
     "remote_path-tips": "This is where the encrypted data stores",
     "salt": "Salt",
-    "salt-tips": "If you don't know what is salt, treat it as a second password. Optional but recommended"
+    "salt-tips": "If you don't know what is salt, treat it as a second password. Optional but recommended",
+    "thumbnail": "Thumbnail",
+    "thumbnail-tips": "enable thumbnail which pre-generated under .thumbnails folder"
   },
   "Dropbox": {
     "client_id": "Client id",
