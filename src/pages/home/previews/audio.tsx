@@ -39,7 +39,7 @@ const Preview = () => {
       mini: false,
       autoplay: getSettingBool("audio_autoplay"),
       loop: "all",
-      order: "random",
+      order: "list",
       preload: "auto",
       volume: 0.7,
       mutex: true,
