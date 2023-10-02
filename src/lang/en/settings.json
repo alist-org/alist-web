@@ -80,6 +80,7 @@
     "Microsoft": "Microsoft",
     "OIDC": "OIDC"
   },
+  "sso_oidc_username_key": "Sso oidc username key",
   "sso_organization_name": "Sso organization name",
   "text_types": "Text types",
   "token": "Token",
