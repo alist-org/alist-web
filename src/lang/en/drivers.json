@@ -388,6 +388,8 @@
     "chunk_size": "Chunk size",
     "client_id": "Client id",
     "client_secret": "Client secret",
+    "custom_host": "Custom host",
+    "custom_host-tips": "Custom host for onedrive download link",
     "is_sharepoint": "Is sharepoint",
     "redirect_uri": "Redirect uri",
     "refresh_token": "Refresh token",
@@ -405,6 +407,8 @@
     "chunk_size": "Chunk size",
     "client_id": "Client id",
     "client_secret": "Client secret",
+    "custom_host": "Custom host",
+    "custom_host-tips": "Custom host for onedrive download link",
     "email": "Email",
     "region": "Region",
     "regions": {
