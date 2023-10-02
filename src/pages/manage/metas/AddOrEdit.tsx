@@ -96,6 +96,8 @@ const AddOrEdit = () => {
     h_sub: false,
     readme: "",
     r_sub: false,
+    header: "",
+    header_sub: false,
   })
   const [metaLoading, loadMeta] = useFetch(
     (): PResp<Meta> => r.get(`/admin/meta/get?id=${id}`),
@@ -137,12 +139,15 @@ const AddOrEdit = () => {
           />
         </FormControl> */}
         <For
-          each={[
-            { name: "password", type: "string" },
-            { name: "write", type: "bool" },
-            { name: "hide", type: "text", help: true },
-            { name: "readme", type: "text", help: true },
-          ]}
+          each={
+            [
+              { name: "password", type: "string", sub: "p_sub" },
+              { name: "write", type: "bool", sub: "w_sub" },
+              { name: "hide", type: "text", sub: "h_sub", help: true },
+              { name: "header", type: "text", sub: "header_sub", help: true },
+              { name: "readme", type: "text", sub: "r_sub", help: true },
+            ] as const
+          }
         >
           {(item) => {
             return (
@@ -154,10 +159,8 @@ const AddOrEdit = () => {
                 onChange={(val: any): void =>
                   setMeta(item.name as keyof Meta, val)
                 }
-                sub={meta[`${item.name[0]}_sub` as keyof Meta] as boolean}
-                onSub={(val: boolean): void =>
-                  setMeta(`${item.name[0]}_sub` as keyof Meta, val)
-                }
+                sub={meta[item.sub] as boolean}
+                onSub={(val: boolean): void => setMeta(item.sub, val)}
                 help={item.help}
               />
             )

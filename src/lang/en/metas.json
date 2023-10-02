@@ -4,7 +4,9 @@
   "write": "Write",
   "hide": "Hide",
   "readme": "Readme",
+  "readme_help": "Render a markdown at the bottom, support content or link",
+  "header": "Header",
+  "header_help": "Render a markdown at the top, support content or link",
   "apply_sub": "Apply to sub folder",
-  "hide_help": "One regular expression per line",
-  "readme_help": "Support markdown content or markdown link"
+  "hide_help": "One regular expression per line"
 }
