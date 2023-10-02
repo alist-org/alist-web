@@ -148,6 +148,7 @@ export const usePath = () => {
           handleFolder(path, globalPage)
         } else {
           ObjStore.setReadme(data.readme)
+          ObjStore.setHeader(data.header)
           ObjStore.setRelated(data.related ?? [])
           ObjStore.setRawUrl(data.raw_url)
           ObjStore.setState(State.File)
@@ -184,6 +185,7 @@ export const usePath = () => {
           ObjStore.setTotal(data.total)
         }
         ObjStore.setReadme(data.readme)
+        ObjStore.setHeader(data.header)
         ObjStore.setWrite(data.write)
         ObjStore.setProvider(data.provider)
         ObjStore.setState(State.Folder)

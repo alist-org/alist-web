@@ -27,6 +27,7 @@ const [objStore, setObjStore] = createStore<{
   write?: boolean
 
   readme: string
+  header: string
   provider: string
   // pageIndex: number;
   // pageSize: number;
@@ -41,6 +42,7 @@ const [objStore, setObjStore] = createStore<{
   total: 0,
 
   readme: "",
+  header: "",
   provider: "",
   // pageIndex: 1,
   // pageSize: 50,
@@ -72,6 +74,7 @@ export const ObjStore = {
     setObjStore("total", total)
   },
   setReadme: (readme: string) => setObjStore("readme", readme),
+  setHeader: (header: string) => setObjStore("header", header),
   setRelated: (related: Obj[]) => setObjStore("related", related),
   setWrite: (write: boolean) => setObjStore("write", write),
   // setGetResp: (resp: FsGetResp) => {
