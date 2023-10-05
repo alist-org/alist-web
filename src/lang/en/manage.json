@@ -13,15 +13,14 @@
     "profile": "Profile",
     "about": "About",
     "tasks": "Tasks",
-    "aria2": "Aria2",
     "upload": "Upload",
     "copy": "Copy",
     "backup-restore": "Backup & Restore",
     "home": "Home",
     "indexes": "Indexes",
     "sso": "Single Sign-on",
-    "qbit": "qBittorrent",
-    "docs": "Documentation"
+    "docs": "Documentation",
+    "offline_download": "Offline Download"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",

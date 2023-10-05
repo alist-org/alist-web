@@ -9,7 +9,6 @@ import {
   BsMedium,
   BsFingerprint,
   BsFront,
-  BsCloudArrowDownFill,
   BsCloudUploadFill,
   BsSearch,
 } from "solid-icons/bs"
@@ -17,7 +16,7 @@ import { FiLogIn } from "solid-icons/fi"
 import { SiMetabase } from "solid-icons/si"
 import { CgDatabase } from "solid-icons/cg"
 import { OcWorkflow2 } from "solid-icons/oc"
-import { IoCopy, IoHome } from "solid-icons/io"
+import { IoCopy, IoHome, IoMagnetOutline } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
 import { FaBrandsQuinscape, FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
@@ -86,17 +85,23 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/@manage/tasks",
     children: [
       {
-        title: "manage.sidemenu.aria2",
-        icon: BsCloudArrowDownFill,
+        title: "manage.sidemenu.offline_download",
+        icon: IoMagnetOutline,
         to: "/@manage/tasks/aria2",
-        component: lazy(() => import("./tasks/Aria2")),
+        component: lazy(() => import("./tasks/offline_download")),
       },
-      {
-        title: "manage.sidemenu.qbit",
-        icon: FaBrandsQuinscape,
-        to: "/@manage/tasks/qbit",
-        component: lazy(() => import("./tasks/Qbit")),
-      },
+      // {
+      //   title: "manage.sidemenu.aria2",
+      //   icon: BsCloudArrowDownFill,
+      //   to: "/@manage/tasks/aria2",
+      //   component: lazy(() => import("./tasks/Aria2")),
+      // },
+      // {
+      //   title: "manage.sidemenu.qbit",
+      //   icon: FaBrandsQuinscape,
+      //   to: "/@manage/tasks/qbit",
+      //   component: lazy(() => import("./tasks/Qbit")),
+      // },
       {
         title: "manage.sidemenu.upload",
         icon: BsCloudUploadFill,
