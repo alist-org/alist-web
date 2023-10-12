@@ -2,6 +2,8 @@
   "115 Cloud": {
     "cookie": "Cookie",
     "cookie-tips": "one of QR code token and cookie required",
+    "limit_rate": "Limit rate",
+    "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
     "page_size": "Page size",
     "page_size-tips": "list api per page size of 115 driver",
     "qrcode_token": "Qrcode token",
