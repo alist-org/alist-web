@@ -12,8 +12,7 @@
     "noEmit": true,
     "isolatedModules": false,
     "paths": {
-      "~/*": ["./src/*"],
-      "@solidjs/router": ["./solid-router/src/index.tsx"]
+      "~/*": ["./src/*"]
     },
     "resolveJsonModule": true
   }
