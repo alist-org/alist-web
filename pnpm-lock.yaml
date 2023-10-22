@@ -53,6 +53,9 @@ dependencies:
   hls.js:
     specifier: ^1.2.1
     version: 1.2.1
+  just-once:
+    specifier: ^2.2.0
+    version: 2.2.0
   lightgallery:
     specifier: ^2.5.0
     version: 2.5.0
@@ -1787,6 +1790,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dev: true
+
+  /just-once@2.2.0:
+    resolution: {integrity: sha512-Wo547FgUOUZ98jbrZ1KX8nRezdEdtgIlC2NK1u1RvR1oZ/WoU++FjprP8J8hRbaox776MHyeMZZED4DvhhHVjg==}
+    dev: false
 
   /katex@0.16.8:
     resolution: {integrity: sha512-ftuDnJbcbOckGY11OO+zg3OofESlbR5DRl2cmN8HeWeeFIV7wTXvAOx8kEjZjobhA+9wh2fbKeO6cdcA9Mnovg==}

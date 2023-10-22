@@ -66,6 +66,7 @@
     "copy-to-clipboard": "^3.3.2",
     "flv.js": "^1.6.2",
     "hls.js": "^1.2.1",
+    "just-once": "^2.2.0",
     "lightgallery": "^2.5.0",
     "mark.js": "^8.11.1",
     "mitt": "^3.0.0",
