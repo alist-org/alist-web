@@ -24,8 +24,8 @@ dependencies:
     specifier: ^1.2.5
     version: 1.2.5(solid-js@1.4.8)
   '@solid-primitives/storage':
-    specifier: ^1.3.1
-    version: 1.3.1(solid-js@1.4.8)
+    specifier: ^2.0.0
+    version: 2.0.0(solid-js@1.4.8)
   '@stitches/core':
     specifier: ^1.2.8
     version: 1.2.8
@@ -676,11 +676,16 @@ packages:
       solid-js: 1.4.8
     dev: false
 
-  /@solid-primitives/storage@1.3.1(solid-js@1.4.8):
-    resolution: {integrity: sha512-3By9cxqCGGkXrw3gYj7h2c5SCWxiDIYc2C3O6GLVyzN4JCIKzcMlm3HLK0gKMUbR/MzAs265XyAc3rqsMq1ixw==}
+  /@solid-primitives/storage@2.0.0(solid-js@1.4.8):
+    resolution: {integrity: sha512-64etR/or0A7jUtsg4gG9jhV+QN5hNrQrQl0/Ss9Qcbl4Rc//dznN/s9V1OEBiQCNRrsSM91vAQuq3XXBbilUwA==}
     peerDependencies:
-      solid-js: ^1.3.1
+      solid-js: ^1.6.12
+      solid-start: ^0.2.26
+    peerDependenciesMeta:
+      solid-start:
+        optional: true
     dependencies:
+      '@solid-primitives/utils': 6.2.1(solid-js@1.4.8)
       solid-js: 1.4.8
     dev: false
 
