@@ -6,6 +6,7 @@ import { useFetch, useFetchText, useParseText, useRouter, useT } from "~/hooks"
 import { objStore, userCan } from "~/store"
 import { PEmptyResp } from "~/types"
 import { handleResp, notify, r } from "~/utils"
+import { createShortcut } from "@solid-primitives/keyboard"
 
 function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
   const { colorMode } = useColorMode()
@@ -33,6 +34,15 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
     }),
   )
 
+  async function onSave() {
+    const resp = await save()
+    handleResp(resp, () => {
+      notify.success(t("global.save_success"))
+    })
+  }
+
+  createShortcut(["Control", "S"], onSave)
+
   return (
     <VStack w="$full" alignItems="start" spacing="$2" pos="relative">
       <Show when={!isString}>
@@ -47,19 +57,7 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
         }}
       />
       <Show when={userCan("write") || objStore.write}>
-        <Button
-          loading={loading()}
-          onClick={async () => {
-            // if (!value()) {
-            //   notify.success(t("global.save_success"))
-            //   return
-            // }
-            const resp = await save()
-            handleResp(resp, () => {
-              notify.success(t("global.save_success"))
-            })
-          }}
-        >
+        <Button loading={loading()} onClick={onSave}>
           {t("global.save")}
         </Button>
       </Show>
