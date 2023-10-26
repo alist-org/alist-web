@@ -23,6 +23,7 @@
   },
   "home_icon": "Home icon",
   "iframe_previews": "Iframe previews",
+  "ignore_direct_link_params": "Ignore direct link params",
   "ignore_paths": "Ignore paths",
   "ignore_paths-tips": "one path per line",
   "image_types": "Image types",
