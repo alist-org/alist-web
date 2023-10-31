@@ -50,6 +50,7 @@ const Preview = () => {
     // highlight: [],
     plugins: [],
     whitelist: [],
+	settings: [],
     // subtitle:{}
     moreVideoAttr: {
       // @ts-ignore
@@ -87,7 +88,7 @@ const Preview = () => {
     autoOrientation: true,
     airplay: true,
   }
-  const subtitle = objStore.related.find((obj) => {
+  const subtitle = objStore.related.filter((obj) => {
     for (const ext of [".srt", ".ass", ".vtt"]) {
       if (obj.name.endsWith(ext)) {
         return true
@@ -103,12 +104,46 @@ const Preview = () => {
     }
     return false
   })
-  if (subtitle) {
+  if (subtitle.length != 0 ) {
     option.subtitle = {
-      url: proxyLink(subtitle, true),
-      type: ext(subtitle.name) as any,
+      url: proxyLink(subtitle[0], true),
+      type: ext(subtitle[0].name) as any,
     }
   }
+  
+  if (subtitle.length != 0 ) {
+    let selector = []
+	selector.push({
+		html: "Display",
+		tooltip: "Show",
+		switch : true, 
+		onSwitch: function (item) {
+			item.tooltip = item.switch ? "Hide" : "Show"
+			this.subtitle.show = !item.switch
+			return !item.switch
+		}
+    })
+    subtitle.map((subtitleOne, i) => {
+        selector.push({
+			default:i == 0 ? true : false,
+            html: subtitleOne.name,
+            url: proxyLink(subtitleOne, true),
+        })
+    })
+    Option.settings.push({
+        html: "Subtitle",
+        tooltip: subtitle[0].name,
+        icon: <img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">,
+        selector: selector,
+        onSelect: function (item) {
+            this.subtitle.switch(item.url, {
+                name: item.html,
+            });
+            return item.html
+        }
+    })
+  }
+  
   if (danmu) {
     option.plugins = [
       artplayerPluginDanmuku({
