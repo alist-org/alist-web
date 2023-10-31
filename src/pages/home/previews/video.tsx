@@ -50,7 +50,7 @@ const Preview = () => {
     // highlight: [],
     plugins: [],
     whitelist: [],
-	settings: [],
+    settings: [],
     // subtitle:{}
     moreVideoAttr: {
       // @ts-ignore
@@ -125,9 +125,9 @@ const Preview = () => {
     })
     subtitle.map((subtitleOne, i) => {
         selector.push({
-			default:i == 0 ? true : false,
-            html: subtitleOne.name,
-            url: proxyLink(subtitleOne, true),
+		default:i == 0 ? true : false,
+		html: subtitleOne.name,
+		url: proxyLink(subtitleOne, true),
         })
     })
     Option.settings.push({
@@ -138,7 +138,7 @@ const Preview = () => {
         onSelect: function (item) {
             this.subtitle.switch(item.url, {
                 name: item.html,
-            });
+            })
             return item.html
         }
     })
