@@ -50,7 +50,7 @@ const Preview = () => {
     // highlight: [],
     plugins: [],
     whitelist: [],
-	settings: [],
+    settings: [],
     // subtitle:{}
     moreVideoAttr: {
       // @ts-ignore
@@ -112,7 +112,7 @@ const Preview = () => {
   }
   
   if (subtitle.length != 0 ) {
-    let selector = []
+    const selector = []
 	selector.push({
 		html: "Display",
 		tooltip: "Show",
@@ -125,7 +125,7 @@ const Preview = () => {
     })
     subtitle.map((subtitleOne, i) => {
         selector.push({
-			default:i == 0 ? true : false,
+            default:i == 0 ? true : false,
             html: subtitleOne.name,
             url: proxyLink(subtitleOne, true),
         })
