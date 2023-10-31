@@ -130,7 +130,7 @@ const Preview = () => {
             url: proxyLink(subtitleOne, true),
         })
     })
-    Option.settings.push({
+    option.settings.push({
         html: "Subtitle",
         tooltip: subtitle[0].name,
         icon: '<img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">',
