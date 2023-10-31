@@ -50,7 +50,7 @@ const Preview = () => {
     // highlight: [],
     plugins: [],
     whitelist: [],
-    settings: [],
+	settings: [],
     // subtitle:{}
     moreVideoAttr: {
       // @ts-ignore
@@ -117,7 +117,7 @@ const Preview = () => {
 		html: "Display",
 		tooltip: "Show",
 		switch : true, 
-		onSwitch: function (item) {
+		onSwitch: function (item: Setting) {
 			item.tooltip = item.switch ? "Hide" : "Show"
 			this.subtitle.show = !item.switch
 			return !item.switch
@@ -125,17 +125,17 @@ const Preview = () => {
     })
     subtitle.map((subtitleOne, i) => {
         selector.push({
-		default:i == 0 ? true : false,
-		html: subtitleOne.name,
-		url: proxyLink(subtitleOne, true),
+			default:i == 0 ? true : false,
+            html: subtitleOne.name,
+            url: proxyLink(subtitleOne, true),
         })
     })
     Option.settings.push({
         html: "Subtitle",
         tooltip: subtitle[0].name,
-        icon: <img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">,
+        icon: '<img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">',
         selector: selector,
-        onSelect: function (item) {
+        onSelect: function (item: Setting) {
             this.subtitle.switch(item.url, {
                 name: item.html,
             })
