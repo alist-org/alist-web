@@ -126,7 +126,7 @@ const Preview = () => {
     subtitle.map((subtitleOne, i) => {
         selector.push({
             default:i == 0 ? true : false,
-            html: subtitleOne.name,
+            html: subtitleOne.name.length < 30 ? subtitleOne.name : subtitleOne.name.substr(-30,30),
             url: proxyLink(subtitleOne, true),
         })
     })
