@@ -245,6 +245,7 @@
     "address": "Address",
     "cookie": "Cookie",
     "custom_ua": "Custom ua",
+    "enable_thumb_and_folder_size": "Enable thumb and folder size",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"

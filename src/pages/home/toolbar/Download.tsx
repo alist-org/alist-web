@@ -59,6 +59,7 @@ export const PackageDownloadModal = () => {
   const t = useT()
   const handler = (name: string) => {
     if (name === "package_download") {
+      if (!getSettingBool("package_download")) return
       onOpen()
     }
   }
