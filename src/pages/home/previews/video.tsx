@@ -104,46 +104,49 @@ const Preview = () => {
     }
     return false
   })
-  if (subtitle.length != 0 ) {
+  if (subtitle.length != 0) {
     option.subtitle = {
       url: proxyLink(subtitle[0], true),
       type: ext(subtitle[0].name) as any,
     }
   }
-  
-  if (subtitle.length != 0 ) {
+
+  if (subtitle.length != 0) {
     const selector = []
-	selector.push({
-		html: "Display",
-		tooltip: "Show",
-		switch : true, 
-		onSwitch: function (item: Setting) {
-			item.tooltip = item.switch ? "Hide" : "Show"
-			this.subtitle.show = !item.switch
-			return !item.switch
-		}
+    selector.push({
+      html: "Display",
+      tooltip: "Show",
+      switch: true,
+      onSwitch: function (item: Setting) {
+        item.tooltip = item.switch ? "Hide" : "Show"
+        this.subtitle.show = !item.switch
+        return !item.switch
+      },
     })
     subtitle.map((subtitleOne, i) => {
-        selector.push({
-            default:i == 0 ? true : false,
-            html: subtitleOne.name.length < 30 ? subtitleOne.name : subtitleOne.name.substr(-30,30),
-            url: proxyLink(subtitleOne, true),
-        })
+      selector.push({
+        default: i == 0 ? true : false,
+        html:
+          subtitleOne.name.length < 30
+            ? subtitleOne.name
+            : subtitleOne.name.substr(-30, 30),
+        url: proxyLink(subtitleOne, true),
+      })
     })
     option.settings.push({
-        html: "Subtitle",
-        tooltip: subtitle[0].name,
-        icon: '<img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">',
-        selector: selector,
-        onSelect: function (item: Setting) {
-            this.subtitle.switch(item.url, {
-                name: item.html,
-            })
-            return item.html
-        }
+      html: "Subtitle",
+      tooltip: subtitle[0].name,
+      icon: '<img width="22" heigth="22" src="https://www.artplayer.org/assets/img/subtitle.svg">',
+      selector: selector,
+      onSelect: function (item: Setting) {
+        this.subtitle.switch(item.url, {
+          name: item.html,
+        })
+        return item.html
+      },
     })
   }
-  
+
   if (danmu) {
     option.plugins = [
       artplayerPluginDanmuku({
