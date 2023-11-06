@@ -7,6 +7,7 @@ import { ext } from "~/utils"
 import Artplayer from "artplayer"
 import { type Option } from "artplayer/types/option"
 import { type Setting } from "artplayer/types/setting"
+import { type Events } from "artplayer/types/events"
 import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import artplayerPluginAss from "~/components/artplayer-plugin-ass"
 import flvjs from "flv.js"
@@ -83,7 +84,7 @@ const Preview = () => {
       },
     },
     lang: ["en", "zh-cn", "zh-tw"].includes(currentLang().toLowerCase())
-      ? (currentLang().toLowerCase() as any)
+      ? (currentLang().toLowerCase() as string)
       : "en",
     lock: true,
     fastForward: true,
@@ -132,7 +133,7 @@ const Preview = () => {
     }
 
     // render subtitle toggle menu
-    const innerMenu: any[] = [
+    const innerMenu: Setting[] = [
       {
         id: "setting_subtitle_display",
         html: "Display",
@@ -167,7 +168,7 @@ const Preview = () => {
           >
             {item.name}
           </span>
-        ),
+        ) as HTMLElement,
         name: item.name,
         url: proxyLink(item, true),
       })
@@ -182,7 +183,7 @@ const Preview = () => {
       onSelect: function (item: Setting) {
         if (enableEnhanceAss && ext(item.name).toLowerCase() === "ass") {
           isEnhanceAssMode = true
-          this.emit("artplayer-plugin-ass:switch" as any, item.url)
+          this.emit("artplayer-plugin-ass:switch" as keyof Events, item.url)
           setSubtitleVisible(true)
         } else {
           isEnhanceAssMode = false
@@ -194,10 +195,10 @@ const Preview = () => {
           (_) => _.id === "setting_subtitle_display",
         )
 
-        if (!switcher.switch) switcher.$html?.click?.()
+        if (switcher && !switcher.switch) switcher.$html?.click?.()
 
         // sync from display switcher
-        return switcher.tooltip
+        return switcher?.tooltip
       },
     })
 
@@ -207,13 +208,13 @@ const Preview = () => {
       switch (type) {
         case "ass":
           player.subtitle.show = false
-          player.emit("artplayer-plugin-ass:visible" as any, visible)
+          player.emit("artplayer-plugin-ass:visible" as keyof Events, visible)
           break
 
         case "webvtt":
         default:
           player.subtitle.show = visible
-          player.emit("artplayer-plugin-ass:visible" as any, false)
+          player.emit("artplayer-plugin-ass:visible" as keyof Events, false)
           break
       }
     }
