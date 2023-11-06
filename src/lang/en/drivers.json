@@ -10,6 +10,21 @@
     "qrcode_token-tips": "one of QR code token and cookie required",
     "root_folder_id": "Root folder id"
   },
+  "115 Share": {
+    "cookie": "Cookie",
+    "cookie-tips": "one of QR code token and cookie required",
+    "limit_rate": "Limit rate",
+    "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
+    "page_size": "Page size",
+    "page_size-tips": "list api per page size of 115 driver",
+    "qrcode_token": "Qrcode token",
+    "qrcode_token-tips": "one of QR code token and cookie required",
+    "receive_code": "Receive code",
+    "receive_code-tips": "receive code of 115 share link",
+    "root_folder_id": "Root folder id",
+    "share_code": "Share code",
+    "share_code-tips": "share code of 115 share link"
+  },
   "123Pan": {
     "order_by": "Order by",
     "order_bys": {
@@ -686,6 +701,7 @@
   },
   "config": {
     "115 Cloud": {},
+    "115 Share": {},
     "123Pan": {},
     "123PanLink": {},
     "123PanShare": {},
@@ -744,6 +760,7 @@
   },
   "drivers": {
     "115 Cloud": "115 Cloud",
+    "115 Share": "115 Share",
     "123Pan": "123Pan",
     "123PanLink": "123PanLink",
     "123PanShare": "123PanShare",
