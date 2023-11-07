@@ -2,9 +2,8 @@ import SubtitlesOctopus from "libass-wasm"
 import legacyWorkerUrl from "libass-wasm/dist/js/subtitles-octopus-worker-legacy.js?url"
 import workerUrl from "libass-wasm/dist/js/subtitles-octopus-worker.js?url"
 
-import ArialFont from "./fonts/Arial.ttf?url"
 import TimesNewRomanFont from "./fonts/TimesNewRoman.ttf?url"
-import fallbackFont from "./fonts/SourceHanSansCN-Regular.otf?url"
+import fallbackFont from "./fonts/SourceHanSansCN-Bold.woff2?url"
 
 let instance = null
 
@@ -18,7 +17,6 @@ function artplayerPluginAss(options) {
     instance = new SubtitlesOctopus({
       // TODO: load available fonts from manage panel
       availableFonts: {
-        arial: ArialFont,
         "times new roman": TimesNewRomanFont,
       },
       fallbackFont,
