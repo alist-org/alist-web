@@ -640,6 +640,7 @@
     "address": "Address",
     "password": "Password",
     "root_folder_path": "Root folder path",
+    "tls_insecure_skip_verify": "Tls insecure skip verify",
     "username": "Username",
     "vendor": "Vendor",
     "vendors": {
