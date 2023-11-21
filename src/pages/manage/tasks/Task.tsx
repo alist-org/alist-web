@@ -15,6 +15,19 @@ import { PEmptyResp, TaskInfo } from "~/types"
 import { handleResp, notify, r } from "~/utils"
 import { TasksProps } from "./Tasks"
 
+enum TaskStateEnum {
+  Pending,
+  Running,
+  Succeeded,
+  Canceling,
+  Canceled,
+  Errored,
+  Failing,
+  Failed,
+  WaitingRetry,
+  BeforeRetry,
+}
+
 const StateMap: Record<
   string,
   | "primary"
@@ -26,26 +39,23 @@ const StateMap: Record<
   | "danger"
   | undefined
 > = {
-  errored: "danger",
-  succeeded: "success",
-  canceled: "neutral",
+  [TaskStateEnum.Failed]: "danger",
+  [TaskStateEnum.Succeeded]: "success",
+  [TaskStateEnum.Canceled]: "neutral",
 }
-export const TaskState = (props: { state: string }) => {
+export const TaskState = (props: { state: number }) => {
   const t = useT()
   return (
     <Badge colorScheme={StateMap[props.state] ?? "info"}>
-      {t(`tasks.${props.state}`)}
+      {t(`tasks.state.${props.state}`)}
     </Badge>
   )
 }
 
-const DONE = ["succeeded", "canceled", "errored"]
-const UNDONE = ["pending", "running", "canceling"]
-
 export const Task = (props: TaskInfo & TasksProps) => {
   const t = useT()
   const operateName = props.done === "undone" ? "cancel" : "delete"
-  const canRetry = props.done === "done" && props.state === "errored"
+  const canRetry = props.done === "done" && props.state === TaskStateEnum.Failed
   const [operateLoading, operate] = useFetch(
     (): PEmptyResp =>
       r.post(`/admin/task/${props.type}/${operateName}?tid=${props.id}`),
