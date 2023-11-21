@@ -7,6 +7,7 @@
   "undone": "Running",
   "clear_succeeded": "Clear Succeeded",
   "retry": "Retry",
+  "retry_failed": "Retry Failed",
   "state": {
     "0": "Pending",
     "1": "Running",
