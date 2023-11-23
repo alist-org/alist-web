@@ -757,7 +757,9 @@
     "WebDav": {},
     "WeiYun": {},
     "WoPan": {},
-    "YandexDisk": {}
+    "YandexDisk": {},
+    "腾讯智能创作平台": {},
+    "超星小组盘": {}
   },
   "drivers": {
     "115 Cloud": "115 Cloud",
@@ -810,6 +812,32 @@
     "WebDav": "WebDav",
     "WeiYun": "WeiYun",
     "WoPan": "WoPan",
-    "YandexDisk": "YandexDisk"
+    "YandexDisk": "YandexDisk",
+    "腾讯智能创作平台": "���讯智能创作平台",
+    "超星小组盘": "���星小组盘"
+  },
+  "腾讯智能创作平台": {
+    "cookie": "Cookie",
+    "order_by": "Order by",
+    "order_bys": {
+      "CreatTime": "CreatTime",
+      "Name": "Name",
+      "Size": "Size",
+      "UpdateTime": "UpdateTime"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "Asc": "Asc",
+      "Desc": "Desc"
+    },
+    "root_folder_id": "Root folder id",
+    "tf_uid": "Tf uid"
+  },
+  "超星小组盘": {
+    "bbsid": "Bbsid",
+    "cookie": "Cookie",
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "user_name": "User name"
   }
 }
