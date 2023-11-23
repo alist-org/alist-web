@@ -256,6 +256,13 @@
     "root_folder_path": "Root folder path",
     "surl": "Surl"
   },
+  "ChaoXingGroupDrive": {
+    "bbsid": "Bbsid",
+    "cookie": "Cookie",
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "user_name": "User name"
+  },
   "Cloudreve": {
     "address": "Address",
     "cookie": "Cookie",
@@ -631,6 +638,23 @@
     "url_structure": "Url structure",
     "url_structure-tips": "structure:FolderName:\n  [FileName:][FileSize:][Modified:]Url"
   },
+  "VTencent": {
+    "cookie": "Cookie",
+    "order_by": "Order by",
+    "order_bys": {
+      "CreatTime": "CreatTime",
+      "Name": "Name",
+      "Size": "Size",
+      "UpdateTime": "UpdateTime"
+    },
+    "order_direction": "Order direction",
+    "order_directions": {
+      "Asc": "Asc",
+      "Desc": "Desc"
+    },
+    "root_folder_id": "Root folder id",
+    "tf_uid": "Tf uid"
+  },
   "Virtual": {
     "max_file_size": "Max file size",
     "min_file_size": "Min file size",
@@ -724,6 +748,7 @@
     "BaiduNetdisk": {},
     "BaiduPhoto": {},
     "BaiduShare": {},
+    "ChaoXingGroupDrive": {},
     "Cloudreve": {},
     "Crypt": {},
     "Dropbox": {},
@@ -755,13 +780,12 @@
     "UC": {},
     "USS": {},
     "UrlTree": {},
+    "VTencent": {},
     "Virtual": {},
     "WebDav": {},
     "WeiYun": {},
     "WoPan": {},
-    "YandexDisk": {},
-    "腾讯智能创作平台": {},
-    "超星小组盘": {}
+    "YandexDisk": {}
   },
   "drivers": {
     "115 Cloud": "115 Cloud",
@@ -781,6 +805,7 @@
     "BaiduNetdisk": "BaiduNetdisk",
     "BaiduPhoto": "BaiduPhoto",
     "BaiduShare": "BaiduShare",
+    "ChaoXingGroupDrive": "ChaoXingGroupDrive",
     "Cloudreve": "Cloudreve",
     "Crypt": "Crypt",
     "Dropbox": "Dropbox",
@@ -810,36 +835,11 @@
     "UC": "UC",
     "USS": "USS",
     "UrlTree": "UrlTree",
+    "VTencent": "VTencent",
     "Virtual": "Virtual",
     "WebDav": "WebDav",
     "WeiYun": "WeiYun",
     "WoPan": "WoPan",
-    "YandexDisk": "YandexDisk",
-    "腾讯智能创作平台": "���讯智能创作平台",
-    "超星小组盘": "���星小组盘"
-  },
-  "腾讯智能创作平台": {
-    "cookie": "Cookie",
-    "order_by": "Order by",
-    "order_bys": {
-      "CreatTime": "CreatTime",
-      "Name": "Name",
-      "Size": "Size",
-      "UpdateTime": "UpdateTime"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "Asc": "Asc",
-      "Desc": "Desc"
-    },
-    "root_folder_id": "Root folder id",
-    "tf_uid": "Tf uid"
-  },
-  "超星小组盘": {
-    "bbsid": "Bbsid",
-    "cookie": "Cookie",
-    "password": "Password",
-    "root_folder_id": "Root folder id",
-    "user_name": "User name"
+    "YandexDisk": "YandexDisk"
   }
 }
