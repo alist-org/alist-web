@@ -84,7 +84,12 @@ export const OfflineDownload = () => {
         </Box>
       }
       onSubmit={async (urls) => {
-        const resp = await ok(pathname(), urls.split("\n"), tool())
+        const resp = await ok(
+          pathname(),
+          urls.split("\n"),
+          tool(),
+          deletePolicy(),
+        )
         handleRespWithNotifySuccess(resp, () => {
           onClose()
         })
