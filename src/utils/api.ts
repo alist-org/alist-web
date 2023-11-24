@@ -109,8 +109,9 @@ export const offlineDownload = (
   path: string,
   urls: string[],
   tool: string,
+  delete_policy: string,
 ): PEmptyResp => {
-  return r.post(`/fs/add_offline_download`, { path, urls, tool })
+  return r.post(`/fs/add_offline_download`, { path, urls, tool, delete_policy })
 }
 
 export const fetchText = async (

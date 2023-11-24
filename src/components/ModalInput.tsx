@@ -30,6 +30,7 @@ export type ModalInputProps = {
   loading?: boolean
   tips?: string
   topSlot?: JSXElement
+  bottomSlot?: JSXElement
 }
 export const ModalInput = (props: ModalInputProps) => {
   const [value, setValue] = createSignal(props.defaultValue ?? "")
@@ -122,6 +123,7 @@ export const ModalInput = (props: ModalInputProps) => {
           <Show when={props.tips}>
             <FormHelperText>{props.tips}</FormHelperText>
           </Show>
+          <Show when={props.bottomSlot}>{props.bottomSlot}</Show>
         </ModalBody>
         <ModalFooter display="flex" gap="$2">
           <Button onClick={props.onClose} colorScheme="neutral">

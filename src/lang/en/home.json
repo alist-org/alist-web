@@ -50,6 +50,12 @@
     "cancel_select": "Cancel Select",
     "offline_download": "Offline download",
     "offline_download-tips": "One URL per line",
+    "delete_policy": {
+      "delete_on_upload_succeed": "Delete on upload succeed",
+      "delete_on_upload_failed": "Delete on upload failed",
+      "delete_never": "Never delete",
+      "delete_always": "Always delete"
+    },
     "download": "Download",
     "batch_download": "Batch Download",
     "package_download": "Package Download",
