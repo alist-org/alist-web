@@ -7,7 +7,7 @@ const OfflineDownload = () => {
   return (
     <VStack w="$full" alignItems="start" spacing="$4">
       <TypeTasks type="offline_download" canRetry />
-      <TypeTasks type="offline_download_transfer" />
+      <TypeTasks type="offline_download_transfer" canRetry />
     </VStack>
   )
 }
