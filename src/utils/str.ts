@@ -66,7 +66,7 @@ export const convertURL = (scheme: string, args: ConvertURLArgs) => {
     args.d_url = d.toString()
   }
   ans = ans.replace(/\$[eb_]*url/, (old) => {
-    const op = old.match(/e|b/)
+    const op = old.match(/[eb]/g)
     let u = args.raw_url
     if (op) {
       for (const o of op.reverse()) {
@@ -80,7 +80,7 @@ export const convertURL = (scheme: string, args: ConvertURLArgs) => {
     return u
   })
   ans = ans.replace(/\$[eb_]*durl/, (old) => {
-    const op = old.match(/e|b/)
+    const op = old.match(/[eb]/g)
     let u = args.d_url
     if (op) {
       for (const o of op.reverse()) {
