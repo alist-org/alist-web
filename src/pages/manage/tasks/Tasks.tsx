@@ -55,7 +55,7 @@ export const Tasks = (props: TasksProps) => {
     <VStack w="$full" alignItems="start" spacing="$2">
       <Heading size="lg">{t(`tasks.${props.done}`)}</Heading>
       <Show when={props.done === "done"}>
-        <HStack spacing="$2">
+        <HStack gap="$2" flexWrap="wrap">
           <Button colorScheme="accent" loading={loading()} onClick={refresh}>
             {t(`global.refresh`)}
           </Button>
