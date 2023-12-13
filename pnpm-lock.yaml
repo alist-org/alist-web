@@ -38,6 +38,9 @@ dependencies:
   artplayer-plugin-danmuku:
     specifier: ^5.0.1
     version: 5.0.1
+  asciinema-player:
+    specifier: ^3.6.3
+    version: 3.6.3
   axios:
     specifier: ^1.0.0
     version: 1.1.3
@@ -436,6 +439,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@babel/runtime@7.23.6:
+    resolution: {integrity: sha512-zHd0eUrf5GZoOWVCXp6koAKQTfZV07eit6bGPmJgnZdnSAvvZee6zniW2XMF7Cmc4ISOOnPy3QaSiIJGJkVEDQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.0
+    dev: false
 
   /@babel/standalone@7.18.12:
     resolution: {integrity: sha512-wDh3K5IUJiSMAY0MLYBFoCaj2RCZwvDz5BHn2uHat9KOsGWEVDFgFQFIOO+81Js2phFKNppLC45iOCsZVfJniw==}
@@ -917,6 +927,13 @@ packages:
     resolution: {integrity: sha512-IM/DShYdmKFEA9jl08LYbTK2Jfz9s7qIjEH0xWjnxvVArUKZZKcoqwr6i54U0c4grtc/Uvb4wtCd78kvtSVlgw==}
     dependencies:
       option-validator: 2.0.6
+    dev: false
+
+  /asciinema-player@3.6.3:
+    resolution: {integrity: sha512-62aDgLpbuduhmpFfNgPOzf6fOluACLsftVnjpWJjUXX6dqhqTckFqWoJ+ayA0XjSlZ9l9wXTcJqRqvAAIpMblg==}
+    dependencies:
+      '@babel/runtime': 7.23.6
+      solid-js: 1.4.8
     dev: false
 
   /astral-regex@2.0.0:
@@ -2725,6 +2742,10 @@ packages:
   /regenerator-runtime@0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==}
     dev: true
+
+  /regenerator-runtime@0.14.0:
+    resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
+    dev: false
 
   /rehype-katex@6.0.3:
     resolution: {integrity: sha512-ByZlRwRUcWegNbF70CVRm2h/7xy7jQ3R9LaY4VVSvjnoVWwWVhNL60DiZsBpC5tSzYQOCvDbzncIpIjPZWodZA==}

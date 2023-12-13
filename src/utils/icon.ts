@@ -27,6 +27,7 @@ import {
   VscodeIconsFileTypeAi2,
   VscodeIconsFileTypePhotoshop2,
 } from "~/components"
+import { SiAsciinema } from "solid-icons/si"
 
 const iconMap = {
   "dmg,ipa,plist,tipa": BsApple,
@@ -45,6 +46,7 @@ const iconMap = {
   psd: VscodeIconsFileTypePhotoshop2,
   ai: VscodeIconsFileTypeAi2,
   url: FaSolidLink,
+  cast: SiAsciinema,
 }
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {

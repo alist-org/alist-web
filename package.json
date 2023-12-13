@@ -63,6 +63,7 @@
     "aplayer": "^1.10.1",
     "artplayer": "^5.0.9",
     "artplayer-plugin-danmuku": "^5.0.1",
+    "asciinema-player": "^3.6.3",
     "axios": "^1.0.0",
     "clsx": "^2.0.0",
     "copy-to-clipboard": "^3.3.2",
