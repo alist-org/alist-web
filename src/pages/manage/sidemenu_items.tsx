@@ -72,6 +72,12 @@ export const side_menu_items: SideMenuItem[] = [
         component: () => <CommonSettings group={Group.SSO} />,
       },
       {
+        title: "manage.sidemenu.ldap",
+        icon: FiLogIn,
+        to: "/@manage/settings/ldap",
+        component: () => <CommonSettings group={Group.LDAP} />,
+      },
+      {
         title: "manage.sidemenu.other",
         icon: BsMedium,
         to: "/@manage/settings/other",
