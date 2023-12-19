@@ -266,7 +266,7 @@ const Login = () => {
           <Checkbox
             w="$full"
             checked={useLdap() === true}
-            onChange={e => setUseLdap(!useLdap())}
+            onChange={() => setUseLdap(!useLdap())}
           >
             {ldapLoginTips}
           </Checkbox>

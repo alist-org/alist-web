@@ -19,7 +19,7 @@ import { OcWorkflow2 } from "solid-icons/oc"
 import { IoCopy, IoHome, IoMagnetOutline } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
-import { FaBrandsQuinscape, FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
+import { FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component
