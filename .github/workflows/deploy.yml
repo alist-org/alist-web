@@ -47,7 +47,8 @@ jobs:
         run: |
           cd alist-web
           wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
-          unzip zh-CN.zip 
+          unzip zh-CN.zip
+          chmod +x *.sh
           node ./scripts/i18n.mjs
           rm zh-CN.zip
           pnpm install
