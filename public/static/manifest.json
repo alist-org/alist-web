@@ -2,10 +2,10 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "AList",
+  "name": "禅修班·网盘",
   "icons": [
     {
-      "src": "https://jsd.nn.ci/gh/alist-org/logo@main/logo.png",
+      "src": "https://box.hdcxb.net/d/%E5%85%B6%E4%BB%96%E8%B5%84%E6%96%99/p/huideng.png",
       "sizes": "512x512",
       "type": "image/png"
     }

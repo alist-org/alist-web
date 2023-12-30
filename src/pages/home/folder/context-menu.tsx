@@ -57,11 +57,12 @@ export const ContextMenu = () => {
       </For>
       <Item
         onClick={({ props }) => {
-          if (props.is_dir) {
-            copySelectedPreviewPage()
-          } else {
-            copySelectedRawLink(true)
-          }
+          // if (props.is_dir) {
+          //   copySelectedPreviewPage()
+          // } else {
+          //   copySelectedRawLink(true)
+          // }
+          copySelectedPreviewPage()
         }}
       >
         <ItemContent name="copy_link" />

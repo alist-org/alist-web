@@ -82,7 +82,21 @@ export const useCopyLink = () => {
   const { currentObjLink } = useLink()
   return {
     copySelectedPreviewPage: () => {
-      copy(previewPagesText())
+      let rawUrl = previewPagesText()
+      fetch(`${import.meta.env.VITE_YOURLS}${rawUrl}`)
+        .then((resp) => resp.json())
+        .then((json) => {
+          console.log(json)
+          if (json.statusCode == 200 || json.statusCode == 400) {
+            rawUrl = json.shorturl
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+        .finally(() => {
+          copy(rawUrl)
+        })
     },
     copySelectedRawLink: (encodeAll?: boolean) => {
       copy(rawLinksText(encodeAll))
