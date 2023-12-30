@@ -40,11 +40,12 @@ jobs:
           pnpm build
           ls -lh
 
-      - name: Upload to server
-        uses: easingthemes/ssh-deploy@main
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.6
         with:
-          SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
-          SOURCE: dist/
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "dist"
+          target: ${{ secrets.TARGET }}
