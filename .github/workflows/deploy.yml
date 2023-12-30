@@ -34,12 +34,16 @@ jobs:
       - name: Build
         run: |
           cd alist-web
-          wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
-          unzip zh-CN.zip
-          node ./scripts/i18n.mjs
-          pnpm install
-          pnpm build
+          pwd
+          ls
+          # wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
+          # unzip zh-CN.zip
+          # node ./scripts/i18n.mjs
+          # pnpm install
+          # pnpm build
           cd ../
+          pwd
+          ls
 
       - name: Upload to server
         uses: easingthemes/ssh-deploy@main
