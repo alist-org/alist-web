@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Deploy
+    name: Deploy to server
     runs-on: ubuntu-latest
     steps:
       - name: Setup Node
