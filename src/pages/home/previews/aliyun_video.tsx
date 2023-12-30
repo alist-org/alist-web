@@ -310,6 +310,7 @@ const Preview = () => {
         }
       })
       option.quality = quality
+      player.quality = quality
       curSeek = player.currentTime
       await player.switchUrl(quality[quality.length - 1].url)
       setTimeout(() => {
