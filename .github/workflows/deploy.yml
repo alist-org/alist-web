@@ -40,7 +40,6 @@ jobs:
           wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
           unzip zh-CN.zip
           node ./scripts/i18n.mjs
-          rm zh-CN.zip
           pnpm install
           pnpm build
 
