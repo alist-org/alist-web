@@ -51,7 +51,6 @@ jobs:
           node ./scripts/i18n.mjs
           rm zh-CN.zip
           pnpm install
-          pnpm i18n:build
           pnpm build
           cd ..
 
