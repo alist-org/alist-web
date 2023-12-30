@@ -286,10 +286,40 @@ const Preview = () => {
           replace(videos[index + 1].name)
         }
       })
+      interval = window.setInterval(resetPlayUrl, 1000 * 60 * 14)
     })
   })
+  let interval: number
+  let curSeek: number
+  async function resetPlayUrl() {
+    const resp = await post()
+    handleResp(resp, async (data) => {
+      const list =
+        data.video_preview_play_info.live_transcoding_task_list.filter(
+          (l) => l.url,
+        )
+      if (list.length === 0) {
+        notify.error("No transcoding video found")
+        return
+      }
+      const quality = list.map((item, i) => {
+        return {
+          html: item.template_id,
+          url: item.url,
+          default: i === list.length - 1,
+        }
+      })
+      option.quality = quality
+      curSeek = player.currentTime
+      await player.switchUrl(quality[quality.length - 1].url)
+      setTimeout(() => {
+        player.seek = curSeek
+      }, 1000)
+    })
+  }
   onCleanup(() => {
     player?.destroy()
+    window.clearInterval(interval)
   })
   const [autoNext, setAutoNext] = createSignal()
   return (

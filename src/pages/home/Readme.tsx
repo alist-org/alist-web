@@ -60,7 +60,7 @@ export function Readme(props: {
     <Show when={readme()}>
       <Box w="$full" rounded="$xl" p="$4" bgColor={cardBg()} shadow="$lg">
         <MaybeLoading loading={content.loading}>
-          <Markdown children={content()?.content} />
+          <Markdown children={content()?.content} readme />
         </MaybeLoading>
       </Box>
     </Show>

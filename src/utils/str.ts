@@ -53,13 +53,20 @@ export type ConvertURLArgs = {
   raw_url: string
   name: string
   d_url: string
+  ts?: boolean
 }
 
 export const convertURL = (scheme: string, args: ConvertURLArgs) => {
   let ans = scheme
   ans = ans.replace("$name", args.name)
+  if (args.ts) {
+    const d = new URL(args.d_url)
+    const ts = Date.now()
+    d.searchParams.set("alist_ts", ts.toString())
+    args.d_url = d.toString()
+  }
   ans = ans.replace(/\$[eb_]*url/, (old) => {
-    const op = old.match(/e|b/)
+    const op = old.match(/[eb]/g)
     let u = args.raw_url
     if (op) {
       for (const o of op.reverse()) {
@@ -73,7 +80,7 @@ export const convertURL = (scheme: string, args: ConvertURLArgs) => {
     return u
   })
   ans = ans.replace(/\$[eb_]*durl/, (old) => {
-    const op = old.match(/e|b/)
+    const op = old.match(/[eb]/g)
     let u = args.d_url
     if (op) {
       for (const o of op.reverse()) {

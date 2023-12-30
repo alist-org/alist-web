@@ -72,7 +72,8 @@
     "type": "Type",
     "types": {
       "family": "Family",
-      "personal": "Personal"
+      "personal": "Personal",
+      "personal_new": "Personal new"
     }
   },
   "189Cloud": {

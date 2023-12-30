@@ -7,6 +7,7 @@ import {
   getPagination,
   objStore,
   recoverScroll,
+  me,
 } from "~/store"
 import {
   fsGet,
@@ -18,6 +19,8 @@ import {
 } from "~/utils"
 import { useFetch } from "./useFetch"
 import { useRouter } from "./useRouter"
+
+let first_fetch = true
 
 let cancelList: Canceler
 export function addOrUpdateQuery(
@@ -75,7 +78,7 @@ export const resetGlobalPage = () => {
   console.log("resetGlobalPage", globalPage)
 }
 export const usePath = () => {
-  const { pathname } = useRouter()
+  const { pathname, to } = useRouter()
   const [, getObj] = useFetch((path: string) => fsGet(path, password()))
   const pagination = getPagination()
   if (pagination.type === "pagination" && getQueryVariable("page")) {
@@ -204,6 +207,11 @@ export const usePath = () => {
         notify.error(msg)
       }
     } else {
+      if (first_fetch && msg.endsWith("object not found")) {
+        first_fetch = false
+        to(pathname().replace(me().base_path, ""))
+        return
+      }
       ObjStore.setErr(msg)
     }
   }

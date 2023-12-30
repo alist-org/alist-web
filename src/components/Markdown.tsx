@@ -9,9 +9,10 @@ import "./markdown.css"
 import { Show, createEffect, createMemo, createSignal, on } from "solid-js"
 import { clsx } from "clsx"
 import { Box } from "@hope-ui/solid"
-import { useParseText } from "~/hooks"
+import { useParseText, useRouter } from "~/hooks"
 import { EncodingSelect } from "."
 import once from "just-once"
+import { pathDir, pathJoin, api } from "~/utils"
 
 const insertKatexCSS = once(() => {
   const link = document.createElement("link")
@@ -21,11 +22,12 @@ const insertKatexCSS = once(() => {
   document.head.appendChild(link)
 })
 
-export const Markdown = (props: {
+export function Markdown(props: {
   children?: string | ArrayBuffer
   class?: string
   ext?: string
-}) => {
+  readme?: boolean
+}) {
   const [encoding, setEncoding] = createSignal<string>("utf-8")
   const [show, setShow] = createSignal(true)
   const { isString, text } = useParseText(props.children)
@@ -35,7 +37,34 @@ export const Markdown = (props: {
     }
     return "```" + props.ext + "\n" + content + "\n```"
   }
-  const md = createMemo(() => convertToMd(text(encoding())))
+  const { pathname } = useRouter()
+  const md = createMemo(() => {
+    let content = convertToMd(text(encoding()))
+    content = content.replace(/!\[.*?\]\((.*?)\)/g, (match) => {
+      const name = match.match(/!\[(.*?)\]\(.*?\)/)![1]
+      let url = match.match(/!\[.*?\]\((.*?)\)/)![1]
+      if (
+        url.startsWith("http://") ||
+        url.startsWith("https://") ||
+        url.startsWith("//")
+      ) {
+        return match
+      }
+      if (url.startsWith("/")) {
+        url = `${api}/d${url}`
+      } else {
+        url = url.replace("./", "")
+        url = `${api}/d${pathJoin(
+          props.readme ? pathname() : pathDir(pathname()),
+          url,
+        )}`
+      }
+      const ans = `![${name}](${url})`
+      console.log(ans)
+      return ans
+    })
+    return content
+  })
   createEffect(
     on(md, () => {
       setShow(false)
