@@ -39,8 +39,9 @@ jobs:
           node ./scripts/i18n.mjs
           pnpm install
           pnpm build
+          cd ../
 
-      - name: Deploy to server
+      - name: Upload to server
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
