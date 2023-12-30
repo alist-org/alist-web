@@ -45,21 +45,19 @@ jobs:
 
       - name: Build
         run: |
-          cd alist-web
           wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
           unzip zh-CN.zip
           node ./scripts/i18n.mjs
           rm zh-CN.zip
           pnpm install
           pnpm build
-          cd ..
 
-          - name: Deploy to server
-          uses: easingthemes/ssh-deploy@main
-          with:
-            SSH_PRIVATE_KEY: '${{ secrets.ssh-rsa }}'
-            ARGS: '-avz --delete'
-            SOURCE: dist/
-            REMOTE_HOST: '${{ secrets.HOST }}'
-            REMOTE_USER: '${{ secrets.USER }}'
-            TARGET: '${{ secrets.TARGET }}'
+      - name: Deploy to server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: '${{ secrets.ssh-rsa }}'
+          ARGS: '-avz --delete'
+          SOURCE: dist/
+          REMOTE_HOST: '${{ secrets.HOST }}'
+          REMOTE_USER: '${{ secrets.USER }}'
+          TARGET: '${{ secrets.TARGET }}'
