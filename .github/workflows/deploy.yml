@@ -26,14 +26,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          path: alist-web
           persist-credentials: false
           fetch-depth: 0
           submodules: recursive
 
       - name: Build
         run: |
-          cd alist-web
           pwd
           ls
           # wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
@@ -41,16 +39,13 @@ jobs:
           # node ./scripts/i18n.mjs
           # pnpm install
           # pnpm build
-          cd ../
-          pwd
-          ls
 
-      - name: Upload to server
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
-          ARGS: "-avz --delete"
-          SOURCE: dist/
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
+      # - name: Upload to server
+      #   uses: easingthemes/ssh-deploy@main
+      #   with:
+      #     SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
+      #     ARGS: "-avz --delete"
+      #     SOURCE: dist/
+      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      #     REMOTE_USER: ${{ secrets.REMOTE_USER }}
+      #     TARGET: ${{ secrets.REMOTE_TARGET }}
