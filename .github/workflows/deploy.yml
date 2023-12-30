@@ -39,6 +39,8 @@ jobs:
           pnpm install
           pnpm build
           ls -lh
+        env:
+          VITE_YOURLS_API: ${{ secrets.VITE_YOURLS_API }}
 
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.6

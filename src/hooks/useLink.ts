@@ -83,7 +83,7 @@ export const useCopyLink = () => {
   return {
     copySelectedPreviewPage: () => {
       let rawUrl = previewPagesText()
-      fetch(`${import.meta.env.VITE_YOURLS}${rawUrl}`)
+      fetch(`${import.meta.env.VITE_YOURLS_API}${rawUrl}`)
         .then((resp) => resp.json())
         .then((json) => {
           console.log(json)
