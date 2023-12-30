@@ -34,15 +34,6 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Checkout dist repo
-        uses: actions/checkout@v3
-        with:
-          repository: alist-org/web-dist
-          ref: dev
-          path: web-dist
-          persist-credentials: false
-          fetch-depth: 0
-
       - name: Build
         run: |
           cd alist-web
@@ -56,9 +47,9 @@ jobs:
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@main
         with:
-          SSH_PRIVATE_KEY: "${{ secrets.ssh-rsa }}"
+          SSH_PRIVATE_KEY: "${{ secrets.SSH_PRIVATE_KEY }}"
           ARGS: "-avz --delete"
           SOURCE: dist/
-          REMOTE_HOST: "${{ secrets.HOST }}"
-          REMOTE_USER: "${{ secrets.USER }}"
-          TARGET: "${{ secrets.TARGET }}"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
