@@ -86,7 +86,6 @@ export const useCopyLink = () => {
       fetch(`${import.meta.env.VITE_YOURLS_API}${rawUrl}`)
         .then((resp) => resp.json())
         .then((json) => {
-          console.log(json)
           if (json.statusCode == 200 || json.statusCode == 400) {
             rawUrl = json.shorturl
           }

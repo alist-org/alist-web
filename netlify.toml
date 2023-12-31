@@ -1,2 +1,6 @@
 [build.environment]
   NPM_FLAGS = "--version"
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
