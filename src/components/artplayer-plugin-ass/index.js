@@ -1,11 +1,50 @@
 import SubtitlesOctopus from "libass-wasm"
-import legacyWorkerUrl from "libass-wasm/dist/js/subtitles-octopus-worker-legacy.js?url"
 import workerUrl from "libass-wasm/dist/js/subtitles-octopus-worker.js?url"
+import wasmUrl from "libass-wasm/dist/js/subtitles-octopus-worker.wasm?url"
 
 import TimesNewRomanFont from "./fonts/TimesNewRoman.ttf?url"
 import fallbackFont from "./fonts/SourceHanSansCN-Bold.woff2?url"
 
 let instance = null
+
+function isAbsoluteUrl(url) {
+  return /^https?:\/\//.test(url)
+}
+
+function toAbsoluteUrl(url) {
+  if (isAbsoluteUrl(url)) return url
+
+  // handle absolute URL when the `Worker` of `BLOB` type loading network resources
+  return new URL(url, document.baseURI).toString()
+}
+
+function loadWorker({ workerUrl, wasmUrl }) {
+  return new Promise((resolve) => {
+    fetch(workerUrl)
+      .then((res) => res.text())
+      .then((text) => {
+        let workerScriptContent = text
+
+        workerScriptContent = workerScriptContent.replace(
+          /wasmBinaryFile\s*=\s*"(subtitles-octopus-worker\.wasm)"/g,
+          (_match, wasm) => {
+            if (!wasmUrl) {
+              wasmUrl = new URL(wasm, toAbsoluteUrl(workerUrl)).toString()
+            } else {
+              wasmUrl = toAbsoluteUrl(wasmUrl)
+            }
+
+            return `wasmBinaryFile = "${wasmUrl}"`
+          },
+        )
+
+        const workerBlob = new Blob([workerScriptContent], {
+          type: "text/javascript",
+        })
+        resolve(URL.createObjectURL(workerBlob))
+      })
+  })
+}
 
 function setVisible(visible) {
   if (instance.canvasParent)
@@ -13,15 +52,14 @@ function setVisible(visible) {
 }
 
 function artplayerPluginAss(options) {
-  return (art) => {
+  return async (art) => {
     instance = new SubtitlesOctopus({
       // TODO: load available fonts from manage panel
       availableFonts: {
-        "times new roman": TimesNewRomanFont,
+        "times new roman": toAbsoluteUrl(TimesNewRomanFont),
       },
-      fallbackFont,
-      legacyWorkerUrl,
-      workerUrl,
+      workerUrl: await loadWorker({ workerUrl, wasmUrl }),
+      fallbackFont: toAbsoluteUrl(fallbackFont),
       video: art.template.$video,
       ...options,
     })

@@ -3,7 +3,6 @@ import { defineConfig } from "vite"
 import solidPlugin from "vite-plugin-solid"
 import legacy from "@vitejs/plugin-legacy"
 import { dynamicBase } from "vite-plugin-dynamic-base"
-import copyPlugin from "rollup-plugin-copy"
 
 export default defineConfig({
   resolve: {
@@ -16,12 +15,6 @@ export default defineConfig({
     solidPlugin(),
     legacy({
       targets: ["defaults"],
-    }),
-    copyPlugin({
-      targets: [
-        { src: "node_modules/libass-wasm/**/*.wasm", dest: "dist/assets" },
-      ],
-      hook: "writeBundle",
     }),
     dynamicBase({
       // dynamic public path var string, default window.__dynamic_base__
