@@ -20,7 +20,8 @@
     "indexes": "Indexes",
     "sso": "Single Sign-on",
     "docs": "Documentation",
-    "offline_download": "Offline Download"
+    "offline_download": "Offline Download",
+    "ldap": "LDAP"
   },
   "title": "AList Manage",
   "not_admin": "You are not admin user, please login with admin account.",
