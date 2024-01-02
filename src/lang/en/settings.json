@@ -97,14 +97,5 @@
   "version": "Version",
   "video_autoplay": "Video autoplay",
   "video_types": "Video types",
-  "webauthn_login_enabled": "Webauthn login enabled",
-  "ldap_login_enabled": "LDAP login enabled",
-  "ldap_server": "Server",
-  "ldap_manager_dn": "Manager DN",
-  "ldap_manager_password": "Manager Password",
-  "ldap_user_search_base": "User Search Base",
-  "ldap_user_search_filter": "User Search Filter",
-  "ldap_default_permission": "Default permission",
-  "ldap_default_dir": "Default Dir",
-  "ldap_login_tips": "Login tips"
+  "webauthn_login_enabled": "Webauthn login enabled"
 }
