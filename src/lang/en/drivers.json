@@ -342,6 +342,11 @@
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
   },
+  "ILanZou": {
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "username": "Username"
+  },
   "IPFS API": {
     "endpoint": "Endpoint",
     "gateway": "Gateway",
@@ -756,6 +761,7 @@
     "FTP": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "ILanZou": {},
     "IPFS API": {},
     "Lanzou": {},
     "Local": {},
@@ -813,6 +819,7 @@
     "FTP": "FTP",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Local": "Local",
