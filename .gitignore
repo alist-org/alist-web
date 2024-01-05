@@ -4,3 +4,4 @@ dist
 !/src/lang/en/
 .DS_Store
 .idea
+stats.html

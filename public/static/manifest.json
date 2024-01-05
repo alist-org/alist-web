@@ -5,8 +5,8 @@
   "name": "禅修班·网盘",
   "icons": [
     {
-      "src": "https://box.hdcxb.net/d/%E5%85%B6%E4%BB%96%E8%B5%84%E6%96%99/p/huideng.png",
-      "sizes": "512x512",
+      "src": "https://s3.ap-northeast-1.wasabisys.com/hdcx/hdv/p/huideng.png",
+      "sizes": "256x256",
       "type": "image/png"
     }
   ]
