@@ -91,7 +91,7 @@ export const useCopyLink = () => {
           }
         })
         .catch((err) => {
-          console.error(err)
+          console.error("YOURLS_API err", err)
         })
         .finally(() => {
           copy(rawUrl)
