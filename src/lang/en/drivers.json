@@ -374,6 +374,8 @@
   },
   "Local": {
     "mkdir_perm": "Mkdir perm",
+    "recycle_bin_path": "Recycle bin path",
+    "recycle_bin_path-tips": "path to recycle bin, delete permanently if empty or keep 'delete permanently'",
     "root_folder_path": "Root folder path",
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
