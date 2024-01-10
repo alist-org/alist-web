@@ -6,16 +6,16 @@ import { me } from "~/store"
 import { UserMethods } from "~/types"
 
 export const Footer = () => {
-  console.log()
 
   const t = useT()
   return (
     <VStack class="footer" w="$full" py="$4">
       <HStack spacing="$1">
         <Anchor
-          href={`https://${
-            location.hostname.includes("box") ? "pan" : "box"
-          }.hdcxb.net`}
+          href={`${location.host.includes("box") ?
+            location.href.replace("box", "pan") :
+            location.href.replace("pan", "box")
+            }`}
           external
         >
           {"镜像"}
