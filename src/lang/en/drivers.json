@@ -320,6 +320,11 @@
     "root_folder_path": "Root folder path",
     "username": "Username"
   },
+  "FeijiPan": {
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "username": "Username"
+  },
   "GoogleDrive": {
     "chunk_size": "Chunk size",
     "chunk_size-tips": "chunk size while uploading (unit: MB)",
@@ -761,6 +766,7 @@
     "Crypt": {},
     "Dropbox": {},
     "FTP": {},
+    "FeijiPan": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
     "ILanZou": {},
@@ -819,6 +825,7 @@
     "Crypt": "Crypt",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
+    "FeijiPan": "FeijiPan",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
     "ILanZou": "ILanZou",
