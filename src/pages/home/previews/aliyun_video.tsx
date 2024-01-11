@@ -279,6 +279,12 @@ const Preview = () => {
         }
       })
       player = new Artplayer(option)
+      player.on("ready", () => {
+        player.autoHeight()
+      })
+      player.on("resize", () => {
+        player.autoHeight()
+      })
       player.on("video:ended", () => {
         if (!autoNext()) return
         const index = videos.findIndex((f) => f.name === objStore.obj.name)
@@ -325,7 +331,7 @@ const Preview = () => {
   const [autoNext, setAutoNext] = createSignal()
   return (
     <VideoBox onAutoNextChange={setAutoNext}>
-      <Box w="$full" h="60vh" id="video-player" />
+      <Box w="$full" id="video-player" />
     </VideoBox>
   )
 }

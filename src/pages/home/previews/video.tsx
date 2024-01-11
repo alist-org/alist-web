@@ -298,6 +298,10 @@ const Preview = () => {
     console.log(auto_fullscreen)
     player.on("ready", () => {
       player.fullscreen = auto_fullscreen
+      player.autoHeight()
+    })
+    player.on("resize", () => {
+      player.autoHeight()
     })
     player.on("video:ended", () => {
       if (!autoNext()) return
@@ -310,7 +314,7 @@ const Preview = () => {
   const [autoNext, setAutoNext] = createSignal()
   return (
     <VideoBox onAutoNextChange={setAutoNext}>
-      <Box w="$full" h="60vh" id="video-player" />
+      <Box w="$full" id="video-player" />
     </VideoBox>
   )
 }
