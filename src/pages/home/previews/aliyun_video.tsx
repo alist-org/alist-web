@@ -3,7 +3,7 @@ import { createSignal, onCleanup, onMount } from "solid-js"
 import { useRouter, useLink, useFetch } from "~/hooks"
 import { getSettingBool, objStore, password } from "~/store"
 import { ObjType, PResp } from "~/types"
-import { ext, handleResp, notify, r } from "~/utils"
+import { ext, handleResp, notify, r, pathDir, pathJoin } from "~/utils"
 import Artplayer from "artplayer"
 import { type Option } from "artplayer/types/option"
 import { type Setting } from "artplayer/types/setting"
@@ -14,6 +14,7 @@ import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
 import { VideoBox } from "./video_box"
 import { ArtPlayerIconsSubtitle } from "~/components/icons"
+import { useNavigate } from "@solidjs/router"
 
 export interface Data {
   drive_id: string
@@ -44,11 +45,32 @@ export interface Meta {
 }
 
 const Preview = () => {
-  const { replace, pathname } = useRouter()
+  const { pathname, searchParams } = useRouter()
   const { proxyLink } = useLink()
+  const navigate = useNavigate()
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
   if (videos.length === 0) {
     videos = [objStore.obj]
+  }
+  const next_video = () => {
+    const index = videos.findIndex((f) => f.name === objStore.obj.name)
+    if (index < videos.length - 1) {
+      navigate(
+        pathJoin(pathDir(location.pathname), videos[index + 1].name) +
+          "?auto_fullscreen=" +
+          player.fullscreen,
+      )
+    }
+  }
+  const previous_video = () => {
+    const index = videos.findIndex((f) => f.name === objStore.obj.name)
+    if (index > 0) {
+      navigate(
+        pathJoin(pathDir(location.pathname), videos[index - 1].name) +
+          "?auto_fullscreen=" +
+          player.fullscreen,
+      )
+    }
   }
   let player: Artplayer
   let option: Option = {
@@ -59,6 +81,28 @@ const Preview = () => {
     autoplay: getSettingBool("video_autoplay"),
     autoSize: false,
     autoMini: true,
+    controls: [
+      {
+        name: "previous-button",
+        index: 10,
+        position: "left",
+        html: '<svg fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg" height="22" width="22" class="icon icon-tabler icon-tabler-player-track-prev-filled" width="1em" height="1em" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible; color: currentcolor;"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20.341 4.247l-8 7a1 1 0 0 0 0 1.506l8 7c.647 .565 1.659 .106 1.659 -.753v-14c0 -.86 -1.012 -1.318 -1.659 -.753z" stroke-width="0" fill="currentColor"></path><path d="M9.341 4.247l-8 7a1 1 0 0 0 0 1.506l8 7c.647 .565 1.659 .106 1.659 -.753v-14c0 -.86 -1.012 -1.318 -1.659 -.753z" stroke-width="0" fill="currentColor"></path></svg>',
+        tooltip: "Previous",
+        click: function () {
+          previous_video()
+        },
+      },
+      {
+        name: "next-button",
+        index: 11,
+        position: "left",
+        html: '<svg fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg" height="22" width="22" class="icon icon-tabler icon-tabler-player-track-next-filled" width="1em" height="1em" viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="overflow: visible; color: currentcolor;"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M2 5v14c0 .86 1.012 1.318 1.659 .753l8 -7a1 1 0 0 0 0 -1.506l-8 -7c-.647 -.565 -1.659 -.106 -1.659 .753z" stroke-width="0" fill="currentColor"></path><path d="M13 5v14c0 .86 1.012 1.318 1.659 .753l8 -7a1 1 0 0 0 0 -1.506l-8 -7c-.647 -.565 -1.659 -.106 -1.659 .753z" stroke-width="0" fill="currentColor"></path></svg>',
+        tooltip: "Next",
+        click: function () {
+          next_video()
+        },
+      },
+    ],
     loop: false,
     flip: true,
     playbackRate: true,
@@ -279,12 +323,21 @@ const Preview = () => {
         }
       })
       player = new Artplayer(option)
+      let auto_fullscreen: boolean
+      switch (searchParams["auto_fullscreen"]) {
+        case "true":
+          auto_fullscreen = true
+        case "false":
+          auto_fullscreen = false
+        default:
+          auto_fullscreen = false
+      }
+      player.on("ready", () => {
+        player.fullscreen = auto_fullscreen
+      })
       player.on("video:ended", () => {
         if (!autoNext()) return
-        const index = videos.findIndex((f) => f.name === objStore.obj.name)
-        if (index < videos.length - 1) {
-          replace(videos[index + 1].name)
-        }
+        next_video()
       })
       interval = window.setInterval(resetPlayUrl, 1000 * 60 * 14)
     })
