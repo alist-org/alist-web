@@ -295,7 +295,6 @@ const Preview = () => {
       default:
         auto_fullscreen = false
     }
-    console.log(auto_fullscreen)
     player.on("ready", () => {
       player.fullscreen = auto_fullscreen
       player.autoHeight()
