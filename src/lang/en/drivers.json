@@ -6,6 +6,17 @@
     "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
     "page_size": "Page size",
     "page_size-tips": "list api per page size of 115 driver",
+    "qrcode_source": "Qrcode source",
+    "qrcode_source-tips": "select the QR code device, default linux",
+    "qrcode_sources": {
+      "android": "Android",
+      "ios": "Ios",
+      "linux": "Linux",
+      "mac": "Mac",
+      "tv": "Tv",
+      "web": "Web",
+      "windows": "Windows"
+    },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
     "root_folder_id": "Root folder id"
@@ -17,6 +28,17 @@
     "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
     "page_size": "Page size",
     "page_size-tips": "list api per page size of 115 driver",
+    "qrcode_source": "Qrcode source",
+    "qrcode_source-tips": "select the QR code device, default linux",
+    "qrcode_sources": {
+      "android": "Android",
+      "ios": "Ios",
+      "linux": "Linux",
+      "mac": "Mac",
+      "tv": "Tv",
+      "web": "Web",
+      "windows": "Windows"
+    },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
     "receive_code": "Receive code",
