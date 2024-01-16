@@ -203,10 +203,15 @@ const Preview = () => {
           <span
             title={item.name}
             style={{
-              display: "inline-block",
-              "max-width": "15em",
-              "text-overflow": "ellipsis",
+              "max-width": "200px",
               overflow: "hidden",
+              "text-overflow": "ellipsis",
+              "word-break": "break-all",
+              "white-space": "normal",
+              display: "-webkit-box",
+              "-webkit-line-clamp": "2",
+              "-webkit-box-orient": "vertical",
+              "font-size": "12px",
             }}
           >
             {item.name}
