@@ -19,7 +19,7 @@ jobs:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
 
-      - uses: pnpm/action-setup@v2.2.4
+      - uses: pnpm/action-setup@v2.4.0
         name: Install pnpm
         id: pnpm-install
         with:
@@ -27,7 +27,7 @@ jobs:
           run_install: false
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
           path: alist-web
@@ -36,7 +36,7 @@ jobs:
           submodules: recursive
 
       - name: Checkout dist repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: alist-org/web-dist
           ref: dev

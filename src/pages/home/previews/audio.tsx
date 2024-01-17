@@ -3,15 +3,16 @@ import "./audio.css"
 import APlayer from "aplayer"
 import { Box } from "@hope-ui/solid"
 import { onCleanup, onMount } from "solid-js"
-import { useLink } from "~/hooks"
+import { useLink, useRouter } from "~/hooks"
 import { getSetting, getSettingBool, objStore } from "~/store"
 import { ObjType, StoreObj } from "~/types"
 import { baseName } from "~/utils"
 
 const Preview = () => {
   const { proxyLink, rawLink } = useLink()
+  const { searchParams } = useRouter()
   let audios = objStore.objs.filter((obj) => obj.type === ObjType.AUDIO)
-  if (audios.length === 0) {
+  if (audios.length === 0 || searchParams["from"] === "search") {
     audios = [objStore.obj]
   }
   let ap: any

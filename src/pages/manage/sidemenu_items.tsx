@@ -19,7 +19,7 @@ import { OcWorkflow2 } from "solid-icons/oc"
 import { IoCopy, IoHome, IoMagnetOutline } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
-import { FaBrandsQuinscape, FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
+import { FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component
@@ -70,6 +70,12 @@ export const side_menu_items: SideMenuItem[] = [
         icon: FiLogIn,
         to: "/@manage/settings/sso",
         component: () => <CommonSettings group={Group.SSO} />,
+      },
+      {
+        title: "manage.sidemenu.ldap",
+        icon: FiLogIn,
+        to: "/@manage/settings/ldap",
+        component: () => <CommonSettings group={Group.LDAP} />,
       },
       {
         title: "manage.sidemenu.other",

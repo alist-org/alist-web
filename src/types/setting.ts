@@ -9,6 +9,7 @@ export enum Group {
   ARIA2,
   INDEX,
   SSO,
+  LDAP,
 }
 export enum Flag {
   PUBLIC,

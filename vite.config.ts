@@ -3,9 +3,8 @@ import { defineConfig } from "vite"
 import solidPlugin from "vite-plugin-solid"
 import legacy from "@vitejs/plugin-legacy"
 import { dynamicBase } from "vite-plugin-dynamic-base"
-import copyPlugin from "rollup-plugin-copy"
-import { visualizer } from "rollup-plugin-visualizer";
-import { Plugin as importToCDN } from 'vite-plugin-cdn-import'
+import { visualizer } from "rollup-plugin-visualizer"
+import { Plugin as importToCDN } from "vite-plugin-cdn-import"
 
 export default defineConfig({
   resolve: {
@@ -21,19 +20,13 @@ export default defineConfig({
       modules: [
         {
           name: "katex",
-          var: 'Katex',
-          path: 'https://lib.baomitu.com/KaTeX/0.16.8/katex.min.js',
-        }
+          var: "Katex",
+          path: "https://lib.baomitu.com/KaTeX/0.16.8/katex.min.js",
+        },
       ],
     }),
     legacy({
       targets: ["defaults"],
-    }),
-    copyPlugin({
-      targets: [
-        { src: "node_modules/libass-wasm/**/*.wasm", dest: "dist/assets" },
-      ],
-      hook: "writeBundle",
     }),
     dynamicBase({
       // dynamic public path var string, default window.__dynamic_base__

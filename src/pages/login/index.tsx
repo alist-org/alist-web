@@ -56,13 +56,23 @@ const Login = () => {
   const [opt, setOpt] = createSignal("")
   const [useauthn, setuseauthn] = createSignal(false)
   const [remember, setRemember] = createStorageSignal("remember-pwd", "false")
+  const [useLdap, setUseLdap] = createSignal(false)
   const [loading, data] = useFetch(
-    async (): Promise<Resp<{ token: string }>> =>
-      r.post("/auth/login/hash", {
-        username: username(),
-        password: hashPwd(password()),
-        otp_code: opt(),
-      }),
+    async (): Promise<Resp<{ token: string }>> => {
+      if (useLdap()) {
+        return r.post("/auth/login/ldap", {
+          username: username(),
+          password: password(),
+          otp_code: opt(),
+        })
+      } else {
+        return r.post("/auth/login/hash", {
+          username: username(),
+          password: hashPwd(password()),
+          otp_code: opt(),
+        })
+      }
+    },
   )
   const [, postauthnlogin] = useFetch(
     (
@@ -149,6 +159,11 @@ const Login = () => {
     }
   }
   const [needOpt, setNeedOpt] = createSignal(false)
+  const ldapLoginEnabled = getSettingBool("ldap_login_enabled")
+  const ldapLoginTips = getSetting("ldap_login_tips")
+  if (ldapLoginEnabled) {
+    setUseLdap(true)
+  }
 
   return (
     <Center zIndex="1" w="$full" h="100vh">
@@ -247,6 +262,15 @@ const Login = () => {
             {t("login.login")}
           </Button>
         </HStack>
+        <Show when={ldapLoginEnabled}>
+          <Checkbox
+            w="$full"
+            checked={useLdap() === true}
+            onChange={() => setUseLdap(!useLdap())}
+          >
+            {ldapLoginTips}
+          </Checkbox>
+        </Show>
         <Button
           w="$full"
           colorScheme="accent"

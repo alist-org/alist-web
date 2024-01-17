@@ -6,6 +6,17 @@
     "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
     "page_size": "Page size",
     "page_size-tips": "list api per page size of 115 driver",
+    "qrcode_source": "Qrcode source",
+    "qrcode_source-tips": "select the QR code device, default linux",
+    "qrcode_sources": {
+      "android": "Android",
+      "ios": "Ios",
+      "linux": "Linux",
+      "mac": "Mac",
+      "tv": "Tv",
+      "web": "Web",
+      "windows": "Windows"
+    },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
     "root_folder_id": "Root folder id"
@@ -17,6 +28,17 @@
     "limit_rate-tips": "limit all api request rate (1r/[limit_rate]s)",
     "page_size": "Page size",
     "page_size-tips": "list api per page size of 115 driver",
+    "qrcode_source": "Qrcode source",
+    "qrcode_source-tips": "select the QR code device, default linux",
+    "qrcode_sources": {
+      "android": "Android",
+      "ios": "Ios",
+      "linux": "Linux",
+      "mac": "Mac",
+      "tv": "Tv",
+      "web": "Web",
+      "windows": "Windows"
+    },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
     "receive_code": "Receive code",
@@ -320,6 +342,11 @@
     "root_folder_path": "Root folder path",
     "username": "Username"
   },
+  "FeijiPan": {
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "username": "Username"
+  },
   "GoogleDrive": {
     "chunk_size": "Chunk size",
     "chunk_size-tips": "chunk size while uploading (unit: MB)",
@@ -341,6 +368,11 @@
     "refresh_token": "Refresh token",
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
+  },
+  "ILanZou": {
+    "password": "Password",
+    "root_folder_id": "Root folder id",
+    "username": "Username"
   },
   "IPFS API": {
     "endpoint": "Endpoint",
@@ -369,6 +401,8 @@
   },
   "Local": {
     "mkdir_perm": "Mkdir perm",
+    "recycle_bin_path": "Recycle bin path",
+    "recycle_bin_path-tips": "path to recycle bin, delete permanently if empty or keep 'delete permanently'",
     "root_folder_path": "Root folder path",
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
@@ -754,8 +788,10 @@
     "Crypt": {},
     "Dropbox": {},
     "FTP": {},
+    "FeijiPan": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "ILanZou": {},
     "IPFS API": {},
     "Lanzou": {},
     "Local": {},
@@ -811,8 +847,10 @@
     "Crypt": "Crypt",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
+    "FeijiPan": "FeijiPan",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Local": "Local",
