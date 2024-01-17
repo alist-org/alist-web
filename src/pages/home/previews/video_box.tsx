@@ -7,7 +7,7 @@ import {
   HStack,
   Switch,
 } from "@hope-ui/solid"
-import { For, JSXElement } from "solid-js"
+import { For, JSXElement, onCleanup, onMount } from "solid-js"
 import { useRouter, useLink, useT } from "~/hooks"
 import { objStore } from "~/store"
 import { ObjType } from "~/types"
@@ -67,8 +67,32 @@ export const VideoBox = (props: {
     autoNext = "true"
   }
   props.onAutoNextChange(autoNext === "true")
+  const useVideoLayoutRef = () => {
+    return (ref: HTMLDivElement) => {
+      const observer = new MutationObserver((mutationList) => {
+        for (const mutation of mutationList) {
+          const target = mutation.target as Element
+          if (target.id !== "video-player") continue
+          // ArtPlayer has been rendered here
+          ref.style.minHeight = "320px" // min width of mobie phone
+        }
+      })
+
+      onMount(() => {
+        const offsetBottom = "1.75rem" // position bottom of "More" button + padding
+        ref.style.maxHeight = `calc(100vh - ${ref.offsetTop}px - ${offsetBottom})`
+        observer.observe(ref, {
+          attributes: true,
+          attributeFilter: ["style"],
+          subtree: true,
+        })
+      })
+
+      onCleanup(() => observer.disconnect())
+    }
+  }
   return (
-    <VStack w="$full" spacing="$2">
+    <VStack ref={useVideoLayoutRef()} w="$full" spacing="$2">
       {props.children}
       <HStack spacing="$2" w="$full">
         <SelectWrapper
