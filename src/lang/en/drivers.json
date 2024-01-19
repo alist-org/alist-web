@@ -511,6 +511,13 @@
     },
     "root_folder_id": "Root folder id"
   },
+  "Quqi": {
+    "cookie": "Cookie",
+    "cookie-tips": "Cookie can be used on multiple clients at the same time",
+    "password": "Password",
+    "phone": "Phone",
+    "root_folder_id": "Root folder id"
+  },
   "S3": {
     "access_key_id": "Access key id",
     "add_filename_to_disposition": "Add filename to disposition",
@@ -805,6 +812,7 @@
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
+    "Quqi": {},
     "S3": {},
     "SFTP": {},
     "SMB": {},
@@ -862,6 +870,7 @@
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
+    "Quqi": "Quqi",
     "S3": "S3",
     "SFTP": "SFTP",
     "SMB": "SMB",
