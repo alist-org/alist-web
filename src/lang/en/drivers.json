@@ -512,6 +512,8 @@
     "root_folder_id": "Root folder id"
   },
   "Quqi": {
+    "cdn": "Cdn",
+    "cdn-tips": "If you enable this option, the download speed can be increased, but there will be some performance loss",
     "cookie": "Cookie",
     "cookie-tips": "Cookie can be used on multiple clients at the same time",
     "password": "Password",
