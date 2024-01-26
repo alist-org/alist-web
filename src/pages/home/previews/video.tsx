@@ -13,7 +13,7 @@ import artplayerPluginAss from "~/components/artplayer-plugin-ass"
 import flvjs from "flv.js"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
-import { VideoBox } from "./video_box"
+import { AutoHeightPlugin, VideoBox } from "./video_box"
 import { ArtPlayerIconsSubtitle } from "~/components/icons"
 import { useNavigate } from "@solidjs/router"
 
@@ -95,7 +95,7 @@ const Preview = () => {
     ],
     quality: [],
     // highlight: [],
-    plugins: [],
+    plugins: [AutoHeightPlugin],
     whitelist: [],
     settings: [],
     // subtitle:{}
@@ -302,10 +302,6 @@ const Preview = () => {
     }
     player.on("ready", () => {
       player.fullscreen = auto_fullscreen
-      player.autoHeight()
-    })
-    player.on("resize", () => {
-      player.autoHeight()
     })
     player.on("video:ended", () => {
       if (!autoNext()) return
