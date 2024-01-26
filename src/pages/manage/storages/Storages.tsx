@@ -168,7 +168,7 @@ const Storages = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                <For each={storages()}>
+                <For each={shownStorages()}>
                   {(storage) => (
                     <StorageListItem storage={storage} refresh={refresh} />
                   )}
