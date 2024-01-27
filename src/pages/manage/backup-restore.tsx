@@ -97,8 +97,13 @@ const BackupRestore = () => {
     return crypto.enc.Base64.stringify(crypto.enc.Utf8.parse(encJson))
   }
 
-  function decrypt(data: any, key: string, raw: boolean): string {
-    if (key == "") return data
+  function decrypt(
+    data: any,
+    key: string,
+    raw: boolean,
+    encrypted: boolean,
+  ): string {
+    if (!encrypted) return data
     const decData = crypto.enc.Base64.parse(data).toString(crypto.enc.Utf8)
     if (raw) return crypto.AES.decrypt(decData, key).toString(crypto.enc.Utf8)
     return JSON.parse(
@@ -109,13 +114,13 @@ const BackupRestore = () => {
   const backup = async () => {
     appendLog(t("br.start_backup"), "info")
     let allData: Data = {
-      encrypted: "false",
+      encrypted: "",
       settings: [],
       users: [],
       storages: [],
       metas: [],
     }
-    allData.encrypted = encrypt("encrypted", password())
+    if (password() != "") allData.encrypted = encrypt("encrypted", password())
     for (const item of [
       { name: "settings", fn: getSettings, page: false },
       { name: "users", fn: getUsers, page: true },
@@ -264,16 +269,20 @@ const BackupRestore = () => {
       const reader = new FileReader()
       reader.onload = async () => {
         const data: Data = JSON.parse(reader.result as string)
-        if (decrypt(data.encrypted, password(), true) !== '"encrypted"') {
-          appendLog(t("br.wrong_encrypt_password"), "error")
-          return
-        }
+        const encrypted = Boolean(data.encrypted)
+        if (encrypted)
+          if (
+            decrypt(data.encrypted, password(), true, true) !== '"encrypted"'
+          ) {
+            appendLog(t("br.wrong_encrypt_password"), "error")
+            return
+          }
         for (let i = 1; i <= 4; i++) {
           const obj = Object.values(data)[i]
           for (let i = 0; i < obj.length; i++) {
             let obj1 = obj[i]
             for (let key in obj1) {
-              obj1[key] = decrypt(obj1[key].toString(), password(), false)
+              obj1[key] = decrypt(obj1[key], password(), false, encrypted)
             }
           }
         }
