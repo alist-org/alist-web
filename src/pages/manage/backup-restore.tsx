@@ -113,7 +113,7 @@ const BackupRestore = () => {
 
   const backup = async () => {
     appendLog(t("br.start_backup"), "info")
-    let allData: Data = {
+    const allData: Data = {
       encrypted: "",
       settings: [],
       users: [],
@@ -139,16 +139,16 @@ const BackupRestore = () => {
           )
           if (item.page) {
             for (let i = 0; i < data.content.length; i++) {
-              let obj = data.content[i]
-              for (let key in obj) {
+              const obj = data.content[i]
+              for (const key in obj) {
                 obj[key] = encrypt(obj[key], password())
               }
             }
             allData[item.name] = data.content
           } else {
             for (let i = 0; i < data.length; i++) {
-              let obj = data[i]
-              for (let key in obj) {
+              const obj = data[i]
+              for (const key in obj) {
                 obj[key] = encrypt(obj[key], password())
               }
             }
@@ -281,9 +281,9 @@ const BackupRestore = () => {
         for (let i = dataasarray.length - 4; i < dataasarray.length; i++) {
           const obj = dataasarray[i]
           console.log(obj)
-          for (let i = 0; i < obj.length; i++) {
-            let obj1 = obj[i]
-            for (let key in obj1) {
+          for (let a = 0; a < obj.length; a++) {
+            const obj1 = obj[a]
+            for (const key in obj1) {
               obj1[key] = decrypt(obj1[key], password(), false, encrypted)
             }
           }
