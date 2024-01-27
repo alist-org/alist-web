@@ -4,6 +4,10 @@ import {
   VStack,
   Text,
   Switch as HopeSwitch,
+  Input,
+  FormControl,
+  FormLabel,
+  Flex,
 } from "@hope-ui/solid"
 import { r, handleRespWithoutNotify, notify } from "~/utils"
 import { useFetch, useManageTitle, useT } from "~/hooks"
@@ -18,8 +22,10 @@ import {
   PPageResp,
 } from "~/types"
 import { createSignal, For } from "solid-js"
+import crypto from "crypto-js"
 
 interface Data {
+  encrypted: string
   settings: SettingItem[]
   users: User[]
   storages: Storage[]
@@ -51,6 +57,7 @@ const Log = (props: { msg: string; type: LogType }) => {
 
 const BackupRestore = () => {
   const [override, setOverride] = createSignal(false)
+  const [password, setPassword] = createSignal("")
   const t = useT()
   useManageTitle("manage.sidemenu.backup-restore")
   let logRef: HTMLDivElement
@@ -84,14 +91,31 @@ const BackupRestore = () => {
       getStoragesLoading()
     )
   }
+  function encrypt(data: any, key: string): string {
+    if (key == "") return data
+    const encJson = crypto.AES.encrypt(JSON.stringify(data), key).toString()
+    return crypto.enc.Base64.stringify(crypto.enc.Utf8.parse(encJson))
+  }
+
+  function decrypt(data: any, key: string, raw: boolean): string {
+    if (key == "") return data
+    const decData = crypto.enc.Base64.parse(data).toString(crypto.enc.Utf8)
+    if (raw) return crypto.AES.decrypt(decData, key).toString(crypto.enc.Utf8)
+    return JSON.parse(
+      crypto.AES.decrypt(decData, key).toString(crypto.enc.Utf8),
+    )
+  }
+
   const backup = async () => {
     appendLog(t("br.start_backup"), "info")
-    const allData: Data = {
+    let allData: Data = {
+      encrypted: "false",
       settings: [],
       users: [],
       storages: [],
       metas: [],
     }
+    allData.encrypted = encrypt("encrypted", password())
     for (const item of [
       { name: "settings", fn: getSettings, page: false },
       { name: "users", fn: getUsers, page: true },
@@ -109,8 +133,20 @@ const BackupRestore = () => {
             "success",
           )
           if (item.page) {
+            for (let i = 0; i < data.content.length; i++) {
+              let obj = data.content[i]
+              for (let key in obj) {
+                obj[key] = encrypt(obj[key], password())
+              }
+            }
             allData[item.name] = data.content
           } else {
+            for (let i = 0; i < data.length; i++) {
+              let obj = data[i]
+              for (let key in obj) {
+                obj[key] = encrypt(obj[key], password())
+              }
+            }
             allData[item.name] = data
           }
         },
@@ -228,6 +264,19 @@ const BackupRestore = () => {
       const reader = new FileReader()
       reader.onload = async () => {
         const data: Data = JSON.parse(reader.result as string)
+        if (decrypt(data.encrypted, password(), true) !== '"encrypted"') {
+          appendLog(t("br.wrong_encrypt_password"), "error")
+          return
+        }
+        for (let i = 1; i <= 4; i++) {
+          const obj = Object.values(data)[i]
+          for (let i = 0; i < obj.length; i++) {
+            let obj1 = obj[i]
+            for (let key in obj1) {
+              obj1[key] = decrypt(obj1[key].toString(), password(), false)
+            }
+          }
+        }
         if (override()) {
           await backup()
         }
@@ -348,16 +397,27 @@ const BackupRestore = () => {
         >
           {t("br.restore")}
         </Button>
-        <HopeSwitch
-          id="restore-override"
-          checked={override()}
-          onChange={(e: { currentTarget: HTMLInputElement }) =>
-            setOverride(e.currentTarget.checked)
-          }
-        >
-          {t("br.override")}
-        </HopeSwitch>
       </HStack>
+      <FormControl w="$full" display="flex" flexDirection="column">
+        <Flex w="$full" direction="column" gap="$1">
+          <FormLabel>{t(`br.override`)}</FormLabel>
+          <HopeSwitch
+            id="restore-override"
+            checked={override()}
+            onChange={(e: { currentTarget: HTMLInputElement }) =>
+              setOverride(e.currentTarget.checked)
+            }
+          ></HopeSwitch>
+
+          <FormLabel>{t(`br.encrypt_password`)}</FormLabel>
+          <Input
+            id="password"
+            type="password"
+            placeholder={t(`br.encrypt_password_placeholder`)}
+            onInput={(e) => setPassword(e.currentTarget.value)}
+          />
+        </Flex>
+      </FormControl>
       <VStack
         p="$2"
         ref={logRef!}
