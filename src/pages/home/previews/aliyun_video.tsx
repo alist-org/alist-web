@@ -1,5 +1,5 @@
-import { Box } from "@hope-ui/solid"
-import { createSignal, onCleanup, onMount } from "solid-js"
+import { Box, Center } from "@hope-ui/solid"
+import { Show, createSignal, onCleanup, onMount } from "solid-js"
 import { useRouter, useLink, useFetch } from "~/hooks"
 import { getSettingBool, objStore, password } from "~/store"
 import { ObjType, PResp } from "~/types"
@@ -12,9 +12,10 @@ import artplayerPluginDanmuku from "artplayer-plugin-danmuku"
 import artplayerPluginAss from "~/components/artplayer-plugin-ass"
 import Hls from "hls.js"
 import { currentLang } from "~/app/i18n"
-import { VideoBox } from "./video_box"
+import { AutoHeightPlugin, VideoBox } from "./video_box"
 import { ArtPlayerIconsSubtitle } from "~/components/icons"
 import { useNavigate } from "@solidjs/router"
+import { TiWarning } from "solid-icons/ti"
 
 export interface Data {
   drive_id: string
@@ -117,7 +118,7 @@ const Preview = () => {
     miniProgressBar: false,
     playsInline: true,
     quality: [],
-    plugins: [],
+    plugins: [AutoHeightPlugin],
     whitelist: [],
     settings: [],
     moreVideoAttr: {
@@ -310,6 +311,7 @@ const Preview = () => {
   )
   onMount(async () => {
     const resp = await post()
+    setWarnVisible(resp.code !== 200)
     handleResp(resp, (data) => {
       const list =
         data.video_preview_play_info.live_transcoding_task_list.filter(
@@ -339,10 +341,6 @@ const Preview = () => {
       }
       player.on("ready", () => {
         player.fullscreen = auto_fullscreen
-        player.autoHeight()
-      })
-      player.on("resize", () => {
-        player.autoHeight()
       })
       player.on("video:ended", () => {
         if (!autoNext()) return
@@ -385,9 +383,15 @@ const Preview = () => {
     window.clearInterval(interval)
   })
   const [autoNext, setAutoNext] = createSignal()
+  const [warnVisible, setWarnVisible] = createSignal(false)
   return (
     <VideoBox onAutoNextChange={setAutoNext}>
       <Box w="$full" id="video-player" />
+      <Show when={warnVisible()}>
+        <Center w="100%" h="60vh" bgColor="black">
+          <TiWarning size="4rem" />
+        </Center>
+      </Show>
     </VideoBox>
   )
 }
