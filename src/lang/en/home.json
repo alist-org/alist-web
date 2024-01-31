@@ -26,6 +26,7 @@
   "no_more": "No more",
   "input_password": "Please input password",
   "toolbar": {
+    "backtop": "Back To Top",
     "more": "More",
     "refresh": "Refresh",
     "toggle_theme": "Toggle Theme",
