@@ -16,7 +16,14 @@ export const Nav = () => {
   const t = useT()
   const { setPathAs } = usePath()
   return (
-    <Breadcrumb class="nav" w="$full">
+    <Breadcrumb
+      class="nav"
+      w="$full"
+      background="$background"
+      position="sticky"
+      zIndex="$sticky"
+      top={0}
+    >
       <For each={paths()}>
         {(name, i) => {
           const isLast = createMemo(() => i() === paths().length - 1)
