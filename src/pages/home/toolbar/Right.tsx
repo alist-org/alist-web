@@ -1,9 +1,4 @@
-import {
-  Box,
-  createDisclosure,
-  useColorModeValue,
-  VStack,
-} from "@hope-ui/solid"
+import { Box, createDisclosure, VStack } from "@hope-ui/solid"
 import { createMemo, Show } from "solid-js"
 import { RightIcon } from "./Icon"
 import { CgMoreO } from "solid-icons/cg"
@@ -16,6 +11,8 @@ import { AiOutlineCloudUpload, AiOutlineSetting } from "solid-icons/ai"
 import { RiSystemRefreshLine } from "solid-icons/ri"
 import { usePath } from "~/hooks"
 import { Motion } from "@motionone/solid"
+import { isTocVisible, setTocDisabled } from "~/components"
+import { BiSolidBookContent } from "solid-icons/bi"
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -121,6 +118,15 @@ export const Right = () => {
                 tips="offline_download"
                 onClick={() => {
                   bus.emit("tool", "offline_download")
+                }}
+              />
+            </Show>
+            <Show when={isTocVisible()}>
+              <RightIcon
+                as={BiSolidBookContent}
+                tips="toggle_markdown_toc"
+                onClick={() => {
+                  setTocDisabled((disabled) => !disabled)
                 }}
               />
             </Show>

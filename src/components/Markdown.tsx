@@ -13,6 +13,7 @@ import { useParseText, useRouter } from "~/hooks"
 import { EncodingSelect } from "."
 import once from "just-once"
 import { pathDir, pathJoin, api } from "~/utils"
+import { setMarkdownRef } from "./MarkdownToc.jsx"
 
 const insertKatexCSS = once(() => {
   const link = document.createElement("link")
@@ -77,7 +78,7 @@ export function Markdown(props: {
     }),
   )
   return (
-    <Box class="markdown" pos="relative" w="$full">
+    <Box ref={setMarkdownRef} class="markdown" pos="relative" w="$full">
       <Show when={show()}>
         <SolidMarkdown
           class={clsx("markdown-body", props.class)}

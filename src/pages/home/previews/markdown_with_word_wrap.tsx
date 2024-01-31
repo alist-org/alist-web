@@ -1,4 +1,4 @@
-import { Markdown, MaybeLoading } from "~/components"
+import { Markdown, MaybeLoading, MarkdownToc } from "~/components"
 import { useFetchText } from "~/hooks"
 
 const MdPreview = () => {
@@ -6,6 +6,7 @@ const MdPreview = () => {
   return (
     <MaybeLoading loading={content.loading}>
       <Markdown class="word-wrap" children={content()?.content} />
+      <MarkdownToc />
     </MaybeLoading>
   )
 }
