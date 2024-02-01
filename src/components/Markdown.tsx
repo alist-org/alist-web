@@ -78,7 +78,12 @@ export function Markdown(props: {
     }),
   )
   return (
-    <Box ref={setMarkdownRef} class="markdown" pos="relative" w="$full">
+    <Box
+      ref={(r: HTMLDivElement) => setMarkdownRef(r)}
+      class="markdown"
+      pos="relative"
+      w="$full"
+    >
       <Show when={show()}>
         <SolidMarkdown
           class={clsx("markdown-body", props.class)}
