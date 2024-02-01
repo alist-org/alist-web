@@ -25,8 +25,9 @@ export function MarkdownToc() {
 
   const [tocList, setTocList] = createSignal<TocItem[]>([])
 
-  useScrollListener(() =>
-    setVisible(window.scrollY > 100 && tocList().length > 1),
+  useScrollListener(
+    () => setVisible(window.scrollY > 100 && tocList().length > 1),
+    { immediate: true },
   )
 
   createEffect(() => {

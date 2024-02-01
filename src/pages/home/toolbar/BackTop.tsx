@@ -1,15 +1,17 @@
-import { Show, createEffect, createSignal, onCleanup } from "solid-js"
+import { Show, createSignal, onCleanup } from "solid-js"
 import { Box } from "@hope-ui/solid"
 import { FiArrowUpCircle } from "solid-icons/fi"
 import { Motion } from "@motionone/solid"
 import { isMobile } from "~/utils/compatibility"
 import { RightIcon } from "./Icon"
 
-export const useScrollListener = (callback: (e?: Event) => void) => {
-  createEffect(() => {
-    window.addEventListener("scroll", callback, { passive: true })
-    onCleanup(() => window.removeEventListener("scroll", callback))
-  })
+export const useScrollListener = (
+  callback: (e?: Event) => void,
+  options?: { immediate?: boolean },
+) => {
+  if (options?.immediate) callback()
+  window.addEventListener("scroll", callback, { passive: true })
+  onCleanup(() => window.removeEventListener("scroll", callback))
 }
 
 export const BackTop = () => {
