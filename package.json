@@ -67,6 +67,7 @@
     "axios": "^1.0.0",
     "clsx": "^2.0.0",
     "copy-to-clipboard": "^3.3.2",
+    "crypto-js": "^4.2.0",
     "flv.js": "^1.6.2",
     "hls.js": "^1.2.1",
     "just-once": "^2.2.0",
