@@ -4,6 +4,7 @@ import { Anchor, Box, List, ListItem } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useScrollListener } from "~/pages/home/toolbar/BackTop.jsx"
 import { isMobile } from "~/utils/compatibility"
+import { getMainColor } from "~/store"
 
 type TocItem = { indent: number; text: string; tagName: string; key: string }
 
@@ -101,12 +102,12 @@ export function MarkdownToc() {
         <Box
           mt="$5"
           p="$2"
-          shadow="$xl"
+          shadow="$outline"
           rounded="$lg"
-          bgColor="$whiteAlpha12"
+          bgColor="white"
           transition="all .3s ease-out"
-          transform="translateX(calc(100% - 28px))"
-          _dark={{ bgColor: "$blackAlpha12" }}
+          transform="translateX(calc(100% - 20px))"
+          _dark={{ bgColor: "$neutral3" }}
           _hover={{ transform: "none" }}
         >
           <List maxH="60vh" overflowY="auto">
@@ -114,7 +115,7 @@ export function MarkdownToc() {
               {(item) => (
                 <ListItem pl={15 * item.indent} m={4}>
                   <Anchor
-                    color="rgb(24, 144, 255)"
+                    color={getMainColor()}
                     onClick={() => handleAnchor(item)}
                   >
                     {item.text}

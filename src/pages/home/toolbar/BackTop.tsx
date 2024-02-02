@@ -1,9 +1,9 @@
 import { Show, createSignal, onCleanup } from "solid-js"
-import { Box } from "@hope-ui/solid"
-import { FiArrowUpCircle } from "solid-icons/fi"
+import { Box, Icon } from "@hope-ui/solid"
+import { FiArrowUp } from "solid-icons/fi"
 import { Motion } from "@motionone/solid"
 import { isMobile } from "~/utils/compatibility"
-import { RightIcon } from "./Icon"
+import { getMainColor } from "~/store"
 
 export const useScrollListener = (
   callback: (e?: Event) => void,
@@ -25,16 +25,29 @@ export const BackTop = () => {
     <Show when={visible()}>
       <Box
         as={Motion.div}
-        initial={{ x: 999 }}
-        animate={{ x: 0 }}
+        initial={{ y: -999 }}
+        animate={{ y: 0 }}
         zIndex="$overlay"
         pos="fixed"
         right="$5"
         top="0"
+        borderBottomRadius="50%"
+        bgColor="$whiteAlpha12"
+        color={getMainColor()}
+        overflow="hidden"
+        shadow="$lg"
+        _dark={{ bgColor: getMainColor(), color: "white" }}
+        _hover={{ bgColor: getMainColor(), color: "white" }}
       >
-        <RightIcon
-          as={FiArrowUpCircle}
-          tips="backtop"
+        <Icon
+          _focus={{
+            outline: "none",
+          }}
+          cursor="pointer"
+          boxSize="$7"
+          p="$1"
+          rounded="$lg"
+          as={FiArrowUp}
           onClick={() => {
             window.scrollTo({ top: 0, behavior: "smooth" })
           }}
