@@ -25,13 +25,13 @@ export const Header = () => {
       case "sticky":
         return { position: "sticky", zIndex: "$sticky", top: 0 }
       default:
-        return {}
+        return { position: undefined, zIndex: undefined, top: undefined }
     }
   })
 
   return (
     <Center
-      {...stickyProps()}
+      {...stickyProps}
       bgColor="$background"
       class="header"
       w="$full"

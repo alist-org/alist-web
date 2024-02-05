@@ -35,21 +35,20 @@ export const Nav = () => {
     switch (local["position_of_header_navbar"]) {
       case "only_navbar_sticky":
         return { ...mask, position: "sticky", zIndex: "$sticky", top: 0 }
-      case "sticky": {
+      case "sticky":
         return { ...mask, position: "sticky", zIndex: "$sticky", top: 60 }
-      }
       default:
-        return {}
+        return {
+          _after: undefined,
+          position: undefined,
+          zIndex: undefined,
+          top: undefined,
+        }
     }
   })
 
   return (
-    <Breadcrumb
-      {...stickyProps()}
-      background="$background"
-      class="nav"
-      w="$full"
-    >
+    <Breadcrumb {...stickyProps} background="$background" class="nav" w="$full">
       <For each={paths()}>
         {(name, i) => {
           const isLast = createMemo(() => i() === paths().length - 1)
