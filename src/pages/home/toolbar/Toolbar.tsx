@@ -14,6 +14,8 @@ import { PackageDownloadModal } from "./Download"
 import { lazy } from "solid-js"
 import { ModalWrapper } from "./ModalWrapper"
 import { LocalSettings } from "./LocalSettings"
+import { BackTop } from "./BackTop"
+
 const Upload = lazy(() => import("../uploads/Upload"))
 
 export const Modal = () => {
@@ -44,6 +46,7 @@ export const Toolbar = () => {
       <Right />
       <Center />
       <Modal />
+      <BackTop />
     </Portal>
   )
 }

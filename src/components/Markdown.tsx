@@ -6,13 +6,147 @@ import rehypeRaw from "rehype-raw"
 import reMarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import "./markdown.css"
-import { Show, createEffect, createMemo, createSignal, on } from "solid-js"
+import { For, Show, createEffect, createMemo, createSignal, on } from "solid-js"
 import { clsx } from "clsx"
-import { Box } from "@hope-ui/solid"
+import { Anchor, Box, List, ListItem } from "@hope-ui/solid"
 import { useParseText, useRouter } from "~/hooks"
 import { EncodingSelect } from "."
 import once from "just-once"
 import { pathDir, pathJoin, api } from "~/utils"
+import { createStorageSignal } from "@solid-primitives/storage"
+import { isMobile } from "~/utils/compatibility.js"
+import { useScrollListener } from "~/pages/home/toolbar/BackTop.jsx"
+import { Motion } from "@motionone/solid"
+import { getMainColor } from "~/store"
+
+type TocItem = { indent: number; text: string; tagName: string; key: string }
+
+const [isTocVisible, setVisible] = createSignal(false)
+const [markdownRef, setMarkdownRef] = createSignal<HTMLDivElement>()
+const [isTocDisabled, setTocDisabled] = createStorageSignal(
+  "isMarkdownTocDisabled",
+  false,
+  {
+    serializer: (v: boolean) => JSON.stringify(v),
+    deserializer: (v) => JSON.parse(v),
+  },
+)
+
+export { isTocVisible, setTocDisabled }
+
+function MarkdownToc(props: { disabled?: boolean }) {
+  if (props.disabled) return null
+  if (isMobile) return null
+
+  const [tocList, setTocList] = createSignal<TocItem[]>([])
+
+  useScrollListener(
+    () => setVisible(window.scrollY > 100 && tocList().length > 1),
+    { immediate: true },
+  )
+
+  createEffect(() => {
+    const $markdown = markdownRef()?.querySelector(".markdown-body")
+    if (!$markdown) return
+
+    /**
+     * iterate elements of markdown body to find h1~h6
+     * and put them into a list by order
+     */
+    const iterator = document.createNodeIterator(
+      $markdown,
+      NodeFilter.SHOW_ELEMENT,
+      {
+        acceptNode(node) {
+          if (/h1|h2|h3/i.test(node.nodeName)) {
+            return NodeFilter.FILTER_ACCEPT
+          }
+          return NodeFilter.FILTER_REJECT
+        },
+      },
+    )
+
+    const items: TocItem[] = []
+    let $next = iterator.nextNode()
+    let minLevel = 6
+
+    while ($next) {
+      const level = Number($next.nodeName.match(/h(\d)/i)![1])
+      if (level < minLevel) minLevel = level
+
+      items.push({
+        indent: level, // initial indent for following compute
+        text: $next.textContent!,
+        tagName: $next.nodeName.toLowerCase(),
+        key: ($next as Element).getAttribute("key")!,
+      })
+
+      $next = iterator.nextNode()
+    }
+
+    setTocList(
+      items.map((item) => ({
+        ...item,
+        // reset the indent of item to remove whitespace
+        indent: item.indent - minLevel,
+      })),
+    )
+  })
+
+  const handleAnchor = (item: TocItem) => {
+    const $target = document.querySelector(`${item.tagName}[key=${item.key}]`)
+    if (!$target) return
+
+    // the top of target should scroll to the bottom of nav
+    const $nav = document.querySelector(".nav")
+    let navBottom = $nav?.getBoundingClientRect().bottom ?? 0
+    if (navBottom < 0) navBottom = 0
+
+    const offsetY = $target.getBoundingClientRect().y
+    window.scrollBy({ behavior: "smooth", top: offsetY - navBottom })
+  }
+
+  return (
+    <Show when={!isTocDisabled() && isTocVisible()}>
+      <Box
+        as={Motion.div}
+        initial={{ x: 999 }}
+        animate={{ x: 0 }}
+        zIndex="$overlay"
+        pos="fixed"
+        right="$6"
+        top="$6"
+      >
+        <Box
+          mt="$5"
+          p="$2"
+          shadow="$outline"
+          rounded="$lg"
+          bgColor="white"
+          transition="all .3s ease-out"
+          transform="translateX(calc(100% - 20px))"
+          _dark={{ bgColor: "$neutral3" }}
+          _hover={{ transform: "none" }}
+        >
+          <List maxH="60vh" overflowY="auto">
+            <For each={tocList()}>
+              {(item) => (
+                <ListItem pl={15 * item.indent} m={4}>
+                  <Anchor
+                    color={getMainColor()}
+                    onClick={() => handleAnchor(item)}
+                  >
+                    {item.text}
+                  </Anchor>
+                </ListItem>
+              )}
+            </For>
+          </List>
+        </Box>
+      </Box>
+    </Show>
+  )
+}
 
 const insertKatexCSS = once(() => {
   const link = document.createElement("link")
@@ -27,6 +161,7 @@ export function Markdown(props: {
   class?: string
   ext?: string
   readme?: boolean
+  toc?: boolean
 }) {
   const [encoding, setEncoding] = createSignal<string>("utf-8")
   const [show, setShow] = createSignal(true)
@@ -77,7 +212,12 @@ export function Markdown(props: {
     }),
   )
   return (
-    <Box class="markdown" pos="relative" w="$full">
+    <Box
+      ref={(r: HTMLDivElement) => setMarkdownRef(r)}
+      class="markdown"
+      pos="relative"
+      w="$full"
+    >
       <Show when={show()}>
         <SolidMarkdown
           class={clsx("markdown-body", props.class)}
@@ -89,6 +229,7 @@ export function Markdown(props: {
       <Show when={!isString}>
         <EncodingSelect encoding={encoding()} setEncoding={setEncoding} />
       </Show>
+      <MarkdownToc disabled={!props.toc} />
     </Box>
   )
 }

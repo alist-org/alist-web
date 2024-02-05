@@ -29,6 +29,12 @@ export const initialLocalSettings = [
     type: "select",
     options: ["top", "bottom", "none"],
   },
+  {
+    key: "position_of_header_navbar",
+    default: "static",
+    type: "select",
+    options: ["static", "sticky", "only_navbar_sticky"],
+  },
 ]
 export type LocalSetting = (typeof initialLocalSettings)[number]
 for (const setting of initialLocalSettings) {
