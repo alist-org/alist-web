@@ -138,7 +138,7 @@ const SearchResult = (props: { node: SearchNode; keywords: string }) => {
       px="$2"
       as={LinkWithBase}
       href={`${props.node.path}?from=search`}
-      encode
+      // encode
       onMouseEnter={() => {
         setPathAs(props.node.path, props.node.is_dir)
       }}
