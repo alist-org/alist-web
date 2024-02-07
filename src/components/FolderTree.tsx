@@ -24,23 +24,39 @@ import {
   useContext,
   Show,
   For,
+  Setter,
+  createEffect,
 } from "solid-js"
 import { useFetch, useT } from "~/hooks"
 import { getMainColor, password } from "~/store"
 import { Obj } from "~/types"
-import { pathBase, handleResp, hoverColor, pathJoin, fsDirs } from "~/utils"
+import {
+  pathBase,
+  handleResp,
+  hoverColor,
+  pathJoin,
+  fsDirs,
+  createMatcher,
+} from "~/utils"
 
+export type FolderTreeHandler = {
+  setPath: Setter<string>
+}
 export interface FolderTreeProps {
   onChange: (path: string) => void
   forceRoot?: boolean
+  autoOpen?: boolean
+  handle?: (handler: FolderTreeHandler) => void
 }
 const context = createContext<{
   value: Accessor<string>
   onChange: (val: string) => void
+  autoOpen?: boolean
   forceRoot: boolean
 }>()
 export const FolderTree = (props: FolderTreeProps) => {
   const [path, setPath] = createSignal("/")
+  props.handle?.({ setPath })
   return (
     <Box class="folder-tree-box" w="$full" overflowX="auto">
       <context.Provider
@@ -50,6 +66,7 @@ export const FolderTree = (props: FolderTreeProps) => {
             setPath(val)
             props.onChange(val)
           },
+          autoOpen: props.autoOpen ?? false,
           forceRoot: props.forceRoot ?? false,
         }}
       >
@@ -60,18 +77,26 @@ export const FolderTree = (props: FolderTreeProps) => {
 }
 
 const FolderTreeNode = (props: { path: string }) => {
-  const [children, setChildren] = createSignal<Obj[]>([])
-  const { value, onChange, forceRoot } = useContext(context)!
+  const [children, setChildren] = createSignal<Obj[]>()
+  const { value, onChange, forceRoot, autoOpen } = useContext(context)!
   const [loading, fetchDirs] = useFetch(() =>
     fsDirs(props.path, password(), forceRoot),
   )
   const load = async () => {
-    if (children().length > 0) return
-    const resp = await fetchDirs()
+    if (children()?.length) return
+    const resp = await fetchDirs() // this api may return null
     handleResp(resp, setChildren)
   }
   const { isOpen, onToggle } = createDisclosure()
   const active = () => value() === props.path
+  createEffect(async () => {
+    if (!autoOpen) return
+    if (isOpen()) return
+    if (createMatcher(props.path)(value())) {
+      await load()
+      onToggle()
+    }
+  })
   return (
     <Box>
       <HStack spacing="$2">

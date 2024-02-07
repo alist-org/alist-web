@@ -1,5 +1,13 @@
 import { useColorModeValue, VStack } from "@hope-ui/solid"
-import { Suspense, Switch, Match, lazy, createEffect, on } from "solid-js"
+import {
+  Suspense,
+  Switch,
+  Match,
+  lazy,
+  createEffect,
+  on,
+  createSignal,
+} from "solid-js"
 import { FullLoading, Error } from "~/components"
 import { resetGlobalPage, useObjTitle, usePath, useRouter } from "~/hooks"
 import { objStore, recordScroll, /*layout,*/ State } from "~/store"
@@ -9,6 +17,9 @@ const File = lazy(() => import("./file/File"))
 const Password = lazy(() => import("./Password"))
 // const ListSkeleton = lazy(() => import("./Folder/ListSkeleton"));
 // const GridSkeleton = lazy(() => import("./Folder/GridSkeleton"));
+
+const [objBoxRef, setObjBoxRef] = createSignal<HTMLDivElement>()
+export { objBoxRef }
 
 let first = true
 export const Obj = () => {
@@ -30,6 +41,7 @@ export const Obj = () => {
   )
   return (
     <VStack
+      ref={(el: HTMLDivElement) => setObjBoxRef(el)}
       class="obj-box"
       w="$full"
       rounded="$xl"

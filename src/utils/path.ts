@@ -60,3 +60,32 @@ export const ext = (path: string): string => {
 export const baseName = (fullName: string) => {
   return fullName.split(".").slice(0, -1).join(".")
 }
+
+export function createMatcher(path: string) {
+  const segments = path.split("/").filter(Boolean)
+  const len = segments.length
+
+  return (location: string) => {
+    const locSegments = location.split("/").filter(Boolean)
+    const lenDiff = locSegments.length - len
+    if (lenDiff < 0) return null
+
+    let matchPath = len ? "" : "/"
+
+    for (let i = 0; i < len; i++) {
+      const segment = segments[i]
+      const locSegment = locSegments[i]
+
+      if (
+        segment.localeCompare(locSegment, undefined, {
+          sensitivity: "base",
+        }) !== 0
+      ) {
+        return null
+      }
+      matchPath += `/${locSegment}`
+    }
+
+    return matchPath
+  }
+}
