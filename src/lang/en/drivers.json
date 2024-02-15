@@ -546,6 +546,7 @@
   },
   "SFTP": {
     "address": "Address",
+    "ignore_symlink_error": "Ignore symlink error",
     "password": "Password",
     "private_key": "Private key",
     "root_folder_path": "Root folder path",
