@@ -33,8 +33,8 @@ dependencies:
     specifier: ^1.10.1
     version: 1.10.1
   artplayer:
-    specifier: ^5.0.9
-    version: 5.0.9
+    specifier: ^5.1.1
+    version: 5.1.1
   artplayer-plugin-danmuku:
     specifier: ^5.0.1
     version: 5.0.1
@@ -926,7 +926,7 @@ packages:
     resolution: {integrity: sha512-b6/Y4/+X0rNmnqS5+zzQgow+WW4iVT8eFv4LAUzJgIyORIcf5Gn00Dy0PZ+kwGb1VJy0CUCRK6gVVvh0tWsRAg==}
     dev: false
 
-  /artplayer@5.0.9:
+  /artplayer@5.1.1:
     resolution: {integrity: sha512-IM/DShYdmKFEA9jl08LYbTK2Jfz9s7qIjEH0xWjnxvVArUKZZKcoqwr6i54U0c4grtc/Uvb4wtCd78kvtSVlgw==}
     dependencies:
       option-validator: 2.0.6
