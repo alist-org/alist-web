@@ -26,6 +26,7 @@ import {
   For,
   Setter,
   createEffect,
+  on,
 } from "solid-js"
 import { useFetch, useT } from "~/hooks"
 import { getMainColor, password } from "~/store"
@@ -82,21 +83,23 @@ const FolderTreeNode = (props: { path: string }) => {
   const [loading, fetchDirs] = useFetch(() =>
     fsDirs(props.path, password(), forceRoot),
   )
+  let isLoaded = false
   const load = async () => {
     if (children()?.length) return
     const resp = await fetchDirs() // this api may return null
     handleResp(resp, setChildren)
+    isLoaded = true
   }
   const { isOpen, onToggle } = createDisclosure()
   const active = () => value() === props.path
-  createEffect(async () => {
+  const checkIfShouldOpen = async (pathname: string) => {
     if (!autoOpen) return
-    if (isOpen()) return
-    if (createMatcher(props.path)(value())) {
-      await load()
-      onToggle()
+    if (createMatcher(props.path)(pathname)) {
+      if (!isLoaded) await load()
+      if (!isOpen()) onToggle()
     }
-  })
+  }
+  createEffect(on(value, checkIfShouldOpen))
   return (
     <Box>
       <HStack spacing="$2">

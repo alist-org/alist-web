@@ -1,12 +1,21 @@
 import { Box } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
-import { createEffect, createSignal, on, onCleanup } from "solid-js"
+import { useLocation } from "@solidjs/router"
+import {
+  Show,
+  createEffect,
+  createMemo,
+  createSignal,
+  on,
+  onCleanup,
+  onMount,
+} from "solid-js"
 import { FolderTree, FolderTreeHandler } from "~/components"
 import { useRouter } from "~/hooks"
+import { local } from "~/store"
 import { objBoxRef } from "./Obj"
-import { useLocation } from "@solidjs/router"
 
-export function Sidebar() {
+function SidebarPannel() {
   const { to } = useRouter()
   const location = useLocation()
 
@@ -28,7 +37,7 @@ export function Sidebar() {
     }
   }
 
-  createEffect(() => {
+  onMount(() => {
     const handler = folderTreeHandler()
     handler?.setPath(location.pathname)
     resetSidebar()
@@ -74,5 +83,15 @@ export function Sidebar() {
         handle={(handler) => setFolderTreeHandler(handler)}
       />
     </Box>
+  )
+}
+
+export function Sidebar() {
+  const visible = createMemo(() => local["show_sidebar"] !== "none")
+
+  return (
+    <Show when={visible()}>
+      <SidebarPannel />
+    </Show>
   )
 }

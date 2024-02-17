@@ -30,6 +30,12 @@ export const initialLocalSettings = [
     options: ["top", "bottom", "none"],
   },
   {
+    key: "show_sidebar",
+    default: "none",
+    type: "select",
+    options: ["none", "visible"],
+  },
+  {
     key: "position_of_header_navbar",
     default: "static",
     type: "select",
