@@ -90,16 +90,24 @@ const FolderTreeNode = (props: { path: string }) => {
   const load = async () => {
     if (children()?.length) return
     const resp = await fetchDirs() // this api may return null
-    handleResp(resp, setChildren)
-    isLoaded = true
+    handleResp(
+      resp,
+      (data) => {
+        isLoaded = true
+        setChildren(data)
+      },
+      () => {
+        if (isOpen()) onToggle() // close folder while failed
+      },
+    )
   }
   const { isOpen, onToggle } = createDisclosure()
   const active = () => value() === props.path
   const checkIfShouldOpen = async (pathname: string) => {
     if (!autoOpen) return
     if (createMatcher(props.path)(pathname)) {
-      if (!isLoaded) await load()
       if (!isOpen()) onToggle()
+      if (!isLoaded) load()
     }
   }
   createEffect(on(value, checkIfShouldOpen))
