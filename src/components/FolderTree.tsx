@@ -16,7 +16,7 @@ import {
   Text,
   VStack,
 } from "@hope-ui/solid"
-import { BiSolidRightArrow } from "solid-icons/bi"
+import { BiSolidRightArrow, BiSolidFolderOpen } from "solid-icons/bi"
 import {
   Accessor,
   createContext,
@@ -48,13 +48,12 @@ export interface FolderTreeProps {
   forceRoot?: boolean
   autoOpen?: boolean
   handle?: (handler: FolderTreeHandler) => void
+  showEmptyIcon?: boolean
 }
-const context = createContext<{
+interface FolderTreeContext extends Omit<FolderTreeProps, "handle"> {
   value: Accessor<string>
-  onChange: (val: string) => void
-  autoOpen?: boolean
-  forceRoot: boolean
-}>()
+}
+const context = createContext<FolderTreeContext>()
 export const FolderTree = (props: FolderTreeProps) => {
   const [path, setPath] = createSignal("/")
   props.handle?.({ setPath })
@@ -69,6 +68,7 @@ export const FolderTree = (props: FolderTreeProps) => {
           },
           autoOpen: props.autoOpen ?? false,
           forceRoot: props.forceRoot ?? false,
+          showEmptyIcon: props.showEmptyIcon ?? false,
         }}
       >
         <FolderTreeNode path="/" />
@@ -79,7 +79,10 @@ export const FolderTree = (props: FolderTreeProps) => {
 
 const FolderTreeNode = (props: { path: string }) => {
   const [children, setChildren] = createSignal<Obj[]>()
-  const { value, onChange, forceRoot, autoOpen } = useContext(context)!
+  const { value, onChange, forceRoot, autoOpen, showEmptyIcon } =
+    useContext(context)!
+  const emptyIconVisible = () =>
+    Boolean(showEmptyIcon && children() !== undefined && !children()?.length)
   const [loading, fetchDirs] = useFetch(() =>
     fsDirs(props.path, password(), forceRoot),
   )
@@ -107,19 +110,24 @@ const FolderTreeNode = (props: { path: string }) => {
           when={!loading()}
           fallback={<Spinner size="sm" color={getMainColor()} />}
         >
-          <Icon
-            color={getMainColor()}
-            as={BiSolidRightArrow}
-            transform={isOpen() ? "rotate(90deg)" : "none"}
-            transition="transform 0.2s"
-            cursor="pointer"
-            onClick={() => {
-              onToggle()
-              if (isOpen()) {
-                load()
-              }
-            }}
-          />
+          <Show
+            when={!emptyIconVisible()}
+            fallback={<Icon color={getMainColor()} as={BiSolidFolderOpen} />}
+          >
+            <Icon
+              color={getMainColor()}
+              as={BiSolidRightArrow}
+              transform={isOpen() ? "rotate(90deg)" : "none"}
+              transition="transform 0.2s"
+              cursor="pointer"
+              onClick={() => {
+                onToggle()
+                if (isOpen()) {
+                  load()
+                }
+              }}
+            />
+          </Show>
         </Show>
         <Text
           css={{
