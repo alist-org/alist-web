@@ -106,12 +106,17 @@ function MarkdownToc(props: { disabled?: boolean }) {
     window.scrollBy({ behavior: "smooth", top: offsetY - navBottom })
   }
 
+  const initialOffsetX = "calc(100% - 20px)"
+  const [offsetX, setOffsetX] = createSignal<number | string>(initialOffsetX)
+
   return (
     <Show when={!isTocDisabled() && isTocVisible()}>
       <Box
         as={Motion.div}
         initial={{ x: 999 }}
-        animate={{ x: 0 }}
+        animate={{ x: offsetX() }}
+        onMouseEnter={() => setOffsetX(0)}
+        onMouseLeave={() => setOffsetX(initialOffsetX)}
         zIndex="$overlay"
         pos="fixed"
         right="$6"
@@ -123,10 +128,7 @@ function MarkdownToc(props: { disabled?: boolean }) {
           shadow="$outline"
           rounded="$lg"
           bgColor="white"
-          transition="all .3s ease-out"
-          transform="translateX(calc(100% - 20px))"
           _dark={{ bgColor: "$neutral3" }}
-          _hover={{ transform: "none" }}
         >
           <List maxH="60vh" overflowY="auto">
             <For each={tocList()}>
