@@ -41,6 +41,11 @@ export const initialLocalSettings = [
     type: "select",
     options: ["static", "sticky", "only_navbar_sticky"],
   },
+  {
+    key: "grid_item_size",
+    default: "90",
+    type: "number",
+  },
 ]
 export type LocalSetting = (typeof initialLocalSettings)[number]
 for (const setting of initialLocalSettings) {

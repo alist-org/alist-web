@@ -4,7 +4,13 @@ import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
 import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
 import { usePath, useUtil } from "~/hooks"
-import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
+import {
+  checkboxOpen,
+  getMainColor,
+  local,
+  selectAll,
+  selectIndex,
+} from "~/store"
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
@@ -16,7 +22,11 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   }
   const { setPathAs } = usePath()
   const objIcon = (
-    <Icon color={getMainColor()} boxSize="$12" as={getIconByObj(props.obj)} />
+    <Icon
+      color={getMainColor()}
+      boxSize={`${parseInt(local["grid_item_size"]) - 30}px`}
+      as={getIconByObj(props.obj)}
+    />
   )
   const [hover, setHover] = createSignal(false)
   const showCheckbox = createMemo(
@@ -65,7 +75,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       >
         <Center
           class="item-thumbnail"
-          h="70px"
+          h={`${parseInt(local["grid_item_size"])}px`}
           w="$full"
           // @ts-ignore
           on:click={(e) => {
