@@ -12,7 +12,7 @@ import {
 } from "solid-js"
 import { FolderTree, FolderTreeHandler } from "~/components"
 import { useRouter } from "~/hooks"
-import { local } from "~/store"
+import { local, objStore } from "~/store"
 import { objBoxRef } from "./Obj"
 
 function SidebarPannel() {
@@ -29,21 +29,33 @@ function SidebarPannel() {
     const $objBox = objBoxRef()
     const $sideBar = sideBarRef()
     if (!$objBox || !$sideBar) return
-    if ($sideBar.clientWidth < $objBox.offsetLeft) {
+    const gap = $objBox.offsetLeft > 50 ? 16 : 0
+    if ($sideBar.clientWidth < $objBox.offsetLeft - gap) {
       setOffsetX(0)
     } else {
-      const gap = $objBox.offsetLeft > 50 ? 8 : 0
-      setOffsetX(`calc(-100% + ${$objBox.offsetLeft}px - 6px - ${gap}px)`)
+      setOffsetX(`calc(-100% + ${$objBox.offsetLeft}px - ${gap}px)`)
     }
   }
+
+  let rafId: number
 
   onMount(() => {
     const handler = folderTreeHandler()
     handler?.setPath(location.pathname)
-    resetSidebar()
+    rafId = requestAnimationFrame(resetSidebar)
     window.addEventListener("resize", resetSidebar)
     onCleanup(() => window.removeEventListener("resize", resetSidebar))
   })
+
+  createEffect(
+    on(
+      () => objStore.state,
+      () => {
+        cancelAnimationFrame(rafId)
+        rafId = requestAnimationFrame(resetSidebar)
+      },
+    ),
+  )
 
   createEffect(
     on(
@@ -51,7 +63,6 @@ function SidebarPannel() {
       () => {
         const handler = folderTreeHandler()
         handler?.setPath(location.pathname)
-        setTimeout(() => resetSidebar(), 300)
       },
     ),
   )
@@ -69,7 +80,7 @@ function SidebarPannel() {
       minW={180}
       p="$2"
       overflow="auto"
-      shadow="$outline"
+      shadow="$lg"
       rounded="$lg"
       bgColor="white"
       _dark={{ bgColor: "$neutral3" }}
