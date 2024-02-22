@@ -102,8 +102,12 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             class="name"
             css={{
               whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              "overflow-x": "scroll",
+              "scrollbar-width": "none", // firefox
+              "&::-webkit-scrollbar": {
+                // webkit
+                display: "none",
+              },
             }}
             title={props.obj.name}
           >
