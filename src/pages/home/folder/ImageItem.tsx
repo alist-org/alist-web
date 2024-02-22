@@ -81,7 +81,12 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             fallbackErr={objIcon}
             src={rawLink(props.obj)}
             loading="lazy"
+            cursor="pointer"
             onClick={() => {
+              if (checkboxOpen()) {
+                selectIndex(props.index, !props.obj.selected)
+                return
+              }
               bus.emit("gallery", props.obj.name)
             }}
           />
