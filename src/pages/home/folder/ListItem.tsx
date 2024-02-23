@@ -58,7 +58,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-ignore
+        // @ts-expect-error
         on:click={(e: PointerEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
@@ -103,7 +103,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
-            // @ts-ignore
+            // @ts-expect-error
             on:click={(e) => {
               if (props.obj.type === ObjType.IMAGE) {
                 e.stopPropagation()

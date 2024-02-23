@@ -106,7 +106,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               left="$1"
               top="$1"
               // colorScheme="neutral"
-              // @ts-ignore
+              // @ts-expect-error
               on:click={(e) => {
                 e.stopPropagation()
               }}
