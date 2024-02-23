@@ -122,7 +122,8 @@
     "show_sidebar_options": {
       "none": "None",
       "visible": "Visible"
-    }
+    },
+    "filename_scrollable": "Filename scrollable"
   },
   "package_download": {
     "current_status": "Current Status",
