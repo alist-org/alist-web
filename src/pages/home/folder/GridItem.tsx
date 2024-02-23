@@ -3,7 +3,7 @@ import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
 import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
-import { usePath, useUtil } from "~/hooks"
+import { usePath, useRouter, useUtil } from "~/hooks"
 import {
   checkboxOpen,
   getMainColor,
@@ -33,6 +33,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
     () => checkboxOpen() && (hover() || props.obj.selected),
   )
   const { show } = useContextMenu({ id: 1 })
+  const { pushHref, to } = useRouter()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -55,6 +56,17 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
+        // @ts-ignore
+        on:click={(e: PointerEvent) => {
+          if (!checkboxOpen()) return
+          e.preventDefault()
+          if (e.altKey) {
+            // click with alt/option key
+            to(pushHref(props.obj.name))
+            return
+          }
+          selectIndex(props.index, !props.obj.selected)
+        }}
         onMouseEnter={() => {
           setHover(true)
           setPathAs(props.obj.name, props.obj.is_dir, true)
@@ -79,6 +91,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           w="$full"
           // @ts-ignore
           on:click={(e) => {
+            if (checkboxOpen()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
               e.preventDefault()
@@ -93,7 +106,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               left="$1"
               top="$1"
               // colorScheme="neutral"
-              // @ts-ignore
+              // @ts-expect-error
               on:click={(e) => {
                 e.stopPropagation()
               }}
