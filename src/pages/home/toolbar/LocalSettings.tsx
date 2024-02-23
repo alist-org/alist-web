@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
   VStack,
+  Switch as HopeSwitch,
 } from "@hope-ui/solid"
 import { For, Match, onCleanup, Switch } from "solid-js"
 import { SwitchLanguageWhite, SwitchColorMode } from "~/components"
@@ -70,6 +71,14 @@ function LocalSettingEdit(props: LocalSetting) {
               </SelectListbox>
             </SelectContent>
           </Select>
+        </Match>
+        <Match when={props.type === "boolean"}>
+          <HopeSwitch
+            defaultChecked={local[props.key] === "true"}
+            onChange={(e) => {
+              setLocal(props.key, e.currentTarget.checked.toString())
+            }}
+          />
         </Match>
       </Switch>
     </FormControl>

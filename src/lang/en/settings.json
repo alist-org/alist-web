@@ -62,6 +62,7 @@
     "bleve": "Bleve",
     "database": "Database",
     "database_non_full_text": "Database non full text",
+    "meilisearch": "Meilisearch",
     "none": "None"
   },
   "settings_layout": "Settings layout",

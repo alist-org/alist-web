@@ -7,6 +7,7 @@ import { usePath, useRouter, useUtil } from "~/hooks"
 import {
   checkboxOpen,
   getMainColor,
+  local,
   OrderBy,
   selectAll,
   selectIndex,
@@ -35,6 +36,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAs } = usePath()
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
+  const filenameScrollable = () => local["filename_scrollable"] === "true"
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -114,8 +116,13 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             class="name"
             css={{
               whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              "overflow-x": filenameScrollable() ? "auto" : "hidden",
+              textOverflow: filenameScrollable() ? "unset" : "ellipsis",
+              "scrollbar-width": "none", // firefox
+              "&::-webkit-scrollbar": {
+                // webkit
+                display: "none",
+              },
             }}
             title={props.obj.name}
           >
