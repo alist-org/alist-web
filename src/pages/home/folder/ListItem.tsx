@@ -2,6 +2,7 @@ import { Checkbox, HStack, Icon, Text } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, Show } from "solid-js"
+import { LinkWithPush } from "~/components"
 import { usePath, useRouter, useUtil } from "~/hooks"
 import {
   checkboxOpen,
@@ -53,14 +54,18 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           transform: "scale(1.01)",
           bgColor: hoverColor(),
         }}
-        cursor="pointer"
-        userSelect="none"
-        onClick={() => {
-          if (checkboxOpen()) {
-            selectIndex(props.index, !props.obj.selected)
+        as={LinkWithPush}
+        href={props.obj.name}
+        // @ts-ignore
+        on:click={(e: PointerEvent) => {
+          if (!checkboxOpen()) return
+          e.preventDefault()
+          if (e.altKey) {
+            // click with alt/option key
+            to(pushHref(props.obj.name))
             return
           }
-          to(pushHref(props.obj.name))
+          selectIndex(props.index, !props.obj.selected)
         }}
         onMouseEnter={() => {
           setPathAs(props.obj.name, props.obj.is_dir, true)
