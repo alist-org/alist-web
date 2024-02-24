@@ -82,8 +82,7 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             src={rawLink(props.obj)}
             loading="lazy"
             cursor="pointer"
-            // @ts-expect-error
-            on:click={(e: PointerEvent) => {
+            on:click={(e: MouseEvent) => {
               if (!checkboxOpen() || e.altKey) {
                 bus.emit("gallery", props.obj.name)
                 return

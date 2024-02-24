@@ -58,8 +58,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-expect-error
-        on:click={(e: PointerEvent) => {
+        on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
           if (e.altKey) {
@@ -87,8 +86,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           <Show when={checkboxOpen()}>
             <Checkbox
               // colorScheme="neutral"
-              // @ts-ignore
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}
@@ -103,8 +101,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
-            // @ts-expect-error
-            on:click={(e) => {
+            on:click={(e: MouseEvent) => {
               if (props.obj.type === ObjType.IMAGE) {
                 e.stopPropagation()
                 e.preventDefault()

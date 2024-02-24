@@ -56,8 +56,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-ignore
-        on:click={(e: PointerEvent) => {
+        on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
           if (e.altKey) {
@@ -89,8 +88,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           class="item-thumbnail"
           h={`${parseInt(local["grid_item_size"])}px`}
           w="$full"
-          // @ts-ignore
-          on:click={(e) => {
+          on:click={(e: MouseEvent) => {
             if (checkboxOpen()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
@@ -106,8 +104,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               left="$1"
               top="$1"
               // colorScheme="neutral"
-              // @ts-expect-error
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}
