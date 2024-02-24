@@ -10,6 +10,7 @@ export enum Group {
   INDEX,
   SSO,
   LDAP,
+  S3,
 }
 export enum Flag {
   PUBLIC,

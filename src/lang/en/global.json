@@ -27,5 +27,6 @@
   "go_login": "Go to login",
   "close": "Close",
   "no_support_now": "Not currently supported",
-  "empty_input": "Please enter"
+  "empty_input": "Please enter",
+  "name": "Name"
 }

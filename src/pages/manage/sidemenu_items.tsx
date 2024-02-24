@@ -11,6 +11,7 @@ import {
   BsFront,
   BsCloudUploadFill,
   BsSearch,
+  BsBucket,
 } from "solid-icons/bs"
 import { FiLogIn } from "solid-icons/fi"
 import { SiMetabase } from "solid-icons/si"
@@ -76,6 +77,12 @@ export const side_menu_items: SideMenuItem[] = [
         icon: FiLogIn,
         to: "/@manage/settings/ldap",
         component: () => <CommonSettings group={Group.LDAP} />,
+      },
+      {
+        title: "manage.sidemenu.s3",
+        icon: BsBucket,
+        to: "/@manage/settings/s3",
+        component: lazy(() => import("./settings/S3")),
       },
       {
         title: "manage.sidemenu.other",
