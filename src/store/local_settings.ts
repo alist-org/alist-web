@@ -46,6 +46,11 @@ export const initialLocalSettings = [
     default: "90",
     type: "number",
   },
+  {
+    key: "filename_scrollable",
+    default: "false",
+    type: "boolean",
+  },
 ]
 export type LocalSetting = (typeof initialLocalSettings)[number]
 for (const setting of initialLocalSettings) {

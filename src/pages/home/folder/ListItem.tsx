@@ -3,10 +3,11 @@ import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, Show } from "solid-js"
 import { LinkWithPush } from "~/components"
-import { usePath, useUtil } from "~/hooks"
+import { usePath, useRouter, useUtil } from "~/hooks"
 import {
   checkboxOpen,
   getMainColor,
+  local,
   OrderBy,
   selectAll,
   selectIndex,
@@ -34,6 +35,8 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   }
   const { setPathAs } = usePath()
   const { show } = useContextMenu({ id: 1 })
+  const { pushHref, to } = useRouter()
+  const filenameScrollable = () => local["filename_scrollable"] === "true"
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -55,6 +58,17 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
+        // @ts-expect-error
+        on:click={(e: PointerEvent) => {
+          if (!checkboxOpen()) return
+          e.preventDefault()
+          if (e.altKey) {
+            // click with alt/option key
+            to(pushHref(props.obj.name))
+            return
+          }
+          selectIndex(props.index, !props.obj.selected)
+        }}
         onMouseEnter={() => {
           setPathAs(props.obj.name, props.obj.is_dir, true)
         }}
@@ -89,7 +103,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
-            // @ts-ignore
+            // @ts-expect-error
             on:click={(e) => {
               if (props.obj.type === ObjType.IMAGE) {
                 e.stopPropagation()
@@ -102,8 +116,13 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             class="name"
             css={{
               whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              "overflow-x": filenameScrollable() ? "auto" : "hidden",
+              textOverflow: filenameScrollable() ? "unset" : "ellipsis",
+              "scrollbar-width": "none", // firefox
+              "&::-webkit-scrollbar": {
+                // webkit
+                display: "none",
+              },
             }}
             title={props.obj.name}
           >

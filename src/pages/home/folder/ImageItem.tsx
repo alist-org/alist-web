@@ -2,7 +2,7 @@ import { Center, VStack, Icon, Checkbox } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
-import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
+import { CenterLoading, ImageWithError } from "~/components"
 import { useLink, usePath, useUtil } from "~/hooks"
 import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
 import { ObjType, StoreObj } from "~/types"
@@ -81,8 +81,14 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             fallbackErr={objIcon}
             src={rawLink(props.obj)}
             loading="lazy"
-            onClick={() => {
-              bus.emit("gallery", props.obj.name)
+            cursor="pointer"
+            // @ts-expect-error
+            on:click={(e: PointerEvent) => {
+              if (!checkboxOpen() || e.altKey) {
+                bus.emit("gallery", props.obj.name)
+                return
+              }
+              selectIndex(props.index, !props.obj.selected)
             }}
           />
         </Center>
