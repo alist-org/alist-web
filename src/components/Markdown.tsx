@@ -22,7 +22,6 @@ import { getMainColor } from "~/store"
 type TocItem = { indent: number; text: string; tagName: string; key: string }
 
 const [isTocVisible, setVisible] = createSignal(false)
-const [markdownRef, setMarkdownRef] = createSignal<HTMLDivElement>()
 const [isTocDisabled, setTocDisabled] = createStorageSignal(
   "isMarkdownTocDisabled",
   false,
@@ -34,7 +33,10 @@ const [isTocDisabled, setTocDisabled] = createStorageSignal(
 
 export { isTocVisible, setTocDisabled }
 
-function MarkdownToc(props: { disabled?: boolean }) {
+function MarkdownToc(props: {
+  disabled?: boolean
+  markdownRef: HTMLDivElement
+}) {
   if (props.disabled) return null
   if (isMobile) return null
 
@@ -46,7 +48,7 @@ function MarkdownToc(props: { disabled?: boolean }) {
   )
 
   createEffect(() => {
-    const $markdown = markdownRef()?.querySelector(".markdown-body")
+    const $markdown = props.markdownRef.querySelector(".markdown-body")
     if (!$markdown) return
 
     /**
@@ -94,7 +96,9 @@ function MarkdownToc(props: { disabled?: boolean }) {
   })
 
   const handleAnchor = (item: TocItem) => {
-    const $target = document.querySelector(`${item.tagName}[key=${item.key}]`)
+    const $target = props.markdownRef.querySelector(
+      `${item.tagName}[key=${item.key}]`,
+    )
     if (!$target) return
 
     // the top of target should scroll to the bottom of nav
@@ -213,6 +217,7 @@ export function Markdown(props: {
       })
     }),
   )
+  const [markdownRef, setMarkdownRef] = createSignal<HTMLDivElement>()
   return (
     <Box
       ref={(r: HTMLDivElement) => setMarkdownRef(r)}
@@ -231,7 +236,7 @@ export function Markdown(props: {
       <Show when={!isString}>
         <EncodingSelect encoding={encoding()} setEncoding={setEncoding} />
       </Show>
-      <MarkdownToc disabled={!props.toc} />
+      <MarkdownToc disabled={!props.toc} markdownRef={markdownRef()!} />
     </Box>
   )
 }
