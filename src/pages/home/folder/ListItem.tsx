@@ -15,6 +15,7 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, formatDate, getFileSize, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import { useOpenItemWithCheckbox } from "./helper"
 
 export interface Col {
   name: OrderBy
@@ -36,6 +37,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAs } = usePath()
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   const filenameScrollable = () => local["filename_scrollable"] === "true"
   return (
     <Motion.div
@@ -58,11 +60,11 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-expect-error
-        on:click={(e: PointerEvent) => {
+        cursor={!checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"}
+        on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
-          if (e.altKey) {
+          if (isShouldOpenItem()) {
             // click with alt/option key
             to(pushHref(props.obj.name))
             return
@@ -87,8 +89,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           <Show when={checkboxOpen()}>
             <Checkbox
               // colorScheme="neutral"
-              // @ts-ignore
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}
@@ -103,8 +104,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
-            // @ts-expect-error
-            on:click={(e) => {
+            on:click={(e: MouseEvent) => {
               if (props.obj.type === ObjType.IMAGE) {
                 e.stopPropagation()
                 e.preventDefault()

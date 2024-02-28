@@ -14,6 +14,7 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import { useOpenItemWithCheckbox } from "./helper"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -34,6 +35,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   )
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -56,8 +58,8 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        // @ts-ignore
-        on:click={(e: PointerEvent) => {
+        cursor={!checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"}
+        on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
           if (e.altKey) {
@@ -89,8 +91,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           class="item-thumbnail"
           h={`${parseInt(local["grid_item_size"])}px`}
           w="$full"
-          // @ts-ignore
-          on:click={(e) => {
+          on:click={(e: MouseEvent) => {
             if (checkboxOpen()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
@@ -106,8 +107,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
               left="$1"
               top="$1"
               // colorScheme="neutral"
-              // @ts-expect-error
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}

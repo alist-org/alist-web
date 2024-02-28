@@ -8,6 +8,7 @@ import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
 import { ObjType, StoreObj } from "~/types"
 import { bus } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import { useOpenItemWithCheckbox } from "./helper"
 
 export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -24,6 +25,7 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   )
   const { show } = useContextMenu({ id: 1 })
   const { rawLink } = useLink()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -81,9 +83,10 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             fallbackErr={objIcon}
             src={rawLink(props.obj)}
             loading="lazy"
-            cursor="pointer"
-            // @ts-expect-error
-            on:click={(e: PointerEvent) => {
+            cursor={
+              !checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"
+            }
+            on:click={(e: MouseEvent) => {
               if (!checkboxOpen() || e.altKey) {
                 bus.emit("gallery", props.obj.name)
                 return
