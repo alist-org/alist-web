@@ -38,7 +38,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
   const isShouldOpenItem = useOpenItemWithCheckbox()
-  const filenameScrollable = () => local["filename_scrollable"] === "true"
+  const filenameStyle = () => local["list_item_filename_overflow"]
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -115,9 +115,12 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           <Text
             class="name"
             css={{
-              whiteSpace: "nowrap",
-              "overflow-x": filenameScrollable() ? "auto" : "hidden",
-              textOverflow: filenameScrollable() ? "unset" : "ellipsis",
+              wordBreak: "break-all",
+              whiteSpace: filenameStyle() === "multi_line" ? "unset" : "nowrap",
+              "overflow-x":
+                filenameStyle() === "scrollable" ? "auto" : "hidden",
+              textOverflow:
+                filenameStyle() === "ellipsis" ? "ellipsis" : "unset",
               "scrollbar-width": "none", // firefox
               "&::-webkit-scrollbar": {
                 // webkit

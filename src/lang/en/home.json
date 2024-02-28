@@ -123,7 +123,12 @@
       "none": "None",
       "visible": "Visible"
     },
-    "filename_scrollable": "Filename scrollable",
+    "list_item_filename_overflow": "List item filename overflow",
+    "list_item_filename_overflow_options": {
+      "ellipsis": "Ellipsis",
+      "scrollable": "Scrollable",
+      "multi_line": "Multi-line"
+    },
     "open_item_on_checkbox": "Open item on Checkbox",
     "open_item_on_checkbox_options": {
       "direct": "Direct",
