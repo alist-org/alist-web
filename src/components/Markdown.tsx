@@ -24,7 +24,7 @@ type TocItem = { indent: number; text: string; tagName: string; key: string }
 const [isTocVisible, setVisible] = createSignal(false)
 const [isTocDisabled, setTocDisabled] = createStorageSignal(
   "isMarkdownTocDisabled",
-  false,
+  true,
   {
     serializer: (v: boolean) => JSON.stringify(v),
     deserializer: (v) => JSON.parse(v),
