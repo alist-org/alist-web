@@ -123,7 +123,13 @@
       "none": "None",
       "visible": "Visible"
     },
-    "filename_scrollable": "Filename scrollable"
+    "filename_scrollable": "Filename scrollable",
+    "open_item_on_checkbox": "Open item on Checkbox",
+    "open_item_on_checkbox_options": {
+      "direct": "Direct",
+      "with_ctrl": "With Ctrl/Command hold",
+      "with_alt": "With Alt/Option hold"
+    }
   },
   "package_download": {
     "current_status": "Current Status",

@@ -4,7 +4,6 @@ import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
 import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
 import { usePath, useRouter, useUtil } from "~/hooks"
-import { useAltKeyChange } from "~/hooks/useGlobalEvents"
 import {
   checkboxOpen,
   getMainColor,
@@ -15,6 +14,7 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import { useOpenItemWithCheckbox } from "./helper"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -35,7 +35,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   )
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
-  const { isAltKeyPressed } = useAltKeyChange()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -58,7 +58,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        cursor={!checkboxOpen() || isAltKeyPressed() ? "pointer" : "default"}
+        cursor={!checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"}
         on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()

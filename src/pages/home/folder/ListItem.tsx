@@ -4,7 +4,6 @@ import { useContextMenu } from "solid-contextmenu"
 import { batch, Show } from "solid-js"
 import { LinkWithPush } from "~/components"
 import { usePath, useRouter, useUtil } from "~/hooks"
-import { useAltKeyChange } from "~/hooks/useGlobalEvents"
 import {
   checkboxOpen,
   getMainColor,
@@ -16,6 +15,7 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, formatDate, getFileSize, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import { useOpenItemWithCheckbox } from "./helper"
 
 export interface Col {
   name: OrderBy
@@ -37,7 +37,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   const { setPathAs } = usePath()
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
-  const { isAltKeyPressed } = useAltKeyChange()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   const filenameScrollable = () => local["filename_scrollable"] === "true"
   return (
     <Motion.div
@@ -60,11 +60,11 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        cursor={!checkboxOpen() || isAltKeyPressed() ? "pointer" : "default"}
+        cursor={!checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"}
         on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
-          if (e.altKey) {
+          if (isShouldOpenItem()) {
             // click with alt/option key
             to(pushHref(props.obj.name))
             return
