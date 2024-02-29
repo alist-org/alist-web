@@ -65,7 +65,6 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           if (!checkboxOpen()) return
           e.preventDefault()
           if (isShouldOpenItem()) {
-            // click with alt/option key
             to(pushHref(props.obj.name))
             return
           }

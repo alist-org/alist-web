@@ -62,8 +62,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         on:click={(e: MouseEvent) => {
           if (!checkboxOpen()) return
           e.preventDefault()
-          if (e.altKey) {
-            // click with alt/option key
+          if (isShouldOpenItem()) {
             to(pushHref(props.obj.name))
             return
           }
