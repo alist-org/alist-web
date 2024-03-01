@@ -314,7 +314,7 @@ const Preview = () => {
   const [autoNext, setAutoNext] = createSignal()
   return (
     <VideoBox onAutoNextChange={setAutoNext}>
-      <Box w="$full" id="video-player" />
+      <Box w="$full" h="60vh" id="video-player" />
     </VideoBox>
   )
 }
