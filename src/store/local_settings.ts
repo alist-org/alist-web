@@ -56,7 +56,7 @@ export const initialLocalSettings = [
     key: "open_item_on_checkbox",
     default: "direct",
     type: "select",
-    options: ["direct", "with_alt"], // "with_ctrl",? mac's control key can't be prevented
+    options: ["direct", "with_alt", "with_ctrl"],
   },
 ]
 export type LocalSetting = (typeof initialLocalSettings)[number]

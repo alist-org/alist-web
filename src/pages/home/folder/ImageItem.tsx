@@ -86,8 +86,8 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             cursor={
               !checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"
             }
-            on:click={(e: MouseEvent) => {
-              if (!checkboxOpen() || e.altKey) {
+            on:click={() => {
+              if (!checkboxOpen() || isShouldOpenItem()) {
                 bus.emit("gallery", props.obj.name)
                 return
               }
