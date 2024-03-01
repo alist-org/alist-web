@@ -41,14 +41,13 @@ export const encodePath = (path: string, all?: boolean) => {
   return path
     .split("/")
     .map((p) =>
-      // ["#", "?", "%"].some((c) => p.includes(c)) ? encodeURIComponent(p) : p
       all
         ? encodeURIComponent(p)
         : p
-            .replaceAll("%", "%25")
-            .replaceAll("?", "%3F")
-            .replaceAll("#", "%23")
-            .replaceAll(" ", "%20"),
+            .replace(/%/g, "%25")
+            .replace(/\?/g, "%3F")
+            .replace(/#/g, "%23")
+            .replace(/ /g, "%20"),
     )
     .join("/")
 }
