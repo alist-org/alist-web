@@ -98,5 +98,12 @@
   "version": "Version",
   "video_autoplay": "Video autoplay",
   "video_types": "Video types",
-  "webauthn_login_enabled": "Webauthn login enabled"
+  "webauthn_login_enabled": "Webauthn login enabled",
+  "s3_enabled": "S3 enabled",
+  "s3_access_key_id": "S3 access key id",
+  "s3_secret_access_key": "S3 secret access key",
+  "s3_buckets": "S3 buckets",
+  "s3_buckets_duplicate_name": "Bucket name is duplicate",
+  "s3_buckets_empty": "Bucket name or path is empty",
+  "s3_restart_to_apply": "Above settings need restart to apply"
 }
