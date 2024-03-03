@@ -28,7 +28,7 @@ import {
   createEffect,
   on,
 } from "solid-js"
-import { useFetch, useT } from "~/hooks"
+import { useFetch, useT, useUtil } from "~/hooks"
 import { getMainColor, password } from "~/store"
 import { Obj } from "~/types"
 import {
@@ -49,6 +49,7 @@ export interface FolderTreeProps {
   autoOpen?: boolean
   handle?: (handler: FolderTreeHandler) => void
   showEmptyIcon?: boolean
+  showHiddenFolder?: boolean
 }
 interface FolderTreeContext extends Omit<FolderTreeProps, "handle"> {
   value: Accessor<string>
@@ -69,6 +70,7 @@ export const FolderTree = (props: FolderTreeProps) => {
           autoOpen: props.autoOpen ?? false,
           forceRoot: props.forceRoot ?? false,
           showEmptyIcon: props.showEmptyIcon ?? false,
+          showHiddenFolder: props.showHiddenFolder ?? true,
         }}
       >
         <FolderTreeNode path="/" />
@@ -78,9 +80,16 @@ export const FolderTree = (props: FolderTreeProps) => {
 }
 
 const FolderTreeNode = (props: { path: string }) => {
+  const { isHide } = useUtil()
   const [children, setChildren] = createSignal<Obj[]>()
-  const { value, onChange, forceRoot, autoOpen, showEmptyIcon } =
-    useContext(context)!
+  const {
+    value,
+    onChange,
+    forceRoot,
+    autoOpen,
+    showEmptyIcon,
+    showHiddenFolder,
+  } = useContext(context)!
   const emptyIconVisible = () =>
     Boolean(showEmptyIcon && children() !== undefined && !children()?.length)
   const [loading, fetchDirs] = useFetch(() =>
@@ -162,7 +171,9 @@ const FolderTreeNode = (props: { path: string }) => {
         <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
           <For each={children()}>
             {(item) => (
-              <FolderTreeNode path={pathJoin(props.path, item.name)} />
+              <Show when={showHiddenFolder || !isHide(item)}>
+                <FolderTreeNode path={pathJoin(props.path, item.name)} />
+              </Show>
             )}
           </For>
         </VStack>
