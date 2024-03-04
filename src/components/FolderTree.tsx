@@ -80,7 +80,7 @@ export const FolderTree = (props: FolderTreeProps) => {
 }
 
 const FolderTreeNode = (props: { path: string }) => {
-  const { isHide } = useUtil()
+  const { isHidePath } = useUtil()
   const [children, setChildren] = createSignal<Obj[]>()
   const {
     value,
@@ -112,73 +112,76 @@ const FolderTreeNode = (props: { path: string }) => {
   }
   const { isOpen, onToggle } = createDisclosure()
   const active = () => value() === props.path
+  const isMatchedFolder = createMatcher(props.path)
   const checkIfShouldOpen = async (pathname: string) => {
     if (!autoOpen) return
-    if (createMatcher(props.path)(pathname)) {
+    if (isMatchedFolder(pathname)) {
       if (!isOpen()) onToggle()
       if (!isLoaded) load()
     }
   }
   createEffect(on(value, checkIfShouldOpen))
+  const isHiddenFolder = () =>
+    isHidePath(props.path) && !isMatchedFolder(value())
   return (
-    <Box>
-      <HStack spacing="$2">
-        <Show
-          when={!loading()}
-          fallback={<Spinner size="sm" color={getMainColor()} />}
-        >
+    <Show when={showHiddenFolder || !isHiddenFolder()}>
+      <Box>
+        <HStack spacing="$2">
           <Show
-            when={!emptyIconVisible()}
-            fallback={<Icon color={getMainColor()} as={BiSolidFolderOpen} />}
+            when={!loading()}
+            fallback={<Spinner size="sm" color={getMainColor()} />}
           >
-            <Icon
-              color={getMainColor()}
-              as={BiSolidRightArrow}
-              transform={isOpen() ? "rotate(90deg)" : "none"}
-              transition="transform 0.2s"
-              cursor="pointer"
-              onClick={() => {
-                onToggle()
-                if (isOpen()) {
-                  load()
-                }
-              }}
-            />
+            <Show
+              when={!emptyIconVisible()}
+              fallback={<Icon color={getMainColor()} as={BiSolidFolderOpen} />}
+            >
+              <Icon
+                color={getMainColor()}
+                as={BiSolidRightArrow}
+                transform={isOpen() ? "rotate(90deg)" : "none"}
+                transition="transform 0.2s"
+                cursor="pointer"
+                onClick={() => {
+                  onToggle()
+                  if (isOpen()) {
+                    load()
+                  }
+                }}
+              />
+            </Show>
           </Show>
-        </Show>
-        <Text
-          css={{
-            // textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-          }}
-          // overflow="hidden"
-          fontSize="$md"
-          cursor="pointer"
-          px="$1"
-          rounded="$md"
-          bgColor={active() ? "$info8" : "transparent"}
-          _hover={{
-            bgColor: active() ? "$info8" : hoverColor(),
-          }}
-          onClick={() => {
-            onChange(props.path)
-          }}
-        >
-          {props.path === "/" ? "root" : pathBase(props.path)}
-        </Text>
-      </HStack>
-      <Show when={isOpen()}>
-        <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
-          <For each={children()}>
-            {(item) => (
-              <Show when={showHiddenFolder || !isHide(item)}>
+          <Text
+            css={{
+              // textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+            // overflow="hidden"
+            fontSize="$md"
+            cursor="pointer"
+            px="$1"
+            rounded="$md"
+            bgColor={active() ? "$info8" : "transparent"}
+            _hover={{
+              bgColor: active() ? "$info8" : hoverColor(),
+            }}
+            onClick={() => {
+              onChange(props.path)
+            }}
+          >
+            {props.path === "/" ? "root" : pathBase(props.path)}
+          </Text>
+        </HStack>
+        <Show when={isOpen()}>
+          <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
+            <For each={children()}>
+              {(item) => (
                 <FolderTreeNode path={pathJoin(props.path, item.name)} />
-              </Show>
-            )}
-          </For>
-        </VStack>
-      </Show>
-    </Box>
+              )}
+            </For>
+          </VStack>
+        </Show>
+      </Box>
+    </Show>
   )
 }
 

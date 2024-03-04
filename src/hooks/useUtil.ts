@@ -22,6 +22,15 @@ export const useUtil = () => {
       }
       return false
     },
+    isHidePath: (path: string) => {
+      const hideFiles = getHideFiles()
+      for (const reg of hideFiles) {
+        if (reg.test(path)) {
+          return true
+        }
+      }
+      return false
+    },
   }
 }
 
