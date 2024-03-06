@@ -11,6 +11,7 @@ import {
 } from "~/store"
 import { OrderBy } from "~/store"
 import { Col, cols, ListItem } from "./ListItem"
+import { useSelectWithMouse } from "./helper"
 
 const ListLayout = () => {
   const t = useT()
@@ -40,8 +41,15 @@ const ListLayout = () => {
       },
     }
   }
+  const { isMouseSupported, registerSelectContainer } = useSelectWithMouse()
+  registerSelectContainer()
   return (
-    <VStack class="list" w="$full" spacing="$1">
+    <VStack
+      classList={{ "viselect-container": isMouseSupported() }}
+      class="list"
+      w="$full"
+      spacing="$1"
+    >
       <HStack class="title" w="$full" p="$2">
         <HStack w={cols[0].w} spacing="$1">
           <Show when={checkboxOpen()}>

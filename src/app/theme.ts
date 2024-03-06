@@ -176,6 +176,20 @@ export const globalStyles = globalCss({
     flexWrap: "wrap",
     rowGap: "0 !important",
   },
+  ".viselect-selection-area": {
+    background: "rgba(46, 115, 252, 0.11)",
+    border: "2px solid rgba(98, 155, 255, 0.81)",
+    borderRadius: "0.1em",
+  },
+  ".viselect-container": {
+    userSelect: "none",
+    "& .viselect-item": {
+      "-webkit-user-drag": "none",
+      "& img": {
+        "-webkit-user-drag": "none",
+      },
+    },
+  },
 })
 
 export { theme }

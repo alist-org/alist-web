@@ -5,6 +5,7 @@ import { local, objStore } from "~/store"
 import { GridItem } from "./GridItem"
 import { StoreObj } from "~/types"
 import { useT } from "~/hooks"
+import { useSelectWithMouse } from "./helper"
 
 const ImageLayout = (props: { images: StoreObj[] }) => {
   const t = useT()
@@ -22,8 +23,14 @@ const ImageLayout = (props: { images: StoreObj[] }) => {
       </For>
     </Grid>
   ))
+  const { isMouseSupported, registerSelectContainer } = useSelectWithMouse()
+  registerSelectContainer()
   return (
-    <VStack spacing="$2" w="$full">
+    <VStack
+      classList={{ "viselect-container": isMouseSupported() }}
+      spacing="$2"
+      w="$full"
+    >
       <Show when={local["show_folder_in_image_view"] === "top"}>
         {folders()}
       </Show>
