@@ -41,10 +41,12 @@ const ListLayout = () => {
       },
     }
   }
-  const { isMouseSupported, registerSelectContainer } = useSelectWithMouse()
+  const { isMouseSupported, registerSelectContainer, captureContentMenu } =
+    useSelectWithMouse()
   registerSelectContainer()
   return (
     <VStack
+      oncapture:contextmenu={captureContentMenu}
       classList={{ "viselect-container": isMouseSupported() }}
       class="list"
       w="$full"

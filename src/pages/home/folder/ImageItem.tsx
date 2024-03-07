@@ -38,6 +38,7 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
     >
       <VStack
         w="$full"
+        classList={{ selected: !!props.obj.selected }}
         class="image-item viselect-item"
         data-index={props.index}
         p="$1"

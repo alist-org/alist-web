@@ -23,10 +23,12 @@ const ImageLayout = (props: { images: StoreObj[] }) => {
       </For>
     </Grid>
   ))
-  const { isMouseSupported, registerSelectContainer } = useSelectWithMouse()
+  const { isMouseSupported, registerSelectContainer, captureContentMenu } =
+    useSelectWithMouse()
   registerSelectContainer()
   return (
     <VStack
+      oncapture:contextmenu={captureContentMenu}
       classList={{ "viselect-container": isMouseSupported() }}
       spacing="$2"
       w="$full"

@@ -1,8 +1,18 @@
 import { createKeyHold } from "@solid-primitives/keyboard"
-import { createEffect, createSignal, onCleanup } from "solid-js"
+import { createEffect, createSignal, on, onCleanup } from "solid-js"
 import SelectionArea from "@viselect/vanilla"
-import { checkboxOpen, local, selectAll, selectIndex } from "~/store"
+import {
+  checkboxOpen,
+  haveSelected,
+  local,
+  objStore,
+  oneChecked,
+  selectAll,
+  selectIndex,
+  selectedObjs,
+} from "~/store"
 import { isMac, isMobile } from "~/utils/compatibility"
+import { useContextMenu } from "solid-contextmenu"
 
 export function useOpenItemWithCheckbox() {
   const [shouldOpen, setShouldOpen] = createSignal(
@@ -48,6 +58,8 @@ export function useSelectWithMouse() {
       })
       selection.on("start", ({ event }) => {
         const ev = event as MouseEvent
+        selection.clearSelection(true, true)
+        selection.select(".viselect-item.selected", true)
         if (!ev.ctrlKey && !ev.metaKey) {
           selectAll(false)
           selection.clearSelection()
@@ -72,5 +84,24 @@ export function useSelectWithMouse() {
     })
   }
 
-  return { isMouseSupported, registerSelectContainer }
+  const { show } = useContextMenu({ id: 1 })
+
+  const captureContentMenu = (e: MouseEvent) => {
+    e.preventDefault()
+
+    if (haveSelected() && !oneChecked()) {
+      const $target = e.target as Element
+      const $selectedItem = $target.closest(".viselect-item")
+      const index = Number($selectedItem?.getAttribute("data-index"))
+
+      const isClickOnContainer = Number.isNaN(index)
+      const isClickOnSelectedItems = () => !!objStore.objs[index].selected
+      if (isClickOnContainer || !isClickOnSelectedItems()) return
+
+      e.stopPropagation()
+      show(e, { props: objStore.obj })
+    }
+  }
+
+  return { isMouseSupported, registerSelectContainer, captureContentMenu }
 }

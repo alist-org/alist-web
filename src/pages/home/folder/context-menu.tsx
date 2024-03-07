@@ -3,10 +3,10 @@ import { useCopyLink, useDownload, useLink, useT } from "~/hooks"
 import "solid-contextmenu/dist/style.css"
 import { HStack, Icon, Text, useColorMode, Image } from "@hope-ui/solid"
 import { operations } from "../toolbar/operations"
-import { For } from "solid-js"
+import { For, Show } from "solid-js"
 import { bus, convertURL, notify } from "~/utils"
 import { ObjType, UserMethods, UserPermissions } from "~/types"
-import { getSettingBool, me } from "~/store"
+import { getSettingBool, haveSelected, me, oneChecked } from "~/store"
 import { players } from "../previews/video_box"
 import { BsPlayCircleFill } from "solid-icons/bs"
 
@@ -29,7 +29,7 @@ export const ContextMenu = () => {
   const t = useT()
   const { colorMode } = useColorMode()
   const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink()
-  const { batchDownloadSelected } = useDownload()
+  const { batchDownloadSelected, sendToAria2 } = useDownload()
   const canPackageDownload = () => {
     return UserMethods.is_admin(me()) || getSettingBool("package_download")
   }
@@ -55,67 +55,102 @@ export const ContextMenu = () => {
           </Item>
         )}
       </For>
-      <Item
-        onClick={({ props }) => {
-          if (props.is_dir) {
-            copySelectedPreviewPage()
-          } else {
-            copySelectedRawLink(true)
-          }
-        }}
-      >
-        <ItemContent name="copy_link" />
-      </Item>
-      <Item
-        onClick={({ props }) => {
-          if (props.is_dir) {
-            if (!canPackageDownload()) {
-              notify.warning(t("home.toolbar.package_download_disabled"))
-              return
+      <Show when={oneChecked()}>
+        <Item
+          onClick={({ props }) => {
+            if (props.is_dir) {
+              copySelectedPreviewPage()
+            } else {
+              copySelectedRawLink(true)
             }
-            bus.emit("tool", "package_download")
-          } else {
-            batchDownloadSelected()
+          }}
+        >
+          <ItemContent name="copy_link" />
+        </Item>
+        <Item
+          onClick={({ props }) => {
+            if (props.is_dir) {
+              if (!canPackageDownload()) {
+                notify.warning(t("home.toolbar.package_download_disabled"))
+                return
+              }
+              bus.emit("tool", "package_download")
+            } else {
+              batchDownloadSelected()
+            }
+          }}
+        >
+          <ItemContent name="download" />
+        </Item>
+        <Submenu
+          hidden={({ props }) => {
+            return props.type !== ObjType.VIDEO
+          }}
+          label={
+            <HStack spacing="$2">
+              <Icon
+                as={BsPlayCircleFill}
+                boxSize="$7"
+                p="$0_5"
+                color="$info9"
+              />
+              <Text>{t("home.preview.play_with")}</Text>
+            </HStack>
           }
-        }}
-      >
-        <ItemContent name="download" />
-      </Item>
-      <Submenu
-        hidden={({ props }) => {
-          return props.type !== ObjType.VIDEO
-        }}
-        label={
-          <HStack spacing="$2">
-            <Icon as={BsPlayCircleFill} boxSize="$7" p="$0_5" color="$info9" />
-            <Text>{t("home.preview.play_with")}</Text>
-          </HStack>
-        }
-      >
-        <For each={players}>
-          {(player) => (
-            <Item
-              onClick={({ props }) => {
-                const href = convertURL(player.scheme, {
-                  raw_url: "",
-                  name: props.name,
-                  d_url: rawLink(props, true),
-                })
-                window.open(href, "_self")
-              }}
-            >
-              <HStack spacing="$2">
-                <Image
-                  m="0 auto"
-                  boxSize="$7"
-                  src={`${window.__dynamic_base__}/images/${player.icon}.webp`}
-                />
-                <Text>{player.name}</Text>
-              </HStack>
+        >
+          <For each={players}>
+            {(player) => (
+              <Item
+                onClick={({ props }) => {
+                  const href = convertURL(player.scheme, {
+                    raw_url: "",
+                    name: props.name,
+                    d_url: rawLink(props, true),
+                  })
+                  window.open(href, "_self")
+                }}
+              >
+                <HStack spacing="$2">
+                  <Image
+                    m="0 auto"
+                    boxSize="$7"
+                    src={`${window.__dynamic_base__}/images/${player.icon}.webp`}
+                  />
+                  <Text>{player.name}</Text>
+                </HStack>
+              </Item>
+            )}
+          </For>
+        </Submenu>
+      </Show>
+      <Show when={!oneChecked() && haveSelected()}>
+        <Submenu label={<ItemContent name="copy_link" />}>
+          <Item onClick={copySelectedPreviewPage}>
+            {t("home.toolbar.preview_page")}
+          </Item>
+          <Item onClick={() => copySelectedRawLink()}>
+            {t("home.toolbar.down_link")}
+          </Item>
+          <Item onClick={() => copySelectedRawLink(true)}>
+            {t("home.toolbar.encode_down_link")}
+          </Item>
+        </Submenu>
+        <Submenu label={<ItemContent name="download" />}>
+          <Item onClick={batchDownloadSelected}>
+            {t("home.toolbar.batch_download")}
+          </Item>
+          <Show
+            when={
+              UserMethods.is_admin(me()) || getSettingBool("package_download")
+            }
+          >
+            <Item onClick={() => bus.emit("tool", "package_download")}>
+              {t("home.toolbar.package_download")}
             </Item>
-          )}
-        </For>
-      </Submenu>
+          </Show>
+          <Item onClick={sendToAria2}>{t("home.toolbar.send_aria2")}</Item>
+        </Submenu>
+      </Show>
     </Menu>
   )
 }

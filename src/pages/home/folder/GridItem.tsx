@@ -47,6 +47,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       }}
     >
       <VStack
+        classList={{ selected: !!props.obj.selected }}
         class="grid-item viselect-item"
         data-index={props.index}
         w="$full"
@@ -113,6 +114,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           }}
           on:click={(e: MouseEvent) => {
             if (isMouseSupported()) return
+            if (checkboxOpen() && !isShouldOpenItem()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
               e.preventDefault()

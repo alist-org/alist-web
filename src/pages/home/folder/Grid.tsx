@@ -6,10 +6,12 @@ import { local, objStore } from "~/store"
 import { useSelectWithMouse } from "./helper"
 
 const GridLayout = () => {
-  const { isMouseSupported, registerSelectContainer } = useSelectWithMouse()
+  const { isMouseSupported, registerSelectContainer, captureContentMenu } =
+    useSelectWithMouse()
   registerSelectContainer()
   return (
     <Grid
+      oncapture:contextmenu={captureContentMenu}
       classList={{ "viselect-container": isMouseSupported() }}
       w="$full"
       gap="$1"
