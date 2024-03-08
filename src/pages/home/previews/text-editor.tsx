@@ -17,7 +17,6 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
   const { isString, text } = useParseText(props.data)
   const [encoding, setEncoding] = createSignal("utf-8")
   const [value, setValue] = createSignal(text(encoding()))
-  const initVal = value()
   const t = useT()
   const [loading, save] = useFetch(
     (): PEmptyResp =>
@@ -49,7 +48,7 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
         <EncodingSelect encoding={encoding()} setEncoding={setEncoding} />
       </Show>
       <MonacoEditorLoader
-        value={initVal}
+        value={text(encoding())}
         theme={theme()}
         path={objStore.obj.name}
         onChange={(value) => {
