@@ -18,9 +18,11 @@ export function useOpenItemWithCheckbox() {
   const [shouldOpen, setShouldOpen] = createSignal(
     local["open_item_on_checkbox"] === "direct",
   )
-  const isAltKeyPressed = createKeyHold("Alt")
-  const isMetaKeyPressed = createKeyHold("Meta")
-  const isControlKeyPressed = createKeyHold("Control")
+  const isAltKeyPressed = createKeyHold("Alt", { preventDefault: false })
+  const isMetaKeyPressed = createKeyHold("Meta", { preventDefault: false })
+  const isControlKeyPressed = createKeyHold("Control", {
+    preventDefault: false,
+  })
   createEffect(() => {
     switch (local["open_item_on_checkbox"]) {
       case "direct": {
