@@ -14,7 +14,7 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
-import { useOpenItemWithCheckbox } from "./helper"
+import { useOpenItemWithCheckbox, useSelectWithMouse } from "./helper"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -35,6 +35,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
   )
   const { show } = useContextMenu({ id: 1 })
   const { pushHref, to } = useRouter()
+  const { isMouseSupported } = useSelectWithMouse()
   const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
@@ -46,7 +47,9 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
       }}
     >
       <VStack
-        class="grid-item"
+        classList={{ selected: !!props.obj.selected }}
+        class="grid-item viselect-item"
+        data-index={props.index}
         w="$full"
         p="$1"
         spacing="$1"
@@ -58,8 +61,19 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
-        cursor={!checkboxOpen() || isShouldOpenItem() ? "pointer" : "default"}
+        cursor={
+          !isMouseSupported() && (!checkboxOpen() || isShouldOpenItem())
+            ? "pointer"
+            : "default"
+        }
+        bgColor={props.obj.selected ? hoverColor() : undefined}
+        on:dblclick={(e: MouseEvent) => {
+          if (!isMouseSupported()) return
+          if (e.ctrlKey || e.metaKey || e.shiftKey) return
+          to(pushHref(props.obj.name))
+        }}
         on:click={(e: MouseEvent) => {
+          if (isMouseSupported()) return e.preventDefault()
           if (!checkboxOpen()) return
           e.preventDefault()
           if (isShouldOpenItem()) {
@@ -90,8 +104,17 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           class="item-thumbnail"
           h={`${parseInt(local["grid_item_size"])}px`}
           w="$full"
+          on:dblclick={(e: MouseEvent) => {
+            if (!isMouseSupported()) return
+            if (props.obj.type === ObjType.IMAGE) {
+              e.stopPropagation()
+              e.preventDefault()
+              bus.emit("gallery", props.obj.name)
+            }
+          }}
           on:click={(e: MouseEvent) => {
-            if (checkboxOpen()) return
+            if (isMouseSupported()) return
+            if (checkboxOpen() && !isShouldOpenItem()) return
             if (props.obj.type === ObjType.IMAGE) {
               e.stopPropagation()
               e.preventDefault()

@@ -1,4 +1,5 @@
 import { createLocalStorage } from "@solid-primitives/storage"
+import { isMobile } from "~/utils/compatibility"
 
 const [local, setLocal, { remove, clear, toJSON }] = createLocalStorage()
 // export function isValidKey(
@@ -57,6 +58,12 @@ export const initialLocalSettings = [
     default: "direct",
     type: "select",
     options: ["direct", "with_alt", "with_ctrl"],
+  },
+  {
+    key: "select_with_mouse",
+    default: "disabled",
+    type: "select",
+    options: ["disabled", "open_item_with_dblclick"],
   },
 ]
 export type LocalSetting = (typeof initialLocalSettings)[number]
