@@ -144,17 +144,25 @@ const Login = () => {
       }
       const resp = await getauthntemp(username())
       handleResp(resp, async (data) => {
-        const options = parseRequestOptionsFromJSON(data.options)
-        const credentials = await get(options)
-        const resp = await postauthnlogin(data.session, credentials, username())
-        handleRespWithoutNotify(resp, (data) => {
-          notify.success(t("login.success"))
-          changeToken(data.token)
-          to(
-            decodeURIComponent(searchParams.redirect || base_path || "/"),
-            true,
+        try {
+          const options = parseRequestOptionsFromJSON(data.options)
+          const credentials = await get(options)
+          const resp = await postauthnlogin(
+            data.session,
+            credentials,
+            username(),
           )
-        })
+          handleRespWithoutNotify(resp, (data) => {
+            notify.success(t("login.success"))
+            changeToken(data.token)
+            to(
+              decodeURIComponent(searchParams.redirect || base_path || "/"),
+              true,
+            )
+          })
+        } catch (error: unknown) {
+          if (error instanceof Error) notify.error(error.message)
+        }
       })
     }
   }
