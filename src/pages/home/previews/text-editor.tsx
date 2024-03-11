@@ -30,7 +30,6 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
   createEffect(
     on(encoding, (v) => {
       setValue(text(v))
-      console.log(value())
     }),
   )
 
@@ -49,7 +48,7 @@ function Editor(props: { data?: string | ArrayBuffer; contentType?: string }) {
         <EncodingSelect encoding={encoding()} setEncoding={setEncoding} />
       </Show>
       <MonacoEditorLoader
-        value={value()}
+        value={text(encoding())}
         theme={theme()}
         path={objStore.obj.name}
         onChange={(value) => {
