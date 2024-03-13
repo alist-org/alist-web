@@ -10,7 +10,7 @@ dependencies:
     version: 2.1.1
   '@hope-ui/solid':
     specifier: 0.6.7
-    version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)
+    version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.2.0)
   '@monaco-editor/loader':
     specifier: ^1.4.0
     version: 1.4.0(monaco-editor@0.46.0)
@@ -97,7 +97,7 @@ dependencies:
     version: 0.2.0
   solid-contextmenu:
     specifier: 0.0.2
-    version: 0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12)
+    version: 0.0.2(solid-js@1.4.8)(solid-transition-group@0.2.0)
   solid-icons:
     specifier: ^1.0.1
     version: 1.0.1(solid-js@1.4.8)
@@ -108,8 +108,8 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0(solid-js@1.4.8)
   solid-transition-group:
-    specifier: ^0.0.12
-    version: 0.0.12(solid-js@1.4.8)
+    specifier: ^0.2.0
+    version: 0.2.0(solid-js@1.4.8)
   streamsaver:
     specifier: ^2.0.6
     version: 2.0.6
@@ -528,7 +528,7 @@ packages:
     hasBin: true
     dev: false
 
-  /@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12):
+  /@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.2.0):
     resolution: {integrity: sha512-7zGGy4QbGUC7QhwRnNH8HO0MZFg4jFISlC2cnAMBfFBy272uqQN3PYdTjiIbnpR/4JilUfxCWpFQY+4qslqcIw==}
     peerDependencies:
       '@stitches/core': ^1.2.8
@@ -542,7 +542,7 @@ packages:
       lodash.merge: 4.6.2
       scroll-lock: 2.1.5
       solid-js: 1.4.8
-      solid-transition-group: 0.0.12(solid-js@1.4.8)
+      solid-transition-group: 0.2.0(solid-js@1.4.8)
     dev: false
 
   /@hrgui/libass-wasm-ts@1.0.3:
@@ -720,6 +720,15 @@ packages:
       solid-js: 1.4.8
     dev: false
 
+  /@solid-primitives/refs@1.0.5(solid-js@1.4.8):
+    resolution: {integrity: sha512-5hmYmYbm6rs43nMHHozyyUngGA7P7q2WtlaCLJEfmlUJf67GWI1PZmqAiol6m9F37XSMZRuvZLoQ7HA/0q3GYg==}
+    peerDependencies:
+      solid-js: ^1.6.12
+    dependencies:
+      '@solid-primitives/utils': 6.2.1(solid-js@1.4.8)
+      solid-js: 1.4.8
+    dev: false
+
   /@solid-primitives/rootless@1.4.2(solid-js@1.4.8):
     resolution: {integrity: sha512-ynI/2aEOPyc14IKCX6yDBqnsAYCoLbaP9V/jejEWMVKOT2ZdV2ZxdftaLimOpWPpvjyti5DUJIGTOfLaNb7jlg==}
     peerDependencies:
@@ -733,6 +742,14 @@ packages:
     resolution: {integrity: sha512-3By9cxqCGGkXrw3gYj7h2c5SCWxiDIYc2C3O6GLVyzN4JCIKzcMlm3HLK0gKMUbR/MzAs265XyAc3rqsMq1ixw==}
     peerDependencies:
       solid-js: ^1.3.1
+    dependencies:
+      solid-js: 1.4.8
+    dev: false
+
+  /@solid-primitives/transition-group@1.0.3(solid-js@1.4.8):
+    resolution: {integrity: sha512-TnFADZhx9sibdoW5gxkU1QmLabzV2H2OBKYGS2aR5IC61Q/+7v8wlxOJEevxXNbPiRo6qlE3STLU3L9XS8hDbA==}
+    peerDependencies:
+      solid-js: ^1.6.12
     dependencies:
       solid-js: 1.4.8
     dev: false
@@ -2972,7 +2989,7 @@ packages:
     resolution: {integrity: sha512-sggQ3U2Un38b3+q/j1P4Y4fCboCtoUIaBYoge+Lb6Xg1H8RTIif/hugVr+ErMtIDpvBbhQfTjtiTeYAfbw1ZGQ==}
     dev: false
 
-  /solid-contextmenu@0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12):
+  /solid-contextmenu@0.0.2(solid-js@1.4.8)(solid-transition-group@0.2.0):
     resolution: {integrity: sha512-TmOhIvVpZmQdoiydSP07d9rT0xu/wvRSH6TJqbGPd+2XZz0wOualbm5CvLiHbOGnOU5tBrbe4q0cU/EMvG7u+w==}
     peerDependencies:
       solid-js: ^1.4.8
@@ -2981,7 +2998,7 @@ packages:
       clsx: 1.2.1
       mitt: 3.0.0
       solid-js: 1.4.8
-      solid-transition-group: 0.0.12(solid-js@1.4.8)
+      solid-transition-group: 0.2.0(solid-js@1.4.8)
     dev: false
 
   /solid-icons@1.0.1(solid-js@1.4.8):
@@ -3027,11 +3044,13 @@ packages:
       solid-js: 1.4.8
     dev: true
 
-  /solid-transition-group@0.0.12(solid-js@1.4.8):
-    resolution: {integrity: sha512-Eu4MfNZSSxM67C+4EXaoDiWr4BFbDLg3j30JQJgQEIH9UDOfgNPfZlsFDhT/PxwJqhe6sn85W+dbmYJzBmjpAA==}
+  /solid-transition-group@0.2.0(solid-js@1.4.8):
+    resolution: {integrity: sha512-+u6rHLmfHMYoQanWlrU6CvVTMETjRfVvM2gbqtq7vz1OWq2Y7pNdAMErqpeYWZcA6OnbDNJprFRwTj35WFBfMw==}
     peerDependencies:
-      solid-js: ^1.0.0
+      solid-js: ^1.5.0
     dependencies:
+      '@solid-primitives/refs': 1.0.5(solid-js@1.4.8)
+      '@solid-primitives/transition-group': 1.0.3(solid-js@1.4.8)
       solid-js: 1.4.8
     dev: false
 
