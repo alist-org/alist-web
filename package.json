@@ -37,7 +37,7 @@
     "@crowdin/cli": "^3.7.10",
     "@hrgui/libass-wasm-ts": "^1.0.3",
     "@types/mark.js": "^8.11.8",
-    "@types/node": "^18.7.5",
+    "@types/node": "^20.0.0",
     "@types/sha256": "^0.2.0",
     "@types/streamsaver": "^2.0.1",
     "@vitejs/plugin-legacy": "^2.0.1",
