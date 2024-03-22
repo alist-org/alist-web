@@ -39,6 +39,7 @@ const Folder = () => {
   let dynamicGallery: LightGallery | undefined
   const initGallery = () => {
     dynamicGallery = lightGallery(document.createElement("div"), {
+      addClass: "lightgallery-container",
       dynamic: true,
       thumbnail: true,
       plugins: [lgZoom, lgThumbnail, lgRotate, lgAutoplay, lgFullscreen],
