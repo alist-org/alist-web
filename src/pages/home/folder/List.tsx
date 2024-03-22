@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid"
+import { HStack, VStack, Text } from "@hope-ui/solid"
 import { batch, createEffect, createSignal, For, Show } from "solid-js"
 import { useT } from "~/hooks"
 import {
@@ -11,7 +11,7 @@ import {
 } from "~/store"
 import { OrderBy } from "~/store"
 import { Col, cols, ListItem } from "./ListItem"
-import { useSelectWithMouse } from "./helper"
+import { ItemCheckbox, useSelectWithMouse } from "./helper"
 
 const ListLayout = () => {
   const t = useT()
@@ -55,7 +55,7 @@ const ListLayout = () => {
       <HStack class="title" w="$full" p="$2">
         <HStack w={cols[0].w} spacing="$1">
           <Show when={checkboxOpen()}>
-            <Checkbox
+            <ItemCheckbox
               checked={allChecked()}
               indeterminate={isIndeterminate()}
               onChange={(e: any) => {
