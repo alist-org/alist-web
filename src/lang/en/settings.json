@@ -59,7 +59,6 @@
   "robots_txt": "Robots txt",
   "s3_access_key_id": "S3 access key id",
   "s3_buckets": "S3 buckets",
-  "s3_enabled": "S3 enabled",
   "s3_secret_access_key": "S3 secret access key",
   "search_index": "Search index",
   "search_indexs": {
