@@ -13,7 +13,7 @@
     "url": "git+https://github.com/alist-org/alist-web.git"
   },
   "bugs": {
-    "url": "https://github.com/Xhofe/alist/issues"
+    "url": "https://github.com/alist-org/alist/issues"
   },
   "files": [
     "dist"
