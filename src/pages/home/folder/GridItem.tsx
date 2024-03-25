@@ -1,4 +1,4 @@
-import { Center, VStack, Icon, Text, Checkbox } from "@hope-ui/solid"
+import { Center, VStack, Icon, Text } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
@@ -14,7 +14,11 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
-import { useOpenItemWithCheckbox, useSelectWithMouse } from "./helper"
+import {
+  ItemCheckbox,
+  useOpenItemWithCheckbox,
+  useSelectWithMouse,
+} from "./helper"
 
 export const GridItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -124,7 +128,7 @@ export const GridItem = (props: { obj: StoreObj; index: number }) => {
           pos="relative"
         >
           <Show when={showCheckbox()}>
-            <Checkbox
+            <ItemCheckbox
               pos="absolute"
               left="$1"
               top="$1"

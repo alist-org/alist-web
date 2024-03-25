@@ -58,7 +58,13 @@ function LocalSettingEdit(props: LocalSetting) {
             </SelectTrigger>
             <SelectContent>
               <SelectListbox>
-                <For each={props.options}>
+                <For
+                  each={
+                    typeof props.options === "function"
+                      ? props.options()
+                      : props.options
+                  }
+                >
                   {(item) => (
                     <SelectOption value={item}>
                       <SelectOptionText>
@@ -107,7 +113,7 @@ export const LocalSettings = () => {
         </DrawerHeader>
         <DrawerBody>
           <VStack spacing="$2">
-            <For each={initialLocalSettings}>
+            <For each={initialLocalSettings.filter((s) => !s.hidden)}>
               {(setting) => <LocalSettingEdit {...setting} />}
             </For>
           </VStack>
