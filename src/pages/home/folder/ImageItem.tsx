@@ -1,4 +1,4 @@
-import { Center, VStack, Icon, Checkbox } from "@hope-ui/solid"
+import { Center, VStack, Icon } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
@@ -8,7 +8,11 @@ import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
 import { ObjType, StoreObj } from "~/types"
 import { bus } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
-import { useOpenItemWithCheckbox, useSelectWithMouse } from "./helper"
+import {
+  ItemCheckbox,
+  useOpenItemWithCheckbox,
+  useSelectWithMouse,
+} from "./helper"
 
 export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -68,7 +72,7 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
           <Show
             when={showCheckbox() || (isMouseSupported() && props.obj.selected)}
           >
-            <Checkbox
+            <ItemCheckbox
               pos="absolute"
               left="$1"
               top="$1"

@@ -132,6 +132,7 @@
     "open_item_on_checkbox": "Open item on Checkbox",
     "open_item_on_checkbox_options": {
       "direct": "Direct",
+      "disable_while_checked": "Disable while checked",
       "with_ctrl": "With Ctrl/Command hold",
       "with_alt": "With Alt/Option hold"
     },
