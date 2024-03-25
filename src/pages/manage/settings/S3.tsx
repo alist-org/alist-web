@@ -7,6 +7,7 @@ import { createSignal, Index, Show } from "solid-js"
 import { Item } from "./SettingItem"
 import { ResponsiveGrid } from "../common/ResponsiveGrid"
 import S3Buckets from "./S3Buckets"
+import crypto from "crypto-js"
 
 const bucket_parse = (settings: SettingItem[]) => {
   const string = { ...settings.find((i) => i.key === "s3_buckets")! }
@@ -56,6 +57,30 @@ const S3Settings = () => {
             </Show>
           )}
         </Index>
+        <Button
+          onClick={() => {
+            const awsAccessKeyId = crypto.lib.WordArray.random(120 / 8)
+            const awsSecretAccessKey = crypto.lib.WordArray.random(240 / 8)
+            const accessKeyId = crypto.enc.Base64.stringify(
+              awsAccessKeyId,
+            ).replace(/[\r\n]/g, "")
+            const secretAccessKey = crypto.enc.Base64.stringify(
+              awsSecretAccessKey,
+            ).replace(/[\r\n]/g, "")
+            setSettings(
+              (i) => i.key === "s3_access_key_id",
+              "value",
+              accessKeyId,
+            )
+            setSettings(
+              (i) => i.key === "s3_secret_access_key",
+              "value",
+              secretAccessKey,
+            )
+          }}
+        >
+          {t("settings.s3_generate")}
+        </Button>
         <Heading>{t("settings.s3_restart_to_apply")}</Heading>
         <S3Buckets buckets={bucket_parse(settings)} setSettings={setSettings} />
       </ResponsiveGrid>
