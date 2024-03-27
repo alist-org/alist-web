@@ -57,12 +57,8 @@
   "qbittorrent_seedtime": "Qbittorrent seedtime",
   "qbittorrent_url": "Qbittorrent url",
   "robots_txt": "Robots txt",
-  "s3_buckets_empty": "Bucket name or Path empty",
-  "s3_buckets_duplicate_name": "Bucket name duplicated",
-  "s3_generate": "Generate access key and id",
   "s3_access_key_id": "S3 access key id",
   "s3_buckets": "S3 buckets",
-  "s3_restart_to_apply": "Restart Alist to apply the settings above",
   "s3_secret_access_key": "S3 secret access key",
   "search_index": "Search index",
   "search_indexs": {
