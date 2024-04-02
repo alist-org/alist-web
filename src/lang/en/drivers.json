@@ -107,6 +107,7 @@
   },
   "189CloudPC": {
     "family_id": "Family id",
+    "family_transfer": "Family transfer",
     "no_use_ocr": "No use ocr",
     "order_by": "Order by",
     "order_bys": {
