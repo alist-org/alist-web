@@ -588,6 +588,7 @@
     "repoId": "RepoId",
     "repoPwd": "RepoPwd",
     "root_folder_path": "Root folder path",
+    "token": "Token",
     "username": "Username"
   },
   "Teambition": {
