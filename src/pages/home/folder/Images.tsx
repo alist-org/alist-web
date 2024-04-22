@@ -1,7 +1,7 @@
 import { Flex, Grid, Heading, VStack } from "@hope-ui/solid"
 import { For, Show, createMemo } from "solid-js"
 import { ImageItem } from "./ImageItem"
-import { local, objStore } from "~/store"
+import { local, objStore, sortObjs } from "~/store"
 import { GridItem } from "./GridItem"
 import { StoreObj } from "~/types"
 import { useT } from "~/hooks"
@@ -26,6 +26,8 @@ const ImageLayout = (props: { images: StoreObj[] }) => {
   const { isMouseSupported, registerSelectContainer, captureContentMenu } =
     useSelectWithMouse()
   registerSelectContainer()
+  // specify a default sort that make folders always come before files
+  sortObjs("name", false)
   return (
     <VStack
       oncapture:contextmenu={captureContentMenu}

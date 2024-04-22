@@ -2,13 +2,15 @@ import { Grid } from "@hope-ui/solid"
 import { For } from "solid-js"
 import { GridItem } from "./GridItem"
 import "lightgallery/css/lightgallery-bundle.css"
-import { local, objStore } from "~/store"
+import { local, objStore, sortObjs } from "~/store"
 import { useSelectWithMouse } from "./helper"
 
 const GridLayout = () => {
   const { isMouseSupported, registerSelectContainer, captureContentMenu } =
     useSelectWithMouse()
   registerSelectContainer()
+  // specify a default sort that make folders always come before files
+  sortObjs("name", false)
   return (
     <Grid
       oncapture:contextmenu={captureContentMenu}

@@ -99,6 +99,8 @@ export const sortObjs = (orderBy: OrderBy, reverse?: boolean) => {
     "objs",
     produce((objs) =>
       objs.sort((a, b) => {
+        // make folders always come before files
+        if ((a.type == 1) != (b.type == 1)) return a.type == 1 ? -1 : 1
         return (reverse ? -1 : 1) * naturalSort(a[orderBy], b[orderBy])
       }),
     ),
