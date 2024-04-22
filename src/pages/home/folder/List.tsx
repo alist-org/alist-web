@@ -44,9 +44,6 @@ const ListLayout = () => {
   const { isMouseSupported, registerSelectContainer, captureContentMenu } =
     useSelectWithMouse()
   registerSelectContainer()
-  // specify a default sort that make folders always come before files
-  setOrderBy(cols[0].name as OrderBy)
-  setReverse(false)
   return (
     <VStack
       oncapture:contextmenu={captureContentMenu}
