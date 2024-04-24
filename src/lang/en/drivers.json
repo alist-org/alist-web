@@ -72,6 +72,7 @@
     "valid_duration-tips": "minutes"
   },
   "123PanShare": {
+    "accesstoken": "Accesstoken",
     "order_by": "Order by",
     "order_bys": {
       "file_name": "File name",
