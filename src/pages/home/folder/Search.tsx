@@ -37,6 +37,7 @@ import { getMainColor, me, password } from "~/store"
 import { SearchNode } from "~/types"
 import {
   bus,
+  encodePath,
   fsSearch,
   getFileSize,
   handleResp,
@@ -236,7 +237,7 @@ const Search = () => {
             node.parent = "/" + node.parent
           }
         }
-        node.path = pathJoin(node.parent, node.name)
+        node.path = encodePath(pathJoin(node.parent, node.name))
       })
       setData(data)
     })
