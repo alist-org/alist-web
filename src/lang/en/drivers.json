@@ -238,6 +238,8 @@
     "client_id": "Client id",
     "client_secret": "Client secret",
     "custom_crack_ua": "Custom crack ua",
+    "custom_upload_part_size": "Custom upload part size",
+    "custom_upload_part_size-tips": "0 for auto",
     "download_api": "Download api",
     "download_apis": {
       "crack": "Crack",
