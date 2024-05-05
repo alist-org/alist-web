@@ -1,6 +1,6 @@
 import axios from "axios"
 import { local, password, selectedObjs as _selectedObjs } from "~/store"
-import { fsList, notify, pathJoin } from "~/utils"
+import { fsList, notify, pathBase, pathJoin } from "~/utils"
 import { getLinkByDirAndObj, useRouter, useT } from "~/hooks"
 import { useSelectedLink } from "~/hooks"
 import { Obj } from "~/types"
@@ -164,7 +164,15 @@ export const useDownload = () => {
       a.href = URL.createObjectURL(
         new Blob([rawLinksText(true)], { type: "application/x-mpegURL" }),
       )
-      a.download = "playlist.m3u8"
+      const selectedObjs = _selectedObjs()
+      let saveName = pathBase(pathname())
+      if (selectedObjs.length === 1) {
+        saveName = selectedObjs[0].name
+      }
+      if (!saveName) {
+        saveName = t("manage.sidemenu.home")
+      }
+      a.download = `${saveName}.m3u8`
       a.click()
       URL.revokeObjectURL(a.href)
     },
