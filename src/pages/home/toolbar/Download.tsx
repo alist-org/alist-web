@@ -23,7 +23,8 @@ import { CenterIcon } from "./Icon"
 export const Download = () => {
   const t = useT()
   const colorScheme = "neutral"
-  const { batchDownloadSelected, sendToAria2 } = useDownload()
+  const { batchDownloadSelected, sendToAria2, playlist_download } =
+    useDownload()
   return (
     <Menu placement="top" offset={10}>
       <MenuTrigger as={CenterIcon} name="download" />
@@ -43,6 +44,9 @@ export const Download = () => {
             }}
           >
             {t("home.toolbar.package_download")}
+          </MenuItem>
+          <MenuItem colorScheme={colorScheme} onSelect={playlist_download}>
+            {t("home.toolbar.playlist_download")}
           </MenuItem>
         </Show>
         <MenuItem colorScheme={colorScheme} onSelect={sendToAria2}>

@@ -38,7 +38,7 @@ async function getSaveDir(rpc_url: string, rpc_secret: string) {
   return save_dir
 }
 export const useDownload = () => {
-  const { rawLinks } = useSelectedLink()
+  const { rawLinks, rawLinksText } = useSelectedLink()
   const t = useT()
   const { pathname } = useRouter()
   return {
@@ -158,6 +158,15 @@ export const useDownload = () => {
         console.error(e)
         notify.error(`failed to send to aria2: ${e}`)
       }
+    },
+    playlist_download: () => {
+      const a = document.createElement("a")
+      a.href = URL.createObjectURL(
+        new Blob([rawLinksText(true)], { type: "application/x-mpegURL" }),
+      )
+      a.download = "playlist.m3u8"
+      a.click()
+      URL.revokeObjectURL(a.href)
     },
   }
 }
