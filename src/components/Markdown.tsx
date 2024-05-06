@@ -12,12 +12,12 @@ import { Anchor, Box, List, ListItem } from "@hope-ui/solid"
 import { useParseText, useRouter } from "~/hooks"
 import { EncodingSelect } from "."
 import once from "just-once"
-import { pathDir, pathJoin, api } from "~/utils"
+import { pathDir, pathJoin, api, pathResolve } from "~/utils"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { isMobile } from "~/utils/compatibility.js"
 import { useScrollListener } from "~/pages/home/toolbar/BackTop.jsx"
 import { Motion } from "@motionone/solid"
-import { getMainColor } from "~/store"
+import { getMainColor, me } from "~/store"
 
 type TocItem = { indent: number; text: string; tagName: string; key: string }
 
@@ -194,10 +194,9 @@ export function Markdown(props: {
       if (url.startsWith("/")) {
         url = `${api}/d${url}`
       } else {
-        url = url.replace("./", "")
         url = `${api}/d${pathJoin(
-          props.readme ? pathname() : pathDir(pathname()),
-          url,
+          me().base_path,
+          pathResolve(props.readme ? pathname() : pathDir(pathname()), url),
         )}`
       }
       const ans = `![${name}](${url})`

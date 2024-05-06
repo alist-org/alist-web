@@ -13,6 +13,10 @@ export const standardizePath = (path: string, noRootSlash?: boolean) => {
   return path
 }
 
+export const pathResolve = (...paths: string[]) => {
+  return new URL(pathJoin(...paths), location.origin).pathname
+}
+
 export const pathJoin = (...paths: string[]) => {
   return paths.join("/").replace(/\/{2,}/g, "/")
 }
