@@ -29,7 +29,8 @@ export const ContextMenu = () => {
   const t = useT()
   const { colorMode } = useColorMode()
   const { copySelectedRawLink, copySelectedPreviewPage } = useCopyLink()
-  const { batchDownloadSelected, sendToAria2 } = useDownload()
+  const { batchDownloadSelected, sendToAria2, playlist_download } =
+    useDownload()
   const canPackageDownload = () => {
     return UserMethods.is_admin(me()) || getSettingBool("package_download")
   }
@@ -146,6 +147,9 @@ export const ContextMenu = () => {
           >
             <Item onClick={() => bus.emit("tool", "package_download")}>
               {t("home.toolbar.package_download")}
+            </Item>
+            <Item onClick={playlist_download}>
+              {t("home.toolbar.playlist_download")}
             </Item>
           </Show>
           <Item onClick={sendToAria2}>{t("home.toolbar.send_aria2")}</Item>
