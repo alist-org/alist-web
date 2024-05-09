@@ -801,6 +801,11 @@
     "refresh_token": "Refresh token",
     "root_folder_path": "Root folder path"
   },
+  "NeteaseMusic": {
+    "cookie": "Cookie",
+    "song_limit": "Max number of songs when getting list",
+    "song_limit-tips": "Only get 200 songs by default"
+  },
   "config": {
     "115 Cloud": {},
     "115 Share": {},
@@ -923,6 +928,7 @@
     "WebDav": "WebDav",
     "WeiYun": "WeiYun",
     "WoPan": "WoPan",
-    "YandexDisk": "YandexDisk"
+    "YandexDisk": "YandexDisk",
+    "NeteaseMusic": "NeteaseMusic"
   }
 }
