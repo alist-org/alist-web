@@ -119,12 +119,12 @@ export const getPreviews = (
   const downloadComponent = {
     name: "Download",
     component: lazy(() => import("./download")),
-  };
+  }
   // 如果文件类型为 UNKNOWN，则将 downloadComponent 插入到 res 数组的开头
   if (file.type === ObjType.UNKNOWN) {
-    res.unshift(downloadComponent);
+    res.unshift(downloadComponent)
   } else {
-    res.push(downloadComponent);
+    res.push(downloadComponent)
   }
   return res
 }
