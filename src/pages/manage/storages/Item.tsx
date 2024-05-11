@@ -5,21 +5,13 @@ import {
   FormLabel,
   Input,
   Select,
-  SelectContent,
-  SelectIcon,
-  SelectListbox,
-  SelectOption,
-  SelectOptionIndicator,
-  SelectOptionText,
-  SelectPlaceholder,
-  SelectTrigger,
-  SelectValue,
   Switch as HopeSwitch,
   Textarea,
 } from "@hope-ui/solid"
-import { For, Match, Show, Switch } from "solid-js"
+import { Match, Show, Switch } from "solid-js"
 import { useT } from "~/hooks"
 import { DriverItem, Type } from "~/types"
+import { SelectOptions } from "~/components"
 
 export type ItemProps = DriverItem & {
   readonly?: boolean
@@ -38,7 +30,13 @@ export type ItemProps = DriverItem & {
         value: number
       }
     | {
-        type: Type.String | Type.Text | Type.Select
+        type: Type.String | Type.Text
+        onChange?: (value: string) => void
+        value: string
+      }
+    | {
+        type: Type.Select
+        searchable?: boolean
         onChange?: (value: string) => void
         value: string
       }
@@ -122,31 +120,19 @@ const Item = (props: ItemProps) => {
                 : undefined
             }
           >
-            <SelectTrigger>
-              <SelectPlaceholder>{t("global.choose")}</SelectPlaceholder>
-              <SelectValue />
-              <SelectIcon />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectListbox>
-                <For each={props.options?.split(",")}>
-                  {(item) => (
-                    <SelectOption value={item}>
-                      <SelectOptionText>
-                        {t(
-                          (props.options_prefix ??
-                            (props.driver === "common"
-                              ? `storages.common.${props.name}s`
-                              : `drivers.${props.driver}.${props.name}s`)) +
-                            `.${item}`,
-                        )}
-                      </SelectOptionText>
-                      <SelectOptionIndicator />
-                    </SelectOption>
-                  )}
-                </For>
-              </SelectListbox>
-            </SelectContent>
+            <SelectOptions
+              readonly={props.readonly}
+              searchable={props.type === Type.Select && props.searchable}
+              options={props.options.split(",").map((key) => ({
+                key,
+                label: t(
+                  (props.options_prefix ??
+                    (props.driver === "common"
+                      ? `storages.common.${props.name}s`
+                      : `drivers.${props.driver}.${props.name}s`)) + `.${key}`,
+                ),
+              }))}
+            />
           </Select>
         </Match>
       </Switch>
