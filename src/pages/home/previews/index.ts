@@ -83,6 +83,11 @@ const previews: Preview[] = [
     exts: ["cast"],
     component: lazy(() => import("./asciinema")),
   },
+  {
+    name: "Text Editor for Unknown",
+    type: ObjType.UNKNOWN,
+    component: lazy(() => import("./text-editor")),
+  },
 ]
 
 export const getPreviews = (
@@ -111,9 +116,15 @@ export const getPreviews = (
     })
   })
   // download page
-  res.push({
+  const downloadComponent = {
     name: "Download",
     component: lazy(() => import("./download")),
-  })
+  };
+  // 如果文件类型为 UNKNOWN，则将 downloadComponent 插入到 res 数组的开头
+  if (file.type === ObjType.UNKNOWN) {
+    res.unshift(downloadComponent);
+  } else {
+    res.push(downloadComponent);
+  }
   return res
 }
