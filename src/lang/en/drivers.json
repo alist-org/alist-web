@@ -148,6 +148,7 @@
   },
   "AList V3": {
     "meta_password": "Meta password",
+    "pass_ua_to_upsteam": "Pass ua to upsteam",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "token": "Token",
