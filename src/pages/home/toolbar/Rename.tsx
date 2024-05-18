@@ -42,7 +42,9 @@ export const Rename = () => {
         onSubmit={async (name) => {
           const resp = await ok(
             selectedObjs().map((obj) => pathJoin(pathname(), obj.name)),
-            selectedObjs().map((obj) => (oneChecked() ? name : name + obj.name))
+            selectedObjs().map((obj) =>
+              oneChecked() ? name : name + obj.name,
+            ),
           )
           handleRespWithNotifySuccess(resp, () => {
             refresh()
