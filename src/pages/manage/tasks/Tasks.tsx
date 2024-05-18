@@ -14,7 +14,7 @@ export interface TasksProps {
 export const Tasks = (props: TasksProps) => {
   const t = useT()
   const [loading, get] = useFetch(
-    (): PResp<TaskInfo[]> => r.get(`/admin/task/${props.type}/${props.done}`)
+    (): PResp<TaskInfo[]> => r.get(`/admin/task/${props.type}/${props.done}`),
   )
   const [tasks, setTasks] = createSignal<TaskInfo[]>([])
   const refresh = async () => {
@@ -26,8 +26,8 @@ export const Tasks = (props: TasksProps) => {
             return 1
           }
           return -1
-        }) ?? []
-      )
+        }) ?? [],
+      ),
     )
   }
   refresh()
@@ -36,10 +36,13 @@ export const Tasks = (props: TasksProps) => {
     onCleanup(() => clearInterval(interval))
   }
   const [clearDoneLoading, clearDone] = useFetch(
-    (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_done`)
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_done`),
   )
   const [clearSucceededLoading, clearSucceeded] = useFetch(
-    (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_succeeded`)
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/clear_succeeded`),
+  )
+  const [retryFailedLoading, retryFailed] = useFetch(
+    (): PEmptyResp => r.post(`/admin/task/${props.type}/retry_failed`),
   )
   const [page, setPage] = createSignal(1)
   const pageSize = 20
@@ -52,11 +55,21 @@ export const Tasks = (props: TasksProps) => {
     <VStack w="$full" alignItems="start" spacing="$2">
       <Heading size="lg">{t(`tasks.${props.done}`)}</Heading>
       <Show when={props.done === "done"}>
-        <HStack spacing="$2">
+        <HStack gap="$2" flexWrap="wrap">
           <Button colorScheme="accent" loading={loading()} onClick={refresh}>
             {t(`global.refresh`)}
           </Button>
           <Button
+            loading={retryFailedLoading()}
+            onClick={async () => {
+              const resp = await retryFailed()
+              handleResp(resp, () => refresh())
+            }}
+          >
+            {t(`tasks.retry_failed`)}
+          </Button>
+          <Button
+            colorScheme="danger"
             loading={clearDoneLoading()}
             onClick={async () => {
               const resp = await clearDone()

@@ -1,13 +1,18 @@
-import { Center, VStack, Icon, Checkbox } from "@hope-ui/solid"
+import { Center, VStack, Icon } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, createMemo, createSignal, Show } from "solid-js"
-import { CenterLoading, LinkWithPush, ImageWithError } from "~/components"
+import { CenterLoading, ImageWithError } from "~/components"
 import { useLink, usePath, useUtil } from "~/hooks"
 import { checkboxOpen, getMainColor, selectAll, selectIndex } from "~/store"
 import { ObjType, StoreObj } from "~/types"
 import { bus } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import {
+  ItemCheckbox,
+  useOpenItemWithCheckbox,
+  useSelectWithMouse,
+} from "./helper"
 
 export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   const { isHide } = useUtil()
@@ -20,10 +25,12 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
   )
   const [hover, setHover] = createSignal(false)
   const showCheckbox = createMemo(
-    () => checkboxOpen() && (hover() || props.obj.selected)
+    () => checkboxOpen() && (hover() || props.obj.selected),
   )
   const { show } = useContextMenu({ id: 1 })
   const { rawLink } = useLink()
+  const { isMouseSupported } = useSelectWithMouse()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -35,7 +42,9 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
     >
       <VStack
         w="$full"
-        class="image-item"
+        classList={{ selected: !!props.obj.selected }}
+        class="image-item viselect-item"
+        data-index={props.index}
         p="$1"
         spacing="$1"
         rounded="$lg"
@@ -60,8 +69,10 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
         }}
       >
         <Center w="$full" pos="relative">
-          <Show when={showCheckbox()}>
-            <Checkbox
+          <Show
+            when={showCheckbox() || (isMouseSupported() && props.obj.selected)}
+          >
+            <ItemCheckbox
               pos="absolute"
               left="$1"
               top="$1"
@@ -81,8 +92,23 @@ export const ImageItem = (props: { obj: StoreObj; index: number }) => {
             fallbackErr={objIcon}
             src={rawLink(props.obj)}
             loading="lazy"
-            onClick={() => {
+            cursor={
+              !isMouseSupported() && (!checkboxOpen() || isShouldOpenItem())
+                ? "pointer"
+                : "default"
+            }
+            on:dblclick={(e: MouseEvent) => {
+              if (!isMouseSupported()) return
+              if (e.ctrlKey || e.metaKey || e.shiftKey) return
               bus.emit("gallery", props.obj.name)
+            }}
+            on:click={() => {
+              if (isMouseSupported()) return
+              if (!checkboxOpen() || isShouldOpenItem()) {
+                bus.emit("gallery", props.obj.name)
+                return
+              }
+              selectIndex(props.index, !props.obj.selected)
             }}
           />
         </Center>

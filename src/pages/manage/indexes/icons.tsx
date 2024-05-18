@@ -1,7 +1,7 @@
 import { JSX } from "solid-js"
 
 export function LineMdLoadingTwotoneLoop(
-  props: JSX.SvgSVGAttributes<SVGSVGElement>
+  props: JSX.SvgSVGAttributes<SVGSVGElement>,
 ) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>
@@ -49,7 +49,7 @@ export function LineMdLoadingTwotoneLoop(
 }
 
 export function LineMdConfirmCircleTwotone(
-  props: JSX.SvgSVGAttributes<SVGSVGElement>
+  props: JSX.SvgSVGAttributes<SVGSVGElement>,
 ) {
   return (
     <svg width="1em" height="1em" viewBox="0 0 24 24" {...props}>

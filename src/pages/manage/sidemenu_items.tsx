@@ -9,18 +9,18 @@ import {
   BsMedium,
   BsFingerprint,
   BsFront,
-  BsCloudArrowDownFill,
   BsCloudUploadFill,
   BsSearch,
+  BsBucket,
 } from "solid-icons/bs"
 import { FiLogIn } from "solid-icons/fi"
 import { SiMetabase } from "solid-icons/si"
 import { CgDatabase } from "solid-icons/cg"
 import { OcWorkflow2 } from "solid-icons/oc"
-import { IoCopy, IoHome } from "solid-icons/io"
+import { IoCopy, IoHome, IoMagnetOutline } from "solid-icons/io"
 import { Component, lazy } from "solid-js"
 import { Group, UserRole } from "~/types"
-import { FaBrandsQuinscape, FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
+import { FaSolidBook, FaSolidDatabase } from "solid-icons/fa"
 
 export type SideMenuItem = SideMenuItemProps & {
   component?: Component
@@ -73,6 +73,18 @@ export const side_menu_items: SideMenuItem[] = [
         component: () => <CommonSettings group={Group.SSO} />,
       },
       {
+        title: "manage.sidemenu.ldap",
+        icon: FiLogIn,
+        to: "/@manage/settings/ldap",
+        component: () => <CommonSettings group={Group.LDAP} />,
+      },
+      {
+        title: "manage.sidemenu.s3",
+        icon: BsBucket,
+        to: "/@manage/settings/s3",
+        component: lazy(() => import("./settings/S3")),
+      },
+      {
         title: "manage.sidemenu.other",
         icon: BsMedium,
         to: "/@manage/settings/other",
@@ -86,17 +98,23 @@ export const side_menu_items: SideMenuItem[] = [
     to: "/@manage/tasks",
     children: [
       {
-        title: "manage.sidemenu.aria2",
-        icon: BsCloudArrowDownFill,
+        title: "manage.sidemenu.offline_download",
+        icon: IoMagnetOutline,
         to: "/@manage/tasks/aria2",
-        component: lazy(() => import("./tasks/Aria2")),
+        component: lazy(() => import("./tasks/offline_download")),
       },
-      {
-        title: "manage.sidemenu.qbit",
-        icon: FaBrandsQuinscape,
-        to: "/@manage/tasks/qbit",
-        component: lazy(() => import("./tasks/Qbit")),
-      },
+      // {
+      //   title: "manage.sidemenu.aria2",
+      //   icon: BsCloudArrowDownFill,
+      //   to: "/@manage/tasks/aria2",
+      //   component: lazy(() => import("./tasks/Aria2")),
+      // },
+      // {
+      //   title: "manage.sidemenu.qbit",
+      //   icon: FaBrandsQuinscape,
+      //   to: "/@manage/tasks/qbit",
+      //   component: lazy(() => import("./tasks/Qbit")),
+      // },
       {
         title: "manage.sidemenu.upload",
         icon: BsCloudUploadFill,
@@ -160,6 +178,6 @@ export const side_menu_items: SideMenuItem[] = [
     icon: IoHome,
     to: "/",
     role: UserRole.GUEST,
-    external: true,
+    refresh: true,
   },
 ]

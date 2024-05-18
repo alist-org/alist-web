@@ -6,7 +6,7 @@ export const FormUpload: Upload = async (
   uploadPath: string,
   file: File,
   setUpload: SetUpload,
-  asTask = false
+  asTask = false,
 ): Promise<Error | undefined> => {
   let oldTimestamp = new Date().valueOf()
   let oldLoaded = 0
@@ -17,6 +17,7 @@ export const FormUpload: Upload = async (
       "File-Path": encodeURIComponent(uploadPath),
       "As-Task": asTask,
       "Content-Type": "multipart/form-data",
+      "Last-Modified": file.lastModified,
       Password: password(),
     },
     onUploadProgress: (progressEvent) => {

@@ -11,7 +11,7 @@ export const setSettings = (items: Record<string, string>) => {
     `%c AList %c ${version} %c https://github.com/Xhofe/alist`,
     "color: #fff; background: #5f5f5f",
     "color: #fff; background: #70c6be",
-    ""
+    "",
   )
 }
 

@@ -15,7 +15,7 @@ const SwitchColorMode = () => {
       size: "$8",
       component: Sun,
       p: "$0_5",
-    }
+    },
   )
   return (
     <Icon

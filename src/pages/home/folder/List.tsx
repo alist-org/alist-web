@@ -1,4 +1,4 @@
-import { HStack, VStack, Text, Checkbox } from "@hope-ui/solid"
+import { HStack, VStack, Text } from "@hope-ui/solid"
 import { batch, createEffect, createSignal, For, Show } from "solid-js"
 import { useT } from "~/hooks"
 import {
@@ -11,6 +11,7 @@ import {
 } from "~/store"
 import { OrderBy } from "~/store"
 import { Col, cols, ListItem } from "./ListItem"
+import { ItemCheckbox, useSelectWithMouse } from "./helper"
 
 const ListLayout = () => {
   const t = useT()
@@ -40,12 +41,21 @@ const ListLayout = () => {
       },
     }
   }
+  const { isMouseSupported, registerSelectContainer, captureContentMenu } =
+    useSelectWithMouse()
+  registerSelectContainer()
   return (
-    <VStack class="list" w="$full" spacing="$1">
+    <VStack
+      oncapture:contextmenu={captureContentMenu}
+      classList={{ "viselect-container": isMouseSupported() }}
+      class="list"
+      w="$full"
+      spacing="$1"
+    >
       <HStack class="title" w="$full" p="$2">
         <HStack w={cols[0].w} spacing="$1">
           <Show when={checkboxOpen()}>
-            <Checkbox
+            <ItemCheckbox
               checked={allChecked()}
               indeterminate={isIndeterminate()}
               onChange={(e: any) => {

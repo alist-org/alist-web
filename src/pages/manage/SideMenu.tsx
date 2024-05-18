@@ -7,7 +7,7 @@ import { UserMethods, UserRole } from "~/types"
 import { me } from "~/store"
 import { AnchorWithBase } from "~/components"
 import { Link } from "@solidjs/router"
-import { hoverColor } from "~/utils"
+import { hoverColor, joinBase } from "~/utils"
 import { IconTypes } from "solid-icons"
 
 export interface SideMenuItemProps {
@@ -17,6 +17,7 @@ export interface SideMenuItemProps {
   children?: SideMenuItemProps[]
   role?: number
   external?: true
+  refresh?: true
 }
 
 const SideMenuItem = (props: SideMenuItemProps) => {
@@ -48,9 +49,17 @@ const SideMenuItemWithTo = (props: SideMenuItemProps) => {
       display="flex"
       as={Link}
       href={props.to}
-      onClick={() => {
+      onClick={(e: any) => {
         // to(props.to!);
         onClose()
+        if (props.refresh) {
+          e.stopPropagation?.()
+          let to = props.to
+          if (!to.startsWith("http")) {
+            to = joinBase(to)
+          }
+          window.open(to, "_self")
+        }
       }}
       w="$full"
       alignItems="center"

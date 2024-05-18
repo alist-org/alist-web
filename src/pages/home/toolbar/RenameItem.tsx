@@ -32,9 +32,9 @@ export const RenameItem = (props: { obj: RenameObj; index: number }) => {
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
-          title={props.obj.oldName}
+          title={props.obj.src_name}
         >
-          {props.obj.oldName}
+          {props.obj.src_name}
         </Text>
 
         <Text
@@ -45,9 +45,9 @@ export const RenameItem = (props: { obj: RenameObj; index: number }) => {
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}
-          title={props.obj.newName}
+          title={props.obj.new_name}
         >
-          {props.obj.newName}
+          {props.obj.new_name}
         </Text>
       </HStack>
     </Motion.div>

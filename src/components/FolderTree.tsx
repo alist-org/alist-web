@@ -16,7 +16,7 @@ import {
   Text,
   VStack,
 } from "@hope-ui/solid"
-import { BiSolidRightArrow } from "solid-icons/bi"
+import { BiSolidRightArrow, BiSolidFolderOpen } from "solid-icons/bi"
 import {
   Accessor,
   createContext,
@@ -24,23 +24,40 @@ import {
   useContext,
   Show,
   For,
+  Setter,
+  createEffect,
+  on,
 } from "solid-js"
-import { useFetch, useT } from "~/hooks"
+import { useFetch, useT, useUtil } from "~/hooks"
 import { getMainColor, password } from "~/store"
 import { Obj } from "~/types"
-import { pathBase, handleResp, hoverColor, pathJoin, fsDirs } from "~/utils"
+import {
+  pathBase,
+  handleResp,
+  hoverColor,
+  pathJoin,
+  fsDirs,
+  createMatcher,
+} from "~/utils"
 
+export type FolderTreeHandler = {
+  setPath: Setter<string>
+}
 export interface FolderTreeProps {
   onChange: (path: string) => void
   forceRoot?: boolean
+  autoOpen?: boolean
+  handle?: (handler: FolderTreeHandler) => void
+  showEmptyIcon?: boolean
+  showHiddenFolder?: boolean
 }
-const context = createContext<{
+interface FolderTreeContext extends Omit<FolderTreeProps, "handle"> {
   value: Accessor<string>
-  onChange: (val: string) => void
-  forceRoot: boolean
-}>()
+}
+const context = createContext<FolderTreeContext>()
 export const FolderTree = (props: FolderTreeProps) => {
   const [path, setPath] = createSignal("/")
+  props.handle?.({ setPath })
   return (
     <Box class="folder-tree-box" w="$full" overflowX="auto">
       <context.Provider
@@ -50,7 +67,10 @@ export const FolderTree = (props: FolderTreeProps) => {
             setPath(val)
             props.onChange(val)
           },
+          autoOpen: props.autoOpen ?? false,
           forceRoot: props.forceRoot ?? false,
+          showEmptyIcon: props.showEmptyIcon ?? false,
+          showHiddenFolder: props.showHiddenFolder ?? true,
         }}
       >
         <FolderTreeNode path="/" />
@@ -60,70 +80,108 @@ export const FolderTree = (props: FolderTreeProps) => {
 }
 
 const FolderTreeNode = (props: { path: string }) => {
-  const [children, setChildren] = createSignal<Obj[]>([])
-  const { value, onChange, forceRoot } = useContext(context)!
+  const { isHidePath } = useUtil()
+  const [children, setChildren] = createSignal<Obj[]>()
+  const {
+    value,
+    onChange,
+    forceRoot,
+    autoOpen,
+    showEmptyIcon,
+    showHiddenFolder,
+  } = useContext(context)!
+  const emptyIconVisible = () =>
+    Boolean(showEmptyIcon && children() !== undefined && !children()?.length)
   const [loading, fetchDirs] = useFetch(() =>
-    fsDirs(props.path, password(), forceRoot)
+    fsDirs(props.path, password(), forceRoot),
   )
+  let isLoaded = false
   const load = async () => {
-    if (children().length > 0) return
-    const resp = await fetchDirs()
-    handleResp(resp, setChildren)
+    if (children()?.length) return
+    const resp = await fetchDirs() // this api may return null
+    handleResp(
+      resp,
+      (data) => {
+        isLoaded = true
+        setChildren(data)
+      },
+      () => {
+        if (isOpen()) onToggle() // close folder while failed
+      },
+    )
   }
   const { isOpen, onToggle } = createDisclosure()
   const active = () => value() === props.path
+  const isMatchedFolder = createMatcher(props.path)
+  const checkIfShouldOpen = async (pathname: string) => {
+    if (!autoOpen) return
+    if (isMatchedFolder(pathname)) {
+      if (!isOpen()) onToggle()
+      if (!isLoaded) load()
+    }
+  }
+  createEffect(on(value, checkIfShouldOpen))
+  const isHiddenFolder = () =>
+    isHidePath(props.path) && !isMatchedFolder(value())
   return (
-    <Box>
-      <HStack spacing="$2">
-        <Show
-          when={!loading()}
-          fallback={<Spinner size="sm" color={getMainColor()} />}
-        >
-          <Icon
-            color={getMainColor()}
-            as={BiSolidRightArrow}
-            transform={isOpen() ? "rotate(90deg)" : "none"}
-            transition="transform 0.2s"
-            cursor="pointer"
-            onClick={() => {
-              onToggle()
-              if (isOpen()) {
-                load()
-              }
+    <Show when={showHiddenFolder || !isHiddenFolder()}>
+      <Box>
+        <HStack spacing="$2">
+          <Show
+            when={!loading()}
+            fallback={<Spinner size="sm" color={getMainColor()} />}
+          >
+            <Show
+              when={!emptyIconVisible()}
+              fallback={<Icon color={getMainColor()} as={BiSolidFolderOpen} />}
+            >
+              <Icon
+                color={getMainColor()}
+                as={BiSolidRightArrow}
+                transform={isOpen() ? "rotate(90deg)" : "none"}
+                transition="transform 0.2s"
+                cursor="pointer"
+                onClick={() => {
+                  onToggle()
+                  if (isOpen()) {
+                    load()
+                  }
+                }}
+              />
+            </Show>
+          </Show>
+          <Text
+            css={{
+              // textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
-          />
+            // overflow="hidden"
+            fontSize="$md"
+            cursor="pointer"
+            px="$1"
+            rounded="$md"
+            bgColor={active() ? "$info8" : "transparent"}
+            _hover={{
+              bgColor: active() ? "$info8" : hoverColor(),
+            }}
+            onClick={() => {
+              onChange(props.path)
+            }}
+          >
+            {props.path === "/" ? "root" : pathBase(props.path)}
+          </Text>
+        </HStack>
+        <Show when={isOpen()}>
+          <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
+            <For each={children()}>
+              {(item) => (
+                <FolderTreeNode path={pathJoin(props.path, item.name)} />
+              )}
+            </For>
+          </VStack>
         </Show>
-        <Text
-          css={{
-            // textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-          }}
-          // overflow="hidden"
-          fontSize="$md"
-          cursor="pointer"
-          px="$1"
-          rounded="$md"
-          bgColor={active() ? "$info8" : "transparent"}
-          _hover={{
-            bgColor: active() ? "$info8" : hoverColor(),
-          }}
-          onClick={() => {
-            onChange(props.path)
-          }}
-        >
-          {props.path === "/" ? "root" : pathBase(props.path)}
-        </Text>
-      </HStack>
-      <Show when={isOpen()}>
-        <VStack mt="$1" pl="$4" alignItems="start" spacing="$1">
-          <For each={children()}>
-            {(item) => (
-              <FolderTreeNode path={pathJoin(props.path, item.name)} />
-            )}
-          </For>
-        </VStack>
-      </Show>
-    </Box>
+      </Box>
+    </Show>
   )
 }
 
@@ -188,7 +246,7 @@ export const FolderChooseInput = (props: {
           placeholder={t(
             `global.${
               props.onlyFolder ? "choose_folder" : "choose_or_input_path"
-            }`
+            }`,
           )}
         />
         <Show when={!props.onlyFolder}>

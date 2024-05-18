@@ -24,6 +24,6 @@ export type StoreObj = Obj & {
 }
 
 export type RenameObj = {
-  oldName: string
-  newName: string
+  src_name: string
+  new_name: string
 }

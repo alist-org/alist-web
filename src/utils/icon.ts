@@ -17,11 +17,17 @@ import {
   FaSolidDatabase,
   FaSolidBook,
   FaSolidCompactDisc,
+  FaSolidLink,
 } from "solid-icons/fa"
 import { IoFolder } from "solid-icons/io"
 import { ImAndroid } from "solid-icons/im"
 import { Obj, ObjType } from "~/types"
 import { ext } from "./path"
+import {
+  VscodeIconsFileTypeAi2,
+  VscodeIconsFileTypePhotoshop2,
+} from "~/components"
+import { SiAsciinema } from "solid-icons/si"
 
 const iconMap = {
   "dmg,ipa,plist,tipa": BsApple,
@@ -37,6 +43,10 @@ const iconMap = {
   "xls,xlsx": BsFileEarmarkExcelFill,
   "ppt,pptx": BsFileEarmarkPptFill,
   pdf: BsFileEarmarkPdfFill,
+  psd: VscodeIconsFileTypePhotoshop2,
+  ai: VscodeIconsFileTypeAi2,
+  url: FaSolidLink,
+  cast: SiAsciinema,
 }
 
 export const getIconByTypeAndExt = (type: number, ext: string) => {

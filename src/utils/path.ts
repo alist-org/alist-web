@@ -13,6 +13,10 @@ export const standardizePath = (path: string, noRootSlash?: boolean) => {
   return path
 }
 
+export const pathResolve = (...paths: string[]) => {
+  return new URL(pathJoin(...paths), location.origin).pathname
+}
+
 export const pathJoin = (...paths: string[]) => {
   return paths.join("/").replace(/\/{2,}/g, "/")
 }
@@ -41,14 +45,13 @@ export const encodePath = (path: string, all?: boolean) => {
   return path
     .split("/")
     .map((p) =>
-      // ["#", "?", "%"].some((c) => p.includes(c)) ? encodeURIComponent(p) : p
       all
         ? encodeURIComponent(p)
         : p
-            .replaceAll("%", "%25")
-            .replaceAll("?", "%3F")
-            .replaceAll("#", "%23")
-            .replaceAll(" ", "%20")
+            .replace(/%/g, "%25")
+            .replace(/\?/g, "%3F")
+            .replace(/#/g, "%23")
+            .replace(/ /g, "%20"),
     )
     .join("/")
 }
@@ -59,4 +62,33 @@ export const ext = (path: string): string => {
 
 export const baseName = (fullName: string) => {
   return fullName.split(".").slice(0, -1).join(".")
+}
+
+export function createMatcher(path: string) {
+  const segments = path.split("/").filter(Boolean)
+  const len = segments.length
+
+  return (location: string) => {
+    const locSegments = location.split("/").filter(Boolean)
+    const lenDiff = locSegments.length - len
+    if (lenDiff < 0) return null
+
+    let matchPath = len ? "" : "/"
+
+    for (let i = 0; i < len; i++) {
+      const segment = segments[i]
+      const locSegment = locSegments[i]
+
+      if (
+        segment.localeCompare(locSegment, undefined, {
+          sensitivity: "base",
+        }) !== 0
+      ) {
+        return null
+      }
+      matchPath += `/${locSegment}`
+    }
+
+    return matchPath
+  }
 }

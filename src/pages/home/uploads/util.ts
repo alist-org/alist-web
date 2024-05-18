@@ -3,10 +3,10 @@ import { UploadFileProps } from "./types"
 export const traverseFileTree = async (entry: FileSystemEntry) => {
   let res: File[] = []
   const internalProcess = async (entry: FileSystemEntry, path: string) => {
-    const promise = new Promise<{}>((resolve) => {
+    const promise = new Promise<{}>((resolve, reject) => {
       const errorCallback: ErrorCallback = (e) => {
         console.error(e)
-        resolve({})
+        reject(e)
       }
       if (entry.isFile) {
         ;(entry as FileSystemFileEntry).file((file) => {
@@ -21,13 +21,23 @@ export const traverseFileTree = async (entry: FileSystemEntry) => {
         const dirReader = (entry as FileSystemDirectoryEntry).createReader()
         const readEntries = () => {
           dirReader.readEntries(async (entries) => {
-            if (entries.length === 0) {
-              resolve({})
-            }
             for (let i = 0; i < entries.length; i++) {
               await internalProcess(entries[i], path + entry.name + "/")
             }
-            readEntries()
+            resolve({})
+            /**
+            why? https://stackoverflow.com/questions/3590058/does-html5-allow-drag-drop-upload-of-folders-or-a-folder-tree/53058574#53058574
+            Unfortunately none of the existing answers are completely correct because 
+            readEntries will not necessarily return ALL the (file or directory) entries for a given directory. 
+            This is part of the API specification (see Documentation section below).
+            
+            To actually get all the files, we'll need to call readEntries repeatedly (for each directory we encounter) 
+            until it returns an empty array. If we don't, we will miss some files/sub-directories in a directory 
+            e.g. in Chrome, readEntries will only return at most 100 entries at a time.
+            */
+            if (entries.length > 0) {
+              readEntries()
+            }
           }, errorCallback)
         }
         readEntries()

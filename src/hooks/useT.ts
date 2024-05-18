@@ -6,7 +6,7 @@ const useT = () => {
   return (
     key: string,
     params?: Record<string, string> | undefined,
-    defaultValue?: string | undefined
+    defaultValue?: string | undefined,
   ) => {
     const value = t(key, params, defaultValue)
     if (!value) {

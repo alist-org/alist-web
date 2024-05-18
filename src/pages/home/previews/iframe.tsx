@@ -13,6 +13,7 @@ const IframePreview = (props: { scheme: string }) => {
       raw_url: objStore.raw_url,
       name: objStore.obj.name,
       d_url: currentObjLink(true),
+      ts: true,
     })
   })
   return (

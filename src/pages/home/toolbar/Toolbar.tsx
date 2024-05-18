@@ -8,12 +8,14 @@ import { NewFile } from "./NewFile"
 import { Mkdir } from "./Mkdir"
 import { RecursiveMove } from "./RecursiveMove"
 import { RemoveEmptyDirectory } from "./RemoveEmptyDirectory"
-import { RegexRename } from "./RegexRename"
+import { BatchRename } from "./BatchRename"
 import { OfflineDownload } from "./OfflineDownload"
 import { PackageDownloadModal } from "./Download"
 import { lazy } from "solid-js"
 import { ModalWrapper } from "./ModalWrapper"
 import { LocalSettings } from "./LocalSettings"
+import { BackTop } from "./BackTop"
+
 const Upload = lazy(() => import("../uploads/Upload"))
 
 export const Modal = () => {
@@ -27,7 +29,7 @@ export const Modal = () => {
       <Mkdir />
       <RecursiveMove />
       <RemoveEmptyDirectory />
-      <RegexRename />
+      <BatchRename />
       <OfflineDownload />
       <PackageDownloadModal />
       <ModalWrapper name="upload" title="home.toolbar.upload">
@@ -44,6 +46,7 @@ export const Toolbar = () => {
       <Right />
       <Center />
       <Modal />
+      <BackTop />
     </Portal>
   )
 }

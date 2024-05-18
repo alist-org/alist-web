@@ -1,18 +1,23 @@
 {
-  "aria2_down": "Download file to local machine",
-  "aria2_transfer": "Transfer downloaded file to corresponding storage",
-  "qbit_down": "Download file to local machine",
-  "qbit_transfer": "Transfer downloaded file to corresponding storage",
+  "offline_download": "Download file to local machine",
+  "offline_download_transfer": "Transfer downloaded file to corresponding storage",
   "upload": "Upload file to corresponding storage",
   "copy": "Copy file from a storage to another storage",
   "done": "Completed",
   "undone": "Running",
-  "pending": "Pending",
-  "running": "Running",
-  "canceling": "Canceling",
-  "succeeded": "Succeeded",
-  "canceled": "Canceled",
-  "errored": "Errored",
   "clear_succeeded": "Clear Succeeded",
-  "retry": "Retry"
+  "retry": "Retry",
+  "retry_failed": "Retry Failed",
+  "state": {
+    "0": "Pending",
+    "1": "Running",
+    "2": "Succeeded",
+    "3": "Canceling",
+    "4": "Canceled",
+    "5": "Errored",
+    "6": "Failing",
+    "7": "Failed",
+    "8": "WaitingRetry",
+    "9": "BeforeRetry"
+  }
 }

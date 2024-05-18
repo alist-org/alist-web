@@ -4,6 +4,10 @@ import {
   VStack,
   Text,
   Switch as HopeSwitch,
+  Input,
+  FormControl,
+  FormLabel,
+  Flex,
 } from "@hope-ui/solid"
 import { r, handleRespWithoutNotify, notify } from "~/utils"
 import { useFetch, useManageTitle, useT } from "~/hooks"
@@ -18,8 +22,10 @@ import {
   PPageResp,
 } from "~/types"
 import { createSignal, For } from "solid-js"
+import crypto from "crypto-js"
 
 interface Data {
+  encrypted: string
   settings: SettingItem[]
   users: User[]
   storages: Storage[]
@@ -51,6 +57,7 @@ const Log = (props: { msg: string; type: LogType }) => {
 
 const BackupRestore = () => {
   const [override, setOverride] = createSignal(false)
+  const [password, setPassword] = createSignal("")
   const t = useT()
   useManageTitle("manage.sidemenu.backup-restore")
   let logRef: HTMLDivElement
@@ -65,16 +72,16 @@ const BackupRestore = () => {
     logRef.scrollTop = logRef.scrollHeight
   }
   const [getSettingsLoading, getSettings] = useFetch(
-    (): PResp<any> => r.get("/admin/setting/list")
+    (): PResp<any> => r.get("/admin/setting/list"),
   )
   const [getUsersLoading, getUsers] = useFetch(
-    (): PPageResp<User> => r.get("/admin/user/list")
+    (): PPageResp<User> => r.get("/admin/user/list"),
   )
   const [getMetasLoading, getMetas] = useFetch(
-    (): PPageResp<Meta> => r.get("/admin/meta/list")
+    (): PPageResp<Meta> => r.get("/admin/meta/list"),
   )
   const [getStoragesLoading, getStorages] = useFetch(
-    (): PPageResp<Storage> => r.get("/admin/storage/list")
+    (): PPageResp<Storage> => r.get("/admin/storage/list"),
   )
   const backupLoading = () => {
     return (
@@ -84,14 +91,36 @@ const BackupRestore = () => {
       getStoragesLoading()
     )
   }
+  function encrypt(data: any, key: string): string {
+    if (key == "") return data
+    const encJson = crypto.AES.encrypt(JSON.stringify(data), key).toString()
+    return crypto.enc.Base64.stringify(crypto.enc.Utf8.parse(encJson))
+  }
+
+  function decrypt(
+    data: any,
+    key: string,
+    raw: boolean,
+    encrypted: boolean,
+  ): string {
+    if (!encrypted) return data
+    const decData = crypto.enc.Base64.parse(data).toString(crypto.enc.Utf8)
+    if (raw) return crypto.AES.decrypt(decData, key).toString(crypto.enc.Utf8)
+    return JSON.parse(
+      crypto.AES.decrypt(decData, key).toString(crypto.enc.Utf8),
+    )
+  }
+
   const backup = async () => {
     appendLog(t("br.start_backup"), "info")
     const allData: Data = {
+      encrypted: "",
       settings: [],
       users: [],
       storages: [],
       metas: [],
     }
+    if (password() != "") allData.encrypted = encrypt("encrypted", password())
     for (const item of [
       { name: "settings", fn: getSettings, page: false },
       { name: "users", fn: getUsers, page: true },
@@ -106,11 +135,23 @@ const BackupRestore = () => {
             t("br.success_backup_item", {
               item: t(`manage.sidemenu.${item.name}`),
             }),
-            "success"
+            "success",
           )
           if (item.page) {
+            for (let i = 0; i < data.content.length; i++) {
+              const obj = data.content[i]
+              for (const key in obj) {
+                obj[key] = encrypt(obj[key], password())
+              }
+            }
             allData[item.name] = data.content
           } else {
+            for (let i = 0; i < data.length; i++) {
+              const obj = data[i]
+              for (const key in obj) {
+                obj[key] = encrypt(obj[key], password())
+              }
+            }
             allData[item.name] = data
           }
         },
@@ -121,16 +162,16 @@ const BackupRestore = () => {
             }) +
               ":" +
               msg,
-            "error"
+            "error",
           )
-        }
+        },
       )
     }
     download("alist_backup_" + new Date().toLocaleString() + ".json", allData)
     appendLog(t("br.finish_backup"), "info")
   }
   const [addSettingsLoading, addSettings] = useFetch(
-    (data: SettingItem[]): PEmptyResp => r.post("/admin/setting/save", data)
+    (data: SettingItem[]): PEmptyResp => r.post("/admin/setting/save", data),
   )
   const [addUserLoading, addUser] = useFetch((user: User): PEmptyResp => {
     return r.post(`/admin/user/create`, user)
@@ -138,7 +179,7 @@ const BackupRestore = () => {
   const [addStorageLoading, addStorage] = useFetch(
     (storage: Storage): PEmptyResp => {
       return r.post(`/admin/storage/create`, storage)
-    }
+    },
   )
   const [addMetaLoading, addMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/create`, meta)
@@ -149,7 +190,7 @@ const BackupRestore = () => {
   const [updateStorageLoading, updateStorage] = useFetch(
     (storage: Storage): PEmptyResp => {
       return r.post(`/admin/storage/update`, storage)
-    }
+    },
   )
   const [updateMetaLoading, updateMeta] = useFetch((meta: Meta): PEmptyResp => {
     return r.post(`/admin/meta/update`, meta)
@@ -164,14 +205,14 @@ const BackupRestore = () => {
       (t: T): PEmptyResp
     },
     idFieldName: keyof T,
-    itemName: string
+    itemName: string,
   ) {
     const currentData = (await getDataFunc()).data.content
     for (const i in dataArray) {
       const currentItem = dataArray[i]
       const currentIdValue = currentItem[idFieldName]
       const currentDataItem = currentData.find(
-        (d) => d[idFieldName] === currentIdValue
+        (d) => d[idFieldName] === currentIdValue,
       )
       const method = currentDataItem ? "update" : "add"
       const handleDataFunc = method === "add" ? addDataFunc : updateDataFunc
@@ -184,7 +225,7 @@ const BackupRestore = () => {
             }) +
               "-" +
               `[${currentIdValue}]`,
-            "success"
+            "success",
           )
         },
         (msg) => {
@@ -196,9 +237,9 @@ const BackupRestore = () => {
               `[${currentIdValue}]` +
               ":" +
               msg,
-            "error"
+            "error",
           )
-        }
+        },
       )
     }
   }
@@ -228,6 +269,25 @@ const BackupRestore = () => {
       const reader = new FileReader()
       reader.onload = async () => {
         const data: Data = JSON.parse(reader.result as string)
+        const encrypted = Boolean(data.encrypted)
+        if (encrypted)
+          if (
+            decrypt(data.encrypted, password(), true, true) !== '"encrypted"'
+          ) {
+            appendLog(t("br.wrong_encrypt_password"), "error")
+            return
+          }
+        const dataasarray = Object.values(data)
+        for (let i = dataasarray.length - 4; i < dataasarray.length; i++) {
+          const obj = dataasarray[i]
+          console.log(obj)
+          for (let a = 0; a < obj.length; a++) {
+            const obj1 = obj[a]
+            for (const key in obj1) {
+              obj1[key] = decrypt(obj1[key], password(), false, encrypted)
+            }
+          }
+        }
         if (override()) {
           await backup()
         }
@@ -235,15 +295,15 @@ const BackupRestore = () => {
           handleRespWithoutNotify(
             await addSettings(
               data.settings.filter(
-                (s) => !["version", "index_progress"].includes(s.key)
-              )
+                (s) => !["version", "index_progress"].includes(s.key),
+              ),
             ),
             () => {
               appendLog(
                 t("br.success_restore_item", {
                   item: t("manage.sidemenu.settings"),
                 }),
-                "success"
+                "success",
               )
             },
             (msg) => {
@@ -253,9 +313,9 @@ const BackupRestore = () => {
                 }) +
                   ":" +
                   msg,
-                "error"
+                "error",
               )
-            }
+            },
           )
         if (override()) {
           await handleOvrData(
@@ -264,7 +324,7 @@ const BackupRestore = () => {
             addUser,
             updateUser,
             "username",
-            "manage.sidemenu.users"
+            "manage.sidemenu.users",
           )
           await handleOvrData(
             data.storages,
@@ -272,7 +332,7 @@ const BackupRestore = () => {
             addStorage,
             updateStorage,
             "mount_path",
-            "manage.sidemenu.storages"
+            "manage.sidemenu.storages",
           )
           await handleOvrData(
             data.metas,
@@ -280,7 +340,7 @@ const BackupRestore = () => {
             addMeta,
             updateMeta,
             "path",
-            "manage.sidemenu.metas"
+            "manage.sidemenu.metas",
           )
         } else {
           for (const item of [
@@ -304,7 +364,7 @@ const BackupRestore = () => {
                     }) +
                       "-" +
                       `[${(itemData as any)[item.key]}]`,
-                    "success"
+                    "success",
                   )
                 },
                 (msg) => {
@@ -315,9 +375,9 @@ const BackupRestore = () => {
                       ` [ ${(itemData as any)[item.key]} ] ` +
                       ":" +
                       msg,
-                    "error"
+                    "error",
                   )
-                }
+                },
               )
             }
           }
@@ -348,16 +408,27 @@ const BackupRestore = () => {
         >
           {t("br.restore")}
         </Button>
-        <HopeSwitch
-          id="restore-override"
-          checked={override()}
-          onChange={(e: { currentTarget: HTMLInputElement }) =>
-            setOverride(e.currentTarget.checked)
-          }
-        >
-          {t("br.override")}
-        </HopeSwitch>
       </HStack>
+      <FormControl w="$full" display="flex" flexDirection="column">
+        <Flex w="$full" direction="column" gap="$1">
+          <FormLabel>{t(`br.override`)}</FormLabel>
+          <HopeSwitch
+            id="restore-override"
+            checked={override()}
+            onChange={(e: { currentTarget: HTMLInputElement }) =>
+              setOverride(e.currentTarget.checked)
+            }
+          ></HopeSwitch>
+
+          <FormLabel>{t(`br.encrypt_password`)}</FormLabel>
+          <Input
+            id="password"
+            type="password"
+            placeholder={t(`br.encrypt_password_placeholder`)}
+            onInput={(e) => setPassword(e.currentTarget.value)}
+          />
+        </Flex>
+      </FormControl>
       <VStack
         p="$2"
         ref={logRef!}

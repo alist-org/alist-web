@@ -10,7 +10,7 @@ export const getLinkByDirAndObj = (
   dir: string,
   obj: Obj,
   type: URLType = "direct",
-  encodeAll?: boolean
+  encodeAll?: boolean,
 ) => {
   if (type !== "preview") {
     dir = pathJoin(me().base_path, dir)
@@ -21,8 +21,8 @@ export const getLinkByDirAndObj = (
   let host = api
   let prefix = type === "direct" ? "/d" : "/p"
   if (type === "preview") {
-    host = location.origin
     prefix = ""
+    if (!api.startsWith(location.origin)) host = location.origin
   }
   let ans = `${host}${prefix}${path}`
   if (type !== "preview" && obj.sign) {

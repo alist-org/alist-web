@@ -4,10 +4,10 @@ import { EmptyResp, PResp } from "~/types"
 export const useLoading = <T>(
   p: (...arg: any[]) => Promise<T>,
   fetch?: boolean,
-  t?: boolean // initial loading true
+  t?: boolean, // initial loading true
 ): [
   Accessor<boolean>,
-  (...arg: any[]) => Promise<unknown extends T ? any : T>
+  (...arg: any[]) => Promise<unknown extends T ? any : T>,
 ] => {
   const [loading, setLoading] = createSignal<boolean>(t ?? false)
   return [
@@ -28,10 +28,10 @@ export const useLoading = <T>(
 
 export const useFetch = <T>(
   p: (...arg: any[]) => PResp<T>,
-  loading?: boolean
+  loading?: boolean,
 ): [
   Accessor<boolean>,
-  (...arg: Parameters<typeof p>) => PResp<unknown extends T ? any : T>
+  (...arg: Parameters<typeof p>) => PResp<unknown extends T ? any : T>,
 ] => {
   return useLoading(p, true, loading)
 }
@@ -39,7 +39,7 @@ export const useFetch = <T>(
 const useListLoading = <T, K>(
   p: (key: K, ...arg: any[]) => Promise<T>,
   fetch?: boolean,
-  initial?: K
+  initial?: K,
 ): [Accessor<K | undefined>, (key: K, ...arg: any[]) => Promise<any>] => {
   const [loading, setLoading] = createSignal<K | undefined>(initial)
   return [
@@ -57,7 +57,7 @@ const useListLoading = <T, K>(
 
 export const useListFetch = <T, K>(
   p: (key: K, ...arg: any[]) => PResp<T>,
-  initial?: K
+  initial?: K,
 ): [Accessor<K | undefined>, (key: K, ...arg: any[]) => Promise<any>] => {
   return useListLoading(p, true, initial)
 }

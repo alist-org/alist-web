@@ -13,7 +13,7 @@ import {
   Box,
 } from "@hope-ui/solid"
 import { createSignal, For, Show } from "solid-js"
-import { useRouter, useT } from "~/hooks"
+import { usePath, useRouter, useT } from "~/hooks"
 import { getMainColor } from "~/store"
 import {
   RiDocumentFolderUploadFill,
@@ -72,6 +72,7 @@ const UploadFile = (props: UploadFileProps) => {
 const Upload = () => {
   const t = useT()
   const { pathname } = useRouter()
+  const { refresh } = usePath()
   const [drag, setDrag] = createSignal(false)
   const [uploading, setUploading] = createSignal(false)
   const [asTask, setAsTask] = createSignal(false)
@@ -82,7 +83,7 @@ const Upload = () => {
   })
   const allDone = () => {
     return uploadFiles.uploads.every(({ status }) =>
-      ["success", "error"].includes(status)
+      ["success", "error"].includes(status),
     )
   }
   let fileInput: HTMLInputElement
@@ -97,6 +98,7 @@ const Upload = () => {
     for await (const ms of asyncPool(3, files, handleFile)) {
       console.log(ms)
     }
+    refresh(undefined, true)
   }
   const setUpload = (path: string, key: keyof UploadFileProps, value: any) => {
     setUploadFiles("uploads", (upload) => upload.path === path, key, value)
@@ -114,7 +116,7 @@ const Upload = () => {
         (key, value) => {
           setUpload(path, key, value)
         },
-        asTask()
+        asTask(),
       )
       if (!err) {
         setUpload(path, "status", "success")
@@ -141,8 +143,8 @@ const Upload = () => {
                 onClick={() => {
                   setUploadFiles("uploads", (_uploads) =>
                     _uploads.filter(
-                      ({ status }) => !["success", "error"].includes(status)
-                    )
+                      ({ status }) => !["success", "error"].includes(status),
+                    ),
                   )
                   console.log(uploadFiles.uploads)
                 }}
@@ -240,7 +242,7 @@ const Upload = () => {
                 value={curUploader().name}
                 onChange={(name) => {
                   setCurUploader(
-                    uploaders.find((uploader) => uploader.name === name)!
+                    uploaders.find((uploader) => uploader.name === name)!,
                   )
                 }}
                 options={uploaders.map((uploader) => {

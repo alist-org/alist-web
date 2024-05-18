@@ -43,7 +43,7 @@ const Indexes = () => {
   const t = useT()
   const [progress, setProgress] = createSignal<Progress>()
   const [progressLoading, getProgressReq] = useFetch(
-    (): PResp<Progress> => r.get("/admin/index/progress")
+    (): PResp<Progress> => r.get("/admin/index/progress"),
   )
   const refreshProgress = async () => {
     const resp = await getProgressReq()
@@ -62,7 +62,7 @@ const Indexes = () => {
     refreshProgress()
   }
   const [clearIndexLoading, clearIndexReq] = useFetch(
-    (): PEmptyResp => r.post("/admin/index/clear")
+    (): PEmptyResp => r.post("/admin/index/clear"),
   )
   const clearIndex = async () => {
     const resp = await clearIndexReq()
@@ -70,7 +70,7 @@ const Indexes = () => {
     refreshProgress()
   }
   const [stopBuildLoading, stopBuildReq] = useFetch(
-    (): PEmptyResp => r.post("/admin/index/stop")
+    (): PEmptyResp => r.post("/admin/index/stop"),
   )
   const stopBuild = async () => {
     const resp = await stopBuildReq()

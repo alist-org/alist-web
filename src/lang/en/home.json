@@ -8,10 +8,13 @@
     "download": "Download",
     "failed_load_img": "Failed to load image",
     "open_with": "Open with ...",
+    "play_with": "Play with ...",
     "install": "Install",
     "installing": "Installing",
     "tr-install": "TrollStore",
-    "tr-installing": "TrollStore Installing"
+    "tr-installing": "TrollStore Installing",
+    "open_in_new_window": "Open in new window",
+    "auto_next": "Auto next"
   },
   "layouts": {
     "list": "List View",
@@ -27,6 +30,7 @@
     "refresh": "Refresh",
     "toggle_theme": "Toggle Theme",
     "switch_lang": "Switch Language",
+    "toggle_markdown_toc": "Toggle Outline",
     "toggle_checkbox": "Toggle Checkbox",
     "rename": "Rename",
     "input_new_name": "Input new name",
@@ -48,6 +52,12 @@
     "cancel_select": "Cancel Select",
     "offline_download": "Offline download",
     "offline_download-tips": "One URL per line",
+    "delete_policy": {
+      "delete_on_upload_succeed": "Delete on upload succeed",
+      "delete_on_upload_failed": "Delete on upload failed",
+      "delete_never": "Never delete",
+      "delete_always": "Always delete"
+    },
     "download": "Download",
     "batch_download": "Batch Download",
     "package_download": "Package Download",
@@ -57,17 +67,21 @@
     "send_aria2_success": "Send to aria2 successfully",
     "pre_package_download-tips": "Using streamsaver in the browser instead of the server for package download requires the corresponding storage to support cors, and the unsupported storage will fail.",
     "package_download-tips": "Downloading, please wait don't close the page",
+    "playlist_download": "Playlist Download",
     "upload": "Upload",
     "local_settings": "Local Settings",
     "recursive_move": "Recursive Move",
     "recursive_move_directory-tips": "Are you sure you want to move all files in the current folder and its subfolders to the specified folder?",
     "remove_empty_directory": "Remove Empty Folder",
     "remove_empty_directory-tips": "Are you sure to delete all its empty subfolders?",
+    "batch_rename": "Batch Rename",
     "regex_rename": "Regex Rename",
+    "sequential_renaming": "Sequential Rename",
     "regex_rename_preview": "Changed Files",
     "regex_rename_preview_old_name": "Old Name",
     "regex_rename_preview_new_name": "New Name",
-    "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line."
+    "regular_rename": "Regular expression file renaming. Input the source file name regular expression on the first line, and input the new file name regular expression on the second line.",
+    "sequential_renaming_desc": "The new file name will have a numerical starting value appended to it, and it will be displayed sequentially by adding 1 to the starting value. Enter the new file name on the first line and the starting value on the second line."
   },
   "upload": {
     "add_as_task": "Add as task",
@@ -87,7 +101,48 @@
   "local_settings": {
     "aria2_rpc_url": "Aria2 RPC URL",
     "aria2_rpc_secret": "Aria2 RPC secret",
-    "aria2_dir": "Aria2 download directory"
+    "aria2_dir": "Aria2 download directory",
+    "show_folder_in_image_view": "Show folder in image view",
+    "show_folder_in_image_view_options": {
+      "top": "Top",
+      "bottom": "Bottom",
+      "none": "None"
+    },
+    "global_default_layout": "Global default layout",
+    "global_default_layout_options": {
+      "list": "List View",
+      "grid": "Grid View",
+      "image": "Image View"
+    },
+    "position_of_header_navbar": "Position of header & nav bar",
+    "position_of_header_navbar_options": {
+      "static": "Normal",
+      "sticky": "Stick to top of page",
+      "only_navbar_sticky": "Only nav bar sticky"
+    },
+    "show_sidebar": "Show sidebar",
+    "show_sidebar_options": {
+      "none": "None",
+      "visible": "Visible"
+    },
+    "list_item_filename_overflow": "List item filename overflow",
+    "list_item_filename_overflow_options": {
+      "ellipsis": "Ellipsis",
+      "scrollable": "Scrollable",
+      "multi_line": "Multi-line"
+    },
+    "open_item_on_checkbox": "Open item on Checkbox",
+    "open_item_on_checkbox_options": {
+      "direct": "Direct",
+      "disable_while_checked": "Disable while checked",
+      "with_ctrl": "With Ctrl/Command hold",
+      "with_alt": "With Alt/Option hold"
+    },
+    "select_with_mouse": "Select item with mouse while checkbox closed",
+    "select_with_mouse_options": {
+      "disabled": "Disabled",
+      "open_item_with_dblclick": "Open item with double click"
+    }
   },
   "package_download": {
     "current_status": "Current Status",
@@ -104,7 +159,12 @@
   },
   "search": {
     "search": "Search",
-    "no_result": "No result yet"
+    "no_result": "No result yet",
+    "scopes": {
+      "all": "All",
+      "folder": "Folder",
+      "file": "File"
+    }
   },
   "fetching_settings_failed": "Failed fetching settings: ",
   "get_current_user_failed": "Failed get current user: ",

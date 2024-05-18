@@ -7,6 +7,7 @@ import {
   getPagination,
   objStore,
   recoverScroll,
+  me,
 } from "~/store"
 import {
   fsGet,
@@ -19,11 +20,13 @@ import {
 import { useFetch } from "./useFetch"
 import { useRouter } from "./useRouter"
 
+let first_fetch = true
+
 let cancelList: Canceler
 export function addOrUpdateQuery(
   key: string,
   value: any,
-  type = "replaceState"
+  type = "replaceState",
 ) {
   let url = type === "location" ? location.href : location.hash
 
@@ -75,7 +78,7 @@ export const resetGlobalPage = () => {
   console.log("resetGlobalPage", globalPage)
 }
 export const usePath = () => {
-  const { pathname } = useRouter()
+  const { pathname, to } = useRouter()
   const [, getObj] = useFetch((path: string) => fsGet(path, password()))
   const pagination = getPagination()
   if (pagination.type === "pagination" && getQueryVariable("page")) {
@@ -101,9 +104,9 @@ export const usePath = () => {
         arg?.force,
         new axios.CancelToken(function executor(c) {
           cancelList = c
-        })
+        }),
       )
-    }
+    },
   )
   // set a path must be a dir
   const setPathAs = (path: string, dir = true, push = false) => {
@@ -148,12 +151,13 @@ export const usePath = () => {
           handleFolder(path, globalPage)
         } else {
           ObjStore.setReadme(data.readme)
+          ObjStore.setHeader(data.header)
           ObjStore.setRelated(data.related ?? [])
           ObjStore.setRawUrl(data.raw_url)
           ObjStore.setState(State.File)
         }
       },
-      handleErr
+      handleErr,
     )
   }
 
@@ -163,7 +167,7 @@ export const usePath = () => {
     index?: number,
     size?: number,
     append = false,
-    force?: boolean
+    force?: boolean,
   ) => {
     if (!size) {
       size = pagination.size
@@ -184,6 +188,7 @@ export const usePath = () => {
           ObjStore.setTotal(data.total)
         }
         ObjStore.setReadme(data.readme)
+        ObjStore.setHeader(data.header)
         ObjStore.setWrite(data.write)
         ObjStore.setProvider(data.provider)
         ObjStore.setState(State.Folder)
@@ -191,7 +196,7 @@ export const usePath = () => {
           recoverScroll(path)
         }
       },
-      handleErr
+      handleErr,
     )
   }
 
@@ -202,6 +207,11 @@ export const usePath = () => {
         notify.error(msg)
       }
     } else {
+      if (first_fetch && msg.endsWith("object not found")) {
+        first_fetch = false
+        to(pathname().replace(me().base_path, ""))
+        return
+      }
       ObjStore.setErr(msg)
     }
   }

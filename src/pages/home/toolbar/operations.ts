@@ -26,7 +26,7 @@ export const operations: Operations = {
   mkdir: { icon: CgFolderAdd, p: true },
   recursive_move: { icon: ImMoveUp, p: true },
   remove_empty_directory: { icon: HiOutlineFolderRemove, p: true },
-  regex_rename: { icon: BiRegularRename, p: true },
+  batch_rename: { icon: BiRegularRename, p: true },
   new_file: { icon: CgFileAdd, p: true },
   cancel_select: { icon: TiDeleteOutline },
   download: { icon: AiOutlineCloudDownload, color: "$primary9" },

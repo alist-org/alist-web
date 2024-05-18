@@ -9,4 +9,6 @@ export interface Meta {
   h_sub: boolean
   readme: string
   r_sub: boolean
+  header: string
+  header_sub: boolean
 }

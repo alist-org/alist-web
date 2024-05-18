@@ -6,12 +6,13 @@ import {
   Obj,
   PResp,
   FsSearchResp,
+  RenameObj,
 } from "~/types"
 import { r } from "."
 
 export const fsGet = (
   path: string = "/",
-  password = ""
+  password = "",
 ): Promise<FsGetResp> => {
   return r.post("/fs/get", {
     path: path,
@@ -24,7 +25,7 @@ export const fsList = (
   page = 1,
   per_page = 0,
   refresh = false,
-  cancelToken?: CancelToken
+  cancelToken?: CancelToken,
 ): Promise<FsListResp> => {
   return r.post(
     "/fs/list",
@@ -37,14 +38,14 @@ export const fsList = (
     },
     {
       cancelToken: cancelToken,
-    }
+    },
   )
 }
 
 export const fsDirs = (
   path = "/",
   password = "",
-  forceRoot = false
+  forceRoot = false,
 ): PResp<Obj[]> => {
   return r.post("/fs/dirs", { path, password, force_root: forceRoot })
 }
@@ -57,25 +58,24 @@ export const fsRename = (paths: string, names: string): PEmptyResp => {
   return r.post("/fs/rename", { paths, names })
 }
 
-export const fsRegexRename = (
+export const fsBatchRename = (
   src_dir: string,
-  src_name_regex: string,
-  new_name_regex: string
+  rename_objects: RenameObj[],
 ): PEmptyResp => {
-  return r.post("/fs/regex_rename", { src_dir, src_name_regex, new_name_regex })
+  return r.post("/fs/batch_rename", { src_dir, rename_objects })
 }
 
 export const fsMove = (
   src_dir: string,
   dst_dir: string,
-  names: string[]
+  names: string[],
 ): PEmptyResp => {
   return r.post("/fs/move", { src_dir, dst_dir, names })
 }
 
 export const fsRecursiveMove = (
   src_dir: string,
-  dst_dir: string
+  dst_dir: string,
 ): PEmptyResp => {
   return r.post("/fs/recursive_move", { src_dir, dst_dir })
 }
@@ -83,7 +83,7 @@ export const fsRecursiveMove = (
 export const fsCopy = (
   src_dir: string,
   dst_dir: string,
-  names: string[]
+  names: string[],
 ): PEmptyResp => {
   return r.post("/fs/copy", { src_dir, dst_dir, names })
 }
@@ -108,16 +108,17 @@ export const fsNewFile = (path: string, password: string): PEmptyResp => {
 export const offlineDownload = (
   path: string,
   urls: string[],
-  type: string
+  tool: string,
+  delete_policy: string,
 ): PEmptyResp => {
-  return r.post(`/fs/add_${type}`, { path, urls })
+  return r.post(`/fs/add_offline_download`, { path, urls, tool, delete_policy })
 }
 
 export const fetchText = async (
   url: string,
-  ts = true
+  ts = true,
 ): Promise<{
-  content: string
+  content: ArrayBuffer | string
   contentType?: string
 }> => {
   try {
@@ -125,11 +126,11 @@ export const fetchText = async (
       responseType: "blob",
       params: ts
         ? {
-            ts: new Date().getTime(),
+            alist_ts: new Date().getTime(),
           }
         : undefined,
     })
-    const content = await resp.data.text()
+    const content = await resp.data.arrayBuffer()
     const contentType = resp.headers["content-type"]
     return { content, contentType }
   } catch (e) {
@@ -146,12 +147,14 @@ export const fsSearch = async (
   parent: string,
   keywords: string,
   password = "",
+  scope = 0,
   page = 1,
-  per_page = 100
+  per_page = 100,
 ): Promise<FsSearchResp> => {
   return r.post("/fs/search", {
     parent,
     keywords,
+    scope,
     page,
     per_page,
     password,

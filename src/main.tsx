@@ -9,11 +9,19 @@ declare global {
     [key: string]: any
   }
 }
+
+declare module "solid-js" {
+  namespace JSX {
+    interface CustomEvents extends HTMLElementEventMap {}
+    interface CustomCaptureEvents extends HTMLElementEventMap {}
+  }
+}
+
 render(
   () => (
     <Router>
       <Index />
     </Router>
   ),
-  document.getElementById("root") as HTMLElement
+  document.getElementById("root") as HTMLElement,
 )

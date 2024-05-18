@@ -1,8 +1,8 @@
-import { Button, Heading, Image, Input, VStack } from "@hope-ui/solid"
+import { Button, Heading, Image, Input, Text, VStack } from "@hope-ui/solid"
 import { createSignal, Show } from "solid-js"
 import { MaybeLoading } from "~/components"
 import { useRouter, useFetch, useT } from "~/hooks"
-import { setMe, me } from "~/store"
+import { setMe, me, getMainColor } from "~/store"
 import { PEmptyResp, PResp } from "~/types"
 import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils"
 
@@ -14,7 +14,7 @@ interface Generate2FA {
 const TwoFA = () => {
   const { back } = useRouter()
   const [generateLoading, generate] = useFetch(
-    (): PResp<Generate2FA> => r.post("/auth/2fa/generate")
+    (): PResp<Generate2FA> => r.post("/auth/2fa/generate"),
   )
   const t = useT()
   const [otpData, setOtpData] = createSignal<Generate2FA>()
@@ -34,7 +34,7 @@ const TwoFA = () => {
       r.post("/auth/2fa/verify", {
         code: code(),
         secret: otpData()?.secret,
-      })
+      }),
   )
   const verify2FA = async () => {
     const resp = await verify()
@@ -49,6 +49,10 @@ const TwoFA = () => {
         <VStack spacing="$2" alignItems="start">
           <Heading>{t("users.scan_qr")}</Heading>
           <Image boxSize="$xs" rounded="$lg" src={otpData()?.qr} />
+          <Heading>
+            {t("users.or_manual")}:{" "}
+            <Text color={getMainColor()}>{otpData()?.secret}</Text>
+          </Heading>
           <Input
             maxW="$xs"
             placeholder={t("users.input_code")}

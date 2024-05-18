@@ -5,7 +5,7 @@ import { useRouter } from "~/hooks"
 import { ComponentProps } from "solid-js"
 
 export const LinkWithBase = (
-  props: ComponentProps<typeof Link> & { encode?: boolean }
+  props: ComponentProps<typeof Link> & { encode?: boolean },
 ) => (
   <Link
     {...props}
@@ -14,7 +14,7 @@ export const LinkWithBase = (
 )
 
 export const AnchorWithBase = (
-  props: ComponentProps<typeof Anchor> & { cancelBase?: boolean }
+  props: ComponentProps<typeof Anchor> & { cancelBase?: boolean },
 ) => (
   <Anchor
     {...props}

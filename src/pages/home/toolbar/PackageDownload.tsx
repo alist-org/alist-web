@@ -41,7 +41,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
   // }
   const fetchFolderStructure = async (
     pre: string,
-    obj: Obj
+    obj: Obj,
   ): Promise<File[] | string> => {
     if (!obj.is_dir) {
       totalSize += obj.size
@@ -52,7 +52,7 @@ const PackageDownload = (props: { onClose: () => void }) => {
             pathJoin(pathname(), pre),
             obj,
             "direct",
-            true
+            true,
           ),
         },
       ]

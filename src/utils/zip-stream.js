@@ -74,14 +74,14 @@ function createWriter(underlyingSource) {
     enqueue(fileLike) {
       if (closed)
         throw new TypeError(
-          "Cannot enqueue a chunk into a readable stream that is closed or has been requested to be closed"
+          "Cannot enqueue a chunk into a readable stream that is closed or has been requested to be closed",
         )
 
       let name = fileLike.name.trim()
       const date = new Date(
         typeof fileLike.lastModified === "undefined"
           ? Date.now()
-          : fileLike.lastModified
+          : fileLike.lastModified,
       )
 
       if (fileLike.directory && !name.endsWith("/")) name += "/"
@@ -112,14 +112,14 @@ function createWriter(underlyingSource) {
             6,
             (((date.getHours() << 6) | date.getMinutes()) << 5) |
               (date.getSeconds() / 2),
-            true
+            true,
           )
           header.view.setUint16(
             8,
             ((((date.getFullYear() - 1980) << 4) | (date.getMonth() + 1)) <<
               5) |
               date.getDate(),
-            true
+            true,
           )
           header.view.setUint16(22, nameBuf.length, true)
           data.view.setUint32(0, 0x504b0304)
@@ -137,12 +137,12 @@ function createWriter(underlyingSource) {
             zipObject.header.view.setUint32(
               14,
               zipObject.compressedLength,
-              true
+              true,
             )
             zipObject.header.view.setUint32(
               18,
               zipObject.uncompressedLength,
-              true
+              true,
             )
             footer.view.setUint32(4, zipObject.crc.get(), true)
             footer.view.setUint32(8, zipObject.compressedLength, true)
@@ -164,7 +164,7 @@ function createWriter(underlyingSource) {
     close() {
       if (closed)
         throw new TypeError(
-          "Cannot close a readable stream that has already been requested to be closed"
+          "Cannot close a readable stream that has already been requested to be closed",
         )
       if (!activeZipObject) closeZip()
       closed = true

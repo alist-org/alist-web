@@ -56,7 +56,7 @@ const AddOrEdit = () => {
     sso_id: "",
   })
   const [userLoading, loadUser] = useFetch(
-    (): PResp<User> => r.get(`/admin/user/get?id=${id}`)
+    (): PResp<User> => r.get(`/admin/user/get?id=${id}`),
   )
 
   const initEdit = async () => {

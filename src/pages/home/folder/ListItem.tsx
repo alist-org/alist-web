@@ -1,12 +1,13 @@
-import { Checkbox, HStack, Icon, Text } from "@hope-ui/solid"
+import { HStack, Icon, Text } from "@hope-ui/solid"
 import { Motion } from "@motionone/solid"
 import { useContextMenu } from "solid-contextmenu"
 import { batch, Show } from "solid-js"
 import { LinkWithPush } from "~/components"
-import { usePath, useUtil } from "~/hooks"
+import { usePath, useRouter, useUtil } from "~/hooks"
 import {
   checkboxOpen,
   getMainColor,
+  local,
   OrderBy,
   selectAll,
   selectIndex,
@@ -14,6 +15,11 @@ import {
 import { ObjType, StoreObj } from "~/types"
 import { bus, formatDate, getFileSize, hoverColor } from "~/utils"
 import { getIconByObj } from "~/utils/icon"
+import {
+  ItemCheckbox,
+  useOpenItemWithCheckbox,
+  useSelectWithMouse,
+} from "./helper"
 
 export interface Col {
   name: OrderBy
@@ -34,6 +40,10 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
   }
   const { setPathAs } = usePath()
   const { show } = useContextMenu({ id: 1 })
+  const { pushHref, to } = useRouter()
+  const { isMouseSupported } = useSelectWithMouse()
+  const isShouldOpenItem = useOpenItemWithCheckbox()
+  const filenameStyle = () => local["list_item_filename_overflow"]
   return (
     <Motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -44,7 +54,9 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
       }}
     >
       <HStack
-        class="list-item"
+        classList={{ selected: !!props.obj.selected }}
+        class="list-item viselect-item"
+        data-index={props.index}
         w="$full"
         p="$2"
         rounded="$lg"
@@ -55,6 +67,27 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
         }}
         as={LinkWithPush}
         href={props.obj.name}
+        cursor={
+          !isMouseSupported() && (!checkboxOpen() || isShouldOpenItem())
+            ? "pointer"
+            : "default"
+        }
+        bgColor={props.obj.selected ? hoverColor() : undefined}
+        on:dblclick={(e: MouseEvent) => {
+          if (!isMouseSupported()) return
+          if (e.ctrlKey || e.metaKey || e.shiftKey) return
+          to(pushHref(props.obj.name))
+        }}
+        on:click={(e: MouseEvent) => {
+          if (isMouseSupported()) return e.preventDefault()
+          if (!checkboxOpen()) return
+          e.preventDefault()
+          if (isShouldOpenItem()) {
+            to(pushHref(props.obj.name))
+            return
+          }
+          selectIndex(props.index, !props.obj.selected)
+        }}
         onMouseEnter={() => {
           setPathAs(props.obj.name, props.obj.is_dir, true)
         }}
@@ -71,10 +104,9 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
       >
         <HStack class="name-box" spacing="$1" w={cols[0].w}>
           <Show when={checkboxOpen()}>
-            <Checkbox
+            <ItemCheckbox
               // colorScheme="neutral"
-              // @ts-ignore
-              on:click={(e) => {
+              on:click={(e: MouseEvent) => {
                 e.stopPropagation()
               }}
               checked={props.obj.selected}
@@ -89,8 +121,7 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
             color={getMainColor()}
             as={getIconByObj(props.obj)}
             mr="$1"
-            // @ts-ignore
-            on:click={(e) => {
+            on:click={(e: MouseEvent) => {
               if (props.obj.type === ObjType.IMAGE) {
                 e.stopPropagation()
                 e.preventDefault()
@@ -101,9 +132,17 @@ export const ListItem = (props: { obj: StoreObj; index: number }) => {
           <Text
             class="name"
             css={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
+              wordBreak: "break-all",
+              whiteSpace: filenameStyle() === "multi_line" ? "unset" : "nowrap",
+              "overflow-x":
+                filenameStyle() === "scrollable" ? "auto" : "hidden",
+              textOverflow:
+                filenameStyle() === "ellipsis" ? "ellipsis" : "unset",
+              "scrollbar-width": "none", // firefox
+              "&::-webkit-scrollbar": {
+                // webkit
+                display: "none",
+              },
             }}
             title={props.obj.name}
           >

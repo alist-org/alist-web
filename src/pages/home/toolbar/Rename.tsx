@@ -34,6 +34,7 @@ export const Rename = () => {
             ? "home.toolbar.input_new_name"
             : "home.toolbar.add_prefix"
         }
+        isRenamingFile={!selectedObjs()[0].is_dir}
         opened={isOpen()}
         onClose={onClose}
         defaultValue={oneChecked() ? selectedObjs()[0]?.name ?? "" : ""}

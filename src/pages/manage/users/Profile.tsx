@@ -16,11 +16,19 @@ import {
   Text,
 } from "@hope-ui/solid"
 import { createSignal, For, JSXElement, onCleanup, Show } from "solid-js"
-import { LinkWithBase } from "~/components"
+import { LinkWithBase, MaybeLoading } from "~/components"
 import { useFetch, useManageTitle, useRouter, useT } from "~/hooks"
 import { setMe, me, getSettingBool } from "~/store"
-import { PEmptyResp, UserMethods, UserPermissions } from "~/types"
-import { handleResp, notify, r } from "~/utils"
+import { PEmptyResp, UserMethods, UserPermissions, PResp } from "~/types"
+import { handleResp, handleRespWithoutNotify, notify, r } from "~/utils"
+import { WebauthnItem } from "./Webauthnitems"
+import {
+  RegistrationPublicKeyCredential,
+  create,
+  parseCreationOptionsFromJSON,
+  supported,
+  CredentialCreationOptionsJSON,
+} from "@github/webauthn-json/browser-ponyfill"
 
 const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
   return (
@@ -33,18 +41,56 @@ const PermissionBadge = (props: { can: boolean; children: JSXElement }) => {
 const Profile = () => {
   const t = useT()
   useManageTitle("manage.sidemenu.profile")
-  const { to, searchParams } = useRouter()
+  const { searchParams, to } = useRouter()
   const [username, setUsername] = createSignal(me().username)
   const [password, setPassword] = createSignal("")
+  const [confirmPassword, setConfirmPassword] = createSignal("")
+  const usecompatibility = getSettingBool("sso_compatibility_mode")
   const [loading, save] = useFetch(
     (ssoID?: boolean): PEmptyResp =>
       r.post("/me/update", {
         username: ssoID ? me().username : username(),
         password: ssoID ? "" : password(),
         sso_id: me().sso_id,
-      })
+      }),
+  )
+
+  interface WebauthnItem {
+    fingerprint: string
+    id: string
+  }
+
+  interface Webauthntemp {
+    session: string
+    options: CredentialCreationOptionsJSON
+  }
+
+  const [getauthncredentialsloading, getauthncredentials] = useFetch(
+    (): PResp<WebauthnItem[]> => r.get("/authn/getcredentials"),
+  )
+  const [, getauthntemp] = useFetch(
+    (): PResp<Webauthntemp> => r.get("/authn/webauthn_begin_registration"),
+  )
+  const [postregistrationloading, postregistration] = useFetch(
+    (
+      session: string,
+      credentials: RegistrationPublicKeyCredential,
+    ): PEmptyResp =>
+      r.post(
+        "/authn/webauthn_finish_registration",
+        JSON.stringify(credentials),
+        {
+          headers: {
+            session: session,
+          },
+        },
+      ),
   )
   const saveMe = async (ssoID?: boolean) => {
+    if (password() && password() !== confirmPassword()) {
+      notify.warning(t("users.confirm_password_not_same"))
+      return
+    }
     const resp = await save(ssoID)
     handleResp(resp, () => {
       setMe({ ...me(), username: username() })
@@ -55,6 +101,11 @@ const Profile = () => {
         to("")
       }
     })
+  }
+  const ssoID = searchParams["sso_id"]
+  if (ssoID) {
+    setMe({ ...me(), sso_id: ssoID })
+    saveMe(true)
   }
   function messageEvent(event: MessageEvent) {
     const data = event.data
@@ -67,6 +118,18 @@ const Profile = () => {
   onCleanup(() => {
     window.removeEventListener("message", messageEvent)
   })
+  const [credentials, setcredentials] = createSignal<WebauthnItem[]>([])
+  const initauthnEdit = async () => {
+    const resp = await getauthncredentials()
+    handleRespWithoutNotify(resp, setcredentials)
+  }
+  if (
+    supported() &&
+    !UserMethods.is_guest(me()) &&
+    getSettingBool("webauthn_login_enabled")
+  ) {
+    initauthnEdit()
+  }
   return (
     <VStack w="$full" spacing="$4" alignItems="start">
       <Show
@@ -90,7 +153,7 @@ const Profile = () => {
                 color="$info9"
                 as={LinkWithBase}
                 href={`/@login?redirect=${encodeURIComponent(
-                  location.pathname
+                  location.pathname,
                 )}`}
               >
                 {t("global.go_login")}
@@ -111,6 +174,8 @@ const Profile = () => {
               }}
             />
           </FormControl>
+        </SimpleGrid>
+        <SimpleGrid gap="$2" columns={{ "@initial": 1, "@md": 2 }}>
           <FormControl>
             <FormLabel for="password">{t("users.change_password")}</FormLabel>
             <Input
@@ -123,6 +188,21 @@ const Profile = () => {
               }}
             />
             <FormHelperText>{t("users.change_password-tips")}</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel for="confirm-password">
+              {t("users.confirm_password")}
+            </FormLabel>
+            <Input
+              id="confirm-password"
+              type="password"
+              placeholder="********"
+              value={confirmPassword()}
+              onInput={(e) => {
+                setConfirmPassword(e.currentTarget.value)
+              }}
+            />
+            <FormHelperText>{t("users.confirm_password-tips")}</FormHelperText>
           </FormControl>
         </SimpleGrid>
         <HStack spacing="$2">
@@ -154,11 +234,11 @@ const Profile = () => {
               <Button
                 onClick={() => {
                   const url = r.getUri() + "/auth/sso?method=get_sso_id"
-                  const popup = window.open(
-                    url,
-                    "authPopup",
-                    "width=500,height=600"
-                  )
+                  if (usecompatibility) {
+                    window.location.href = url
+                    return
+                  }
+                  window.open(url, "authPopup", "width=500,height=600")
                 }}
               >
                 {t("users.connect_sso")}
@@ -177,6 +257,50 @@ const Profile = () => {
             </Button>
           </Show>
         </HStack>
+      </Show>
+      <Show
+        when={
+          !UserMethods.is_guest(me()) &&
+          getSettingBool("webauthn_login_enabled")
+        }
+      >
+        <Heading>{t("users.webauthn")}</Heading>
+        <HStack wrap="wrap" gap="$2" mt="$2">
+          <MaybeLoading loading={getauthncredentialsloading()}>
+            <For each={credentials()}>
+              {(item) => (
+                <WebauthnItem id={item.id} fingerprint={item.fingerprint} />
+              )}
+            </For>
+          </MaybeLoading>
+        </HStack>
+        <Button
+          loading={postregistrationloading()}
+          onClick={async () => {
+            if (!supported()) {
+              notify.error(t("users.webauthn_not_supported"))
+              return
+            }
+            const resp = await getauthntemp()
+            handleResp(resp, async (data) => {
+              const options = parseCreationOptionsFromJSON(data.options)
+              const session = data.session
+              try {
+                const browserresponse = await create(options)
+                handleResp(
+                  await postregistration(session, browserresponse),
+                  () => {
+                    notify.success(t("users.add_webauthn_success"))
+                  },
+                )
+              } catch (error: unknown) {
+                if (error instanceof Error) notify.error(error.message)
+              }
+            })
+          }}
+        >
+          {t("users.add_webauthn")}
+        </Button>
       </Show>
       <HStack wrap="wrap" gap="$2" mt="$2">
         <For each={UserPermissions}>

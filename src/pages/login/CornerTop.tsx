@@ -13,7 +13,7 @@ const CornerTop = (props: Props) => {
       startColor: "#28aff0",
       endColor: "#120fc4",
     },
-    props
+    props,
   )
   return (
     <svg height="1337" width="1337">

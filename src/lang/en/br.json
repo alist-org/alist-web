@@ -10,5 +10,8 @@
   "finish_restore": "Finish restore",
   "success_restore_item": "[ {{item}} ] Restore was successful",
   "failed_restore_item": "[ {{item}} ] Restore failed",
-  "override": "Override"
+  "override": "Override",
+  "encrypt_password_placeholder": "Leave empty if you don't need encryption",
+  "encrypt_password": "Encryption password",
+  "wrong_encrypt_password": "Wrong encryption password"
 }

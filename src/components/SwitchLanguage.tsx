@@ -19,7 +19,7 @@ import { Portal } from "solid-js/web"
 const [fetchingLang, setFetchingLang] = createSignal(false)
 
 export const SwitchLanguage = <C extends ElementType = "button">(
-  props: MenuTriggerProps<C>
+  props: MenuTriggerProps<C>,
 ) => {
   const [, { locale, add }] = useI18n()
   const switchLang = async (lang: string) => {
