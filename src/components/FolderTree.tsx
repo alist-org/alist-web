@@ -195,7 +195,12 @@ export type ModalFolderChooseProps = {
 }
 export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
   const t = useT()
-  const [value, setValue] = createSignal(props.defaultValue ?? "")
+  const [value, setValue] = createSignal(props.defaultValue ?? "/")
+  const [handler, setHandler] = createSignal<FolderTreeHandler>()
+  createEffect(() => {
+    if (!props.opened) return
+    handler()?.setPath(value())
+  })
   return (
     <Modal
       size="xl"
@@ -208,7 +213,11 @@ export const ModalFolderChoose = (props: ModalFolderChooseProps) => {
         {/* <ModalCloseButton /> */}
         <ModalHeader>{t("home.toolbar.choose_dst_folder")}</ModalHeader>
         <ModalBody>
-          <FolderTree onChange={setValue} />
+          <FolderTree
+            onChange={setValue}
+            handle={(h) => setHandler(h)}
+            autoOpen
+          />
         </ModalBody>
         <ModalFooter display="flex" gap="$2">
           <Button onClick={props.onClose} colorScheme="neutral">
