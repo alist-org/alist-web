@@ -451,7 +451,9 @@
   },
   "Mega_nz": {
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "two_fa_code": "2FA 6-digit code",
+    "two_fa_secret": "2FA secret"
   },
   "MoPan": {
     "cloud_id": "Cloud id",
