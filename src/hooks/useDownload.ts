@@ -38,7 +38,7 @@ async function getSaveDir(rpc_url: string, rpc_secret: string) {
   return save_dir
 }
 export const useDownload = () => {
-  const { rawLinks, rawLinksText } = useSelectedLink()
+  const { rawLinks } = useSelectedLink()
   const t = useT()
   const { pathname } = useRouter()
   return {
@@ -159,12 +159,8 @@ export const useDownload = () => {
         notify.error(`failed to send to aria2: ${e}`)
       }
     },
-    playlist_download: () => {
-      const a = document.createElement("a")
-      a.href = URL.createObjectURL(
-        new Blob([rawLinksText(true)], { type: "application/x-mpegURL" }),
-      )
-      const selectedObjs = _selectedObjs()
+    playlistDownloadSelected: () => {
+      const selectedObjs = _selectedObjs().filter((obj) => !obj.is_dir)
       let saveName = pathBase(pathname())
       if (selectedObjs.length === 1) {
         saveName = selectedObjs[0].name
@@ -172,6 +168,16 @@ export const useDownload = () => {
       if (!saveName) {
         saveName = t("manage.sidemenu.home")
       }
+      const m3u8Content = selectedObjs.reduce(
+        (acc, obj, index) =>
+          `${acc}#EXTINF:-1,${obj.name}\n${rawLinks(true)[index]}\n`,
+        "#EXTM3U\n",
+      )
+      const m3u8Blob = new Blob([m3u8Content], {
+        type: "application/x-mpegURL",
+      })
+      const a = document.createElement("a")
+      a.href = URL.createObjectURL(m3u8Blob)
       a.download = `${saveName}.m3u8`
       a.click()
       URL.revokeObjectURL(a.href)
