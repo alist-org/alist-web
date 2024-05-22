@@ -453,7 +453,11 @@
   },
   "Mega_nz": {
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "two_fa_code": "Two fa code",
+    "two_fa_code-tips": "2FA 6-digit code, filling in the 2FA code alone will not support reloading driver",
+    "two_fa_secret": "Two fa secret",
+    "two_fa_secret-tips": "2FA secret"
   },
   "MoPan": {
     "cloud_id": "Cloud id",
@@ -519,12 +523,16 @@
     "tenant_id": "Tenant id"
   },
   "PikPak": {
+    "client_id": "Client id",
+    "client_secret": "Client secret",
     "disable_media_link": "Disable media link",
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
   "PikPakShare": {
+    "client_id": "Client id",
+    "client_secret": "Client secret",
     "password": "Password",
     "root_folder_id": "Root folder id",
     "share_id": "Share id",
