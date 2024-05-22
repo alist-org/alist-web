@@ -156,7 +156,9 @@
     "username": "Username"
   },
   "Alias": {
-    "paths": "Paths"
+    "paths": "Paths",
+    "protect_same_name": "Protect same name",
+    "protect_same_name-tips": "Protects same-name files from Delete or Rename"
   },
   "Aliyundrive": {
     "internal_upload": "Internal upload",
