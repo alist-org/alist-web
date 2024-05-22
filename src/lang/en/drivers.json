@@ -428,6 +428,17 @@
       "url": "Url"
     }
   },
+  "Lark": {
+    "app_id": "App id",
+    "app_id-tips": "app id",
+    "app_secret": "App secret",
+    "app_secret-tips": "app secret",
+    "external_mode": "External mode",
+    "external_mode-tips": "external mode",
+    "root_folder_path": "Root folder path",
+    "tenant_url_prefix": "Tenant url prefix",
+    "tenant_url_prefix-tips": "tenant url prefix"
+  },
   "Local": {
     "mkdir_perm": "Mkdir perm",
     "recycle_bin_path": "Recycle bin path",
@@ -892,6 +903,7 @@
     "ILanZou": {},
     "IPFS API": {},
     "Lanzou": {},
+    "Lark": {},
     "Local": {},
     "MediaTrack": {},
     "Mega_nz": {},
@@ -956,6 +968,7 @@
     "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
+    "Lark": "Lark",
     "Local": "Local",
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
