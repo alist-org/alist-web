@@ -7,8 +7,9 @@ import {
   Kbd,
   CenterProps,
 } from "@hope-ui/solid"
+import { changeColor } from "seemly"
 import { Show, createMemo } from "solid-js"
-import { getSetting, local, objStore, State } from "~/store"
+import { getMainColor, getSetting, local, objStore, State } from "~/store"
 import { BsSearch } from "solid-icons/bs"
 import { CenterLoading } from "~/components"
 import { Container } from "../Container"
@@ -58,13 +59,15 @@ export const Header = () => {
                 <HStack
                   bg="$neutral4"
                   w="$32"
-                  p="$2"
+                  p="$1"
                   rounded="$md"
                   justifyContent="space-between"
                   border="2px solid transparent"
                   cursor="pointer"
+                  color={getMainColor()}
+                  bgColor={changeColor(getMainColor(), { alpha: 0.15 })}
                   _hover={{
-                    borderColor: "$info6",
+                    bgColor: changeColor(getMainColor(), { alpha: 0.2 }),
                   }}
                   onClick={() => {
                     bus.emit("tool", "search")
