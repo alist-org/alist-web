@@ -12,6 +12,8 @@
     "down_proxy_url": "Download proxy URL",
     "web_proxy": "Web proxy",
     "webdav_policy": "WebDAV policy",
+    "proxy_range": "Proxy Range",
+    "proxy_range-tips": "Need to enable proxy",
     "webdav_policys": {
       "302_redirect": "302 redirect",
       "use_proxy_url": "use proxy URL",
