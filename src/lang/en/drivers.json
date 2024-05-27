@@ -670,6 +670,60 @@
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
+  "ThunderBrowser": {
+    "captcha_token": "Captcha token",
+    "password": "Password",
+    "remove_way": "Remove way",
+    "remove_ways": {
+      "delete": "Delete",
+      "trash": "Trash"
+    },
+    "root_folder_id": "Root folder id",
+    "safe_password": "Safe password",
+    "use_video_url": "Use video url",
+    "username": "Username"
+  },
+  "ThunderBrowserExpert": {
+    "algorithms": "Algorithms",
+    "algorithms-tips": "sign type is algorithms,this is required",
+    "captcha_sign": "Captcha sign",
+    "captcha_sign-tips": "sign type is captcha_sign,this is required",
+    "captcha_token": "Captcha token",
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "client_version": "Client version",
+    "device_id": "Device id",
+    "download_user_agent": "Download user agent",
+    "login_type": "Login type",
+    "login_types": {
+      "refresh_token": "Refresh token",
+      "user": "User"
+    },
+    "package_name": "Package name",
+    "password": "Password",
+    "password-tips": "login type is user,this is required",
+    "refresh_token": "Refresh token",
+    "refresh_token-tips": "login type is refresh_token,this is required",
+    "remove_way": "Remove way",
+    "remove_ways": {
+      "delete": "Delete",
+      "trash": "Trash"
+    },
+    "root_folder_id": "Root folder id",
+    "safe_password": "Safe password",
+    "safe_password-tips": "login type is user,this is required",
+    "sign_type": "Sign type",
+    "sign_types": {
+      "algorithms": "Algorithms",
+      "captcha_sign": "Captcha sign"
+    },
+    "timestamp": "Timestamp",
+    "timestamp-tips": "sign type is captcha_sign,this is required",
+    "use_video_url": "Use video url",
+    "user_agent": "User agent",
+    "username": "Username",
+    "username-tips": "login type is user,this is required"
+  },
   "ThunderExpert": {
     "algorithms": "Algorithms",
     "algorithms-tips": "sign type is algorithms,this is required",
@@ -924,6 +978,8 @@
     "Teambition": {},
     "Terabox": {},
     "Thunder": {},
+    "ThunderBrowser": {},
+    "ThunderBrowserExpert": {},
     "ThunderExpert": {},
     "ThunderX": {},
     "ThunderXExpert": {},
@@ -987,6 +1043,8 @@
     "Teambition": "Teambition",
     "Terabox": "Terabox",
     "Thunder": "Thunder",
+    "ThunderBrowser": "ThunderBrowser",
+    "ThunderBrowserExpert": "ThunderBrowserExpert",
     "ThunderExpert": "ThunderExpert",
     "ThunderX": "ThunderX",
     "ThunderXExpert": "ThunderXExpert",
