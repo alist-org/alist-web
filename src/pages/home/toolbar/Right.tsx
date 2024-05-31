@@ -13,6 +13,8 @@ import { usePath } from "~/hooks"
 import { Motion } from "@motionone/solid"
 import { isTocVisible, setTocDisabled } from "~/components"
 import { BiSolidBookContent } from "solid-icons/bi"
+import { FiSun as Sun } from "solid-icons/fi";
+import { FiMoon as Moon } from "solid-icons/fi";
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -23,6 +25,19 @@ export const Right = () => {
   const margin = createMemo(() => (isOpen() ? "$4" : "$5"))
   const isFolder = createMemo(() => objStore.state === State.Folder)
   const { refresh } = usePath()
+  const { toggleColorMode } = useColorMode()
+  const icon = useColorModeValue(
+    {
+      size: "$8",
+      component: Moon,
+      p: "$0_5",
+    },
+    {
+      size: "$8",
+      component: Sun,
+      p: "$0_5",
+    }
+  );
   return (
     <Box
       class="left-toolbar-box"
@@ -30,6 +45,33 @@ export const Right = () => {
       right={margin()}
       bottom={margin()}
     >
+
+      {/* 刷新按钮移动出来 */}
+      <VStack spacing="$1" class="left-toolbar-in">
+        <Show when={isFolder() && (userCan("write") || objStore.write)}>
+          <RightIcon
+            as={RiSystemRefreshLine}
+            tips="refresh"
+            onClick={() => {
+              refresh(undefined, true);
+            }}
+          />
+        </Show>
+      </VStack>
+
+      {/* 夜间白天模式切换 */}
+      <Show
+        when={isOpen()}
+        fallback={
+          <RightIcon
+            // 图标已更换
+            as={icon().component}
+            // tips="白天夜间模式切换"
+            onClick={toggleColorMode}
+          />
+        }
+      >
+      </Show>
       <Show
         when={isOpen()}
         fallback={
