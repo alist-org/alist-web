@@ -1,7 +1,17 @@
-import { Button, HStack, IconButton } from "@hope-ui/solid"
+import {
+  Button,
+  HStack,
+  IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from "@hope-ui/solid"
 import { createMemo, For, mergeProps, Show } from "solid-js"
 import { createStore } from "solid-js/store"
 import { FaSolidAngleLeft, FaSolidAngleRight } from "solid-icons/fa"
+import { TbSelector } from "solid-icons/tb"
 
 export interface PaginatorProps {
   colorScheme?:
@@ -54,6 +64,9 @@ export const Paginator = (props: PaginatorProps) => {
     )
     return Array.from({ length: max - current }, (_, i) => current + 1 + i)
   })
+  const allPages = createMemo(() => {
+    return Array.from({ length: pages() }, (_, i) => 1 + i)
+  })
   const size = {
     "@initial": "sm",
     "@md": "md",
@@ -101,14 +114,54 @@ export const Paginator = (props: PaginatorProps) => {
             </Button>
           )}
         </For>
-        <Button
-          size={size}
-          colorScheme={merged.colorScheme}
-          variant="solid"
-          px={store.current > 10 ? "$2_5" : "$3"}
-        >
-          {store.current}
-        </Button>
+
+        <Popover closeDelay={0}>
+          {({ onClose }) => (
+            <>
+              <PopoverTrigger
+                as={Button}
+                size={size}
+                colorScheme={merged.colorScheme}
+                variant="solid"
+                px={store.current > 10 ? "$2_5" : "$3"}
+                rightIcon={
+                  pages() > merged.maxShowPage ? <TbSelector /> : undefined
+                }
+                iconSpacing="0"
+              >
+                {store.current}
+              </PopoverTrigger>
+              <Show when={pages() > merged.maxShowPage}>
+                <PopoverContent maxW="min(88%, 850px)" w="auto" rounded="$lg">
+                  <PopoverArrow />
+                  <PopoverBody>
+                    <For each={allPages()}>
+                      {(page) => {
+                        return (
+                          <Button
+                            m="$0_5"
+                            size={size}
+                            variant={page == store.current ? "solid" : "subtle"}
+                            px={page > 10 ? "$2_5" : "$3"}
+                            onClick={() => {
+                              onClose()
+                              if (page !== store.current) {
+                                onPageChange(page)
+                              }
+                            }}
+                          >
+                            {page}
+                          </Button>
+                        )
+                      }}
+                    </For>
+                  </PopoverBody>
+                </PopoverContent>
+              </Show>
+            </>
+          )}
+        </Popover>
+
         <For each={rightPages()}>
           {(page) => (
             <Button
