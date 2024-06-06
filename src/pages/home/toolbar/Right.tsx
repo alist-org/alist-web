@@ -1,4 +1,10 @@
-import { Box, createDisclosure, VStack } from "@hope-ui/solid"
+import {
+  Box,
+  createDisclosure,
+  useColorMode,
+  useColorModeValue,
+  VStack,
+} from "@hope-ui/solid"
 import { createMemo, Show } from "solid-js"
 import { RightIcon } from "./Icon"
 import { CgMoreO } from "solid-icons/cg"
@@ -13,8 +19,9 @@ import { usePath } from "~/hooks"
 import { Motion } from "@motionone/solid"
 import { isTocVisible, setTocDisabled } from "~/components"
 import { BiSolidBookContent } from "solid-icons/bi"
-import { FiSun as Sun } from "solid-icons/fi";
-import { FiMoon as Moon } from "solid-icons/fi";
+
+import { FiSun as Sun } from "solid-icons/fi"
+import { FiMoon as Moon } from "solid-icons/fi"
 
 export const Right = () => {
   const { isOpen, onToggle } = createDisclosure({
@@ -36,8 +43,8 @@ export const Right = () => {
       size: "$8",
       component: Sun,
       p: "$0_5",
-    }
-  );
+    },
+  )
   return (
     <Box
       class="left-toolbar-box"
@@ -45,7 +52,20 @@ export const Right = () => {
       right={margin()}
       bottom={margin()}
     >
-
+      {/* 将设置移动出来,已经没用了这个.... */}
+      {/* <Show
+        when={isOpen()}
+        fallback={
+          <RightIcon
+              as={AiOutlineSetting}
+              tips="local_settings"
+              onClick={() => {
+                bus.emit("tool", "local_settings");
+              }}
+            />
+        }
+      >  
+      </Show> */}
       {/* 刷新按钮移动出来 */}
       <VStack spacing="$1" class="left-toolbar-in">
         <Show when={isFolder() && (userCan("write") || objStore.write)}>
@@ -53,7 +73,7 @@ export const Right = () => {
             as={RiSystemRefreshLine}
             tips="refresh"
             onClick={() => {
-              refresh(undefined, true);
+              refresh(undefined, true)
             }}
           />
         </Show>
@@ -70,8 +90,7 @@ export const Right = () => {
             onClick={toggleColorMode}
           />
         }
-      >
-      </Show>
+      ></Show>
       <Show
         when={isOpen()}
         fallback={
@@ -102,13 +121,14 @@ export const Right = () => {
           <VStack spacing="$1" class="left-toolbar-in">
             <Show when={isFolder() && (userCan("write") || objStore.write)}>
               {/* <Add /> */}
-              <RightIcon
+              {/* 原本的刷新按钮隐藏了 */}
+              {/* <RightIcon
                 as={RiSystemRefreshLine}
                 tips="refresh"
                 onClick={() => {
-                  refresh(undefined, true)
+                  refresh(undefined, true);
                 }}
-              />
+              /> */}
               <RightIcon
                 as={operations.new_file.icon}
                 tips="new_file"
