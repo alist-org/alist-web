@@ -25,6 +25,7 @@ import {
   hashPwd,
 } from "~/utils"
 import { PResp, Resp } from "~/types"
+import { getMainColor } from "~/store"
 import LoginBg from "./LoginBg"
 import { createStorageSignal } from "@solid-primitives/storage"
 import { getSetting, getSettingBool } from "~/store"
@@ -304,6 +305,7 @@ const Login = () => {
           <SSOLogin />
           <Show when={AuthnSignEnabled}>
             <Icon
+              color={getMainColor()}
               cursor="pointer"
               boxSize="$8"
               as={IoFingerPrint}
