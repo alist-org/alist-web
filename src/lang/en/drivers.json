@@ -367,6 +367,7 @@
   },
   "FTP": {
     "address": "Address",
+    "encoding": "Encoding",
     "password": "Password",
     "root_folder_path": "Root folder path",
     "username": "Username"
