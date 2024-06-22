@@ -36,14 +36,14 @@ dependencies:
     specifier: ^1.10.1
     version: 1.10.1
   artplayer:
-    specifier: ^5.0.9
-    version: 5.0.9
+    specifier: ^5.1.5
+    version: 5.1.5
   artplayer-plugin-danmuku:
-    specifier: ^5.0.1
-    version: 5.0.1
+    specifier: ^5.1.1
+    version: 5.1.1
   asciinema-player:
-    specifier: ^3.6.3
-    version: 3.6.3
+    specifier: ^3.7.1
+    version: 3.7.1
   axios:
     specifier: ^1.0.0
     version: 1.1.3
@@ -929,18 +929,18 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /artplayer-plugin-danmuku@5.0.1:
-    resolution: {integrity: sha512-b6/Y4/+X0rNmnqS5+zzQgow+WW4iVT8eFv4LAUzJgIyORIcf5Gn00Dy0PZ+kwGb1VJy0CUCRK6gVVvh0tWsRAg==}
+  /artplayer-plugin-danmuku@5.1.1:
+    resolution: {integrity: sha512-5A0j9pjKZI5hy5q2zk94shty4LoKdQgdUjlAfgiK9AgcfBv6EZE0itYNwoYzTMYJhSWmZ4CTDxpePXGMV261wQ==}
     dev: false
 
-  /artplayer@5.0.9:
-    resolution: {integrity: sha512-IM/DShYdmKFEA9jl08LYbTK2Jfz9s7qIjEH0xWjnxvVArUKZZKcoqwr6i54U0c4grtc/Uvb4wtCd78kvtSVlgw==}
+  /artplayer@5.1.5:
+    resolution: {integrity: sha512-hqTVqKpVlrY0+WYM2mB6uYt6zuUKL2U9K2Yoe55m9d01dHA8Byw1qZsFsTIu1eCJTh8QL7v5ThWqNucyKULbAg==}
     dependencies:
       option-validator: 2.0.6
     dev: false
 
-  /asciinema-player@3.6.3:
-    resolution: {integrity: sha512-62aDgLpbuduhmpFfNgPOzf6fOluACLsftVnjpWJjUXX6dqhqTckFqWoJ+ayA0XjSlZ9l9wXTcJqRqvAAIpMblg==}
+  /asciinema-player@3.7.1:
+    resolution: {integrity: sha512-zDJteGjBzNQhHEnD0aG7GqV3E53sOyKb1WCxKNRm2PquU70Lq3s4xxb91wyDS0hBJ3J/TB8aY3y8gjGPN+T23A==}
     dependencies:
       '@babel/runtime': 7.23.6
       solid-js: 1.4.8
