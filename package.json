@@ -40,7 +40,7 @@
     "@types/node": "^18.7.5",
     "@types/sha256": "^0.2.0",
     "@types/streamsaver": "^2.0.1",
-    "@vitejs/plugin-legacy": "^2.0.1",
+    "@vitejs/plugin-legacy": "^5.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
     "prettier": "3.1.1",
