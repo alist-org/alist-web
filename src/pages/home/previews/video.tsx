@@ -286,6 +286,7 @@ const Preview = () => {
         minWidth: 200,
         maxWidth: 400,
         theme: "dark",
+        heatmap: true,
       }),
     )
   }
