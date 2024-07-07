@@ -399,6 +399,16 @@
     "root_folder_id": "Root folder id",
     "show_archive": "Show archive"
   },
+  "HalalCloud": {
+    "app_id": "App id",
+    "app_secret": "App secret",
+    "app_version": "App version",
+    "refresh_token": "Refresh token",
+    "refresh_token-tips": "login type is refresh_token,this is required",
+    "root_folder_path": "Root folder path",
+    "upload_thread": "Upload thread",
+    "upload_thread-tips": "1 \u003c= thread \u003c= 32"
+  },
   "ILanZou": {
     "password": "Password",
     "root_folder_id": "Root folder id",
@@ -713,7 +723,7 @@
     },
     "root_folder_id": "Root folder id",
     "safe_password": "Safe password",
-    "safe_password-tips": "login type is user,this is required",
+    "safe_password-tips": "super safe password",
     "sign_type": "Sign type",
     "sign_types": {
       "algorithms": "Algorithms",
@@ -956,6 +966,7 @@
     "FeijiPan": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
+    "HalalCloud": {},
     "ILanZou": {},
     "IPFS API": {},
     "Lanzou": {},
@@ -1023,6 +1034,7 @@
     "FeijiPan": "FeijiPan",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
+    "HalalCloud": "HalalCloud",
     "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
