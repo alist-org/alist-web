@@ -5,6 +5,7 @@ import { objStore } from "~/store"
 import { ObjType } from "~/types"
 import View360, { ControlBar, EquirectProjection } from "@egjs/view360"
 import "@egjs/view360/css/view360.min.css"
+import "./video360.css"
 
 const Preview = () => {
   let videos = objStore.objs.filter((obj) => obj.type === ObjType.VIDEO)
