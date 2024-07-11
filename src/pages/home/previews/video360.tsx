@@ -1,7 +1,7 @@
 import { Box } from "@hope-ui/solid"
 import { VideoBox } from "./video_box"
 import { createSignal, onCleanup, onMount } from "solid-js"
-import { objStore } from "~/store"
+import { getSettingBool, objStore } from "~/store"
 import { ObjType } from "~/types"
 import View360, { ControlBar, EquirectProjection } from "@egjs/view360"
 import "@egjs/view360/css/view360.min.css"
@@ -23,7 +23,9 @@ const Preview = () => {
       viewer = new View360(container, {
         projection: new EquirectProjection({
           src: video,
-          video: {},
+          video: {
+            autoplay: getSettingBool("video_autoplay"),
+          },
         }),
         plugins: [
           new ControlBar({
@@ -53,7 +55,6 @@ const Preview = () => {
           <video
             src={objStore.raw_url}
             id="view360-video"
-            autoplay
             playsinline
             crossOrigin="anonymous"
             style="display: none;"
