@@ -527,6 +527,11 @@
     "root_folder_path": "Root folder path",
     "site_id": "Site id"
   },
+  "Onedrive Sharelink": {
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "url": "Url"
+  },
   "OnedriveAPP": {
     "chunk_size": "Chunk size",
     "client_id": "Client id",
@@ -979,6 +984,7 @@
     },
     "NeteaseMusic": {},
     "Onedrive": {},
+    "Onedrive Sharelink": {},
     "OnedriveAPP": {},
     "PikPak": {},
     "PikPakShare": {},
@@ -1045,6 +1051,7 @@
     "MoPan": "MoPan",
     "NeteaseMusic": "NeteaseMusic",
     "Onedrive": "Onedrive",
+    "Onedrive Sharelink": "Onedrive Sharelink",
     "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
