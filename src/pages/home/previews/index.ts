@@ -1,7 +1,7 @@
 import { Component, lazy } from "solid-js"
 import { getIframePreviews } from "~/store"
 import { Obj, ObjType } from "~/types"
-import { ext } from "~/utils"
+import { ext, getFileSize } from "~/utils"
 import { generateIframePreview } from "./iframe"
 import { useRouter } from "~/hooks"
 
@@ -94,6 +94,7 @@ export const getPreviews = (
     ObjType[searchParams["type"]?.toUpperCase() as keyof typeof ObjType]
   const res: PreviewComponent[] = []
   // internal previews
+  let hasPreview = false
   previews.forEach((preview) => {
     if (preview.provider && !preview.provider.test(file.provider)) {
       return
@@ -105,6 +106,7 @@ export const getPreviews = (
       preview.exts?.includes(ext(file.name).toLowerCase())
     ) {
       res.push({ name: preview.name, component: preview.component })
+      hasPreview = true
     }
   })
   // iframe previews
@@ -115,10 +117,41 @@ export const getPreviews = (
       component: generateIframePreview(preview.value),
     })
   })
-  // download page
-  res.push({
-    name: "Download",
-    component: lazy(() => import("./download")),
-  })
+  // If there are previews, add download page
+  if (hasPreview) {
+    res.push({
+      name: "Download",
+      component: lazy(() => import("./download")),
+    })
+  }
+  // If no preview is found and filesize < 1MB, add text previews behind download page
+  if (!hasPreview) {
+    if (
+      getFileSize(file.size).includes("K") ||
+      getFileSize(file.size).includes("B")
+    ) {
+      res.push({
+        name: "Download",
+        component: lazy(() => import("./download")),
+      })
+      res.push({
+        name: "Markdown",
+        component: lazy(() => import("./markdown")),
+      })
+      res.push({
+        name: "Markdown with word wrap",
+        component: lazy(() => import("./markdown_with_word_wrap")),
+      })
+      res.push({
+        name: "Text Editor",
+        component: lazy(() => import("./text-editor")),
+      })
+    } else {
+      res.push({
+        name: "Download",
+        component: lazy(() => import("./download")),
+      })
+    }
+  }
   return res
 }
