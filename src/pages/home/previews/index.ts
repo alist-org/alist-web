@@ -84,6 +84,11 @@ const previews: Preview[] = [
     exts: ["cast"],
     component: lazy(() => import("./asciinema")),
   },
+  {
+    name: "Video360",
+    type: ObjType.VIDEO,
+    component: lazy(() => import("./video360")),
+  },
 ]
 
 export const getPreviews = (

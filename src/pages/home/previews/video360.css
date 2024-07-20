@@ -1,0 +1,9 @@
+.view360-controls-main,
+.view360-controls-float-left,
+.view360-controls-float-right {
+  pointer-events: all !important;
+}
+
+.view360-controls-top .view360-range {
+  height: 8px !important;
+}
