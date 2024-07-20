@@ -10,7 +10,7 @@ import {
   VStack,
 } from "@hope-ui/solid"
 import { useFetch, useRouter, useT } from "~/hooks"
-import { getMainColor } from "~/store"
+import { getMainColor, me } from "~/store"
 import { PEmptyResp, Storage } from "~/types"
 import { handleResp, handleRespWithNotifySuccess, notify, r } from "~/utils"
 import { DeletePopover } from "../common/DeletePopover"
@@ -34,12 +34,18 @@ function StorageOp(props: StorageProps) {
         }`,
       ),
   )
+  const disableInServer =
+    props.storage.driver == "Local" &&
+    me().server_id != "" &&
+    me().server_id != props.storage.server_id
+
   return (
     <>
       <Button
         onClick={() => {
           to(`/@manage/storages/edit/${props.storage.id}`)
         }}
+        disabled={disableInServer}
       >
         {t("global.edit")}
       </Button>
@@ -72,6 +78,11 @@ function StorageOp(props: StorageProps) {
 
 export function StorageGridItem(props: StorageProps) {
   const t = useT()
+  const disableInServer =
+    props.storage.driver == "Local" &&
+    me().server_id != "" &&
+    me().server_id != props.storage.server_id
+
   return (
     <VStack
       w="$full"
@@ -103,7 +114,11 @@ export function StorageGridItem(props: StorageProps) {
         <Box
           css={{ wordBreak: "break-all" }}
           overflowX="auto"
-          innerHTML={props.storage.status}
+          innerHTML={
+            disableInServer
+              ? t("global.disable_in_server")
+              : props.storage.status
+          }
         />
       </HStack>
       <Text css={{ wordBreak: "break-all" }}>{props.storage.remark}</Text>

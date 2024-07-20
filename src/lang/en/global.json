@@ -28,5 +28,6 @@
   "close": "Close",
   "no_support_now": "Not currently supported",
   "empty_input": "Please enter",
-  "name": "Name"
+  "name": "Name",
+  "disable_in_server": "Disable in this server"
 }
