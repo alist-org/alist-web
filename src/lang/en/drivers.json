@@ -48,17 +48,6 @@
     "share_code-tips": "share code of 115 share link"
   },
   "123Pan": {
-    "order_by": "Order by",
-    "order_bys": {
-      "file_name": "File name",
-      "size": "Size",
-      "update_at": "Update at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
@@ -73,17 +62,6 @@
   },
   "123PanShare": {
     "accesstoken": "Accesstoken",
-    "order_by": "Order by",
-    "order_bys": {
-      "file_name": "File name",
-      "size": "Size",
-      "update_at": "Update at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
     "root_folder_id": "Root folder id",
     "sharekey": "Sharekey",
     "sharepassword": "Sharepassword"
