@@ -415,7 +415,8 @@
       "account": "Account",
       "cookie": "Cookie",
       "url": "Url"
-    }
+    },
+    "user_agent": "User agent"
   },
   "Lark": {
     "app_id": "App id",
