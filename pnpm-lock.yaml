@@ -131,8 +131,8 @@ devDependencies:
     specifier: ^8.11.8
     version: 8.11.8
   '@types/node':
-    specifier: ^18.7.5
-    version: 18.7.5
+    specifier: ^20.0.0
+    version: 20.0.0
   '@types/sha256':
     specifier: ^0.2.0
     version: 0.2.0
@@ -795,14 +795,14 @@ packages:
   /@types/fs-extra@8.1.4:
     resolution: {integrity: sha512-OMcQKnlrkrOI0TaZ/MgVDA8LYFl7CykzFsjMj9l5x3un2nFxCY20ZFlnqrM0lcqlbs0Yro2HbnZlmopyRaoJ5w==}
     dependencies:
-      '@types/node': 18.7.5
+      '@types/node': 20.0.0
     dev: true
 
   /@types/glob@7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.7.5
+      '@types/node': 20.0.0
     dev: true
 
   /@types/hast@2.3.4:
@@ -849,8 +849,8 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: false
 
-  /@types/node@18.7.5:
-    resolution: {integrity: sha512-NcKK6Ts+9LqdHJaW6HQmgr7dT/i3GOHG+pt6BiWv++5SnjtRd4NXeiuN2kA153SjhXPR/AhHIPHPbrsbpUVOww==}
+  /@types/node@20.0.0:
+    resolution: {integrity: sha512-cD2uPTDnQQCVpmRefonO98/PPijuOnnEy5oytWJFPY1N9aJCz2wJ5kSGWO+zJoed2cY2JxQh6yBuUq4vIn61hw==}
     dev: true
 
   /@types/parse5@6.0.3:
@@ -860,7 +860,7 @@ packages:
   /@types/sha256@0.2.0:
     resolution: {integrity: sha512-QYMr6HuxTQunFWRLZpGopbkgQFoFWOmKTBGgNSYiWMqU/CWnQSTo3edyHvgsRXsOWtOSOG/cmDptPzgCeOsQGw==}
     dependencies:
-      '@types/node': 18.7.5
+      '@types/node': 20.0.0
     dev: true
 
   /@types/sizzle@2.3.3:
