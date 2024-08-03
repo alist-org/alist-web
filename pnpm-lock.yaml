@@ -102,7 +102,7 @@ dependencies:
     specifier: 0.0.2
     version: 0.0.2(solid-js@1.8.19)(solid-transition-group@0.0.12)
   solid-icons:
-    specifier: ^1.1.0
+    specifier: ^1.0.1
     version: 1.1.0(solid-js@1.8.19)
   solid-js:
     specifier: ^1.8.19
