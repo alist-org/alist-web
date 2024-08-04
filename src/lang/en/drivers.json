@@ -429,6 +429,15 @@
     "tenant_url_prefix": "Tenant url prefix",
     "tenant_url_prefix-tips": "tenant url prefix"
   },
+  "LenovoNasShare": {
+    "host": "Host",
+    "host-tips": "You can change it to your local area network",
+    "root_folder_path": "Root folder path",
+    "share_id": "Share id",
+    "share_id-tips": "The part after the last / in the shared link",
+    "share_pwd": "Share pwd",
+    "share_pwd-tips": "The password of the shared link"
+  },
   "Local": {
     "mkdir_perm": "Mkdir perm",
     "recycle_bin_path": "Recycle bin path",
@@ -955,6 +964,7 @@
     "IPFS API": {},
     "Lanzou": {},
     "Lark": {},
+    "LenovoNasShare": {},
     "Local": {},
     "MediaTrack": {},
     "Mega_nz": {},
@@ -1024,6 +1034,7 @@
     "IPFS API": "IPFS API",
     "Lanzou": "Lanzou",
     "Lark": "Lark",
+    "LenovoNasShare": "LenovoNasShare",
     "Local": "Local",
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
