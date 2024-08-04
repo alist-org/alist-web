@@ -6,6 +6,7 @@ import { base_path, changeToken, r } from "~/utils"
 import { getSetting, getSettingBool } from "~/store"
 import { useRouter } from "~/hooks"
 import { onCleanup } from "solid-js"
+import { getMainColor } from "~/store"
 
 const SSOLogin = () => {
   const ssoSignEnabled = getSettingBool("sso_login_enabled")
@@ -55,7 +56,14 @@ const SSOLogin = () => {
         icon = FiLogIn
     }
     return (
-      <Icon cursor="pointer" boxSize="$8" as={icon} p="$0_5" onclick={login} />
+      <Icon
+        cursor="pointer"
+        color={getMainColor()}
+        boxSize="$8"
+        as={icon}
+        p="$0_5"
+        onclick={login}
+      />
     )
   }
 }
