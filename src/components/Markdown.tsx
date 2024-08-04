@@ -158,7 +158,7 @@ const insertKatexCSS = once(() => {
   const link = document.createElement("link")
   link.rel = "stylesheet"
   link.href =
-    "https://registry.npmmirror.com/katex/0.16.8/files/dist/katex.min.css"
+    "https://registry.npmmirror.com/katex/0.16.11/files/dist/katex.min.css"
   document.head.appendChild(link)
 })
 

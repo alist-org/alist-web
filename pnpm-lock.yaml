@@ -16,7 +16,7 @@ dependencies:
     version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)
   '@monaco-editor/loader':
     specifier: ^1.4.0
-    version: 1.4.0(monaco-editor@0.46.0)
+    version: 1.4.0(monaco-editor@0.50.0)
   '@motionone/solid':
     specifier: ^10.14.1
     version: 10.14.1(solid-js@1.4.8)
@@ -623,12 +623,12 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@monaco-editor/loader@1.4.0(monaco-editor@0.46.0):
+  /@monaco-editor/loader@1.4.0(monaco-editor@0.50.0):
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
-      monaco-editor: 0.46.0
+      monaco-editor: 0.50.0
       state-local: 1.0.7
     dev: false
 
@@ -2591,8 +2591,8 @@ packages:
       minimist: 1.2.6
     dev: true
 
-  /monaco-editor@0.46.0:
-    resolution: {integrity: sha512-ADwtLIIww+9FKybWscd7OCfm9odsFYHImBRI1v9AviGce55QY8raT+9ihH8jX/E/e6QVSGM+pKj4jSUSRmALNQ==}
+  /monaco-editor@0.50.0:
+    resolution: {integrity: sha512-8CclLCmrRRh+sul7C08BmPBP3P8wVWfBHomsTcndxg5NRCEPfu/mc2AGU8k37ajjDVXcXFc12ORAMUkmk+lkFA==}
     dev: false
 
   /mri@1.2.0:
