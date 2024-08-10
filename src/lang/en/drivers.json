@@ -570,6 +570,13 @@
     },
     "root_folder_id": "Root folder id"
   },
+  "QuarkTV": {
+    "device_id": "Device id",
+    "query_token": "Query token",
+    "query_token-tips": "don't edit'",
+    "refresh_token": "Refresh token",
+    "root_folder_id": "Root folder id"
+  },
   "Quqi": {
     "cdn": "Cdn",
     "cdn-tips": "If you enable this option, the download speed can be increased, but there will be some performance loss",
@@ -825,6 +832,13 @@
     },
     "root_folder_id": "Root folder id"
   },
+  "UCTV": {
+    "device_id": "Device id",
+    "query_token": "Query token",
+    "query_token-tips": "don't edit'",
+    "refresh_token": "Refresh token",
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "anti_theft_chain_token": "Anti theft chain token",
     "bucket": "Bucket",
@@ -978,6 +992,7 @@
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
+    "QuarkTV": {},
     "Quqi": {},
     "S3": {},
     "SFTP": {},
@@ -993,6 +1008,7 @@
     "ThunderXExpert": {},
     "Trainbit": {},
     "UC": {},
+    "UCTV": {},
     "USS": {},
     "UrlTree": {},
     "VTencent": {},
@@ -1046,6 +1062,7 @@
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
+    "QuarkTV": "QuarkTV",
     "Quqi": "Quqi",
     "S3": "S3",
     "SFTP": "SFTP",
@@ -1061,6 +1078,7 @@
     "ThunderXExpert": "ThunderXExpert",
     "Trainbit": "Trainbit",
     "UC": "UC",
+    "UCTV": "UCTV",
     "USS": "USS",
     "UrlTree": "UrlTree",
     "VTencent": "VTencent",
