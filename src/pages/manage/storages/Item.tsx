@@ -65,7 +65,7 @@ const Item = (props: ItemProps) => {
             type={props.name == "password" ? "password" : "text"}
             readOnly={props.readonly}
             value={props.value as string}
-            onInput={
+            onChange={
               props.type === Type.String
                 ? (e) => props.onChange?.(e.currentTarget.value)
                 : undefined
