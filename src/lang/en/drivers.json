@@ -9,13 +9,13 @@
     "qrcode_source": "Qrcode source",
     "qrcode_source-tips": "select the QR code device, default linux",
     "qrcode_sources": {
+      "alipaymini": "Alipaymini",
       "android": "Android",
       "ios": "Ios",
-      "linux": "Linux",
-      "mac": "Mac",
+      "qandroid": "Qandroid",
       "tv": "Tv",
       "web": "Web",
-      "windows": "Windows"
+      "wechatmini": "Wechatmini"
     },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
@@ -31,13 +31,13 @@
     "qrcode_source": "Qrcode source",
     "qrcode_source-tips": "select the QR code device, default linux",
     "qrcode_sources": {
+      "alipaymini": "Alipaymini",
       "android": "Android",
       "ios": "Ios",
-      "linux": "Linux",
-      "mac": "Mac",
+      "qandroid": "Qandroid",
       "tv": "Tv",
       "web": "Web",
-      "windows": "Windows"
+      "wechatmini": "Wechatmini"
     },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
