@@ -538,10 +538,12 @@
     "tenant_id": "Tenant id"
   },
   "PikPak": {
+    "captcha_token": "Captcha token",
     "client_id": "Client id",
     "client_secret": "Client secret",
     "disable_media_link": "Disable media link",
     "password": "Password",
+    "refresh_token": "Refresh token",
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
