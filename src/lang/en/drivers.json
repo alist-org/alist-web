@@ -539,10 +539,14 @@
   },
   "PikPak": {
     "captcha_token": "Captcha token",
-    "client_id": "Client id",
-    "client_secret": "Client secret",
+    "device_id": "Device id",
     "disable_media_link": "Disable media link",
     "password": "Password",
+    "platform": "Platform",
+    "platforms": {
+      "android": "Android",
+      "web": "Web"
+    },
     "refresh_token": "Refresh token",
     "root_folder_id": "Root folder id",
     "username": "Username"
