@@ -552,13 +552,16 @@
     "username": "Username"
   },
   "PikPakShare": {
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "password": "Password",
+    "device_id": "Device id",
+    "platform": "Platform",
+    "platforms": {
+      "android": "Android",
+      "web": "Web"
+    },
     "root_folder_id": "Root folder id",
     "share_id": "Share id",
     "share_pwd": "Share pwd",
-    "username": "Username"
+    "use_transcoding_address": "Use transcoding address"
   },
   "Quark": {
     "cookie": "Cookie",
