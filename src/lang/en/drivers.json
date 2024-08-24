@@ -397,6 +397,12 @@
     "gateway": "Gateway",
     "root_folder_path": "Root folder path"
   },
+  "KodBox": {
+    "address": "Address",
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "Lanzou": {
     "account": "Account",
     "baseUrl": "BaseUrl",
@@ -985,6 +991,7 @@
     "HalalCloud": {},
     "ILanZou": {},
     "IPFS API": {},
+    "KodBox": {},
     "Lanzou": {},
     "Lark": {},
     "LenovoNasShare": {},
@@ -1057,6 +1064,7 @@
     "HalalCloud": "HalalCloud",
     "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
+    "KodBox": "KodBox",
     "Lanzou": "Lanzou",
     "Lark": "Lark",
     "LenovoNasShare": "LenovoNasShare",
