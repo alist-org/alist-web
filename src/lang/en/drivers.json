@@ -554,6 +554,11 @@
       "web": "Web"
     },
     "refresh_token": "Refresh token",
+    "refresh_token_method": "Refresh token method",
+    "refresh_token_methods": {
+      "http": "Http",
+      "oauth2": "Oauth2"
+    },
     "root_folder_id": "Root folder id",
     "username": "Username"
   },
