@@ -452,6 +452,8 @@
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
     "thumb_cache_folder": "Thumb cache folder",
+    "thumb_concurrency": "Thumb concurrency",
+    "thumb_concurrency-tips": "Number of concurrent thumbnail generation goroutines. This controls how many thumbnails can be generated in parallel.",
     "thumbnail": "Thumbnail",
     "thumbnail-tips": "enable thumbnail"
   },
