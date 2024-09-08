@@ -547,12 +547,14 @@
   },
   "PikPak": {
     "captcha_token": "Captcha token",
+    "custom_low_latency_address": "Custom low latency address",
     "device_id": "Device id",
     "disable_media_link": "Disable media link",
     "password": "Password",
     "platform": "Platform",
     "platforms": {
       "android": "Android",
+      "pc": "Pc",
       "web": "Web"
     },
     "refresh_token": "Refresh token",
@@ -562,18 +564,22 @@
       "oauth2": "Oauth2"
     },
     "root_folder_id": "Root folder id",
+    "use_low_latency_address": "Use low latency address",
     "username": "Username"
   },
   "PikPakShare": {
+    "custom_low_latency_address": "Custom low latency address",
     "device_id": "Device id",
     "platform": "Platform",
     "platforms": {
       "android": "Android",
+      "pc": "Pc",
       "web": "Web"
     },
     "root_folder_id": "Root folder id",
     "share_id": "Share id",
     "share_pwd": "Share pwd",
+    "use_low_latency_address": "Use low latency address",
     "use_transcoding_address": "Use transcoding address"
   },
   "Quark": {
