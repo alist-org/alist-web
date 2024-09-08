@@ -16,7 +16,7 @@ importers:
         version: 2.1.1
       '@hope-ui/solid':
         specifier: 0.6.7
-        version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)
+        version: 0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12(solid-js@1.4.8))
       '@monaco-editor/loader':
         specifier: ^1.4.0
         version: 1.4.0(monaco-editor@0.51.0)
@@ -103,7 +103,7 @@ importers:
         version: 0.2.0
       solid-contextmenu:
         specifier: 0.0.2
-        version: 0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12)
+        version: 0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12(solid-js@1.4.8))
       solid-icons:
         specifier: ^1.0.1
         version: 1.0.1(solid-js@1.4.8)
@@ -131,7 +131,7 @@ importers:
         version: 1.0.3
       '@types/mark.js':
         specifier: ^8.11.8
-        version: 8.11.8
+        version: 8.11.12
       '@types/node':
         specifier: ^20.0.0
         version: 20.0.0
@@ -143,7 +143,7 @@ importers:
         version: 2.0.1
       '@vitejs/plugin-legacy':
         specifier: ^2.0.1
-        version: 2.0.1(terser@5.14.2)(vite@3.0.8)
+        version: 2.0.1(terser@5.14.2)(vite@3.0.8(terser@5.14.2))
       husky:
         specifier: ^8.0.2
         version: 8.0.2
@@ -170,7 +170,7 @@ importers:
         version: 0.4.4
       vite-plugin-solid:
         specifier: ^2.3.0
-        version: 2.3.0(solid-js@1.4.8)(vite@3.0.8)
+        version: 2.3.0(solid-js@1.4.8)(vite@3.0.8(terser@5.14.2))
 
 packages:
 
@@ -491,8 +491,8 @@ packages:
   '@types/katex@0.16.7':
     resolution: {integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==}
 
-  '@types/mark.js@8.11.8':
-    resolution: {integrity: sha512-BoWCd9ydi1hZxDfu/lF0v1hHMsNUjuxZEDJsdHlmm6GlKk4qxlLya7D3FS81QmabwFbYPpoDOh9603JESUkHbA==}
+  '@types/mark.js@8.11.12':
+    resolution: {integrity: sha512-244ZnaIBpz4c6xutliAnYVZp6xJlmC569jZqnR3ElO1Y01ooYASSVQEqpd2x0A2UfrgVMs5V9/9tUAdZaDMytQ==}
 
   '@types/mdast@3.0.15':
     resolution: {integrity: sha512-LnwD+mUEfxWMa1QpDraczIn6k0Ee3SMicuYSSzS6ZYl2gKS09EClnJYGd8Du6rfc5r/GZEk5o1mRb8TaTj03sQ==}
@@ -2186,7 +2186,7 @@ snapshots:
 
   '@github/webauthn-json@2.1.1': {}
 
-  '@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12)':
+  '@hope-ui/solid@0.6.7(@stitches/core@1.2.8)(solid-js@1.4.8)(solid-transition-group@0.0.12(solid-js@1.4.8))':
     dependencies:
       '@floating-ui/dom': 0.4.4
       '@stitches/core': 1.2.8
@@ -2346,7 +2346,7 @@ snapshots:
 
   '@types/katex@0.16.7': {}
 
-  '@types/mark.js@8.11.8':
+  '@types/mark.js@8.11.12':
     dependencies:
       '@types/jquery': 3.5.30
 
@@ -2376,7 +2376,7 @@ snapshots:
 
   '@viselect/vanilla@3.5.0': {}
 
-  '@vitejs/plugin-legacy@2.0.1(terser@5.14.2)(vite@3.0.8)':
+  '@vitejs/plugin-legacy@2.0.1(terser@5.14.2)(vite@3.0.8(terser@5.14.2))':
     dependencies:
       '@babel/standalone': 7.25.6
       core-js: 3.38.1
@@ -3640,7 +3640,7 @@ snapshots:
 
   smoothscroll@0.4.0: {}
 
-  solid-contextmenu@0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12):
+  solid-contextmenu@0.0.2(solid-js@1.4.8)(solid-transition-group@0.0.12(solid-js@1.4.8)):
     dependencies:
       clsx: 1.2.1
       mitt: 3.0.0
@@ -3861,7 +3861,7 @@ snapshots:
     dependencies:
       node-html-parser: 5.4.2
 
-  vite-plugin-solid@2.3.0(solid-js@1.4.8)(vite@3.0.8):
+  vite-plugin-solid@2.3.0(solid-js@1.4.8)(vite@3.0.8(terser@5.14.2)):
     dependencies:
       '@babel/core': 7.25.2
       '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
@@ -3879,9 +3879,9 @@ snapshots:
       postcss: 8.4.45
       resolve: 1.22.8
       rollup: 2.77.3
-      terser: 5.14.2
     optionalDependencies:
       fsevents: 2.3.3
+      terser: 5.14.2
 
   web-namespaces@2.0.1: {}
 
