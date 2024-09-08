@@ -7,7 +7,7 @@
     "url": "https://www.nn.ci"
   },
   "description": "The front end of Alist V3",
-  "packageManager": "pnpm@8.6.10",
+  "packageManager": "pnpm@9.9.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alist-org/alist-web.git"
