@@ -1,7 +1,7 @@
 # replace version
 cd alist-web
 version=$(git describe --abbrev=0 --tags)
-sed -i -e "s/0.0.0/$version/g" package.json
+sed -i -e "s/\"version\": \"0.0.0\"/\"version\": \"$version\"/g" package.json
 cat package.json
 
 # build
