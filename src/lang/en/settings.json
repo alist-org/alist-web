@@ -98,6 +98,8 @@
   "sso_organization_name": "Sso organization name",
   "text_types": "Text types",
   "token": "Token",
+  "transmission_seedtime": "Transmission seedtime",
+  "transmission_uri": "Transmission uri",
   "version": "Version",
   "video_autoplay": "Video autoplay",
   "video_types": "Video types",
