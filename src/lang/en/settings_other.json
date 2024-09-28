@@ -7,5 +7,7 @@
   "reset_token_success": "Reset Token Successfully",
   "unknown_type": "Unknown type",
   "set_qbit": "Set qBittorrent",
-  "qbittorrent": "qBittorrent"
+  "qbittorrent": "qBittorrent",
+  "transmission": "Transmission",
+  "set_transmission": "Set Transmission"
 }
