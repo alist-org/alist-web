@@ -350,6 +350,26 @@
     "root_folder_path": "Root folder path",
     "username": "Username"
   },
+  "FebBox": {
+    "client_id": "Client id",
+    "client_secret": "Client secret",
+    "page_size": "Page size",
+    "page_size-tips": "list api per page size of FebBox driver",
+    "root_folder_id": "Root folder id",
+    "sort_rule": "Sort rule",
+    "sort_rules": {
+      "ext_asc": "Ext asc",
+      "ext_desc": "Ext desc",
+      "name_asc": "Name asc",
+      "name_desc": "Name desc",
+      "size_asc": "Size asc",
+      "size_desc": "Size desc",
+      "update_asc": "Update asc",
+      "update_desc": "Update desc"
+    },
+    "user_ip": "User ip",
+    "user_ip-tips": "user ip address for download link which can speed up the download"
+  },
   "FeijiPan": {
     "password": "Password",
     "root_folder_id": "Root folder id",
@@ -998,6 +1018,7 @@
     "Doge": {},
     "Dropbox": {},
     "FTP": {},
+    "FebBox": {},
     "FeijiPan": {},
     "GoogleDrive": {},
     "GooglePhoto": {},
@@ -1071,6 +1092,7 @@
     "Doge": "Doge",
     "Dropbox": "Dropbox",
     "FTP": "FTP",
+    "FebBox": "FebBox",
     "FeijiPan": "FeijiPan",
     "GoogleDrive": "GoogleDrive",
     "GooglePhoto": "GooglePhoto",
