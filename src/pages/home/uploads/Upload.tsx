@@ -116,7 +116,7 @@ const Upload = () => {
   const [uploading, setUploading] = createSignal(false)
   const [asTask, setAsTask] = createSignal(false)
   const [overwrite, setOverwrite] = createSignal(false)
-  const [rapid, setRapid] = createSignal(true)
+  const [rapid, setRapid] = createSignal(false)
   const [uploadFiles, setUploadFiles] = createStore<{
     uploads: UploadFileProps[]
   }>({
