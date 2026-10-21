@@ -1512,6 +1512,7 @@
     "family_id": "Family id",
     "family_id-tips": "Keep it empty if you want to use your personal drive",
     "refresh_token": "Refresh token",
+    "refresh_token-tips": "Provide a refresh token or an access token",
     "root_folder_id": "Root folder id",
     "sort_rule": "Sort rule",
     "sort_rules": {
